@@ -3,10 +3,10 @@
  * main_product_image module
  *
  * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2021 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main_product_image.php 2018-06-12 09:38:06Z webchills $
+ * @version $Id: main_product_image.php 2021-06-16 17:22:06Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -15,7 +15,8 @@ if (!defined('IS_ADMIN_FLAG')) {
 // -----
 // This notifier lets an observer know that the module has begun its processing.
 //
-$GLOBALS['zco_notifier']->notify('NOTIFY_MODULES_MAIN_PRODUCT_IMAGE_START');
+global $zco_notifier;
+$zco_notifier->notify('NOTIFY_MODULES_MAIN_PRODUCT_IMAGE_START');
 
 $products_image_extension = substr($products_image, strrpos($products_image, '.'));
 $products_image_base = str_replace($products_image_extension, '', $products_image);
@@ -37,7 +38,7 @@ $products_image_large = $products_image_base . IMAGE_SUFFIX_LARGE . $products_im
 // other values have been updated for separate handling.
 //
 $main_image_handled = false;
-$GLOBALS['zco_notifier']->notify(
+$zco_notifier->notify(
     'NOTIFY_MODULES_MAIN_PRODUCT_IMAGE_FILENAME',
     $products_image,
     $main_image_handled,
@@ -74,4 +75,4 @@ if ($main_image_handled !== true) {
     // to be built into a single variable string
 }
 
-$GLOBALS['zco_notifier']->notify('NOTIFY_MODULES_MAIN_PRODUCT_IMAGE_END');
+$zco_notifier->notify('NOTIFY_MODULES_MAIN_PRODUCT_IMAGE_END');

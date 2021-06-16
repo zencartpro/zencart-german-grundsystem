@@ -1,12 +1,12 @@
 <?php
 /**
- * @package Image Handler
+ * @package Image Handler 5.1.11
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
- * @copyright Copyright 2018 lat 9 - Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2018-2021 lat 9 - Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2021 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ImageHandlerAdmin.php 2018-06-15 16:13:51Z webchills $
+ * @version $Id: ImageHandlerAdmin.php 2021-06-16 17:13:51Z webchills $
  */
 if (!defined('IH_DEBUG_ADMIN')) {
     define('IH_DEBUG_ADMIN', 'true'); //-Either 'true' or 'false'

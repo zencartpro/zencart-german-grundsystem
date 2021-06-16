@@ -1,12 +1,12 @@
 <?php
 /**
- * @package Image Handler
+ * @package Image Handler 5.1.11
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
- * @copyright Copyright 2018-2020 lat 9 - Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2018-2021 lat 9 - Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2021 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: bmz_image_handler.class.php 2020-07-08 14:13:51Z webchills $
+ * @version $Id: bmz_image_handler.class.php 2021-06-16 17:13:51Z webchills $
  */
 
 if (!defined('IH_DEBUG_ADMIN')) {
@@ -44,7 +44,7 @@ class ih_image
      * ih_image class constructor
      * @author Tim Kroeger (tim@breakmyzencart.com)
      * @author Cindy Merkin (lat9)
-     * @version 5.1.8
+     * @version 5.1.11
      * @param string $src Image source (e.g. - images/productimage.jpg)
      * @param string $width The image's width
      * @param string $height The image's height
@@ -52,8 +52,8 @@ class ih_image
 
     public function __construct($src, $width, $height)
     {
-        global $ihConf;
-		
+        global $ihConf,
+               $ih_logfile_suffix;
     
     $this->orig = $src;
     $this->src = $src;
@@ -69,12 +69,12 @@ class ih_image
         $this->file_exists = true;
         
         $this->first_access = false;
-        if (!isset($GLOBALS['ih_logfile_suffix'])) {
+        if (!isset($ih_logfile_suffix)) {
             $d = new DateTime();
-            $GLOBALS['ih_logfile_suffix'] = $d->format('Ymd-His.u');
+            $ih_logfile_suffix = $d->format('Ymd-His.u');
             $this->first_access = true;
         }
-        $logfile_suffix = $GLOBALS['ih_logfile_suffix'];
+        $logfile_suffix = $ih_logfile_suffix;
 
         if (IS_ADMIN_FLAG === true) {
             $this->debug = (IH_DEBUG_ADMIN == 'true');
@@ -330,9 +330,27 @@ class ih_image
         
         // Do we need to resize, watermark, zoom or convert to another filetype?
         if ($this->file_exists && ($resize || $this->watermark['file'] != '' || $this->zoom['file'] != '' || $file_extension != $this->extension)) {
-            if (IH_CACHE_NAMING == 'Hashed') {
-                $local = $this->getCacheName($this->src . $this->watermark['file'] . $this->zoom['file'] . $quality . $background . $ihConf['watermark']['gravity'], '.image.' . $newwidth . 'x' . $newheight . $file_extension);
-            } else {
+            switch (IH_CACHE_NAMING) {
+                case 'Hashed':
+                    $local = $this->getCacheName($this->src . $this->watermark['file'] . $this->zoom['file'] . $quality . $background . $ihConf['watermark']['gravity'], '.image.' . $newwidth . 'x' . $newheight . $file_extension);
+                    break;
+                case 'Mirrored':
+                    // use pathinfo to get full path of an image
+                    $image_path = pathinfo($this->src);
+                    // get image name from path and clean it up for those who don't know how image files SHOULD be named
+                    $image_basename = $this->sanitizeImageNames($image_path['basename']);
+                    $image_dirname = ($image_path['dirname']);
+                    // Remove Images default directory from path
+                    if ($image_dirname == rtrim(DIR_WS_IMAGES, '/')) {
+                        $image_dir = '';
+                    } else {
+                        $image_dir = substr($image_path['dirname'],strlen(DIR_WS_IMAGES)) . '/';
+                    }
+                    // and now do the magic and create cached image name with the above parameters
+                    $local = $this->getCacheName(strtolower($image_dir . $image_basename), '.image.' . $newwidth . 'x' . $newheight . $file_extension);
+                    break;
+                case 'Readable':
+                default:
                 // use pathinfo to get full path of an image
                 $image_path = pathinfo($this->src);
                 
@@ -351,6 +369,7 @@ class ih_image
                 
                 // and now do the magic and create cached image name with the above parameters
                 $local = $this->getCacheName(strtolower($image_dir . $image_basename), '.image.' . $newwidth . 'x' . $newheight . $file_extension);
+                    break;
             }
             
             //echo $local . '<br />';    
@@ -405,8 +424,23 @@ class ih_image
     //-NOTE: This function was (for versions prior to 5.0.1) present in /includes/functions/extra_functions/functions_bmz_io.php
     protected function getCacheName($data, $ext='') 
     {
-        $md5  = (IH_CACHE_NAMING == 'Hashed') ? md5($data) : $data;
-        $file = $GLOBALS['bmzConf']['cachedir'] . '/' . substr($md5, 0, 1) . '/' . $md5 . $ext;
+        global $bmzConf;
+        switch (IH_CACHE_NAMING) {
+            case 'Hashed':
+            // Hash the name and place in directory using first character of hashed string
+                $md5 = md5($data);
+                $file = $bmzConf['cachedir'] . '/' . substr($md5, 0, 1) . '/' . $md5 . $ext;
+                break;
+            case 'Mirrored':
+            // Use readable file name and place in mirror of original directory
+                $file = $bmzConf['cachedir'] . '/' . $data . $ext;
+                break;
+            case 'Readable':
+            default:
+            // Use readable file name and place directory using first character of $data
+                $file = $bmzConf['cachedir'] . '/' . substr($data, 0, 1) . '/' . $data . $ext;
+                break;
+            }
         io_makeFileDir($file);
         $this->ihLog("getCacheName($data, $ext), returning $file.");
         return $file;
@@ -843,7 +877,7 @@ class ih_image
         if ($quality < 0 || $quality > 100) {
             $quality = 75;
         }
-        $this->ihLog("save_imageGD($file_ext, $image, $dest_name, $quality)");
+        $this->ihLog("save_imageGD($file_ext, '', $dest_name, $quality)");
         switch (strtolower($file_ext)) {
             case '.gif':
                 if (!function_exists('imagegif')) {

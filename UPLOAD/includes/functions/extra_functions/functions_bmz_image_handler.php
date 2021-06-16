@@ -1,12 +1,12 @@
 <?php
 /**
- * @package Image Handler
+ * @package Image Handler 5.1.11
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
- * @copyright Copyright 2018 lat 9 - Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2018-2021 lat 9 - Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2021 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_bmz_image_handler.php 2019-07-13 14:13:51Z webchills $
+ * @version $Id: functions_bmz_image_handler.php 2021-06-16 17:13:51Z webchills $
  */
 
 require_once DIR_FS_CATALOG . DIR_WS_CLASSES . 'bmz_image_handler.class.php';
@@ -108,6 +108,8 @@ function handle_image($src, $alt, $width, $height, $parameters)
             $parameters = $ih_image->get_additional_parameters($alt, $ih_image->canvas['width'], $ih_image->canvas['height'], $parameters);
         }
     } else {
+//-bof-20210219-lat9-GitHub#212: Don't modify input variables if IH isn't enabled.  Uncomment if needed.
+/*
         // default to standard Zen-Cart fallback behavior for large -> medium -> small images
         $image_ext = '.' . pathinfo($src, PATHINFO_EXTENSION);
         $image_base = substr($src, strlen(DIR_WS_IMAGES), -strlen($image_ext));
@@ -121,8 +123,10 @@ function handle_image($src, $alt, $width, $height, $parameters)
             $image_base = substr($image_base, strlen($ihConf['medium']['prefix']), -strlen($ihConf['medium']['suffix'])); 
             $src = DIR_WS_IMAGES . $image_base . $image_ext;
         }
+*/
+//-eof-20210219-lat9
     }
-    return array($src, $alt, intval($width), intval($height), $parameters);
+    return array($src, $alt, $width, $height, $parameters);
 }
 
 

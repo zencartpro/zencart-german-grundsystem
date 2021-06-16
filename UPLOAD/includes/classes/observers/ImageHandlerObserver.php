@@ -1,12 +1,12 @@
 <?php
 /**
- * @package Image Handler
+ * @package Image Handler 5.1.11
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
- * @copyright Copyright 2018 lat 9 - Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2018-2021 lat 9 - Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2021 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ImageHandlerObserver.php 2018-06-15 16:13:51Z webchills $
+ * @version $Id: ImageHandlerObserver.php 2021-06-16 17:13:51Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -94,13 +94,16 @@ class ImageHandlerObserver extends base
             // Update the (globally-available) image names for any rendering of the popup_image page.
             //
             case 'NOTIFY_HEADER_END_POPUP_IMAGES':
-                $products_image_extension = $GLOBALS['products_image_extension'];
+                global $products_image,
+                       $products_image_extension, 
+                       $products_image_base,
+                       $products_image_medium,
+                       $products_image_large;
                 
-                $products_image_base = preg_replace('/' . $products_image_extension . '$/', '', $GLOBALS['products_image']);
-                $GLOBALS['products_image_base'] = $products_image_base;
+                $products_image_base = preg_replace('/' . $products_image_extension . '$/', '', $products_image);
                 
-                $GLOBALS['products_image_medium'] = DIR_WS_IMAGES . 'medium/' . $products_image_base . IMAGE_SUFFIX_MEDIUM . $products_image_extension;
-                $GLOBALS['products_image_large'] = DIR_WS_IMAGES . 'large/' . $products_image_base . IMAGE_SUFFIX_LARGE . $products_image_extension;
+                $products_image_medium = DIR_WS_IMAGES . 'medium/' . $products_image_base . IMAGE_SUFFIX_MEDIUM . $products_image_extension;
+                $products_image_large = DIR_WS_IMAGES . 'large/' . $products_image_base . IMAGE_SUFFIX_LARGE . $products_image_extension;
                 break;
                 
             default:
