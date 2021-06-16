@@ -15,12 +15,19 @@ class Gateway
      */
     public $config;
 
+    /**
+     *
+     * @var GraphQLClient
+     */
+    public $graphQLClient;
+
     public function __construct($config)
     {
         if (is_array($config)) {
             $config = new Configuration($config);
         }
         $this->config = $config;
+        $this->graphQLClient = new GraphQLClient($config);
     }
 
     /**
@@ -257,4 +264,3 @@ class Gateway
         return new WebhookTestingGateway($this);
     }
 }
-class_alias('Braintree\Gateway', 'Braintree_Gateway');

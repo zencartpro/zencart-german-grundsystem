@@ -3,10 +3,10 @@
  * braintree_admin_notification.php admin display component
  *
  * @package paymentMethod
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2021 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: braintree_admin_notification.php 2019-02-26 15:49:16Z webchills $
+ * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
+ * @version $Id: braintree_admin_notification.php 2021-02-18 17:49:16Z webchills $
  */
 
 	$outputStartBlock = '';
@@ -144,7 +144,7 @@
 	if (method_exists($this, '_doRefund')) {
 
 		try {
-	$settled_result = Braintree_Transaction::find($response['TRANSACTIONID']);
+	$settled_result = Braintree\Transaction::find($response['TRANSACTIONID']);
 
 		$outputRefund .= '<td><table class="noprint">'."\n";
 		$outputRefund .= '<tr style="background-color : #eeeeee; border-style : dotted;">'."\n";

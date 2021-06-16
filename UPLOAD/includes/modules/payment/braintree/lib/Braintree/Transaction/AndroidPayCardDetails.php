@@ -28,6 +28,7 @@ use Braintree\Instance;
  * @property-read string $googleTransactionId
  * @property-read string $healthcare
  * @property-read string $imageUrl
+ * @property-read boolean $isNetworkTokenized
  * @property-read string $issuingBank
  * @property-read string $payroll
  * @property-read string $prepaid
@@ -53,4 +54,3 @@ class AndroidPayCardDetails extends Instance
         $this->_attributes['last4'] = $this->virtualCardLast4;
     }
 }
-class_alias('Braintree\Transaction\AndroidPayCardDetails', 'Braintree_Transaction_AndroidPayCardDetails');

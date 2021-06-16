@@ -12,6 +12,7 @@ namespace Braintree;
  * @property-read string $currencyIsoCode
  * @property-read string $disbursementDate
  * @property-read \Braintree\Dispute\EvidenceDetails $evidence
+ * @property-read string $graphQLId
  * @property-read string $id
  * @property-read string $kind
  * @property-read string $merchantAccountId
@@ -137,7 +138,13 @@ class Dispute extends Base
      * Adds text evidence to a dispute, given a dispute ID and content
      *
      * @param string $id
-     * @param string $contentOrRequest
+     * @param string|mixed $contentOrRequest If a string, $contentOrRequest is the text-based content for the dispute evidence.
+     * Alternatively, the second argument can also be an array containing:
+     *  string $content The text-based content for the dispute evidence, and
+     *  string $category The category for this piece of evidence
+     *  Note: (optional) string $tag parameter is deprecated, use $category instead.
+     *
+     *  Example: https://developers.braintreepayments.com/reference/request/dispute/add-text-evidence/php#submitting-categorized-evidence
      */
     public static function addTextEvidence($id, $contentOrRequest)
     {
@@ -185,4 +192,3 @@ class Dispute extends Base
         return Configuration::gateway()->dispute()->search($query);
     }
 }
-class_alias('Braintree\Dispute', 'Braintree_Dispute');
