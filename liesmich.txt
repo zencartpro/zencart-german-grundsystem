@@ -5,16 +5,17 @@ Zen Cart 1.5.6 - deutsche Version
 
 Systemvoraussetzungen:
 * Linux Server mit Apache 2.4 oder 2.2
-* PHP 7.1.x bis 7.3.x
+* PHP 7.1.x bis 7.4.x
 * MySQL 5.1 bis 5.7 oder or MariaDB 10.1 bis 10.4
 
 Empfohlene Konfiguration:
 * Apache 2.4
-* PHP 7.3.x
+* PHP 7.4.x
 * MySQL 5.7
 * Datenbank mit Character Set: utf8mb4 und Kollation: utf8mb4_general_ci 
 
 Änderungen in 1.5.6f
+* Grundsystem unterstützt die Verwendung von PHP 7.4
 * Fix für Summen im Verkaufsbericht
 * Update des integrierten Braintree Kreditkartenmoduls auf SCA kompatible Version 2.1.0
 * Update ImageHandler auf 5.1.11

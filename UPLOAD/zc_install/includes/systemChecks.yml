@@ -1,9 +1,9 @@
 #
 # @package Installer
 # Zen Cart German Specific
-# @copyright Copyright 2003-2020 Zen Cart Development Team
+# @copyright Copyright 2003-2021 Zen Cart Development Team
 # @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# @version $Id: systemChecks.yml 11 2020-01-24 19:00:53Z webchills $
+# @version $Id: systemChecks.yml 12 2021-06-18 19:09:53Z webchills $
 #
 
 systemChecks:
@@ -63,9 +63,9 @@ systemChecks:
       checkPhpVersionMax:
         method: checkPhpVersion
         parameters:
-          version: 7.4.0
+          version: 8.0.0
           versionTest: lt
-          localErrorText: <?php echo sprintf(TEXT_ERROR_PHP_VERSION_MAX, '7.3.x') . PHP_EOL; ?>
+          localErrorText: <?php echo sprintf(TEXT_ERROR_PHP_VERSION_MAX, '7.4.x') . PHP_EOL; ?>
   checkPhpVersionRecommendation:
     runLevel: always
     errorLevel: WARN

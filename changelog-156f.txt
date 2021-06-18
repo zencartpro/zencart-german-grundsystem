@@ -1,6 +1,7 @@
 Changelog Zen Cart 1.5.6f deutsch gegenüber 1.5.6e deutsch
 
 Änderungen in 1.5.6f
+* Grundsystem unterstützt die Verwendung von PHP 7.4
 * Fix für Summen im Verkaufsbericht
 * Update des integrierten Braintree Kreditkartenmoduls auf SCA kompatible Version 2.1.0
 * Update ImageHandler auf 5.1.11
