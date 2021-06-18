@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2021 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_zencart.sql 19533 2021-06-18 16:41:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19534 2021-06-18 17:15:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -3521,16 +3521,96 @@ INSERT INTO products_options_types (products_options_types_id, products_options_
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name) VALUES (0, 1, 'TEXT');
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name) VALUES (0, 43, 'TEXT');
 
-# Steuerkonfiguration EU/Export
-INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (3, 'EU', 'EU Staaten', '2020-07-09 10:54:26', '2020-07-09 09:49:27');
-INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (4, 'Export', 'Staaten ausserhalb der EU', '2020-07-09 10:54:26', '2020-07-09 09:49:27');
+# Steuerkonfiguration EU/Export mit eigener Zone fuer jedes EU Land - seit 1.5.6f
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (3, 'Österreich', 'Österreich', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (4, 'Export', 'Staaten ausserhalb der EU', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (5, 'Belgien', 'Belgien', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (6, 'Bulgarien', 'Bulgarien', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (7, 'Dänemark', 'Dänemark', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (8, 'Deutschland', 'Deutschland', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (9, 'Estland', 'Estland', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (10, 'Finnland', 'Finnland', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (11, 'Frankreich', 'Frankreich', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (12, 'Griechenland', 'Griechenland', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (13, 'Spanien', 'Spanien', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (14, 'Kroatien', 'Kroatien', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (15, 'Ungarn', 'Ungarn', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (16, 'Irland', 'Irland', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (17, 'Italien', 'Italien', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (18, 'Litauen', 'Litauen', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (19, 'Luxembourg', 'Luxembourg', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (20, 'Lettland', 'Lettland', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (21, 'Malta', 'Malta', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (22, 'Niederlande', 'Niederlande', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (23, 'Polen', 'Polen', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (24, 'Portugal', 'Portugal', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (25, 'Rumänien', 'Rumänien', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (26, 'Schweden', 'Schweden', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (27, 'Slowenien', 'Slowenien', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (28, 'Slowakei', 'Slowakei', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (29, 'Zypern', 'Zypern', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (30, 'Tschechien', 'Tschechien', now(), now());
+
 INSERT INTO tax_class (tax_class_id, tax_class_title, tax_class_description, last_modified, date_added) VALUES (1, 'reduzierter Steuersatz', 'reduzierter Steuersatz', NULL, '2020-07-09 19:46:30');
 INSERT INTO tax_class (tax_class_id, tax_class_title, tax_class_description, last_modified, date_added) VALUES (2, 'Normalsteuersatz', 'Normalsteuersatz', NULL, '2020-07-09 19:46:30');
 INSERT INTO tax_class (tax_class_id, tax_class_title, tax_class_description, last_modified, date_added) VALUES (3, 'Export', 'Export', NULL, '2020-07-09 19:46:30');
-INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (5, 3, 2, 10, '20.0000', '20%', '2020-07-09 10:24:32', '2020-07-09 10:03:07');
-INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (6, 3, 1, 20, '5.0000', '5%', '2020-07-09 10:24:44', '2020-07-09 10:03:47');
-INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (7, 4, 3, 30, '0.0000', '0%', '2020-07-09 10:24:44', '2020-07-09 10:03:47');
-# EU Staaten fuer Zone EU
+# Steuersaetze separat fuer jedes EU-Land - vorbefuellt mit AT Steuersatz - seit 1.5.6f
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (5, 3, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (6, 3, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (7, 4, 3, 30, '0.0000', '0%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (8, 5, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (9, 5, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (10, 6, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (11, 6, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (12, 29, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (13, 29, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (14, 30, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (15, 30, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (16, 8, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (17, 8, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (18, 7, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (19, 7, 1, 20, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (20, 9, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (21, 9, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (22, 12, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (23, 12, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (24, 13, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (25, 13, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (26, 10, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (27, 10, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (28, 11, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (29, 11, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (30, 14, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (31, 14, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (32, 15, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (33, 15, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (34, 16, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (35, 16, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (36, 17, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (37, 17, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (38, 18, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (39, 18, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (40, 19, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (41, 19, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (42, 20, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (43, 20, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (44, 21, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (45, 21, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (46, 22, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (47, 22, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (48, 23, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (49, 23, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (50, 24, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (51, 24, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (52, 25, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (53, 25, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (54, 26, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (55, 26, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (56, 27, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (57, 27, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (58, 28, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (59, 28, 1, 20, '10.0000', '10%', now(), now());
+# EU Staaten fuer Zone EU - ohne GB 222 seit 1.5.6f
 INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (1, 21, NULL, 3, '2020-07-09 10:09:11', '2020-07-09 10:09:11');
 INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (2, 33, NULL, 3, '2020-07-09 10:09:11', '2020-07-09 10:09:11');
 INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (3, 57, NULL, 3, '2020-07-09 10:09:11', '2020-07-09 10:09:11');
@@ -3539,7 +3619,6 @@ INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zo
 INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (6, 72, NULL, 3, '2020-07-09 10:09:11', '2020-07-09 10:09:11');
 INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (7, 73, NULL, 3, '2020-07-09 10:09:11', '2020-07-09 10:09:11');
 INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (8, 84, NULL, 3, '2020-07-09 10:09:11', '2020-07-09 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (9, 222, NULL, 3, '2020-07-09 10:09:11', '2020-07-09 10:09:11');
 INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (10, 103, NULL, 3, '2020-07-09 10:09:11', '2020-07-09 10:09:11');
 INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (11, 105, NULL, 3, '2020-07-09 10:09:11', '2020-07-09 10:09:11');
 INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (12, 53, NULL, 3, '2020-07-09 10:09:11', '2020-07-09 10:09:11');
@@ -3559,7 +3638,7 @@ INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zo
 INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (26, 97, NULL, 3, '2020-07-09 10:09:11', '2020-07-09 10:09:11');
 INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (27, 55, NULL, 3, '2020-07-09 10:09:11', '2020-07-09 10:09:11');
 INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (28, 132, NULL, 3, '2020-07-09 10:09:11', '2020-07-09 10:09:11');
-# Alle anderen Staaten fuer Zone Export
+# Alle anderen Staaten fuer Zone Export - mit GB 222 seit 1.5.6f
 INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (1, NULL, 4, '2020-07-09 10:09:11', '2020-07-09 10:09:11');
 INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (2, NULL, 4, '2020-07-09 10:09:11', '2020-07-09 10:09:11');
 INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (3, NULL, 4, '2020-07-09 10:09:11', '2020-07-09 10:09:11');
@@ -3754,6 +3833,7 @@ INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modi
 INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (219, NULL, 4, '2020-07-09 10:09:11', '2020-07-09 10:09:11');
 INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (220, NULL, 4, '2020-07-09 10:09:11', '2020-07-09 10:09:11');
 INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (221, NULL, 4, '2020-07-09 10:09:11', '2020-07-09 10:09:11');
+INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (222, NULL, 4, '2021-06-18 10:09:11', '2021-06-18 10:09:11');
 INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (223, NULL, 4, '2020-07-09 10:09:11', '2020-07-09 10:09:11');
 INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (224, NULL, 4, '2020-07-09 10:09:11', '2020-07-09 10:09:11');
 INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (225, NULL, 4, '2020-07-09 10:09:11', '2020-07-09 10:09:11');

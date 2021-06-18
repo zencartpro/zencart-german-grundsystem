@@ -21,6 +21,8 @@ Empfohlene Konfiguration:
 * Update CKEditor auf 4.16.1
 * Update Tiny MCE Editor auf 5.8.1
 * Update Mobile Detect auf 2.8.37
+* Vordefinierte Steuerkonfiguration für Neuinstallation mit eigenen Zonen für jedes EU Land
+* Grossbritannien für Neuinstallation aus EU Liste entfernt
 
 Änderungen in 1.5.6e
 * Behebung aller Fehler/Bugs, die seit Erscheinen von 1.5.6d auf Github und im Supportforum (Bugreport) gemeldet wurden
