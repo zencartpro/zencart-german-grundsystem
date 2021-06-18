@@ -1,7 +1,7 @@
 # zencart-156-de
 Zen Cart 1.5.6 - deutsche Version
 
-1.5.6e - Juli 2020
+1.5.6f - Juni 2021
 
 Systemvoraussetzungen:
 * Linux Server mit Apache 2.4 oder 2.2
@@ -13,6 +13,14 @@ Empfohlene Konfiguration:
 * PHP 7.3.x
 * MySQL 5.7
 * Datenbank mit Character Set: utf8mb4 und Kollation: utf8mb4_general_ci 
+
+Änderungen in 1.5.6f
+* Fix für Summen im Verkaufsbericht
+* Update des integrierten Braintree Kreditkartenmoduls auf SCA kompatible Version 2.1.0
+* Update ImageHandler auf 5.1.11
+* Update CKEditor auf 4.16.1
+* Update Tiny MCE Editor auf 5.8.1
+* Update Mobile Detect auf 2.8.37
 
 Änderungen in 1.5.6e
 * Behebung aller Fehler/Bugs, die seit Erscheinen von 1.5.6d auf Github und im Supportforum (Bugreport) gemeldet wurden

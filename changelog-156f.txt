@@ -1,0 +1,21 @@
+Changelog Zen Cart 1.5.6f deutsch gegenüber 1.5.6e deutsch
+
+Änderungen in 1.5.6f
+* Fix für Summen im Verkaufsbericht
+* Update des integrierten Braintree Kreditkartenmoduls auf SCA kompatible Version 2.1.0
+* Update ImageHandler auf 5.1.11
+* Update CKEditor auf 4.16.1
+* Update Tiny MCE Editor auf 5.8.1
+* Update Mobile Detect auf 2.8.37
+
+-----------------------------------------------------------------------------------------
+Neue Dateien in 1.5.6e 
+-----------------------------------------------------------------------------------------
+
+
+
+
+----------------------------------------------------------------------------------------
+Geänderte Dateien in 1.5.6e 
+----------------------------------------------------------------------------------------
+

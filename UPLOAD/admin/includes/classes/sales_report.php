@@ -1,6 +1,6 @@
 <?php
 /**
- * SALES REPORT 3.3.2
+ * SALES REPORT 3.3.3
  *
  * The class file acts as the engine in the sales report.  All the data displayed is gathered and
  * calculated in here. The logic tree provides a brief summary of the main functions at work every
@@ -9,9 +9,9 @@
  * @author     Frank Koehl (PM: BlindSide)
  * @author     Conor Kerr <conor.kerr_zen-cart@dev.ceon.net>
  * @author     Carl Peach <carlvt88 at zen-cart.com/forum>
- * @updated by stellarweb to work with version 1.5.0 02-29-12 
+ * @updated by webchills to work with most European configs - 2021-06-18
  * @updated by lat9, for continued operation for zc155/zc156, 20190622
- * @copyright  Portions Copyright 2003-2020 Zen Cart Development Team
+ * @copyright  Portions Copyright 2003-2021 Zen Cart Development Team
  * @copyright  Portions Copyright 2003 osCommerce
  * @license    http://www.gnu.org/copyleft/gpl.html   GNU Public License V2.0
  *  
@@ -528,7 +528,9 @@ class sales_report
 
             // add up stored values for order grand total
             // (goods + tax + shipping + gc_sold) - (discount + gc_used)
-            $order_total = ($order_goods + $order_recorded_tax + $order_shipping + $order_gc_sold) - ($order_discount + $order_gc_used);
+            // line 537 may produce wrong totals for most European store configurations so we better use the line 538 below - if 537 works better for you than 538 change it
+            // $order_total = ($order_goods + $order_recorded_tax + $order_shipping + $order_gc_sold) - ($order_discount + $order_gc_used);
+            $order_total = ($order_goods + $order_goods_tax + $order_shipping + $order_gc_sold) - ($order_discount + $order_gc_used);
 
             if ($this->detail_level == 'order' || $this->detail_level == 'matrix') {
                 $this->build_li_orders($oID, 'grand', $order_total);
