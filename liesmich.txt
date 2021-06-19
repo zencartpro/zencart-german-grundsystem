@@ -6,13 +6,17 @@ Zen Cart 1.5.6 - deutsche Version
 Systemvoraussetzungen:
 * Linux Server mit Apache 2.4 oder 2.2
 * PHP 7.1.x bis 7.4.x
-* MySQL 5.1 bis 5.7 oder or MariaDB 10.1 bis 10.4
+* MySQL 5.1 bis 5.7 oder MariaDB 10.1 bis 10.4
 
 Empfohlene Konfiguration:
 * Apache 2.4
 * PHP 7.4.x
 * MySQL 5.7
 * Datenbank mit Character Set: utf8mb4 und Kollation: utf8mb4_general_ci 
+
+1.5.6f deutsch ist die letzte Maintenance Release für die 1.5.6 Serie.
+Die 1.5.7 deutsch Release mit PHP 8 Unterstützung ist für Ende 2021 geplant.
+1.5.6f deutsch bringt die vorintegrierten Module und 3rd Party Komponenten auf den neuesten Stand von Juni 2021
 
 Änderungen in 1.5.6f
 * Grundsystem unterstützt die Verwendung von PHP 7.4
