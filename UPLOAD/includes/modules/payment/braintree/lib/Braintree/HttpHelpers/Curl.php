@@ -1,4 +1,5 @@
 <?php
+
 namespace Braintree\HttpHelpers;
 
 use Braintree\Exception;
@@ -8,6 +9,7 @@ use finfo;
 
 class Curl
 {
+    // phpcs:ignore Generic.Files.LineLength
     public static function makeRequest($httpVerb, $url, $config, $httpRequest, $requestBody = null, $file = null, $customHeaders = null, $useClientCredentials = false)
     {
         $httpRequest->setOption(CURLOPT_TIMEOUT, $config->getTimeout());
@@ -36,7 +38,7 @@ class Curl
         if (isset($authorization['user'])) {
             $httpRequest->setOption(CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
             $httpRequest->setOption(CURLOPT_USERPWD, $authorization['user'] . ':' . $authorization['password']);
-        } else if (isset($authorization['token'])) {
+        } elseif (isset($authorization['token'])) {
             $headers[] = 'Authorization: Bearer ' . $authorization['token'];
         }
 
@@ -50,21 +52,21 @@ class Curl
             $boundary = "---------------------" . md5(mt_rand() . microtime());
             $headers[] = "Content-Type: multipart/form-data; boundary={$boundary}";
             self::_prepareMultipart($httpRequest, $requestBody, $file, $boundary);
-        } else if (!empty($requestBody)) {
+        } elseif (!empty($requestBody)) {
             $httpRequest->setOption(CURLOPT_POSTFIELDS, $requestBody);
         }
 
-        if ($config->isUsingInstanceProxy()) {
+        if ($config->isUsingProxy()) {
             $proxyHost = $config->getProxyHost();
             $proxyPort = $config->getProxyPort();
             $proxyType = $config->getProxyType();
             $proxyUser = $config->getProxyUser();
-            $proxyPwd= $config->getProxyPassword();
+            $proxyPwd = $config->getProxyPassword();
             $httpRequest->setOption(CURLOPT_PROXY, $proxyHost . ':' . $proxyPort);
             if (!empty($proxyType)) {
                 $httpRequest->setOption(CURLOPT_PROXYTYPE, $proxyType);
             }
-            if ($config->isAuthenticatedInstanceProxy()) {
+            if ($config->isAuthenticatedProxy()) {
                 $httpRequest->setOption(CURLOPT_PROXYUSERPWD, $proxyUser . ':' . $proxyPwd);
             }
         }
@@ -99,7 +101,7 @@ class Curl
                 'user' => $config->getClientId(),
                 'password' => $config->getClientSecret(),
             ];
-        } else if ($config->isAccessToken()) {
+        } elseif ($config->isAccessToken()) {
             return [
                 'token' => $config->getAccessToken(),
             ];

@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2021 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: braintree_api.php 2021-02-20 09:15:14 webchills $
+ * @version $Id: braintree_api.php 2021-06-19 07:42:14 webchills $
 */
 use Braintree\Gateway;
 use Braintree\Transaction;
@@ -401,9 +401,9 @@ class braintree_api extends base {
                 <input type='text' class='hide_field' name='braintree_3ds_auth_id' id='braintree_3ds_auth_id'>
                 <input type='text' class='hide_field' name='braintree_card_type' id='braintree_card_type'>
                 
-                <script src='https://js.braintreegateway.com/web/3.73.1/js/client.min.js'></script>
-                <script src='https://js.braintreegateway.com/web/3.73.1/js/three-d-secure.min.js'></script>
-                <script src='https://js.braintreegateway.com/web/3.73.1/js/hosted-fields.min.js'></script> 
+                <script src='https://js.braintreegateway.com/web/3.78.2/js/client.min.js'></script>
+                <script src='https://js.braintreegateway.com/web/3.78.2/js/three-d-secure.min.js'></script>
+                <script src='https://js.braintreegateway.com/web/3.78.2/js/hosted-fields.min.js'></script> 
                 <script>
                     let hf, threeDS;
                     function braintreeCheck(){
@@ -636,9 +636,9 @@ class braintree_api extends base {
                 <input type='text' class='hide_field' name='braintree_3ds_auth_id' id='braintree_3ds_auth_id'>
                 <input type='text' class='hide_field' name='braintree_card_type' id='braintree_card_type'>
                 
-                <script src='https://js.braintreegateway.com/web/3.73.1/js/client.min.js'></script>
-                <script src='https://js.braintreegateway.com/web/3.73.1/js/three-d-secure.min.js'></script>
-                <script src='https://js.braintreegateway.com/web/3.73.1/js/hosted-fields.min.js'></script> 
+                <script src='https://js.braintreegateway.com/web/3.78.2/js/client.min.js'></script>
+                <script src='https://js.braintreegateway.com/web/3.78.2/js/three-d-secure.min.js'></script>
+                <script src='https://js.braintreegateway.com/web/3.78.2/js/hosted-fields.min.js'></script> 
                 <script>
                     let hf, threeDS;
                     function braintreeCheck(){
@@ -1410,7 +1410,7 @@ class braintree_api extends base {
         }
 
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable this Payment Module', 'MODULE_PAYMENT_BRAINTREE_STATUS', 'True', 'Do you want to enable this payment module?', '6', '1', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
-        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Version', 'MODULE_PAYMENT_BRAINTREE_VERSION', '2.1.0', 'Version installed', '6', '2', 'zen_cfg_select_option(array(\'2.1.0\'), ', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Version', 'MODULE_PAYMENT_BRAINTREE_VERSION', '2.2.0', 'Version installed', '6', '2', 'zen_cfg_select_option(array(\'2.2.0\'), ', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Merchant Key', 'MODULE_PAYMENT_BRAINTREE_MERCHANTID', '', 'Your Merchant ID provided under the API Keys section.', '6', '3', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Public Key', 'MODULE_PAYMENT_BRAINTREE_PUBLICKEY', '', 'Your Public Key provided under the API Keys section.', '6', '4', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Private Key', 'MODULE_PAYMENT_BRAINTREE_PRIVATEKEY', '', 'Your Private Key provided under the API Keys section.', '6', '5', now())");

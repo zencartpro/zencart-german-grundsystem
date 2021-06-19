@@ -1,4 +1,5 @@
 <?php
+
 namespace Braintree;
 
 use InvalidArgumentException;
@@ -10,6 +11,7 @@ use InvalidArgumentException;
  *
  * <b>== More information ==</b>
  *
+ * // phpcs:ignore Generic.Files.LineLength
  * For more detailed information on Transactions, see {@link https://developers.braintreepayments.com/reference/response/transaction/php https://developers.braintreepayments.com/reference/response/transaction/php}
  *
  * @package    Braintree
@@ -39,13 +41,13 @@ class TransactionGateway
     /**
      * @ignore
      * @access private
-     * @param array $attribs (Note: $deviceSessionId and $fraudMerchantId params are deprecated. Use $deviceData instead)
+     * @param array $attribs
      * @return Result\Successful|Result\Error
      */
     private function create($attribs)
     {
         Util::verifyKeys(self::createSignature(), $attribs);
-        $this->_checkForDeprecatedAttributes($attribs);
+        $attribs = Util::replaceKey($attribs, 'googlePayCard', 'androidPayCard');
         return $this->_doCreate('/transactions', ['transaction' => $attribs]);
     }
 
@@ -104,12 +106,10 @@ class TransactionGateway
             'shippingAmount',
             'discountAmount',
             'shipsFromPostalCode',
-            'deviceSessionId', 'fraudMerchantId', // NEXT_MAJOR_VERSION remove deviceSessionId and fraudMerchantId
             ['riskData' =>
                 [
-                    //NEXT_MAJOR_VERSION remove snake case parameters, PHP should only accept camel case
-                    'customerBrowser', 'customerIp', 'customer_browser', 'customer_ip',
-                    'customerDeviceId', 'customerLocationZip', 'customerTenure'],
+                    'customerBrowser', 'customerIp', 'customerDeviceId',
+                    'customerLocationZip', 'customerTenure'],
             ],
             ['creditCard' =>
                 ['token', 'cardholderName', 'cvv', 'expirationDate', 'expirationMonth', 'expirationYear', 'number'],
@@ -191,7 +191,16 @@ class TransactionGateway
             ['customFields' => ['_anyKey_']],
             ['descriptor' => ['name', 'phone', 'url']],
             ['paypalAccount' => ['payeeId', 'payeeEmail', 'payerId', 'paymentId']],
-            ['applePayCard' => ['number', 'cardholderName', 'cryptogram', 'expirationMonth', 'expirationYear', 'eciIndicator']],
+            ['applePayCard' =>
+                [
+                    'cardholderName',
+                    'cryptogram',
+                    'eciIndicator',
+                    'expirationMonth',
+                    'expirationYear',
+                    'number'
+                ]
+            ],
             ['industry' =>
                 ['industryType',
                     ['data' =>
@@ -255,12 +264,38 @@ class TransactionGateway
                     ]
                 ]
             ],
-            ['lineItems' => ['quantity', 'name', 'description', 'kind', 'unitAmount', 'unitTaxAmount', 'totalAmount', 'discountAmount', 'taxAmount', 'unitOfMeasure', 'productCode', 'commodityCode', 'url']],
+            ['lineItems' =>
+                [
+                    'commodityCode',
+                    'description',
+                    'discountAmount',
+                    'kind',
+                    'name',
+                    'productCode',
+                    'quantity',
+                    'taxAmount',
+                    'totalAmount',
+                    'unitAmount',
+                    'unitOfMeasure',
+                    'unitTaxAmount',
+                    'url'
+                ]
+            ],
             ['externalVault' =>
                 ['status' , 'previousNetworkTransactionId'],
             ],
-            // NEXT_MAJOR_VERSION rename Android Pay to Google Pay
-            ['androidPayCard' => ['number', 'cryptogram', 'expirationMonth', 'expirationYear', 'eciIndicator', 'sourceCardType', 'sourceCardLastFour', 'googleTransactionId']],
+            ['googlePayCard' =>
+                [
+                    'cryptogram',
+                    'eciIndicator',
+                    'expirationMonth',
+                    'expirationYear',
+                    'googleTransactionId',
+                    'number',
+                    'sourceCardLastFour',
+                    'sourceCardType'
+                ]
+            ],
             ['installments' => ['count']]
         ];
     }
@@ -274,7 +309,23 @@ class TransactionGateway
             'shippingAmount',
             'discountAmount',
             'shipsFromPostalCode',
-            ['lineItems' => ['quantity', 'name', 'description', 'kind', 'unitAmount', 'unitTaxAmount', 'totalAmount', 'discountAmount', 'taxAmount', 'unitOfMeasure', 'productCode', 'commodityCode', 'url']],
+            ['lineItems' =>
+                [
+                    'commodityCode',
+                    'description',
+                    'discountAmount',
+                    'kind',
+                    'name',
+                    'productCode',
+                    'quantity',
+                    'taxAmount',
+                    'totalAmount',
+                    'unitAmount',
+                    'unitOfMeasure',
+                    'unitTaxAmount',
+                    'url'
+                ]
+            ],
         ];
     }
 
@@ -285,7 +336,11 @@ class TransactionGateway
 
     public static function refundSignature()
     {
-        return ['amount', 'orderId'];
+        return [
+            'amount',
+            'merchantAccountId',
+            'orderId'
+        ];
     }
 
     /**
@@ -326,7 +381,7 @@ class TransactionGateway
             return Transaction::factory($response['transaction']);
         } catch (Exception\NotFound $e) {
             throw new Exception\NotFound(
-            'transaction with id ' . $id . ' not found'
+                'transaction with id ' . $id . ' not found'
             );
         }
     }
@@ -361,6 +416,7 @@ class TransactionGateway
      *
      * If <b>query</b> is a string, the search will be a basic search.
      * If <b>query</b> is a hash, the search will be an advanced search.
+     * // phpcs:ignore Generic.Files.LineLength
      * For more detailed information and examples, see {@link https://developers.braintreepayments.com/reference/request/transaction/search/php https://developers.braintreepayments.com/reference/request/transaction/search/php}
      *
      * @param mixed $query search query
@@ -411,6 +467,25 @@ class TransactionGateway
     }
 
     /**
+     * Adjusts the authorization amount of a transaction
+     *
+     * @access public
+     * @param string $transactionId
+     * @param string amount
+     *
+     * @return Result\Successful|Result\Error
+     * @throws Exception\Unexpected
+     */
+    public function adjustAuthorization($transactionId, $amount)
+    {
+        self::_validateId($transactionId);
+        $params = ['amount' => $amount];
+        $path = $this->_config->merchantPath() . '/transactions/' . $transactionId . '/adjust_authorization';
+        $response = $this->_http->put($path, ['transaction' => $params]);
+        return $this->_verifyGatewayResponse($response);
+    }
+
+    /**
      * void a transaction by id
      *
      * @param string $id transaction id
@@ -420,7 +495,7 @@ class TransactionGateway
     {
         $this->_validateId($transactionId);
 
-        $path = $this->_config->merchantPath() . '/transactions/'. $transactionId . '/void';
+        $path = $this->_config->merchantPath() . '/transactions/' . $transactionId . '/void';
         $response = $this->_http->put($path);
         return $this->_verifyGatewayResponse($response);
     }
@@ -439,7 +514,7 @@ class TransactionGateway
         Util::verifyKeys(self::submitForSettlementSignature(), $attribs);
         $attribs['amount'] = $amount;
 
-        $path = $this->_config->merchantPath() . '/transactions/'. $transactionId . '/submit_for_settlement';
+        $path = $this->_config->merchantPath() . '/transactions/' . $transactionId . '/submit_for_settlement';
         $response = $this->_http->put($path, ['transaction' => $attribs]);
         return $this->_verifyGatewayResponse($response);
     }
@@ -455,7 +530,7 @@ class TransactionGateway
         $this->_validateId($transactionId);
         Util::verifyKeys(self::updateDetailsSignature(), $attribs);
 
-        $path = $this->_config->merchantPath() . '/transactions/'. $transactionId . '/update_details';
+        $path = $this->_config->merchantPath() . '/transactions/' . $transactionId . '/update_details';
         $response = $this->_http->put($path, ['transaction' => $attribs]);
         return $this->_verifyGatewayResponse($response);
     }
@@ -466,7 +541,7 @@ class TransactionGateway
         Util::verifyKeys(self::submitForSettlementSignature(), $attribs);
         $attribs['amount'] = $amount;
 
-        $path = $this->_config->merchantPath() . '/transactions/'. $transactionId . '/submit_for_partial_settlement';
+        $path = $this->_config->merchantPath() . '/transactions/' . $transactionId . '/submit_for_partial_settlement';
         $response = $this->_http->post($path, ['transaction' => $attribs]);
         return $this->_verifyGatewayResponse($response);
     }
@@ -502,7 +577,7 @@ class TransactionGateway
     {
         self::_validateId($transactionId);
 
-        if(gettype($amount_or_options) == "array") {
+        if (gettype($amount_or_options) == "array") {
             $options = $amount_or_options;
         } else {
             $options = [
@@ -539,11 +614,12 @@ class TransactionGateway
      * @param string transaction id
      * @throws InvalidArgumentException
      */
-    private function _validateId($id = null) {
+    private function _validateId($id = null)
+    {
         if (empty($id)) {
-           throw new InvalidArgumentException(
-                   'expected transaction id to be set'
-                   );
+            throw new InvalidArgumentException(
+                'expected transaction id to be set'
+            );
         }
     }
 
@@ -565,24 +641,14 @@ class TransactionGateway
         if (isset($response['transaction'])) {
             // return a populated instance of Transaction
             return new Result\Successful(
-                    Transaction::factory($response['transaction'])
+                Transaction::factory($response['transaction'])
             );
-        } else if (isset($response['apiErrorResponse'])) {
+        } elseif (isset($response['apiErrorResponse'])) {
             return new Result\Error($response['apiErrorResponse']);
         } else {
             throw new Exception\Unexpected(
-            "Expected transaction or apiErrorResponse"
+                "Expected transaction or apiErrorResponse"
             );
-        }
-    }
-
-    private function _checkForDeprecatedAttributes($attributes)
-    {
-        if (isset($attributes['deviceSessionId'])) {
-            trigger_error('$deviceSessionId is deprecated, use $deviceData instead', E_USER_DEPRECATED);
-        }
-        if (isset($attributes['fraudMerchantId'])) {
-            trigger_error('$fraudMerchantId is deprecated, use $deviceData instead', E_USER_DEPRECATED);
         }
     }
 }

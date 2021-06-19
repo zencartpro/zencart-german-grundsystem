@@ -1,18 +1,18 @@
 ﻿Willkommen bei der deutschen Zen-Cart Version
-Version 1.5.6e vom 10.07.2020
+Version 1.5.6f vom 22.06.2021
 
 Installationsanleitung in der umfangreichen Onlinedokumentation auf:
 https://www.zen-cart-pro.at/documentation.html
 
-Um Zen Cart 1.5.6e deutsch zu installieren nur die Ordner/Dateien im Ordner UPLOAD hochladen!
+Um Zen Cart 1.5.6f deutsch zu installieren nur die Ordner/Dateien im Ordner UPLOAD hochladen!
 
 Systemvoraussetzungen:
 * Linux Server mit Apache 2.4 oder 2.2
-* PHP 7.1.x bis 7.3.x
+* PHP 7.1.x bis 7.4.x
 * MySQL 5.1 bis 5.7 oder MariaDB 10.1 bis 10.4
 
 Empfohlene Konfiguration:
 * Apache 2.4
-* PHP 7.3.x
+* PHP 7.4.x
 * MySQL 5.7
 * Datenbank mit Character Set: utf8mb4 und Kollation: utf8mb4_general_ci 

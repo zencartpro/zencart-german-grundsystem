@@ -17,7 +17,7 @@ Empfohlene Konfiguration:
 Änderungen in 1.5.6f
 * Grundsystem unterstützt die Verwendung von PHP 7.4
 * Fix für Summen im Verkaufsbericht
-* Update des integrierten Braintree Kreditkartenmoduls auf SCA kompatible Version 2.1.0
+* Update des integrierten Braintree Kreditkartenmoduls auf SCA kompatible Version 2.2.0
 * Update ImageHandler auf 5.1.11
 * Update CKEditor auf 4.16.1
 * Update Tiny MCE Editor auf 5.8.1

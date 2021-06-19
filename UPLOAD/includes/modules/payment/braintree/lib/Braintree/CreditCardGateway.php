@@ -1,8 +1,10 @@
 <?php
+
 namespace Braintree;
 
 use InvalidArgumentException;
 
+// phpcs:disable
 /**
  * Braintree CreditCardGateway module
  * Creates and manages Braintree CreditCards
@@ -15,6 +17,8 @@ use InvalidArgumentException;
  * @package    Braintree
  * @category   Resources
  */
+// phpcs:enable
+
 class CreditCardGateway
 {
     private $_gateway;
@@ -32,7 +36,6 @@ class CreditCardGateway
     public function create($attribs)
     {
         Util::verifyKeys(self::createSignature(), $attribs);
-        $this->_checkForDeprecatedAttributes($attribs);
         return $this->_doCreate('/payment_methods', ['credit_card' => $attribs]);
     }
 
@@ -84,7 +87,10 @@ class CreditCardGateway
      */
     public function expiringBetween($startDate, $endDate)
     {
-        $queryPath = $this->_config->merchantPath() . '/payment_methods/all/expiring_ids?start=' . date('mY', $startDate) . '&end=' . date('mY', $endDate);
+        $start = date('mY', $startDate);
+        $end = date('mY', $endDate);
+        $query = '/payment_methods/all/expiring_ids?start=' . $start . '&end=' . $end;
+        $queryPath = $this->_config->merchantPath() . $query;
         $response = $this->_http->post($queryPath);
         $pager = [
             'object' => $this,
@@ -97,7 +103,10 @@ class CreditCardGateway
 
     public function fetchExpiring($startDate, $endDate, $ids)
     {
-        $queryPath = $this->_config->merchantPath() . '/payment_methods/all/expiring?start=' . date('mY', $startDate) . '&end=' . date('mY', $endDate);
+        $start = date('mY', $startDate);
+        $end = date('mY', $endDate);
+        $query = '/payment_methods/all/expiring?start=' . $start . '&end=' . $end;
+        $queryPath = $this->_config->merchantPath() . $query;
         $response = $this->_http->post($queryPath, ['search' => ['ids' => $ids]]);
 
         return Util::extractAttributeAsArray(
@@ -126,7 +135,6 @@ class CreditCardGateway
                 'credit card with token ' . $token . ' not found'
             );
         }
-
     }
 
     /**
@@ -149,7 +157,6 @@ class CreditCardGateway
                 'credit card with nonce ' . $nonce . ' locked, consumed or not found'
             );
         }
-
     }
 
    /**
@@ -230,7 +237,7 @@ class CreditCardGateway
      * is the 2nd attribute. $token is not sent in object context.
      *
      * @access public
-     * @param array $attributes (Note: $deviceSessionId and $fraudMerchantId params are deprecated. Use $deviceData instead)
+     * @param array $attributes
      * @param string $token (optional)
      * @return Result\Successful|Result\Error
      */
@@ -238,7 +245,6 @@ class CreditCardGateway
     {
         Util::verifyKeys(self::updateSignature(), $attributes);
         $this->_validateId($token);
-        $this->_checkForDeprecatedAttributes($attributes);
         return $this->_doUpdate('put', '/payment_methods/credit_card/' . $token, ['creditCard' => $attributes]);
     }
 
@@ -271,7 +277,15 @@ class CreditCardGateway
 
     private static function baseOptions()
     {
-        return ['makeDefault', 'verificationMerchantAccountId', 'verifyCard', 'verificationAmount', 'verificationAccountType', 'venmoSdkSession'];
+        return [
+            'makeDefault',
+            'skipAdvancedFraudChecking',
+            'venmoSdkSession',
+            'verificationAccountType',
+            'verificationAmount',
+            'verificationMerchantAccountId',
+            'verifyCard',
+        ];
     }
 
     private static function baseSignature($options)
@@ -280,7 +294,6 @@ class CreditCardGateway
              'billingAddressId', 'cardholderName', 'cvv', 'number',
              'expirationDate', 'expirationMonth', 'expirationYear', 'token', 'venmoSdkPaymentMethodCode',
              'deviceData', 'paymentMethodNonce',
-             'deviceSessionId', 'fraudMerchantId', // NEXT_MAJOR_VERSION remove deviceSessionId and fraudMerchantId
              ['options' => $options],
              [
                  'billingAddress' => self::billingAddressSignature()
@@ -347,8 +360,9 @@ class CreditCardGateway
             ]
         ];
 
-        foreach($signature AS $key => $value) {
-            if(is_array($value) and array_key_exists('billingAddress', $value)) {
+        foreach ($signature as $key => $value) {
+            if (is_array($value) and array_key_exists('billingAddress', $value)) {
+                // phpcs:ignore
                 $signature[$key]['billingAddress'] = array_merge_recursive($value['billingAddress'], $updateExistingBillingSignature);
             }
         }
@@ -382,14 +396,14 @@ class CreditCardGateway
     private function _validateId($identifier = null, $identifierType = "token")
     {
         if (empty($identifier)) {
-           throw new InvalidArgumentException(
-                   'expected credit card id to be set'
-                   );
+            throw new InvalidArgumentException(
+                'expected credit card id to be set'
+            );
         }
         if (!preg_match('/^[0-9A-Za-z_-]+$/', $identifier)) {
             throw new InvalidArgumentException(
-                    $identifier . ' is an invalid credit card ' . $identifierType . '.'
-                    );
+                $identifier . ' is an invalid credit card ' . $identifierType . '.'
+            );
         }
     }
 
@@ -426,23 +440,14 @@ class CreditCardGateway
         if (isset($response['creditCard'])) {
             // return a populated instance of Address
             return new Result\Successful(
-                    CreditCard::factory($response['creditCard'])
+                CreditCard::factory($response['creditCard'])
             );
         } elseif (isset($response['apiErrorResponse'])) {
             return new Result\Error($response['apiErrorResponse']);
         } else {
             throw new Exception\Unexpected(
-            "Expected address or apiErrorResponse"
+                "Expected address or apiErrorResponse"
             );
-        }
-    }
-    private function _checkForDeprecatedAttributes($attributes)
-    {
-        if (isset($attributes['deviceSessionId'])) {
-            trigger_error('$deviceSessionId is deprecated, use $deviceData instead', E_USER_DEPRECATED);
-        }
-        if (isset($attributes['fraudMerchantId'])) {
-            trigger_error('$fraudMerchantId is deprecated, use $deviceData instead', E_USER_DEPRECATED);
         }
     }
 }
