@@ -8,6 +8,7 @@ Changelog Zen Cart 1.5.6f deutsch gegenüber 1.5.6e deutsch
 * Update CKEditor auf 4.16.1
 * Update Tiny MCE Editor auf 5.8.1
 * Update Mobile Detect auf 2.8.37
+* Update jQuery auf 3.6.0
 * Vordefinierte Steuerkonfiguration für Neuinstallation mit eigenen Zonen für jedes EU Land
 * Grossbritannien für Neuinstallation aus EU Liste entfernt
 
