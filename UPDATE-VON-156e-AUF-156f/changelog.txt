@@ -165,7 +165,7 @@ includes\templates\responsive_classic\jscript\jquery.min.js
 
 
 ----------------------------------------------------------------------------------------
-Geänderte Dateien in 1.5.6f (424)
+Geänderte Dateien in 1.5.6f (426)
 ----------------------------------------------------------------------------------------
 
 admin\includes\classes\ImageHandlerAdmin.php
@@ -173,6 +173,8 @@ admin\includes\classes\sales_report.php
 admin\includes\extra_datafiles\braintree_api.php
 admin\includes\languages\english\image_handler.php
 admin\includes\languages\german\image_handler.php
+admin\includes\languages\english\extra_definitions\braintree_messages.php
+admin\includes\languages\german\extra_definitions\braintree_messages.php
 admin\includes\ckeditor.php
 admin\includes\ih_manager.php
 admin\includes\javascript_loader.php

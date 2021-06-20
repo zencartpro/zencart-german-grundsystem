@@ -3,7 +3,7 @@
  * @package Braintree SCA for Zen Cart German 1.5.6
  * @copyright Copyright 2003-2021 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @version $Id: braintree_transactions.php 2021-02-20 09:36:14 webchills $
+ * @version $Id: braintree_transactions.php 2021-06-20 08:27:14 webchills $
 */
 
 
@@ -85,7 +85,8 @@
     <!-- body //-->
     <div class="container-fluid">
       <!-- body_text //-->
-     
+      <!-- only show if the Braintree module is installed //-->
+<?php  if (defined('MODULE_PAYMENT_BRAINTREE_STATUS')) { ?>
 <table border="0" width="100%" cellspacing="2" cellpadding="2">
   <tr>
 <!-- body_text //-->
@@ -305,6 +306,9 @@ $action = '' ; // $_GET['action'];
 <!-- body_text_eof //-->
   </tr>
 </table>
+<?php } else { ?>
+<h1 class="pageHeading"><?php echo HEADING_ADMIN_TITLE; ?></h1>
+<?php } ?>
  <!-- body_text_eof //-->
     </div>
     <!-- body_eof //-->
