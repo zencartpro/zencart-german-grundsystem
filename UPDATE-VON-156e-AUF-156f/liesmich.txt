@@ -53,4 +53,15 @@ Bevor Sie nun irgendetwas anclicken oder tun, löschen Sie erst sofort die beide
 DEINADMIN/includes/auto_loaders/config.156f_update.php
 DEINADMIN/includes/init_includes/init_156f_update.php
 
+
+4) OPTIONAL - ZAHLUNGMODULE sofort_su UND braintree_api FALLS IN VERWENDUNG NEU INITIALISIEREN
+
+Falls Sie die Zahlungsarten Sofort und Braintree nutzen, notieren Sie sich nun unter Module > Zahlungsarten bei den beiden Modulen Ihre aktuellen Einstellungen.
+Diese beiden Zahlungsmodule wurden in 1.5.6f verändert und um die Neuigkeiten in diesen Modulen nutzen zu können müssen sie nun entfernt und neu initialisiert werden!
+Einstellungen notiert?
+Dann markieren Sie nun unter Module > Zahlungsarten das Modul sofort_su und gehen auf Deinstallieren. Nicht deaktivieren, sondern Deinstallieren und Bestätigen.
+Danach markieren Sie es ernaut und gehen auf Installieren und aktivieren es wieder mit den Einstellungen, die Sie sich zuvor ja notiert hatten.
+Dann markieren Sie nun unter Module > Zahlungsarten das Modul braintree_api und gehen auf Deinstallieren. Nicht deaktivieren, sondern Deinstallieren und Bestätigen.
+Danach markieren Sie es ernaut und gehen auf Installieren und aktivieren es wieder mit den Einstellungen, die Sie sich zuvor ja notiert hatten.
+
 Nun schalten Sie den Wartungsmodus unter Konfiguration > Shopwartung wieder aus.
