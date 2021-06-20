@@ -404,6 +404,8 @@ includes\classes\vendors\PHPMailer\VERSION
 includes\classes\bmz_image_handler.class.php
 includes\classes\Mobile_Detect.php
 includes\functions\extra_functions\functions_bmz_image_handler.php
+includes\languages\english.php
+includes\languages\german.php
 includes\languages\english\modules\payment\braintree_api.php
 includes\languages\german\modules\payment\braintree_api.php
 includes\modules\order_total\ot_coupon.php
