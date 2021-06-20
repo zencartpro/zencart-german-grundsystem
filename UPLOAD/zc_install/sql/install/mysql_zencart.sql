@@ -6,7 +6,7 @@
 # * @copyright Copyright 2003-2021 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_zencart.sql 19537 2021-06-19 12:18:16Z webchills $
+# * @version $Id: mysql_zencart.sql 19538 2021-06-20 10:52:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -3569,7 +3569,7 @@ INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, ta
 INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (16, 8, 2, 10, '20.0000', '20%', now(), now());
 INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (17, 8, 1, 20, '10.0000', '10%', now(), now());
 INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (18, 7, 2, 10, '20.0000', '20%', now(), now());
-INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (19, 7, 1, 20, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (19, 7, 1, 20, '10.0000', '10%', now(), now());
 INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (20, 9, 2, 10, '20.0000', '20%', now(), now());
 INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (21, 9, 1, 20, '10.0000', '10%', now(), now());
 INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (22, 12, 2, 10, '20.0000', '20%', now(), now());
