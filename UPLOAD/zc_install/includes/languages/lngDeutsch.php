@@ -6,7 +6,7 @@
  * @package Installer
  * @copyright Copyright 2003-2021 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: lngDeutsch.php 22 2021-06-18 19:11:16Z webchills $
+ * @version $Id: lngDeutsch.php 23 2021-06-20 15:14:16Z webchills $
  */
 /**
  * defining language components for the page
@@ -150,7 +150,7 @@ define('TEXT_ERROR_COULD_NOT_WRITE_CONFIGFILE', 'Konnte die Konfigurationsdatei 
 define('TEXT_ERROR_STORE_CONFIGURE', 'Frontend Konfigurationsdatei /includes/configure.php existiert nicht, ist nicht lesbar oder ist nicht beschreibbar');
 define('TEXT_ERROR_ADMIN_CONFIGURE', 'Admin Konfigurationsdatei /admin/includes/configure.php existiert nicht, ist nicht lesbar oder ist nicht beschreibbar');
 define('TEXT_ERROR_PHP_VERSION', str_replace(array("\n", "\r"), '', 'Veraltete PHP Version.
-<p>Ihre verwendete PHP Version (' . PHP_VERSION . ') ist veraltet und ungeeignet. Die deutsche Zen Cart Version 1.5.6e kann damit NICHT verwendet werden.</p>
+<p>Ihre verwendete PHP Version (' . PHP_VERSION . ') ist veraltet und ungeeignet. Die deutsche Zen Cart Version 1.5.6f kann damit NICHT verwendet werden.</p>
 <p>Diese Version von Zen Cart deutsch ist kompatibel mit PHP Versionen von 7.1.x bis 7.4.x</p>
 '));
 define('TEXT_ERROR_PHP_VERSION_RECOMMENDED', '<b>Ihre verwendete PHP Version (' . PHP_VERSION . ') ist veraltet.</b><br/>Für maximale Sicherheit und Kompatibilität sollten Sie mindestens PHP 7.3.x verwenden.<br/>Diese Version von Zen Cart deutsch ist kompatibel mit PHP Versionen von 7.1.x bis 7.4.x<br/>Wir können mit der Installation trotzdem weitermachen, weisen aber darauf hin, dass Sie in Ihrem eigenen Interesse keine solch veraltete PHP Version verwenden sollten.');
@@ -259,7 +259,7 @@ define('TEXT_HELP_CONTENT_DBNAME', "Wie lautet der Name der Datenbank? <br/>Als 
 define('TEXT_HELP_TITLE_DEMODATA', TEXT_DATABASE_SETUP_LOAD_DEMO);
 define('TEXT_HELP_CONTENT_DEMODATA', "Die Installation der Demodaten ist nur für einen Testshop sinnvoll.<br/>Es werden Beispielkategorien und Beispielartikel installiert, die sehr nützlich sind, um sich mit der Funktionalität vertraut zu machen.<br><br>Für die Installation Ihres echten Shops kreuzen Sie die Demodaten NICHT an!");
 define('TEXT_HELP_TITLE_DBCHARSET', 'Datenbank Character Set');
-define('TEXT_HELP_CONTENT_DBCHARSET', "Zen Cart Versionen bis 1.5.5f haben nur utf-8 unterstützt. Für diese Version 1.5.6e empfehlen wir utf8mb4. Dies ist auch als Voreinstellung gesetzt.<br/>Legen Sie Ihre Datenbank daher vorher am besten mit folgenden Einstellungen an:<br/>Character Set: utf8mb4 und Kollation: utf8mb4_general_ci<br/>und lassen Sie dann hier die Voreinstellung.");
+define('TEXT_HELP_CONTENT_DBCHARSET', "Zen Cart Versionen bis 1.5.5f haben nur utf-8 unterstützt. Für diese Version 1.5.6f empfehlen wir utf8mb4. Dies ist auch als Voreinstellung gesetzt.<br/>Legen Sie Ihre Datenbank daher vorher am besten mit folgenden Einstellungen an:<br/>Character Set: utf8mb4 und Kollation: utf8mb4_general_ci<br/>und lassen Sie dann hier die Voreinstellung.");
 define('TEXT_HELP_TITLE_DBPREFIX', 'Datenbank Präfix für Tabellennamen');
 define('TEXT_HELP_CONTENT_DBPREFIX', "Wir empfehlen KEIN Präfix zu verwenden und dieses Feld leer zu lassen<br/>Es ist nur dann sinnvoll, wenn Sie in einer Datenbank mehrere unterschiedliche Systeme verwenden wollen, was definitiv für einen Liveshop nicht empfohlen ist<br/>Wenn Sie doch ein Präfix verwenden wollen, dann geben Sie es wie folgt an:<br/>prefix_");
 define('TEXT_HELP_TITLE_SQLCACHEMETHOD', 'SQL Caching Methode');

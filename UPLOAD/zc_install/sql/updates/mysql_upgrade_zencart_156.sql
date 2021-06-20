@@ -1,12 +1,12 @@
 #
-# * This SQL script upgrades the core Zen Cart database structure from v1.5.5 to v1.5.6e
+# * This SQL script upgrades the core Zen Cart database structure from v1.5.5 to v1.5.6f
 # * Zen Cart German Specific
 # * @package Installer
 # * @access private
 # * @copyright Copyright 2003-2021 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_upgrade_zencart_156.sql 33 2021-06-20 07:54:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_156.sql 34 2021-06-20 15:16:59Z webchills $
 
 #
 
@@ -425,7 +425,7 @@ ALTER TABLE configuration ADD val_function text default NULL AFTER set_function;
 # Missed in 1.5.6d upgrade script.  May already be there so use INSERT IGNORE
 INSERT IGNORE INTO configuration (configuration_title, configuration_key, configuration_value, val_function, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Admin Usernames', 'ADMIN_NAME_MINIMUM_LENGTH', '4', '{"error":"TEXT_MIN_ADMIN_USER_LENGTH","id":"FILTER_VALIDATE_INT","options":{"options":{"min_range":4}}}', 'Minimum length of admin usernames (must be 4 or more)', '2', '18', now());
 
-# delete old configs which are not used anymore in 1.5.6e
+# delete old configs which are not used anymore since 1.5.6e
 DELETE FROM configuration WHERE configuration_key = 'ADMIN_DEMO';
 
 
