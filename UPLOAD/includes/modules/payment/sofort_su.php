@@ -1,10 +1,10 @@
 <?php
 /**
-* Package Sofort für Zen Cart 1.5.6 deutsch und PHP 7.3
-* @copyright Copyright 2003-2019 Zen Cart Development Team
+* Package Sofort für Zen Cart 1.5.6f deutsch
+* @copyright Copyright 2003-2021 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* $Id: sofort_su.php 2019-06-25 17:58:20Z webchills $
+* $Id: sofort_su.php 2021-06-20 12:01:20Z webchills $
 */
 
 require_once(dirname(__FILE__) . '/../../../ext/modules/payment/sofort/helper/Util.php');
@@ -662,7 +662,7 @@ class sofort_su
 
         include(DIR_FS_CATALOG . DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/payment/sofort_su.php');
 
-        include(DIR_FS_CATALOG . DIR_WS_LANGUAGES . 'modules/payment/sofort_states.php');
+        include(DIR_FS_CATALOG . 'includes/sofort_states.php');
         
         $this->install_states();
         
