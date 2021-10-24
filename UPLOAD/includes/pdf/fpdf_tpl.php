@@ -3,10 +3,10 @@
  * This file is part of FPDI
  *
  * @package   FPDI
- * @copyright Copyright (c) 2015 Setasign - Jan Slabon (http://www.setasign.com)
+ * @copyright Copyright (c) 2017 Setasign - Jan Slabon (http://www.setasign.com)
  * @license   http://opensource.org/licenses/mit-license The MIT License
- * @version   1.6.1
- * modified for pdf Rechnung for Zen Cart 2019-06-17 webchills
+ * @version   1.6.2
+ * modified for PHP 7.4 and pdf Rechnung for Zen Cart 2021-10-24 webchills
  */
 
 if (!class_exists('fpdi_bridge')) {
@@ -800,10 +800,10 @@ public function _dounderline($x, $y, $txt)
       $l = strlen($txt);
       $out = $bom ? "\xFE\xFF" : '';
       for ($i = 0; $i < $l; ++$i) {
-        $c = ord($txt{$i});
+        $c = ord($txt[$i]);
         // ASCII
         if ($c < 0x80) {
-          $out .= "\x00". $txt{$i};
+          $out .= "\x00". $txt[$i];
         }
         // Lost continuation byte
         else if ($c < 0xC0) {
@@ -824,13 +824,13 @@ public function _dounderline($x, $y, $txt)
           // 5/6 byte sequences not possible for Unicode.
           else {
             $out .= "\xFF\xFD";
-            while (ord($txt{$i + 1}) >= 0x80 && ord($txt{$i + 1}) < 0xC0) { ++$i; }
+            while (ord($txt[$i + 1]) >= 0x80 && ord($txt[$i + 1]) < 0xC0) { ++$i; }
             continue;
           }
           
           $q = array($c);
           // Fetch rest of sequence
-          while (ord($txt{$i + 1}) >= 0x80 && ord($txt{$i + 1}) < 0xC0) { ++$i; $q[] = ord($txt{$i}); }
+          while (ord($txt[$i + 1]) >= 0x80 && ord($txt[$i + 1]) < 0xC0) { ++$i; $q[] = ord($txt[$i]); }
           
           // Check length
           if (count($q) != $s) {
@@ -901,10 +901,10 @@ public function _dounderline($x, $y, $txt)
       $l = strlen($txt);
       $out = array();
       for ($i = 0; $i < $l; ++$i) {
-        $c = ord($txt{$i});
+        $c = ord($txt[$i]);
         // ASCII
         if ($c < 0x80) {
-          $out[] = ord($txt{$i});
+          $out[] = ord($txt[$i]);
         }
         // Lost continuation byte
         else if ($c < 0xC0) {
@@ -925,13 +925,13 @@ public function _dounderline($x, $y, $txt)
           // 5/6 byte sequences not possible for Unicode.
           else {
             $out[] = 0xFFFD;
-            while (ord($txt{$i + 1}) >= 0x80 && ord($txt{$i + 1}) < 0xC0) { ++$i; }
+            while (ord($txt[$i + 1]) >= 0x80 && ord($txt[$i + 1]) < 0xC0) { ++$i; }
             continue;
           }
           
           $q = array($c);
           // Fetch rest of sequence
-          while (ord($txt{$i + 1}) >= 0x80 && ord($txt{$i + 1}) < 0xC0) { ++$i; $q[] = ord($txt{$i}); }
+          while (ord($txt[$i + 1]) >= 0x80 && ord($txt[$i + 1]) < 0xC0) { ++$i; $q[] = ord($txt[$i]); }
           
           // Check length
           if (count($q) != $s) {

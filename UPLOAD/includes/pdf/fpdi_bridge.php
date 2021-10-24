@@ -3,10 +3,10 @@
  * This file is part of FPDI
  *
  * @package   FPDI
- * @copyright Copyright (c) 2015 Setasign - Jan Slabon (http://www.setasign.com)
+ * @copyright Copyright (c) 2017 Setasign - Jan Slabon (https://www.setasign.com)
  * @license   http://opensource.org/licenses/mit-license The MIT License
- * @version   1.6.1
- * modified for pdf Rechnung 3.5.0 for Zen Cart 2016-10-11 webchills
+ * @version   1.6.2
+ * modified for pdf Rechnung for Zen Cart German 2021-10-24 webchills
  */
 
 /**
