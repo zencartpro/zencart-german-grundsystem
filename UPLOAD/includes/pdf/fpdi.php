@@ -6,7 +6,7 @@
  * @copyright Copyright (c) 2017 Setasign - Jan Slabon (https://www.setasign.com)
  * @license   http://opensource.org/licenses/mit-license The MIT License
  * @version   1.6.2
- * modified for pdf Rechnung for Zen Cart German 2021-10-24 webchills
+ * modified for pdf Rechnung for Zen Cart German 2021-10-30 webchills
  */
 
 if (!class_exists('FPDF_TPL')) {
@@ -690,7 +690,7 @@ class FPDI extends FPDF_TPL
 
                 reset ($value[1]);
 
-                while (list($k, $v) = each($value[1])) {
+                foreach ($value[1] as $k => $v ) {
                     $this->_straightOut($k . ' ');
                     $this->_writeValue($v);
                 }

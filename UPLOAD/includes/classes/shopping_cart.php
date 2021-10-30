@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: shopping_cart.php 786 2020-07-08 20:31:29Z webchills $
+ * @version $Id: shopping_cart.php 787 2021-10-30 16:19:29Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -1711,6 +1711,9 @@ class shoppingCart extends base {
     $change_state = array();
     $this->flag_duplicate_quantity_msgs_set = array();
     $cart_delete = (isset($_POST['cart_delete']) && is_array($_POST['cart_delete'])) ? $_POST['cart_delete'] : array();
+    if (empty($_POST['products_id']) || !is_array($_POST['products_id'])) {
+      $_POST['products_id'] = [];
+    }
     for ($i=0, $n=sizeof($_POST['products_id']); $i<$n; $i++) {
       $adjust_max= 'false';
       if ($_POST['cart_quantity'][$i] == '') {
@@ -2376,6 +2379,7 @@ class shoppingCart extends base {
  */
   function in_cart_product_total_price_category($category_id) {
     $products = $this->get_products();
+    $in_cart_product_price = 0; 
 //echo '<pre>'; echo print_r($products); echo '</pre>';
     for ($i=0, $n=sizeof($products); $i<$n; $i++) {
       $productsName = $products[$i]['name'];
