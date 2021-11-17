@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2021 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: gv_queue.php 732 2019-07-20 08:49:16Z webchills $
+ * @version $Id: gv_queue.php 733 2021-11-17 15:56:16Z webchills $
  */
 
   require('includes/application_top.php');
@@ -192,29 +192,35 @@
               </tr>
             </table></td>
 <?php
-  $heading = array();
-  $contents = array();
-  switch ($_GET['action']) {
-    case 'release':
-      $heading[] = array('text' => '[' . $gInfo->unique_id . '] ' . zen_datetime_short($gInfo->date_created) . ' ' . $currencies->format($gInfo->amount));
-      $contents[] = array('align' => 'center', 'text' => zen_draw_form('gv_release', FILENAME_GV_QUEUE, 'action=confirmrelease&page=' . $_GET['page']) . zen_image_submit('button_confirm_red.gif', IMAGE_CONFIRM) . '<input type="hidden" name="gid" value="' . $gInfo->unique_id . '" /></form>' . '<a href="' . zen_href_link('gv_queue.php', 'action=cancel&gid=' . $gInfo->unique_id . '&page=' . $_GET['page'],'NONSSL') . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');
-//      $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link('gv_queue.php', 'action=confirmrelease&gid=' . $gInfo->unique_id . '&page=' . $_GET['page'],'NONSSL') . '">' . zen_image_button('button_confirm_red.gif', IMAGE_CONFIRM) . '</a> <a href="' . zen_href_link('gv_queue.php', 'action=cancel&gid=' . $gInfo->unique_id . '&page=' . $_GET['page'],'NONSSL') . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');
-      break;
-    default:
-      if (!isset($gInfo) || !is_object($gInfo)) { 
-        $gInfo = new objectInfo(array());
-      }
+          $heading = [];
+          $contents = [];
+          switch ($_GET['action']) {
+            case 'release':
+              $heading[] = array('text' => '<h4>[' . $gInfo->unique_id . '] ' . zen_datetime_short($gInfo->date_created) . ' ' . $currencies->format($gInfo->amount) . '</h4>');
+              $contents = array('form' => zen_draw_form('gv_release', FILENAME_GV_QUEUE, 'action=confirmrelease&page=' . $_GET['page']));
+              $contents[] = array('align' => 'text-center', 'text' => zen_draw_hidden_field('gid', $gInfo->unique_id) . '<button type="submit" class="btn btn-primary">' . IMAGE_CONFIRM . '</button>&nbsp;<a href="' . zen_href_link('gv_queue.php', 'action=cancel&gid=' . $gInfo->unique_id . '&page=' . $_GET['page'], 'NONSSL') . '" class="btn btn-default" role="button">' . IMAGE_CANCEL . '</a>');
+//      $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link('gv_queue.php', 'action=confirmrelease&gid=' . $gInfo->unique_id . '&page=' . $_GET['page'],'NONSSL') . '" class="btn btn-danger" role="button">' . IMAGE_CONFIRM . '</a> <a href="' . zen_href_link('gv_queue.php', 'action=cancel&gid=' . $gInfo->unique_id . '&page=' . $_GET['page'],'NONSSL') . '" class="btn btn-default" role="button">' . IMAGE_CANCEL . '</a>');
+              break;
+            default:
+              if (!isset($gInfo) || !is_object($gInfo)) {
+                $gInfo = new objectInfo([
+                  'unique_id' => 0,
+                  'date_created' => '0001-01-01 00:00:00',
+                  'amount' => '0.0000',
+                        ]
+                );
+              }
       $heading[] = array('text' => '[' . $gInfo->unique_id . '] ' . zen_datetime_short($gInfo->date_created) . ' ' . $currencies->format($gInfo->amount));
 
       if ($gv_list->RecordCount() == 0) {
         $contents[] = array('align' => 'center','text' => TEXT_GV_NONE);
       } else {
-        $contents[] = array('align' => 'center','text' => '<a href="' . zen_href_link('gv_queue.php','action=release&gid=' . $gInfo->unique_id . '&page=' . $_GET['page'],'NONSSL'). '">' . zen_image_button('button_release_gift.gif', IMAGE_RELEASE) . '</a>');
+                $contents[] = array('align' => 'text-center', 'text' => '<a href="' . zen_href_link('gv_queue.php', 'action=release&gid=' . $gInfo->unique_id . '&page=' . $_GET['page'], 'NONSSL') . '" class="btn btn-primary" role="button">' . IMAGE_RELEASE . '</a>');
 
 // quick link to order
-        $contents[] = array('align' => 'center', 'text' => '<br />' . zen_image(DIR_WS_IMAGES . 'pixel_black.gif','','90%','3'));
-        $contents[] = array('align' => 'center', 'text' => TEXT_EDIT_ORDER . $gInfo->order_id);
-        $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_ORDERS, 'oID=' . $gInfo->order_id . '&action=edit', 'NONSSL') . '">' . zen_image_button('button_order.gif', IMAGE_ORDER) . '</a>');
+                $contents[] = array('align' => 'text-center', 'text' => zen_image(DIR_WS_IMAGES . 'pixel_black.gif', '', '90%', '3'));
+                $contents[] = array('align' => 'text-center', 'text' => TEXT_EDIT_ORDER . $gInfo->order_id);
+                $contents[] = array('align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_ORDERS, 'oID=' . $gInfo->order_id . '&action=edit', 'NONSSL') . '" class="btn btn-info" role="button">' . IMAGE_ORDER . '</a>');
       }
       break;
    }
