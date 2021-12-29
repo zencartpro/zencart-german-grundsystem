@@ -3,9 +3,10 @@
  * iterates thru media collections/clips
  *
  * @package productTypes
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: media_manager.php 730 2019-04-12 12:49:16Z webchills $
+ * @version $Id: media_manager.php 2019-04-12 12:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');

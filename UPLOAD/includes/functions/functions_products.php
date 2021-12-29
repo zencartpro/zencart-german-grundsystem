@@ -4,11 +4,12 @@
  * Functions related to products
  * Note: Several product-related lookup functions are located in functions_lookups.php
  *
- * @package functions
- * @copyright Copyright 2003-2020 Zen Cart Development Team
- * @copyright Portions Copyright 2003 osCommerce
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
+ 
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_products.php 1 2020-01-20 17:43:14Z webchills $
+ * @version $Id: functions_products.php 2 2021-11-28 20:43:14Z webchills $
  */
 
 /**
@@ -64,7 +65,7 @@ function zen_product_set_header_response($product_id, $product_info = null)
         $response_code = 410;
     }
 
-    if (defined('PRODUCT_THROWS_200_WHEN_DISABLED') && PRODUCT_THROWS_200_WHEN_DISABLED === true) {
+    if (defined('DISABLED_PRODUCTS_TRIGGER_HTTP200') && DISABLED_PRODUCTS_TRIGGER_HTTP200 === 'true') {
         $response_code = 200;
     }
 
@@ -100,4 +101,31 @@ function zen_product_set_header_response($product_id, $product_info = null)
     }
 
     if ($response_code === 200) return;
+}
+function zen_set_disabled_upcoming_status($products_id, $status) {
+    $sql = "UPDATE " . TABLE_PRODUCTS . "
+            SET products_status = " . (int)$status . ", products_date_available = NULL WHERE products_id = " . (int)$products_id;
+
+    return $GLOBALS['db']->Execute($sql);
+}
+
+function zen_enable_disabled_upcoming() {
+
+    $date_range = time();
+
+    $zc_disabled_upcoming_date = date('Ymd', $date_range);
+
+    $disabled_upcoming_query = "SELECT products_id
+                                FROM " . TABLE_PRODUCTS . "
+                                WHERE products_status = 0
+                                AND products_date_available <= " . $zc_disabled_upcoming_date . "
+                                AND products_date_available != '0001-01-01'
+                                AND products_date_available IS NOT NULL
+                                ";
+
+    $disabled_upcoming = $GLOBALS['db']->Execute($disabled_upcoming_query);
+
+    foreach ($disabled_upcoming as $disabled_upcoming_fields) {
+        zen_set_disabled_upcoming_status($disabled_upcoming_fields['products_id'], 1);
+    }
 }

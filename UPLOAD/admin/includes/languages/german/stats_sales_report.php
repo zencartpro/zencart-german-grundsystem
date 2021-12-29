@@ -10,7 +10,7 @@
  * @author     Conor Kerr <conor.kerr_zen-cart@dev.ceon.net>
  * @updated by stellarweb to work with version 1.5.0 02-29-12 
  * @updated by lat9 for continued operation under zc155/zc156, 20190622
- * @copyright  Portions Copyright 2003-2020 Zen Cart Development Team
+ * @copyright  Portions Copyright 2003-2022 Zen Cart Development Team
  * @copyright  Portions Copyright 2003 osCommerce
  * @license    http://www.gnu.org/copyleft/gpl.html   GNU Public License V2.0
  * @translation by webchills 2020-02-05

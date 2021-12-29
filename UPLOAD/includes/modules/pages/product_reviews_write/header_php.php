@@ -4,14 +4,15 @@
  * reviews Write
  *
  * @package page
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 847 2020-01-17 11:44:50Z webchills $
+ * @version $Id: header_php.php 2021-12-28 09:44:50Z webchills $
  */
 /**
  * Header code file for product reviews "write" page
- *
+
  */
 
 // This should be first line of the script:
@@ -50,8 +51,6 @@ if (!$product_info->RecordCount()) {
 $customer_query = "SELECT customers_firstname, CONCAT(LEFT(customers_lastname,1),'.') AS customers_lastname, customers_email_address
                    FROM " . TABLE_CUSTOMERS . "
                    WHERE customers_id = :customersID";
-
-
 $customer_query = $db->bindVars($customer_query, ':customersID', $_SESSION['customer_id'], 'integer');
 $customer = $db->Execute($customer_query);
 
@@ -77,7 +76,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
   if ($error == false) {
     if ($antiSpam != '') {
       $zco_notifier->notify('NOTIFY_SPAM_DETECTED_DURING_WRITE_REVIEW');
-      $messageStack->add_session('header', (defined('ERROR_WRITE_REVIEW_SPAM_DETECTED') ? ERROR_WRITE_REVIEW_SPAM_DETECTED : 'Thank you, your post has been submitted for review.'), 'success');
+      $messageStack->add_session('header', (defined('ERROR_WRITE_REVIEW_SPAM_DETECTED') ? ERROR_WRITE_REVIEW_SPAM_DETECTED : TEXT_REVIEW_SUBMITTED_FOR_REVIEW), 'success');
     } else {
 
       $review_status = '1';
@@ -85,31 +84,32 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
         $review_status = '0';
       }
 
-    $sql = "INSERT INTO " . TABLE_REVIEWS . " (products_id, customers_id, customers_name, reviews_rating, date_added, status)
-            VALUES (:productsID, :customersID, :customersName, :rating, now(), " . $review_status . ")";
+      $sql = "INSERT INTO " . TABLE_REVIEWS . " (products_id, customers_id, customers_name, reviews_rating, date_added, status)
+             VALUES (:productsID, :customersID, :customersName, :rating, now(), " . $review_status . ")";
 
 
       $sql = $db->bindVars($sql, ':productsID', (!empty($_GET['products_id']) ? $_GET['products_id'] : 0), 'integer');
       $sql = $db->bindVars($sql, ':customersID', $_SESSION['customer_id'], 'integer');
     $sql = $db->bindVars($sql, ':customersName', $customer->fields['customers_firstname'], 'string');
-    $sql = $db->bindVars($sql, ':rating', $rating, 'string');
+      $sql = $db->bindVars($sql, ':rating', $rating, 'string');
 
-    $db->Execute($sql);
+      $db->Execute($sql);
 
-    $insert_id = $db->Insert_ID();
+      $insert_id = $db->Insert_ID();
 
       $zco_notifier->notify('NOTIFY_REVIEW_INSERTED_DURING_WRITE_REVIEW');
-    $sql = "INSERT INTO " . TABLE_REVIEWS_DESCRIPTION . " (reviews_id, languages_id, reviews_text)
-            VALUES (:insertID, :languagesID, :reviewText)";
 
-    $sql = $db->bindVars($sql, ':insertID', $insert_id, 'integer');
-    $sql = $db->bindVars($sql, ':languagesID', $_SESSION['languages_id'], 'integer');
-    $sql = $db->bindVars($sql, ':reviewText', $review_text, 'string');
+      $sql = "INSERT INTO " . TABLE_REVIEWS_DESCRIPTION . " (reviews_id, languages_id, reviews_text)
+              VALUES (:insertID, :languagesID, :reviewText)";
+
+      $sql = $db->bindVars($sql, ':insertID', $insert_id, 'integer');
+      $sql = $db->bindVars($sql, ':languagesID', $_SESSION['languages_id'], 'integer');
+      $sql = $db->bindVars($sql, ':reviewText', $review_text, 'string');
       $db->Execute($sql);
 
       $email_text = '';
       $send_admin_email = REVIEWS_APPROVAL == '1' && SEND_EXTRA_REVIEW_NOTIFICATION_EMAILS_TO_STATUS == '1' && defined('SEND_EXTRA_REVIEW_NOTIFICATION_EMAILS_TO') && SEND_EXTRA_REVIEW_NOTIFICATION_EMAILS_TO !='';
-    
+
       $zco_notifier->notify('NOTIFY_SEND_ADMIN_EMAIL_WRITE_REVIEW');
       // send review-notification email to admin
       if ($send_admin_email) {
@@ -127,6 +127,8 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
         $email_text . $extra_info['TEXT'], STORE_NAME, EMAIL_FROM, $html_msg, 'reviews_extra');
       }
       // end send email
+      
+
    }
     // MailBeez autologoff
     if (file_exists(DIR_FS_CATALOG . 'mailhive/mailbeez/review_advanced/includes/autologoff.php')) {

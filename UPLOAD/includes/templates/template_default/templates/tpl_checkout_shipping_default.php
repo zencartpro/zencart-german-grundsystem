@@ -5,11 +5,12 @@
  * Loaded automatically by index.php?main_page=checkout_shipping.<br />
  * Displays allowed shipping modules for selection by customer.
  *
- * @package templateSystem
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_checkout_shipping_default.php 731 2020-01-17 15:53:16Z webchills $
+ * @version $Id: tpl_checkout_shipping_default.php 2021-12-28 13:53:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="checkoutShipping">
@@ -30,7 +31,7 @@
 </div>
 <div class="floatingBox important forward"><?php echo TEXT_CHOOSE_SHIPPING_DESTINATION; ?></div>
 <br class="clearBoth" />
-<br/>
+<br> 
 <?php
   if (zen_count_shipping_modules() > 0) {
 ?>
@@ -54,7 +55,7 @@
 <?php
     if ($free_shipping == true) {
 ?>
-<div id="freeShip" class="important" ><?php echo FREE_SHIPPING_TITLE; ?>&nbsp;<?php echo $quotes[$i]['icon']; ?></div>
+<div id="freeShip" class="important" ><?php echo FREE_SHIPPING_TITLE . (isset($quotes[$i]['icon']) ? '&nbsp;' . $quotes[$i]['icon'] : ''); ?></div>
 <div id="defaultSelected"><?php echo sprintf(FREE_SHIPPING_DESCRIPTION, $currencies->format(MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER)) . zen_draw_hidden_field('shipping', 'free_free'); ?></div>
  
 <?php
@@ -63,8 +64,8 @@
       for ($i=0, $n=sizeof($quotes); $i<$n; $i++) {
       // bof: field set
 // allows FedEx to work comment comment out Standard and Uncomment FedEx
-//      if ($quotes[$i]['id'] != '' || $quotes[$i]['module'] != '') { // FedEx
-      if ($quotes[$i]['module'] != '') { // Standard
+//      if (!empty($quotes[$i]['id']) || !empty($quotes[$i]['module'])) { // FedEx
+      if (!empty($quotes[$i]['module'])) { // Standard
 ?>
 <fieldset>
 <legend><?php echo $quotes[$i]['module']; ?>&nbsp;<?php if (isset($quotes[$i]['icon']) && zen_not_null($quotes[$i]['icon'])) { echo $quotes[$i]['icon']; } ?></legend>
@@ -127,7 +128,7 @@
 ?>
 <fieldset class="shipping" id="comments">
 <legend><?php echo TABLE_HEADING_COMMENTS; ?></legend>
-<?php echo zen_draw_textarea_field('comments', '45', '3'); ?>
+<?php echo zen_draw_textarea_field('comments', '45', '3', (isset($comments) ? $comments : ''), 'aria-label="' . TABLE_HEADING_COMMENTS . '"'); ?>
 </fieldset>
  
 <div class="buttonRow forward"><?php echo zen_image_submit(BUTTON_IMAGE_CONTINUE_CHECKOUT, BUTTON_CONTINUE_ALT); ?></div>

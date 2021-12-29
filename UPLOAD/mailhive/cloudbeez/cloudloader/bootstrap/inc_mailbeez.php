@@ -12,8 +12,29 @@
   [http://www.gnu.org/licenses/gpl-2.0.html]
 
  */
- 
+
+// fix for zencart 1.57
+if (stristr($_SERVER['REQUEST_URI'], '?cmd=mailbeez')) {
+    $redirect_url = str_replace('index.php?cmd=mailbeez&', 'mailbeez.php?', $_SERVER['REQUEST_URI']);
+    header("Location: $redirect_url");
+    die();
+}
+
 $cloudloader_mode = (isset($_POST['cloudloader_mode'])) ? $_POST['cloudloader_mode'] : $_GET['cloudloader_mode'];
+
+// Advisory ID: usd201900
+// https://www.usd.de
+// Vulnerability Type: XSS
+// 2019-12-31 Gerbert Roitburd and Markus Schneider discover vulnerability in a Penetration Test
+
+if (!in_array($cloudloader_mode, array(
+    'install_core',
+    'install_package',
+    'update_core',
+    'update_package'))) {
+    $cloudloader_mode = '';
+}
+
 
 if (!defined('MH_ROOT_PATH')) {
     define('MH_ROOT_PATH', 'mailhive/');

@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_errors.php 736 2020-01-18 16:52:16Z webchills $
+ * @version $Id: init_errors.php 2021-10-25 17:52:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -28,6 +29,13 @@ if (!defined('IS_ADMIN_FLAG')) {
   // check if email subsystem has been disabled
   if (SEND_EMAILS != 'true') {
     $messageStack->add(WARNING_EMAIL_SYSTEM_DISABLED, 'error');
+  }
+// check if email sending has been disabled by developer switch
+  if (defined('DEVELOPER_OVERRIDE_EMAIL_STATUS') && DEVELOPER_OVERRIDE_EMAIL_STATUS == 'false') {
+      $messageStack->add(WARNING_EMAIL_SYSTEM_DEVELOPER_OVERRIDE, 'info');
+// check if email destinations have been diverted by developer switch
+  } elseif (defined('DEVELOPER_OVERRIDE_EMAIL_ADDRESS') && DEVELOPER_OVERRIDE_EMAIL_ADDRESS != '') {
+      $messageStack->add(sprintf(zen_output_string_protected(WARNING_EMAIL_SYSTEM_DEVELOPER_EMAIL), DEVELOPER_OVERRIDE_EMAIL_ADDRESS), 'info');
   }
 
   // this will let the admin know that the website is DOWN FOR MAINTENANCE to the public
@@ -160,13 +168,13 @@ if (WARN_DATABASE_VERSION_PROBLEM != 'false') {
     }
 
 // Alerts for EZ-Pages
-  if (EZPAGES_STATUS_HEADER == '2' and strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])) {
+  if (EZPAGES_STATUS_HEADER == '2' && zen_is_whitelisted_admin_ip()) {
     $messageStack->add(TEXT_EZPAGES_STATUS_HEADER_ADMIN, 'caution');
   }
-  if (EZPAGES_STATUS_FOOTER == '2' and strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])) {
+  if (EZPAGES_STATUS_FOOTER == '2' && zen_is_whitelisted_admin_ip()) {
     $messageStack->add(TEXT_EZPAGES_STATUS_FOOTER_ADMIN, 'caution');
   }
-  if (EZPAGES_STATUS_SIDEBOX == '2' and strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])) {
+  if (EZPAGES_STATUS_SIDEBOX == '2' && zen_is_whitelisted_admin_ip()) {
     $messageStack->add(TEXT_EZPAGES_STATUS_SIDEBOX_ADMIN, 'caution');
   }
 

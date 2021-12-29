@@ -4,11 +4,12 @@
  * functions_lookups.php
  * Lookup Functions for various core activities related to countries, prices, products, product types, etc
  *
- * @package functions
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_lookups.php 777 2020-02-08 16:26:42Z webchills $
+ * @version $Id: functions_lookups.php 778 2021-11-28 20:40:42Z webchills $
  */
 
 /**
@@ -859,7 +860,7 @@ function zen_get_configuration_key_value($lookup)
   function zen_run_normal() {
     $zc_run = false;
     switch (true) {
-      case (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])):
+      case (zen_is_whitelisted_admin_ip()):
       // down for maintenance not for ADMIN
         $zc_run = true;
         break;

@@ -1,10 +1,10 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: index_setup_wizard.php 12 2019-04-12 09:13:51Z webchills $
+ * @version $Id: index_setup_wizard.php 2021-10-24 17:59:51Z webchills $
  */
 if (isset($_GET['action']) && $_GET['action'] == 'update') {
 
@@ -85,7 +85,7 @@ $zone_string = zen_draw_pull_down_menu('zone_id', zen_get_country_zones($store_c
     <script src="includes/menu.js"></script>
     <link href="includes/stylesheet.css" rel="stylesheet">
     <link rel="stylesheet" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-    <link rel="stylesheet"  href="includes/admin_access.css">
+    <link rel="stylesheet" href="includes/css/admin_access.css">
     <script>
       function init() {
           cssjsmenu('navbar');
@@ -130,7 +130,7 @@ $zone_string = zen_draw_pull_down_menu('zone_id', zen_get_country_zones($store_c
       <h1><?php echo HEADING_TITLE_WIZARD; ?></h1>
       <p><?php echo TEXT_STORE_DETAILS; ?></p>
       <div class="row">
-          <?php echo zen_draw_form('setup_wizard', FILENAME_DEFAULT, 'action=update', 'post', 'id="setupWizardForm" class="form-horizontal"'); ?>
+          <?php echo zen_draw_form('setupWizardForm', FILENAME_DEFAULT, 'action=update', 'post', 'id="setupWizardForm" class="form-horizontal"'); ?>
         <div class="form-group">
             <?php echo zen_draw_label(TEXT_STORE_NAME, 'store_name', 'class="control-label col-sm-3"'); ?>
           <div class="col-sm-9 col-md-6">
@@ -164,7 +164,7 @@ $zone_string = zen_draw_pull_down_menu('zone_id', zen_get_country_zones($store_c
         <div class="form-group">
             <?php echo zen_draw_label(TEXT_STORE_ADDRESS, 'store_address', 'class="control-label col-sm-3"'); ?>
           <div class="col-sm-9 col-md-6">
-            <?php echo zen_draw_textarea_field('store_address', '', '50', '5', $store_address, 'id="store_address" class="form-control"'); ?>
+            <?php echo zen_draw_textarea_field('store_address', 'soft', '50', '5', $store_address, 'id="store_address" class="form-control"'); ?>
           </div>
         </div>
         <div class="form-group">

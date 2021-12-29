@@ -6,7 +6,7 @@
  * Reworked for Zen Cart v1.3.0  03-30-2006
  * Reworked for ZenCart V1.5.2 by RodG Dec 2013   
  * Reworked for ZenCart V1.5.6 by webchills Aug 2019
- * @copyright Portions Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Portions Copyright 2003-2022 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * @version $Id: xsell_products.php 2 2019-10-11 08:30:51 webchills $

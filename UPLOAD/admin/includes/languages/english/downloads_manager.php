@@ -1,10 +1,11 @@
 <?php
 /**
- * @package languageDefines
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: downloads_manager.php 731 2020-01-17 18:49:16Z webchills $
+ * @version $Id: downloads_manager.php 2021-10-25 18:49:16Z webchills $
  */
 
 define('HEADING_TITLE','Downloads Manager');
@@ -24,7 +25,6 @@ define('TABLE_HEADING_OPT_PRICE_PREFIX', 'Prefix');
 define('TEXT_PRODUCTS_NAME', 'Product: ');
 
 define('TEXT_INFO_HEADING_EDIT_PRODUCTS_DOWNLOAD', 'EDITING DOWNLOAD INFORMATION');
-define('TEXT_INFO_HEADING_DELETE_PRODUCTS_DOWNLOAD', 'CONFIRM DELETION OF DOWNLOAD');
 define('TEXT_INFO_EDIT_INTRO', 'Edit the Download information:');
 define('TEXT_DELETE_INTRO', 'The following filename will be removed from the database. This will not delete the file from the server:');
 

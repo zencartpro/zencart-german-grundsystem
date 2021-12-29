@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: product_types.php 730 2015-12-22 15:49:16Z webchills $
+ * @version $Id: product_types.php 2021-11-30 20:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Product Types');
@@ -27,7 +28,6 @@ define('TEXT_DATE_ADDED', 'Date Added:');
 define('TEXT_LAST_MODIFIED', 'Last Modified:');
 define('TEXT_PRODUCTS', 'Products:');
 define('TEXT_PRODUCTS_IMAGE_DIR', 'Upload to directory:');
-define('TEXT_IMAGE_NONEXISTENT', 'IMAGE DOES NOT EXIST');
 define('TEXT_MASTER_TYPE', 'This product type should be considered a sub-type of ');
 
 define('TEXT_NEW_INTRO', 'Please fill out the following information for the new manufacturer');
@@ -35,14 +35,10 @@ define('TEXT_EDIT_INTRO', 'Please make any necessary changes');
 
 define('TEXT_PRODUCT_TYPES_NAME', 'Product Type Name:');
 define('TEXT_PRODUCT_TYPES_IMAGE', 'Product Type Default Image:');
-define('TEXT_PRODUCT_TYPES_URL', 'Manufacturers URL:');
 
 define('TEXT_DELETE_INTRO', 'Are you sure you want to delete this product type?');
 define('TEXT_DELETE_IMAGE', 'Delete product type default image?');
 define('TEXT_DELETE_PRODUCTS', 'Delete products from this product type? (including product reviews, products on special, upcoming products)');
 define('TEXT_DELETE_WARNING_PRODUCTS', '<b>WARNING:</b> There are %s products still linked to this product type!');
-
-define('ERROR_DIRECTORY_NOT_WRITEABLE', 'Error: I can not write to this directory. Please set the right user permissions on: %s');
-define('ERROR_DIRECTORY_DOES_NOT_EXIST', 'Error: Directory does not exist: %s');
 
 define('IMAGE_LAYOUT', 'Layout Settings');

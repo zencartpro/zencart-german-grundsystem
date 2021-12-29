@@ -1,10 +1,10 @@
 <?php
-/**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+/** 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: backup_mysql.php 295 2015-12-22 16:39:16Z webchills $
+ * @version $Id: backup_mysql.php 2021-12-27 15:39:16Z webchills $
  */
 
 // define the locations of the mysql utilities.  Typical location is in '/usr/bin/' ... but not on Windows servers.
@@ -33,7 +33,7 @@ define('TEXT_INFO_SIZE', 'Grösse:');
 define('TEXT_INFO_COMPRESSION', 'Kompression:');
 define('TEXT_INFO_USE_GZIP', 'GZIP verwenden');
 define('TEXT_INFO_USE_ZIP', 'ZIP verwenden');
-define('TEXT_INFO_SKIP_LOCKS', 'Skip Lock Option (Ankreuzen, falls Sie einen LOCK TABLES BerechtigungsFEHLER bekommen)');
+define('TEXT_INFO_SKIP_LOCKS', 'Skip Lock Option (Ankreuzen, falls Sie einen LOCK TABLES Berechtigungsfehler bekommen)');
 define('TEXT_INFO_USE_NO_COMPRESSION', 'keine Kompression (Reine SQL Datei)');
 define('TEXT_INFO_DOWNLOAD_ONLY', 'Download ohne Speicherung am Server');
 define('TEXT_INFO_BEST_THROUGH_HTTPS', '(Sicherer über eine gesicherte HTTPS Verbindung)');
@@ -48,7 +48,6 @@ define('ERROR_BACKUP_DIRECTORY_NOT_WRITEABLE', 'FEHLER: In das Verzeichnis für 
 define('ERROR_DOWNLOAD_LINK_NOT_ACCEPTABLE', 'FEHLER: Der Download Link ist nicht korrekt.');
 define('ERROR_CANT_BACKUP_IN_SAFE_MODE','FEHLER: Dieses Tool funktioniert nicht, wenn der safe_mode aktiv ist oder eine open_basedir restriction.<br />Falls Sie während des Backups keine FEHLERmeldung bekommen, überprüfen Sie die Dateigröße der Sicherung. Ist diese unter 200 KB, ist die Datei vermutlich nicht brauchbar!');
 define('ERROR_EXEC_DISABLED','FEHLER: Auf Ihrem Server ist "exec()" deaktiviert. Dieses Tool kann so nicht verwendet werden. Wenden Sie sich an Ihren Provider für eine Aktivierung von PHP exec().');
-define('ERROR_FILE_NOT_REMOVEABLE', 'FEHLER: Die Datei konnte nicht gelöscht werden. Sie müssen Sie per FTP löschen.');
 
 define('SUCCESS_LAST_RESTORE_CLEARED', 'ERFOLGREICH: Das letzte Wiederherstellungsdatum wurde gelöscht.');
 define('SUCCESS_DATABASE_SAVED', 'ERFOLGREICH: Die Datenbank wurde gesichert.');
@@ -60,3 +59,4 @@ define('FAILURE_DATABASE_NOT_RESTORED', 'FEHLER: Die Datenbank wurde eventuell N
 define('FAILURE_DATABASE_NOT_RESTORED_FILE_NOT_FOUND', 'FEHLER: Die Datenbank wurde NICHT wiederhergestellt.  FEHLER: DIE DATEI %s KONNTE NICHT GEFUNDEN WERDEN');
 define('FAILURE_DATABASE_NOT_RESTORED_UTIL_NOT_FOUND', 'FEHLER: das MYSQL Wiederherstellungsutility konnte nicht lokalisiert werden. WIEDERHERSTELLUNG GESCHEITERT.');
 define('FAILURE_BACKUP_FAILED_CHECK_PERMISSIONS','Die Sicherung ist fehlgeschlagen, da das Backup Tool nicht gestartet werden konnte (mysqldump oder mysqldump.exe).<br />Auf einem WindowsServer müssen Sie die Berechtigungen der cmd.exe so setzen, dass der Internet Guest Account lesen und schreiben darf.<br />Auf einem Linux Server wednen Sie sich bitte an Ihren Provider um zu klären, warum exec() Befehle fehlschlagen.');
+

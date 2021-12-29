@@ -5,10 +5,11 @@
  * This file is used for generating tabular output where needed, based on the supplied array of table-cell contents.
  *
  * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_tabular_display.php 3 2019-04-12 18:33:58Z webchills $
+ * @version $Id: tpl_tabular_display.php 2021-12-27 18:33:58Z webchills $
 
  */
 

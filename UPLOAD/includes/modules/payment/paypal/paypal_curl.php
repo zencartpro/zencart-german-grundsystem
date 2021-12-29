@@ -2,10 +2,11 @@
 /**
  * paypal_curl.php communications class for PayPal Express Checkout / Website Payments Pro / Payflow Pro payment methods
  *
- * @package paymentMethod
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypal_curl.php 810 2020-02-29 21:36:36Z webchills $
+ * @version $Id: paypal_curl.php 2021-11-29 15:36:36Z webchills $
  */
 
 /**
@@ -207,7 +208,7 @@ class paypal_curl extends base {
    *
    * PAYMENTREQUEST_0_PAYMENTACTION = Authorization (auth/capt) or Sale (final)
    */
-  function DoDirectPayment($cc, $cvv2 = '', $exp, $fname = null, $lname = null, $cc_type, $options = array(), $nvp = array() ) {
+  function DoDirectPayment($cc, $cvv2 = '', $exp = '', $fname = null, $lname = null, $cc_type = '', $options = array(), $nvp = array() ) {
     $values = $options;
     $values['ACCT'] = $cc;
     if ($cvv2 != '') $values['CVV2'] = $cvv2;
@@ -366,7 +367,7 @@ class paypal_curl extends base {
    *
    * Used to read data from PayPal for specified transaction criteria
    */
-  function TransactionSearch($startdate, $txnID = '', $email = '', $options) {
+  function TransactionSearch($startdate, $txnID = '', $email = '', $options = null) {
     if ($this->_mode == 'payflow') {
       $values['CUSTREF'] = $txnID;
       $values['TENDER'] = 'C';
@@ -438,7 +439,7 @@ class paypal_curl extends base {
     } elseif ($this->_mode == 'nvp') {
       $headers[] = 'X-VPS-VIT-Integration-Product: PHP::Zen Cart(R) - PayPal/NVP';
     }
-    $headers[] = 'X-VPS-VIT-Integration-Version: 1.5.6';
+    $headers[] = 'X-VPS-VIT-Integration-Version: 1.5.7';
     $this->lastHeaders = $headers;
 
     $ch = curl_init();
@@ -661,7 +662,7 @@ class paypal_curl extends base {
     if ($tokenHash == '') $tokenHash = '_' . zen_create_random_value(4);
     $this->outputDestination = 'File';
     $this->notify('PAYPAL_CURL_LOG', $token, $tokenHash);
-    if ($token == '') $token = $_SESSION['paypal_ec_token'];
+    if ($token == '' && !empty($_SESSION['paypal_ec_token'])) $token = $_SESSION['paypal_ec_token'];
     if ($token == '') $token = time();
     $token .= $tokenHash;
     if ($this->outputDestination == 'File') {

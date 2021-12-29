@@ -1,10 +1,11 @@
 <?php
 /**
-* @package admin
-* @copyright Copyright 2003-2019 Zen Cart Development Team
+
+* @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: record_company.php 730 2015-12-22 15:49:16Z webchills $
+* @version $Id: record_company.php 2021-10-25 19:49:16Z webchills $
 */
 define('HEADING_TITLE', 'Record Companies');
 define('TABLE_HEADING_RECORD_COMPANY', 'Record Company');
@@ -24,7 +25,6 @@ define('TEXT_HEADING_EDIT_RECORD_COMPANY', 'Edit Record Company');
 define('TEXT_HEADING_DELETE_RECORD_COMPANY', 'Delete Record Company');
 define('TEXT_DATE_ADDED', 'Date Added');
 define('TEXT_LAST_MODIFIED', 'Date Modified');
-define('TEXT_IMAGE_NONEXISTENT', 'Image does not exist');
 define('TEXT_PRODUCTS', 'Linked Products');
 define('TEXT_DISPLAY_NUMBER_OF_RECORD_COMPANIES', 'Displaying <strong>%d</strong> to <strong>%d</strong> (of <strong>%d</strong> Record Companies)');
 define('TEXT_DELETE_PRODUCTS', 'Delete this Record Company and all items linked to it?');

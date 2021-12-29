@@ -7,6 +7,5 @@ define('BRAINTREE_MESSAGE_LIMIT_EXCEEDED', 'Modul deaktiviert, da der Kaufpreis 
 define('BRAINTREE_MESSAGE_CUSTOMER_UNABLE_PROCESSING', 'Wir konnten Ihre Kreditkarte nicht verarbeiten. Bitte stellen Sie sicher, dass Ihre Kreditkartendaten korrekt sind und korrekt eingegeben wurden.');
 define('BRAINTREE_MESSAGE_ERROR_PROCESSING', 'Beim Verarbeiten Ihrer Zahlung ist ein Fehler aufgetreten, bitte nochmal versuchen.');
 define('BRAINTREE_MESSAGE_ALREADY_INSTALLED', 'Braintree Modul ist bereits installiert.');
-define('BRAINTREE_MESSAGE_ERROR_PROCESSING', 'Fehler beim Verarbeiten der Transaktion: ');
 define('BRAINTREE_MESSAGE_PROCESSOR_DECLINE', 'Abgelehnt - Bitte verwenden Sie eine andere Kreditkarte.');
 define('BRAINTREE_MESSAGE_NETWORK_UNAVAILABLE', 'Netzwerk des Kartenverarbeiters nicht erreichbar - Bitte nochmal versuchen.');

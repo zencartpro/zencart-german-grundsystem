@@ -1,6 +1,6 @@
 <?php
 /**
- * Zen Cart German Specific
+ 
  * Common Template main_template_vars handler
  *
  * Normally a page will automatically load its own template based on the page name.<br />
@@ -10,12 +10,16 @@
  * Placing a file in the includes/modules/pages/some_page/ directory called main_template_vars.php<br />
  * allows you to override this page and choose the template that loads.<br />
  *
- * @package templateSystem
- * @copyright Copyright 2003-2020 Zen Cart Development Team
- * @copyright Portions Copyright 2003 osCommerce
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
+ 
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main_template_vars.php 732 2020-01-17 15:02:16Z webchills $
+ * @version $Id: main_template_vars.php 2020-01-17 15:02:16Z webchills $
  */
+if (!defined('IS_ADMIN_FLAG')) {
+    die('Illegal Access');
+}
 
   $zco_notifier->notify('NOTIFY_MAIN_TEMPLATE_VARS_START', $template_dir);
 

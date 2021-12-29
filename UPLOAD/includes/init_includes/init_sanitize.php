@@ -3,12 +3,13 @@
  * sanitize the GET parameters
  * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
- * @package initSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_sanitize.php 735 2019-07-20 09:22:16Z webchills $
- * @todo move the array process to security class
+ * @version $Id: init_sanitize.php 736 2021-11-28 21:22:16Z webchills $
+ 
  */
 
   if (!defined('IS_ADMIN_FLAG')) {
@@ -20,6 +21,14 @@
   {
     $_SESSION ['securityToken'] = md5 ( uniqid ( rand (), true ) );
   }
+  if (zen_is_hmac_login()) {
+    if (!zen_validate_hmac_login()) {
+        unset($_GET['action']);
+    } else {
+        $_POST['securityToken'] = $_SESSION['securityToken'];
+    }
+  }
+
   if ((isset ( $_GET ['action'] ) || isset($_POST['action']) ) && $_SERVER['REQUEST_METHOD'] == 'POST')
   {
     $mainPage = isset($_GET['main_page']) ? $_GET['main_page'] : FILENAME_DEFAULT;
@@ -38,6 +47,8 @@
   if (isset($_GET['cPath'])) $_GET['cPath'] = preg_replace('/[^0-9_]/', '', $_GET['cPath']);
   if (isset($_GET['main_page'])) $_GET['main_page'] = preg_replace('/[^0-9a-zA-Z_]/', '', $_GET['main_page']);
   if (isset($_GET['sort'])) $_GET['sort'] = preg_replace('/[^0-9a-zA-Z]/', '', $_GET['sort']);
+  // if present, 'page' should always be a number because it is used for pagination and canonical URL generation
+  if (isset($_GET['page'])) $_GET['page'] = (int)$_GET['page'];
   $saniGroup1 = array('action', 'addr', 'alpha_filter_id', 'alpha_filter', 'authcapt', 'chapter', 'cID', 'currency', 'debug', 'delete', 'dfrom', 'disp_order', 'dto', 'edit', 'faq_item', 'filter_id', 'goback', 'goto', 'gv_no', 'id', 'inc_subcat', 'language', 'markflow', 'music_genre_id', 'nocache', 'notify', 'number_of_uploads', 'order_id', 'order', 'override', 'page', 'pfrom', 'pid', 'pID', 'pos', 'product_id', 'products_image_large_additional', 'products_tax_class_id', 'pto', 'record_company_id', 'referer', 'reviews_id', 'search_in_description', 'set_session_login', 'token', 'tx', 'type', 'zenid');
   foreach ($saniGroup1 as $key)
   {
@@ -79,73 +90,29 @@
           if (isset($_REQUEST[$key])) $_REQUEST[$key] = preg_replace('/'.$strictReplace.'/', '', $value);
         }
       }
-      unset($GLOBALS[$key]);
-    }
-  }
-/**
- * process all $_POST terms
- * @todo move the array process to security class
- */
-  if (isset($_POST) && count($_POST) > 0) {
-    foreach($_POST as $key=>$value){
-      if(is_array($value)){
-        foreach($value as $key2 => $val2){
-          unset($GLOBALS[$key]);
-        }
-      } else {
-        unset($GLOBALS[$key]);
-      }
-    }
-  }
-/**
- * process all $_COOKIE terms
- */
-  if (isset($_COOKIE) && count($_COOKIE) > 0) {
-    foreach($_COOKIE as $key=>$value){
-      if(is_array($value)){
-        foreach($value as $key2 => $val2){
-          unset($GLOBALS[$key]);
-        }
-      } else {
-        unset($GLOBALS[$key]);
-      }
-    }
-  }
-/**
- * process all $_SESSION terms
- */
-  if (isset($_SESSION) && count($_SESSION) > 0) {
-    foreach($_SESSION as $key=>$value){
-      if(is_array($value)){
-        foreach($value as $key2 => $val2){
-          unset($GLOBALS[$key]);
-        }
-      } else {
-        unset($GLOBALS[$key]);
-      }
     }
   }
 
 /**
  * validate products_id for search engines and bookmarks, etc.
  */
-  if (isset($_GET['products_id']) && (!isset($_SESSION['check_valid']) || $_SESSION['check_valid'] != 'false')) {
-    $check_valid = zen_products_id_valid($_GET['products_id']);
+  if (isset($_GET['products_id']) && (!isset($_SESSION['check_valid_prod']) || $_SESSION['check_valid_prod'] != false)) {
+    $check_valid = zen_products_id_valid($_GET['products_id']) && !empty($_GET['main_page']);
     if (!$check_valid) {
       $_GET['main_page'] = zen_get_info_page($_GET['products_id']);
       /**
        * do not recheck redirect
        */
-      $_SESSION['check_valid'] = 'false';
+      $_SESSION['check_valid_prod'] = false;
       zen_redirect(zen_href_link($_GET['main_page'], 'products_id=' . $_GET['products_id']));
     }
   }
  
-  $_SESSION['check_valid'] = 'true';
+  $_SESSION['check_valid_prod'] = true;
 /**
  * We do some checks here to ensure $_GET['main_page'] has a sane value
  */
-  if (!isset($_GET['main_page']) || !zen_not_null($_GET['main_page'])) $_GET['main_page'] = 'index';
+  if (empty($_GET['main_page'])) $_GET['main_page'] = 'index';
 
   if (!is_dir(DIR_WS_MODULES .  'pages/' . $_GET['main_page'])) {
     if (MISSING_PAGE_CHECK == 'On' || MISSING_PAGE_CHECK == 'true') {

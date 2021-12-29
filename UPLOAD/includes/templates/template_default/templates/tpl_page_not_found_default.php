@@ -5,10 +5,11 @@
  * Displays page-not-found message and site-map (if configured)
  *
  * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_page_not_found_default.php 748 2016-02-29 13:14:36Z webchills $
+ * @version $Id: tpl_page_not_found_default.php 2016-02-29 13:14:36Z webchills $
  */
 ?>
 <div class="centerColumn" id="pageNotFound">

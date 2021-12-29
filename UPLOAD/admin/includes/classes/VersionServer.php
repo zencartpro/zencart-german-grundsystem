@@ -1,16 +1,17 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: VersionServer.php 3 2019-05-07 20:24:16Z webchills $
+ * @version $Id: VersionServer.php 2021-12-29 12:24:16Z webchills $
  */
 
 class VersionServer
 {
-    protected $projectVersionServer = 'https://ping.zen-cart.com/zcversioncheck';
-    protected $pluginVersionServer = 'https://ping.zen-cart.com/plugincheck';
+    protected $projectVersionServer = 'https://www.zen-cart-pro.at';
+    
 
     public function __construct()
     {
@@ -50,28 +51,7 @@ class VersionServer
 
     }
 
-    public function getPluginVersion($id)
-    {
-        $currentInfo = $this->getZcVersioninfo();
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->pluginVersionServer . '/' . (int)$id);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($currentInfo));
-        curl_setopt($ch, CURLOPT_VERBOSE, 0);
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 9);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 9);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Plugin Version Check [' . (int)$id . '] ' . HTTP_SERVER);
-        $response = curl_exec($ch);
-        $error = curl_error($ch);
-        $errno = curl_errno($ch);
-        if ($errno > 0) {
-            return $this->formatCurlError($errno, $error);
-        }
-        return $response;
-
-    }
+   
 
     public function isProjectCurrent($newVersionInfo)
     {

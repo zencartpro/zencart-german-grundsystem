@@ -3,10 +3,11 @@
  * Temporary cache for sql
  * 
  * @package classes
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Created by Data-Diggers.com http://www.data-diggers.com/
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: query_cache.php 734 2015-12-21 20:11:16Z webchills $
+ * @version $Id: query_cache.php 2015-12-21 20:11:16Z webchills $
  *  
  */
 /**

@@ -1,11 +1,15 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * Zen Cart German Specific
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: application_bootstrap.php 1 2020-02-08 17:02:36Z webchills $
+ * @version $Id: application_bootstrap.php 2021-12-25 08:41:36Z webchills $
  */
+use Zencart\FileSystem\FileSystem;
+use Zencart\PluginManager\PluginManager;
+/* @var $db queryFactory */
 
 /**
  * boolean if true the autoloader scripts will be parsed and their output shown. For debugging purposes only.
@@ -23,7 +27,9 @@ define('PAGE_PARSE_START_TIME', microtime());
 // set php_self in the local scope
 $serverScript = basename($_SERVER['SCRIPT_NAME']);
 $PHP_SELF = isset($_SERVER['SCRIPT_NAME']) ? $serverScript : 'home.php';
-$PHP_SELF = isset($_GET['cmd']) ? basename($_GET['cmd'] . '.php') : $PHP_SELF;
+if (basename($PHP_SELF, '.php') === 'index') {
+    $PHP_SELF = isset($_GET['cmd']) ? basename($_GET['cmd'] . '.php') : $PHP_SELF;
+}
 $PHP_SELF = htmlspecialchars($PHP_SELF);
 $_SERVER['SCRIPT_NAME'] = str_replace($serverScript, '', $_SERVER['SCRIPT_NAME']) . $PHP_SELF;
 // Suppress html from error messages
@@ -35,6 +41,22 @@ $_SERVER['SCRIPT_NAME'] = str_replace($serverScript, '', $_SERVER['SCRIPT_NAME']
 
 if (!defined('__DIR__')) define('__DIR__', dirname(__FILE__));
 if (!defined('DIR_FS_ADMIN')) define('DIR_FS_ADMIN', preg_replace('#/includes/$#', '/', realpath(__DIR__ . '/../') . '/'));
+
+/**
+ * set the level of error reporting
+ *
+ * Note STRICT_ERROR_REPORTING should never be set to true on a production site. <br />
+ * It is mainly there to show php warnings during testing/bug fixing phases.<br />
+ * note for strict error reporting we also turn on show_errors as this may be disabled<br />
+ * in php.ini. Otherwise we respect the php.ini setting
+ *
+ */
+if (defined('STRICT_ERROR_REPORTING') && STRICT_ERROR_REPORTING == true) {
+    @ini_set('display_errors', TRUE);
+    error_reporting(E_ALL);
+} else {
+    error_reporting(0);
+}
 
 /**
  * Set the local configuration parameters - mainly for developers
@@ -54,21 +76,7 @@ if (file_exists('includes/configure.php')) {
      */
     include('includes/configure.php');
 }
-/**
- * set the level of error reporting
- *
- * Note STRICT_ERROR_REPORTING should never be set to true on a production site. <br />
- * It is mainly there to show php warnings during testing/bug fixing phases.<br />
- * note for strict error reporting we also turn on show_errors as this may be disabled<br />
- * in php.ini. Otherwise we respect the php.ini setting
- *
- */
-if (defined('STRICT_ERROR_REPORTING') && STRICT_ERROR_REPORTING == true) {
-    @ini_set('display_errors', TRUE);
-    error_reporting(E_ALL);
-} else {
-    error_reporting(0);
-}
+
 if (!defined('DIR_FS_CATALOG') || !is_dir(DIR_FS_CATALOG.'/includes/classes') || !defined('DB_TYPE') || DB_TYPE == '') {
     if (file_exists('../includes/templates/template_default/templates/tpl_zc_install_suggested_default.php')) {
         require('../includes/templates/template_default/templates/tpl_zc_install_suggested_default.php');
@@ -91,11 +99,12 @@ if (file_exists('includes/defined_paths.php')) {
     die('ERROR: /includes/defined_paths.php file not found. Cannot continue.');
     exit;
 }
+require DIR_FS_CATALOG . DIR_WS_FUNCTIONS . 'php_polyfills.php';
 /**
  * ignore version-check if INI file setting has been set
  */
-if (file_exists(DIR_FS_ADMIN . 'includes/local/skip_version_check.ini')) {
-    $lines = @file(DIR_FS_ADMIN . 'includes/local/skip_version_check.ini');
+$file = DIR_FS_ADMIN . 'includes/local/skip_version_check.ini';
+if (file_exists($file) && $lines = @file($file)) {
     if (is_array($lines)) {
         foreach($lines as $line) {
             if (substr($line,0,14)=='admin_configure_php_check=') $check_cfg=substr(trim(strtolower(str_replace('admin_configure_php_check=','',$line))),0,3);
@@ -142,9 +151,13 @@ if ($za_dir = @dir(DIR_WS_INCLUDES . 'extra_configures')) {
 $template_dir = '';
 define('DIR_WS_TEMPLATES', DIR_WS_INCLUDES . 'templates/');
 /**
- * autoloading
+ * psr-4 autoloading
  */
 require DIR_FS_CATALOG . DIR_WS_CLASSES . 'class.base.php';
+require DIR_FS_CATALOG . DIR_WS_CLASSES . 'vendors/AuraAutoload/src/Loader.php';
+$psr4Autoloader = new \Aura\Autoload\Loader;
+$psr4Autoloader->register();
+require('includes/psr4Autoload.php');
 
 require 'includes/classes/AdminRequestSanitizer.php';
 require 'includes/init_includes/init_file_db_names.php';

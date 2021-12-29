@@ -6,12 +6,13 @@
  * index filter for the music product type
  * show the products of a specified music_genre
  *
- * @package productTypes
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @todo Need to add/fine-tune ability to override or insert entry-points on a per-product-type basis
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: music_genre_filter.php 733 2019-07-20 09:18:16Z webchills $
+ * @version $Id: music_genre_filter.php 2019-07-20 09:18:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');

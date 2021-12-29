@@ -29,7 +29,7 @@ define('TABLE_HEADING_ACTION', 'Action');
 define('TABLE_HEADING_FILETYPE', 'File Type');
 
 define('TEXT_PRODUCT_INFO', 'Product');
-define('TEXT_PRODUCTS_MODEL', 'Model');
+define('TEXT_PRICE', 'Price');
 define('TEXT_IMAGE_BASE_DIR', 'Image Directory');
 define('TEXT_NO_PRODUCT_IMAGES', 'There are no images for this product');
 define('TEXT_CLICK_TO_ENLARGE', 'Click to enlarge');
@@ -61,6 +61,8 @@ define('TEXT_ADDITIONAL', 'additional');
 define('TEXT_INFO_CONFIRM_DELETE_SURE', 'Are you sure you want to delete all sizes of this image?');
 define('TEXT_INFO_SELECT_ACTION', 'Select action');
 
+define('TEXT_NOT_NEEDED', 'Not needed');    //-Displayed for the 'Medium'-sized additional images
+define('TEXT_TABLE_CAPTION_INSTRUCTIONS', "<b>Note:</b> A product's additional images are <em>automatically</em> created in their 'small' and 'large' sizes <em>only</em> and show '" . TEXT_NOT_NEEDED . "' for their <b>Medium image</b>.  If your storefront uses other image-sizes for these (or the product's main) images, those images are created (and cached) 'on-demand'.");
 define('TEXT_MSG_FILE_NOT_FOUND', 'This file does not exist.');
 define('TEXT_MSG_ERROR_RETRIEVING_IMAGESIZE', 'Could not determine the image size');
 define('TEXT_MSG_AUTO_BASE_ERROR', 'Automatic base select without default file.');
@@ -85,6 +87,7 @@ define('TEXT_MSG_NOPERMS_MEDIUM_IMAGE_DIR', 'Unable to set the permissions of th
 define('TEXT_MSG_NOPERMS_LARGE_IMAGE_DIR', 'Unable to set the permissions of the large image directory.');
 define('TEXT_MSG_NAME_TOO_LONG_ERROR', 'The image file "%1$s" is too long to be saved in the database.  Choose a name that is %2$u characters or fewer.');
 define('TEXT_MSG_NO_SUFFIXES_FOUND', 'Could not find an unused additional-image suffix in the range _01 to _99.');
+define('TEXT_MSG_NO_FILE_UPLOADED', 'No <b>Base image file</b> was selected; please try again.');
 
 define('TEXT_MSG_NOUPLOAD_DEFAULT', 'Unable to upload default image file.');
 define('TEXT_MSG_NORESIZE', 'Unable to resize image');

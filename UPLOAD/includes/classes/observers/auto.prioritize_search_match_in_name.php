@@ -2,7 +2,8 @@
 /**
  * @package Search: Prioritize Matching Names
  * @copyright Copyright 2015-2019 Vinos de Frutas Tropicales (lat9)
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * @version $Id: auto.prioritize_search_match_in_name.php 1 2019-07-22 08:13:51Z webchills $

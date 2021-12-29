@@ -80,7 +80,7 @@ if (!function_exists('json_encode')) {
 define('PATH_INSTALL', str_replace("\\", "/", realpath(dirname(__FILE__) . "/../../")));
 $url = (defined('CLOUDLOADER_URL')) ? CLOUDLOADER_URL : 'http://cloudbeez.com';
 
-define('CLOUDBEEZ_MAILBEEZ_INSTALLER_VERSION', '4.0.1');
+define('CLOUDBEEZ_MAILBEEZ_INSTALLER_VERSION', '4.1.0');
 define('CLOUDBEEZ_GATEWAY_PUBLIC', $url . '/api/public/v1'); // api/public/v1
 define('CLOUDBEEZ_GATEWAY_PRIVATE', $url . '/api/private/v1'); // api/private/v1
 //define('CLOUDBEEZ_CONNECTION_SPEED_TEST_URL', CLOUDLOADER_URL . '/speedtest_file.zip');

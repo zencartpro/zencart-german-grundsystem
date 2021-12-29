@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: geo_zones.php 628 2019-10-31 22:15:14Z webchills $
+ * @version $Id: geo_zones.php 2019-10-31 22:15:14Z webchills $
  */
 
 define('HEADING_TITLE','Zonendefinitionen - Steuern, Zahlungsarten und Versandarten');

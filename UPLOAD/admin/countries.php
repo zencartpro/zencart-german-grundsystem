@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: countries.php 792 2020-02-14 20:42:51Z webchills $
+ * @version $Id: countries.php 2021-11-29 20:04:51Z webchills $
  */
 
   require('includes/application_top.php');
@@ -148,7 +148,7 @@
           <table class="table table-hover">
             <thead>
               <tr class="dataTableHeadingRow">
-                <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_COUNTRY_NAME; ?></th>
+                <th class="dataTableHeadingContent" width="50%"><?php echo TABLE_HEADING_COUNTRY_NAME; ?></th>
                 <th class="dataTableHeadingContent text-center" colspan="2"><?php echo TABLE_HEADING_COUNTRY_CODES; ?></th>
                 <th class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_COUNTRY_STATUS; ?></th>
                 <th class="dataTableHeadingContent text-right"><?php echo TABLE_HEADING_ACTION; ?></th>
@@ -176,7 +176,7 @@
                     echo '                  <tr class="dataTableRow" onclick="document.location.href=\'' . zen_href_link(FILENAME_COUNTRIES, 'page=' . $_GET['page'] . '&cID=' . $country['countries_id']) . '\'" role="button">' . "\n";
                   }
                   ?>
-              <td class="dataTableContent"><?php echo zen_output_string_protected($country['countries_name']); ?></td>
+              <td class="dataTableContent" width="50%"><?php echo zen_output_string_protected($country['countries_name']); ?></td>
               <td class="dataTableContent text-center"><?php echo $country['countries_iso_code_2']; ?></td>
               <td class="dataTableContent text-center"><?php echo $country['countries_iso_code_3']; ?></td>
               <td class="dataTableContent text-center">
@@ -255,7 +255,7 @@
                 $contents[] = array('align' => 'text-center', 'text' => '<br><button type="submit" class="btn btn-danger">' . IMAGE_UPDATE . '</button> <a href="' . zen_href_link(FILENAME_COUNTRIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->countries_id) . '" class="btn btn-default" role="button">' . IMAGE_CANCEL . '</a>');
       break;
     default:
-      if (is_object($cInfo)) {
+                if (isset($cInfo) && is_object($cInfo)) {
                   $heading[] = array('text' => '<h4>' . zen_output_string_protected($cInfo->countries_name) . '</h4>');
                   $contents[] = array('align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_COUNTRIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->countries_id . '&action=edit') . '" class="btn btn-primary" role="button">' . IMAGE_EDIT . '</a> <a href="' . zen_href_link(FILENAME_COUNTRIES, 'page=' . $_GET['page'] . '&cID=' . $cInfo->countries_id . '&action=delete') . '" class="btn btn-warning" role="button">' . IMAGE_DELETE . '</a>');
         // BOF mehrsprachige Ländernamen 9 of 9

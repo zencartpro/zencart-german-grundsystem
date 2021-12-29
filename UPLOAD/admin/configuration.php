@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: configuration.php 795 2020-03-01 21:44:51Z webchills $
+ * @version $Id: configuration.php 2021-11-29 20:04:51Z webchills $
  */
 function getConfigLanguage($cKey){
      global $db;
@@ -37,7 +37,9 @@ if (zen_not_null($action)) {
         $checks = $db->Execute("SELECT val_function FROM " . TABLE_CONFIGURATION . " WHERE configuration_id = " . (int)$cID);
         if (!$checks->EOF && $checks->fields['val_function'] != NULL) {
            require_once('includes/functions/configuration_checks.php');
-           zen_validate_configuration_entry($configuration_value, $checks->fields['val_function']);
+           if (!zen_validate_configuration_entry($configuration_value, $checks->fields['val_function'])) {
+              zen_redirect(zen_href_link(FILENAME_CONFIGURATION, 'gID=' . $_GET['gID'] . '&cID=' . (int)$_GET['cID'] . '&action=edit'));
+           }
         }
 
       $db->Execute("UPDATE " . TABLE_CONFIGURATION . "
@@ -55,7 +57,7 @@ if (zen_not_null($action)) {
       if ((WARN_BEFORE_DOWN_FOR_MAINTENANCE == 'true') && (DOWN_FOR_MAINTENANCE == 'true')) {
         $db->Execute("UPDATE " . TABLE_CONFIGURATION . "
                       SET configuration_value = 'false',
-                          last_modified = '" . NOW . "'
+                          last_modified = now()
                       WHERE configuration_key = 'WARN_BEFORE_DOWN_FOR_MAINTENANCE'");
       }
 
@@ -83,6 +85,10 @@ if ($gID == 7) {
   }
   if ($shipping_errors != '') {
     $messageStack->add(ERROR_SHIPPING_CONFIGURATION . $shipping_errors, 'caution');
+  }
+} else if ($gID == 6) {
+  if (!zen_is_superuser()) {
+     zen_redirect(zen_href_link(FILENAME_DENIED, '', 'SSL'));
   }
 }
 ?>

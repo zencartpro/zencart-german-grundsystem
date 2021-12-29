@@ -3,11 +3,12 @@
  * Zen Cart German Specific
  * Module Template for responsive mobile support
  *
- * @package templateSystem
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_mobile_menu.php 8 2020-03-01 09:33:58Z webchills $
+ * @version $Id: tpl_modules_mobile_menu.php 2021-12-27 19:33:58Z webchills $
  */
 ?>
 
@@ -110,7 +111,7 @@ echo $menulist;
         <li><a href="<?php echo zen_href_link(FILENAME_CONTACT_US); ?>"><?php echo BOX_INFORMATION_CONTACT; ?></a></li>
 <?php } ?>
 <?php if (!empty($external_bb_url) && !empty($external_bb_text)) { // forum/bb link ?>
-        <li><a href="<?php echo $external_bb_url; ?>" target="_blank"><?php echo $external_bb_text; ?></a></li>
+        <li><a href="<?php echo $external_bb_url; ?>" rel="noopener" target="_blank"><?php echo $external_bb_text; ?></a></li>
 <?php } ?>
 <?php if (DEFINE_SITE_MAP_STATUS <= 1) { ?>
         <li><a href="<?php echo zen_href_link(FILENAME_SITE_MAP); ?>"><?php echo BOX_INFORMATION_SITE_MAP; ?></a></li>

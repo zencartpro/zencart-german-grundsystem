@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: currency_cron.core.php 3 2020-02-29 10:32:36Z webchills $
+ * @version $Id: currency_cron.core.php 2021-10-25 17:12:36Z webchills $
  */
 if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
 /**
@@ -12,8 +13,6 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
  */
   $autoLoadConfig[0][] = array('autoType'=>'require',
                                'loadFile'=> DIR_FS_CATALOG . DIR_WS_INCLUDES .  'version.php');
-  $autoLoadConfig[0][] = array('autoType'=>'class',
-                               'loadFile'=>'class.base.php');
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                'loadFile'=>'class.notifier.php');
   $autoLoadConfig[0][] = array('autoType'=>'classInstantiate',
@@ -24,10 +23,6 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                'loadFile'=>'object_info.php',
                                'classPath'=>DIR_WS_CLASSES);
-  $autoLoadConfig[10][] = array('autoType'=>'init_script',
-                                'loadFile'=> 'init_file_db_names.php');
-  $autoLoadConfig[10][] = array('autoType'=>'init_script',
-                                'loadFile'=>'init_database.php');
   $autoLoadConfig[20][] = array('autoType'=>'init_script',
                                 'loadFile'=> 'init_db_config_read.php');
   $autoLoadConfig[30][] = array('autoType'=>'classInstantiate',

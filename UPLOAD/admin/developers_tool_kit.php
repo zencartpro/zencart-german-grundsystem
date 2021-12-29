@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * Zen Cart German Specific
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: developers_tool_kit.php 737 2019-07-20 08:49:16Z webchills $
+ * @version $Id: developers_tool_kit.php 2021-12-26 13:20:16Z webchills $
  */
 require('includes/application_top.php');
 
@@ -621,22 +622,6 @@ switch ($action) {
         getDirList(DIR_FS_ADMIN, $zv_filestype_group);
         $sub_dir_files_admin = $sub_dir_files;
 
-        $check_dir = array_merge($sub_dir_files_catalog, $sub_dir_files_email, $sub_dir_files_admin);
-        for ($i = 0, $n = sizeof($check_dir); $i < $n; $i++) {
-          $check_directory[] = $check_dir[$i] . '/';
-        }
-        break;
-
-      case (2): // all catalog
-        $zv_check_root = true;
-        $filename_listing = '';
-
-        $check_directory = array();
-
-        $sub_dir_files = array();
-        getDirList(DIR_FS_CATALOG . DIR_WS_INCLUDES, $zv_filestype_group);
-        $sub_dir_files_catalog = $sub_dir_files;
-
 // get email
         $sub_dir_files = array();
         getDirList(DIR_FS_EMAIL_TEMPLATES, $zv_filestype_group);
@@ -661,10 +646,6 @@ switch ($action) {
         getDirList(DIR_FS_ADMIN, $zv_filestype_group);
         $sub_dir_files_admin = $sub_dir_files;
 
-        $check_dir = array_merge($sub_dir_files_admin);
-        for ($i = 0, $n = sizeof($check_dir); $i < $n; $i++) {
-          $check_directory[] = $check_dir[$i] . '/';
-        }
         break;
     }
 
@@ -685,26 +666,9 @@ if ($found == false) {
 <!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
   <head>
-    <meta charset="<?php echo CHARSET; ?>">
-    <title><?php echo TITLE; ?></title>
-    <link rel="stylesheet" href="includes/stylesheet.css">
-    <link rel="stylesheet" href="includes/developers_tool_kit.css" />
-    <link rel="stylesheet" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-    <script src="includes/menu.js"></script>
-    <script src="includes/general.js"></script>
-
-    <script>
-      function init() {
-          cssjsmenu('navbar');
-          if (document.getElementById) {
-              var kill = document.getElementById('hoverJS');
-              kill.disabled = true;
-          }
-      }
-    </script>
-    <style>.dataTableGroupChange {border-top: 2px solid #000 !important;}</style>
+  <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
   </head>
-  <body onLoad="init()">
+  <body>
     <!-- header //-->
     <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
     <!-- header_eof //-->
@@ -1047,7 +1011,7 @@ if ($found == false) {
             $za_lookup = array(
               array('id' => '1', 'text' => TEXT_ALL_FILES_LOOKUP_CURRENT),
               array('id' => '2', 'text' => TEXT_ALL_FILES_LOOKUP_CURRENT_CATALOG),
-              array('id' => '3', 'text' => TEXT_ALL_FILES_LOOKUP_CURRENT_ADMIN)
+              array('id' => '3', 'text' => TEXT_ALL_FILES_LOOKUP_CURRENT_ADMIN),             
             );
             ?>
             <?php echo zen_draw_label(TEXT_ALL_FILES_LOOKUPS, 'zv_files', 'class="control-label col-sm-3"'); ?>

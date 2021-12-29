@@ -3,7 +3,8 @@
  * Security Patch v1.3.8 20080919
  * 
  * @package initSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * @version $Id: security_patch_v138_20080919.php 729 2011-08-09 15:49:16Z hugo13 $
  */

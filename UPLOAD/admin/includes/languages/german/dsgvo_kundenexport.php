@@ -1,10 +1,10 @@
 <?php
-/**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+/** 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: dsgvo_export.php 2018-05-19 09:05:14Z webchills $
+ * @version $Id: dsgvo_export.php 2021-12-27 17:05:14Z webchills $
  */
 
 define('HEADING_TITLE', 'DSGVO Kundendatensatz Export');
@@ -14,7 +14,7 @@ define('TABLE_HEADING_ID', 'ID');
 define('TABLE_HEADING_FIRSTNAME', 'Vorname');
 define('TABLE_HEADING_LASTNAME', 'Nachname');
 define('TABLE_HEADING_ACCOUNT_CREATED', 'Konto erstellt am');
-define('TABLE_HEADING_ACTION', 'Aktion');
+
 define('TEXT_DATE_ACCOUNT_CREATED', 'Konto erstellt am:');
 define('ENTRY_NONE', 'Kein');
 define('TABLE_HEADING_COMPANY', 'Firma');
@@ -24,7 +24,7 @@ define('TABLE_HEADING_ACTION', 'Aktion');
 define('ADDRESS_BOOK_TITLE', 'Adressbucheinträge');
 define('PRIMARY_ADDRESS', '(Standard Adresse)');
 define('TEXT_MAXIMUM_ENTRIES', '<span class="coming"><strong>Anmerkung:</strong></span> Es sind maximal %s Adressbucheinträge erlaubt.');
-define('TEXT_INFO_ADDRESS_BOOK_COUNT', ' | 1 von  ');
+
 define('CSV_HEADING_TITLE_SALUTATION','Anrede');
 define('CSV_HEADING_TITLE_GENDER','Herr/Frau');
 define('DSGVO_CUSTOMERDATA_HEADING','KUNDENDATEN');

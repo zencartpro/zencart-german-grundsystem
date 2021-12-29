@@ -6,9 +6,10 @@
  * It is intended simply to recommend clicking on the zc_install link to begin installation.
  *
  * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_zc_install_suggested_default.php 807 2019-07-03 17:42:24Z webchills $
+ * @version $Id: tpl_zc_install_suggested_default.php 2021-12-28 16:42:24Z webchills $
  */
 $relPath = (file_exists('includes/templates/template_default/images/logo.gif')) ? '' : '../';
 $instPath = (file_exists('zc_install/index.php')) ? 'zc_install/index.php' : (file_exists('../zc_install/index.php') ? '../zc_install/index.php' : '');
@@ -276,11 +277,11 @@ Sollte das der Fall sein, dann
       <ol>
           <?php if ($docsPath) { ?>
           <li>
-            Lesen Sie vorab die <a href="https://www.zen-cart-pro.at/docs/156-deutsch-doku/" target="_blank">INSTALLATIONSANLEITUNG</a>
+            Lesen Sie vorab die <a href="https://www.zen-cart-pro.at/documentation.html" target="_blank">INSTALLATIONSANLEITUNG</a>
           </li>
         <?php } else { ?>
           <li>
-           Die Installationsanleitung finden Sie online <a href="https://www.zen-cart-pro.at/docs/156-deutsch-doku/" target="_blank">hier</a> und auch im Ordner ANLEITUNG in der zip Datei des Zen Cart Downloads.
+           Die Installationsanleitung finden Sie online <a href="https://www.zen-cart-pro.at/documentation.html" target="_blank">hier</a> und auch im Ordner ANLEITUNG in der zip Datei des Zen Cart Downloads.
           </li>
         <?php } ?>
         <?php if ($instPath) { ?>

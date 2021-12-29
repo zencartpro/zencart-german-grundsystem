@@ -10,11 +10,12 @@
  * <br />
  * $flag_disable_header = true;<br />
  *
- * @package templateSystem
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_header.php 734 2020-03-01 09:49:16Z webchills $
+ * @version $Id: tpl_header.php 2021-12-28 11:49:16Z webchills $
  */
 ?>
 
@@ -102,7 +103,7 @@ if (!isset($flag_disable_header) || !$flag_disable_header) {
 <!--eof-optional categories tabs navigation display-->
 
 <!--bof-header ezpage links-->
-<?php if (EZPAGES_STATUS_HEADER == '1' or (EZPAGES_STATUS_HEADER == '2' and (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])))) { ?>
+<?php if (EZPAGES_STATUS_HEADER == '1' or (EZPAGES_STATUS_HEADER == '2' && zen_is_whitelisted_admin_ip())) { ?>
 <?php require($template->get_template_dir('tpl_ezpages_bar_header.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_ezpages_bar_header.php'); ?>
 <?php } ?>
 <!--eof-header ezpage links-->

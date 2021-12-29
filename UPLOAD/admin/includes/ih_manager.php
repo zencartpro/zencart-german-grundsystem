@@ -1,15 +1,16 @@
 <?php
 /**
- * @package Image Handler
+ * @package Image Handler 5.2.0
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
- * @copyright Copyright 2018-2019 lat 9 - Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2018-2022 lat 9 - Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ih_manager.php 2019-07-13 14:13:51Z webchills $
+ * @version $Id: ih_manager.php 2021-11-28 17:13:51Z webchills $
  */
 
-if ($action == 'new_cat') {
+if ($action === 'new_cat') {
     $current_category_id = (isset($_GET['current_category_id']) ? $_GET['current_category_id'] : $current_category_id);
     $new_product_query = $db->Execute(
         "SELECT ptc.* FROM " . TABLE_PRODUCTS_TO_CATEGORIES . " ptc
@@ -24,7 +25,7 @@ if ($action == 'new_cat') {
 }
 
 // set categories and products if not set
-if ($products_filter == '' && $current_category_id != '') {
+if ($products_filter == '' && $current_category_id > 0) {
     $new_product_query = $db->Execute(
         "SELECT ptc.* FROM " . TABLE_PRODUCTS_TO_CATEGORIES . " ptc
             LEFT JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd 
@@ -94,7 +95,7 @@ $images_directory = $ihConf['dir']['docroot'] . $ihConf['dir']['images'];
 //    configuration settings.  Those values are one of 'png', 'jpg', 'gif', or 'no_change'.  If the value is
 //    set to 'no_change', the medium/large image is the same file-extension as the main-product image.
 //
-if ($action == 'save') {
+if ($action === 'save') {
     // -----
     // Log the input values on entry, if debug is enabled.
     //
@@ -185,7 +186,7 @@ if ($action == 'save') {
                 $data['imgBaseDir'] = $products_image_directory;
                 $is_main = ($_POST['imgSuffix'] == '');
                 
-                $keep_name = (isset($_POST['imgNaming']) && $_POST['imgNaming'] == 'keep_name');
+                $keep_name = (isset($_POST['imgNaming']) && $_POST['imgNaming'] === 'keep_name');
                 if ($is_main && !$keep_name) {
                     if (empty($_FILES['default_image']['name'])) {
                         $messageStack->add(TEXT_MSG_NO_DEFAULT_ON_NAME_CHANGE, 'error');
@@ -434,7 +435,7 @@ if ($action == 'save') {
 // A 'quick_delete' action enables the removal of a medium/large image file that is different from
 // the product's base image.
 //
-if ($action == 'quick_delete') {
+if ($action === 'quick_delete') {
     if (!empty($_POST['qdFile'])) {
         $img_name = DIR_FS_CATALOG . $_POST['qdFile'];
         if (is_file($img_name)) {
@@ -456,7 +457,7 @@ if ($action == 'quick_delete') {
 // -----
 // Delete a specified product image.
 //
-if ($action == 'delete') {
+if ($action === 'delete') {
     if (!empty($_POST['imgSuffix']) || empty($_POST['delete_from_db_only'])) {
         $base_name = $products_image_directory . $_POST['imgName'];
         $image_ext = $_POST['imgExtension'];
@@ -475,7 +476,7 @@ if ($action == 'delete') {
             if (unlink($medium_file)) {
                 $messageStack->add_session(sprintf(TEXT_MSG_MEDIUM_DELETED, $medium_file), 'success');
             } else {
-                $messageStack->add_session(sprintf(TEXT_MSG_NO_DELETE_MEDIUM, $medium), 'error');
+                $messageStack->add_session(sprintf(TEXT_MSG_NO_DELETE_MEDIUM, $medium_file), 'error');
             }
         }
         

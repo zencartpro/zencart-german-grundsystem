@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * Zen Cart German Specific
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: developers_tool_kit.php 731 2016-03-05 09:26:16Z webchills $
+ * @version $Id: developers_tool_kit.php 2021-12-25 08:26:16Z webchills $
  */
   define('HEADING_TITLE', 'Developers Tool Kit');
   define('TABLE_CONFIGURATION_TABLE', 'Lookup CONSTANT Definitions');
@@ -63,7 +64,7 @@
   define('TEXT_ALL_FILES_LOOKUPS', 'All Files Look-ups:');
   define('TEXT_ALL_FILES_LOOKUP_CURRENT', 'All Files - Catalog/Admin');
   define('TEXT_ALL_FILES_LOOKUP_CURRENT_CATALOG', 'All Files - Catalog');
-  define('TEXT_ALL_FILES_LOOKUP_CURRENT_ADMIN', 'All Files - Admin');
+  define('TEXT_ALL_FILES_LOOKUP_CURRENT_ADMIN', 'All Files - Admin');  
 
   define('TEXT_INFO_NO_EDIT_AVAILABLE','No edit available');
   define('TEXT_INFO_CONFIGURATION_HIDDEN', ' or, HIDDEN');

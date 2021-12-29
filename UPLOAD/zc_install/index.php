@@ -1,11 +1,13 @@
 <?php
 /**
  * index.php -- This is the main controller file for the Zen Cart installer
- * @package Installer
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: index.php 737 2019-04-12 13:58:41Z webchills $
+ * @version $Id: index.php 738 2021-11-28 17:58:41Z webchills $
  */
+  // Actual version check is more strict; this is just to start the program
+  // For true minimum, see includes/systemChecks.yml under checkPhpVersionMin
   if (PHP_VERSION_ID < 50500) {
     die('Sorry, Mindestvoraussetzung ist PHP 5.5');
   }

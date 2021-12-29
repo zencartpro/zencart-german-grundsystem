@@ -1,10 +1,10 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: gv_sent.php 732 2020-01-18 08:49:16Z webchills $
+ * @version $Id: gv_sent.php 2021-10-24 17:49:16Z webchills $
  */
 
 
@@ -74,10 +74,10 @@
   $gv_split = new splitPageResults($_GET['page'], MAX_DISPLAY_SEARCH_RESULTS, $gv_query_raw, $gv_query_numrows);
   $gv_list = $db->Execute($gv_query_raw);
   while (!$gv_list->EOF) {
-    if (((!$_GET['gid']) || (@$_GET['gid'] == $gv_list->fields['coupon_id'])) && (!$gInfo)) {
-    $gInfo = new objectInfo($gv_list->fields);
+    if ((empty($_GET['gid']) || (@$_GET['gid'] == $gv_list->fields['coupon_id'])) && !isset($gInfo)) {
+        $gInfo = new objectInfo($gv_list->fields);
     }
-    if ( (is_object($gInfo)) && ($gv_list->fields['coupon_id'] == $gInfo->coupon_id) ) {
+    if (is_object($gInfo) && $gv_list->fields['coupon_id'] == $gInfo->coupon_id) {
       echo '              <tr class="dataTableRowSelected" onmouseover="this.style.cursor=\'hand\'" onclick="document.location.href=\'' . zen_href_link('gv_sent.php', zen_get_all_get_params(array('gid', 'action')) . 'gid=' . $gInfo->coupon_id . '&action=edit') . '\'">' . "\n";
     } else {
       echo '              <tr class="dataTableRow" onmouseover="this.className=\'dataTableRowOver\';this.style.cursor=\'hand\'" onmouseout="this.className=\'dataTableRow\'" onclick="document.location.href=\'' . zen_href_link('gv_sent.php', zen_get_all_get_params(array('gid', 'action')) . 'gid=' . $gv_list->fields['coupon_id']) . '\'">' . "\n";
@@ -89,7 +89,7 @@
                 <td class="dataTableContent" align="right"><?php echo zen_date_short($gv_list->fields['date_sent']); ?></td>
                 <td class="dataTableContent" align="right"><?php echo (empty($gv_list->fields['redeem_date']) ? TEXT_INFO_NOT_REDEEMED : zen_date_short($gv_list->fields['redeem_date'])); ?></td>
                 <td class="dataTableContent" align="right"><?php if ( (is_object($gInfo)) && ($gv_list->fields['coupon_id'] == $gInfo->coupon_id) ) { echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif'); } else { echo '<a href="' . zen_href_link(FILENAME_GV_SENT, 'page=' . $_GET['page'] . '&gid=' . $gv_list->fields['coupon_id']) . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>'; } ?>&nbsp;</td>
-              </tr>
+              <?php echo '</tr>'; ?>
 <?php
     $gv_list->MoveNext();
   }

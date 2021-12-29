@@ -3,11 +3,12 @@
  * Zen Cart German Specific
  * Checkout Shipping Page
  *
- * @package page
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 737 2020-01-17 10:49:16Z webchills $
+ * @version $Id: header_php.php 738 2021-11-28 21:49:16Z webchills $
  */
 // This should be first line of the script:
   $zco_notifier->notify('NOTIFY_HEADER_START_CHECKOUT_SHIPPING');
@@ -155,8 +156,8 @@ if (isset($_SESSION['cart']->cartID)) {
 
 // process the selected shipping method
   if ( isset($_POST['action']) && ($_POST['action'] == 'process') ) {
-    if (zen_not_null($_POST['comments'])) {
-      $_SESSION['comments'] = zen_output_string_protected($_POST['comments']);
+    if (isset($_POST['comments'])) {
+      $_SESSION['comments'] = $_POST['comments'];
     }
     $comments = isset($_SESSION['comments']) ? $_SESSION['comments'] : '';
     $quote = array();
@@ -207,7 +208,7 @@ if (isset($_SESSION['cart']->cartID)) {
   if (isset($_SESSION['shipping']['id'])) {
     $checklist = array();
     foreach ($quotes as $key=>$val) {
-      if ($val['methods'] != '') {
+      if (!empty($val['methods'])) {
         foreach($val['methods'] as $key2=>$method) {
           $checklist[] = $val['id'] . '_' . $method['id'];
         }

@@ -5,11 +5,12 @@
  * Loaded automatically by index.php?main_page=checkout_payment.<br />
  * Displays the allowed payment modules, for selection by customer.
  *
- * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_checkout_payment_default.php 766 2019-10-29 07:23:42Z webchills $
+ * @version $Id: tpl_checkout_payment_default.php 2021-12-28 13:23:42Z webchills $
  */
 ?>
 <?php echo $payment_modules->javascript_validation(); ?>
@@ -22,7 +23,6 @@
 <?php if ($messageStack->size('redemptions') > 0) echo $messageStack->output('redemptions'); ?>
 <?php if ($messageStack->size('checkout') > 0) echo $messageStack->output('checkout'); ?>
 <?php if ($messageStack->size('checkout_payment') > 0) echo $messageStack->output('checkout_payment'); ?>
-
 
 <?php // ** BEGIN PAYPAL EXPRESS CHECKOUT **
       if (!$payment_modules->in_special_checkout()) {
@@ -37,12 +37,12 @@
 </div>
 
 <div class="floatingBox important forward"><?php echo TEXT_SELECTED_BILLING_DESTINATION; ?></div>
-<br class="clearBoth" />
-<br />
+<br class="clearBoth">
+<br>
 <?php // ** BEGIN PAYPAL EXPRESS CHECKOUT **
       }
       // ** END PAYPAL EXPRESS CHECKOUT ** ?>
-      
+
 <fieldset id="checkoutOrderTotals">
 <legend id="checkoutPaymentHeadingTotal"><?php echo TEXT_YOUR_TOTAL; ?></legend>
 <?php
@@ -127,7 +127,7 @@
     if (sizeof($selection) > 1) {
         if (empty($selection[$i]['noradio'])) {
  ?>
-<?php echo zen_draw_radio_field('payment', $selection[$i]['id'], ($selection[$i]['id'] == $_SESSION['payment'] ? true : false), 'id="pmt-'.$selection[$i]['id'].'"'); ?>
+<?php echo zen_draw_radio_field('payment', $selection[$i]['id'], ($selection[$i]['id'] == (isset($_SESSION['payment']) ? $_SESSION['payment'] : '')), 'id="pmt-'.$selection[$i]['id'].'"'); ?>
 <?php   } ?>
 <?php
     } else {
@@ -165,7 +165,7 @@
 <?php
       for ($j=0, $n2=sizeof($selection[$i]['fields']); $j<$n2; $j++) {
 ?>
-<label <?php echo (isset($selection[$i]['fields'][$j]['tag']) ? 'for="'.$selection[$i]['fields'][$j]['tag'] . '" ' : ''); ?>class="inputLabelPayment"><?php echo $selection[$i]['fields'][$j]['title']; ?></label><?php echo $selection[$i]['fields'][$j]['field']; ?>
+<label <?php echo (isset($selection[$i]['fields'][$j]['tag']) ? 'for="'.$selection[$i]['fields'][$j]['tag'] . '" ' : ''); ?>class="inputLabelPayment"><?php echo isset($selection[$i]['fields'][$j]['title']) ? $selection[$i]['fields'][$j]['title'] : ''; ?></label><?php echo $selection[$i]['fields'][$j]['field']; ?>
 <br class="clearBoth" />
 <?php
       }
@@ -189,7 +189,7 @@
       // ** END PAYPAL EXPRESS CHECKOUT ** ?>
 <fieldset>
 <legend><?php echo TABLE_HEADING_COMMENTS; ?></legend>
-<?php echo zen_draw_textarea_field('comments', '45', '3'); ?>
+<?php echo zen_draw_textarea_field('comments', '45', '3', (isset($comments) ? $comments : ''), 'aria-label="' . TABLE_HEADING_COMMENTS . '"'); ?>
 </fieldset>
 
 <?php
@@ -204,7 +204,9 @@
 <?php
   }
 ?>
+
 <div class="buttonRow forward" id="paymentSubmit"><?php echo zen_image_submit(BUTTON_IMAGE_CONTINUE_CHECKOUT, BUTTON_CONTINUE_ALT, 'onclick="submitFunction('.zen_user_has_gv_account($_SESSION['customer_id']).','.$order->info['total'].')"'); ?></div>
+
 <div class="buttonRow back"><?php echo TITLE_CONTINUE_CHECKOUT_PROCEDURE . '<br />' . TEXT_CONTINUE_CHECKOUT_PROCEDURE; ?></div>
 
 </form>

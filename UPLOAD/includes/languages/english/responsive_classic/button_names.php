@@ -1,10 +1,11 @@
 <?php
 /**
- * @package languageDefines
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * Zen Cart German Specific
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: button_names.php 3 2019-06-15 14:49:16Z webchills $
+ * @version $Id: button_names.php 2021-12-27 21:10:24Z webchills $
  */
 
 
@@ -12,7 +13,7 @@
  * define the button images used in the project
  */
 
-define('BUTTON_IMAGE_ADD_TO_CART', 'button_add_to_cart.gif');
+
 define('BUTTON_IMAGE_ADD_ADDRESS', 'button_add_address.gif');
 define('BUTTON_IMAGE_ADD_PRODUCTS_TO_CART','button_add_selected.gif');
 define('BUTTON_IMAGE_BACK', 'button_back.gif');
@@ -31,7 +32,7 @@ define('BUTTON_IMAGE_DOWNLOAD', 'button_download.gif');
 define('BUTTON_IMAGE_EDIT_SMALL', 'small_edit.gif');
 define('BUTTON_IMAGE_IN_CART', 'button_in_cart.gif');
 define('BUTTON_IMAGE_LOGIN', 'button_login.gif');
-define('BUTTON_IMAGE_MY_ACCOUNT', 'button_my_account.gif');
+
 define('BUTTON_IMAGE_MY_ORDERS', 'button_my_orders.gif');
 define('BUTTON_IMAGE_NEXT', 'button_next.gif');
 define('BUTTON_IMAGE_PREVIOUS', 'button_prev.gif');
@@ -54,15 +55,15 @@ define('BUTTON_IMAGE_READ_REVIEWS', 'button_read_reviews.gif');
 define('BUTTON_IMAGE_GOTO_PROD_DETAILS', 'button_goto_prod_details.gif');
 define('BUTTON_IMAGE_MORE_REVIEWS', 'button_more_reviews.gif');
 define('BUTTON_IMAGE_CONTINUE_CHECKOUT', 'button_continue_checkout.gif');
+define('BUTTON_IMAGE_ASK_A_QUESTION', 'button_ask_a_question.gif');
 define('BUTTON_IMAGE_CREATE_ACCOUNT', 'button_create_account.gif');
 define('BUTTON_IMAGE_LOG_OFF', 'button_logoff.gif');
 /*
- * ALT text is used as Button Text, or for the ALT tag on image-buttons
+ * ALT tags used for buttons (text used for CSS buttons)
  */
 
 define('BUTTON_CREATE_ACCOUNT_ALT', 'Sign Up');
 define('BUTTON_LOG_OFF_ALT', 'Log Off');
-define('BUTTON_ADD_TO_CART_ALT', 'Add This to My Cart');
 define('BUTTON_ADD_ADDRESS_ALT', 'Add Address');
 define('BUTTON_ADD_PRODUCTS_TO_CART_ALT','Add Selected to Cart');
 define('BUTTON_BACK_ALT', 'Back');
@@ -71,7 +72,7 @@ define('BUTTON_CANCEL_ALT', 'Cancel');
 define('BUTTON_CHANGE_ADDRESS_ALT', 'Change Address');
 define('BUTTON_CHECKOUT_ALT', 'Checkout');
 define('BUTTON_CONFIRM_SEND_ALT', 'Send Gift Certificate');
-define('BUTTON_CONFIRM_ORDER_ALT', 'Confirm Order');
+define('BUTTON_CONFIRM_ORDER_ALT', 'Confirm Purchase');
 define('BUTTON_CONTACT_US_TEXT', 'Contact Us');
 define('BUTTON_CONTINUE_ALT', 'Continue');
 define('BUTTON_CONTINUE_SHOPPING_ALT', 'Continue Shopping');
@@ -82,7 +83,6 @@ define('BUTTON_EDIT_SMALL_ALT', 'Edit');
 define('BUTTON_IN_CART_ALT', 'Add to Cart');
 define('BUTTON_LOGIN_ALT', 'Sign In');
 define('BUTTON_LOOKUP_ALT', 'Lookup');
-define('BUTTON_MY_ACCOUNT_TEXT', 'My Account');
 define('BUTTON_MY_ORDERS_TEXT', 'My Orders');
 define('BUTTON_NEXT_ALT', 'Next');
 define('BUTTON_PREVIOUS_ALT', 'Previous');
@@ -105,3 +105,4 @@ define('BUTTON_READ_REVIEWS_ALT', 'Read the Review');
 define('BUTTON_GOTO_PROD_DETAILS_ALT', 'Details');
 define('BUTTON_MORE_REVIEWS_ALT', 'Read More Reviews');
 define('BUTTON_VIEW_ALL_ALT', 'View All');
+define('BUTTON_ASK_A_QUESTION_ALT', 'Ask a Question');

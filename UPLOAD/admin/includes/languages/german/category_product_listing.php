@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: category_product_listing.php 4 2020-02-11 20:29:16Z webchills $
+ * @version $Id: category_product_listing.php 2021-12-01 09:29:16Z webchills $
  */
 define('HEADING_TITLE', 'Kategorien / Artikel');
 define('HEADING_TITLE_GOTO', 'Gehe zu:');
@@ -33,7 +34,7 @@ define('TEXT_INFO_HEADING_MOVE_PRODUCT', 'Artikel verschieben');
 define('TEXT_MOVE_PRODUCTS_INTRO', 'Verschieben Sie diesen Artikel aus dieser Kategorie in die gewählte Kategorie.<br />Falls diese aktuelle Kategorie auch die Master Kategorie des Artikels ist, wird das auch in der gewählten Kategorie entsprechend aktualisiert.<br />');
 define('TEXT_INFO_CURRENT_CATEGORIES', 'Derzeitige Kategorien: ');
 define('TEXT_INFO_HEADING_COPY_TO', 'Kopieren nach');
-define('TEXT_INFO_COPY_TO_INTRO', 'Bitte Kategorie auswählen, in die Sie den Artikel kopieren wollen');
+
 define('TEXT_INFO_CURRENT_PRODUCT', 'Derzeitiger Artikel: ');
 define('TEXT_HOW_TO_COPY', 'Kopiermethode:');
 define('TEXT_COPY_AS_LINK','Verlinken Sie diesen Artikel in eine andere Kategorie so wie oben ausgewählt');
@@ -41,11 +42,12 @@ define('TEXT_COPY_AS_DUPLICATE','Erzeugen Sie ein Duplikat des Artikels in der o
 define('TEXT_COPY_METATAGS','Metatags zum Duplikat kopieren?');
 define('TEXT_COPY_LINKED_CATEGORIES','Verlinkte Kategorien zum Duplikat kopieren?');
 define('TEXT_COPY_EDIT_DUPLICATE', 'Öffne duplizierten Artikel zum weiteren Bearbeiten');
-//these four constants used in copy_product_confirm
+//used in copy_product_confirm
 define('TEXT_COPY_AS_DUPLICATE_ATTRIBUTES', 'Attribute kopiert von Artikel ID#%u zur duplizierten Artikel ID#%u');
 define('TEXT_COPY_AS_DUPLICATE_METATAGS', 'Metatags für Sprach ID#%u erfolgreich kopiert von Artikel ID#%u zur duplizierten Artikel ID#%u');
 define('TEXT_COPY_AS_DUPLICATE_CATEGORIES', 'Verlinkte Kategorie ID#%u erfolgreich kopiert von Artikel ID#%u zur duplizierten Artikel ID#%u');
 define('TEXT_COPY_AS_DUPLICATE_DISCOUNTS', 'Rabatte erfolgreich kopiert von Artikel ID#%u zur duplizierten Artikel ID#%u');
+define('TEXT_DUPLICATE_IDENTIFIER', '[DUPLIKAT]');
 define('TEXT_INFO_HEADING_ATTRIBUTE_FEATURES', 'Attributänderungen für Artikel ID# ');
 define('TEXT_PRODUCTS_ATTRIBUTES_INFO', 'Attributmerkmale For:');
 define('TEXT_PRODUCT_ATTRIBUTES_DOWNLOADS', 'Downloads: ');
@@ -54,21 +56,20 @@ define('TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO_PRODUCT', 'Kopiere Attribute zu ei
 define('TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO_CATEGORY', 'Kopiere Attribute zu einer anderen <strong>Kategorie</strong> von:<br />');
 define('TEXT_COPY_ATTRIBUTES_CONDITIONS', '<strong>Wie sollen bestehende Artikelattribute behandelt werden?</strong>');
 define('TEXT_COPY_ATTRIBUTES_DELETE', '<strong>Löschen</strong> - Bestehende Attribute werden gelöscht, dann die neuen Attribute kopiert.');
-define('TEXT_COPY_ATTRIBUTES_IGNORE', '<strong>Ignorieren</strong> Bestehende Attribute werden beibehalten und nur die neuen Attribute hinzufügen');
-define('TEXT_ATTRIBUTE_COPY_INSERTING', '<strong>Einfügen neuer Attribute von </strong>');
-define('ICON_ATTRIBUTES', 'Attributmerkmale');
+define('TEXT_COPY_ATTRIBUTES_UPDATE', '<strong>Aktualisieren</strong> mit neuen Einstellungen/Preisen, dann neue hinzufügen');
+define('TEXT_COPY_ATTRIBUTES_IGNORE', '<strong>Ignorieren</strong> Bestehende Attribute werden beibehalten und nur die neuen Attribute hinzugefügt');
+
+
 
 // Products and Attribute Copy Options
-define('TEXT_COPY_ATTRIBUTES_ONLY', 'wird nur für duplizierte Artikel verwendet ...');
+
 define('TEXT_COPY_ATTRIBUTES', 'Artikelattribute zum Duplikat kopieren?');
-define('TEXT_COPY_ATTRIBUTES_YES', 'Ja');
-define('TEXT_COPY_ATTRIBUTES_NO', 'Nein');
+
 
 // Products and Discount Copy Options
 define('TEXT_COPY_DISCOUNTS_ONLY', 'wird nur verwendet für duplizierte Artikel mit Mengenrabatten ...');
 define('TEXT_COPY_DISCOUNTS', 'Mengenrabatte des Artikels zum Duplikat kopieren?');
-define('TEXT_COPY_DISCOUNTS_YES', 'Ja');
-define('TEXT_COPY_DISCOUNTS_NO', 'Nein');
+
 
 // From categories.php in 1.5.5
 // categories status
@@ -88,3 +89,4 @@ define('TEXT_SUBCATEGORIES_STATUS_NOCHANGE', 'Unverändert');
 
 define('WARNING_PRODUCTS_IN_TOP_INFO', 'WARNUNG: Sie haben Produkte in der Hauptkategorie. Dadurch werden die Preise im Shop nicht richtig zugeordnet. Folgende Produkte wurden gefunden: ');
 define('TEXT_COPY_MEDIA_MANAGER', 'Medien kopieren?');
+define('SUCCESS_ATTRIBUTES_DELETED','Attribute erfolgreich gelöscht');

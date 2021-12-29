@@ -4,11 +4,12 @@
  * This file contains all the logic to prepare $vars for use in the product-type-specific template (in this case product_music)
  * It pulls data from all the related tables which collectively store the info related only to this product type.
  *
- * @package productTypes
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main_template_vars_product_type.php 730 2014-07-05 10:49:16Z webchills $
+ * @version $Id: main_template_vars_product_type.php 2021-11-29 15:49:16Z webchills $
  */
 /*
  * This file contains all the logic to prepare $vars for use in the product-type-specific template (in this case product_music)
@@ -60,13 +61,13 @@
 /*
  * extract info from queries for use as template-variables:
  */
-  $products_artist_name = $artist->fields['artists_name'];
-  $products_artist_url = $artist_info->fields['artists_url'];
-  $products_record_company_name = $record_company->fields['record_company_name'];
-  $products_record_company_url = $record_company_info->fields['record_company_url'];
-  $products_music_genre_name = $music_genre->fields['music_genre_name'];
-  if (!empty($products_artist_url)) $products_artist_name = '<a href="' . zen_href_link(FILENAME_REDIRECT, 'action=music_arist&artists_id=' . zen_output_string_protected($music_extras->fields['artists_id']), 'NONSSL', true, false) . '" target="_BLANK">'.$products_artist_name.'</a>';
-  if (!empty($products_record_company_url)) $products_record_company_name = '<a href="' . zen_href_link(FILENAME_REDIRECT, 'action=music_record_company&record_company_id=' . zen_output_string_protected($music_extras->fields['record_company_id']), 'NONSSL', true, false) . '" target="_BLANK">'.$products_record_company_name.'</a>';
+  $products_artist_name = !empty($artist->fields['artists_name']) ? $artist->fields['artists_name'] : '';
+  $products_artist_url = !empty($artist_info->fields['artists_url']) ? $artist_info->fields['artists_url'] : '';
+  $products_record_company_name = !empty($record_company->fields['record_company_name']) ? $record_company->fields['record_company_name'] : '';
+  $products_record_company_url = !empty($record_company_info->fields['record_company_url']) ? $record_company_info->fields['record_company_url'] : '';
+  $products_music_genre_name = !empty($music_genre->fields['music_genre_name']) ? $music_genre->fields['music_genre_name'] : '';
+  if (!empty($products_artist_url)) $products_artist_name = '<a href="' . zen_href_link(FILENAME_REDIRECT, 'action=music_arist&artists_id=' . zen_output_string_protected($music_extras->fields['artists_id']), 'NONSSL', true, false) . '" rel="noopener noreferrer" target="_blank">'.$products_artist_name.'</a>';
+  if (!empty($products_record_company_url)) $products_record_company_name = '<a href="' . zen_href_link(FILENAME_REDIRECT, 'action=music_record_company&record_company_id=' . zen_output_string_protected($music_extras->fields['record_company_id']), 'NONSSL', true, false) . '" rel="noopener noreferrer" target="_blank">'.$products_record_company_name.'</a>';
 
   // This should be last line of the script:
   $zco_notifier->notify('NOTIFY_PRODUCT_TYPE_VARS_END_PRODUCT_MUSIC_INFO');

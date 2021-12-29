@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: store_manager.php 727 2011-07-28 10:36:31Z webchills $
+ * @version $Id: store_manager.php 2021-12-03 15:36:31Z webchills $
  */
 define('HEADING_TITLE', 'Shopmanager');
 define('TABLE_CONFIGURATION_TABLE', 'Suche KONSTANTE Definitionen');
@@ -36,9 +37,7 @@ define('TEXT_CONFIGURATION_KEY', 'Schlüssel oder Name:');
 define('TEXT_INFO_CONFIGURATION_UPDATE', '<strong>HINWEIS:</strong> KONSTANTEN sind immer in Großbuchstaben geschrieben.<br />Die Suche in Sprachdateien kann eine Alternative sein, wenn in den Datenbanktabellen nichts gefunden wurde.');
 
 
-define('TEXT_CONFIGURATION_CONSTANT_FILES', '<strong>Suche in Sprachdateidefinitionen</strong>');
-define('TEXT_CONFIGURATION_KEY_FILES', 'Suche Text:');
-define('TEXT_INFO_CONFIGURATION_UPDATE_FILES', '<strong>HINWEIS:</strong> Die Suche in Sprachdateien kann in Groß- oder Kleinschreibung erfolgen');
+
 
 define('TABLE_TITLE_KEY', '<strong>Schlüssel:</strong>');
 define('TABLE_TITLE_TITLE', '<strong>Titel:</strong>');
@@ -47,7 +46,7 @@ define('TABLE_TITLE_GROUP', '<strong>Gruppe:</strong>');
 define('TABLE_TITLE_VALUE', '<strong>Wert:</strong>');
 
 define('TEXT_LANGUAGE_LOOKUPS', 'Sprachdateisuche:');
-define('TEXT_LANGUAGE_LOOKUP_NONE', 'Kein');
+
 define('TEXT_LANGUAGE_LOOKUP_CURRENT_LANGUAGE', 'Alle Sprachdateien für ' . strtoupper($_SESSION['language']) . ' - Webshop/Admin');
 define('TEXT_LANGUAGE_LOOKUP_CURRENT_CATALOG', 'Alle Hauptsprachdateien - Webshop (' . DIR_WS_CATALOG . DIR_WS_LANGUAGES . 'english.php /german.php etc.)');
 define('TEXT_LANGUAGE_LOOKUP_CURRENT_CATALOG_TEMPLATE', 'Alle derzeit ausgewählten Sprachdateien - Webshop' . DIR_WS_CATALOG . DIR_WS_LANGUAGES . $_SESSION['language'] . '/*.php');

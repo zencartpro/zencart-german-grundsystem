@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: record_company.php 682 2015-12-22 16:39:16Z webchills $
+ * @version $Id: record_company.php 2021-12-03 15:39:16Z webchills $
  */
  
 define('HEADING_TITLE', 'Plattenfirma');
@@ -24,7 +25,7 @@ define('TEXT_HEADING_EDIT_RECORD_COMPANY', 'Plattenfirma bearbeiten');
 define('TEXT_HEADING_DELETE_RECORD_COMPANY', 'Plattenfirma löschen');
 define('TEXT_DATE_ADDED', 'Erstellt am');
 define('TEXT_LAST_MODIFIED', 'Letzte Änderung');
-define('TEXT_IMAGE_NONEXISTENT', 'Das Bild existiert nicht');
+
 define('TEXT_PRODUCTS', 'Verlinkte Artikel');
 define('TEXT_DISPLAY_NUMBER_OF_RECORD_COMPANIES', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Plattenfirmen)');
 define('TEXT_DELETE_PRODUCTS', 'Diese Plattenfirma und alle verlinkte Artikel löschen?');

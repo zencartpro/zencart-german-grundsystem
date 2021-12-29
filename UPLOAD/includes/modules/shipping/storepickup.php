@@ -2,10 +2,11 @@
 /**
  * Zen Cart German Specific
  * @package shippingMethod
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: storepickup.php 737 2019-11-03 07:49:16Z webchills $
+ * @version $Id: storepickup.php 2021-12-28 16:57:16Z webchills $
  */
 /**
  * Store-Pickup / Will-Call shipping method
@@ -57,7 +58,7 @@ class storepickup extends base {
     $this->icon = ''; // add image filename here; must be uploaded to the /images/ subdirectory
     $this->tax_class = MODULE_SHIPPING_STOREPICKUP_TAX_CLASS;
     $this->tax_basis = MODULE_SHIPPING_STOREPICKUP_TAX_BASIS;
-    $this->enabled = ((MODULE_SHIPPING_STOREPICKUP_STATUS == 'True') ? true : false);
+    $this->enabled = (MODULE_SHIPPING_STOREPICKUP_STATUS == 'True');
     $this->update_status();
   }
   /**

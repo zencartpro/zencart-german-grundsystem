@@ -1,10 +1,11 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: stats_sales_report_graphs.php 2 2019-06-16 08:15:08Z webchills $
+ * @version $Id: stats_sales_report_graphs.php 2019-06-16 08:15:08Z webchills $
  */
 
 define('FILTER_STATUS', '<b>Filter by Order Status</b>');

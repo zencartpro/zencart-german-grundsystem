@@ -1,12 +1,13 @@
 <?php
 /**
- * @package Image Handler
+ * @package Image Handler 5.2.0
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
- * @copyright Copyright 2018 lat 9 - Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2018-2022 lat 9 - Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_bmz_io.php 2018-06-15 16:13:51Z webchills $
+ * @version $Id: functions_bmz_io.php 2021-11-28 17:13:51Z webchills $
  */
 
 /**
@@ -27,13 +28,13 @@ function io_lock($file)
     //if ($bmzConf['safemodehack']) return;
 
     $lockDir = $bmzConf['lockdir'] . '/' . md5($file);
-    @ignore_user_abort(1);
-    
+    ignore_user_abort(true);
+
     $timeStart = time();
     do {
         //waited longer than 3 seconds? -> stale lock
         if ((time() - $timeStart) > 3) break;
-        $locked = @mkdir($lockDir);
+        $locked = mkdir($lockDir);
     } while ($locked === false);
 }
 
@@ -51,8 +52,8 @@ function io_unlock($file)
     //if($bmzConf['safemodehack']) return;
 
     $lockDir = $bmzConf['lockdir'] . '/' . md5($file);
-    @rmdir($lockDir);
-    @ignore_user_abort(0);
+    rmdir($lockDir);
+    ignore_user_abort(false);
 }
 
 //-bof-IH5.0.1-lat9-getCacheName function moved to bmz_image_handler_class.php
@@ -89,11 +90,11 @@ function io_mkdir_p($target)
 {
     global $bmzConf;
 
-    if (is_dir($target) || empty($target)) return 1; // best case check first
-    if (@file_exists($target) && !is_dir($target)) return 0;
+    if (empty($target) || is_dir($target)) return 1; // best case check first
+    if (file_exists($target) && !is_dir($target)) return 0;
     //recursion
     if (io_mkdir_p(substr($target, 0, strrpos($target, '/')))) {
-        return @mkdir($target, 0755); // crawl back up & create dir tree
+        return mkdir($target, 0755); // crawl back up & create dir tree
     }
     return 0;
 }

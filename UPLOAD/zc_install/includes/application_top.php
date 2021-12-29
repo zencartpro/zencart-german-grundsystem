@@ -1,23 +1,25 @@
 <?php
 /**
  * Zen Cart German Specific
- * @package Installer
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: application_top.php 826 2019-04-12 17:59:53Z webchills $
+ * @version $Id: application_top.php 2021-12-28 19:43:53Z webchills $
  */
 
 @ini_set("arg_separator.output", "&");
 @set_time_limit(250);
 
+// define the project version
+require DIR_FS_INSTALL . 'includes/version.php';
 if (file_exists(DIR_FS_INSTALL . 'includes/localConfig.php')) {
   require DIR_FS_INSTALL . 'includes/localConfig.php';
 }
 
 $val = getenv('HABITAT');
 $habitat = ($val == 'zencart' || (isset($_SERVER['USER']) && $_SERVER['USER'] == 'vagrant'));
-if ($habitat) {
+if ($habitat && !defined('DEVELOPER_MODE')) {
   define('DEVELOPER_MODE', true);
 }
 
@@ -88,24 +90,20 @@ $debug_logfile_path = DEBUG_LOG_FOLDER . '/zcInstallDEBUG-' . time() . '-' . mt_
 @ini_set('log_errors', 1);
 @ini_set('log_errors_max_len', 0);
 @ini_set('error_log', $debug_logfile_path);
-if (defined('STRICT_ERROR_REPORTING') && STRICT_ERROR_REPORTING == true)
-{
-  @ini_set('display_errors', 1);  // to screen
-} else
-{
-  @ini_set('display_errors', 0);
+if (defined('STRICT_ERROR_REPORTING') && STRICT_ERROR_REPORTING == true) {
+    @ini_set('display_errors', 1);  // to screen
+} else {
+    @ini_set('display_errors', 0);
 }
 /**
  * Timezone problem detection
  */
-if (ini_get('date.timezone') == '' && @date_default_timezone_get() == '')
-{
-  include DIR_FS_ROOT . '/includes/extra_configures/set_time_zone.php';
+if (ini_get('date.timezone') == '' && @date_default_timezone_get() == '') {
+    include DIR_FS_ROOT . '/includes/extra_configures/set_time_zone.php';
 }
 // re-test
-if (ini_get('date.timezone') == '' && @date_default_timezone_get() == '')
-{
-  die('ERROR: date.timezone is not set in php.ini. You have two options: 1-Edit /includes/extra_configures/set_time_zone.php to set the $TZ variable manually, or 2-Contact your hosting company to set the timezone correctly in the server PHP configuration before continuing.');
+if (ini_get('date.timezone') == '' && @date_default_timezone_get() == '') {
+    die('ERROR: date.timezone is not set in php.ini. You have two options: 1-Edit /includes/extra_configures/set_time_zone.php to set the $TZ variable manually, or 2-Contact your hosting company to set the timezone correctly in the server PHP configuration before continuing.');
 }
 @date_default_timezone_set(date_default_timezone_get());
 
@@ -125,8 +123,6 @@ if (!isset($_GET['cacheignore'])) {
   }
 }
 
-// define the project version
-require (DIR_FS_INSTALL . 'includes/version.php');
 /**
  * include the list of extra configure files
  */
@@ -136,17 +132,19 @@ if ($za_dir = @dir(DIR_FS_INSTALL . 'includes/extra_configures')) {
       /**
        * load any user/contribution specific configuration files.
        */
-      include(DIR_FS_INSTALL . 'includes/extra_configures/' . $zv_file);
+            include DIR_FS_INSTALL . 'includes/extra_configures/' . $zv_file;
+        }
     }
-  }
-  $za_dir->close();
+    $za_dir->close();
 }
-// set php_self in the local scope
-require (DIR_FS_ROOT . 'includes/classes/class.base.php');
-require (DIR_FS_ROOT . 'includes/classes/class.notifier.php');
-require (DIR_FS_INSTALL . 'includes/functions/general.php');
-require (DIR_FS_INSTALL . 'includes/functions/password_funcs.php');
-require(DIR_FS_INSTALL . 'includes/languages/languages.php');
+
+require DIR_FS_ROOT . 'includes/classes/class.base.php';
+require DIR_FS_ROOT . 'includes/classes/class.notifier.php';
+require DIR_FS_INSTALL . 'includes/functions/general.php';
+require DIR_FS_INSTALL . 'includes/functions/password_funcs.php';
+
+require DIR_FS_INSTALL . 'includes/classes/LanguageManager.php';
+$languageManager = new LanguageManager();
 zen_sanitize_request();
 /**
  * set the type of request (secure or not)
@@ -172,41 +170,20 @@ define('ZC_UPG_DEBUG3', !(empty($_GET['debug3']) && empty($_POST['debug3'])));
  * template determination
  */
 define('DIR_WS_INSTALL_TEMPLATE', 'includes/template/');
-require (DIR_FS_INSTALL . 'includes/classes/class.systemChecker.php');
-require (DIR_FS_INSTALL . 'includes/vendors/yaml/lib/class.sfYaml.php');
-require (DIR_FS_INSTALL . 'includes/classes/class.zcRegistry.php');
-require (DIR_FS_INSTALL . 'includes/vendors/yaml/lib/class.sfYamlParser.php');
-require (DIR_FS_INSTALL . 'includes/vendors/yaml/lib/class.sfYamlInline.php');
+require DIR_FS_INSTALL . 'includes/classes/class.systemChecker.php';
+require DIR_FS_INSTALL . 'includes/vendors/yaml/lib/class.sfYaml.php';
+require DIR_FS_INSTALL . 'includes/classes/class.zcRegistry.php';
+require DIR_FS_INSTALL . 'includes/vendors/yaml/lib/class.sfYamlParser.php';
+require DIR_FS_INSTALL . 'includes/vendors/yaml/lib/class.sfYamlInline.php';
 if (!isset($_GET['main_page'])) $_GET['main_page'] = 'index';
 $current_page = preg_replace('/[^a-z0-9_]/', '', $_GET['main_page']);
 if ($current_page == '' || !file_exists('includes/modules/pages/' . $current_page)) $_GET['main_page'] = $current_page = 'index';
 $page_directory = 'includes/modules/pages/' . $current_page;
-/*
- * language determination
- */
-$language = null;
-if (isset($_POST['lng']))
-{
-  $lng = preg_replace('/[^a-zA-Z_]/', '', $_POST['lng']);
-  if ($lng == '')
-  {
-    $lng = 'de_de';
-  }
-  if (!file_exists(DIR_FS_INSTALL . 'includes/languages/' . $languagesInstalled[$lng]['fileName'] . '.php'))
-  {
-    $lng = 'de_de';
-  }
-} else
-{
-  $lng = (isset($_GET['lng']) && $_GET['lng'] != '') ? preg_replace('/[^a-zA-Z_]/', '', $_GET['lng']) : 'de_de';
-  if ($lng == '')
-  {
-    $lng = 'de_de';
-  }
-  if (!file_exists(DIR_FS_INSTALL . 'includes/languages/' . $languagesInstalled[$lng]['fileName'] . '.php'))
-  {
-    $lng = 'de_de';
-  }
-}
-$lng_short = substr($lng, 0, strpos($lng, '_'));
-require(DIR_FS_INSTALL . 'includes/languages/' . $languagesInstalled[$lng]['fileName'] . '.php');
+
+$languagesInstalled = $languageManager->getLanguagesInstalled();
+$installer_lng = 'de_de';
+if (isset($_POST['lng'])) $installer_lng = $_POST['lng'];
+if (isset($_GET['lng'])) $installer_lng = $_GET['lng'];
+
+$languageManager->loadLanguageDefines($installer_lng, $current_page, 'de_de');
+$lng_short = substr($installer_lng, 0, strpos($installer_lng, '_'));

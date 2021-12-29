@@ -3,11 +3,12 @@
  * functions/audience.php
  * Builds output queries for customer segments
  *
- * @package functions
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: audience.php 733 2020-01-17 09:10:16Z webchills $
+ * @version $Id: audience.php 734 2021-11-28 20:37:16Z webchills $
  */
 
 //
@@ -34,18 +35,23 @@
     $audience_list[] = array('id' => '', 'text' => TEXT_SELECT_AN_OPTION); //provide a "not-selected" value
   }
 
+  $show_count = false;
+  if ($display_count === 'true' || $display_count === true) {  // if it's literal 'true' or logical true
+     $show_count = true;
+  }
+
   foreach ($queries_list as $query_list) {
     // if requested, show recordcounts at end of descriptions of each entry
     // This could slow things down considerably, so use sparingly !!!!
-    if ($display_count=='true' || $display_count ==true ) {  // if it's literal 'true' or logical true
-    $count_array = $db->Execute(parsed_query_string($query_list['query_string']) );
-    $count = $count_array->RecordCount();
+    if ($show_count) { 
+      $count_array = $db->Execute(parsed_query_string($query_list['query_string']) );
+      $count = $count_array->RecordCount();
     }
 
     // generate an array consisting of 2 columns which are identical. Key and Text are same.
     // Thus, when the array is used in a Select Box, the key is the same as the displayed description
     // The key can then be used to get the actual select SQL statement using the get...addresses_query function, below.
-    $audience_list[] = array('id' => $query_list['query_name'], 'text' => $query_list['query_name'] . ' (' . $count . ')');
+    $audience_list[] = array('id' => $query_list['query_name'], 'text' => $query_list['query_name'] . ($show_count ? ' (' . $count . ')' : ''));
   }
 
   //if this is called by an emailing module which offers individual customers as an option, add all customers email addresses as well.

@@ -1,10 +1,10 @@
 <?php
 /**
-* @package admin
-* @copyright Copyright 2003-2020 Zen Cart Development Team
+* @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: paypal.php 731 2020-01-17 18:49:16Z webchills $
+* @version $Id: paypal.php 2021-11-30 20:49:16Z webchills $
 */
 
 // sort orders
@@ -34,7 +34,7 @@ define('TABLE_HEADING_TRANS_ID', 'Trans. ID');
 define('TABLE_HEADING_PENDING_REASON', 'Pending Reason');
 
 define('TEXT_INFO_PAYPAL_IPN_HEADING', 'PayPal IPN');
-define('TEXT_DISPLAY_NUMBER_OF_TRANSACTIONS', 'Displaying <strong>%d</strong> to <strong>%d</strong> (of <strong>%d</strong> IPN\'s)');
+define('TEXT_DISPLAY_PAYPAL_IPN_NUMBER_OF_TX', 'Displaying <b>%d</b> to <b>%d</b> (of <b>%d</b> Transactions)');
 
 // Other constants are in includes/languages/english/modules/payment/paypal.php
 //end ADMIN text

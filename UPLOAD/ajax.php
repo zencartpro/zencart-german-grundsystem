@@ -3,10 +3,11 @@
  * ajax front controller
  *
  * @package core
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ajax.php 28 2018-12-13 17:36:29Z webchills $
+ * @version $Id: ajax.php 2021-10-24 17:32:29Z webchills $
  */
 // Abort if the request was not an AJAX call
 if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {

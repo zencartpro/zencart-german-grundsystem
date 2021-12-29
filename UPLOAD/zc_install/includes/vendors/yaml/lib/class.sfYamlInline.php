@@ -16,7 +16,8 @@
  * @package    symfony
  * @subpackage yaml
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version $Id: Author: DrByte  Thu Oct 1 15:30:47 2015 -0400 New in v1.5.5 $
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
+ * @version $Id: class.sfYamlInline.php 2021-12-28 17:56:29Z webchills $
  * @codeCoverageIgnore
  */
 class sfYamlInline

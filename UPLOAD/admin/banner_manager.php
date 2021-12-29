@@ -1,10 +1,10 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: banner_manager.php 792 2020-01-17 19:13:51Z webchills $
+ * @version $Id: banner_manager.php 2021-11-29 20:02:51Z webchills $
  */
 require('includes/application_top.php');
 require('includes/functions/functions_graphs.php');
@@ -198,32 +198,16 @@ if (zen_not_null($action)) {
 <!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
   <head>
-    <meta charset="<?php echo CHARSET; ?>">
-    <title><?php echo TITLE; ?></title>
-    <link rel="stylesheet" href="includes/stylesheet.css">
-    <link rel="stylesheet" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-    <link rel="stylesheet" href="includes/banner_tools.css" />
-    <script src="includes/menu.js"></script>
-    <script src="includes/general.js"></script>
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
+    <link rel="stylesheet" href="includes/css/banner_tools.css">
     <script>
       function popupImageWindow(url) {
-          window.open(url, 'popupImageWindow', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=yes,copyhistory=no,width=100,height=100,screenX=150,screenY=150,top=150,left=150')
+          window.open(url, 'popupImageWindow', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=yes,copyhistory=no,width=100,height=100,screenX=150,screenY=150,top=150,left=150,noreferrer')
       }
-    </script>
-    <script>
-      function init() {
-          cssjsmenu('navbar');
-          if (document.getElementById) {
-              var kill = document.getElementById('hoverJS');
-              kill.disabled = true;
-          }
-      }
-
-      // -->
     </script>
     <?php if ($editor_handler != '') include ($editor_handler); ?>
   </head>
-  <body onload="init()">
+  <body>
     <div id="spiffycalendar" class="text"></div>
     <!-- header //-->
     <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
@@ -300,7 +284,7 @@ if (zen_not_null($action)) {
         <script src="includes/javascript/spiffyCal/spiffyCal_v2_1.js"></script>
         <script>
       var dateExpires = new ctlSpiffyCalendarBox("dateExpires", "new_banner", "expires_date", "btnDate1", "<?php echo zen_date_short($bInfo->expires_date); ?>", scBTNMODE_CUSTOMBLUE);
-      var dateScheduled = new ctlSpiffyCalendarBox("dateScheduled", "new_banner", "date_scheduled", "btnDate2", "<?php echo zen_date_short($bInfo->date_scheduled); ?> ", scBTNMODE_CUSTOMBLUE);
+      var dateScheduled = new ctlSpiffyCalendarBox("dateScheduled", "new_banner", "date_scheduled", "btnDate2", "<?php echo zen_date_short($bInfo->date_scheduled); ?>", scBTNMODE_CUSTOMBLUE);
         </script>
 
         <div class="row">

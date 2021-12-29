@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: reviews.php 630 2020-01-18 15:05:14Z webchills $
+ * @version $Id: reviews.php 2021-12-03 15:05:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Bewertungen');
@@ -24,7 +25,7 @@ define('ENTRY_RATING', 'Rating:');
 define('TEXT_INFO_DELETE_REVIEW_INTRO', 'Wollen Sie diesen Bewertung wirklich löschen?');
 define('TEXT_INFO_DATE_ADDED', 'Erstellt am:');
 define('TEXT_INFO_LAST_MODIFIED', 'Letzte Änderung:');
-define('TEXT_INFO_IMAGE_NONEXISTENT', 'BILD EXISTIERT NICHT');
+
 define('TEXT_INFO_REVIEW_AUTHOR', 'Author:');
 define('TEXT_INFO_REVIEW_RATING', 'Rating:');
 define('TEXT_INFO_REVIEW_READ', 'Gelesen:');
@@ -43,4 +44,4 @@ define('TEXT_ALL_STATUS', '--Irgendwelche--');
 define('TEXT_PENDING_APPROVAL', 'Freischaltung noch nicht erfolgt');
 define('TEXT_APPROVED', 'Freigeschaltet');
 define('HEADING_TITLE_STATUS', 'Status');
-define('TEXT_IMAGE_NONEXISTENT', 'BILD EXISTIERT NICHT');
+

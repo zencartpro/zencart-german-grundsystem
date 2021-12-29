@@ -6,10 +6,11 @@
  * Displays details of a typical product
  *
  * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_product_info_display.php 807 2019-08-06 13:59:24Z webchills $
+ * @version $Id: tpl_product_info_display.php 2021-12-28 16:59:24Z webchills $
  */
  //require(DIR_WS_MODULES . '/debug_blocks/product_info_prices.php');
 ?>
@@ -126,6 +127,19 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
   }
 ?>
 <!--eof Product details list -->
+<?php
+if ($flag_show_ask_a_question) {
+?>
+<!-- bof Ask a Question --> 
+<br />
+<span id="productQuestions" class="biggerText">
+<b><?php echo '<a href="' . zen_href_link(FILENAME_ASK_A_QUESTION, 'products_id=' . $_GET['products_id'], 'SSL') . '">' . ASK_A_QUESTION . '</a>'; ?></b>
+</span>
+<br class="clearBoth" />
+<!-- eof Ask a Question -->
+<?php
+}
+?>
 
 <!--bof Attributes Module -->
 <?php

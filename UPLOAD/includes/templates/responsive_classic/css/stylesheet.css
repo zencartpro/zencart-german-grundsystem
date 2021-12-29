@@ -1,11 +1,12 @@
 /**
  * Main CSS Stylesheet
  *
- * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: stylesheet.css 8 2019-06-27 08:18:58Z webchills $
+ * @version $Id: stylesheet.css 2021-12-27 19:39:58Z webchills $
  */
 
 /*bof basic elements*/
@@ -72,7 +73,7 @@ fieldset div, fieldset .buttonRow.forward{margin-right:20px;}
 option{font-size:110%;}
 LABEL, h4.optionName {line-height:1.5em;padding:0.2em;}
 LABEL.checkboxLabel, LABEL.radioButtonLabel {margin:0.5em 0.3em;}
-LABEL.inputLabel {width:12em;float:left;}
+LABEL.inputLabel {width:11em;float:left;}
 LABEL.inputLabelPayment {width:15em;float:left;}
 LABEL.selectLabel, LABEL.switchedLabel, LABEL.uploadsLabel {width:12em;float:left;}
 LABEL#textAreaReviews {font-weight:normal;margin:1em 0;}
@@ -115,6 +116,7 @@ select#country, select#stateZone, #state {margin-left:0;}
 #navMain ul  {margin:0;padding:0.5em 0;width:60%;list-style-type:none;text-align:left;line-height:1.5em;}
 #navMain ul li {display:inline;}
 #navMain ul li a {text-decoration:none;padding:0 0.8em;margin:0;white-space:nowrap;}
+#navMain ul li a.navCartContentsIndicator {padding: 10px;border-radius: 10px;margin-right: 5px;}
 /*top right search*/
 #navMainSearch {width:38%;text-align:right;}
 #navMainSearch input[type=text]{vertical-align:top;display:inline-block;border:0;width:65% !important;height:32px;margin:0;font-size:0.9em;-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;}
@@ -323,6 +325,17 @@ span.list-addtext{display:block;text-align:center;}
 #productListing{margin-bottom:20px;}
 #no-products{padding:20px;margin:20px 0;}
 
+/*product listing column-layout overrides*/
+.gridlayout.centerBoxContentsProducts { padding: 2em 0; }
+.gridlayout .list-image {float:none}
+.gridlayout .list-image {min-height: revert; min-width: revert}
+.gridlayout .list-image {margin-right: inherit;}
+.gridlayout .list-more {float: none;}
+#indexProductList .gridlayout .list-more {margin: auto; width: 30%}
+.gridlayout .itemTitle {width:90%;margin:5px auto}
+.gridlayout .listingDescription {width:90%;margin:10px auto}
+.gridlayout .cart-add {float:none;}
+.gridlayout .list-input {float:none;width:30%;margin:auto}
 /*bof new, featured, all listing*/
 .listing-wrapper:nth-child(odd) {}
 .listing-wrapper{padding:20px;}
@@ -475,6 +488,11 @@ table{border:none;padding:0;margin:0; border-spacing:0;border-collapse:collapse;
 .products-listing .productsAllListing, .productsNewListing, .productsFeaturedListing {width: 100%;}
 .tableBorder1 td {}
 
+/* Ask a Question */
+#productQuestions {
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
 
 .taxAddon{
 	font-weight:normal;

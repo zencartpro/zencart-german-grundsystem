@@ -6,10 +6,11 @@
  * Displays final checkout details, cart, payment and shipping info details.
  *
  * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_ajax_checkout_confirmation_default.php 5 2020-03-01 09:33:58Z webchills $
+ * @version $Id: tpl_ajax_checkout_confirmation_default.php 2020-03-01 09:33:58Z webchills $
  */
 ?>
 <div class="centerColumn" id="checkoutConfirmDefault">

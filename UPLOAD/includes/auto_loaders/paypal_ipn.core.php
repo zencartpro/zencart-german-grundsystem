@@ -2,10 +2,11 @@
 /**
  * autoloader array for paypal
  *
- * @package initSystem
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypal_ipn.core.php 732 2020-02-29 20:18:16Z webchills $
+ * @version $Id: paypal_ipn.core.php 733 2021-10-26 10:18:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
  die('Illegal Access');
@@ -72,6 +73,8 @@ if (!defined('IS_ADMIN_FLAG')) {
  * require('includes/init_includes/init_tlds.php');
  *
  */
+  $autoLoadConfig[60][] = array('autoType' => 'require',
+                                'loadFile' => DIR_WS_FUNCTIONS . 'functions_osh_update.php');
   $autoLoadConfig[60][] = array('autoType'=>'init_script',
                                 'loadFile'=> 'init_general_funcs.php');
   $autoLoadConfig[60][] = array('autoType'=>'init_script',

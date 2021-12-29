@@ -3,10 +3,11 @@
  * Side Box Template
  *
  * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_banner_box2.php 730 2015-12-29 19:49:16Z webchills $
+ * @version $Id: tpl_banner_box2.php 2015-12-29 19:49:16Z webchills $
  */
   $content = '';
 // if no active banner in the specified banner group then the box will not show

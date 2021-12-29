@@ -1,13 +1,12 @@
 <?php
 /**
  * session handling
- * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
- *
- * @package initSystem
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * see  {@link  https://docs.zen-cart.com/dev/code/init_system/} for more details.
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_sessions.php 737 2020-03-12 07:49:16Z webchills $
+ * @version $Id: init_sessions.php 738 2021-11-28 21:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -41,7 +40,22 @@ $domainPrefix = (!defined('SESSION_ADD_PERIOD_PREFIX') || SESSION_ADD_PERIOD_PRE
 if (filter_var($cookieDomain, FILTER_VALIDATE_IP)) $domainPrefix = '';
 $secureFlag = ((ENABLE_SSL == 'true' && substr(HTTP_SERVER, 0, 6) == 'https:' && substr(HTTPS_SERVER, 0, 6) == 'https:') || (ENABLE_SSL == 'false' && substr(HTTP_SERVER, 0, 6) == 'https:')) ? TRUE : FALSE;
 
-session_set_cookie_params(0, $path, (zen_not_null($cookieDomain) ? $domainPrefix . $cookieDomain : ''), $secureFlag, TRUE);
+$samesite = (defined('COOKIE_SAMESITE')) ? COOKIE_SAMESITE : 'lax';
+if (!in_array($samesite, ['lax', 'strict', 'none'])) $samesite = 'lax';
+
+
+if (PHP_VERSION_ID >= 70300) {
+  session_set_cookie_params([
+    'lifetime' => 0,
+    'path' => $path,
+    'domain' => (zen_not_null($cookieDomain) ? $domainPrefix . $cookieDomain : ''),
+    'secure' => $secureFlag,
+    'httponly' => true,
+    'samesite' => $samesite,
+  ]);
+} else {
+  session_set_cookie_params(0, $path .'; samesite='.$samesite, (zen_not_null($cookieDomain) ? $domainPrefix . $cookieDomain : ''), $secureFlag, true);
+}
 
 /**
  * set the session ID if it exists

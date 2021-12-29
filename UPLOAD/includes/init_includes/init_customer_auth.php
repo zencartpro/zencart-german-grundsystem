@@ -4,11 +4,12 @@
  * customer authorisation based on DOWN_FOR_MAINTENANCE and CUSTOMERS_APPROVAL_AUTHORIZATION settings
  * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
- * @package initSystem
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_customer_auth.php 870 2020-01-17 09:34:40Z webchills $
+ * @version $Id: init_customer_auth.php 871 2021-11-28 21:17:40Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -30,7 +31,7 @@ $down_for_maint_flag = false;
 /**
  * do not let people get to down for maintenance page if not turned on unless is admin in IP list
  */
-if (DOWN_FOR_MAINTENANCE=='false' and $_GET['main_page'] == DOWN_FOR_MAINTENANCE_FILENAME && !strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])){
+if (DOWN_FOR_MAINTENANCE=='false' and $_GET['main_page'] == DOWN_FOR_MAINTENANCE_FILENAME && !zen_is_whitelisted_admin_ip()){
   zen_redirect(zen_href_link(FILENAME_DEFAULT));
 }
 /**
@@ -41,7 +42,7 @@ if (!defined('DOWN_FOR_MAINTENANCE_TYPE')) define('DOWN_FOR_MAINTENANCE_TYPE', '
  * check to see if site is DFM, and set a flag for use later
  */
 if (DOWN_FOR_MAINTENANCE == 'true') {
-  if (!strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])){
+  if (!zen_is_whitelisted_admin_ip()){
     if ($_GET['main_page'] != DOWN_FOR_MAINTENANCE_FILENAME) $down_for_maint_flag = true;
   }
 }
@@ -197,4 +198,15 @@ switch (true) {
    * proceed normally
    */
   break;
+}
+// -----
+// If an admin is currently logged into the customer's account, let that admin know who s/he is shopping for.
+//
+if (isset($_SESSION['emp_admin_id'])) {
+    $shopping_for_name = $_SESSION['customer_first_name'] . ' ' . $_SESSION['customer_last_name'];
+    $severity = EMP_SHOPPING_FOR_MESSAGE_SEVERITY;
+    if (!in_array($severity, array('success', 'caution', 'warning', 'error'))) {
+        $severity = 'success';
+    }
+    $messageStack->add('header', sprintf(EMP_SHOPPING_FOR_MESSAGE, $shopping_for_name, $_SESSION['emp_customer_email_address']), $severity);
 }

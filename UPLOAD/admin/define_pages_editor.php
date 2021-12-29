@@ -1,10 +1,10 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: define_pages_editor.php 792 2019-07-20 08:13:51Z webchills $
+ * @version $Id: define_pages_editor.php 2021-11-29 20:13:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -171,10 +171,9 @@ if (!$lng_exists) {
       if (isset($_GET['filename'])) {
         ?>
         <?php
-        if (($_SESSION['language']) && ($_GET['filename'])) {
+        if ($_SESSION['language'] && $_GET['filename']) {
           if (file_exists($file)) {
-            $file_array = @file($file);
-            $file_contents = @implode('', $file_array);
+            $file_contents = file_get_contents($file);
 
             $file_writeable = true;
             if (!is_writeable($file)) {

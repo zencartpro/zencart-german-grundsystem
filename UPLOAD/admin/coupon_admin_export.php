@@ -2,11 +2,11 @@
 /**
  * Coupon Exporter
  *
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: copupon_admin_export.php 2020-01-17 19:26:14 $
+ * @version $Id: copupon_admin_export.php 2021-10-24 17:26:14 $
  *
  */
 require ('includes/application_top.php');
@@ -264,7 +264,7 @@ if ($action != '')
 <head>
 <meta charset="<?php echo CHARSET; ?>">
 <title><?php echo HEADING_TITLE; ?></title>
-<link href="includes/template/css/stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="includes/css/stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <?php
@@ -305,7 +305,7 @@ if ($action != '')
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>">
 <title><?php echo TITLE; ?></title>
-<link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
+<link rel="stylesheet" type="text/css" href="includes/css/stylesheet.css">
 <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
 <script type="text/javascript" src="includes/menu.js"></script>
 <script type="text/javascript">

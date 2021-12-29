@@ -1,19 +1,25 @@
 <?php
 /**
  * Zen Cart German Specific
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header.php 799 2019-07-21 11:13:51Z webchills $
+ * @version $Id: header.php 800 2021-10-26 10:13:51Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
 }
 
-// pull in any necessary JS for the page
-require(DIR_WS_INCLUDES . 'javascript_loader.php');
-
+if (defined('STRICT_ERROR_REPORTING') && STRICT_ERROR_REPORTING == true) {
+  $messageStack->add('STRICT ERROR REPORTING IS ON', 'error');
+}
+/*
+ * pull in any necessary JS for the page
+ * Left here for lagacy pages that do not use the new admin_html_head.php file
+ */
+require_once DIR_WS_INCLUDES . 'javascript_loader.php';
 
 $version_check_requested = (isset($_GET['vcheck']) && $_GET['vcheck'] != '') ? true : false;
 
@@ -73,46 +79,64 @@ $version_ini_index_sysinfo = '';
 if (!isset($version_check_sysinfo)) $version_check_sysinfo = false;
 if (!isset($version_check_index)) $version_check_index = false;
 
-if (file_exists(DIR_FS_ADMIN . 'includes/local/skip_version_check.ini')) {
-    $lines = @file(DIR_FS_ADMIN . 'includes/local/skip_version_check.ini');
+$skip_file = DIR_FS_ADMIN . 'includes/local/skip_version_check.ini';
+if (file_exists($skip_file) && $lines = @file($skip_file)) {
     foreach ($lines as $line) {
         if (substr(trim($line), 0, 14) == 'version_check=') $version_from_ini = substr(trim(strtolower(str_replace('version_check=', '', $line))), 0, 3);
         if (substr(trim($line), 0, 41) == 'display_update_link_only_on_sysinfo_page=') $version_ini_sysinfo = trim(strtolower(str_replace('display_update_link_only_on_sysinfo_page=', '', $line)));
         if (substr(trim($line), 0, 46) == 'display_update_link_on_index_and_sysinfo_page=') $version_ini_index_sysinfo = trim(strtolower(str_replace('display_update_link_only_on_sysinfo_page=', '', $line)));
     }
 }
+
+$doVersionCheck = false;
+$versionCheckError = false;
+
 // ignore version check if not enabled or if not on main page or sysinfo page
 if ((SHOW_VERSION_UPDATE_IN_HEADER == 'true' && $version_from_ini != 'off' && ($version_check_sysinfo == true || $version_check_index == true) && $zv_db_patch_ok == true) || $version_check_requested == true) {
+    $doVersionCheck = true;
+    $versionServer = new VersionServer();
+    $newinfo = $versionServer->getProjectVersion();
     $new_version = TEXT_VERSION_CHECK_CURRENT; //set to "current" by default
-    $lines = @file(NEW_VERSION_CHECKUP_URL . '?v='.PROJECT_VERSION_MAJOR.'.'.PROJECT_VERSION_MINOR.'&p='.PHP_VERSION.'&a='.$_SERVER['SERVER_SOFTWARE'].'&r='.urlencode(HTTP_SERVER));
-    //check for major/minor version info
-    if ((trim($lines[0]) > PROJECT_VERSION_MAJOR) || (trim($lines[0]) == PROJECT_VERSION_MAJOR && trim($lines[1]) > PROJECT_VERSION_MINOR)) {
-        $new_version = TEXT_VERSION_CHECK_NEW_VER . trim($lines[0]) . '.' . trim($lines[1]) . ' :: ' . $lines[2];
+    if (isset($newinfo['error'])) {
+        $isCurrent = true;
+        $versionCheckError = true;
+    } else {
+        $isCurrent = $versionServer->isProjectCurrent($newinfo);
     }
-    //check for patch version info
-    // first confirm that we're at latest major/minor -- otherwise no need to check patches:
-    if (trim($lines[0]) == PROJECT_VERSION_MAJOR && trim($lines[1]) == PROJECT_VERSION_MINOR) {
-        //check to see if either patch needs to be applied
-        if (trim($lines[3]) > intval(PROJECT_VERSION_PATCH1) || trim($lines[4]) > intval(PROJECT_VERSION_PATCH2)) {
-            // reset update message, since we WILL be advising of an available upgrade
-            if ($new_version == TEXT_VERSION_CHECK_CURRENT) $new_version = '';
-            //check for patch #1
-            if (trim($lines[3]) > intval(PROJECT_VERSION_PATCH1)) {
 
-                $new_version .= (($new_version != '') ? '<br />' : '') . '<span class="alert">' . TEXT_VERSION_CHECK_NEW_PATCH . trim($lines[0]) . '.' . trim($lines[1]) . ' - ' . TEXT_VERSION_CHECK_PATCH . ': [' . trim($lines[3]) . '] :: ' . $lines[5] . '</span>';
-            }
-            if (trim($lines[4]) > intval(PROJECT_VERSION_PATCH2)) {
+    $hasPatches = 0;
 
-                $new_version .= (($new_version != '') ? '<br />' : '') . '<span class="alert">' . TEXT_VERSION_CHECK_NEW_PATCH . trim($lines[0]) . '.' . trim($lines[1]) . ' - ' . TEXT_VERSION_CHECK_PATCH . ': [' . trim($lines[4]) . '] :: ' . $lines[5] . '</span>';
-            }
-        }
+    if (!$isCurrent) {
+        $new_version = TEXT_VERSION_CHECK_NEW_VER . trim($newinfo['versionMajor']) . '.' . trim($newinfo['versionMinor']) . ' :: ' . $newinfo['versionDetail'];
     }
+    if ($isCurrent) {
+        $hasPatches = $versionServer->hasProjectPatches($newinfo);
+    }
+
+    if ($isCurrent && $hasPatches && $new_version == TEXT_VERSION_CHECK_CURRENT) {
+        $new_version = '';
+    }
+
+    if ($isCurrent && $hasPatches != 2 && $hasPatches) {
+        $new_version .= (($new_version != '') ? '<br />' : '') . '<span class="alert">' . TEXT_VERSION_CHECK_NEW_PATCH . trim($newinfo['versionMajor']) . '.' . trim($newinfo['versionMinor']) . ' - ' . TEXT_VERSION_CHECK_PATCH . ': [' . trim($newinfo['versionPatch1']) . '] :: ' . $newinfo['versionPatchDetail'] . '</span>';
+    }
+
+    if ($isCurrent && $hasPatches > 1) {
+        $new_version .= (($new_version != '') ? '<br />' : '') . '<span class="alert">' . TEXT_VERSION_CHECK_NEW_PATCH . trim($newinfo['versionMajor']) . '.' . trim($newinfo['versionMinor']) . ' - ' . TEXT_VERSION_CHECK_PATCH . ': [' . trim($newinfo['versionPatch2']) . '] :: ' . $newinfo['versionPatchDetail'] . '</span>';
+    }
+
     // display download link
-    if ($new_version != '' && $new_version != TEXT_VERSION_CHECK_CURRENT) $new_version .= '<br /><a href="' . $lines[6] . '" target="_blank"><input type="button" class="btn btn-success" value="' . TEXT_VERSION_CHECK_DOWNLOAD . '"/></a>';
-} else {
+    if ($new_version != '' && $new_version != TEXT_VERSION_CHECK_CURRENT) $new_version .= '<br /><a href="' . $newinfo['versionDownloadURI'] . '" rel="noopener" target="_blank"><input type="button" class="btn btn-success" value="' . TEXT_VERSION_CHECK_DOWNLOAD . '"/></a>';
+}
+
+if (!$doVersionCheck || $versionCheckError) {
+    $new_version = '';
+    if ($versionCheckError) {
+        $new_version = ERROR_CONTACTING_PROJECT_VERSION_SERVER . '<br>';
+    }
     // display the "check for updated version" button.  The button link should be the current page and all params
-    $url = zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('vcheck'), 'SSL'));
-    $url .= (strpos($url, '?') > 5 ? '&' : '?') . 'vcheck=yes';
+    $url = zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('vcheck')), 'SSL');
+    $url .= (strpos($url, '?') !== false ? '&amp;' : '?') . 'vcheck=yes';
     if ($zv_db_patch_ok == true || $version_check_sysinfo == true) $new_version .= '<a href="' . $url . '" role="button" class="btn btn-link">' . TEXT_VERSION_CHECK_BUTTON . '</a>';
 }
 /////////////////
@@ -180,9 +204,9 @@ if (defined('MODULE_ORDER_TOTAL_GV_SHOW_QUEUE_IN_ADMIN') && MODULE_ORDER_TOTAL_G
         $adminInfo = zen_read_user(zen_get_admin_name($_SESSION['admin_id']));
         echo((strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') ? iconv('ISO-8859-1', 'UTF-8', strftime(ADMIN_NAV_DATE_TIME_FORMAT, time())) : strftime(ADMIN_NAV_DATE_TIME_FORMAT, time())); //windows does not "do" UTF-8...so a manual conversion is necessary
         echo '&nbsp;' . date("O", time()) . ' GMT';  // time zone
-        echo '&nbsp;[' . $_SERVER['REMOTE_ADDR'] . ']&nbsp;&nbsp;'; // current admin user's IP address
-        
-        echo version_compare(PHP_VERSION, '5.3.0', 'lt') ? php_uname('n') : gethostname(); //what server am I working on? // NOTE: gethostbyname only available since PHP 5.3.0
+        echo '&nbsp;[' . $_SERVER['REMOTE_ADDR'] . ']'; // current admin user's IP address
+        echo '<br />';
+        echo gethostname(); 
         echo ' - ' . date_default_timezone_get(); //what is the PHP timezone set to?
         $loc = setlocale(LC_TIME, 0);
         if ($loc !== FALSE) echo ' - ' . $loc; //what is the locale in use?
@@ -194,8 +218,8 @@ if (defined('MODULE_ORDER_TOTAL_GV_SHOW_QUEUE_IN_ADMIN') && MODULE_ORDER_TOTAL_G
     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 noprint">
         <ul class="nav nav-pills upperMenu">
             <li><a href="<?php echo zen_href_link(FILENAME_DEFAULT, '', 'NONSSL'); ?>" class="headerLink"><?php echo HEADER_TITLE_TOP; ?></a></li>
-            <li><a href="<?php echo zen_catalog_href_link(FILENAME_DEFAULT); ?>" class="headerLink" target="_blank"><?php echo HEADER_TITLE_ONLINE_CATALOG; ?></a></li>
-            <li><a href="https://www.zen-cart-pro.at/forum" class="headerLink" target="_blank"><?php echo HEADER_TITLE_SUPPORT_SITE; ?></a></li>
+            <li><a href="<?php echo zen_catalog_href_link(FILENAME_DEFAULT); ?>" class="headerLink" rel="noopener" target="_blank"><?php echo HEADER_TITLE_ONLINE_CATALOG; ?></a></li>
+            <li><a href="https://www.zen-cart-pro.at/forum" class="headerLink" rel="noopener" target="_blank"><?php echo HEADER_TITLE_SUPPORT_SITE; ?></a></li>
             <li><a href="<?php echo zen_href_link(FILENAME_SERVER_INFO, '', 'NONSSL'); ?>" class="headerLink"><?php echo HEADER_TITLE_VERSION; ?></a></li>
             <li><a href="<?php echo zen_href_link(FILENAME_ADMIN_ACCOUNT, '', 'NONSSL'); ?>" class="headerLink"><?php echo HEADER_TITLE_ACCOUNT; ?></a></li>
             <li><a href="<?php echo zen_href_link(FILENAME_LOGOFF, '', 'NONSSL'); ?>" class="headerLink"><?php echo HEADER_TITLE_LOGOFF; ?></a></li>

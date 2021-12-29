@@ -1,8 +1,9 @@
 <?php
 /**
  * @package htmleditors
- * @copyright Copyright 2003-2019 Zen Cart Development Team
- * @copyright Portions Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
+ * @copyright Portions Copyright 2003-2022 Zen Cart Development Team
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * @version $Id: init_html_editor.php 755 2012-11-18 20:47:09Z webchills $
  */

@@ -1,14 +1,15 @@
 <?php
 /**
  * Page Template
- *
+ * Zen Cart German Specific
  * Displays the FAQ pages for the Gift-Certificate/Voucher system.<br />
  *
  * @package templateSystem
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_gv_faq_default.php 731 2020-01-17 16:03:16Z webchills $
+ * @version $Id: tpl_gv_faq_default.php 2021-12-28 16:03:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="gvFaqDefault">
@@ -27,7 +28,7 @@
 <h1 id="gvFaqDefaultHeading"><?php echo HEADING_TITLE; ?></h1>
 
 <div id="gvFaqDefaultMainContent" class="content"><?php echo TEXT_INFORMATION; ?></div>
-<br class="clearBoth" />
+<br class="clearBoth"/>
 
 <h2 id="gvFaqDefaultSubHeading"><?php echo SUB_HEADING_TITLE; ?></h2>
 

@@ -1,9 +1,9 @@
 <?php
 /**
- * @package Installer
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 7 2020-02-05 15:28:16Z webchills $
+ * @version $Id: header_php.php 2021-12-27 15:28:16Z webchills $
  */
 
 $otherConfigErrors = FALSE;

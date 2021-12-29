@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: config.core.php 809 2020-02-08 16:44:36Z webchills $
+ * @version $Id: config.core.php 2021-10-25 17:11:36Z webchills $
  */
 if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
 /**
@@ -78,6 +79,9 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                'loadFile'=> 'configurationValidation.php',
                                'classPath'=>DIR_WS_CLASSES);
+  $autoLoadConfig[0][] = array('autoType'=>'class',
+                               'loadFile'=> 'WhosOnline.php',
+                               'classPath'=>DIR_WS_CLASSES);
 
 /**
  * Breakpoint 10.
@@ -127,6 +131,14 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
  */
   $autoLoadConfig[35][] = array('autoType'=>'require',
                                 'loadFile'=> DIR_WS_FUNCTIONS . 'admin_access.php');
+/**
+ * Breakpoint 38.
+ *
+ * require(DIR_WS_FUNCTIONS . 'functions_help.php');
+ *
+ */
+  $autoLoadConfig[38][] = array('autoType'=>'require',
+                                'loadFile'=> DIR_WS_FUNCTIONS . 'functions_help.php');
 /**
  * Breakpoint 40.
  *
@@ -247,11 +259,14 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
  * Breakpoint 175.
  *
  * require(DIR_WS_CLASSES . 'configurationValidation');
+ * require(DIR_FS_CATALOG . 'includes/init_includes/init_observers.php');
  *
  */
   $autoLoadConfig[175][] = array('autoType'=>'classInstantiate',
                                  'className'=>'configurationValidation',
                                  'objectName'=>'configurationValidation');
+  $autoLoadConfig[175][] = array('autoType'=>'include',
+                                 'loadFile'=> DIR_FS_CATALOG . 'includes/init_includes/init_observers.php');
 /**
  * Breakpoint 180.
  *
@@ -269,3 +284,6 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
  */
   $autoLoadConfig[181][] = array('autoType'=>'init_script',
                                  'loadFile'=> 'init_errors.php');
+/**
+ * NOTE: Most plugins should be added from point 200 onward.
+ */

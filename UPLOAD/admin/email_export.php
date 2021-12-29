@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: email_export.php 2019-06-17 11:19:17Z webchills $
+ * @version $Id: email_export.php 2021-12-27 15:52:17Z webchills $
  */
 
 require('includes/application_top.php');
@@ -74,11 +74,15 @@ if (!defined('DIR_FS_EMAIL_EXPORT')) define('DIR_FS_EMAIL_EXPORT',DIR_FS_CATALOG
  *    bring in the right data for use in later steps.
  */
       $audience_select = get_audience_sql_query($query_name, 'newsletters');
-      $query_string = (get_magic_quotes_runtime() > 0) ? stripslashes($audience_select['query_string']) : $audience_select['query_string'];
+      if (empty($audience_select['query_string'])) {
+         $messageStack->add_session("No such query.", 'error');
+         zen_redirect(zen_href_link(FILENAME_EMAIL_EXPORT));
+      }
+      $query_string = $audience_select['query_string'];
       $audience = $db->Execute($query_string);
       $records = $audience->RecordCount();
       if ($records==0) {
-        $messageStack->add("No Records Found.", 'error');
+        $messageStack->add_session("No Records Found.", 'error');
       } else { //process records
         $i=0;
 

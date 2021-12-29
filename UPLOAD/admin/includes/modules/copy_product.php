@@ -1,11 +1,12 @@
 <?php
 
 /**
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: copy_product.php 4 2020-02-11 20:44:05 webchills $
+ * @version $Id: copy_product.php 5 2021-10-26 09:44:05 webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');

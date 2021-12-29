@@ -2,11 +2,12 @@
 /**
  * banner functions
  *
- * @package functions
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: banner.php 732 2020-01-17 09:49:16Z webchills $
+ * @version $Id: banner.php 733 2021-11-28 20:49:16Z webchills $
  */
 
   /**
@@ -145,7 +146,7 @@
       } else {
         $target = '';
         if ($banner->fields['banners_open_new_windows'] == '1') {
-          $target = ' target="_blank"';
+          $target = ' rel="noopener" target="_blank"';
         }
         $banner_string = '<a href="' . zen_href_link(FILENAME_REDIRECT, 'action=banner&goto=' . $banner->fields['banners_id']) . '"' . $target . '>' . zen_image(DIR_WS_IMAGES . $banner->fields['banners_image'], $banner->fields['banners_title']) . '</a>';
       }

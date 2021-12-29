@@ -1,10 +1,11 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: backup_mysql.php 2019-06-17 11:04:51Z webchills $
+ * @version $Id: backup_mysql.php 2021-12-03 16:04:51Z webchills $
  */
 
 
@@ -260,7 +261,7 @@
           $resultcodes=exec(OS_DELIM . $toolfilename . $load_params . OS_DELIM, $output, $load_results );
           exec("exit(0)");
           #parse the value that comes back from the script
-          list($strA, $strB) = preg_split ('/[|]/', $resultcodes);
+          if (zen_not_null($resultcodes)) list($strA, $strB) = preg_split ('/[|]/', $resultcodes);
           if ($debug=='ON') $messageStack->add_session("valueA: " . $strA,'error');
           if ($debug=='ON') $messageStack->add_session("valueB: " . $strB,'error');
           if ($debug=='ON' || (zen_not_null($load_results) && $load_results!='0')) $messageStack->add_session('Result code: '.$load_results, 'caution');

@@ -1,10 +1,10 @@
 <?php
 /**
- * @package Installer
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
 
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: index_default.php 7 2020-01-17 16:59:53Z webchills $
+ * @version $Id: index_default.php 8 2021-11-28 17:59:53Z webchills $
  */
 require(DIR_FS_INSTALL . DIR_WS_INSTALL_TEMPLATE . 'partials/partial_modal_help.php');
 $adjustWarnIssues = false;
@@ -94,7 +94,7 @@ $adjustWarnIssues = false;
     <?php } ?>
     <?php foreach ($listWarnErrors as $error) { ?>
     	<?php if (strpos($error['mainErrorText'], 'PRO TIP:') !== false) { ?>
-    <div class="alert-box">
+    <div class="alert-box alert">
       <?php echo($error['mainErrorText']); ?>
       	<?php } else { ?>
     <div class="alert-box secondary">
@@ -118,13 +118,13 @@ $adjustWarnIssues = false;
   <input type="submit" class="zc-full radius button" id="btnsubmit" name="btnsubmit" value="<?php echo TEXT_CONTINUE; ?>" <?php echo ($hasMultipleAdmins) ? '' : 'autofocus="autofocus"'; ?> tabindex="1">
 <?php } ?>
 <?php if (!$hasFatalErrors && $hasSaneConfigFile && !$hasUpgradeErrors && !$isCurrentDb && $hasUpdatedConfigFile && $hasTables) { ?>
-  <input type="submit" class="zc-upg radius button" id="btnsubmit" name="btnsubmit" value="<?php echo TEXT_UPGRADE; ?>" tabindex="2">
+  <input type="submit" class="zc-upg radius button" id="btnsubmit" name="btnsubmit" value="<?php echo TEXT_UPGRADE; ?>" tabindex="2" title="<?php echo TEXT_UPGRADE_INFO; ?>">
 <?php } ?>
 <?php if (!$hasFatalErrors && $hasSaneConfigFile && !$hasUpgradeErrors && $hasUpdatedConfigFile) { ?>
-  <input type="submit" class="zc-full radius button" id="btnsubmit1" name="btnsubmit" value="<?php echo TEXT_CLEAN_INSTALL; ?>" tabindex="3">
+  <input type="submit" class="zc-full radius button" id="btnsubmit1" name="btnsubmit" value="<?php echo TEXT_CLEAN_INSTALL; ?>" tabindex="3" title="<?php echo TEXT_CLEAN_INSTALL_INFO; ?>">
 <?php } ?>
 <?php if ($hasUpgradeErrors && $hasSaneConfigFile && $hasUpdatedConfigFile) { ?>
-  <input type="submit" class="zc-full radius button" id="btnsubmit2" name="btnsubmit" value="<?php echo TEXT_CLEAN_INSTALL; ?>" tabindex="4">
+  <input type="submit" class="zc-full radius button" id="btnsubmit2" name="btnsubmit" value="<?php echo TEXT_CLEAN_INSTALL; ?>" tabindex="4" title="<?php echo TEXT_CLEAN_INSTALL_INFO; ?>">
 <?php } ?>
 <?php } ?>
 <?php if (!$hasUpdatedConfigFile && $hasSaneConfigFile) { ?>
@@ -169,7 +169,7 @@ $(function()
       type: "POST",
        timeout: 100000,
       dataType: "json",
-      data: 'id='+textId,
+      data: 'id='+textId + '&lng=<?php echo $installer_lng; ?>',
       url: '<?php echo "ajaxGetHelpText.php"; ?>',
        success: function(data) {
          $('#modal-help-title').html(data.title);

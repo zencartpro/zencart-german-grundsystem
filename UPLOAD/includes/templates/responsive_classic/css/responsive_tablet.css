@@ -1,13 +1,14 @@
 /**
  *
- * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  
  * @author ZCAdditions.com, ZCA Responsive Template Default
  * @author picaflor-azul.com
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: responsive_tablet.css 5 2018-01-02 17:33:58Z webchills $
+ * @version $Id: responsive_tablet.css 2021-12-27 19:33:58Z webchills $
  *
  */
 
@@ -279,4 +280,5 @@ fieldset p{width:90%;margin:0 auto;}
 .gvBal{float:none;}
 #sendSpendWrapper{width:auto;}
 #checkoutSuccess fieldset .buttonRow.forward{margin:0 !important;}
+#checkoutConfirmDefault .forward, #checkoutPayment .forward, #checkoutShipping .forward{float:right;width:auto !important;}
 }

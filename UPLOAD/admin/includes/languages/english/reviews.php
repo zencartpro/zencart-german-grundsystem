@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: reviews.php 730 2020-01-17 18:49:16Z webchills $
+ * @version $Id: reviews.php 2021-10-25 19:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Reviews');
@@ -28,7 +29,6 @@ define('TEXT_INFO_DELETE_REVIEW_INTRO', 'Are you sure you want to delete this re
 
 define('TEXT_INFO_DATE_ADDED', 'Date Added:');
 define('TEXT_INFO_LAST_MODIFIED', 'Last Modified:');
-define('TEXT_INFO_IMAGE_NONEXISTENT', 'IMAGE DOES NOT EXIST');
 define('TEXT_INFO_REVIEW_AUTHOR', 'Author:');
 define('TEXT_INFO_REVIEW_RATING', 'Rating:');
 define('TEXT_INFO_REVIEW_READ', 'Read:');
@@ -48,5 +48,3 @@ define('TEXT_ALL_STATUS','--Any--');
 define('TEXT_PENDING_APPROVAL','Pending Approval');
 define('TEXT_APPROVED','Approved');
 define('HEADING_TITLE_STATUS','Status');
-
-define('TEXT_IMAGE_NONEXISTENT', 'IMAGE DOES NOT EXIST');

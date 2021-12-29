@@ -1,10 +1,10 @@
 #!/usr/bin/php
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: currency_cron.php 2 2016-03-27 18:49:16Z webchills $
+ * @version $Id: currency_cron.php 2021-10-24 17:49:16Z webchills $
  */
 // uncomment the following line to disable this script execution in the case of an emergency malfunction when you can't access the server cron settings to kill the scheduled cron job:
 // exit(1);
@@ -56,8 +56,6 @@ $_SERVER['REQUEST_URI'] = 'cron';
 $result = require('includes/application_top.php');
 if ($result == FALSE)  die("Error: application_top not found.\nMake sure you have placed the currency_cron.php file in your (renamed) Admin folder.\n\n");
 $_SERVER['HTTP_USER_AGENT'] = 'Zen Cart update';
-// $_SERVER['REMOTE_ADDR'] = DB_SERVER;
-// echo 'PHP_SAPI = ' . PHP_SAPI . "\n";
 
 // main execution area
 if (function_exists('zen_update_currencies'))

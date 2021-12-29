@@ -1,13 +1,13 @@
 <?php
 /**
- * Zen Cart German Specific
  * general functions
  *
- * @package functions
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: general.php 793 2019-06-15 07:56:51Z webchills $
+ * @version $Id: general.php 794 2021-11-28 17:56:51Z webchills $
  */
 
 if (!defined('TABLE_UPGRADE_EXCEPTIONS')) define('TABLE_UPGRADE_EXCEPTIONS','upgrade_exceptions');
@@ -115,22 +115,6 @@ function zen_get_select_options($optionList, $setDefault)
 
   function zen_sanitize_request()
   {
-    if (isset($_POST) && count($_POST) > 0)
-    {
-      foreach($_POST as $key=>$value)
-      {
-        if(is_array($value))
-        {
-          foreach($value as $key2 => $val2)
-          {
-            unset($GLOBALS[$key]);
-          }
-        } else {
-          unset($GLOBALS[$key]);
-        }
-      }
-    }
-    $ignoreArray = array();
     foreach ($_POST as $key => $value)
     {
       $_POST[htmlspecialchars($key, ENT_COMPAT, 'UTF-8', FALSE)] = addslashes($value);
@@ -196,8 +180,8 @@ function zen_get_select_options($optionList, $setDefault)
     $httpServer = zen_parse_url($url, 'host', true);
     $adminServer = ($request_type == 'SSL') ? 'https://' : 'http://';
     $adminServer .= $httpServer;
-    $catalogHttpServer = 'https://' . $httpServer;
-    $catalogHttpUrl = 'https://' . $httpServer . '/' . zen_parse_url($url, 'path', true);
+    $catalogHttpServer = ($request_type == 'SSL' ? 'https://' : 'http://') . $httpServer;
+    $catalogHttpUrl = ($request_type == 'SSL' ? 'https://' :'http://') . $httpServer . '/' . zen_parse_url($url, 'path', true);
     $catalogHttpsServer = 'https://' . $httpServer;
     $catalogHttpsUrl = 'https://' . $httpServer . '/' . zen_parse_url($url, 'path', true);
     $dir_ws_http_catalog = str_replace($catalogHttpServer, '', $catalogHttpUrl) .'/';

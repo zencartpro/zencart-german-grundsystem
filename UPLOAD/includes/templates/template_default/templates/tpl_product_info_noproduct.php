@@ -5,10 +5,11 @@
  * Displays simple "product not found" message if the selected product's details cannot be located in the database
  *
  * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_product_info_noproduct.php 730 2014-02-09 15:15:16Z webchills $
+ * @version $Id: tpl_product_info_noproduct.php 2014-02-09 15:15:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="productInfoNoProduct">

@@ -1,17 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: admin_account.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: admin_account.php 2021-12-01 09:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Admin Account Verwaltung');
-
-define('TEXT_ADMIN_NAME', 'Benutzername:');
-define('TEXT_CHANGE_PASSWORD', 'Passwort ändern');
-define('TEXT_ADMIN_OLD_PASSWORD', 'Altes Passwort:');
-define('TEXT_ADMIN_NEW_PASSWORD', 'Neues Passwort:');
-define('TEXT_ADMIN_CONFIRM_PASSWORD', 'Passwort bestätigen:');
-
-// additional defines shared from users.php
+require DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'users.php'; 

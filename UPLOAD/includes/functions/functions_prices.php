@@ -2,12 +2,12 @@
 /**
  * Zen Cart German Specific
  * functions_prices
- *
- * @package functions
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_prices.php 861 2020-01-17 09:33:24Z webchills $
+ * @version $Id: functions_prices.php 2021-12-28 22:08:24Z webchills $
  */
 
 ////
@@ -135,7 +135,7 @@
           return $products_base_price;
       }
       
-      $product_check = $db->Execute("select products_price, products_priced_by_attribute from " . TABLE_PRODUCTS . " where products_id = '" . (int)$products_id . "'");
+      $product_check = $db->Execute("select products_price, product_is_always_free_shipping, products_priced_by_attribute from " . TABLE_PRODUCTS . " where products_id = '" . (int)$products_id . "'");
 
       if ($product_check->EOF) {
         return $products_base_price;
@@ -217,7 +217,7 @@
     }
 
     // $new_fields = ', product_is_free, product_is_call, product_is_showroom_only';
-    $product_check = $db->Execute("select products_tax_class_id, products_price, products_priced_by_attribute, product_is_free, product_is_call, products_type from " . TABLE_PRODUCTS . " where products_id = '" . (int)$products_id . "'" . " limit 1");
+    $product_check = $db->Execute("select products_tax_class_id, products_price, products_priced_by_attribute, product_is_free, product_is_call, product_is_always_free_shipping, products_type from " . TABLE_PRODUCTS . " where products_id = '" . (int)$products_id . "'" . " limit 1");
 
     // no prices on Document General
     if ($product_check->fields['products_type'] == 3) {
@@ -560,7 +560,10 @@
     switch (true) {
       case ($_SESSION['cart']->in_cart_mixed($product_id) == 0 ):
         if ($check_min >= $check_units) {
-          $buy_now_qty = $check_min;
+          // Set the buy now quantity (associated product is not yet in the cart) to the first value satisfying both the minimum and the units.
+          $buy_now_qty = $check_units * ceil($check_min/$check_units);
+          // Uncomment below to set the buy now quantity to the value of the minimum required regardless if it is a multiple of the units.
+          //$buy_now_qty = $check_min;
         } else {
           $buy_now_qty = $check_units;
         }
@@ -591,7 +594,7 @@
     global $discount_type_id, $sale_maker_discount;
 
     // no charge
-    if ($attributes_id > 0 and $attributes_amount == 0) {
+    if (!empty($attributes_id) && empty($attributes_amount)) {
       return 0;
     }
 
@@ -605,12 +608,12 @@
 
     $discount_type_id = zen_get_products_sale_discount_type($product_id);
 
+    $special_price_discount = 0;
     if ($new_products_price != 0) {
       $special_price_discount = ($new_special_price != 0 ? ($new_special_price/$new_products_price) : 1);
-    } else {
-      $special_price_discount = '';
-    }
-    $sale_price_discount = '';
+    } 
+    
+    $sale_price_discount = 0;
     if ($new_products_price != 0) {
       $sale_price_discount = ($new_sale_price != 0 ? ($new_sale_price/$new_products_price) : 1);
     }
@@ -993,15 +996,15 @@ possible return values in numerical order:
                                   array('id' => '1', 'text' => DEDUCTION_TYPE_DROPDOWN_1),
                                   array('id' => '2', 'text' => DEDUCTION_TYPE_DROPDOWN_2));
 */
-    $sale_exists = 'false';
-    $sale_maker_discount = '';
-    $sale_maker_special_condition = '';
+    $sale_exists = false;
+    $sale_maker_discount = 0;
+    $sale_maker_special_condition = 0;
     $salemaker_sales = $db->Execute("select sale_id, sale_status, sale_name, sale_categories_all, sale_deduction_value, sale_deduction_type, sale_pricerange_from, sale_pricerange_to, sale_specials_condition, sale_categories_selected, sale_date_start, sale_date_end, sale_date_added, sale_date_last_modified, sale_date_status_change from " . TABLE_SALEMAKER_SALES . " where sale_status='1'");
     while (!$salemaker_sales->EOF) {
       $categories = explode(',', $salemaker_sales->fields['sale_categories_all']);
       foreach($categories as $key => $value) {
         if ($value == $check_category) {
-          $sale_exists = 'true';
+          $sale_exists = true;
           $sale_maker_discount = $salemaker_sales->fields['sale_deduction_value'];
           $sale_maker_special_condition = $salemaker_sales->fields['sale_specials_condition'];
           $sale_maker_discount_type = $salemaker_sales->fields['sale_deduction_type'];
@@ -1013,7 +1016,7 @@ possible return values in numerical order:
 
     $check_special = zen_get_products_special_price($product_id, true);
 
-    if ($sale_exists == 'true' and $sale_maker_special_condition != 0) {
+    if ($sale_exists == true && $sale_maker_special_condition != 0) {
       $sale_maker_discount_type = (($sale_maker_discount_type * 100) + ($sale_maker_special_condition * 10));
     } else {
       $sale_maker_discount_type = 5;
@@ -1229,7 +1232,7 @@ If a special exist * 10
 
 ////
 // attributes final price
-  function zen_get_attributes_price_final($attribute, $qty = 1, $pre_selected, $include_onetime = 'false', $prod_priced_by_attr = false, $attributes_discounted = 0, $include_products_price_in = false) {
+  function zen_get_attributes_price_final($attribute, $qty = 1, $pre_selected = null, $include_onetime = 'false', $prod_priced_by_attr = false, $attributes_discounted = 0, $include_products_price_in = false) {
     global $db;
 
     $attributes_price_final = 0;
@@ -1286,10 +1289,10 @@ If a special exist * 10
 
 ////
 // attributes final price onetime
-  function zen_get_attributes_price_final_onetime($attribute, $qty= 1, $pre_selected_onetime) {
+  function zen_get_attributes_price_final_onetime($attribute, $qty= 1, $pre_selected_onetime = null) {
     global $db;
 
-    if ($pre_selected_onetime == '' or $attribute != $pre_selected_onetime->fields["products_attributes_id"]) {
+    if (empty($pre_selected_onetime) || $attribute != $pre_selected_onetime->fields["products_attributes_id"]) {
       $pre_selected_onetime = $db->Execute("select pa.* from " . TABLE_PRODUCTS_ATTRIBUTES . " pa where pa.products_attributes_id= '" . (int)$attribute . "'");
     } else {
       // use existing select
@@ -1343,7 +1346,7 @@ If a special exist * 10
 
 ////
 // calculate words price
-  function zen_get_word_count_price($string, $free=0, $price) {
+  function zen_get_word_count_price($string, $free = 0, $price = 0) {
     $word_count = zen_get_word_count($string, $free);
     if ($word_count >= 1) {
       return ($word_count * $price);
@@ -1374,7 +1377,7 @@ If a special exist * 10
 
 ////
 // calculate letters price
-  function zen_get_letters_count_price($string, $free=0, $price) {
+  function zen_get_letters_count_price($string, $free = 0, $price = 0) {
 
     $letters_price = zen_get_letters_count($string, $free) * $price;
     if ($letters_price <= 0) {

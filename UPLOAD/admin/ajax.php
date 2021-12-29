@@ -5,9 +5,12 @@
  * NOTE: "Assumes" that the admin directory is a direct subdirectory off the store's file-system!
  *
  * @package core
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
+ * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: lat9 Fri Oct 26 10:04:06 2018 -0400 New in v1.5.6 $
+ * @version $Id: ajax.php 2021-11-29 19:59:16Z webchills $
+
  */
 // -----
 // Let the "base" ajax.php processing "know" that this request came from the admin,

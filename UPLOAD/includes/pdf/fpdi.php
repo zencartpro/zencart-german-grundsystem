@@ -3,10 +3,10 @@
  * This file is part of FPDI
  *
  * @package   FPDI
- * @copyright Copyright (c) 2015 Setasign - Jan Slabon (http://www.setasign.com)
+ * @copyright Copyright (c) 2017 Setasign - Jan Slabon (https://www.setasign.com)
  * @license   http://opensource.org/licenses/mit-license The MIT License
- * @version   1.6.1
- * modified for pdf Rechnung 3.5.0 for Zen Cart 2016-10-11 webchills
+ * @version   1.6.2
+ * modified for pdf Rechnung for Zen Cart German 2021-10-30 webchills
  */
 
 if (!class_exists('FPDF_TPL')) {
@@ -23,7 +23,7 @@ class FPDI extends FPDF_TPL
      *
      * @string
      */
-    const VERSION = '1.6.1';
+    const VERSION = '1.6.2';
 
     /**
      * Actual filename
@@ -89,6 +89,7 @@ class FPDI extends FPDF_TPL
      *
      * @param string $filename A valid path to the PDF document from which pages should be imported from
      * @return int The number of pages in the document
+     * @throws Exception
      */
     public function setSourceFile($filename)
     {
@@ -96,16 +97,27 @@ class FPDI extends FPDF_TPL
         if (false !== $_filename)
             $filename = $_filename;
 
-        $this->currentFilename = $filename;
-        
-        if (!isset($this->parsers[$filename])) {
-            $this->parsers[$filename] = $this->_getPdfParser($filename);
-            $this->setPdfVersion(
-                max($this->getPdfVersion(), $this->parsers[$filename]->getPdfVersion())
-            );
-        }
+        $currentFilename = $this->currentFilename;
+        $currentParser = $this->currentParser;
 
-        $this->currentParser = $this->parsers[$filename];
+        try {
+            $this->currentFilename = $filename;
+
+            if (!isset($this->parsers[$filename])) {
+                $this->parsers[$filename] = $this->_getPdfParser($filename);
+                $this->setPdfVersion(
+                    max($this->getPdfVersion(), $this->parsers[$filename]->getPdfVersion())
+                );
+            }
+
+            $this->currentParser = $this->parsers[$filename];
+
+        } catch (Exception $e) {
+            unset($this->parsers[$filename]);
+            $this->currentFilename = $currentFilename;
+            $this->currentParser = $currentParser;
+            throw $e;
+        }
         
         return $this->parsers[$filename]->getPageCount();
     }
@@ -678,7 +690,7 @@ class FPDI extends FPDF_TPL
 
                 reset ($value[1]);
 
-                while (list($k, $v) = each($value[1])) {
+                foreach ($value[1] as $k => $v ) {
                     $this->_straightOut($k . ' ');
                     $this->_writeValue($v);
                 }

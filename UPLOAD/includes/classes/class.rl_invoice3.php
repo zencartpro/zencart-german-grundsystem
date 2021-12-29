@@ -2,10 +2,11 @@
 /**
  * @package pdf Rechnung
  * @copyright Copyright 2005-2012 langheiter.com 
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: class.rl_invoice3.php 2019-06-17 08:19:17Z webchills $
+ * @version $Id: class.rl_invoice3.php 2021-12-26 19:19:17Z webchills $
  */
  
 define('FPDF_FONTPATH', DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/font/');
@@ -251,7 +252,7 @@ function CheckPageBreak($h) {
         }
         return $ok;
     }
-    function getDefault($var = 'NIX', $def, $exp = '|') {
+    public static function getDefault($var = 'NIX', $def, $exp = '|') {
         $def = (array)$def;
         $tmp = explode($exp, trim($var));
         if (is_array($def)) {

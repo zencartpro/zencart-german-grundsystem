@@ -1,10 +1,10 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: customers.php 799 2020-02-25 07:36:51Z webchills $
+ * @version $Id: customers.php 2021-11-29 15:36:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -417,7 +417,7 @@ if (zen_not_null($action)) {
                                         a.entry_country_id, c.customers_telephone, c.customers_fax,
                                         c.customers_newsletter, c.customers_default_address_id,
                                         c.customers_email_format, c.customers_group_pricing,
-                                        c.customers_authorization, c.customers_referral
+                                        c.customers_authorization, c.customers_referral, c.customers_secret
                                  FROM " . TABLE_CUSTOMERS . " c
                                  LEFT JOIN " . TABLE_ADDRESS_BOOK . " a ON c.customers_default_address_id = a.address_book_id
                                  WHERE a.customers_id = c.customers_id
@@ -1202,7 +1202,7 @@ if (zen_not_null($action)) {
 
                   $zco_notifier->notify('NOTIFY_ADMIN_CUSTOMERS_LISTING_NEW_FIELDS', array(), $new_fields, $disp_order);
 
-                  $customers_query_raw = "select c.customers_id, c.customers_lastname, c.customers_firstname, c.customers_email_address, c.customers_group_pricing, c.customers_telephone, c.customers_authorization, c.customers_referral,
+                  $customers_query_raw = "SELECT c.customers_id, c.customers_lastname, c.customers_firstname, c.customers_email_address, c.customers_group_pricing, c.customers_telephone, c.customers_authorization, c.customers_referral, c.customers_secret,
                                            a.entry_country_id, a.entry_company, a.entry_company, a.entry_street_address, a.entry_city, a.entry_postcode,
                                            ci.customers_info_date_of_last_logon, ci.customers_info_date_account_created
                                            " . $new_fields . ",
@@ -1287,9 +1287,9 @@ if (zen_not_null($action)) {
                     $zc_address_book_count = $zc_address_book_count_list->RecordCount();
                     ?>
                 <td class="dataTableContent text-right"><?php echo $customer['customers_id'] . ($zc_address_book_count == 1 ? TEXT_INFO_ADDRESS_BOOK_COUNT_SINGLE : sprintf(TEXT_INFO_ADDRESS_BOOK_COUNT, zen_href_link(FILENAME_CUSTOMERS, 'action=list_addresses' . '&cID=' . $customer['customers_id'] . ($_GET['page'] > 0 ? '&page=' . $_GET['page'] : '')), $zc_address_book_count)); ?></td>
-                <td class="dataTableContent"><?php echo $customer['customers_lastname']; ?></td>
-                <td class="dataTableContent"><?php echo $customer['customers_firstname']; ?></td>
-                <td class="dataTableContent"><?php echo $customer['entry_company']; ?></td>
+                <td class="dataTableContent"><?php echo zen_output_string($customer['customers_lastname']); ?></td>
+                <td class="dataTableContent"><?php echo zen_output_string($customer['customers_firstname']); ?></td>
+                <td class="dataTableContent"><?php echo zen_output_string($customer['entry_company']); ?></td>
                 <?php
                 // -----
                 // If a plugin has additional columns to add to the display, it attaches to both this "listing element" and (see above)
@@ -1396,6 +1396,34 @@ if (zen_not_null($action)) {
                     $contents[] = array('align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_CUSTOMERS, zen_get_all_get_params(array('cID', 'action', 'search')) . 'cID=' . $cInfo->customers_id . '&action=edit', 'NONSSL') . '" class="btn btn-primary" role="button">' . IMAGE_EDIT . '</a> <a href="' . zen_href_link(FILENAME_CUSTOMERS, zen_get_all_get_params(array('cID', 'action', 'search')) . 'cID=' . $cInfo->customers_id . '&action=confirm', 'NONSSL') . '" class="btn btn-warning" role="button">' . IMAGE_DELETE . '</a>');
                     $contents[] = array('align' => 'text-center', 'text' => ($customers_orders->RecordCount() != 0 ? '<a href="' . zen_href_link(FILENAME_ORDERS, 'cID=' . $cInfo->customers_id, 'NONSSL') . '" class="btn btn-default" role="button">' . IMAGE_ORDERS . '</a>' : '') . ' <a href="' . zen_href_link(FILENAME_MAIL, 'origin=customers.php&customer=' . $cInfo->customers_email_address . '&cID=' . $cInfo->customers_id, 'NONSSL') . '" class="btn btn-default" role="button">' . IMAGE_EMAIL . '</a>');
                     $contents[] = array('align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_CUSTOMERS, zen_get_all_get_params(array('cID', 'action', 'search')) . 'cID=' . $cInfo->customers_id . '&action=pwreset') . '" class="btn btn-warning" role="button">' . IMAGE_RESET_PWD . '</a>');
+                    // -----
+                    // Give an observer the opportunity to provide an override to the "Place Order" button.
+                    //
+                    $place_order_override = false;
+                    $zco_notifier->notify('NOTIFY_ADMIN_CUSTOMERS_PLACE_ORDER_BUTTON', $cInfo, $contents, $place_order_override);
+                    if ($place_order_override === false && zen_admin_authorized_to_place_order()) {
+                        $login_form_start = '<form rel="noopener" target="_blank" name="login" action="' .
+                            zen_catalog_href_link
+                            (FILENAME_LOGIN, '', 'SSL') . '" method="post">';
+                        $hiddenFields = zen_draw_hidden_field('email_address', $cInfo->customers_email_address);
+                        if  (defined('EMP_LOGIN_AUTOMATIC') && EMP_LOGIN_AUTOMATIC == 'true' && ENABLE_SSL_CATALOG == 'true') {
+                            $secret = zen_update_customers_secret($cInfo->customers_id);
+                            $timestamp = time();
+                            $hmacpostdata = ['cid' => $cInfo->customers_id, 'aid' => $_SESSION['admin_id'],
+                                             'email_address' => $cInfo->customers_email_address];
+                            $hmacUri = zen_create_hmac_uri($hmacpostdata, $secret);
+                            $login_form_start = '<form id="loginform" rel="noopener" target="_blank" name="login" action="' .
+                                zen_catalog_href_link(
+                                    FILENAME_LOGIN, $hmacUri . '&action=process', 'SSL') . '" method="post">';
+                            $hiddenFields .= zen_draw_hidden_field('aid', $_SESSION['admin_id']);
+                            $hiddenFields .= zen_draw_hidden_field('cid', $cInfo->customers_id);
+                            $hiddenFields .= zen_draw_hidden_field('timestamp', $timestamp, 'id="emp-timestamp"');
+                        }
+                        $contents[] = array(
+                            'align' => 'text-center',
+                            'text' => $login_form_start . $hiddenFields . '<input class="btn btn-primary" type="submit" value="' . EMP_BUTTON_PLACEORDER . '" title="' . EMP_BUTTON_PLACEORDER_ALT . '"></form>'
+                        );
+                    }
                     $zco_notifier->notify('NOTIFY_ADMIN_CUSTOMERS_MENU_BUTTONS', $cInfo, $contents);
 
                     $contents[] = array('text' => '<br>' . TEXT_DATE_ACCOUNT_CREATED . ' ' . zen_date_short($cInfo->date_account_created));
@@ -1464,6 +1492,13 @@ if (zen_not_null($action)) {
     <!-- footer //-->
     <?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
     <!-- footer_eof //-->
+    <script>
+        $(function() {
+            $( "#loginform" ).submit(function( event ) {
+                $("#emp-timestamp").val(Date.now()/1000);
+            });
+        });
+    </script>
   </body>
 </html>
 <?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>

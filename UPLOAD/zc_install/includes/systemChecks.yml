@@ -1,9 +1,7 @@
-#
-# @package Installer
 # Zen Cart German Specific
-# @copyright Copyright 2003-2020 Zen Cart Development Team
+# @copyright Copyright 2003-2022 Zen Cart Development Team
 # @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# @version $Id: systemChecks.yml 11 2020-01-24 19:00:53Z webchills $
+# @version $Id: systemChecks.yml 2021-12-27 18:04:53Z webchills $
 #
 
 systemChecks:
@@ -23,14 +21,6 @@ systemChecks:
           fileDir: <?php echo DIR_FS_ROOT . 'includes/configure.php' . PHP_EOL; ?>
           changePerms: '0664'
           createFile: TRUE
-  checkLocalStoreConfigureFile:
-    runLevel: localdev
-    errorLevel: ALERT
-    mainErrorText: <?php echo TEXT_FOUND_LOCAL_STORE_CONFIGURE . PHP_EOL; ?>
-    methods:
-      checkFileExists:
-        parameters:
-          fileDir: <?php echo DIR_FS_ROOT . 'includes/local/configure.php' . PHP_EOL; ?>
   checkAdminConfigureFile:
     runLevel: always
     errorLevel: FAIL
@@ -41,14 +31,6 @@ systemChecks:
           fileDir: <?php echo 'includes/configure.php' . PHP_EOL; ?>
           changePerms: '0664'
           createFile: TRUE
-  checkLocalAdminConfigureFile:
-    runLevel: localdev
-    errorLevel: ALERT
-    mainErrorText: <?php echo TEXT_FOUND_LOCAL_ADMIN_CONFIGURE . PHP_EOL; ?>
-    methods:
-      checkFileExists:
-        parameters:
-          fileDir: <?php echo 'includes/local/configure.php' . PHP_EOL; ?>
   checkPhpVersion:
     runLevel: always
     errorLevel: FAIL
@@ -57,15 +39,15 @@ systemChecks:
       checkPhpVersionMin:
         method: checkPhpVersion
         parameters:
-          version: 7.1.0
+          version: 5.6.0
           versionTest: ge
-          localErrorText: <?php echo sprintf(TEXT_ERROR_PHP_VERSION_MIN, '7.1.0') . PHP_EOL; ?>
+          localErrorText: <?php echo sprintf(TEXT_ERROR_PHP_VERSION_MIN, '5.6.0') . PHP_EOL; ?>
       checkPhpVersionMax:
         method: checkPhpVersion
         parameters:
-          version: 7.4.0
+          version: 8.1.0
           versionTest: lt
-          localErrorText: <?php echo sprintf(TEXT_ERROR_PHP_VERSION_MAX, '7.3.x') . PHP_EOL; ?>
+          localErrorText: <?php echo sprintf(TEXT_ERROR_PHP_VERSION_MAX, '8.0.x') . PHP_EOL; ?>
   checkPhpVersionRecommendation:
     runLevel: always
     errorLevel: WARN
@@ -74,7 +56,7 @@ systemChecks:
       checkPhpVersionRecommended:
         method: checkPhpVersion
         parameters:
-          version: 7.0.32
+          version: 7.3.12
           versionTest: ge
   checkZCversion:
     runLevel: always
@@ -258,6 +240,27 @@ systemChecks:
     methods:
       checkHttpsRequest:
 
+  checkDBVersion157:
+    runLevel: dbVersion
+    errorLevel: WARN
+    version: '1.5.7'
+    mainErrorText: <?php echo sprintf(TEXT_DB_VERSION_NOT_FOUND, 'v1.5.7') . PHP_EOL; ?>
+    methods:
+      dbVersionChecker:
+        parameters:
+          - checkType: fieldSchema
+            tableName: orders_status
+            fieldName: sort_order
+            fieldCheck: Type
+            expectedResult: 'INT(11)'
+          - checkType: fieldSchema
+            tableName: orders
+            fieldName: language_code
+            fieldCheck: Exists
+          - checkType: configValue
+            fieldName: ADVANCED_SEARCH_INCLUDE_METATAGS
+            expectedResult: 'Include meta-tags in product search?'
+
   checkDBVersion156:
     runLevel: dbVersion
     errorLevel: WARN
@@ -298,10 +301,10 @@ systemChecks:
             fieldCheck: Type
             expectedResult: 'VARCHAR(255)'
           - checkType: fieldSchema
-            tableName: orders
-            fieldName: shipping_method
+            tableName: coupons_description
+            fieldName: coupon_name
             fieldCheck: Type
-            expectedResult: 'VARCHAR(255)'
+            expectedResult: 'VARCHAR(64)'
           - checkType: configValue
             fieldName: CURRENCY_SERVER_PRIMARY
             expectedResult: 'Currency Exchange Rate: Primary Source'
@@ -346,16 +349,9 @@ systemChecks:
     methods:
       dbVersionChecker:
         parameters:
-          - checkType: fieldSchema
-            tableName: sessions
-            fieldName: sesskey
-            fieldCheck: Type
-            expectedResult: 'VARCHAR(255)'
-          - checkType: fieldSchema
-            tableName: whos_online
-            fieldName: session_id
-            fieldCheck: Type
-            expectedResult: 'VARCHAR(255)'
+          - checkType: configValue
+            fieldName: PADSS_ADMIN_SESSION_TIMEOUT_ENFORCED
+            expectedResult: 'PA-DSS Admin Session Timeout Enforced?'
           - checkType: configValue
             fieldName: SHOW_CATEGORY_PRODUCTS_LINKED_STATUS
             expectedResult: 'Show linked status for categories'

@@ -1,10 +1,11 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: customers_without_order.php 3 2019-08-18 16:33:14Z webchills $
+ * @version $Id: customers_without_order.php 2019-08-18 16:33:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Kunden, die nie etwas bestellt haben');

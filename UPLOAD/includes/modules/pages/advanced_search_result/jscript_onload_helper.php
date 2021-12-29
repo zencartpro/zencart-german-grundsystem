@@ -1,10 +1,11 @@
 <?php
 /**
  * @package page
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version GIT: $Id: Author: DrByte  Sat Jul 7 00:29:18 2012 -0400 New in v1.5.1 $
+ * @version $Id: jscript_onload_helper.php 2021-12-28 17:56:29Z webchills $
  */
 ?>
 

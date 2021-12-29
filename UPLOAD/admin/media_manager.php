@@ -1,10 +1,10 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: media_manager.php 766 2020-01-17 08:23:42Z webchills $
+ * @version $Id: media_manager.php 2021-10-24 18:05:42Z webchills $
  */
 
   require('includes/application_top.php');

@@ -1,8 +1,7 @@
 <?php
 /**
- * Zen Cart German Specific
  * Common Template - tpl_main_page.php
- *
+ * Zen Cart German Specific
  * Governs the overall layout of an entire page<br />
  * Normally consisting of a header, left side column. center column. right side column and footer<br />
  * For customizing, this file can be copied to /templates/your_template_dir/pagename<br />
@@ -32,12 +31,17 @@
  *  $flag_disable_right = true;<br />
  * }<br />
  *
- * @package templateSystem
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_main_page.php 735 2020-03-01 09:13:16Z webchills $
+ * @version $Id: tpl_main_page.php 2021-12-28 12:13:16Z webchills $
  */
+if (!defined('IS_ADMIN_FLAG')) {
+    die('Illegal Access');
+}
+
 /** bof DESIGNER TESTING ONLY: */
 // $messageStack->add('header', 'this is a sample error message', 'error');
 // $messageStack->add('header', 'this is a sample caution message', 'caution');
@@ -47,10 +51,15 @@
 // $messageStack->add('main', 'this is a sample success message', 'success');
 /** eof DESIGNER TESTING ONLY */
 
-// the following IF statement can be duplicated/modified as needed to set additional flags
-  if (in_array($current_page_base,explode(",",'list_pages_to_skip_all_right_sideboxes_on_here,separated_by_commas,and_no_spaces')) ) {
-    $flag_disable_right = true;
-  }
+
+
+// the following statements can be modified as needed to set additional flags
+if (in_array($current_page_base,explode(",",'list_pages_to_skip_all_left_sideboxes_on_here,separated_by_commas,and_no_spaces')) ) {
+  $flag_disable_left = true;
+}
+if (in_array($current_page_base,explode(",",'list_pages_to_skip_all_right_sideboxes_on_here,separated_by_commas,and_no_spaces')) ) {
+  $flag_disable_right = true;
+}
 
 
   $header_template = 'tpl_header.php';
@@ -91,20 +100,20 @@ if (COLUMN_LEFT_STATUS == 0 || (CUSTOMERS_APPROVAL == '1' and !zen_is_logged_in(
 if (!isset($flag_disable_left) || !$flag_disable_left) {
 ?>
 
- <td id="navColumnOne" class="columnLeft" style="width: <?php echo COLUMN_WIDTH_LEFT; ?>">
+ <td id="navColumnOne" class="columnLeft" style="width: <?php echo (int)COLUMN_WIDTH_LEFT; ?>px">
 <?php
  /**
   * prepares and displays left column sideboxes
   *
   */
 ?>
-<div id="navColumnOneWrapper" style="width: <?php echo BOX_WIDTH_LEFT; ?>"><?php require(DIR_WS_MODULES . zen_get_module_directory('column_left.php')); ?></div></td>
+<div id="navColumnOneWrapper" style="width: <?php echo (int)BOX_WIDTH_LEFT; ?>px"><?php require(DIR_WS_MODULES . zen_get_module_directory('column_left.php')); ?></div></td>
 <?php
 }
 ?>
     <td valign="top">
 <!-- bof  breadcrumb -->
-<?php if (DEFINE_BREADCRUMB_STATUS == '1' || (DEFINE_BREADCRUMB_STATUS == '2' && !$this_is_home_page) ) { ?>
+<?php if (!$breadcrumb->isEmpty() && (DEFINE_BREADCRUMB_STATUS == '1' || (DEFINE_BREADCRUMB_STATUS == '2' && !$this_is_home_page))) { ?>
     <div id="navBreadCrumb"><?php echo $breadcrumb->trail(BREAD_CRUMBS_SEPARATOR); ?></div>
 <?php } ?>
 <!-- eof breadcrumb -->
@@ -113,7 +122,7 @@ if (!isset($flag_disable_left) || !$flag_disable_left) {
   if (SHOW_BANNERS_GROUP_SET3 != '' && $banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET3)) {
     if ($banner->RecordCount() > 0) {
 ?>
-<div id="bannerThree" class="banners"><?php echo zen_display_banner('static', $banner); ?></div>
+    <div id="bannerThree" class="banners"><?php echo zen_display_banner('static', $banner); ?></div>
 <?php
     }
   }
@@ -122,19 +131,21 @@ if (!isset($flag_disable_left) || !$flag_disable_left) {
 <!-- bof upload alerts -->
 <?php if ($messageStack->size('upload') > 0) echo $messageStack->output('upload'); ?>
 <!-- eof upload alerts -->
+<?php if ($messageStack->size('main_content') > 0) echo $messageStack->output('main_content'); ?>
 
 <?php
  /**
   * prepares and displays center column
   *
   */
- require($body_code); ?>
+ require($body_code);
+?>
 
 <?php
   if (SHOW_BANNERS_GROUP_SET4 != '' && $banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET4)) {
     if ($banner->RecordCount() > 0) {
 ?>
-<div id="bannerFour" class="banners"><?php echo zen_display_banner('static', $banner); ?></div>
+    <div id="bannerFour" class="banners"><?php echo zen_display_banner('static', $banner); ?></div>
 <?php
     }
   }
@@ -148,14 +159,14 @@ if (COLUMN_RIGHT_STATUS == 0 || (CUSTOMERS_APPROVAL == '1' and !zen_is_logged_in
 }
 if (!isset($flag_disable_right) || !$flag_disable_right) {
 ?>
-<td id="navColumnTwo" class="columnRight" style="width: <?php echo COLUMN_WIDTH_RIGHT; ?>">
+<td id="navColumnTwo" class="columnRight" style="width: <?php echo (int)COLUMN_WIDTH_RIGHT; ?>"px>
 <?php
  /**
   * prepares and displays right column sideboxes
   *
   */
 ?>
-<div id="navColumnTwoWrapper" style="width: <?php echo BOX_WIDTH_RIGHT; ?>"><?php require(DIR_WS_MODULES . zen_get_module_directory('column_right.php')); ?></div></td>
+<div id="navColumnTwoWrapper" style="width: <?php echo (int)BOX_WIDTH_RIGHT; ?>"px><?php require(DIR_WS_MODULES . zen_get_module_directory('column_right.php')); ?></div></td>
 <?php
 }
 ?>
@@ -186,20 +197,52 @@ if (!isset($flag_disable_right) || !$flag_disable_right) {
 ?>
 <!--eof- banner #6 display -->
 <?php
-/**                                                                                                                                                                                                       
+/**
 * load the loader JS files
 */
 if(!empty($RC_loader_files)){
+  foreach($RC_loader_files['css'] as $RC_order=>$file){
+		if ($file['defer']) {
+			if($file['include']) {
+					include($file['src']);
+			} else if (!$RI_CJLoader->get('minify_css') || $file['external']) {
+					//$link = $file['src'];
+					echo '
+					<script type="text/javascript" async>
+						var elm = document.createElement("link");
+						elm.rel = "stylesheet";
+						elm.type = "text/css";
+						elm.href = "'.$file['src'] .'";
+						
+						var links = document.getElementsByTagName("link")[0];
+						links.parentNode.appendChild(elm);
+					</script>';
+			} else {
+					//$link = 'min/?f='.$file['src'].'&'.$RI_CJLoader->get('minify_time');
+					echo '
+					<script type="text/javascript" async>
+						var elm = document.createElement("link");
+						elm.rel = "stylesheet";
+						elm.type = "text/css";
+						elm.href = "extras/min/?f='.$file['src'].'&'.$RI_CJLoader->get('minify_time').'";
+						
+						var links = document.getElementsByTagName("link")[0];
+						links.parentNode.appendChild(elm);
+					</script>';
+			}
+		}
+	}
+
   foreach($RC_loader_files['jscript'] as $file)
     if($file['include']) {
       include($file['src']);
     } else if(!$RI_CJLoader->get('minify_js') || $file['external']) {
-      echo '<script type="text/javascript" src="'.$file['src'].'"></script>'."\n";
+      echo '<script type="text/javascript" src="'.$file['src'].'"'.($file['defer'] ? ' defer async': '').'></script>'."\n";
+
     } else {
-      echo '<script type="text/javascript" src="extras/min/?f='.$file['src'].'&'.$RI_CJLoader->get('minify_time').'"></script>'."\n";
+      echo '<script type="text/javascript" src="extras/min/?f='.$file['src'].'&'.$RI_CJLoader->get('minify_time').'"'.($file['defer'] ? ' defer async': '').'></script>'."\n";
     }
 }
-//DEBUG: echo '';
 ?>
 <?php 
 if ((GOOGLE_ANALYTICS_ENABLED == "Enabled") && (GOOGLE_ANALYTICS_TRACKING_TYPE != "Asynchronous")) {

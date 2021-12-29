@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: popup_iamge.php 732 2020-01-18 09:49:16Z webchills $
+ * @version $Id: popup_image.php 2021-10-24 18:21:16Z webchills $
  */
 
   require('includes/application_top.php');

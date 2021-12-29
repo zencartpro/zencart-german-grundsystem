@@ -2,17 +2,18 @@
 /**
  * Side Box Template
  *
- * @package templateSystem
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_shopping_cart.php 730 2020-01-17 15:49:16Z webchills $
+ * @version $Id: tpl_shopping_cart.php 2021-12-28 12:21:16Z webchills $
  */
   $content ="";
 
   $content .= '<div id="' . str_replace('_', '-', $box_id . 'Content') . '" class="sideBoxContent">';
   if ($_SESSION['cart']->count_contents() > 0) {
-  $content .= '<div id="cartBoxListWrapper">' . "\n" . '<ul>' . "\n";
+  $content .= '<div id="cartBoxListWrapper">' . "\n" . '<ul class="list-links">' . "\n";
     $products = $_SESSION['cart']->get_products();
     for ($i=0, $n=sizeof($products); $i<$n; $i++) {
       $content .= '<li>';

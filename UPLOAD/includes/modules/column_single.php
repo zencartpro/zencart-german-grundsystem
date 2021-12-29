@@ -3,10 +3,11 @@
  * column_single module 
  *
  * @package templateStructure
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: column_single.php 731 2020-02-29 21:49:16Z webchills $
+ * @version $Id: column_single.php 2020-02-29 21:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');

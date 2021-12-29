@@ -6,92 +6,62 @@
  * and uses this this to constuct the InitSysytem. 
  * see {@link http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem} for more details.
  *
- * @package initSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: autoload_func.php 732 2019-04-14 18:25:16Z webchills $
+ * @version $Id: autoload_func.php 2021-11-29 21:25:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
-//reset($autoLoadConfig); // Not needed for foreach
-ksort($autoLoadConfig);
-foreach ($autoLoadConfig as $actionPoint => $row) {
-  $debugOutput = "";
-  foreach($row as $entry) {
-    $debugOutput = 'actionPoint=>'.$actionPoint . ' ';
-//    $entry['loadFile'] = str_replace(array(':', '\\\\'), '', $entry['loadFile']);
-    switch($entry['autoType']) {
-      case 'include':
-      /**
-       * include a file as specified by autoloader array
-       */
-      if (file_exists($entry['loadFile'])) include($entry['loadFile']); else $debugOutput .= 'FAILED: ';
-      $debugOutput .= 'include(\'' . $entry['loadFile'] . '\');' . '<br />';
-      break;
-      case 'require':
-      /**
-       * require a file as specified by autoloader array
-       */
-      if (file_exists($entry['loadFile'])) require($entry['loadFile']); else $debugOutput .= 'FAILED: ';
-      $debugOutput .= 'require(\'' . $entry['loadFile'] . '\');' . '<br />';
-      break;
-      case 'init_script':
-      $baseDir = DIR_WS_INCLUDES . 'init_includes/';
-      if (file_exists(DIR_WS_INCLUDES . 'init_includes/overrides/' . $entry['loadFile'])) {
-        $baseDir = DIR_WS_INCLUDES . 'init_includes/overrides/';
-      }
-      /**
-       * include an init_script as specified by autoloader array
-       */
-      require($baseDir . $entry['loadFile']);
-      $debugOutput .= 'require(\'' . $baseDir . $entry['loadFile'] . '\');' . '<br />';
-      break;
-      case 'class':
-      if (isset($entry['classPath'])) {
-        $classPath = $entry['classPath'];
-      } else {
-        $classPath = DIR_FS_CATALOG . DIR_WS_CLASSES;
-      }
-      /**
-       * include a class definition as specified by autoloader array
-       */
-      if (file_exists($classPath . $entry['loadFile'])) include($classPath . $entry['loadFile']); else $debugOutput .= 'FAILED: ';
-      $debugOutput .= 'include(\'' . $classPath . $entry['loadFile'] . '\');' . '<br />';
-      break;
-      case 'classInstantiate':
-      $objectName = $entry['objectName'];
-      $className = $entry['className'];
-      if (isset($entry['classSession']) && $entry['classSession'] === true) {
-        if (isset($entry['checkInstantiated']) && $entry['checkInstantiated'] === true) {
-          if (!isset($_SESSION[$objectName])) {
-            $_SESSION[$objectName] = new $className();
-            $debugOutput .= 'if (!$_SESSION[' . $objectName . ']) { ';
-            $debugOutput .= '$_SESSION[' . $objectName . '] = new ' . $className . '();';
-            $debugOutput .= ' }<br />';
-          }
-        } else {
-          $_SESSION[$objectName] = new $className();
-          $debugOutput .= '  $_SESSION[' . $objectName . '] = new ' . $className . '();<br />';
-        }
-      } else {
-        $$objectName = new $className();
-        $debugOutput .= '$' . $objectName . ' = new ' . $className . '();<br />';
-      }
-      break;
-      case 'objectMethod':
-      $objectName = $entry['objectName'];
-      $methodName = $entry['methodName'];
-      if (is_object($_SESSION[$objectName])) {
-        $_SESSION[$objectName]->$methodName();
-        $debugOutput .= '$_SESSION[' . $objectName . ']->' . $methodName . '();<br />';
-      } else {
-        ${$objectName}->$methodName();
-        $debugOutput .= '$' . $objectName . '->' . $methodName . '();<br />';
-      }
-      break;
+$debugAutoload = false;
+if (defined('DEBUG_AUTOLOAD') && DEBUG_AUTOLOAD == true) $debugAutoload = true;
+if ($debugAutoload) print_r($initSystemList);
+foreach ($initSystemList as $entry) {
+    switch ($entry['type']) {
+        case 'include':
+            if ($entry['forceLoad']) {
+                if ($debugAutoload) echo 'case "include": ' . $entry['filePath'] . "<br>\n";
+                include $entry['filePath'];
+            } else {
+                if ($debugAutoload) echo 'case "include_once": ' . $entry['filePath'] . "<br>\n";
+                include_once $entry['filePath'];
+            }
+            break;
+        case 'require':
+            if ($entry['forceLoad']) {
+                if ($debugAutoload) echo 'case "require": ' . $entry['filePath'] . "<br>\n";
+                require $entry['filePath'];
+            } else {
+                if ($debugAutoload) echo 'case "require_once": ' . $entry['filePath'] . "<br>\n";
+                require_once $entry['filePath'];
+            }
+            break;
+        case 'class':
+            if ($debugAutoload) echo 'case "class": ' . $entry['class'] . "<br>\n";
+            $objectName = $entry['object'];
+            $className = $entry['class'];
+            $$objectName = new $className();
+            break;
+        case 'sessionClass':
+            if ($debugAutoload)  'case "sessionClass": ' . $entry['class'] . "<br>\n";
+            $objectName = $entry['object'];
+            $className = $entry['class'];
+            if (!$entry['checkInstantiated'] || !isset($_SESSION[$objectName])) {
+                $_SESSION[$objectName] = new $className();
+            }
+            break;
+        case 'objectMethod':
+            if ($debugAutoload) echo 'case "objectMethod": ' . '$entry[\'method\']=' . $entry['method'] . ', $entry[\'object\']=' . $entry['object'] . "<br>\n";
+            $objectName = $entry['object'];
+            $methodName = $entry['method'];
+              if (isset($_SESSION[$objectName]) && is_object($_SESSION[$objectName])) {
+                  $_SESSION[$objectName]->$methodName();
+              } else {
+                  ${$objectName}->$methodName();
+              }
+            break;
     }
-    if (DEBUG_AUTOLOAD === true) echo str_replace('<br />', '<br />' . "\n", $debugOutput);
-  }
 }

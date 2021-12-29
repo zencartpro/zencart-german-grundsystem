@@ -5,11 +5,12 @@
  * Loaded automatically by index.php?main_page=checkout_confirmation.<br />
  * Displays final checkout details, cart, payment and shipping info details.
  *
- * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_checkout_confirmation_default.php 2016-03-05 20:57:16Z webchills $
+ * @version $Id: tpl_checkout_confirmation_default.php 2021-12-27 19:57:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="checkoutConfirmDefault">
@@ -127,15 +128,19 @@
         <tr class="<?php echo $order->products[$i]['rowClass']; ?>">
           <td  class="cartQuantity"><?php echo $order->products[$i]['qty']; ?>&nbsp;x</td>
           <td class="cartProductDisplay"><?php echo $order->products[$i]['name']; ?>
-          	<br/><?php echo $order->products[$i]['merkmale']; ?>
-          <?php  echo $stock_check[$i]; ?>
+          	<br><?php echo $order->products[$i]['merkmale']; ?>
+          <?php  if (!empty($stock_check[$i])) echo $stock_check[$i]; ?>
 
 <?php // if there are attributes, loop thru them and display one per line
     if (isset($order->products[$i]['attributes']) && sizeof($order->products[$i]['attributes']) > 0 ) {
     echo '<ul class="cartAttribsList">';
       for ($j=0, $n2=sizeof($order->products[$i]['attributes']); $j<$n2; $j++) {
 ?>
-      <li><?php echo $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br(zen_output_string_protected($order->products[$i]['attributes'][$j]['value'])); ?></li>
+      <li>
+          <?php
+          echo $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br(zen_output_string_protected($order->products[$i]['attributes'][$j]['value']));
+          ?>
+      </li>
 <?php
       } // end loop
       echo '</ul>';

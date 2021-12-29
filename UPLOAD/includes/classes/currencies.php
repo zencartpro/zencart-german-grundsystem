@@ -1,12 +1,12 @@
 <?php
 /**
- * currencies Class.
+ * currencies class
  *
- * @package classes
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: currencies.php 733 2019-04-12 10:49:16Z webchills $
+ * @version $Id: currencies.php 2021-11-28 20:02:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -15,7 +15,6 @@ if (!defined('IS_ADMIN_FLAG')) {
 /**
  * currencies class
  *
- * @package classes
  */
 class currencies extends base
 {
@@ -53,7 +52,7 @@ class currencies extends base
      */
     function format($number, $calculate_using_exchange_rate = true, $currency_type = '', $currency_value = '')
     {
-        if (IS_ADMIN_FLAG === false && (DOWN_FOR_MAINTENANCE == 'true' && DOWN_FOR_MAINTENANCE_PRICES_OFF == 'true') && (!strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR']))) {
+        if (IS_ADMIN_FLAG === false && (DOWN_FOR_MAINTENANCE == 'true' && DOWN_FOR_MAINTENANCE_PRICES_OFF == 'true') && !zen_is_whitelisted_admin_ip()) {
             return '';
         }
 

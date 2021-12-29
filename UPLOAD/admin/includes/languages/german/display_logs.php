@@ -1,10 +1,11 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: display_logs.php 732 2019-06-16 17:49:16Z webchills $
+ * @version $Id: display_logs.php 2021-12-26 11:49:16Z webchills $
  */
 define('HEADING_TITLE', 'Logfiles anzeigen');
 define('TABLE_HEADING_FILENAME', 'Dateiname');
@@ -12,9 +13,9 @@ define('TABLE_HEADING_MODIFIED', 'geändert am');
 define('TABLE_HEADING_FILESIZE', 'Dateigröße (bytes)');
 define('TABLE_HEADING_DELETE', 'Löschen?');
 define('TABLE_HEADING_ACTION', 'Aktion');
-define('BUTTON_DELETE_SELECTED', 'button_delete_selected.gif');
+define('BUTTON_DELETE_SELECTED', 'ausgewählte löschen');
 define('DELETE_SELECTED_ALT', 'Alle ausgewählten Dateien löschen');
-define('BUTTON_DELETE_ALL', 'button_delete_all.gif');
+define('BUTTON_DELETE_ALL', 'alle löschen');
 define('DELETE_ALL_ALT', 'Lösche alle Dateien der aktuellen Ansicht');
 define('ICON_INFO_VIEW', 'Inhalt dieser Datei anzeigen');
 define('DISPLAY_DEBUG_LOGS_ONLY', 'Nur Debug Logs anzeigen?');

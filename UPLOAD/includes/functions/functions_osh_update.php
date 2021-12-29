@@ -2,11 +2,12 @@
 /**
  * functions_osh_update
  * Zen Cart German Specific
- * @package functions
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_osh_update.php 6 2019-10-05 10:20:42Z webchills $
+ * @version $Id: functions_osh_update.php 7 2021-11-28 20:41:42Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     exit('Invalid Access');
@@ -49,7 +50,7 @@ function zen_update_orders_history($orders_id, $message = '', $updated_by = null
     $email_subject = (string)$email_subject;
     $send_extra_emails_to = (string)$send_extra_emails_to;
     
-    $osh_info = $GLOBALS['db']->Execute(
+    $osh_info = $GLOBALS['db']->ExecuteNoCache(
         "SELECT customers_id, customers_name, customers_email_address, orders_status, date_purchased 
            FROM " . TABLE_ORDERS . " 
           WHERE orders_id = $orders_id

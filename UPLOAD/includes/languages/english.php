@@ -1,11 +1,12 @@
 <?php
 /**
  * Zen Cart German Specific
- * @package languageDefines
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: english.php 889 2020-03-12 07:57:32Z webchills $
+ * @version $Id: english.php 2021-12-03 17:20:32Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -14,15 +15,15 @@
 //define('CUSTOM_KEYWORDS', 'ecommerce, open source, shop, online shopping');
 // END: moved to meta_tags.php
 
-  define('FOOTER_TEXT_BODY', 'Copyright &copy; ' . date('Y') . ' <a href="' . zen_href_link(FILENAME_DEFAULT) . '">' . STORE_NAME . '</a>. Powered by <a href="https://www.zen-cart-pro.at" target="_blank">Zen Cart</a>');
+  define('FOOTER_TEXT_BODY', 'Copyright &copy; ' . date('Y') . ' <a href="' . zen_href_link(FILENAME_DEFAULT) . '">' . STORE_NAME . '</a>. Powered by <a href="https://www.zen-cart-pro.at" rel="noopener noreferrer" target="_blank">Zen Cart</a>');
 
 // look in your $PATH_LOCALE/locale directory for available locales..
-  $locales = array('en_US', 'en_US.utf8', 'en', 'English_United States.1252');
+  $locales = ['en_US', 'en_US.utf8', 'en', 'English_United States.1252'];
   @setlocale(LC_TIME, $locales);
-  define('DATE_FORMAT_SHORT', '%m/%d/%Y');  // this is used for strftime()
+
   define('DATE_FORMAT_LONG', '%A %d %B, %Y'); // this is used for strftime()
   define('DATE_FORMAT', 'm/d/Y'); // this is used for date()
-  define('DATE_TIME_FORMAT', DATE_FORMAT_SHORT . ' %H:%M:%S');
+
 
 ////
 // Return date in raw format
@@ -52,8 +53,7 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
 // charset for web pages and emails
   define('CHARSET', 'utf-8');
 
-// footer text in includes/footer.php
-  define('FOOTER_TEXT_REQUESTS_SINCE', 'requests since');
+
 
 // Define the name of your Gift Certificate as Gift Voucher, Gift Certificate, Zen Cart Dollars, etc. here for use through out the shop
   define('TEXT_GV_NAME','Gift Certificate');
@@ -62,15 +62,12 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
 // used for redeem code, redemption code, or redemption id
   define('TEXT_GV_REDEEM','Redemption Code');
 
-// used for redeem code sidebox
-  define('BOX_HEADING_GV_REDEEM', TEXT_GV_NAME);
-  define('BOX_GV_REDEEM_INFO', 'Redemption code: ');
+
 
 // text for gender
   define('MALE', 'Mr.');
   define('FEMALE', 'Ms.');
-  define('MALE_ADDRESS', 'Mr.');
-  define('FEMALE_ADDRESS', 'Ms.');
+
 
 // text for date of birth example
   define('DOB_FORMAT_STRING', 'mm/dd/yyyy');
@@ -119,7 +116,7 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
 
 // best_sellers box text in sideboxes/best_sellers.php
   define('BOX_HEADING_BESTSELLERS', 'Bestsellers');
-  define('BOX_HEADING_BESTSELLERS_IN', 'Bestsellers in<br />&nbsp;&nbsp;');
+
 
 // notifications box text in sideboxes/products_notifications.php
   define('BOX_HEADING_NOTIFICATIONS', 'Notifications');
@@ -159,7 +156,7 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
 
 //New billing address text
   define('SET_AS_PRIMARY' , 'Set as Primary Address');
-  define('NEW_ADDRESS_TITLE', 'Billing Address');
+
 
 // javascript messages
   define('JS_ERROR', 'Errors have occurred during the processing of your form.\n\nPlease make the following corrections:\n\n');
@@ -177,11 +174,7 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
 
   define('CATEGORY_COMPANY', 'Company Details');
   define('CATEGORY_PERSONAL', 'Your Personal Details');
-  define('CATEGORY_ADDRESS', 'Your Address');
-  define('CATEGORY_CONTACT', 'Your Contact Information');
-  define('CATEGORY_OPTIONS', 'Options');
-  define('CATEGORY_PASSWORD', 'Your Password');
-  define('CATEGORY_LOGIN', 'Login');
+
   define('PULL_DOWN_DEFAULT', 'Please Choose Your Country');
   define('PLEASE_SELECT', 'Please select ...');
   define('TYPE_BELOW', 'Type a choice below ...');
@@ -211,12 +204,12 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
   define('ENTRY_NICK', 'Forum Nick Name:');
   define('ENTRY_NICK_TEXT', '*'); // note to display beside nickname input field
   define('ENTRY_NICK_DUPLICATE_ERROR', 'That Nick Name is already being used. Please try another.');
-  define('ENTRY_NICK_LENGTH_ERROR', 'Please try again. Your Nick Name must contain at least ' . ENTRY_NICK_MIN_LENGTH . ' characters.');
+  
   define('ENTRY_STREET_ADDRESS', 'Street Address:');
   define('ENTRY_STREET_ADDRESS_ERROR', 'Your Street Address must contain a minimum of ' . ENTRY_STREET_ADDRESS_MIN_LENGTH . ' characters.');
   define('ENTRY_STREET_ADDRESS_TEXT', '*');
   define('ENTRY_SUBURB', 'Address Line 2:');
-  define('ENTRY_SUBURB_ERROR', '');
+
   define('ENTRY_SUBURB_TEXT', '');
   define('ENTRY_POST_CODE', 'Post/Zip Code:');
   define('ENTRY_POST_CODE_ERROR', 'Your Post/ZIP Code must contain a minimum of ' . ENTRY_POSTCODE_MIN_LENGTH . ' characters.');
@@ -230,7 +223,7 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
   define('ENTRY_STATE_ERROR', 'Your State must contain a minimum of ' . ENTRY_STATE_MIN_LENGTH . ' characters.');
   define('ENTRY_STATE_ERROR_SELECT', 'Please select a state from the States pull down menu.');
   define('ENTRY_STATE_TEXT', '*');
-  define('JS_STATE_SELECT', '-- Please Choose --');
+
   define('ENTRY_COUNTRY', 'Country:');
   define('ENTRY_COUNTRY_ERROR', 'You must select a country from the Countries pull down menu.');
   define('ENTRY_COUNTRY_TEXT', '*');
@@ -238,13 +231,11 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
   define('ENTRY_TELEPHONE_NUMBER_ERROR', 'Your Telephone Number must contain a minimum of ' . ENTRY_TELEPHONE_MIN_LENGTH . ' characters.');
   define('ENTRY_TELEPHONE_NUMBER_TEXT', '*');
   define('ENTRY_FAX_NUMBER', 'Fax Number:');
-  define('ENTRY_FAX_NUMBER_ERROR', '');
+  
   define('ENTRY_FAX_NUMBER_TEXT', '');
   define('ENTRY_NEWSLETTER', 'Subscribe to Our Newsletter.');
   define('ENTRY_NEWSLETTER_TEXT', '');
-  define('ENTRY_NEWSLETTER_YES', 'Subscribed');
-  define('ENTRY_NEWSLETTER_NO', 'Unsubscribed');
-  define('ENTRY_NEWSLETTER_ERROR', '');
+
   define('ENTRY_PASSWORD', 'Password:');
   define('ENTRY_PASSWORD_ERROR', 'Your Password must contain a minimum of ' . ENTRY_PASSWORD_MIN_LENGTH . ' characters.');
   define('ENTRY_PASSWORD_ERROR_NOT_MATCHING', 'The Password Confirmation must match your Password.');
@@ -253,12 +244,12 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
   define('ENTRY_PASSWORD_CONFIRMATION_TEXT', '*');
   define('ENTRY_PASSWORD_CURRENT', 'Current Password:');
   define('ENTRY_PASSWORD_CURRENT_TEXT', '*');
-  define('ENTRY_PASSWORD_CURRENT_ERROR', 'Your Password must contain a minimum of ' . ENTRY_PASSWORD_MIN_LENGTH . ' characters.');
+ 
   define('ENTRY_PASSWORD_NEW', 'New Password:');
   define('ENTRY_PASSWORD_NEW_TEXT', '*');
   define('ENTRY_PASSWORD_NEW_ERROR', 'Your new Password must contain a minimum of ' . ENTRY_PASSWORD_MIN_LENGTH . ' characters.');
   define('ENTRY_PASSWORD_NEW_ERROR_NOT_MATCHING', 'The Password Confirmation must match your new Password.');
-  define('PASSWORD_HIDDEN', '--HIDDEN--');
+
 
   define('FORM_REQUIRED_INFORMATION', '* Required information');
   define('ENTRY_REQUIRED_SYMBOL', '*');
@@ -274,17 +265,27 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
   define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_FEATURED_PRODUCTS', 'Displaying <strong>%d</strong> to <strong>%d</strong> (of <strong>%d</strong> featured products)');
   define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_ALL', 'Displaying <strong>%d</strong> to <strong>%d</strong> (of <strong>%d</strong> products)');
 
-  define('PREVNEXT_TITLE_FIRST_PAGE', 'First Page');
+ 
   define('PREVNEXT_TITLE_PREVIOUS_PAGE', 'Previous Page');
   define('PREVNEXT_TITLE_NEXT_PAGE', 'Next Page');
-  define('PREVNEXT_TITLE_LAST_PAGE', 'Last Page');
+
   define('PREVNEXT_TITLE_PAGE_NO', 'Page %d');
   define('PREVNEXT_TITLE_PREV_SET_OF_NO_PAGE', 'Previous Set of %d Pages');
   define('PREVNEXT_TITLE_NEXT_SET_OF_NO_PAGE', 'Next Set of %d Pages');
-  define('PREVNEXT_BUTTON_FIRST', '&laquo;FIRST');
+
   define('PREVNEXT_BUTTON_PREV', '[&laquo;&nbsp;Prev]');
   define('PREVNEXT_BUTTON_NEXT', '[Next&nbsp;&raquo;]');
-  define('PREVNEXT_BUTTON_LAST', 'LAST&raquo;');
+define('ARIA_PAGINATION_ROLE_LABEL_GENERAL','Pagination');
+define('ARIA_PAGINATION_ROLE_LABEL_FOR','%s Pagination'); // eg: "Search results Pagination"
+define('ARIA_PAGINATION_PREVIOUS_PAGE','Go to Previous Page');
+define('ARIA_PAGINATION_NEXT_PAGE','Go to Next Page');
+define('ARIA_PAGINATION_CURRENT_PAGE','Current Page');
+define('ARIA_PAGINATION_CURRENTLY_ON',', now on page %s');
+define('ARIA_PAGINATION_GOTO','Go to ');
+define('ARIA_PAGINATION_PAGE_NUM','Page %s');
+define('ARIA_PAGINATION_ELLIPSIS_PREVIOUS','Get previous group of pages');
+define('ARIA_PAGINATION_ELLIPSIS_NEXT','Get next group of pages');
+define('ARIA_PAGINATION_','');
 
   define('TEXT_BASE_PRICE','Starting at: ');
 
@@ -296,8 +297,7 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
   define('TEXT_BY', ' by ');
 
   define('TEXT_REVIEW_BY', 'by %s');
-  define('TEXT_REVIEW_WORD_COUNT', '%s words');
-  define('TEXT_REVIEW_RATING', 'Rating: %s [%s]');
+
   define('TEXT_REVIEW_DATE_ADDED', 'Date Added: %s');
   define('TEXT_NO_REVIEWS', 'There are currently no product reviews.');
 
@@ -305,16 +305,7 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
 
   define('TEXT_UNKNOWN_TAX_RATE', 'Sales Tax');
 
-  define('TEXT_REQUIRED', '<span class="errorText">Required</span>');
-
-  define('WARNING_INSTALL_DIRECTORY_EXISTS', 'SECURITY WARNING: Installation directory exists at: %s. Please remove this directory for security reasons.');
-  define('WARNING_CONFIG_FILE_WRITEABLE', 'Warning: I am able to write to the configuration file: %s. This is a potential security risk - please set the right user permissions on this file (read-only, CHMOD 644 or 444 are typical). You may need to use your webhost control panel/file-manager to change the permissions effectively. Contact your webhost for assistance. <a href="http://tutorials.zen-cart.com/index.php?article=90" target="_blank">See this FAQ</a>');
-  define('ERROR_FILE_NOT_REMOVEABLE', 'Error: Could not remove the file specified. You may have to use FTP to remove the file, due to a server-permissions configuration limitation.');
-  define('WARNING_SESSION_AUTO_START', 'Warning: session.auto_start is enabled - please disable this PHP feature in php.ini and restart the web server.');
-  define('WARNING_DOWNLOAD_DIRECTORY_NON_EXISTENT', 'Warning: The downloadable products directory does not exist: ' . DIR_FS_DOWNLOAD . '. Downloadable products will not work until this directory is valid.');
-  define('WARNING_SQL_CACHE_DIRECTORY_NON_EXISTENT', 'Warning: The SQL cache directory does not exist: ' . DIR_FS_SQL_CACHE . '. SQL caching will not work until this directory is created.');
-  define('WARNING_SQL_CACHE_DIRECTORY_NOT_WRITEABLE', 'Warning: I am not able to write to the SQL cache directory: ' . DIR_FS_SQL_CACHE . '. SQL caching will not work until the right user permissions are set.');
-  define('WARNING_DATABASE_VERSION_OUT_OF_DATE', 'Your database appears to need patching to a higher level. See Admin->Tools->Server Information to review patch levels.');
+  
   define('WARNING_COULD_NOT_LOCATE_LANG_FILE', 'WARNING: Could not locate language file: ');
 
   define('TEXT_CCVAL_ERROR_INVALID_DATE', 'The expiration date entered for the credit card is invalid. Please check the date and try again.');
@@ -330,16 +321,6 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
   define('ERROR_NO_REDEEM_CODE', 'You did not enter a ' . TEXT_GV_REDEEM . '.');
   define('ERROR_NO_INVALID_REDEEM_GV', 'Invalid ' . TEXT_GV_NAME . ' ' . TEXT_GV_REDEEM);
   define('TABLE_HEADING_CREDIT', 'Credits Available');
-  define('GV_HAS_VOUCHERA', 'You have funds in your ' . TEXT_GV_NAME . ' Account. If you want <br />
-                           you can send those funds by <a class="pageResults" href="');
-
-  define('GV_HAS_VOUCHERB', '"><strong>email</strong></a> to someone');
-  define('ENTRY_AMOUNT_CHECK_ERROR', 'You do not have enough funds to send this amount.');
-  define('BOX_SEND_TO_FRIEND', 'Send ' . TEXT_GV_NAME . ' ');
-
-  define('VOUCHER_REDEEMED',  TEXT_GV_NAME . ' Redeemed');
-  define('CART_COUPON', 'Coupon :');
-  define('CART_COUPON_INFO', 'more info');
   define('TEXT_SEND_OR_SPEND','You have a balance available in your ' . TEXT_GV_NAME . ' account. You may spend it or send it to someone else. To send click the button below.');
   define('TEXT_BALANCE_IS', 'Your ' . TEXT_GV_NAME . ' balance is: ');
   define('TEXT_AVAILABLE_BALANCE', 'Your ' . TEXT_GV_NAME . ' Account');
@@ -361,9 +342,7 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
   define('TEXT_INVALID_USES_COUPON', 'Coupon "%1$s" has already been used the maximum permitted times (%2$u).');
   define('TEXT_INVALID_USES_USER_COUPON', 'You have used Coupon "%1$s" the maximum number of times allowed per customer (%2$u).');
   define('TEXT_REMOVE_REDEEM_COUPON_ZONE', 'The Coupon "%s" is not valid for the address you have selected.');
-  define('REDEEMED_COUPON', 'a coupon worth ');
-  define('REDEEMED_MIN_ORDER', 'on orders over ');
-  define('REDEEMED_RESTRICTIONS', ' [Product-Category restrictions apply]');
+
   define('TEXT_ERROR', 'An error has occurred');
 
   define('TEXT_VALID_COUPON', 'Congratulations you have redeemed the Discount Coupon');
@@ -381,6 +360,9 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
 // cart contents
   define('PRODUCTS_ORDER_QTY_TEXT_IN_CART','Quantity in Cart: ');
   define('PRODUCTS_ORDER_QTY_TEXT','Add to Cart: ');
+  define('ARIA_QTY_ADD_TO_CART','Enter quantity to add to cart');
+  define('ARIA_EDIT_QTY_IN_CART','Edit quantity in cart');
+  define('ARIA_DELETE_ITEM_FROM_CART', 'Delete this item from the cart');
 
 // success messages for added to cart when display cart is off
 // set to blank for no messages
@@ -439,7 +421,7 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
   define('ERROR_FILE_NOT_SAVED', 'Error:  File not saved.');
   define('ERROR_DESTINATION_NOT_WRITEABLE', 'Error:  destination not writeable.');
   define('ERROR_DESTINATION_DOES_NOT_EXIST', 'Error: destination does not exist.');
-  define('ERROR_FILE_TOO_BIG', 'Warning: File was too large to upload!<br />Order can be placed but please contact us for help with upload');
+  define('ERROR_FILE_TOO_BIG', 'Warning: File was too large to upload!<br>Order can be placed but please contact us for help with upload');
 // End iii added
 
   define('TEXT_BEFORE_DOWN_FOR_MAINTENANCE', 'NOTICE: This website is scheduled to be down for maintenance on: ');
@@ -451,13 +433,12 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
 
   define('TEXT_INVALID_SELECTION',' You picked an Invalid Selection: ');
   define('TEXT_ERROR_OPTION_FOR',' On the Option for: ');
-  define('TEXT_INVALID_USER_INPUT', 'User Input Required<br />');
+  define('TEXT_INVALID_USER_INPUT', 'User Input Required<br>');
 
 // product_listing
   define('PRODUCTS_QUANTITY_MIN_TEXT_LISTING','Min: ');
   define('PRODUCTS_QUANTITY_UNIT_TEXT_LISTING','Units: ');
-  define('PRODUCTS_QUANTITY_IN_CART_LISTING','In cart:');
-  define('PRODUCTS_QUANTITY_ADD_ADDITIONAL_LISTING','Add Additional:');
+
 
   define('PRODUCTS_QUANTITY_MAX_TEXT_LISTING','Max:');
   define('TEXT_PRODUCT_MODEL', 'Model: ');
@@ -466,12 +447,12 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
   define('TEXT_PRODUCTS_MIX_OFF','*Mixed OFF');
   define('TEXT_PRODUCTS_MIX_ON','*Mixed ON');
 
-  define('TEXT_PRODUCTS_MIX_OFF_SHOPPING_CART','<br />*You can not mix the options on this item to meet the minimum quantity requirement.*<br />');
-  define('TEXT_PRODUCTS_MIX_ON_SHOPPING_CART','*Mixed Option Values is ON<br />');
+  define('TEXT_PRODUCTS_MIX_OFF_SHOPPING_CART','<br>*You can not mix the options on this item to meet the minimum quantity requirement.*<br>');
+  define('TEXT_PRODUCTS_MIX_ON_SHOPPING_CART','*Mixed Option Values is ON<br>');
 
-  define('ERROR_MAXIMUM_QTY','The quantity added to your cart has been adjusted because of a restriction on maximum you are allowed. See this item:<br />');
-  define('ERROR_CORRECTIONS_HEADING','Please correct the following: <br />');
-  define('ERROR_QUANTITY_ADJUSTED', 'The quantity added to your cart has been adjusted. The item you wanted is not available in fractional quantities. The quantity of item:<br />');
+  define('ERROR_MAXIMUM_QTY','The quantity added to your cart has been adjusted because of a restriction on maximum you are allowed. See this item:<br>');
+  define('ERROR_CORRECTIONS_HEADING','Please correct the following: <br>');
+  define('ERROR_QUANTITY_ADJUSTED', 'The quantity added to your cart has been adjusted. The item you wanted is not available in fractional quantities. The quantity of item:<br>');
   define('ERROR_QUANTITY_CHANGED_FROM', ', has been changed from: ');
   define('ERROR_QUANTITY_CHANGED_TO', ' to ');
 
@@ -483,14 +464,14 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
   define('TEXT_FILESIZE_UNKNOWN', 'Unknown');
 
 // shopping cart errors
-  define('ERROR_PRODUCT','<br />The item: ');
-  define('ERROR_PRODUCT_STATUS_SHOPPING_CART','<br />We are sorry but this product has been removed from our inventory at this time.<br />This item has been removed from your shopping cart.');
-  define('ERROR_PRODUCT_ATTRIBUTES','<br />The item: ');
-  define('ERROR_PRODUCT_STATUS_SHOPPING_CART_ATTRIBUTES','<br />We are sorry but selected options have changed for this product and have been removed from our inventory at this time.<br />This item has been removed from your shopping cart.');
+  define('ERROR_PRODUCT','<br>The item: ');
+  define('ERROR_PRODUCT_STATUS_SHOPPING_CART','<br>We are sorry but this product has been removed from our inventory at this time.<br>This item has been removed from your shopping cart.');
+  define('ERROR_PRODUCT_ATTRIBUTES','<br>The item: ');
+  define('ERROR_PRODUCT_STATUS_SHOPPING_CART_ATTRIBUTES','<br>We are sorry but selected options have changed for this product and have been removed from our inventory at this time.<br>This item has been removed from your shopping cart.');
   define('ERROR_PRODUCT_QUANTITY_MIN',',  ... Minimum Quantity errors - ');
   define('ERROR_PRODUCT_QUANTITY_UNITS',' ... Quantity Units errors - ');
-  define('ERROR_PRODUCT_OPTION_SELECTION','<br /> ... Invalid Option Values Selected ');
-  define('ERROR_PRODUCT_QUANTITY_ORDERED','<br /> You ordered a total of: ');
+  define('ERROR_PRODUCT_OPTION_SELECTION','<br> ... Invalid Option Values Selected ');
+  define('ERROR_PRODUCT_QUANTITY_ORDERED','<br> You ordered a total of: ');
   define('ERROR_PRODUCT_QUANTITY_MAX',' ... Maximum Quantity errors - ');
   define('ERROR_PRODUCT_QUANTITY_MIN_SHOPPING_CART',', has a minimum quantity restriction. ');
   define('ERROR_PRODUCT_QUANTITY_UNITS_SHOPPING_CART',' ... Quantity Units errors - ');
@@ -498,11 +479,11 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
 
   define('WARNING_SHOPPING_CART_COMBINED', 'NOTICE: For your convenience, your current shopping cart has been combined with your shopping cart from your last visit. Please review your shopping cart before checking out.');
   define('WARNING_PRODUCT_QUANTITY_ADJUSTED', 'Quantity has been adjusted to what is in stock. ');
-  define('OUT_OF_STOCK_CANT_CHECKOUT', 'Products marked with ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' are out of stock or there are not enough in stock to fill your order.<br />Please change the quantity of products marked with (' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . '). Thank you');
-  define('OUT_OF_STOCK_CAN_CHECKOUT', 'Products marked with ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' are out of stock.<br />Items not in stock will be placed on backorder.');
+  define('OUT_OF_STOCK_CANT_CHECKOUT', 'Products marked with ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' are out of stock or there are not enough in stock to fill your order.<br>Please change the quantity of products marked with (' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . '). Thank you');
+  define('OUT_OF_STOCK_CAN_CHECKOUT', 'Products marked with ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' are out of stock.<br>Items not in stock will be placed on backorder.');
 
 // error on checkout when $_SESSION['customers_id' does not exist in customers table
-  define('ERROR_CUSTOMERS_ID_INVALID', 'Customer information cannot be validated!<br />Please login or recreate your account ...');
+  define('ERROR_CUSTOMERS_ID_INVALID', 'Customer information cannot be validated!<br>Please login or recreate your account ...');
 
   define('TABLE_HEADING_FEATURED_PRODUCTS','Featured Products');
 
@@ -512,10 +493,11 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
   define('TABLE_HEADING_SPECIALS_INDEX', 'Monthly Specials For %s');
 
   define('CAPTION_UPCOMING_PRODUCTS','These items will be in stock soon');
-  define('SUMMARY_TABLE_UPCOMING_PRODUCTS','table contains a list of products that are due to be in stock soon and the dates the items are expected');
+ 
 
 // meta tags special defines
   define('META_TAG_PRODUCTS_PRICE_IS_FREE_TEXT','It\'s Free!');
+  define('ASK_A_QUESTION', 'Ask a question about this item');
 
 // customer login
   define('TEXT_SHOWCASE_ONLY','Contact Us');
@@ -534,10 +516,10 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
 
 // text pricing
   define('TEXT_CHARGES_WORD','Calculated Charge:');
-  define('TEXT_PER_WORD','<br />Price per word: ');
+  define('TEXT_PER_WORD','<br>Price per word: ');
   define('TEXT_WORDS_FREE',' Word(s) free ');
   define('TEXT_CHARGES_LETTERS','Calculated Charge:');
-  define('TEXT_PER_LETTER','<br />Price per letter: ');
+  define('TEXT_PER_LETTER','<br>Price per letter: ');
   define('TEXT_LETTERS_FREE',' Letter(s) free ');
   define('TEXT_ONETIME_CHARGES','*onetime charges = ');
   define('TEXT_ONETIME_CHARGES_EMAIL',"\t" . '*onetime charges = ');
@@ -548,26 +530,21 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
 
 // textarea attribute input fields
   define('TEXT_MAXIMUM_CHARACTERS_ALLOWED',' maximum characters allowed');
-  define('TEXT_REMAINING','remaining');
 
 // Shipping Estimator
   define('CART_SHIPPING_OPTIONS', 'Estimate Shipping Costs');
-  define('CART_SHIPPING_OPTIONS_LOGIN', 'Please <a href="' . zen_href_link(FILENAME_LOGIN, '', 'SSL') . '"><span class="pseudolink">Log In</span></a>, to display your personal shipping costs.');
   define('CART_SHIPPING_METHOD_TEXT', 'Available Shipping Methods');
   define('CART_SHIPPING_METHOD_RATES', 'Rates');
   define('CART_SHIPPING_METHOD_TO','Ship to: ');
-  define('CART_SHIPPING_METHOD_TO_NOLOGIN', 'Ship to: <a href="' . zen_href_link(FILENAME_LOGIN, '', 'SSL') . '"><span class="pseudolink">Log In</span></a>');
   define('CART_SHIPPING_METHOD_FREE_TEXT','Free Shipping');
   define('CART_SHIPPING_METHOD_ALL_DOWNLOADS','- Downloads');
-  define('CART_SHIPPING_METHOD_RECALCULATE','Recalculate');
   define('CART_SHIPPING_METHOD_ZIP_REQUIRED','true');
   define('CART_SHIPPING_METHOD_ADDRESS','Address:');
-  define('CART_OT','Total Cost Estimate:');
-  define('CART_OT_SHOW','true'); // set to false if you don't want order totals
+  
   define('CART_ITEMS','Items in Cart: ');
-  define('CART_SELECT','Select');
+
   define('ERROR_CART_UPDATE', '<strong>Please update your order.</strong> ');
-  define('IMAGE_BUTTON_UPDATE_CART', 'Update');
+ 
   define('EMPTY_CART_TEXT_NO_QUOTE', 'Whoops! Your session has expired ... Please update your shopping cart for Shipping Quote ...');
   define('CART_SHIPPING_QUOTE_CRITERIA', 'Shipping quotes are based on the address information you selected:');
 
@@ -594,7 +571,7 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
   define('TEXT_INFO_SORT_BY_PRODUCTS_MODEL', 'Model');
   define('TEXT_INFO_SORT_BY_PRODUCTS_DATE_DESC', 'Date Added - New to Old');
   define('TEXT_INFO_SORT_BY_PRODUCTS_DATE', 'Date Added - Old to New');
-  define('TEXT_INFO_SORT_BY_PRODUCTS_SORT_ORDER', 'Default Display');
+
 
 // downloads module defines
   define('TABLE_HEADING_DOWNLOAD_DATE', 'Link Expires');
@@ -607,7 +584,7 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
   define('TEXT_DOWNLOADS_UNLIMITED_COUNT', '--- *** ---');
 
 // misc
-  define('COLON_SPACER', ':&nbsp;&nbsp;');
+
   define('PAYMENT_JAVASCRIPT_DISABLED', 'We could not continue with checkout as Javascript is disabled. You must enable it to continue');
 
 // table headings for cart display and upcoming products
@@ -633,7 +610,7 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
   define('EMAIL_SEND_FAILED','ERROR: Failed sending email to: "%s" <%s> with subject: "%s"');
 
   define('DB_ERROR_NOT_CONNECTED', 'Error - Could not connect to Database');
-  define('ERROR_DATABASE_MAINTENANCE_NEEDED', '<a href="http://www.zen-cart.com/content.php?334-ERROR-0071-There-appears-to-be-a-problem-with-the-database-Maintenance-is-required" target="_blank">ERROR 0071: There appears to be a problem with the database. Maintenance is required.</a>');
+  define('ERROR_DATABASE_MAINTENANCE_NEEDED', '<a href="https://docs.zen-cart.com/user/troubleshooting/error_71_maintenance_required/" rel="noopener" target="_blank">ERROR 0071 There appears to be a problem with the database. Maintenance is required.</a>');
 
   // EZ-PAGES Alerts
   define('TEXT_EZPAGES_STATUS_HEADER_ADMIN', 'WARNING: EZ-PAGES HEADER - On for Admin IP Only');
@@ -644,12 +621,25 @@ define('HTML_PARAMS','dir="ltr" lang="en"');
   define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER', '');
   define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES', 'Items starting with ...');
   define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES_RESET', '-- Reset --');
+// The following message, with the associated severity, is displayed in the storefront header when an admin has logged into
+// a customer's account.
 
+// -----
+// init_customer_auth.php substitutes the customer's name (%$1s) and customer's email address (%$2s)
+// into this message.
+//
+define('EMP_SHOPPING_FOR_MESSAGE', 'Currently shopping for %1$s (%2$s).');
+
+// -----
+// Identify the messageStack "severity" to be applied to the above message, one of 'success',
+// 'warning', 'caution', 'error' (defaults to 'success').
+//
+define('EMP_SHOPPING_FOR_MESSAGE_SEVERITY', 'success');
 // Constants shared between multiple pages
 define('TEXT_OPTION_DIVIDER', '&nbsp;-&nbsp;');
 ///////////////////////////////////////////////////////////
 
-  $file_list = array(FILENAME_EMAIL_EXTRAS, FILENAME_HEADER, FILENAME_BUTTON_NAMES, FILENAME_ICON_NAMES, FILENAME_OTHER_IMAGES_NAMES, FILENAME_CREDIT_CARDS, FILENAME_WHOS_ONLINE, FILENAME_META_TAGS); 
+  $file_list = [FILENAME_EMAIL_EXTRAS, FILENAME_HEADER, FILENAME_BUTTON_NAMES, FILENAME_ICON_NAMES, FILENAME_OTHER_IMAGES_NAMES, FILENAME_CREDIT_CARDS, FILENAME_WHOS_ONLINE, FILENAME_META_TAGS];
   foreach ($file_list as $file) { 
     $file = str_replace(".php","",$file); 
     require_once(zen_get_file_directory(DIR_FS_CATALOG . DIR_WS_LANGUAGES . $_SESSION['language'] . "/", $file . '.php', 'false'));

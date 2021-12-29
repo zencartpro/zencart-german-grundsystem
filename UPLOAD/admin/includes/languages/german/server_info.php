@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: server_info.php 629 2019-04-12 20:05:14Z webchills $
+ * @version $Id: server_info.php 2019-04-12 20:05:14Z webchills $
  */
 
 define('HEADING_TITLE','Serverinformationen');

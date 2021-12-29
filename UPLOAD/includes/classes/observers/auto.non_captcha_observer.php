@@ -1,12 +1,13 @@
 <?php
 /**
- * observer class to detect spam input
+ * Observer class used to detect spam input
  *
- * @package modules
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: auto.non_captcha_observer.php 1 2020-02-08 17:26:16Z webchills $
+ * @version $Id: auto.non_captcha_observer.php 2021-10-26 10:26:16Z webchills $
  */
 
 class zcObserverNonCaptchaObserver extends base
@@ -101,6 +102,8 @@ class zcObserverNonCaptchaObserver extends base
         }
 
         if (empty($test_string)) return;
+
+        $test_string = str_ireplace([HTTP_SERVER, HTTPS_SERVER], '', $test_string);
 
         // inspect
         if(preg_match($reg_exUrl, $test_string)) {

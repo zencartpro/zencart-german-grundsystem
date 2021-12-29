@@ -1,14 +1,14 @@
 <?php
-exit();
+exit;
 /* currently unused.
 
 // capture PHP's default setting (may get overridden in config
 $_oc = ini_get('zlib.output_compression');
 
 // allow access only if builder is enabled
-require dirname(__FILE__) . '/../config.php';
+require __DIR__ . '/../config.php';
 if (! $min_enableBuilder) {
-    exit();
+    exit;
 }
 
 if (isset($_GET['oc'])) {

@@ -2,12 +2,13 @@
 /**
  * Initialise database driver and connect
  * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
- *
- * @package initSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_database.php 732 2019-04-14 13:49:16Z webchills $
+ * @version $Id: init_database.php 2021-11-29 18:18:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -53,6 +54,6 @@ $db->dieOnErrors = FALSE;
 $result = $db->Execute($sql, FALSE, FALSE);
 if ($result->RecordCount() == 0) {
   if (defined('ERROR_DATABASE_MAINTENANCE_NEEDED')) die(ERROR_DATABASE_MAINTENANCE_NEEDED);
-  die('<a href="http://www.zen-cart.com/content.php?334-ERROR-0071-There-appears-to-be-a-problem-with-the-database-Maintenance-is-required" target="_blank">ERROR 0071: There appears to be a problem with the database. Maintenance is required.</a>');
+    die('<a href="https://docs.zen-cart.com/user/troubleshooting/error_71_maintenance_required/">https://docs.zen-cart.com/user/troubleshooting/error_71_maintenance_required/</a>'); 
 }
 $db->dieOnErrors = TRUE;

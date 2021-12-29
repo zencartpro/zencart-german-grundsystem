@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ezpages.php 629 2019-06-16 21:39:16Z webchills $
+ * @version $Id: ezpages.php 2021-12-01 10:39:16Z webchills $
  */
  
 define('HEADING_TITLE', 'EZ-Pages');
@@ -38,8 +39,7 @@ define('TABLE_HEADING_PAGE_IS_VISIBLE_EXPLANATION', ' Seite wird angezeigt, selb
 (Falls alle Einstellungen für Sichtbar, Header, Footer und Sidebox auf AUS sind, dann bekommen Besucher, die diese Seite aufrufen, eine Seite nicht gefunden Meldung.)');
 define('TEXT_DISPLAY_NUMBER_OF_PAGES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Seiten)');
 define('IMAGE_NEW_PAGE', 'Neue Seite');
-define('TEXT_INFO_PAGE_IMAGE', 'Bild');
-define('TEXT_INFO_CURRENT_IMAGE', 'Aktuelles Bild:');
+
 define('TEXT_INFO_PAGES_ID', 'ID: ');
 define('TEXT_INFO_PAGES_ID_SELECT', 'Wählen Sie eine Seite ...');
 define('TEXT_HEADER_SORT_ORDER', 'Sortierung:');
@@ -65,4 +65,4 @@ define('TEXT_SORT_FOOTER_TITLE', 'Fusszeile');
 define('TEXT_SORT_PAGE_TITLE', 'Seitentitel');
 define('TEXT_SORT_PAGE_ID_TITLE', 'Seiten ID, Title');
 define('TEXT_PAGE_TITLE', 'Titel:');
-define('TEXT_WARNING_MULTIPLE_SETTINGS', '<strong>WARNUNG: Multiple Link Definition</strong>');
+define('TEXT_WARNING_MULTIPLE_SETTINGS', '<strong>WARNUNG: Mehrfache Link Definition</strong>');

@@ -1,10 +1,10 @@
 <?php
 /**
  * Zen Cart German Specific
- * @package Installer
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: admin_setup_default.php 4 2016-03-12 21:59:53Z webchills $
+ * @version $Id: admin_setup_default.php 5 2021-11-28 17:59:53Z webchills $
  */
 ?>
 
@@ -23,7 +23,7 @@
 
 <form id="admin_setup" name="admin_setup" method="post" action="index.php?main_page=completion" data-abide>
   <input type="hidden" name="action" value="process" >
-  <input type="hidden" name="lng" value="<?php echo $lng; ?>" >
+  <input type="hidden" name="lng" value="<?php echo $installer_lng; ?>" >
   <?php foreach ($_POST as $key=>$value) {  ?>
     <?php if ($key != 'action') { ?>
     <input type="hidden" name="<?php echo $key; ?>" value="<?php echo $value; ?>" >
@@ -104,7 +104,7 @@ $(function()
           type: "POST",
            timeout: 100000,
           dataType: "json",
-          data: 'id='+textId,
+          data: 'id='+textId + '&lng=<?php echo $installer_lng; ?>',
           url: '<?php echo "ajaxGetHelpText.php"; ?>',
            success: function(data) {
              $('#modal-help-title').html(data.title);

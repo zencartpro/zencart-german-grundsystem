@@ -1,13 +1,14 @@
 <?php
 /**
 * @package Google Analytics
-* @copyright Copyright 2003-2019 Zen Cart Development Team
+* @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright (c) 2005-2006 Andrew Berezin					  |
 * @copyrightPortions Copyright (c) 2006 Dayne Larsen							  |
 * @copyrightPortions Copyright (c) 2007-2017 Eric Leuenberger	
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: google_analytics.php 2019-12-23 21:27:58Z webchills $
+* @version $Id: google_analytics.php 2021-11-28 16:27:58Z webchills $
 */
 
 if (GOOGLE_ANALYTICS_ENABLED == "Enabled") {
@@ -311,7 +312,7 @@ if (GOOGLE_ANALYTICS_ENABLED == "Enabled") {
             echo ("       'shipping'    : '" . $google_analytics['ot_shipping'] . "',\n");
             echo ("    });\n\n");
 
-            $geeProducts = $db->Execute("select products_id,  products_name, final_price, products_quantity from " . TABLE_ORDERS_PRODUCTS . " where orders_id = '" . $geeOrder->fields['orders_id'] . "'");
+            $geeProducts = $db->Execute("select products_id,  products_name, products_quantity from " . TABLE_ORDERS_PRODUCTS . " where orders_id = '" . $geeOrder->fields['orders_id'] . "'");
 
             while(!$geeProducts->EOF) {
 

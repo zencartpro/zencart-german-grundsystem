@@ -2,11 +2,12 @@
 /**
  * header code, mainly concerned with adding to messagestack when certain warnings are applicable
  *
- * @package templateStructure
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_header.php 734 2020-01-17 09:49:16Z webchills $
+ * @version $Id: init_header.php 2021-11-28 21:19:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -18,7 +19,7 @@ if ( (WARN_BEFORE_DOWN_FOR_MAINTENANCE == 'true') && (DOWN_FOR_MAINTENANCE == 'f
 }
 
 // this will let the admin know that the website is DOWN FOR MAINTENANCE to the public
-if ( (DOWN_FOR_MAINTENANCE == 'true') && (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])) ) {
+if ( (DOWN_FOR_MAINTENANCE == 'true') && (zen_is_whitelisted_admin_ip()) ) {
   $messageStack->add('header', TEXT_ADMIN_DOWN_FOR_MAINTENANCE, 'warning');
 }
 
@@ -35,13 +36,13 @@ if (defined('MODULE_SHIPPING_USPS_SERVER') &&   MODULE_SHIPPING_USPS_SERVER == '
 }
 
 // Alerts for EZ-Pages
-if (EZPAGES_STATUS_HEADER == '2' && (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR']))) {
+if (EZPAGES_STATUS_HEADER == '2' && zen_is_whitelisted_admin_ip()) {
   $messageStack->add('header', TEXT_EZPAGES_STATUS_HEADER_ADMIN, 'caution');
 }
-if (EZPAGES_STATUS_FOOTER == '2' && (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR']))) {
+if (EZPAGES_STATUS_FOOTER == '2' && zen_is_whitelisted_admin_ip()) {
   $messageStack->add('header', TEXT_EZPAGES_STATUS_FOOTER_ADMIN, 'caution');
 }
-if (EZPAGES_STATUS_SIDEBOX == '2' && (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR']))) {
+if (EZPAGES_STATUS_SIDEBOX == '2' && zen_is_whitelisted_admin_ip()) {
   $messageStack->add('header', TEXT_EZPAGES_STATUS_SIDEBOX_ADMIN, 'caution');
 }
 if (defined('STRICT_ERROR_REPORTING') && STRICT_ERROR_REPORTING == true) {
@@ -50,7 +51,7 @@ if (defined('STRICT_ERROR_REPORTING') && STRICT_ERROR_REPORTING == true) {
 
 
 // if down for maintenance, prevent indexing
-if ( (DOWN_FOR_MAINTENANCE == 'true') && (!strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])) ) {
+if (DOWN_FOR_MAINTENANCE == 'true' && !zen_is_whitelisted_admin_ip()) {
   header("HTTP/1.1 503 Service Unavailable");
 }
 

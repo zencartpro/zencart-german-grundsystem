@@ -1,16 +1,17 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: coupon_admin.php 635 2019-10-21 20:18:08Z webchills $
+ * @version $Id: coupon_admin.php 2021-12-01 09:18:08Z webchills $
  */
 
-define('TOP_BAR_TITLE','Statistiken');
+
 define('HEADING_TITLE','Aktionkupons');
 define('HEADING_TITLE_STATUS','Status:');
-define('TEXT_CUSTOMER','Kunde:');
+
 define('TEXT_COUPON','Name des Aktionkupons');
 define('TEXT_COUPON_ALL','Alle Aktionkupons');
 define('TEXT_COUPON_ACTIVE','Aktive Aktionkupons');
@@ -21,20 +22,16 @@ define('TEXT_FROM','Von:');
 define('TEXT_FREE_SHIPPING','Versandkostenfrei');
 define('TEXT_MESSAGE','Nachricht:');
 define('TEXT_RICH_TEXT_MESSAGE', 'Rich-Text Nachricht:');
-define('TEXT_SELECT_CUSTOMER','Kunde auswählen');
-define('TEXT_ALL_CUSTOMERS','Alle Kunden');
-define('TEXT_NEWSLETTER_CUSTOMERS','An alle Newsletter Abonnementen');
 define('TEXT_CONFIRM_DELETE','Wollen Sie diesen Aktionskupon wirklich löschen?');
 define('TEXT_SEE_RESTRICT','Verwendungseinschränkung:');
 
 define('TEXT_COUPON_ANNOUNCE', 'Wir erlauben uns, Ihnen einen Aktionskupon anzubieten.');
 
 define('TEXT_TO_REDEEM','Sie können diesen Aktionskupon während des Bestellvorgangs einlösen. Sie brauchen nur die Nummer des Aktionskupons in das entsprechende Eingabefeld einzugeben und abschließend auf "Einlösen" zu klicken.');
-define('TEXT_IN_CASE','falls Sie irgendwelche Probleme haben.');
+
 define('TEXT_VOUCHER_IS','Die Nummer des Aktionskupons lautet');
 define('TEXT_REMEMBER','Bewahren Sie die Nummer des Aktionskupons sicher auf, damit Sie von diesem Sonderangebot profitieren können.');
 define('TEXT_VISIT','Besuchen Sie uns auf %s');
-define('TEXT_ENTER_CODE', ' und geben Sie die Nummer Ihres Aktionskupons ein');
 define('TEXT_COUPON_HELP_DATE', '<p><p>Der Aktionskupon ist gültig vom %s bis zum %s</p></p>');
 define('HTML_COUPON_HELP_DATE', '<p><p>Der Aktionskupon ist gültig vom %s bis zum %s</p></p>');
 
@@ -74,7 +71,7 @@ define('COUPON_USES_COUPON','Benutzung pro Aktionskupon');
 define('COUPON_USES_USER','Benutzung pro Kunde');
 define('COUPON_PRODUCTS','Gültige Artikelliste');
 define('COUPON_CATEGORIES','Gültige Kategorienliste');
-define('VOUCHER_NUMBER_USED','Anzahl der Benutzung');
+
 define('DATE_CREATED','Erstellt am');
 define('DATE_MODIFIED','Geändert am');
 define('TEXT_HEADING_NEW_COUPON','Neuen Aktionskupon erstellen');
@@ -105,11 +102,10 @@ define('COUPON_TOTAL_HELP', 'Wenn Sie eine Mindestbestellmenge für diesen Aktio
 define('COUPON_SALE_HELP', 'Wenn Sie <i>NICHT erlaubt</i> wählen, werden Artikel im Sonderangebot oder Abverkauf nicht ermäßigt oder für dien Mindestbestellwert herangezogen.');
 define('COUPON_USES_COUPON_HELP','Häufigkeit, mit der dieser Aktionskupon benutzt werden kann. Keine Eingabe = unbegrenzt');
 define('COUPON_USES_USER_HELP','Häufigkeit, mit der ein Kunde über diesen Aktionskupon verrechnen darf. Keine Eingabe = unbegrenzt');
-define('COUPON_PRODUCTS_HELP','Eine Textdatei mit den Artikeln (mit Komma getrennten Datenfeldern), die mit diesem Aktionskupon verwendet werden können. Wenn Sie dieses Feld leer lassen, gibt es keine Einschränkungen.');
-define('COUPON_CATEGORIES_HELP','Eine Textdatei mit den Kategorien (mit Komma getrennten Datenfeldern), in denen mit Aktionskupon verrechnet werden kann. Bleibt dieses Feld leer, gibt es keine Einschränkungen.');
+
 define('COUPON_BUTTON_PREVIEW', 'Vorschau');
 define('COUPON_BUTTON_CONFIRM', 'Bestätigen');
-define('COUPON_BUTTON_BACK', 'Zurück');
+
 
 define('COUPON_ACTIVE', 'Status');
 define('COUPON_START_DATE', 'Startdatum');
@@ -151,3 +147,4 @@ define('TEXT_CONFIRM_REACTIVATE', 'Wollen Sie diesen Aktionskupon wirklich wiede
 define('SUCCESS_COUPON_FOUND', 'Aktionskupon gefunden!');
 define('ERROR_COUPON_NOT_FOUND', 'Aktionskupon nicht gefunden!');
 define('ERROR_NO_COUPON_CODE', 'Aktionskupon Code nicht eingegeben!');
+define('ERROR_NO_COUPONS', 'keine Aktionskupons'); 

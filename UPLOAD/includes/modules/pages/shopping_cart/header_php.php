@@ -3,10 +3,11 @@
  * shopping_cart header_php.php
  *
  * @package page
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 735 2020-01-17 11:47:16Z webchills $
+ * @version $Id: header_php.php 2021-12-28 16:47:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -156,6 +157,7 @@ for ($i=0, $n=sizeof($products); $i<$n; $i++) {
                             'attributes'=>$attrArray);
 } // end FOR loop
 
+$define_page = zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] . '/html_includes/', FILENAME_DEFINE_SHOPPING_CART, 'false');
 
 // This should be last line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_END_SHOPPING_CART');

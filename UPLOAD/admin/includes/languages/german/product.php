@@ -1,11 +1,12 @@
 <?php
 /**
- * @package admin
+ 
  * Zen Cart German Specific
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: product.php 2020-02-11 20:47:04Z webchills $
+ * @version $Id: product.php 2021-12-03 15:47:04Z webchills $
  */
 
 
@@ -33,7 +34,7 @@ define('TEXT_PRODUCTS_DESCRIPTION', 'Artikelbeschreibung:');
 define('TEXT_PRODUCTS_QUANTITY', 'Lagerbestand:');
 
 define('TEXT_PRODUCTS_IMAGE', 'Artikelbild:');
-define('TEXT_IMAGE_NONEXISTENT', 'Bild existiert nicht');
+define('TEXT_EDIT_PRODUCTS_IMAGE', 'Artikelbild bearbeitene:');
 define('TEXT_PRODUCTS_IMAGE_DIR', 'Uploadverzeichnis:');
 define('TEXT_PRODUCTS_URL', 'Herstellerlink:');
 define('TEXT_PRODUCTS_URL_WITHOUT_HTTP', '<small>(Ohne führendes http://)</small>');

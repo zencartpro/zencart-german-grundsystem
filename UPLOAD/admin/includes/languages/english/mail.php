@@ -1,23 +1,20 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: mail.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: mail.php 2021-10-25 19:49:16Z webchills $
  */
 
 
 define('HEADING_TITLE', 'Send Email To Customers');
 
-define('TEXT_CUSTOMER', 'Customer:');
 define('TEXT_SUBJECT', 'Subject:');
 define('TEXT_FROM', 'From:');
 define('TEXT_MESSAGE', 'Text-Only <br />Message:');
 define('TEXT_MESSAGE_HTML','Rich Text <br />Message:');
-define('TEXT_SELECT_CUSTOMER', 'Select Customer');
-define('TEXT_ALL_CUSTOMERS', 'All Customers');
-define('TEXT_NEWSLETTER_CUSTOMERS', 'To All Newsletter Subscribers');
 define('TEXT_ATTACHMENTS_LIST','Selected Attachment: ');
 define('TEXT_SELECT_ATTACHMENT','Attachment<br />on server: ');
 define('TEXT_SELECT_ATTACHMENT_TO_UPLOAD','Attachment<br />to upload<br />&amp; attach: ');

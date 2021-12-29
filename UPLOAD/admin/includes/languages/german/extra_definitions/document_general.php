@@ -1,10 +1,11 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: document_general.php 2 2019-07-05 19:21:51Z webchills $
+ * @version $Id: document_general.php 2019-07-05 19:21:51Z webchills $
  */
 
 define('TEXT_DOCUMENT_STATUS', 'Dokument Status:');

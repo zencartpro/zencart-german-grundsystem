@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_prices.php 735 2019-04-14 09:40:16Z webchills $
+ * @version $Id: functions_prices.php 736 2021-10-25 17:40:16Z webchills $
  */
 ////
 //get specials price or sale price
@@ -474,13 +475,12 @@ if (false) {
 
     $discount_type_id = zen_get_products_sale_discount_type($product_id);
 
+    $special_price_discount = 0;
     if ($new_products_price != 0) {
       $special_price_discount = ($new_special_price != 0 ? ($new_special_price/$new_products_price) : 1);
-    } else {
-      $special_price_discount = '';
     }
 
-    $sale_price_discount = '';
+    $sale_price_discount = 0;
     if ($new_products_price != 0) {
       $sale_price_discount = ($new_sale_price != 0 ? ($new_sale_price/$new_products_price) : 1);
     }
@@ -816,15 +816,15 @@ If a special exist * 10+9
                                   array('id' => '1', 'text' => DEDUCTION_TYPE_DROPDOWN_1),
                                   array('id' => '2', 'text' => DEDUCTION_TYPE_DROPDOWN_2));
 
-    $sale_exists = 'false';
-    $sale_maker_discount = '';
-    $sale_maker_special_condition = '';
+    $sale_exists = false;
+    $sale_maker_discount = 0;
+    $sale_maker_special_condition = 0;
     $salemaker_sales = $db->Execute("select sale_id, sale_status, sale_name, sale_categories_all, sale_deduction_value, sale_deduction_type, sale_pricerange_from, sale_pricerange_to, sale_specials_condition, sale_categories_selected, sale_date_start, sale_date_end, sale_date_added, sale_date_last_modified, sale_date_status_change from " . TABLE_SALEMAKER_SALES . " where sale_status='1'");
     while (!$salemaker_sales->EOF) {
       $categories = explode(',', $salemaker_sales->fields['sale_categories_all']);
       foreach($categories as $key => $value) {
         if ($value == $check_category) {
-          $sale_exists = 'true';
+          $sale_exists = true;
           $sale_maker_discount = $salemaker_sales->fields['sale_deduction_value'];
           $sale_maker_special_condition = $salemaker_sales->fields['sale_specials_condition'];
           $sale_maker_discount_type = $salemaker_sales->fields['sale_deduction_type'];
@@ -836,7 +836,7 @@ If a special exist * 10+9
 
     $check_special = zen_get_products_special_price($product_id, true);
 
-    if ($sale_exists == 'true' and $sale_maker_special_condition != 0) {
+    if ($sale_exists == true && $sale_maker_special_condition != 0) {
       $sale_maker_discount_type = (($sale_maker_discount_type * 100) + ($sale_maker_special_condition * 10));
     } else {
       $sale_maker_discount_type = 5;
@@ -1017,7 +1017,7 @@ If a special exist * 10+9
 
 ////
 // attributes final price
-  function zen_get_attributes_price_final($attribute, $qty = 1, $pre_selected, $include_onetime = 'false') {
+  function zen_get_attributes_price_final($attribute, $qty = 1, $pre_selected = null, $include_onetime = 'false') {
     global $db;
 
     $attributes_price_final = 0;
@@ -1072,12 +1072,12 @@ If a special exist * 10+9
 
 ////
 // attributes final price onetime
-  function zen_get_attributes_price_final_onetime($attribute, $qty= 1, $pre_selected_onetime) {
+  function zen_get_attributes_price_final_onetime($attribute, $qty= 1, $pre_selected_onetime = null) {
     global $db;
 
     $attributes_price_final_onetime = 0.0;
 
-    if ($pre_selected_onetime == '' or $attribute != $pre_selected_onetime->fields["products_attributes_id"]) {
+    if (empty($pre_selected_onetime) || $attribute != $pre_selected_onetime->fields["products_attributes_id"]) {
       $pre_selected_onetime = $db->Execute("select pa.* from " . TABLE_PRODUCTS_ATTRIBUTES . " pa where pa.products_attributes_id= '" . (int)$attribute . "'");
     } else {
       // use existing select
@@ -1131,7 +1131,7 @@ If a special exist * 10+9
 
 ////
 // calculate words price
-  function zen_get_word_count_price($string, $free=0, $price) {
+  function zen_get_word_count_price($string, $free = 0, $price = 0) {
     $word_count = zen_get_word_count($string, $free);
     if ($word_count >= 1) {
       return ($word_count * $price);
@@ -1162,7 +1162,7 @@ If a special exist * 10+9
 
 ////
 // calculate letters price
-  function zen_get_letters_count_price($string, $free=0, $price) {
+  function zen_get_letters_count_price($string, $free = 0, $price = 0) {
       $letters_price = zen_get_letters_count($string, $free) * $price;
       if ($letters_price <= 0) {
         return 0;

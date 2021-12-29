@@ -128,7 +128,7 @@ if ($_GET['cloudloader_mode'] == 'update_core') {
 
 <!-- Scripts -->
 <script>
-    window.cloudloader_mode = '<?php echo $_GET['cloudloader_mode'] ?>';
+    window.cloudloader_mode = '<?php echo $cloudloader_mode ?>';
     window.securityToken = '<?php echo(isset($_SESSION['securityToken']) ? $_SESSION['securityToken'] : '-1') ?>';
     window.securityToken_name = '<?php echo(isset($_SESSION['CSRFName']) ? $_SESSION['CSRFName'] : 'none') ?>';
     window.securityToken_value = '<?php echo(isset($_SESSION['CSRFToken']) ? $_SESSION['CSRFToken'] : '-1') ?>';

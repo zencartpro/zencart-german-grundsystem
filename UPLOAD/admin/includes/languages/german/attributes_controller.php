@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: attributes_controller.php 631 2020-02-13 21:21:14Z webchills $
+ * @version $Id: attributes_controller.php 2021-12-01 09:21:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Attribut Manager: ');
@@ -41,8 +42,7 @@ define('TABLE_HEADING_DOWNLOAD','Downloadartikel');
 define('TABLE_TEXT_FILENAME','Dateiname:');
 define('TABLE_TEXT_MAX_DAYS','Ablauftage: (0 = unbegrenzt)');
 define('TABLE_TEXT_MAX_COUNT','Maximale Downloadanzahl:');
-define('TABLE_HEADING_OPT_DISCOUNTED','Rabatt');
-define('TABLE_HEADING_PRICE_BASE_INCLUDED','Basis');
+
 define('TABLE_HEADING_PRICE_TOTAL', 'Summe|Rabatt: einmalig:');
 define('TEXT_WARNING_OF_DELETE','Diesem Attribut sind Artikel und Werte zugewiesen worden - ein Löschen wird nicht empfohlen.');
 define('TEXT_OK_TO_DELETE','Diesem Attribut sind keine Artikel und Werte zugewiesen worden - Es kann gelöscht werden.');
@@ -71,13 +71,11 @@ define('TEXT_SORT','Sortierung:');
 define('TABLE_HEADING_OPT_WEIGHT_PREFIX','Präfix');
 define('TABLE_HEADING_OPT_WEIGHT','Gewicht');
 define('TABLE_HEADING_OPT_SORT_ORDER','Sortierung');
-define('TABLE_HEADING_OPT_DEFAULT','Standard');
+
 
 define('TABLE_HEADING_OPT_TYPE','Optionsart');
 define('TABLE_HEADING_OPTION_VALUE_SIZE','Größe');
 define('TABLE_HEADING_OPTION_VALUE_MAX','Maximal');
-define('TABLE_HEADING_OPTION_VALUE_ROWS','Reihen');
-define('TABLE_HEADING_OPTION_VALUE_COMMENTS','Kommentare');
 
 define('TEXT_OPTION_VALUE_COMMENTS','Kommentare:');
 define('TEXT_OPTION_VALUE_SIZE','Darstellungsgröße:');
@@ -105,25 +103,22 @@ define('LEGEND_ATTRIBUTES_REQUIRED', 'Benötigt');
 define('LEGEND_ATTRIBUTES_IMAGES', 'Bilder');
 define('LEGEND_ATTRIBUTES_DOWNLOAD', 'Gültiger/Ungültiger<br />Dateiname');
 
-define('TEXT_ATTRIBUTES_UPDATE_SORT_ORDER','Zur Standardsortierung');
-define('TEXT_PRODUCTS_LISTING','Artikelliste für:');
+
 define('TEXT_NO_PRODUCTS_SELECTED','Kein Artikel ausgewählt');
 define('TEXT_NO_ATTRIBUTES_DEFINED','Kein Attribut für Artikel ID# gewählt');
 
 define('TEXT_PRODUCTS_ID','Artikel ID#');
-define('TEXT_ATTRIBUTES_DELETE','ALLE LÖSCHEN');
-define('TEXT_ATTRIBUTES_COPY_PRODUCTS','Zu Artikel kopieren');
-define('TEXT_ATTRIBUTES_COPY_CATEGORY','Zur Kategorie kopieren');
+
 
 define('TEXT_INFO_HEADING_ATTRIBUTE_FEATURES','Attribut für Artikel ID# geändert');
 define('TEXT_INFO_ATTRIBUTES_FEATURES_DELETE','<strong>ALLE</strong> Artikelattribute für diesen Artikel löschen:<br />');
 define('TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO','Attribute von einem anderen Artikel oder von einer ganzen Kategorie kopieren:<br />');
 
-define('TEXT_ATTRIBUTES_COPY_TO_PRODUCTS','ARTIKEL');
+
 define('TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO_PRODUCT','Kopiere Attribute zu einem anderen<strong>Artikel</strong> von ID#');
 define('TEXT_INFO_ATTRIBUTES_FEATURE_COPY_TO','Artikel wählen, zu dem Sie alle Attribute kopieren wollen:');
 
-define('TEXT_ATTRIBUTES_COPY_TO_CATEGORY','KATEGORIE');
+
 define('TEXT_INFO_ATTRIBUTES_FEATURE_CATEGORIES_COPY_TO','Kategorie wählen, zu der Sie alle Attribute kopieren wollen:');
 define('TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO_CATEGORY','Kopiere Attribute zu allen Artikel in der<strong>Kategorie</strong> von Artikel ID#');
 
@@ -138,20 +133,17 @@ define('SUCCESS_ATTRIBUTES_DELETED','Attribute wurden gelöscht');
 define('SUCCESS_ATTRIBUTES_UPDATE','Attribute wurden aktualisiert');
 
 define('WARNING_PRODUCT_COPY_TO_CATEGORY_NONE','Keine Kategorie zum Kopieren ausgewählt');
-define('TEXT_PRODUCT_IN_CATEGORY_NAME','- in Kategorie:');
 
 define('TEXT_DELETE_ALL_ATTRIBUTES','Sind Sie sicher, dass Sie alle Attribute für ID# löschen wollen?');
 
 // preview
-define('TEXT_ATTRIBUTES_PREVIEW','ATTRIBUTE VORSCHAU');
-define('TEXT_ATTRIBUTES_PREVIEW_DISPLAY','VORSCHAU DER ATTRIBUTE ANZEIGEN FÜR ID#');
+
 define('TEXT_PRODUCT_OPTIONS','<strong>Bitte wählen Sie:</strong>');
 
 define('TEXT_ATTRIBUTES_INSERT_INFO','<strong>Definieren Sie die Attributeinstellungen, anschließend klicken Sie auf "Einfügen" um die Änderungen zu speichern</strong> (es dürfen auch mehrere Attributmerkmale markiert werden)');
 
 define('TEXT_PRODUCTS_PRICE','Artikelpreis:');
-define('TEXT_SPECIAL_PRICE','Sonderpreis:');
-define('TEXT_SALE_PRICE','Abverkaufspreis:');
+
 define('TEXT_FREE','KOSTENLOS');
 define('TEXT_CALL_FOR_PRICE','Preis bitte anfragen');
 define('TEXT_SAVE_CHANGES', 'ÄNDERUNGEN AKTUALISIEREN UND SPEICHERN:');
@@ -172,5 +164,5 @@ define('TEXT_UPDATE_DEFAULTE_SORT_ORDER', 'Sortierreihenfolge auf Standard zurü
 define('TEXT_DELETE_ALL_OPTIONS_FROM_PRODUCT', 'Alle Attribute von diesem Artikel entfernen');
 define('TEXT_COPY_ALL_OPTIONS_TO_PRODUCT', 'Attribute zu einem anderen Artikel kopieren');
 define('TEXT_COPY_ALL_OPTIONS_TO_CATEGORY', 'Attibute zu einer ganzen Kategorie kopieren');
-define('TEXT_SAVE_PRODUCT_FIRST', 'Bitte speichern Sie erst den neuen Artikel. Es wird eine product_id benötigt, bevor Sie Attribute zuweisen können');
+
 define('TEXT_DISPLAY_NUMBER_OF_ATTRIBUTES', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Attributen)');

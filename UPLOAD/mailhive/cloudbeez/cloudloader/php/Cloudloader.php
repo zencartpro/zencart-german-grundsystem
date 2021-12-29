@@ -15,6 +15,16 @@
  */
 
 
+if (!function_exists('mh_cfg')) {
+    function mh_cfg($c)
+    {
+        if (defined($c)) {
+            return constant($c);
+        }
+        return $c;
+    }
+}
+
 class Cloudloader extends CloudloaderBase
 {
     /**
@@ -67,9 +77,7 @@ class Cloudloader extends CloudloaderBase
         // some servers do not allow to create a zip-file on root level
         $this->backup_file = ($this->readSessionVar('mailbeez_installer_backup_location')) ? $this->readSessionVar('mailbeez_installer_backup_location') : '/mailhive' . date("Ymd-His") . '.zip';
 
-
-        $this->apikey = CLOUDLOADER_API_KEY;
-
+        $this->apikey = mh_cfg('CLOUDLOADER_API_KEY');
     }
 
     public function run()
@@ -135,7 +143,7 @@ class Cloudloader extends CloudloaderBase
                     && is_writable($this->backupDirectory));
                 break;
             case 'phpVersion':
-                $result = version_compare(PHP_VERSION, "5.3", ">=");
+                $result = version_compare(PHP_VERSION, "5.6", ">=");
                 break;
             case 'safeMode':
                 $result = !ini_get('safe_mode');

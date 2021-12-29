@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tax_classes.php 788 2020-01-18 09:13:51Z webchills $
+ * @version $Id: tax_classes.php 2021-10-25 17:02:51Z webchills $
  */
 require('includes/application_top.php');
 

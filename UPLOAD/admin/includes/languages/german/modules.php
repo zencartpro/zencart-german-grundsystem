@@ -1,15 +1,16 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: modules.php 631 2020-01-18 10:05:14Z webchills $
+ * @version $Id: modules.php 2021-12-02 16:05:14Z webchills $
  */
 
 define('HEADING_TITLE_MODULES_PAYMENT','Zahlungsarten');
 define('HEADING_TITLE_MODULES_SHIPPING','Versandarten');
-define('HEADING_TITLE_MODULES_ORDER_TOTAL','Zusammenfassung');
+
 define('HEADING_TITLE_MODULES_PRODUCT_TYPES', 'Artikeltypen Modul');
 define('TABLE_HEADING_MODULES', 'Modul');
 define('TABLE_HEADING_SORT_ORDER', 'Sortierung');
@@ -25,3 +26,6 @@ define('TEXT_EMAIL_MESSAGE_ADMIN_MODULE_REMOVED', 'Dies ist eine automatische E-
 define('TEXT_DELETE_INTRO', 'Wollen Sie dieses Modul wirklich entfernen?');
 define('TEXT_WARNING_SSL_EDIT', 'ALARM: <a href="http://www.zen-cart-pro.at/forum" target="_blank">Aus Sicherheitsgründen sind Änderungen deaktiviert, solange für Ihren Adminbereich keine SSL Verschlüsselung aktiviert wurde</a>.');
 define('TEXT_WARNING_SSL_INSTALL', 'ALARM: <a href="http://www.zen-cart-pro.at/forum" target="_blank">Aus Sicherheitsgründen ist die Installation dieses Modules deaktiviert, solange für Ihren Adminbereich keine SSL Verschlüsselung aktiviert wurde</a>.');
+// Generic validation messages for modules
+define('TEXT_POSITIVE_INT','%s must be an integer greater than or equal to 0');
+define('TEXT_POSITIVE_FLOAT','%s must be a decimal greater than or equal to 0');

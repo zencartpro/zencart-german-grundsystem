@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: configurationValidation.php 1 2020-01-27 19:32:16Z webchills $
+ * @version $Id: configurationValidation.php 2021-10-25 17:32:16Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -51,7 +52,7 @@ class configurationValidation extends base
                 }
                 
                 // Collect the individual name/email as part of an array.
-                $results[$key]['send_to_name'] = filter_var($send_to_name, FILTER_SANITIZE_EMAIL, $options);
+                $results[$key]['send_to_name'] = filter_var($send_to_name, FILTER_SANITIZE_STRING, $options);
                 $results[$key]['send_to_email'] = filter_var($send_to_email, FILTER_VALIDATE_EMAIL, $options);
                 
                 // Restore the inner email address back to its state for capture.

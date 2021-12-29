@@ -1,9 +1,9 @@
-/*! This file exists only for testing a Minify installation. It's content is not used.
+/*! This file exists only for testing a Minify installation. Its content is not used.
  *
  * http://example.org/min/f=min/quick-test.css
  */
 
-@import     url( /more.css );
+@import     url( more.css );
 
     body, td, th {
         font-family: Verdana , "Bitstream Vera Sans" , Arial Narrow, sans-serif ;

@@ -1,7 +1,8 @@
 <?php
 /**
  * @package languageDefines
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Originally Programmed By: Christopher Bradley (www.wizardsandwars.com) for OsCommerce
  * @copyright Modified by Jim Keebaugh for OsCommerce

@@ -1,10 +1,10 @@
 <?php
 /**
  * Zen Cart German Specific
- * @package Installer
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: database_upgrade_default.php 2 2016-03-28 13:59:53Z webchills $
+ * @version $Id: database_upgrade_default.php 3 2021-11-28 17:52:53Z webchills $
  */
 ?>
 <?php require(DIR_FS_INSTALL . DIR_WS_INSTALL_TEMPLATE . 'partials/partial_modal_admin_validation_errors.php'); ?>
@@ -18,8 +18,8 @@
 <?php } ?>
 <div id="upgradeResponsesHolder"></div>
 
-<form id="db_upgrade<?php echo (sizeof($newArray)) ? '' : '_done'; ?>" name="db_upgrade" method="post" action="index.php?main_page=completion" data-abide="ajax">
-  <input type="hidden" name="lng" value="<?php echo $lng; ?>" >
+<form id="db_upgrade<?php echo (count($newArray)) ? '' : '_done'; ?>" name="db_upgrade" method="post" action="index.php?main_page=completion" data-abide="ajax">
+  <input type="hidden" name="lng" value="<?php echo $installer_lng; ?>" >
   <input type="hidden" name="action" value="process">
 <?php if (sizeof($newArray)) { ?>
   <input type="hidden" name="upgrade_mode" value="yes">
@@ -190,7 +190,7 @@ $(function()
         type: "POST",
          timeout: 100000,
         dataType: "json",
-        data: 'id='+textId,
+        data: 'id='+textId + '&lng=<?php echo $installer_lng; ?>',
         url: '<?php echo "ajaxGetHelpText.php"; ?>',
          success: function(data) {
            $('#modal-help-title').html(data.title);

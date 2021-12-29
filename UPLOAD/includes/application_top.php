@@ -7,12 +7,17 @@
  * the elements to be initialised and the order in which that happens.
  * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
- * @package initSystem
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: application_top.php 813 2020-02-08 16:45:24Z webchills $
+ * @version $Id: application_top.php 2021-12-25 08:45:24Z webchills $
  */
+use Zencart\FileSystem\FileSystem;
+use Zencart\PluginManager\PluginManager;
+use Zencart\InitSystem\InitSystem;
+use Zencart\LanguageLoader\CatalogLanguageLoader;
 /**
  * inoculate against hack attempts which waste CPU cycles
  */
@@ -20,8 +25,10 @@ $contaminated = (isset($_FILES['GLOBALS']) || isset($_REQUEST['GLOBALS'])) ? tru
 $paramsToAvoid = array('GLOBALS', '_COOKIE', '_ENV', '_FILES', '_GET', '_POST', '_REQUEST', '_SERVER', '_SESSION', 'HTTP_COOKIE_VARS', 'HTTP_ENV_VARS', 'HTTP_GET_VARS', 'HTTP_POST_VARS', 'HTTP_POST_FILES', 'HTTP_RAW_POST_DATA', 'HTTP_SERVER_VARS', 'HTTP_SESSION_VARS');
 $paramsToAvoid[] = 'autoLoadConfig';
 $paramsToAvoid[] = 'mosConfig_absolute_path';
+$paramsToAvoid[] = 'function';
 $paramsToAvoid[] = 'hash';
 $paramsToAvoid[] = 'main';
+$paramsToAvoid[] = 'vars';
 foreach($paramsToAvoid as $key) {
   if (isset($_GET[$key]) || isset($_POST[$key]) || isset($_COOKIE[$key])) {
     $contaminated = true;
@@ -134,6 +141,7 @@ if (file_exists('includes/defined_paths.php')) {
     die('ERROR: /includes/defined_paths.php file not found. Cannot continue.');
     exit;
 }
+require DIR_FS_CATALOG . DIR_WS_FUNCTIONS . 'php_polyfills.php';
 /**
  * include the list of extra configure files
  */
@@ -167,9 +175,14 @@ if (( (!file_exists('includes/configure.php') && !file_exists('includes/local/co
   exit;
 }
 /**
- * load the autoloader interpreter code.
-*/
+ * psr-4 autoloading
+ */
 require DIR_FS_CATALOG . DIR_WS_CLASSES . 'class.base.php';
+require DIR_FS_CATALOG . DIR_WS_CLASSES . 'vendors/AuraAutoload/src/Loader.php';
+$psr4Autoloader = new \Aura\Autoload\Loader;
+$psr4Autoloader->register();
+require('includes/psr4Autoload.php');
+
 require DIR_FS_CATALOG . DIR_WS_CLASSES . 'query_cache.php';
 $queryCache = new QueryCache();
 require DIR_FS_CATALOG . DIR_WS_CLASSES . 'cache.php';
@@ -177,11 +190,32 @@ $zc_cache = new cache();
 
 require 'includes/init_includes/init_file_db_names.php';
 require 'includes/init_includes/init_database.php';
+
+
+$fs = FileSystem::getInstance();
+
+
+
+$autoLoadConfig = array();
+if (isset($loaderPrefix)) {
+    $loaderPrefix = preg_replace('/[^a-z_]/', '', $loaderPrefix);
+} else {
+    $loaderPrefix = 'config';
+}
+$loader_file = $loaderPrefix . '.core.php';
+$initSystem = new InitSystem('catalog', $loaderPrefix, FileSystem::getInstance());
+
+if (defined('DEBUG_AUTOLOAD') && DEBUG_AUTOLOAD == true) $initSystem->setDebug(true);
+
+$loaderList = $initSystem->loadAutoLoaders();
+
+$initSystemList = $initSystem->processLoaderList($loaderList);
+
 require(DIR_FS_CATALOG . 'includes/autoload_func.php');
 /**
  * load the counter code
 **/
-if ($spider_flag == false) {
+if (empty($spider_flag)) {
 // counter and counter history
   require(DIR_WS_INCLUDES . 'counter.php');
 }
@@ -190,7 +224,6 @@ $customers_ip_address = $_SERVER['REMOTE_ADDR'];
 if (!isset($_SESSION['customers_ip_address'])) {
   $_SESSION['customers_ip_address'] = $customers_ip_address;
 }
-
 
 // MailBeez Click and Order tracker
 if (file_exists(DIR_FS_CATALOG . 'mailhive/includes/clicktracker.php')) {

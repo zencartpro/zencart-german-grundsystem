@@ -1,10 +1,10 @@
 <?php
 /**
- * @package Installer
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 849 2019-04-12 13:51:25Z webchills $
+ * @version $Id: header_php.php 850 2021-11-28 17:51:25Z webchills $
  */
 
 $systemChecker = new systemChecker();
@@ -27,6 +27,7 @@ $versionArray[] = '1.5.3';
 $versionArray[] = '1.5.4';
 $versionArray[] = '1.5.5';
 $versionArray[] = '1.5.6';
+$versionArray[] = '1.5.7';
 
 //print_r($versionArray);
 $key = array_search($dbVersion, $versionArray);

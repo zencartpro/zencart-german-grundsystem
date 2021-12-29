@@ -6,11 +6,12 @@
  * Loaded automatically by index.php?main_page=account_edit.<br />
  * Displays information related to a single specific order
  *
- * @package templateSystem
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_account_history_info_default.php 2020-03-06 08:45:05Z webchills $
+ * @version $Id: tpl_account_history_info_default.php 2021-12-28 12:45:05Z webchills $
  */
 ?>
 <div class="centerColumn" id="accountHistInfo">
@@ -27,7 +28,7 @@
         <th scope="col" id="myAccountQuantity"><?php echo HEADING_QUANTITY; ?></th>
         <th scope="col" id="myAccountProducts"><?php echo HEADING_PRODUCTS; ?></th>
 <?php
-  if (sizeof($order->info['tax_groups']) > 1) {
+  if (isset($order->info['tax_groups']) && count($order->info['tax_groups']) > 1) {
 ?>
         <th scope="col" id="myAccountTax"><?php echo HEADING_TAX; ?></th>
 <?php
@@ -40,7 +41,9 @@
   ?>
     <tr>
         <td class="accountQuantityDisplay"><?php echo  $order->products[$i]['qty'] . QUANTITY_SUFFIX; ?></td>
-        <td class="accountProductDisplay"><?php echo  $order->products[$i]['name'];
+        <td class="accountProductDisplay"><?php
+
+            echo  $order->products[$i]['name'];
 
     if ( (isset($order->products[$i]['attributes'])) && (sizeof($order->products[$i]['attributes']) > 0) ) {
       echo '<ul class="orderAttribsList">';
@@ -52,7 +55,7 @@
 ?>
         </td>
 <?php
-    if (sizeof($order->info['tax_groups']) > 1) {
+    if (isset($order->info['tax_groups']) && count($order->info['tax_groups']) > 1) {
 ?>
         <td class="accountTaxDisplay"><?php echo zen_display_tax_value($order->products[$i]['tax']) . '%' ?></td>
 <?php

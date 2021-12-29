@@ -2,11 +2,12 @@
 /**
  * functions_categories.php
  *
- * @package functions
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_categories.php 734 2020-01-20 21:22:16Z webchills $
+ * @version $Id: functions_categories.php 735 2021-11-28 20:22:16Z webchills $
  */
 
 /**
@@ -458,12 +459,12 @@ function zen_get_categories($categories_array = array(), $parent_id = '0', $inde
     global $db;
 
     $lookup_query = "select parent_id from " . TABLE_CATEGORIES . " where categories_id='" . (int)$categories_id . "'";
-    $lookup = $db->Execute($lookup_query);
+    $lookup = $db->Execute($lookup_query, 1);
 
     $lookup_query = "select categories_name from " . TABLE_CATEGORIES_DESCRIPTION . " where categories_id='" . (int)$lookup->fields['parent_id'] . "' and language_id= " . $_SESSION['languages_id'];
-    $lookup = $db->Execute($lookup_query);
+    $lookup = $db->Execute($lookup_query, 1);
 
-    return $lookup->fields['categories_name'];
+    return $lookup->EOF ? '' : $lookup->fields['categories_name'];
   }
 
 ////

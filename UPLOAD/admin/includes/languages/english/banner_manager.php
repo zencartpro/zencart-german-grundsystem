@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: banner_manager.php 807 2020-01-17 18:49:16Z webchills $
+ * @version $Id: banner_manager.php 2021-11-30 20:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Banner Manager');
@@ -67,8 +68,6 @@ define('SUCCESS_BANNER_STATUS_UPDATED', 'Success: The status of the banner has b
 
 define('ERROR_BANNER_TITLE_REQUIRED', 'Error: Banner title required.');
 define('ERROR_BANNER_GROUP_REQUIRED', 'Error: Banner group required.');
-define('ERROR_IMAGE_DIRECTORY_DOES_NOT_EXIST', 'Error: Target directory does not exist: %s');
-define('ERROR_IMAGE_DIRECTORY_NOT_WRITEABLE', 'Error: Target directory is not writeable: %s');
 define('ERROR_IMAGE_DOES_NOT_EXIST', 'Error: Image does not exist.');
 define('ERROR_IMAGE_IS_NOT_WRITEABLE', 'Error: Image can not be removed.');
 define('ERROR_UNKNOWN_STATUS_FLAG', 'Error: Unknown status flag.');

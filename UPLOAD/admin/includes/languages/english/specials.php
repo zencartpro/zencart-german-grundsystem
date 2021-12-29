@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: specials.php 732 2020-02-11 20:33:16Z webchills $
+ * @version $Id: specials.php 2021-10-25 19:33:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Specials');
@@ -35,7 +36,6 @@ define('TEXT_INFO_NEW_PRICE', 'Special Price:');
 define('TEXT_INFO_ORIGINAL_PRICE', 'Original Price:');
 define('TEXT_INFO_DISPLAY_PRICE', 'Currently Displayed Price:');
 define('TEXT_INFO_STATUS_CHANGED', 'Status Changed:');
-define('TEXT_IMAGE_NONEXISTENT', '(no image defined)');
 
 define('TEXT_INFO_HEADING_DELETE_SPECIALS', 'Delete Special');
 define('TEXT_INFO_DELETE_INTRO', 'Are you sure you want to delete the Special Price for this product?');

@@ -2,11 +2,11 @@
 /**
  * ipn_main_handler.php callback handler for PayPal IPN notifications
  *
- * @package paymentMethod
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+* Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ipn_main_handler.php 774 2020-01-17 16:37:29Z webchills $
+ * @version $Id: ipn_main_handler.php 775 2021-10-24 17:37:29Z webchills $
  */
 if (!defined('TEXT_RESELECT_SHIPPING')) define('TEXT_RESELECT_SHIPPING', 'You have changed the items in your cart since shipping was last calculated, and costs may have changed. Please verify/re-select your shipping method.');
 
@@ -435,7 +435,7 @@ Processing...
         case 'voided':
         case ($_POST['payment_status'] == 'Refunded' || $_POST['payment_status'] == 'Reversed' || $_POST['payment_status'] == 'Voided'):
           //payment_status=Refunded or payment_status=Voided
-          $new_status = MODULE_PAYMENT_PAYPALWPP_REFUNDED_STATUS_ID;
+          $new_status = defined('MODULE_PAYMENT_PAYPALWPP_REFUNDED_STATUS_ID') ? MODULE_PAYMENT_PAYPALWPP_REFUNDED_STATUS_ID : 1;
           if (defined('MODULE_PAYMENT_PAYPAL_REFUND_ORDER_STATUS_ID') && (int)MODULE_PAYMENT_PAYPAL_REFUND_ORDER_STATUS_ID > 0 && !$isECtransaction) $new_status = MODULE_PAYMENT_PAYPAL_REFUND_ORDER_STATUS_ID;
           break;
         case 'echeck-denied':

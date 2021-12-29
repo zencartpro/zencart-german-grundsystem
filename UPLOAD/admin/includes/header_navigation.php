@@ -1,11 +1,12 @@
 <?php
 /**
  * Zen Cart German Specific
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_navigation.php 734 2020-01-17 19:49:16Z webchills $
+ * @version $Id: header_navigation.php 735 2021-10-26 10:49:16Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) die('Illegal Access');
@@ -36,11 +37,18 @@ $menuTitles = zen_get_menu_titles();
             </li>
           <?php } ?>
           <li class="upperMenuItems"><a href="<?php echo zen_href_link(FILENAME_DEFAULT, '', 'NONSSL'); ?>" class="headerLink"><?php echo HEADER_TITLE_TOP; ?></a></li>
-          <li class="upperMenuItems"><a href="<?php echo zen_catalog_href_link(FILENAME_DEFAULT); ?>" class="headerLink" target="_blank"><?php echo HEADER_TITLE_ONLINE_CATALOG; ?></a></li>
-          <li class="upperMenuItems"><a href="https://www.zen-cart-pro.at" class="headerLink" target="_blank" class="headerLink"><?php echo HEADER_TITLE_SUPPORT_SITE; ?></a></li>
+          <li class="upperMenuItems"><a href="<?php echo zen_catalog_href_link(FILENAME_DEFAULT); ?>" class="headerLink" rel="noopener" target="_blank"><?php echo HEADER_TITLE_ONLINE_CATALOG; ?></a></li>
+          <li class="upperMenuItems"><a href="https://www.zen-cart-pro.at" class="headerLink" rel="noopener" target="_blank" class="headerLink"><?php echo HEADER_TITLE_SUPPORT_SITE; ?></a></li>
           <li class="upperMenuItems"><a href="<?php echo zen_href_link(FILENAME_SERVER_INFO, '', 'NONSSL'); ?>" class="headerLink"><?php echo HEADER_TITLE_VERSION; ?></a></li>
           <li class="upperMenuItems"><a href="<?php echo zen_href_link(FILENAME_ADMIN_ACCOUNT, '', 'NONSSL'); ?>" class="headerLink"><?php echo HEADER_TITLE_ACCOUNT; ?></a></li>
           <li class="upperMenuItems"><a href="<?php echo zen_href_link(FILENAME_LOGOFF, '', 'NONSSL'); ?>" class="headerLink"><?php echo HEADER_TITLE_LOGOFF; ?></a></li>
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
+<?php if ($url = page_has_help()) { ?>
+<div class="pull-right noprint">
+  <a href="<?php echo $url; ?>" rel="noopener" target="_blank" class="btn btn-sm btn-default btn-help" role="button" title="Help">
+    <i class="fa fa-question fa-lg" aria-hidden="true"></i>
+  </a>
+</div>
+<?php } ?>

@@ -23,7 +23,7 @@ define('TABLE_HEADING_LARGE_SIZE','Großes Bild');
 define('TABLE_HEADING_ACTION', 'Aktion');
 define('TABLE_HEADING_FILETYPE', 'Dateityp');
 define('TEXT_PRODUCT_INFO', 'Artikel');
-define('TEXT_PRODUCTS_MODEL', 'Artikelnummer');
+define('TEXT_PRICE', 'Preis');
 define('TEXT_IMAGE_BASE_DIR', 'Bildverzeichnis');
 define('TEXT_NO_PRODUCT_IMAGES', 'Es existieren keine Bilder zu diesem Artikel');
 define('TEXT_CLICK_TO_ENLARGE', 'Vergrößern'); 
@@ -53,6 +53,8 @@ define('TEXT_MAIN', 'main');
 define('TEXT_ADDITIONAL', 'additional');
 define('TEXT_INFO_CONFIRM_DELETE_SURE', 'Sind Sie sicher, dass Sie dieses Bild in allen verschiedenen Größen löschen wollen?');
 define('TEXT_INFO_SELECT_ACTION', 'Wählen Sie eine Aktion');
+define('TEXT_NOT_NEEDED', 'Not needed');    //-Displayed for the 'Medium'-sized additional images
+define('TEXT_TABLE_CAPTION_INSTRUCTIONS', "<b>Note:</b> A product's additional images are <em>automatically</em> created in their 'small' and 'large' sizes <em>only</em> and show '" . TEXT_NOT_NEEDED . "' for their <b>Medium image</b>.  If your storefront uses other image-sizes for these (or the product's main) images, those images are created (and cached) 'on-demand'.");
 define('TEXT_MSG_FILE_NOT_FOUND', 'Diese Datei existiert nicht.');
 define('TEXT_MSG_ERROR_RETRIEVING_IMAGESIZE', 'Bilgröße konnte nicht ermittelt werden');
 define('TEXT_MSG_AUTO_BASE_ERROR', 'Fehler: Sie haben die automatische Bildbenamung ausgewählt, es existiert aber kein Hauptbild.');
@@ -93,15 +95,17 @@ define('TEXT_MSG_NO_DELETE_MEDIUM', 'Mittleres Bild konnte nicht gelöscht werde
 define('TEXT_MSG_DEFAULT_DELETED', 'Hauptbild wurde gelöscht.');
 define('TEXT_MSG_NO_DELETE_DEFAULT', 'Hauptbild konnte nicht gelöscht werden.');
 define('TEXT_MSG_NO_DEFAULT_FILE_FOUND', 'Es wurde kein Hauptbild zum Löschen gefunden.');
-define('TEXT_MSG_IMAGE_DELETED', 'Bild erfolgreich gelöscht.');
-define('TEXT_MSG_IMAGE_NOT_FOUND', 'Bild konnte nicht gefunden werden.');
-define('TEXT_MSG_IMAGE_NOT_DELETED', 'Bild konnte nicht gelöscht werden.');
+define('TEXT_MSG_IMAGE_DELETED', 'Bild (%s) erfolgreich gelöscht.');
+define('TEXT_MSG_IMAGE_NOT_FOUND', 'Bild (%s) konnte nicht gefunden werden.');
+define('TEXT_MSG_IMAGE_NOT_DELETED', 'Bild (%s) konnte nicht gelöscht werden. Berechtigungen überprüfen.');
 define('TEXT_MSG_IMPORT_SUCCESS', 'Erfolgreich importiert: ');
 define('TEXT_MSG_IMPORT_FAILURE', 'Fehler beim Importieren: ');
+// image manager
 define('IH_IMAGE_NEW_FILE', 'Hier clicken, um ein neues Bild hinzuzufügen');
 define('IH_IMAGE_EDIT', 'Hier clicken um ein Bild zu bearbeiten');
 define('TEXT_MEDIUM_FILE_IMAGE', 'mittlere Bild Datei (optional)');
 define('TEXT_LARGE_FILE_IMAGE', 'große Bild Datei (optional)');
+// ih menu
 define('IH_MENU_MANAGER', 'Bild Manager');
 define('IH_MENU_ADMIN', 'Admin Tools');
 define('IH_MENU_ABOUT', 'Hilfe');

@@ -1,14 +1,13 @@
 <?php
 /**
  * initialise template system variables
- * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
- *
+ * see  {@link  https://docs.zen-cart.com/dev/code/init_system/} for more details.
  * Determines current template name for current language, from database<br />
  * Then loads template-specific language file, followed by master/default language file<br />
- * ie: includes/languages/classic/english.php followed by includes/languages/english.php
- *
- * @package initSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * ie: includes/languages/classic/german.php followed by includes/languages/german.php
+ * Zen Cart German Specific
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * @version $Id: init_templates.php 730 2019-06-15 17:49:16Z webchills $
@@ -18,22 +17,34 @@
   }
 
 /*
- * Determine the active template name
+ * Lookup the template for the current language
+ * The 'choice' aliases help with weighting for fallback to default selection
  */
-  $template_dir = "";
-  $sql = "select template_dir
-            from " . TABLE_TEMPLATE_SELECT . "
-            where template_language = 0";
-  $template_query = $db->Execute($sql);
-  $template_dir = $template_query->fields['template_dir'];
+$template_dir = 'template_default';
+$sql = "SELECT template_dir, template_language, template_language=" . (int)$_SESSION['languages_id'] . " AS choice1, template_language=0 AS choice2
+        FROM " . TABLE_TEMPLATE_SELECT . "
+        ORDER BY choice1 DESC, choice2 DESC, template_language";
+$result = $db->Execute($sql);
+$template_dir = $result->fields['template_dir'];
 
-  $sql = "select template_dir
-            from " . TABLE_TEMPLATE_SELECT . "
-            where template_language = '" . $_SESSION['languages_id'] . "'";
-  $template_query = $db->Execute($sql);
-  if ($template_query->RecordCount() > 0) {
-    $template_dir = $template_query->fields['template_dir'];
-  }
+/**
+ * Allow admins to switch templates using &t= URL parameter
+ */
+if (zen_is_whitelisted_admin_ip()) {
+    // check if a template override was requested and that the template exists on the filesystem
+    if (isset($_GET['t']) && file_exists(DIR_WS_TEMPLATES . $_GET['t'])) {
+        $_SESSION['tpl_override'] = $_GET['t'];
+    }
+    if (isset($_GET['t']) && $_GET['t'] === 'off') {
+        unset($_SESSION['tpl_override']);
+    }
+    if (isset($_SESSION['tpl_override'])) $template_dir = $_SESSION['tpl_override'];
+}
+
+
+/**
+ * Now that we've established which template to use, initialize all its components
+ */
 
 /**
  * The actual template directory to use

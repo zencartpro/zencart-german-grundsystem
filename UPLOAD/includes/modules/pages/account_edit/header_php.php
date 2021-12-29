@@ -3,11 +3,12 @@
  * Zen Cart German Specific
  * Header code file for the customer's Account-Edit page
  *
- * @package page
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 738 2020-02-29 21:11:16Z webchills $
+ * @version $Id: header_php.php 739 2021-11-28 21:31:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ACCOUNT_EDIT');
@@ -168,9 +169,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
   }
 }
 
-$account_query = "SELECT customers_gender, customers_firstname, customers_lastname,
-                         customers_dob, customers_email_address, customers_telephone, customers_nick,
-                         customers_fax, customers_email_format, customers_referral
+$account_query = "SELECT * 
                   FROM   " . TABLE_CUSTOMERS . "
                   WHERE  customers_id = :customersID";
 

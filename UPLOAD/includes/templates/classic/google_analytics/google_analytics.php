@@ -1,7 +1,8 @@
 <?php
 /**
 * @package Google Analytics
-* @copyright Copyright 2003-2019 Zen Cart Development Team
+* @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright (c) 2005-2006 Andrew Berezin					  |
 * @copyrightPortions Copyright (c) 2006 Dayne Larsen							  |
 * @copyrightPortions Copyright (c) 2007-2017 Eric Leuenberger	

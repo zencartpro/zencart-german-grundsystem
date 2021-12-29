@@ -24,14 +24,13 @@
  *
  * </code>
  *
- * @todo unit tests, $options docs
- * @todo more options support (or should just passthru them all?)
- *
  * @package Minify
  * @author Stephen Clay <steve@mrclay.org>
  * @author Elan Ruusamäe <glen@delfi.ee>
  */
-class Minify_ClosureCompiler {
+class Minify_ClosureCompiler
+{
+    public static $isDebug = false;
 
     /**
      * Filepath of the Closure Compiler jar file. This must be set before
@@ -39,14 +38,14 @@ class Minify_ClosureCompiler {
      *
      * @var string
      */
-    public static $jarFile = null;
+    public static $jarFile;
 
     /**
      * Writable temp directory. This must be set before calling minifyJs().
      *
      * @var string
      */
-    public static $tempDir = null;
+    public static $tempDir;
 
     /**
      * Filepath of "java" executable (may be needed if not in shell's PATH)
@@ -56,68 +55,186 @@ class Minify_ClosureCompiler {
     public static $javaExecutable = 'java';
 
     /**
+     * Default command line options passed to closure-compiler
+     *
+     * @var array
+     */
+    public static $defaultOptions = array(
+        'charset' => 'utf-8',
+        'compilation_level' => 'SIMPLE_OPTIMIZATIONS',
+        'warning_level' => 'QUIET',
+    );
+
+    /**
      * Minify a Javascript string
      *
      * @param string $js
-     *
      * @param array $options (verbose is ignored)
-     *
      * @see https://code.google.com/p/closure-compiler/source/browse/trunk/README
-     *
      * @return string
+     * @throws Minify_ClosureCompiler_Exception
      */
     public static function minify($js, $options = array())
     {
-        self::_prepare();
-        if (! ($tmpFile = tempnam(self::$tempDir, 'cc_'))) {
-            throw new Exception('Minify_ClosureCompiler : could not create temp file.');
-        }
-        file_put_contents($tmpFile, $js);
-        exec(self::_getCmd($options, $tmpFile), $output, $result_code);
-        unlink($tmpFile);
-        if ($result_code != 0) {
-            throw new Exception('Minify_ClosureCompiler : Closure Compiler execution failed.');
-        }
-        return implode("\n", $output);
+        $min = new static();
+
+        return $min->process($js, $options);
     }
 
-    private static function _getCmd($userOptions, $tmpFile)
+    /**
+     * Process $js using $options.
+     *
+     * @param string $js
+     * @param array $options
+     * @return string
+     * @throws Exception
+     * @throws Minify_ClosureCompiler_Exception
+     */
+    public function process($js, $options)
     {
-        $o = array_merge(
-            array(
-                'charset' => 'utf-8',
-                'compilation_level' => 'SIMPLE_OPTIMIZATIONS',
-            ),
+        $tmpFile = $this->dumpFile(self::$tempDir, $js);
+        try {
+            $result = $this->compile($tmpFile, $options);
+        } catch (Exception $e) {
+            unlink($tmpFile);
+            throw $e;
+        }
+        unlink($tmpFile);
+
+        return $result;
+    }
+
+    /**
+     * @param string $tmpFile
+     * @param array $options
+     * @return string
+     * @throws Minify_ClosureCompiler_Exception
+     */
+    protected function compile($tmpFile, $options)
+    {
+        $command = $this->getCommand($options, $tmpFile);
+
+        return implode("\n", $this->shell($command));
+    }
+
+    /**
+     * @param array $userOptions
+     * @param string $tmpFile
+     * @return string
+     */
+    protected function getCommand($userOptions, $tmpFile)
+    {
+        $args = array_merge(
+            $this->getCompilerCommandLine(),
+            $this->getOptionsCommandLine($userOptions)
+        );
+
+        return implode(' ', $args) . ' ' . escapeshellarg($tmpFile);
+    }
+
+    /**
+     * @return array
+     * @throws Minify_ClosureCompiler_Exception
+     */
+    protected function getCompilerCommandLine()
+    {
+        $this->checkJar(self::$jarFile);
+        $server = array(
+            self::$javaExecutable,
+            '-jar',
+            escapeshellarg(self::$jarFile)
+        );
+
+        return $server;
+    }
+
+    /**
+     * @param array $userOptions
+     * @return array
+     */
+    protected function getOptionsCommandLine($userOptions)
+    {
+        $args = array();
+
+        $options = array_merge(
+            static::$defaultOptions,
             $userOptions
         );
-        $cmd = self::$javaExecutable . ' -jar ' . escapeshellarg(self::$jarFile)
-             . (preg_match('/^[\\da-zA-Z0-9\\-]+$/', $o['charset'])
-                ? " --charset {$o['charset']}"
-                : '');
 
-        foreach (array('compilation_level') as $opt) {
-            if ($o[$opt]) {
-                $cmd .= " --{$opt} ". escapeshellarg($o[$opt]);
-            }
+        foreach ($options as $key => $value) {
+            $args[] = "--{$key} " . escapeshellarg($value);
         }
-        return $cmd . ' ' . escapeshellarg($tmpFile);
+
+        return $args;
     }
 
-    private static function _prepare()
+    /**
+     * @param string $jarFile
+     * @throws Minify_ClosureCompiler_Exception
+     */
+    protected function checkJar($jarFile)
     {
-        if (! is_file(self::$jarFile)) {
-            throw new Exception('Minify_ClosureCompiler : $jarFile('.self::$jarFile.') is not a valid file.');
+        if (!is_file($jarFile)) {
+            throw new Minify_ClosureCompiler_Exception('$jarFile(' . $jarFile . ') is not a valid file.');
         }
-        if (! is_readable(self::$jarFile)) {
-            throw new Exception('Minify_ClosureCompiler : $jarFile('.self::$jarFile.') is not readable.');
+        if (!is_readable($jarFile)) {
+            throw new Minify_ClosureCompiler_Exception('$jarFile(' . $jarFile . ') is not readable.');
         }
-        if (! is_dir(self::$tempDir)) {
-            throw new Exception('Minify_ClosureCompiler : $tempDir('.self::$tempDir.') is not a valid direcotry.');
+    }
+
+    /**
+     * @param string $tempDir
+     * @throws Minify_ClosureCompiler_Exception
+     */
+    protected function checkTempdir($tempDir)
+    {
+        if (!is_dir($tempDir)) {
+            throw new Minify_ClosureCompiler_Exception('$tempDir(' . $tempDir . ') is not a valid direcotry.');
         }
-        if (! is_writable(self::$tempDir)) {
-            throw new Exception('Minify_ClosureCompiler : $tempDir('.self::$tempDir.') is not writable.');
+        if (!is_writable($tempDir)) {
+            throw new Minify_ClosureCompiler_Exception('$tempDir(' . $tempDir . ') is not writable.');
         }
+    }
+
+    /**
+     * Write $content to a temporary file residing in $dir.
+     *
+     * @param string $dir
+     * @param string $content
+     * @return string
+     * @throws Minify_ClosureCompiler_Exception
+     */
+    protected function dumpFile($dir, $content)
+    {
+        $this->checkTempdir($dir);
+        $tmpFile = tempnam($dir, 'cc_');
+        if (!$tmpFile) {
+            throw new Minify_ClosureCompiler_Exception('Could not create temp file in "' . $dir . '".');
+        }
+        file_put_contents($tmpFile, $content);
+
+        return $tmpFile;
+    }
+
+    /**
+     * Execute command, throw if exit code is not in $expectedCodes array
+     *
+     * @param string $command
+     * @param array $expectedCodes
+     * @return mixed
+     * @throws Minify_ClosureCompiler_Exception
+     */
+    protected function shell($command, $expectedCodes = array(0))
+    {
+        exec($command, $output, $result_code);
+        if (!in_array($result_code, $expectedCodes)) {
+            throw new Minify_ClosureCompiler_Exception("Unpexpected return code: $result_code");
+        }
+
+        return $output;
     }
 }
 
-/* vim:ts=4:sw=4:et */
+class Minify_ClosureCompiler_Exception extends Exception
+{
+}

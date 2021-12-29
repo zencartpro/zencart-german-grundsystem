@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: profiles.php 880 2019-04-12 09:39:23Z webchills $
+ * @version $Id: profiles.php 2021-10-24 18:39:23Z webchills $
  */
 require('includes/application_top.php');
 
@@ -93,7 +94,7 @@ switch ($action) {
     <title><?php echo TITLE; ?></title>
     <link rel="stylesheet" href="includes/stylesheet.css">
     <link rel="stylesheet" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-    <link rel="stylesheet" href="includes/admin_access.css">
+    <link rel="stylesheet" href="includes/css/admin_access.css">
     <script src="includes/menu.js"></script>
     <script src="includes/general.js"></script>
     <script>
@@ -211,10 +212,11 @@ switch ($action) {
             <dt>
               <strong class="checkLabel"><?php echo $menuTitles[$menuKey] ?></strong>
               <input class="btn btn-info checkButton" type="button" value="<?php echo TEXT_CHECK_ALL; ?>" onclick="checkAll(this.form, '<?php echo $menuKey ?>', true);">
+&nbsp;&nbsp;
               <input class="btn btn-info checkButton" type="button" value="<?php echo TEXT_UNCHECK_ALL; ?>" onclick="checkAll(this.form, '<?php echo $menuKey ?>', false);">
             </dt>
             <?php foreach ($pageList as $pageKey => $page) { ?>
-              <dd><label><?php echo zen_draw_checkbox_field('p[]', htmlspecialchars($pageKey, ENT_COMPAT, CHARSET, TRUE), in_array($pageKey, $permittedPages), '', ' class="' . $menuKey . '"'); ?><?php echo zen_output_string($page['name'], false, true); ?></label></dd>
+              <dd><label><?php echo zen_draw_checkbox_field('p[]', htmlspecialchars($pageKey, ENT_COMPAT, CHARSET, TRUE), in_array($pageKey, $permittedPages), '', ' class="' . $menuKey . ' admin-profile"'); ?><?php echo zen_output_string($page['name'], false, true); ?></label></dd>
             <?php } ?>
           </dl>
         <?php } ?>

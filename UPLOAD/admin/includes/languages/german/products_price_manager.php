@@ -1,10 +1,11 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at2
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_price_manager.php 646 2020-02-13 21:19:04Z webchills $
+ * @version $Id: products_price_manager.php 2021-12-03 15:19:04Z webchills $
  */
 
 
@@ -70,18 +71,12 @@ define('TEXT_INFO_DATE_ADDED', 'Erstellt am:');
 define('TEXT_INFO_LAST_MODIFIED', 'Letzte Änderung:');
 define('TEXT_INFO_NEW_PRICE', 'Neuer Preis:');
 define('TEXT_INFO_ORIGINAL_PRICE', 'Originalpreis:');
-define('TEXT_INFO_PERCENTAGE', 'Prozentsatz:');
-define('TEXT_INFO_AVAILABLE_DATE', 'Verfügbar ab:');
-define('TEXT_INFO_EXPIRES_DATE', 'Ablaufdatum:');
 define('TEXT_INFO_STATUS_CHANGE', 'Letzte Statusänderung:');
-define('TEXT_IMAGE_NONEXISTENT', 'Bild existiert nicht');
 define('TEXT_INFO_HEADING_DELETE_FEATURED', 'Empfohlene Artikel löschen');
 define('TEXT_INFO_DELETE_INTRO', 'Sind Sie sicher, dass Sie diesen Status löschen wollen?');
 define('TEXT_ATTRIBUTES_INSERT_INFO', '<strong>Definieren Sie die Einstellungen der Attribute und klicken anschließend auf Einfügen, um die Änderungen wirksam zu machen</strong>');
 
 define('TEXT_PRODUCTS_PRICE', 'Artikelpreis: ');
-define('TEXT_SPECIAL_PRICE', 'Sonderpreis: ');
-define('TEXT_SALE_PRICE', 'Abverkaufspreis: ');
 define('TEXT_FREE', 'KOSTENLOS');
 define('TEXT_CALL_FOR_PRICE', 'Preis bitte anfragen');
 define('TEXT_ADD_ADDITIONAL_DISCOUNT', DISCOUNT_QTY_ADD . ' leere Mengenrabatt hinzufügen:');
@@ -91,13 +86,12 @@ define('TEXT_PRODUCTS_DISCOUNT_QTY_TITLE', 'Mengenrabatt-Stufe');
 define('TEXT_PRODUCTS_DISCOUNT','Ermäßigung');
 define('TEXT_PRODUCTS_DISCOUNT_QTY','Mindeststückzahl');
 define('TEXT_PRODUCTS_DISCOUNT_PRICE','Ermäßigungswert');
-define('TEXT_PRODUCTS_DISCOUNT_TYPE','Typ');
+
 define('TEXT_PRODUCTS_DISCOUNT_PRICE_EACH','Kalkulationspreis:');
 define('TEXT_PRODUCTS_DISCOUNT_PRICE_EXTENDED','Erweiterter Preis:');
 define('TEXT_PRODUCTS_DISCOUNT_PRICE_EACH_TAX','Kalkuliere<br />Preis: &nbsp; versteuert:');
 define('TEXT_PRODUCTS_DISCOUNT_PRICE_EXTENDED_TAX','Erweiterter<br />Preis: &nbsp; versteuert:');
-define('TEXT_EACH','je');
-define('TEXT_EXTENDED','Summe');
+
 define('TEXT_DISCOUNT_TYPE_INFO', 'Artikelermäßigung Info');
 define('TEXT_DISCOUNT_TYPE','Ermäßigungstyp:');
 define('TEXT_DISCOUNT_TYPE_FROM', 'Ermäßigungspreis von:');
@@ -110,7 +104,7 @@ define('DISCOUNT_TYPE_FROM_DROPDOWN_1','Sonderpreis');
 define('TEXT_UPDATE_COMMIT','Aktualisiere alle Änderungen in der aktuellen Ansicht');
 define('TEXT_PRODUCTS_TAX_CLASS', 'Steuerklasse:');
 define('TEXT_INFO_MASTER_CATEGORIES_ID_WARNING', '<strong>Warnung:</strong> Die ID %s der Artikelhauptkategorie stimmt nicht mit der aktuellen Kategorie ID %s überein und Artikel sind nicht verlinkt!');
-define('TEXT_INFO_MASTER_CATEGORIES_CURRENT', ' Die aktuelle Kategorie ID %s stimmt mit der Hauptkategorie ID %s überein');
+
 define('TEXT_INFO_MASTER_CATEGORIES_ID_UPDATE_TO_CURRENT', 'Aktualisiere Hauptkategorie-ID %s, um eine Übereinstimmung mit der aktuellen Kategorie ID %s zu erhalten');
 define('PRODUCT_WARNING_UPDATE', 'Bitte machen Sie Ihre Änderungen und klicken Sie zum Speichern anschließend auf Aktualisieren');
 define('PRODUCT_UPDATE_SUCCESS', 'Die Artikeländerungen wurden erfolgreich aktualisiert!');

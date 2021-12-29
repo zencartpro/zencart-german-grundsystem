@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: manufacturers.php 628 2015-12-22 16:39:16Z webchills $
+ * @version $Id: manufacturers.php 2021-12-02 16:39:16Z webchills $
  */
 
 define('HEADING_TITLE','Hersteller');
@@ -20,7 +21,7 @@ define('TEXT_DATE_ADDED','Erstellt am:');
 define('TEXT_LAST_MODIFIED','Letzte Änderung:');
 define('TEXT_PRODUCTS','Artikel:');
 define('TEXT_PRODUCTS_IMAGE_DIR','Uploadverzeichnis:');
-define('TEXT_IMAGE_NONEXISTENT','BILD EXISTIERT NICHT');
+
 define('TEXT_MANUFACTURERS_IMAGE_MANUAL', '<strong>Oder wählen Sie ein bestehendes Bild vom Server, Dateiname:</strong>');
 
 define('TEXT_NEW_INTRO','Bitte geben Sie die folgenden Informationen für den neuen Hersteller an');
@@ -35,5 +36,3 @@ define('TEXT_DELETE_IMAGE','Herstellerbild wirklich löschen?');
 define('TEXT_DELETE_PRODUCTS','Die Artikel diese Herstellers wirklich löschen? (Alle Daten werden gelöscht!)');
 define('TEXT_DELETE_WARNING_PRODUCTS','<b>WARNUNG:</b> Es sind noch %s Artikel mit diesem Hersteller verlinkt!');
 
-define('ERROR_DIRECTORY_NOT_WRITEABLE','FEHLER: In das Verzeichnis kann nicht geschrieben werden. Setzen Sie bitte die erforderlichen Berechtigungen für: %s');
-define('ERROR_DIRECTORY_DOES_NOT_EXIST','FEHLER: Das Verzeichnis existiert nicht: %s');

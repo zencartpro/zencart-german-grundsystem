@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: display_logs.php 731 2019-06-16 09:49:16Z webchills $
+ * @version $Id: display_logs.php 2021-12-26 11:49:16Z webchills $
  */
  
 define('HEADING_TITLE', 'Display Debug Log Files');
@@ -15,9 +16,9 @@ define('TABLE_HEADING_FILESIZE', 'File Size (bytes)');
 define('TABLE_HEADING_DELETE', 'Delete?');
 define('TABLE_HEADING_ACTION', 'Action');
 
-define('BUTTON_DELETE_SELECTED', 'button_delete_selected.gif');
+define('BUTTON_DELETE_SELECTED', 'Delete Selected');
 define('DELETE_SELECTED_ALT', 'Delete all selected files');
-define('BUTTON_DELETE_ALL', 'button_delete_all.gif');
+define('BUTTON_DELETE_ALL', 'Delete All');
 define('DELETE_ALL_ALT', 'Delete all files in the current view');
 
 define('ICON_INFO_VIEW', 'View the contents of this file');

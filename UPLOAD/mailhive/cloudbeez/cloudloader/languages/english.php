@@ -20,7 +20,7 @@ define('MAILBEEZ_INSTALL_SYSTEM_CHECK', 'System Check');
 define('MAILBEEZ_INSTALL_SYSTEM_CONFIRM', 'Agree & Continue');
 define('MAILBEEZ_INSTALL_CANCEL', 'Cancel');
 
-define('MAILBEEZ_INSTALL_SYSTEM_CHECK_PHP', 'PHP version 5.3 or greater required');
+define('MAILBEEZ_INSTALL_SYSTEM_CHECK_PHP', 'PHP version 5.6 or newer required');
 define('MAILBEEZ_INSTALL_SYSTEM_CHECK_SAFEMODE', 'Safe mode PHP setting is not enabled');
 define('MAILBEEZ_INSTALL_SYSTEM_CHECK_CURL', 'cURL PHP Extension is required');
 define('MAILBEEZ_INSTALL_SYSTEM_CHECK_TEST_CONNECTION', 'Test connection to CloudBeez server');

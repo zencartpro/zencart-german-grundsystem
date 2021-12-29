@@ -2,11 +2,12 @@
 /**
  * ot_gv order-total module
  *
- * @package orderTotal
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_gv.php 736 2020-01-17 10:11:16Z webchills $
+ * @version $Id: ot_gv.php 737 2021-11-28 21:11:16Z webchills $
  */
 /**
  * Enter description here...
@@ -69,7 +70,7 @@ class ot_gv {
       if ($od_amount['total'] > 0) {
         $tax = 0;
         foreach($order->info['tax_groups'] as $key => $value) {
-          if ($od_amount['tax_groups'][$key]) {
+          if (isset($od_amount['tax_groups'][$key])) {
             $order->info['tax_groups'][$key] -= $od_amount['tax_groups'][$key];
             $tax += $od_amount['tax_groups'][$key];
           }
@@ -123,7 +124,7 @@ class ot_gv {
       $od_amount = $this->calculate_deductions($order_total);
       $order->info['total'] = $order->info['total'] - $od_amount['total'];
       if (DISPLAY_PRICE_WITH_TAX != 'true') {
-        $order->info['total'] -= $tax;
+        $order->info['total'] -= $od_amount['tax'];
       }
       return $od_amount['total'] + $od_amount['tax'];
     }
@@ -151,7 +152,10 @@ class ot_gv {
       $gv_original_price = zen_products_lookup((int)$order->products[$i]['id'], 'products_price');
        // if prices differ assume Special and get Special Price
        // Do not use this on GVs Priced by Attribute
-      if (MODULE_ORDER_TOTAL_GV_SPECIAL == 'true' && ($gv_original_price != 0 && $gv_original_price != $order->products[$i]['final_price'] && !zen_get_products_price_is_priced_by_attributes((int)$order->products[$i]['id']))) {
+      if (defined('MODULE_ORDER_TOTAL_GV_SPECIAL') && MODULE_ORDER_TOTAL_GV_SPECIAL == 'true'
+          && $gv_original_price != 0 && $gv_original_price != $order->products[$i]['final_price']
+          && !zen_get_products_price_is_priced_by_attributes((int)$order->products[$i]['id'])
+      ) {
         $gv_order_amount = ($gv_original_price * $order->products[$i]['qty']);
       } else {
         $gv_order_amount = ($order->products[$i]['final_price'] * $order->products[$i]['qty']);
@@ -196,7 +200,7 @@ class ot_gv {
                          'checkbox' => $this->use_credit_amount(),
                          'fields' => array(array('title' => MODULE_ORDER_TOTAL_GV_TEXT_ENTER_CODE,
                          'field' => zen_draw_input_field('gv_redeem_code', '', 'id="disc-'.$this->code.'" onkeyup="submitFunction(0,0)"'),
-                         'tag' => 'disc-'.$this->code
+                         'tag' => 'disc-'.$this->code,
                          )));
 
     }

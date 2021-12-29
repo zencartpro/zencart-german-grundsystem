@@ -1,9 +1,10 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_cache_key_check.php 13 2020-03-02 08:49:16Z webchills $
+ * @version $Id: init_cache_key_check.php 2021-10-25 17:49:16Z webchills $
  */
 /**
  * System check for valid SESSION_WRITE_DIRECTORY value

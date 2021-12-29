@@ -4,10 +4,11 @@
  * defines queries used in various codeblocks
  * can be used to assist with special requirements for other database-abstraction configurations
  *
- * @package classes
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: define_queries.php 732 2020-02-05 15:23:16Z webchills $
+ * @version $Id: define_queries.php 2021-10-26 10:23:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -23,13 +24,12 @@ DEFINE('SQL_BANNER_UPDATE_CLICK_COUNT', "update " . TABLE_BANNERS_HISTORY . " se
 DEFINE('SQL_ALSO_PURCHASED', "SELECT p.products_id, p.products_image, max(o.date_purchased) as date_purchased
                      FROM " . TABLE_ORDERS_PRODUCTS . " opa, " . TABLE_ORDERS_PRODUCTS . " opb, "
                             . TABLE_ORDERS . " o, " . TABLE_PRODUCTS . " p
-                     WHERE opa.products_id = '%s'
+                     WHERE opa.products_id = %u
                      AND opa.orders_id = opb.orders_id
-                     AND opb.products_id != '%s'
+                     AND opb.products_id != %u
                      AND opb.products_id = p.products_id
                      AND opb.orders_id = o.orders_id
                      AND p.products_status = 1
                      GROUP BY p.products_id, p.products_image
-                     ORDER BY date_purchased desc, p.products_id
-                     LIMIT 50");
+                     ORDER BY date_purchased desc, p.products_id"); 
 DEFINE('SQL_SHOW_SHOPPING_CART_EMPTY',"select configuration_key, configuration_value from " . TABLE_CONFIGURATION . " where configuration_key RLIKE 'SHOW_SHOPPING_CART_EMPTY' and configuration_value > 0 order by configuration_value");

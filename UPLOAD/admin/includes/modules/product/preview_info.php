@@ -1,11 +1,12 @@
 <?php
 /**
  * Zen Cart German Specific
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: preview_info.php 737 2020-02-14 12:21:16Z webchills $
+ * @version $Id: preview_info.php 738 2021-10-26 09:21:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -21,16 +22,13 @@ if (zen_not_null($_POST)) {
   $products_merkmale = $_POST['products_merkmale'];
   $products_description = $_POST['products_description'];
   $products_url = $_POST['products_url'];
+  foreach ($products_url as &$url){ // remove protocol
+      $url = str_replace(array('http://', 'https://'), '', $url);
+  }
+  unset ($url);
 } else {
-  $product = $db->Execute("SELECT p.products_id, pd.language_id, pd.products_name, pd.products_merkmale,
-                                  pd.products_description, pd.products_url, p.products_quantity,
-                                  p.products_model, p.products_image, p.products_price, p.products_virtual,
-                                  p.products_weight, p.products_date_added, p.products_last_modified,
-                                  p.products_date_available, p.products_status, p.manufacturers_id,
-                                  p.products_quantity_order_min, p.products_quantity_order_units, p.products_priced_by_attribute,
-                                  p.product_is_free, p.product_is_call, p.products_quantity_mixed,
-                                  p.product_is_always_free_shipping, p.products_qty_box_status, p.products_quantity_order_max,
-                                  p.products_sort_order
+  $product = $db->Execute("SELECT p.*,
+                                  pd.language_id, pd.products_name, pd.products_merkmale,pd.products_description, pd.products_url
                            FROM " . TABLE_PRODUCTS . " p,
                                 " . TABLE_PRODUCTS_DESCRIPTION . " pd
                            WHERE p.products_id = pd.products_id
@@ -54,7 +52,7 @@ $form_action = (isset($_GET['pID'])) ? 'update_product' : 'insert_product';
       echo zen_draw_form($form_action, FILENAME_PRODUCT, 'cPath=' . $cPath . (isset($_GET['pID']) ? '&pID=' . $_GET['pID'] : '') . '&action=' . $form_action . (isset($_GET['page']) ? '&page=' . $_GET['page'] : ''), 'post', 'enctype="multipart/form-data"');
     }
 
-    for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
+    for ($i = 0, $n = count($languages); $i < $n; $i++) {
       if (isset($_GET['read']) && ($_GET['read'] == 'only')) {
         $pInfo->products_name = zen_get_products_name($pInfo->products_id, $languages[$i]['id']);
 	$pInfo->products_merkmale = zen_get_products_merkmale($pInfo->products_id, $languages[$i]['id']);
@@ -71,6 +69,7 @@ $form_action = (isset($_GET['pID'])) ? 'update_product' : 'insert_product';
         $specials_price = zen_get_products_special_price($_GET['pID']);
       }
       ?>
+<div class="row table-bordered">
     <div class="row">
       <div class="col-sm-6 pageHeading">
           <?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;' . zen_output_string_protected($pInfo->products_name); ?>
@@ -83,6 +82,8 @@ $form_action = (isset($_GET['pID'])) ? 'update_product' : 'insert_product';
           <?php echo ($pInfo->product_is_free == 1 ? '<div class="errorText">' . '<br>' . TEXT_PRODUCTS_IS_FREE_PREVIEW . '</div>' : ''); ?>
           <?php echo ($pInfo->product_is_call == 1 ? '<div class="errorText">' . '<br>' . TEXT_PRODUCTS_IS_CALL_PREVIEW . '</div>' : '') ?>
           <?php echo ($pInfo->products_qty_box_status == 0 ? '<div class="errorText">' . '<br>' . TEXT_PRODUCTS_QTY_BOX_STATUS_PREVIEW . '</div>' : ''); ?>         
+          <?php echo ($pInfo->products_quantity_order_min < $pInfo->products_quantity_order_units ? '<div class="errorText">' . '<br>' . TEXT_PRODUCTS_QTY_MIN_UNITS_PREVIEW . '</div>' : ''); ?>
+          <?php echo ($pInfo->products_quantity_order_min > $pInfo->products_quantity_order_units && fmod_round($pInfo->products_quantity_order_min, $pInfo->products_quantity_order_units) != 0 ? '<div class="errorText">' . '<br>' . TEXT_PRODUCTS_QTY_MIN_UNITS_MISMATCH_PREVIEW . '</div>' : ''); ?>
           <?php echo (isset($_GET['pID']) && $pInfo->products_priced_by_attribute == 1 ? '<br>' . zen_get_products_display_price($_GET['pID']) : ''); ?>
       </div>
     </div>
@@ -94,7 +95,7 @@ $form_action = (isset($_GET['pID'])) ? 'update_product' : 'insert_product';
           $products_image_name = $_POST['img_dir'] . $_POST['products_image_manual'];
           $pInfo->products_name = $products_image_name;
         }
-        if (isset($_POST['image_delete']) && $_POST['image_delete'] == 1 || $products_image_name == '' && PRODUCTS_IMAGE_NO_IMAGE_STATUS == '1') {
+        if ((isset($_POST['image_delete']) && $_POST['image_delete'] == '1') || ($products_image_name == '' && PRODUCTS_IMAGE_NO_IMAGE_STATUS == '1')) {
           echo zen_image(DIR_WS_CATALOG_IMAGES . PRODUCTS_IMAGE_NO_IMAGE, $pInfo->products_name, SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT, 'class="img-thumbnail" style="float:right;"') . $pInfo->products_description;
         } else {
           echo zen_image(DIR_WS_CATALOG_IMAGES . $products_image_name, $pInfo->products_name, SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT, 'class="img-thumbnail" style="float:right;"') . $pInfo->products_description;
@@ -122,6 +123,8 @@ $form_action = (isset($_GET['pID'])) ? 'update_product' : 'insert_product';
     }
     ?>
     <div class="row"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></div>
+</div>
+<div class="row"><?php echo zen_draw_separator('pixel_trans.gif', '5', '10'); ?></div>
     <?php
   }
 
@@ -155,7 +158,7 @@ $form_action = (isset($_GET['pID'])) ? 'update_product' : 'insert_product';
           }
         }
 
-        for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
+        for ($i = 0, $n = count($languages); $i < $n; $i++) {
           echo zen_draw_hidden_field('products_name[' . $languages[$i]['id'] . ']', htmlspecialchars(stripslashes($products_name[$languages[$i]['id']]), ENT_COMPAT, CHARSET, TRUE));
           echo zen_draw_hidden_field('products_merkmale[' . $languages[$i]['id'] . ']', htmlspecialchars(stripslashes($products_merkmale[$languages[$i]['id']]), ENT_COMPAT, CHARSET, TRUE));
           echo zen_draw_hidden_field('products_description[' . $languages[$i]['id'] . ']', htmlspecialchars(stripslashes($products_description[$languages[$i]['id']]), ENT_COMPAT, CHARSET, TRUE));

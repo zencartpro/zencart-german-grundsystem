@@ -1,9 +1,9 @@
 <?php
 /**
- * @package Installer
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_main_page.php 4 2015-12-29 19:49:16Z webchills $
+ * @version $Id: tpl_main_page.php 5 2021-11-28 17:49:16Z webchills $
  */
 ?>
 <body id="<?php echo $body_id; ?>">
@@ -27,10 +27,10 @@
           <fieldset>
            <div class="row">
              <div class="small-3 columns">
-               <label class="inline" for="choose_lang"><a href="#" class="hasHelpText" id="choose_lang"><?php echo TEXT_INSTALLER_CHOOSE_LANGUAGE; ?></a></label>
+               <label class="inline" for="lng"><a href="#" class="hasHelpText" id="choose_lang"><?php echo TEXT_INSTALLER_CHOOSE_LANGUAGE; ?></a></label>
              </div>
              <div class="small-9 columns">
-               <select name="lng" id="lng" class="medium"><?php echo zen_get_install_languages_list($lng); ?></select>
+               <select name="lng" id="lng" class="medium"><?php echo zen_get_install_languages_list($installer_lng); ?></select>
              </div>
            </div>
            </fieldset>

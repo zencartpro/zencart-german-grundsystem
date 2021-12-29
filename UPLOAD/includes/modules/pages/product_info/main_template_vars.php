@@ -1,12 +1,13 @@
 <?php
 /**
  *  product_info main_template_vars.php
- * Zen Cart German Specific
- * @package productTypes
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main_template_vars.php 802 2020-02-08 12:47:36Z webchills $
+ * @version $Id: main_template_vars.php 2021-11-29 15:34:36Z webchills $
  */
 /*
  * Extracts and constructs the data to be used in the product-type template tpl_TYPEHANDLER_info_display.php
@@ -21,7 +22,7 @@
 
   $product_not_found = $product_info->EOF;
 
-  if (!defined('PRODUCT_THROWS_200_WHEN_DISABLED') || PRODUCT_THROWS_200_WHEN_DISABLED !== true) {
+  if (!defined('DISABLED_PRODUCTS_TRIGGER_HTTP200') || DISABLED_PRODUCTS_TRIGGER_HTTP200 !== 'true') {
       if (!$product_not_found && $product_info->fields['products_status'] != 1) {
           $product_not_found = true;
       }
@@ -145,6 +146,7 @@
   $flag_show_product_info_url = zen_get_show_product_switch($_GET['products_id'], 'url');
   $flag_show_product_info_additional_images = zen_get_show_product_switch($_GET['products_id'], 'additional_images');
   $flag_show_product_info_free_shipping = zen_get_show_product_switch($_GET['products_id'], 'always_free_shipping_image_switch');
+  $flag_show_ask_a_question = !empty(zen_get_show_product_switch($_GET['products_id'], 'ask_a_question'));
   require(DIR_WS_MODULES . zen_get_module_directory(FILENAME_PRODUCTS_QUANTITY_DISCOUNTS));
 
   $zco_notifier->notify('NOTIFY_MAIN_TEMPLATE_VARS_EXTRA_PRODUCT_INFO');

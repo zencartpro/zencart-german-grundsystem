@@ -2,7 +2,8 @@
 /**
  * Zen Cart German Specific
  * @package Configuration Settings FRONTEND
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * Datei erstellt von %%_INSTALLER_METHOD_%% am %%_DATE_NOW_%%
@@ -61,7 +62,7 @@ define('DIR_FS_CATALOG', '%%_DIR_FS_CATALOG_%%');
 
 /**
  * The following settings define your database connection.
- * These must be the SAME as you're using in your non-admin copy of configure.php
+ * These must be the SAME as you're using in your admin copy of configure.php
  * Die folgenden Einstellungen definieren Ihre Datenbankverbindung.
  * Sie müssen hier dieselben Datenbankdaten verwenden wie in der configure.php in Ihrem Adminverzeichnis!
  */

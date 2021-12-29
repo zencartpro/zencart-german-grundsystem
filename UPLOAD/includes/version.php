@@ -7,20 +7,23 @@
  *
  * THIS FILE SHOULD NEVER BE EDITED MANUALLY !!!!!!!!
  *
- * @package general
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: version.php 851 2020-01-16 10:50:58Z webchills $
+ * @version $Id: version.php 2021-12-29 09:36:58Z webchills $
  * @private
  */
 
 define('PROJECT_VERSION_NAME', 'Zen Cart');
 define('PROJECT_VERSION_MAJOR', '1');
-define('PROJECT_VERSION_MINOR', '5.6e');
+define('PROJECT_VERSION_MINOR', '5.7beta');
 define('PROJECT_VERSION_PATCH1', '');
 define('PROJECT_VERSION_PATCH2', '');
 define('PROJECT_VERSION_PATCH1_SOURCE', '');
 define('PROJECT_VERSION_PATCH2_SOURCE', '');
 define('NEW_VERSION_CHECKUP_URL','https://www.zen-cart-pro.at/version_id.txt');
+define('PROJECT_VERSIONSERVER_URL', 'https://www.zen-cart-pro.at');
+define('PROJECT_NOTIFICATIONSERVER_URL', 'https://www.zen-cart-pro.at');
 define('EXPECTED_DATABASE_VERSION_MAJOR', '1');
-define('EXPECTED_DATABASE_VERSION_MINOR', '5.6');
+define('EXPECTED_DATABASE_VERSION_MINOR', '5.7beta');

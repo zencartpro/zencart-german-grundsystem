@@ -4,11 +4,12 @@
  * html_output.php
  * HTML-generating functions used throughout the core
  *
- * @package functions
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: html_output.php 848 2020-01-21 15:24:58Z webchills $
+ * @version $Id: html_output.php 2021-11-29 15:44:58Z webchills $
  */
 
 /*
@@ -98,6 +99,7 @@
     while (strstr($link, '&amp;&amp;')) $link = str_replace('&amp;&amp;', '&amp;', $link);
 
     $link = preg_replace('/&/', '&amp;', $link);
+    $link = preg_replace('~//$~', '/', $link);
     return $link;
   }
 
@@ -221,10 +223,10 @@ function zen_catalog_href_link($page = '', $parameters = '', $connection = 'NONS
 
     if (CONFIG_CALCULATE_IMAGE_SIZE == 'true' && (empty($width) || empty($height))) {
       if ($image_size = @getimagesize($src)) {
-        if (empty($width) && zen_not_null($height)) {
+        if (empty($width) && !empty($height)) {
           $ratio = $height / $image_size[1];
           $width = $image_size[0] * $ratio;
-        } elseif (zen_not_null($width) && empty($height)) {
+        } elseif (!empty($width) && empty($height)) {
           $ratio = $width / $image_size[0];
           $height = $image_size[1] * $ratio;
         } elseif (empty($width) && empty($height)) {
@@ -237,7 +239,7 @@ function zen_catalog_href_link($page = '', $parameters = '', $connection = 'NONS
     }
 
 
-    if (zen_not_null($width) && zen_not_null($height) && file_exists($src)) {
+    if (!empty($width) && !empty($height) && file_exists($src)) {
 // proportional images
       $image_size = @getimagesize($src);
       // fix division by zero error
@@ -317,7 +319,7 @@ function zen_catalog_href_link($page = '', $parameters = '', $connection = 'NONS
  * concept from contributions by Seb Rouleau and paulm, subsequently adapted to Zen Cart
  * note: any hard-coded buttons will not be able to use this function
 **/
-  function zenCssButton($image = '', $text, $type, $sec_class = '', $parameters = '') {
+  function zenCssButton($image = '', $text = '', $type = 'button', $sec_class = '', $parameters = '') {
    global $css_button_text, $css_button_opts, $template, $current_page_base, $language;
 
    $button_name = basename($image, '.gif');
@@ -794,7 +796,14 @@ function zen_draw_pull_down_menu($name, $values, $default = '', $parameters = ''
   }
 ////
 // output label for input fields
-  function zen_draw_label($text, $for, $parameters = ''){
-    $label = '<label for="' . $for . '" ' . $parameters . '>' . $text . '</label>';
+/**
+ * @param string $text
+ * @param string $for
+ * @param string $parameters
+ * @return string
+ */
+function zen_draw_label($text, $for, $parameters = '')
+{
+    $label = '<label for="' . $for . '"' . (!empty($parameters) ? ' ' . $parameters : '') . '>' . $text . '</label>';
     return $label;
-  }
+}

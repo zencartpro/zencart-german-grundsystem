@@ -6,11 +6,12 @@
  * Loaded automatically by index.php?main_page=shopping_cart.<br />
  * Displays shopping-cart contents
  *
- * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_shopping_cart_default.php 4 2019-06-24 19:33:58Z webchills $
+ * @version $Id: tpl_shopping_cart_default.php 2021-12-28 21:35:58Z webchills $
  */
 ?>
 <?php 
@@ -31,7 +32,7 @@
 
 <h1 id="cartDefaultHeading"><?php echo HEADING_TITLE; ?></h1>
 <!-- ** BEGIN PAYPAL EXPRESS CHECKOUT for not logged in visitors only! ** -->
-<?php if (!$_SESSION['customer_id']) { ?>	
+<?php if (!zen_is_logged_in()) { ?>	
 <div class="buttonRow forward">
 <?php  // the tpl_ec_button template only displays EC option if cart contents >0 and value >0
 if (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATUS == 'True') {
@@ -44,7 +45,12 @@ if (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATU
 <?php if ($messageStack->size('shopping_cart') > 0) echo $messageStack->output('shopping_cart'); ?>
 
 <?php echo zen_draw_form('cart_quantity', zen_href_link(FILENAME_SHOPPING_CART, 'action=update_product', $request_type), 'post', 'id="shoppingCartForm"'); ?>
-<div id="cartInstructionsDisplay" class="content"><?php echo TEXT_INFORMATION; ?></div>
+<div id="cartInstructionsDisplay" class="content"><?php
+/**
+ * require the html_define for the shopping_cart page
+ */
+    require($define_page);
+?></div>
 
 <?php if (!empty($totalsDisplay)) { ?>
   <div class="cartTotalsDisplay important"><?php echo $totalsDisplay; ?></div>
@@ -110,7 +116,11 @@ if (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATU
     foreach ($product['attributes'] as $option => $value) {
 ?>
 
-<li><?php echo $value['products_options_name'] . TEXT_OPTION_DIVIDER . nl2br($value['products_options_values_name']); ?></li>
+<li>
+    <?php
+    echo $value['products_options_name'] . TEXT_OPTION_DIVIDER . nl2br($value['products_options_values_name']);
+    ?>
+</li>
 
 <?php
     }
@@ -148,7 +158,7 @@ if (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATU
 <?php
   }
   if ($product['checkBoxDelete'] ) {
-    echo zen_draw_checkbox_field('cart_delete[]', $product['id']);
+    echo zen_draw_checkbox_field('cart_delete[]', $product['id'], false, 'aria-label="' . ARIA_DELETE_ITEM_FROM_CART . '"');
   }
 ?>
       </td>

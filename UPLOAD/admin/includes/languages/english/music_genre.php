@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: music_genre.php 730 2015-12-22 15:49:16Z webchills $
+ * @version $Id: music_genre.php 2021-10-25 19:49:16Z webchills $
  */
  
   define('HEADING_TITLE', 'Music Genres');
@@ -15,15 +16,12 @@
   define('TEXT_DELETE_INTRO', 'Are you sure you want to delete this Music Genre.');
   define('TEXT_DELETE_IMAGE', 'Delete Image?.');
   define('TEXT_MUSIC_GENRE_NAME', 'Music Genre Name');
-  define('TEXT_MUSIC_GENRE_IMAGE', 'Music Genre Image');
-  define('TEXT_MUSIC_GENRE_IMAGE_DIR', 'Image Directory&nbsp;');
 
   define('TEXT_HEADING_NEW_MUSIC_GENRE', 'New Music Genre');
   define('TEXT_HEADING_EDIT_MUSIC_GENRE', 'Edit Music Genre');
   define('TEXT_HEADING_DELETE_MUSIC_GENRE', 'Delete Music Genre');
   define('TEXT_DATE_ADDED', 'Date Added');
   define('TEXT_LAST_MODIFIED', 'Date Modified');
-  define('TEXT_IMAGE_NONEXISTENT', 'Image does not exist');
   define('TEXT_PRODUCTS', 'Linked Products');
   define('TEXT_DISPLAY_NUMBER_OF_MUSIC_GENRES', 'Displaying <strong>%d</strong> to <strong>%d</strong> (of <strong>%d</strong> Music Genres)');
   define('TEXT_DELETE_PRODUCTS', 'Delete this Music Genre and all items linked to it?');

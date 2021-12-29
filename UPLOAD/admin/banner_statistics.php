@@ -1,10 +1,10 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: banner_statistics.php 786 2018-12-13 17:13:51Z webchills $
+ * @version $Id: banner_statistics.php 2021-11-29 20:03:51Z webchills $
  * @TODO - align .flot_chart.flot-x-axis smarter in relation to .flot_chart, and add styling, such as slightly larger font and bold, etc
  * @TODO - expand the functionality to enable hover-points and hover-text describing each point on the graphs
  */
@@ -60,22 +60,8 @@ $opts = array(
 <!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
   <head>
-    <meta charset="<?php echo CHARSET; ?>">
-    <title><?php echo TITLE; ?></title>
-    <link rel="stylesheet" href="includes/stylesheet.css">
-    <link rel="stylesheet" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-    <script src="includes/menu.js"></script>
-    <script>
-      function init() {
-          cssjsmenu('navbar');
-          if (document.getElementById) {
-              var kill = document.getElementById('hoverJS');
-              kill.disabled = true;
-          }
-      }
-      // -->
-    </script>
-    <link rel="stylesheet" href="includes/banner_tools.css" />
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
+    <link rel="stylesheet" href="includes/css/banner_tools.css">
   </head>
   <body>
     <!-- header //-->

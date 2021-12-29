@@ -31,12 +31,16 @@
  *  $flag_disable_right = true;<br />
  * }<br />
  *
- * @package templateSystem
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_main_page.php 8 2020-02-12 08:49:16Z webchills $
+ * @version $Id: tpl_main_page.php 2021-12-28 20:41:16Z webchills $
  */
+if (!defined('IS_ADMIN_FLAG')) {
+    die('Illegal Access');
+}
 
 /** bof DESIGNER TESTING ONLY: */
 // $messageStack->add('header', 'this is a sample error message', 'error');
@@ -49,7 +53,10 @@
 
 
 
-// the following IF statement can be duplicated/modified as needed to set additional flags
+// the following statements can be modified as needed to set additional flags
+if (in_array($current_page_base,explode(",",'list_pages_to_skip_all_left_sideboxes_on_here,separated_by_commas,and_no_spaces')) ) {
+  $flag_disable_left = true;
+}
 if (in_array($current_page_base,explode(",",'list_pages_to_skip_all_right_sideboxes_on_here,separated_by_commas,and_no_spaces')) ) {
   $flag_disable_right = true;
 }
@@ -162,6 +169,7 @@ if (!$flag_disable_left) {
 <!-- bof upload alerts -->
 <?php if ($messageStack->size('upload') > 0) echo $messageStack->output('upload'); ?>
 <!-- eof upload alerts -->
+<?php if ($messageStack->size('main_content') > 0) echo $messageStack->output('main_content'); ?>
 
 <?php
  /**
@@ -256,20 +264,49 @@ if  ($detect->isMobile() && !$detect->isTablet() || $_SESSION['layoutType'] == '
 }
 ?>
 <?php
-/**                                                                                                                                                                                                       
+/**
 * load the loader JS files
 */
 if(!empty($RC_loader_files)){
+  foreach($RC_loader_files['css'] as $RC_order=>$file){
+		if ($file['defer']) {
+			if($file['include']) {
+					include($file['src']);
+			} else if (!$RI_CJLoader->get('minify_css') || $file['external']) {					
+					echo '
+					<script type="text/javascript" async>
+						var elm = document.createElement("link");
+						elm.rel = "stylesheet";
+						elm.type = "text/css";
+						elm.href = "'.$file['src'] .'";
+						
+						var links = document.getElementsByTagName("link")[0];
+						links.parentNode.appendChild(elm);
+					</script>';
+			} else {					
+					echo '
+					<script type="text/javascript" async>
+						var elm = document.createElement("link");
+						elm.rel = "stylesheet";
+						elm.type = "text/css";
+						elm.href = "extras/min/?f='.$file['src'].'&'.$RI_CJLoader->get('minify_time').'";						
+						var links = document.getElementsByTagName("link")[0];
+						links.parentNode.appendChild(elm);
+					</script>';
+			}
+		}
+	}
+
   foreach($RC_loader_files['jscript'] as $file)
     if($file['include']) {
       include($file['src']);
-    } else if(!$RI_CJLoader->get('minify_js') || $file['external']) {
-      echo '<script type="text/javascript" src="'.$file['src'].'"></script>'."\n";
+    } else if(!$RI_CJLoader->get('minify_js')) {
+      echo '<script type="text/javascript" src="'.$file['src'].'"'.($file['defer'] ? ' defer async': '').'></script>'."\n";
+
     } else {
-      echo '<script type="text/javascript" src="extras/min/?f='.$file['src'].'&'.$RI_CJLoader->get('minify_time').'"></script>'."\n";
+      echo '<script type="text/javascript" src="extras/min/?f='.$file['src'].'&'.$RI_CJLoader->get('minify_time').'"'.($file['defer'] ? ' defer async': '').'></script>'."\n";
     }
 }
-//DEBUG: echo '';
 ?>
 <?php 
 if ((GOOGLE_ANALYTICS_ENABLED == "Enabled") && (GOOGLE_ANALYTICS_TRACKING_TYPE != "Asynchronous")) {

@@ -1,0 +1,19 @@
+/**
+ * CSS Stylesheet for printing
+ *
+ * @ignore
+ * @access private
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: Scott C Wilson 2020 Oct 01 Modified in v1.5.7a $
+ */
+
+
+.headerBar, .header-area, .footer-area, .noprint, 
+.report-button { display: none;}
+
+.table>tbody>tr>td {
+   border: none;
+}

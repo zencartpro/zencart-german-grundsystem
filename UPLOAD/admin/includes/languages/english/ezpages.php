@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ezpages.php 731 2019-04-13 15:49:16Z webchills $
+ * @version $Id: ezpages.php 2021-10-25 19:03:16Z webchills $
  */
  
 define('HEADING_TITLE', 'EZ-Pages');
@@ -41,8 +42,6 @@ define('TABLE_HEADING_PAGE_IS_VISIBLE_EXPLANATION', ' Page shown even if not in 
 
 define('TEXT_DISPLAY_NUMBER_OF_PAGES', 'Displaying <b>%d</b> to <b>%d</b> (of <b>%d</b> pages)');
 define('IMAGE_NEW_PAGE', 'New Page');
-define('TEXT_INFO_PAGE_IMAGE', 'Image');
-define('TEXT_INFO_CURRENT_IMAGE', 'Current Image:');
 define('TEXT_INFO_PAGES_ID', 'ID: ');
 define('TEXT_INFO_PAGES_ID_SELECT', 'Select a page ...');
 

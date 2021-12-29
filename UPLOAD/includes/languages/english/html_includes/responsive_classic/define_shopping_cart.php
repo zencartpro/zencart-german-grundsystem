@@ -1,0 +1,1 @@
+<p>Edit this text (the one you are reading now) in Admin > Tools > Define Pages Editor (define_shopping_cart.php) to write your personal shopping cart message here</p>

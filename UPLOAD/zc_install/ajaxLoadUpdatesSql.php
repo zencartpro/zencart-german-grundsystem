@@ -1,10 +1,10 @@
 <?php
 /**
  * ajaxLoadUpdatesSql.php
- * @package Installer
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ajaxLoadUpdatesSql.php 3 2019-06-16 18:59:53Z webchills $
+ * @version $Id: ajaxLoadUpdatesSql.php 4 2021-11-28 17:40:53Z webchills $
  */
 define('IS_ADMIN_FLAG', false);
 define('DIR_FS_INSTALL', __DIR__ . '/');
@@ -30,6 +30,7 @@ $updateList = array(
         '1.5.4'=>array('required'=>'1.5.3'),
         '1.5.5'=>array('required'=>'1.5.4'),
         '1.5.6'=>array('required'=>'1.5.5'),
+        '1.5.7'=>array('required'=>'1.5.6'),
         );
 
 $systemChecker = new systemChecker();
@@ -43,6 +44,7 @@ $versionInfo = $updateList[$updateVersion];
 if ($versionInfo['required'] != $dbVersion)
 {
   $error = TRUE;
+  if (empty($versionInfo['required'])) $versionInfo['required'] = '[ ERROR: NOT READY FOR UPGRADES YET. NOTIFY DEV TEAM!] ';
   $errorList[] = sprintf(TEXT_COULD_NOT_UPDATE_BECAUSE_ANOTHER_VERSION_REQUIRED, $updateVersion, $dbVersion, $versionInfo['required']);
 }
 if (!$error)

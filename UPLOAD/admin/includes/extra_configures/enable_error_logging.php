@@ -8,9 +8,10 @@
  * Credits to @lat9 for adding backtrace functionality
  *
  * @package debug
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: enable_error_logging.php 791 2019-04-12 08:13:51Z webchills $
+ * @version $Id: enable_error_logging.php 2021-11-29 20:13:51Z webchills $
  */
 
 require DIR_FS_CATALOG . 'includes/extra_configures/enable_error_logging.php';

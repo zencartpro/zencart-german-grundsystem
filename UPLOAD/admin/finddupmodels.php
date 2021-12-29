@@ -1,11 +1,11 @@
 <?php
 /**
- * @package admin
+ * Zen Cart German Specific
  * @copyright Copyright 2011-2019 That Software Guy
- * @copyright Portions Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Portions Copyright 2003-2022 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: finddupmodels.php 1 2019-07-28 09:16:51 webchills $
+ * @version $Id: finddupmodels.php 2021-12-27 19:16:51 webchills $
  */
 
 require('includes/application_top.php');

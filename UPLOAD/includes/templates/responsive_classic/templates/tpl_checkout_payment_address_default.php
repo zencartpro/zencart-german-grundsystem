@@ -5,11 +5,12 @@
  * Loaded automatically by index.php?main_page=checkout_payment_address.<br />
  * Allows customer to change the billing address.
  *
- * @package templateSystem
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_checkout_payment_address_default 5 2020-02-15 15:00:58Z webchills $
+ * @version $Id: tpl_checkout_payment_address_default 2020-02-15 15:00:58Z webchills $
 
  */
 ?>

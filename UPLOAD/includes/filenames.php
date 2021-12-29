@@ -4,11 +4,12 @@
  * filenames.php
  * Defines the filenames used in the project
  *
- * @package general
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: filenames.php 810 2019-08-06 15:50:24Z webchills $
+ * @version $Id: filenames.php 2021-12-26 13:39:24Z webchills $
  */
 /**
  * define project filenames
@@ -30,6 +31,7 @@ define('FILENAME_ADVANCED_SEARCH_RESULT', 'advanced_search_result');
 define('FILENAME_AJAX', 'ajax');
 define('FILENAME_ALT_NAV', 'alt_nav');
 define('FILENAME_ALERT_PAGE', 'alert_page');
+define('FILENAME_ASK_A_QUESTION', 'ask_a_question');
 define('FILENAME_ATTRIBUTES', 'attributes');
 define('FILENAME_ATTRIBUTES_CONTROLLER', 'attributes_controller');
 define('FILENAME_BACKUP', 'backup');
@@ -60,6 +62,7 @@ define('FILENAME_CREATE_ACCOUNT_SUCCESS', 'create_account_success');
 define('FILENAME_CURRENCIES', 'currencies');
 define('FILENAME_CUSTOMERS', 'customers');
 define('FILENAME_DEFAULT', 'index');
+define('FILENAME_DEFINE_ASK_A_QUESTION', 'define_ask_a_question');
 define('FILENAME_DEFINE_PAGES_EDITOR', 'define_pages_editor');
 define('FILENAME_DEFINE_MAIN_PAGE', 'define_main_page');
 define('FILENAME_DEFINE_CHECKOUT_SUCCESS', 'define_checkout_success');
@@ -72,6 +75,7 @@ define('FILENAME_DEFINE_PAGE_4', 'define_page_4');
 define('FILENAME_DEFINE_PAGE_NOT_FOUND', 'define_page_not_found');
 define('FILENAME_DEFINE_PRIVACY', 'define_privacy');
 define('FILENAME_DEFINE_SHIPPINGINFO', 'define_shippinginfo');
+define('FILENAME_DEFINE_SHOPPING_CART', 'define_shopping_cart');
 define('FILENAME_DEFINE_SITE_MAP', 'define_site_map');
 define('FILENAME_DEFINE_LANGUAGE', 'define_language');
 define('FILENAME_DENIED', 'denied');
@@ -149,6 +153,8 @@ define('FILENAME_PRODUCTS_TO_CATEGORIES', 'products_to_categories');
 define('FILENAME_PROFILES', 'profiles');
 define('FILENAME_REDIRECT', 'redirect');
 define('FILENAME_REVIEWS', 'reviews');
+define('RL_INVOICE3_ADMIN_FILENAME', 'rl_invoice3_admin');
+define('FILENAME_RL_INVOICE3', 'rl_invoice3');
 define('FILENAME_SALEMAKER', 'salemaker');
 define('FILENAME_SALEMAKER_INFO', 'salemaker_info');
 define('FILENAME_SALEMAKER_POPUP', 'salemaker_popup');

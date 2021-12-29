@@ -1,16 +1,16 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: coupon_admin.php 808 2019-06-15 15:44:24Z webchills $
+ * @version $Id: coupon_admin.php 2021-11-30 20:44:24Z webchills $
  */
 
-define('TOP_BAR_TITLE', 'Statistics');
 define('HEADING_TITLE', 'Discount Coupons');
 define('HEADING_TITLE_STATUS', 'Status : ');
-define('TEXT_CUSTOMER', 'Customer:');
+
 define('TEXT_COUPON', 'Coupon Name:');
 define('TEXT_COUPON_ALL', 'All Coupons');
 define('TEXT_COUPON_ACTIVE', 'Active Coupons');
@@ -21,20 +21,15 @@ define('TEXT_FROM', 'From:');
 define('TEXT_FREE_SHIPPING', 'Free Shipping');
 define('TEXT_MESSAGE', 'Message:');
 define('TEXT_RICH_TEXT_MESSAGE','Rich-Text Message:');
-define('TEXT_SELECT_CUSTOMER', 'Select Customer');
-define('TEXT_ALL_CUSTOMERS', 'All Customers');
-define('TEXT_NEWSLETTER_CUSTOMERS', 'To All Newsletter Subscribers');
 define('TEXT_CONFIRM_DELETE', 'Are you sure you want to delete this Coupon?');
 define('TEXT_SEE_RESTRICT', 'Restrictions Apply');
 
 define('TEXT_COUPON_ANNOUNCE','We\'re pleased to offer you a Store Coupon');
 
 define('TEXT_TO_REDEEM', 'You can redeem this coupon during checkout. Just enter the code in the box provided, and click on the redeem button.');
-define('TEXT_IN_CASE', ' in case you have any problems. ');
 define('TEXT_VOUCHER_IS', 'The coupon code is ');
 define('TEXT_REMEMBER', 'Don\'t lose the coupon code, make sure to keep the code safe so you can benefit from this special offer.');
 define('TEXT_VISIT', 'Visit us at %s');
-define('TEXT_ENTER_CODE', ' and enter the code ');
 define('TEXT_COUPON_HELP_DATE', '<p>The coupon is valid between %s and %s</p>');
 define('HTML_COUPON_HELP_DATE', '<p>The coupon is valid between %s and %s</p>');
 
@@ -57,6 +52,7 @@ define('ERROR_NO_SUBJECT', 'Error: No subject has been entered.');
 define('COUPON_NAME', 'Coupon Name');
 //define('COUPON_VALUE', 'Coupon Value');
 define('COUPON_AMOUNT', 'Coupon Amount');
+
 define('TEXT_COUPON_PRODUCT_COUNT_PER_ORDER', 'Per Order');
 define('TEXT_COUPON_PRODUCT_COUNT_PER_PRODUCT', 'Per Qualifying Item');
 define('COUPON_CODE', 'Coupon Code');
@@ -66,16 +62,17 @@ define('COUPON_RESTRICTIONS', 'Restrictions');
 define('COUPON_FREE_SHIP', 'Free Shipping');
 define('COUPON_DESC', 'Coupon Description <br />(Customer can see)');
 define('COUPON_MIN_ORDER', 'Coupon Minimum Order');
+
 define('COUPON_TOTAL', 'Coupon Minimum calculated from: ');
 define('TEXT_COUPON_TOTAL_PRODUCTS', 'Allowed Products');
 define('TEXT_COUPON_TOTAL_PRODUCTS_BASED', '<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Based on Total of Allowed Products according to Coupon Restriction Rules)');
 define('TEXT_COUPON_TOTAL_ORDER', 'All Products');
 define('TEXT_COUPON_TOTAL_ORDER_BASED', '<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Based on Full Order Total of All Products Regardless of Qualifying Coupon Restrictions)');
+
 define('COUPON_USES_COUPON', 'Uses per Coupon');
 define('COUPON_USES_USER', 'Uses per Customer');
 define('COUPON_PRODUCTS', 'Valid Product List');
 define('COUPON_CATEGORIES', 'Valid Categories List');
-define('VOUCHER_NUMBER_USED', 'Number Used');
 define('DATE_CREATED', 'Date Created');
 define('DATE_MODIFIED', 'Date Modified');
 define('TEXT_HEADING_NEW_COUPON', 'Create New Coupon');
@@ -90,9 +87,12 @@ define('TEXT_COUPON_IS_VALID_FOR_SALES', 'Coupon IS allowed for Products on Sale
 define('TEXT_COUPON_IS_VALID_FOR_SALES_EMAIL', 'Coupon is valid for Products on Sale or Special');
 define('TEXT_NO_COUPON_IS_VALID_FOR_SALES', 'Coupon NOT allowed for Products on Sale or Special');
 define('TEXT_NO_COUPON_IS_VALID_FOR_SALES_EMAIL', 'Coupon is not valid for Products on Sale or Special');
+
+
 define('ERROR_NO_COUPON_AMOUNT', 'No coupon amount entered');
 define('ERROR_NO_COUPON_NAME', 'No coupon name entered ');
 define('ERROR_COUPON_EXISTS', 'A coupon with that code already exists');
+
 
 define('COUPON_NAME_HELP', 'A short name for the coupon');
 define('COUPON_AMOUNT_HELP', 'The value of the discount for the coupon, either fixed or add a % on the end for a percentage discount.<br />Per Order or Per Qualifying Item applies only when amount is used.');
@@ -106,15 +106,13 @@ define('COUPON_TOTAL_HELP', 'If you specify a Coupon Minimum Order for this Disc
 define('COUPON_SALE_HELP', 'If you choose <i>NOT allowed</i>, products on sale or special will not be discounted or counted towards the coupon minimum order.');
 define('COUPON_USES_COUPON_HELP', 'The maximum number of times the coupon can be used, leave blank if you want no limit.');
 define('COUPON_USES_USER_HELP', 'Number of times a user can use the coupon, leave blank for no limit.');
-define('COUPON_PRODUCTS_HELP', 'A comma separated list of product_ids that this coupon can be used with. Leave blank for no restrictions.');
-define('COUPON_CATEGORIES_HELP', 'A comma separated list of cpaths that this coupon can be used with, leave blank for no restrictions.');
 define('COUPON_BUTTON_PREVIEW', 'Preview');
 define('COUPON_BUTTON_CONFIRM', 'Confirm');
-define('COUPON_BUTTON_BACK', 'Back');
 
 define('COUPON_ACTIVE', 'Status');
 define('COUPON_START_DATE', 'Starts');
 define('COUPON_EXPIRE_DATE', 'Expires');
+
 define('TEXT_INFO_DUPLICATE_MANAGEMENT', '<strong>Multiple Discount Coupons Management</strong><br /><br />Click on Discount Coupon to base changes on<br />or use the selected Base Coupon Code: <strong>%s</strong>');
 define('ERROR_DISCOUNT_COUPON_WELCOME', 'Discount Coupon CANNOT be deactivated. This Discount Coupon is the Welcome Discount Coupon<br /><br />Change the Welcome Discount Coupon before trying to delete it. See Admin->Configuration->GV Coupons');
 define('SUCCESS_COUPON_DISABLED', 'Success! Discount Coupon was set to Inactive ...');
@@ -152,3 +150,4 @@ define('TEXT_CONFIRM_REACTIVATE', 'Are you sure you want to restore this Coupon?
 define('SUCCESS_COUPON_FOUND', 'Discount Coupon found!');
 define('ERROR_COUPON_NOT_FOUND', 'Discount Coupon not found!');
 define('ERROR_NO_COUPON_CODE', 'Discount Coupon coupon code not entered!');
+define('ERROR_NO_COUPONS', 'No coupons'); 

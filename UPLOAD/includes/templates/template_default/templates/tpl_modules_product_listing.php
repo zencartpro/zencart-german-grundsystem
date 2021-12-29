@@ -3,10 +3,11 @@
  * Module Template
  * Zne Cart German Specific
  * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_product_listing.php 731 2015-02-29 13:49:16Z webchills $
+ * @version $Id: tpl_modules_product_listing.php 2021-12-28 16:49:16Z webchills $
  */
  include(DIR_WS_MODULES . zen_get_module_directory(FILENAME_PRODUCT_LISTING));
 ?>

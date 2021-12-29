@@ -1,25 +1,34 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: gv_queue.php 630 2019-06-16 17:39:16Z webchills $
+ * @version $Id: gv_queue.php 2021-12-02 16:39:16Z webchills $
  */
-require 'gv_name.php';
-define('HEADING_TITLE', TEXT_GV_NAME . ' Warteschlange');
-define('TABLE_HEADING_CUSTOMERS','Kunden');
-define('TABLE_HEADING_ORDERS_ID','Bestellnummer');
-define('TABLE_HEADING_VOUCHER_VALUE',TEXT_GV_NAME . ' Betrag');
-define('TABLE_HEADING_DATE_PURCHASED','Bestelldatum');
-define('TABLE_HEADING_ACTION','Aktion');
-define('TEXT_REDEEM_GV_MESSAGE_HEADER', 'Sie haben kürzlich einen ' . TEXT_GV_NAME . ' bei '. STORE_NAME . ' gekauft.');
-define('TEXT_REDEEM_GV_MESSAGE_RELEASED', 'Aus Sicherheitsgründen werden Gutscheine nicht sofort zur Verfügung gestellt. Der Betrag konnte jetzt freigegeben werden. Sie können jetzt unseren Online-Shop besuchen und den ' . TEXT_GV_NAME . ' Wert an die gewünschte Person weiterleiten oder ihn selbst einlösen.');
-define('TEXT_REDEEM_GV_MESSAGE_AMOUNT', 'Der ' . TEXT_GV_NAME . ' den Sie gekauft haben, hat einen Wert von %s');
-define('TEXT_REDEEM_GV_MESSAGE_THANKS', 'Danke, dass Sie bei uns eingekauft haben!');
+
+require DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'gv_name.php';
+define('HEADING_TITLE', TEXT_GV_NAME . ' Release Queue');
+
+define('TABLE_HEADING_CUSTOMERS', 'Customers');
+define('TABLE_HEADING_ORDERS_ID', 'Order-No.');
+define('TABLE_HEADING_VOUCHER_VALUE', TEXT_GV_NAME . ' Value');
+define('TABLE_HEADING_DATE_PURCHASED', 'Date Purchased');
+define('TABLE_HEADING_ACTION', 'Action');
+
+define('TEXT_REDEEM_GV_MESSAGE_HEADER', 'You recently purchased a ' . TEXT_GV_NAME . ' from our online store.');
+define('TEXT_REDEEM_GV_MESSAGE_RELEASED', 'For security reasons this was not made immediately available to you. ' .
+                                          'However, this amount has now been released. You may now visit our store and send the value of the ' . TEXT_GV_NAME . ' via email to someone else, or use it yourself.' . "\n\n"
+                                          );
+
+define('TEXT_REDEEM_GV_MESSAGE_AMOUNT', 'The ' . TEXT_GV_NAME . '(s) you purchased are worth %s');
+define('TEXT_REDEEM_GV_MESSAGE_THANKS', 'Thank you for shopping with us!');
+
 define('TEXT_REDEEM_GV_MESSAGE_BODY', '');
 define('TEXT_REDEEM_GV_MESSAGE_FOOTER', '');
-define('TEXT_REDEEM_GV_SUBJECT', TEXT_GV_NAME . ' Kauf');
-define('TEXT_REDEEM_GV_SUBJECT_ORDER', ' Bestellung #');
-define('TEXT_EDIT_ORDER','Editiere Bestellung ID#');
-define('TEXT_GV_NONE','Kein ' . TEXT_GV_NAME . ' zur Freigabe vorhanden');
+define('TEXT_REDEEM_GV_SUBJECT', TEXT_GV_NAME . ' Purchase');
+define('TEXT_REDEEM_GV_SUBJECT_ORDER',' Order #');
+
+define('TEXT_EDIT_ORDER','Edit Order ID# ');
+define('TEXT_GV_NONE','No ' . TEXT_GV_NAME . ' to release');

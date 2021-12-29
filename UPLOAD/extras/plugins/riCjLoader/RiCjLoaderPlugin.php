@@ -5,7 +5,7 @@
  * @author yellow1912 (RubikIntegration.com)
  * @author John William Robeson, Jr <johnny@localmomentum.net>
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License V2.0
- * modified for Zen Cart German PHP 7.3 2019-11-03 webchills
+ * modified for Zen Cart German PHP 7.4/8 2021-12-28 webchills
  * NOTES:
  * All .php files can be manipulated by PHP when they're called, and are copied in-full to the browser page
  */
@@ -14,7 +14,7 @@ class RiCjLoaderPlugin
 {
 	protected $jscript = array();
 	protected $css = array();
-  protected $meta = array();
+        protected $meta = array();
 	protected $template;
 	protected $page_directory = '';
 	protected $current_page_base = '';
@@ -75,14 +75,16 @@ class RiCjLoaderPlugin
 				require(DIR_WS_TEMPLATE.'auto_loaders'. '/' . $value);
 			}
 		}
-		elseif(count($this->get('loaders')) > 0)
+		
+		elseif(is_array($this->get('loaders')) && count($this->get('loaders')) > 0)
 		{
 			foreach($this->get('loaders') as $loader)
 				if(file_exists($path = DIR_WS_TEMPLATE.'auto_loaders'. '/loader_' . $loader .'.php')) require($path);
 		}
 		else 
 			return;
-		if(@count($loaders) > 0)	$this->addLoaders($loaders, true);		
+		
+		if(is_array($loaders) && count($loaders) > 0)	$this->addLoaders($loaders, true);
 	}
 	
 	function set($options){
@@ -140,11 +142,12 @@ class RiCjLoaderPlugin
 	 */
 	function processLibs () 
 	{   
-	    if (@count($this->libs) == 0) return;
+	    
+	    if (is_array($this->libs) && count($this->libs) == 0) return;
 	    
 		$css_files = $jscript_files = array();
 		$load_order = -99999; // we set the libs to load first
-		
+		if (is_array($this->libs) || is_object($this->libs)){
 		foreach ($this->libs as $lib => $options)
 		{
 			// attempt to load the config file
@@ -206,6 +209,7 @@ class RiCjLoaderPlugin
 			}	
 		}		
 		}
+	}
 		
 		if (!empty($css_files)) $this->addLoaderAssets($css_files, 'css');
 		if (!empty($jscript_files)) $this->addLoaderAssets($jscript_files, 'jscript');
@@ -229,14 +233,24 @@ class RiCjLoaderPlugin
 	function addLoaderAssets($files, $type){
 		foreach ($files as $file => $order) {
 			$error = false;
-			if(!file_exists($path = DIR_WS_TEMPLATE.$type . '/' . $file))
-				if(!file_exists($path = DIR_WS_CATALOG . '/' . $file))
-				  	if($this->strposArray($file, $this->options['supported_externals']) !== false)
+                        if(strlen($file) == 0) {
+                           $error = true;
+                        }
+			else if(!file_exists($path = DIR_WS_TEMPLATE.$type . '/' . $file)){
+				if(!file_exists($path = DIR_WS_CATALOG . '/' . $file)){
+				  	if($this->strposArray($file, $this->options['supported_externals']) !== false){
 						$path = $file;
-					else
-						$error = true; 
-			if(!$error)		
+                                        }
+					else {
+						$error = true;
+                                        }
+                                   }
+                             }
+
+
+			if($error === false) {
 				$this->{$type}[] = array($path => $order);
+                        }
 			else
 			{
 				// some kind of error logging here
@@ -266,11 +280,16 @@ class RiCjLoaderPlugin
 	function loadFiles($files){
 		$result = array();
 		foreach($files as $_files){
-			foreach($_files as $file=>$order)
-			if(!isset($result[$file]) || $result[$file] > $order) $result[$file] = $order;
+		
+			foreach($_files as $file=>$css_options){
+				if(isset($css_options['defer']) && (!isset($result[$file]) || $result[$file] > $css_options['order'])) $result[$file] = $css_options;
+				elseif(!isset($result[$file]) || $result[$file] > $css_options) $result[$file] = $css_options;		
+			}
+			
 		}
 
-		if(count($result) > 0)
+		
+		if(is_array($result) && count($result) > 0)
 			asort($result);
 		return $result;
 	}
@@ -289,7 +308,7 @@ class RiCjLoaderPlugin
 			if($this_is_home_page)
 				$this->current_page_base = 'index_home';
 			elseif($current_page_base == 'index'){
-				$this->current_page_base = 'index';
+				
 				if(isset($_GET['cPath']))
 					$this->current_page_base = 'index_category';
 				elseif(isset($_GET['manufacturers_id']))
@@ -492,44 +511,54 @@ class RiCjLoaderPlugin
 
 	function getFiles($files, $minify = false)
 	{
-		$files_paths = '';
 		$result = array();
 		$relative_path = $this->request_type == 'NONSSL' ? DIR_WS_CATALOG : DIR_WS_HTTPS_CATALOG;
-		foreach ($files as $file => $order) {
+		$file_path = array(
+			'normal' => array(
+				'path' => '',
+				'index' => 0
+			),
+			'defer' => array(
+				'path' => '',
+				'index' => 1
+			)
+		);
+		$index = 1;
+		
+		foreach ($files as $file => $options) {
+		    $index++;
 			$file_absolute_path = DIR_FS_CATALOG.$file;
 			$file_relative_path = $relative_path.$file;
-
+			
 			if($this->strposArray($file, $this->options['supported_externals']) !== false) {
 				// TODO: do the outputting formatting all in one place
-        		$result[] = array('src' => $file, 'include' => false, 'external' => true);
+        		$result[$index] = array('src' => $file, 'include' => false, 'external' => true, 'defer' => (isset($options['defer']) && $options['defer']) );
 				continue;
 			}
-
+			
+			$type = 'normal';
+			if (isset($options['defer']) && $options['defer']) {
+				$type = 'defer';
+			}
 			$ext = pathinfo($file, PATHINFO_EXTENSION);
 			// if we encounter php, unfortunately we will have to include it for now
 			// another solution is to put everything into 1 file, but we will have to solve @import
 			if ($ext == 'php') {
-				if(!empty($files_paths)){
-					$result[] = array('src' => trim($files_paths, ','), 'include' => false, 'external' => false);
-					$files_paths = '';
-				}
-				$result[] = array('src' => $file_absolute_path, 'include' => true);
+				$result[$index] = array('src' => $file_absolute_path, 'include' => true);
 				continue;
 			} elseif ($minify) {
-				if (strlen($files_paths) > ((int)MINIFY_MAX_URL_LENGHT - 20)) {
-					$result[] = array('src' => trim($files_paths, ','), 'include' => false);
-					$files_paths = $file_relative_path.',';
-				} else {
-					//$result[] = array('string' => sprintf($request_string, $file_relative_path), 'include' => false);
-					$files_paths .= $file_relative_path.',';
+			    if (strlen($file_path[$type]['path']) > ((int)MINIFY_MAX_URL_LENGHT - 20)) {
+			        $file_path[$type]['index'] = $index;
+					$file_path[$type]['path'] = trim($file_relative_path, ',');
 				}
+				else {
+					$file_path[$type]['path'] = trim($file_path[$type]['path'].','.$file_relative_path, ',');
+				}
+				$result[$file_path[$type]['index']] = array('src' => $file_path[$type]['path'], 'include' => false, 'defer' => ($type=='defer') );
 			} else {
-				$result[] = array('src' => $file_relative_path, 'include' => false, 'external' => false);
+				$file_path[$type]['index'] = $index;
+				$result[$index] = array('src' => $file_relative_path, 'include' => false, 'external' => false, 'defer' => ($type=='defer') );
 			}
-		}
-		// one last time
-		if (!empty($files_paths) && $minify) {
-			$result[] = array('src' => trim($files_paths, ','), 'include' => false, 'external' => false);
 		}
 		return $result;
 	}

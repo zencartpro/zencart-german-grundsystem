@@ -1,7 +1,8 @@
 <?php
 /**
 * @package manufacturer metatags
-* @copyright Copyright 2003-2019 Zen Cart Development Team
+* @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
 * @version $Id: functions_metatags_manufacturers.php 1 2019-07-27 11:23:04 webchills $

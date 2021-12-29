@@ -1,19 +1,20 @@
 <?php
 /**
  * Zen Cart German Specific
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_languages.php 733 2020-01-18 17:49:16Z webchills $
+ * @version $Id: init_languages.php 2021-12-26 13:22:16Z webchills $
  */
+use Zencart\LanguageLoader\LanguageLoader as LanguageLoader;
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
 // set the language
   if (!isset($_SESSION['language']) || isset($_GET['language'])) {
 
-    include(DIR_WS_CLASSES . 'language.php');
+    include(DIR_FS_CATALOG . DIR_WS_CLASSES . 'language.php');
     $lng = new language();
 
     if (isset($_GET['language']) && zen_not_null($_GET['language'])) {
@@ -25,7 +26,7 @@ if (!defined('IS_ADMIN_FLAG')) {
     }
 
     if (!is_file(DIR_WS_LANGUAGES . $lng->language['directory'] . '.php')) {
-      $lng->set_language('de');
+      $lng->set_language('en');
     }
 
     $_SESSION['language'] = (zen_not_null($lng->language['directory']) ? $lng->language['directory'] : 'english');
@@ -34,21 +35,13 @@ if (!defined('IS_ADMIN_FLAG')) {
   }
 
 // temporary patch for lang override chicken/egg quirk
-  $template_query = $db->Execute("select template_dir from " . TABLE_TEMPLATE_SELECT . " where template_language in (" . (int)$_SESSION['languages_id'] . ', 0' . ") order by template_language DESC");
+  $template_query = $db->Execute("SELECT template_dir
+                                  FROM " . TABLE_TEMPLATE_SELECT . "
+                                  WHERE template_language in (" . (int)$_SESSION['languages_id'] . ', 0' . ")
+                                  ORDER BY template_language DESC");
   $template_dir = $template_query->fields['template_dir'];
 
 // include the language translations
-  $current_page = basename($PHP_SELF);
-  if (is_file(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $current_page)) {
-    include(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $current_page);
-  }
-
-  if ($za_dir = @dir(DIR_WS_LANGUAGES . $_SESSION['language'] . '/extra_definitions')) {
-    while ($zv_file = $za_dir->read()) {
-      if (preg_match('~^[^\._].*\.php$~i', $zv_file) > 0) {
-        require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/extra_definitions/' . $zv_file);
-      }
-    }
-    $za_dir->close();
-  }
-  require(DIR_WS_LANGUAGES . $_SESSION['language'] . '.php');
+$current_page = ($PHP_SELF == 'home.php') ? 'index.php' : $PHP_SELF;
+$languageLoader = new LanguageLoader($current_page);
+$languageLoader->loadlanguageDefines();

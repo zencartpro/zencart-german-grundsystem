@@ -2,11 +2,12 @@
 /**
  * paypalwpp.php payment module class for PayPal Express Checkout payment method
  * Zen Cart German Specific
- * @package paymentMethod
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypalwpp.php 869 2020-02-25 07:56:14Z webchills $
+ * @version $Id: paypalwpp.php 2021-11-29 15:56:14Z webchills $
  */
 /**
  * load the communications layer code
@@ -93,7 +94,12 @@ class paypalwpp extends base {
    */
   var $fmfResponse = '';
   var $fmfErrors = array();
-  
+  /**
+   * Flag to enable the modern in-context checkout.
+   * https://developer.paypal.com/docs/classic/express-checkout/in-context/integration/
+   * @var boolean
+   */
+  var $use_incontext_checkout = true;
   /**
    * class constructor
    */
@@ -102,7 +108,7 @@ class paypalwpp extends base {
     global $order;
     $this->code = 'paypalwpp';
     $this->codeTitle = MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_EC;
-    $this->codeVersion = '1.5.6';
+    $this->codeVersion = '1.5.7';
     $this->enableDirectPayment = FALSE;
     $this->enabled = (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATUS == 'True');
     // Set the title & description text based on the mode we're in ... EC vs US/UK vs admin
@@ -516,7 +522,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
                           'mc_gross' => (float)$this->amt,
                           'mc_fee' => (float)urldecode($this->feeamt),
                           'mc_currency' => $this->responsedata['PAYMENTINFO_0_CURRENCYCODE'],
-                          'settle_amount' => (float)(isset($this->responsedata['PAYMENTINFO_0_SETTLEAMT'])) ? $this->urldecode($this->responsedata['PAYMENTINFO_0_SETTLEAMT']) : $this->amt,
+                          'settle_amount' => (float)(isset($this->responsedata['PAYMENTINFO_0_SETTLEAMT']) ? urldecode($this->responsedata['PAYMENTINFO_0_SETTLEAMT']) : $this->amt),
                           'settle_currency' => $this->responsedata['PAYMENTINFO_0_CURRENCYCODE'],
                           'exchange_rate' => (isset($this->responsedata['PAYMENTINFO_0_EXCHANGERATE']) && urldecode($this->responsedata['PAYMENTINFO_0_EXCHANGERATE']) > 0) ? urldecode($this->responsedata['PAYMENTINFO_0_EXCHANGERATE']) : 1.0,
                           'notify_version' => '0',
@@ -791,7 +797,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
   /**
    * Debug Emailing support
    */
-  function _doDebug($subject = 'PayPal debug data', $data, $useSession = true) {
+  function _doDebug($subject = 'PayPal debug data', $data = '', $useSession = true) {
     if (MODULE_PAYMENT_PAYPALWPP_DEBUGGING == 'Log and Email') {
       $data =  urldecode($data) . "\n\n";
       if ($useSession) $data .= "\nSession data: " . print_r($_SESSION, true);
@@ -908,10 +914,10 @@ if (false) { // disabled until clarification is received about coupons in PayPal
       if (!$error) {
         if (!isset($response['GROSSREFUNDAMT'])) $response['GROSSREFUNDAMT'] = $refundAmt;
         // Success, so save the results
-        $comments = 'REFUND INITIATED. Trans ID:' . $response['REFUNDTRANSACTIONID'] . $response['PNREF']. "\n" . ' Gross Refund Amt: ' . urldecode($response['GROSSREFUNDAMT']) . (isset($response['PPREF']) ? "\nPPRef: " . $response['PPREF'] : '') . "\n" . $refundNote;
+        $comments = 'REFUND INITIATED. Trans ID:' . $response['REFUNDTRANSACTIONID'] . (isset($response['PNREF']) ? $response['PNREF'] : '') . "\n" . ' Gross Refund Amt: ' . urldecode($response['GROSSREFUNDAMT']) . (isset($response['PPREF']) ? "\nPPRef: " . $response['PPREF'] : '') . "\n" . $refundNote;
         zen_update_orders_history($oID, $comments, null, $new_order_status, 0);
 
-        $messageStack->add_session(sprintf(MODULE_PAYMENT_PAYPALWPP_TEXT_REFUND_INITIATED, urldecode($response['GROSSREFUNDAMT']), urldecode($response['REFUNDTRANSACTIONID']). $response['PNREF']), 'success');
+        $messageStack->add_session(sprintf(MODULE_PAYMENT_PAYPALWPP_TEXT_REFUND_INITIATED, urldecode($response['GROSSREFUNDAMT']), urldecode($response['REFUNDTRANSACTIONID']). (isset($response['PNREF']) ? $response['PNREF'] : '')), 'success');
         return true;
       }
     }
@@ -1020,10 +1026,10 @@ if (false) { // disabled until clarification is received about coupons in PayPal
           if (!isset($response['ORDERTIME'])) $response['ORDERTIME'] = date("M-d-Y h:i:s");
         }
         // Success, so save the results
-        $comments = 'FUNDS CAPTURED. Trans ID: ' . urldecode($response['TRANSACTIONID']) . $response['PNREF']. "\n" . ' Amount: ' . urldecode($response['AMT']) . ' ' . $currency . "\n" . 'Time: ' . urldecode($response['ORDERTIME']) . "\n" . 'Auth Code: ' . (!empty($response['AUTHCODE']) ? $response['AUTHCODE'] : $response['CORRELATIONID']) . (isset($response['PPREF']) ? "\nPPRef: " . $response['PPREF'] : '') . "\n" . $captureNote;
+        $comments = 'FUNDS CAPTURED. Trans ID: ' . urldecode($response['TRANSACTIONID']) . (isset($response['PNREF']) ? $response['PNREF'] : ''). "\n" . ' Amount: ' . urldecode($response['AMT']) . ' ' . $currency . "\n" . 'Time: ' . urldecode($response['ORDERTIME']) . "\n" . 'Auth Code: ' . (!empty($response['AUTHCODE']) ? $response['AUTHCODE'] : $response['CORRELATIONID']) . (isset($response['PPREF']) ? "\nPPRef: " . $response['PPREF'] : '') . "\n" . $captureNote;
         zen_update_orders_history($oID, $comments, null, $new_order_status, 0);
 
-        $messageStack->add_session(sprintf(MODULE_PAYMENT_PAYPALWPP_TEXT_CAPT_INITIATED, urldecode($response['AMT']), urldecode(!empty($response['AUTHCODE']) ? $response['AUTHCODE'] : $response['CORRELATIONID']). $response['PNREF']), 'success');
+        $messageStack->add_session(sprintf(MODULE_PAYMENT_PAYPALWPP_TEXT_CAPT_INITIATED, urldecode($response['AMT']), urldecode(!empty($response['AUTHCODE']) ? $response['AUTHCODE'] : $response['CORRELATIONID']). (isset($response['PNREF']) ? $response['PNREF'] : '')), 'success');
         return true;
       }
     }
@@ -1064,10 +1070,10 @@ if (false) { // disabled until clarification is received about coupons in PayPal
       $new_order_status = ($new_order_status > 0 ? $new_order_status : 1);
       if (!$error) {
         // Success, so save the results
-        $comments = 'VOIDED. Trans ID: ' . urldecode($response['AUTHORIZATIONID']). $response['PNREF'] . (isset($response['PPREF']) ? "\nPPRef: " . $response['PPREF'] : '') . "\n" . $voidNote;
+        $comments = 'VOIDED. Trans ID: ' . urldecode($response['AUTHORIZATIONID']). (isset($response['PNREF']) ? $response['PNREF'] : '') . (isset($response['PPREF']) ? "\nPPRef: " . $response['PPREF'] : '') . "\n" . $voidNote;
         zen_update_orders_history($oID, $comments, null, $new_order_status, 0);
 
-        $messageStack->add_session(sprintf(MODULE_PAYMENT_PAYPALWPP_TEXT_VOID_INITIATED, urldecode($response['AUTHORIZATIONID']) . $response['PNREF']), 'success');
+        $messageStack->add_session(sprintf(MODULE_PAYMENT_PAYPALWPP_TEXT_VOID_INITIATED, urldecode($response['AUTHORIZATIONID']) . (isset($response['PNREF']) ? $response['PNREF'] : '')), 'success');
         return true;
       }
     }
@@ -2851,7 +2857,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
    */
   function _errorHandler($response, $operation = '', $ignore_codes = '') {
     global $messageStack, $doPayPal;
-    $gateway_mode = (isset($response['PNREF']) && $response['PNREF'] != '');
+    $gateway_mode = (!empty($response['PNREF']));
     $basicError = (!$response || (isset($response['RESULT']) && $response['RESULT'] != 0) || (isset($response['ACK']) && !strstr($response['ACK'], 'Success')) || (!isset($response['RESULT']) && !isset($response['ACK'])));
     $ignoreList = explode(',', str_replace(' ', '', $ignore_codes));
     if (!empty($response['L_ERRORCODE0'])) {
@@ -2867,7 +2873,11 @@ if (false) { // disabled until clarification is received about coupons in PayPal
       $messageStack->add_session($errorText, 'error');
     }
     /** Handle FMF Scenarios **/
-    if (in_array($operation, array('DoExpressCheckoutPayment', 'DoDirectPayment')) && ($response['PAYMENTINFO_0_PAYMENTSTATUS'] == 'Pending' || (isset($response['PAYMENTSTATUS']) && $response['PAYMENTSTATUS'] == 'Pending')) && $response['L_ERRORCODE0'] == 11610) {
+    if (in_array($operation, array('DoExpressCheckoutPayment', 'DoDirectPayment'))
+        && ((isset($response['PAYMENTINFO_0_PAYMENTSTATUS']) && $response['PAYMENTINFO_0_PAYMENTSTATUS'] == 'Pending')
+            || (isset($response['PAYMENTSTATUS']) && $response['PAYMENTSTATUS'] == 'Pending')
+           )
+        && $response['L_ERRORCODE0'] == 11610) {
       $this->fmfResponse = urldecode($response['L_SHORTMESSAGE0']);
       $this->fmfErrors = array();
       if ($response['ACK'] == 'SuccessWithWarning' && isset($response['L_PAYMENTINFO_0_FMFPENDINGID0'])) {

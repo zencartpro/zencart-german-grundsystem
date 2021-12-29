@@ -4,11 +4,11 @@
  * Important Links (ez-pages) Option
  *
  * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version GIT: $Id: picaflor-azul Modified in v1.5.5 $
- * @author Altered by rbarbour (ZCAdditions.com), Mega UL/LI Menu (menus/0)
+ * @version $Id: tpl_ezpages.php 2021-12-27 16:55:58Z webchills $
  */
 
   $content .= '<li><a href="javascript:void(0)">'.$title_ezpages.'</a>';

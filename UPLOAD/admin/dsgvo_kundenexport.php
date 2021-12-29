@@ -1,66 +1,60 @@
 <?php
-/**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+/** 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: dsgvo_kundenxport.php 2018-05-19 09:03:51Z webchills $
+ * @version $Id: dsgvo_kundenxport.php 2021-12-27 14:24:51Z webchills $
  */
+require('includes/application_top.php');
 
-  require('includes/application_top.php');
+require(DIR_WS_CLASSES . 'currencies.php');
+$currencies = new currencies();
+$group_array = array();
 
-  require(DIR_WS_CLASSES . 'currencies.php');
-  $currencies = new currencies();
+$action = (isset($_GET['action']) ? $_GET['action'] : '');
+$customers_id = isset($_GET['cID']) ? (int)$_GET['cID'] : 0;
+if (isset($_POST['cID'])) $customers_id = (int)$_POST['cID'];
+if (!isset($_GET['page'])) $_GET['page'] = '';
+if (!isset($_GET['list_order'])) $_GET['list_order'] = '';
 
-  $action = (isset($_GET['action']) ? $_GET['action'] : '');
-  $customers_id = zen_db_prepare_input($_GET['cID']);
-  if (isset($_POST['cID'])) $customers_id = zen_db_prepare_input($_POST['cID']);
+$error = false;
+$processed = false;
 
-  $error = false;
-  $processed = false;
+if (zen_not_null($action)) {
+  switch ($action) {
+    case 'list_addresses':
+      $addresses_query = "SELECT address_book_id, entry_firstname as firstname, entry_lastname as lastname,
+                                 entry_company as company, entry_street_address as street_address,
+                                 entry_suburb as suburb, entry_city as city, entry_postcode as postcode,
+                                 entry_state as state, entry_zone_id as zone_id, entry_country_id as country_id
+                          FROM   " . TABLE_ADDRESS_BOOK . "
+                          WHERE  customers_id = :customersID
+                          ORDER BY firstname, lastname";
 
-  if (zen_not_null($action)) {
-    switch ($action) {
-      case 'list_addresses':
-        $addresses_query = "SELECT address_book_id, entry_firstname as firstname, entry_lastname as lastname,
-                            entry_company as company, entry_street_address as street_address,
-                            entry_suburb as suburb, entry_city as city, entry_postcode as postcode,
-                            entry_state as state, entry_zone_id as zone_id, entry_country_id as country_id
-                    FROM   " . TABLE_ADDRESS_BOOK . "
-                    WHERE  customers_id = :customersID
-                    ORDER BY firstname, lastname";
+      $addresses_query = $db->bindVars($addresses_query, ':customersID', $_GET['cID'], 'integer');
 
-        $addresses_query = $db->bindVars($addresses_query, ':customersID', $_GET['cID'], 'integer');
-        $addresses = $db->Execute($addresses_query);
-        $addressArray = array();
-        while (!$addresses->EOF) {
-          $format_id = zen_get_address_format_id($addresses->fields['country_id']);
+      $zco_notifier->notify('NOTIFY_ADMIN_CUSTOMERS_LIST_ADDRESSES', $addresses_query);
 
-          $addressArray[] = array('firstname'=>$addresses->fields['firstname'],
-                                  'lastname'=>$addresses->fields['lastname'],
-                                  'address_book_id'=>$addresses->fields['address_book_id'],
-                                  'format_id'=>$format_id,
-                                  'address'=>$addresses->fields);
-          $addresses->MoveNext();
-        }
+      $addresses = $db->Execute($addresses_query);
+      $addressArray = array();
+      foreach ($addresses as $address) {
+        $format_id = zen_get_address_format_id($address['country_id']);
+
+        $addressArray[] = array(
+          'firstname' => $address['firstname'],
+          'lastname' => $address['lastname'],
+          'address_book_id' => $address['address_book_id'],
+          'format_id' => $format_id,
+          'address' => $address);
+      }
+      break;
+      
+   
+ 
 ?>
-<fieldset>
-<legend><?php echo ADDRESS_BOOK_TITLE; ?></legend>
-<div class="alert forward"><?php echo sprintf(TEXT_MAXIMUM_ENTRIES, MAX_ADDRESS_BOOK_ENTRIES); ?></div>
-<br class="clearBoth" />
-<?php
-/**
- * Used to loop thru and display address book entries
- */
-  foreach ($addressArray as $addresses) {
-?>
-<h3 class="addressBookDefaultName"><?php echo zen_output_string_protected($addresses['firstname'] . ' ' . $addresses['lastname']); ?><?php if ($addresses['address_book_id'] == zen_get_customers_address_primary($_GET['cID'])) echo '&nbsp;' . PRIMARY_ADDRESS ; ?></h3>
-<address><?php echo zen_address_format($addresses['format_id'], $addresses['address'], true, ' ', '<br />'); ?></address>
 
-<br class="clearBoth" />
-<?php } // end list ?>
-<div class="buttonRow forward"><?php echo '<a href="' . zen_href_link(FILENAME_DSGVO_KUNDENEXPORT, 'action=list_addresses_done' . '&cID=' . $_GET['cID'] . ($_GET['page'] > 0 ? '&page=' . $_GET['page'] : ''), 'NONSSL') . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>'; ?>
-</fieldset>
+
 <?php
 die();
 break;
@@ -251,292 +245,297 @@ while (!$attribute_query->EOF) {
     }
   }
 ?>
-<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>">
-<title><?php echo TITLE; ?></title>
-<link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-<link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-<style>
+  <head>
+    <meta charset="<?php echo CHARSET; ?>">
+    <title><?php echo TITLE; ?></title>
+    <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
+    <script src="includes/menu.js"></script>
+    <script src="includes/general.js"></script>
 
-    .overview { 
-       font-size: 11px;
-       text-transform: none !important;
-       font-weight:normal !important;
-    }
-   
-
-    </style>
-<script type="text/javascript" src="includes/menu.js"></script>
-<script type="text/javascript" src="includes/general.js"></script>
-<script type="text/javascript">
-  <!--
-  function init()
-  {
-    cssjsmenu('navbar');
-    if (document.getElementById)
-    {
-      var kill = document.getElementById('hoverJS');
-      kill.disabled = true;
-    }
-  }
-  // -->
-</script>
 </head>
 <body onLoad="init()">
-<!-- header //-->
-<?php require(DIR_WS_INCLUDES . 'header.php'); ?>
-<!-- header_eof //-->
+    <!-- header //-->
+    <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
+    <!-- header_eof //-->
 
-<!-- body //-->
-<table border="0" width="100%" cellspacing="2" cellpadding="2">
-  <tr>
-<!-- body_text //-->
-    <td width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
-
-      <tr>
-        <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
-          <tr><?php echo zen_draw_form('search', FILENAME_DSGVO_KUNDENEXPORT, '', 'get', '', true); ?>
-            <td><span class="pageHeading"><?php echo HEADING_TITLE; ?></span><br/><span class="overview"><?php echo DSGVO_KUNDENEXPORT_OVERVIEW; ?></span></td>
-            <td class="pageHeading" align="right"><?php echo zen_draw_separator('pixel_trans.gif', 1, HEADING_IMAGE_HEIGHT); ?></td>
-            <td class="smallText" align="right">
-<?php
+    <!-- body //-->
+    <div class="container-fluid">
+      <!-- body_text //-->
+      <h1><?php echo HEADING_TITLE; ?></h1>
+            <span class="overview"><?php echo DSGVO_KUNDENEXPORT_OVERVIEW; ?></span>
+           <div class="row text-right">
+            <?php echo zen_draw_form('search', FILENAME_DSGVO_KUNDENEXPORT, '', 'get', '', true); ?>
+         
+            <?php
 // show reset search
-    if (isset($_GET['search']) && zen_not_null($_GET['search'])) {
-      echo '<a href="' . zen_href_link(FILENAME_DSGVO_KUNDENEXPORT, '', 'NONSSL') . '">' . zen_image_button('button_reset.gif', IMAGE_RESET) . '</a>&nbsp;&nbsp;';
-    }
-    echo HEADING_TITLE_SEARCH_DETAIL . ' ' . zen_draw_input_field('search') . zen_hide_session_id();
-    if (isset($_GET['search']) && zen_not_null($_GET['search'])) {
-      $keywords = zen_db_prepare_input($_GET['search']);
-      echo '<br/ >' . TEXT_INFO_SEARCH_DETAIL_FILTER . zen_output_string_protected($keywords);
-    }
-?>
-            </td>
-          </form></tr>
-        </table></td>
-      </tr>
-      <tr>
-        <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
-          <tr>
-<?php
+            if (isset($_GET['search']) && zen_not_null($_GET['search'])) {
+              echo '<a href="' . zen_href_link(FILENAME_DSGVO_KUNDENEXPORT, '', 'NONSSL') . '" class="btn btn-default" role="button">' . IMAGE_RESET . '</a>&nbsp;&nbsp;';
+            }
+            echo HEADING_TITLE_SEARCH_DETAIL . ' ' . zen_draw_input_field('search') . zen_hide_session_id();
+            if (isset($_GET['search']) && zen_not_null($_GET['search'])) {
+              $keywords = zen_db_prepare_input($_GET['search']);
+              echo '<br>' . TEXT_INFO_SEARCH_DETAIL_FILTER . zen_output_string_protected($keywords);
+            }
+            ?>
+            <?php echo '</form>'; ?>
+        </div>
+        <?php
 // Sort Listing
-          switch ($_GET['list_order']) {
-              case "id-asc":
-              $disp_order = "ci.customers_info_date_account_created";
-              break;
-              case "firstname":
-              $disp_order = "c.customers_firstname";
-              break;
-              case "firstname-desc":
-              $disp_order = "c.customers_firstname DESC";
-              break;
+        switch ($_GET['list_order']) {
+          case 'id-asc':
+            $disp_order = "ci.customers_info_date_account_created";
+            break;
+          case 'firstname':
+            $disp_order = "c.customers_firstname";
+            break;
+          case 'firstname-desc':
+            $disp_order = "c.customers_firstname DESC";
+            break;
+         
+          case 'lastname':
+            $disp_order = "c.customers_lastname, c.customers_firstname";
+            break;
+          case 'lastname-desc':
+            $disp_order = "c.customers_lastname DESC, c.customers_firstname";
+            break;
+          case 'company':
+            $disp_order = "a.entry_company";
+            break;
+          case 'company-desc':
+            $disp_order = "a.entry_company DESC";
+            break;
+          case 'login-asc':
+            $disp_order = "ci.customers_info_date_of_last_logon";
+            break;
+          case 'login-desc':
+            $disp_order = "ci.customers_info_date_of_last_logon DESC";
+            break;
               
-              case "lastname":
-              $disp_order = "c.customers_lastname, c.customers_firstname";
-              break;
-              case "lastname-desc":
-              $disp_order = "c.customers_lastname DESC, c.customers_firstname";
-              break;
-              case "company":
-              $disp_order = "a.entry_company";
-              break;
-              case "company-desc":
-              $disp_order = "a.entry_company DESC";
-              break;
-              case "login-asc":
-              $disp_order = "ci.customers_info_date_of_last_logon";
-              break;
-              case "login-desc":
-              $disp_order = "ci.customers_info_date_of_last_logon DESC";
-              break;           
-              
-              default:
-              $disp_order = "ci.customers_info_date_account_created DESC";
-          }
-?>
-             <td valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
-              <tr class="dataTableHeadingRow">
-                <td class="dataTableHeadingContent" align="center" valign="top">
-                  <?php echo TABLE_HEADING_ID; ?>
-                </td>
-                <td class="dataTableHeadingContent" align="left" valign="top">
-                  <?php echo (($_GET['list_order']=='lastname' or $_GET['list_order']=='lastname-desc') ? '<span class="SortOrderHeader">' . TABLE_HEADING_LASTNAME . '</span>' : TABLE_HEADING_LASTNAME); ?><br>
-                  <a href="<?php echo zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('list_order','page')) . 'list_order=lastname', 'NONSSL'); ?>"><?php echo ($_GET['list_order']=='lastname' ? '<span class="SortOrderHeader">Asc</span>' : '<span class="SortOrderHeaderLink">Asc</span>'); ?></a>&nbsp;
-                  <a href="<?php echo zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('list_order','page')) . 'list_order=lastname-desc', 'NONSSL'); ?>"><?php echo ($_GET['list_order']=='lastname-desc' ? '<span class="SortOrderHeader">Desc</span>' : '<span class="SortOrderHeaderLink">Desc</span>'); ?></a>
-                </td>
-                <td class="dataTableHeadingContent" align="left" valign="top">
-                  <?php echo (($_GET['list_order']=='firstname' or $_GET['list_order']=='firstname-desc') ? '<span class="SortOrderHeader">' . TABLE_HEADING_FIRSTNAME . '</span>' : TABLE_HEADING_FIRSTNAME); ?><br>
-                  <a href="<?php echo zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('list_order','page')) . 'list_order=firstname', 'NONSSL'); ?>"><?php echo ($_GET['list_order']=='firstname' ? '<span class="SortOrderHeader">Asc</span>' : '<span class="SortOrderHeaderLink">Asc</span>'); ?></a>&nbsp;
-                  <a href="<?php echo zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('list_order','page')) . 'list_order=firstname-desc', 'NONSSL'); ?>"><?php echo ($_GET['list_order']=='firstname-desc' ? '<span class="SortOrderHeader">Desc</span>' : '<span class="SortOrderHeaderLink">Desc</span>'); ?></a>
-                </td>
-                <td class="dataTableHeadingContent" align="left" valign="top">
-                  <?php echo (($_GET['list_order']=='company' or $_GET['list_order']=='company-desc') ? '<span class="SortOrderHeader">' . TABLE_HEADING_COMPANY . '</span>' : TABLE_HEADING_COMPANY); ?><br>
-                  <a href="<?php echo zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('list_order','page')) . 'list_order=company', 'NONSSL'); ?>"><?php echo ($_GET['list_order']=='company' ? '<span class="SortOrderHeader">Asc</span>' : '<span class="SortOrderHeaderLink">Asc</span>'); ?></a>&nbsp;
-                  <a href="<?php echo zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('list_order','page')) . 'list_order=company-desc', 'NONSSL'); ?>"><?php echo ($_GET['list_order']=='company-desc' ? '<span class="SortOrderHeader">Desc</span>' : '<span class="SortOrderHeaderLink">Desc</span>'); ?></a>
-                </td>
-                <td class="dataTableHeadingContent" align="left" valign="top">
-                  <?php echo (($_GET['list_order']=='id-asc' or $_GET['list_order']=='id-desc') ? '<span class="SortOrderHeader">' . TABLE_HEADING_ACCOUNT_CREATED . '</span>' : TABLE_HEADING_ACCOUNT_CREATED); ?><br>
-                  <a href="<?php echo zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('list_order','page')) . 'list_order=id-asc', 'NONSSL'); ?>"><?php echo ($_GET['list_order']=='id-asc' ? '<span class="SortOrderHeader">Asc</span>' : '<span class="SortOrderHeaderLink">Asc</span>'); ?></a>&nbsp;
-                  <a href="<?php echo zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('list_order','page')) . 'list_order=id-desc', 'NONSSL'); ?>"><?php echo ($_GET['list_order']=='id-desc' ? '<span class="SortOrderHeader">Desc</span>' : '<span class="SortOrderHeaderLink">Desc</span>'); ?></a>
-                </td>
+          default:
+            $disp_order = "ci.customers_info_date_account_created DESC";
+        }
+        ?>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 configurationColumnLeft">
+            <table class="table table-hover">
+              <thead>
+                <tr class="dataTableHeadingRow">
+                  <th class="dataTableHeadingContent text-right">
+                      <?php echo TABLE_HEADING_ID; ?>
+                  </th>
+                  <th class="dataTableHeadingContent">
+                    <?php echo (($_GET['list_order'] == 'lastname' or $_GET['list_order'] == 'lastname-desc') ? '<span class="SortOrderHeader">' . TABLE_HEADING_LASTNAME . '</span>' : TABLE_HEADING_LASTNAME); ?><br>
+                    <a href="<?php echo zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('list_order', 'page')) . 'list_order=lastname', 'NONSSL'); ?>"><?php echo ($_GET['list_order'] == 'lastname' ? '<span class="SortOrderHeader">Asc</span>' : '<span class="SortOrderHeaderLink">Asc</span>'); ?></a>&nbsp;
+                    <a href="<?php echo zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('list_order', 'page')) . 'list_order=lastname-desc', 'NONSSL'); ?>"><?php echo ($_GET['list_order'] == 'lastname-desc' ? '<span class="SortOrderHeader">Desc</span>' : '<span class="SortOrderHeaderLink">Desc</span>'); ?></a>
+                  </th>
+                  <th class="dataTableHeadingContent">
+                    <?php echo (($_GET['list_order'] == 'firstname' or $_GET['list_order'] == 'firstname-desc') ? '<span class="SortOrderHeader">' . TABLE_HEADING_FIRSTNAME . '</span>' : TABLE_HEADING_FIRSTNAME); ?><br>
+                    <a href="<?php echo zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('list_order', 'page')) . 'list_order=firstname', 'NONSSL'); ?>"><?php echo ($_GET['list_order'] == 'firstname' ? '<span class="SortOrderHeader">Asc</span>' : '<span class="SortOrderHeaderLink">Asc</span>'); ?></a>&nbsp;
+                    <a href="<?php echo zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('list_order', 'page')) . 'list_order=firstname-desc', 'NONSSL'); ?>"><?php echo ($_GET['list_order'] == 'firstname-desc' ? '<span class="SortOrderHeader">Desc</span>' : '<span class="SortOrderHeaderLink">Desc</span>'); ?></a>
+                  </th>
+                  <th class="dataTableHeadingContent">
+                    <?php echo (($_GET['list_order'] == 'company' or $_GET['list_order'] == 'company-desc') ? '<span class="SortOrderHeader">' . TABLE_HEADING_COMPANY . '</span>' : TABLE_HEADING_COMPANY); ?><br>
+                    <a href="<?php echo zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('list_order', 'page')) . 'list_order=company', 'NONSSL'); ?>"><?php echo ($_GET['list_order'] == 'company' ? '<span class="SortOrderHeader">Asc</span>' : '<span class="SortOrderHeaderLink">Asc</span>'); ?></a>&nbsp;
+                    <a href="<?php echo zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('list_order', 'page')) . 'list_order=company-desc', 'NONSSL'); ?>"><?php echo ($_GET['list_order'] == 'company-desc' ? '<span class="SortOrderHeader">Desc</span>' : '<span class="SortOrderHeaderLink">Desc</span>'); ?></a>
+                  </th>
+                  <th class="dataTableHeadingContent">
+                    <?php echo (($_GET['list_order'] == 'id-asc' or $_GET['list_order'] == 'id-desc') ? '<span class="SortOrderHeader">' . TABLE_HEADING_ACCOUNT_CREATED . '</span>' : TABLE_HEADING_ACCOUNT_CREATED); ?><br>
+                    <a href="<?php echo zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('list_order', 'page')) . 'list_order=id-asc', 'NONSSL'); ?>"><?php echo ($_GET['list_order'] == 'id-asc' ? '<span class="SortOrderHeader">Asc</span>' : '<span class="SortOrderHeaderLink">Asc</span>'); ?></a>&nbsp;
+                    <a href="<?php echo zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('list_order', 'page')) . 'list_order=id-desc', 'NONSSL'); ?>"><?php echo ($_GET['list_order'] == 'id-desc' ? '<span class="SortOrderHeader">Desc</span>' : '<span class="SortOrderHeaderLink">Desc</span>'); ?></a>
+                  </th>
 
-                <td class="dataTableHeadingContent" align="left" valign="top">
-                  <?php echo (($_GET['list_order']=='login-asc' or $_GET['list_order']=='login-desc') ? '<span class="SortOrderHeader">' . TABLE_HEADING_LOGIN . '</span>' : TABLE_HEADING_LOGIN); ?><br>
-                  <a href="<?php echo zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('list_order','page')) . 'list_order=login-asc', 'NONSSL'); ?>"><?php echo ($_GET['list_order']=='login-asc' ? '<span class="SortOrderHeader">Asc</span>' : '<span class="SortOrderHeaderLink">Asc</span>'); ?></a>&nbsp;
-                  <a href="<?php echo zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('list_order','page')) . 'list_order=login-desc', 'NONSSL'); ?>"><?php echo ($_GET['list_order']=='login-desc' ? '<span class="SortOrderHeader">Desc</span>' : '<span class="SortOrderHeaderLink">Desc</span>'); ?></a>
-                </td>       
+                  <th class="dataTableHeadingContent">
+                    <?php echo (($_GET['list_order'] == 'login-asc' or $_GET['list_order'] == 'login-desc') ? '<span class="SortOrderHeader">' . TABLE_HEADING_LOGIN . '</span>' : TABLE_HEADING_LOGIN); ?><br>
+                    <a href="<?php echo zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('list_order', 'page')) . 'list_order=login-asc', 'NONSSL'); ?>"><?php echo ($_GET['list_order'] == 'login-asc' ? '<span class="SortOrderHeader">Asc</span>' : '<span class="SortOrderHeaderLink">Asc</span>'); ?></a>&nbsp;
+                    <a href="<?php echo zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('list_order', 'page')) . 'list_order=login-desc', 'NONSSL'); ?>"><?php echo ($_GET['list_order'] == 'login-desc' ? '<span class="SortOrderHeader">Desc</span>' : '<span class="SortOrderHeaderLink">Desc</span>'); ?></a>
+                  </th>
+                  
+                  
 
-                <td class="dataTableHeadingContent" align="right" valign="top"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
-              </tr>
-<?php
-    $search = '';
-    if (isset($_GET['search']) && zen_not_null($_GET['search'])) {
-      $keywords = zen_db_input(zen_db_prepare_input($_GET['search']));
-      $search = "where c.customers_lastname like '%" . $keywords . "%' or c.customers_firstname like '%" . $keywords . "%' or c.customers_email_address like '%" . $keywords . "%' or c.customers_telephone rlike ':keywords:' or a.entry_company rlike ':keywords:' or a.entry_street_address rlike ':keywords:' or a.entry_city rlike ':keywords:' or a.entry_postcode rlike ':keywords:'";
-      $search = $db->bindVars($search, ':keywords:', $keywords, 'regexp');
-    }
-    $new_fields=', c.customers_telephone, a.entry_company, a.entry_street_address, a.entry_city, a.entry_postcode, c.customers_authorization, c.customers_referral';
-    $customers_query_raw = "select c.customers_id, c.customers_lastname, c.customers_firstname, c.customers_email_address, c.customers_group_pricing, a.entry_country_id, a.entry_company, ci.customers_info_date_of_last_logon, ci.customers_info_date_account_created " . $new_fields . ",
-    cgc.amount
-    from " . TABLE_CUSTOMERS . " c
-    left join " . TABLE_CUSTOMERS_INFO . " ci on c.customers_id= ci.customers_info_id
-    left join " . TABLE_ADDRESS_BOOK . " a on c.customers_id = a.customers_id and c.customers_default_address_id = a.address_book_id " . "
-    left join " . TABLE_COUPON_GV_CUSTOMER . " cgc on c.customers_id = cgc.customer_id " .
-    $search . " order by $disp_order";
+                  
+                </tr>
+              </thead>
+              <tbody>
+                  <?php
+                  $search = '';
+                  if (isset($_GET['search']) && zen_not_null($_GET['search'])) {
+                    $keywords = zen_db_input(zen_db_prepare_input($_GET['search']));
+                    $parts = explode(" ", trim($keywords));
+                    $search = 'where ';
+                    foreach ($parts as $k => $v) {
+                      $sql_add = " (c.customers_lastname like '%:part%'
+                         or c.customers_firstname like '%:part%'
+                         or c.customers_email_address like '%:part%'
+                         or c.customers_telephone rlike ':keywords:'
+                         or a.entry_company rlike ':keywords:'
+                         or a.entry_street_address rlike ':keywords:'
+                         or a.entry_city rlike ':keywords:'
+                         or a.entry_postcode rlike ':keywords:')";
+                      if ($k != 0) {
+                        $sql_add = ' and ' . $sql_add;
+                      }
+                      $sql_add = $db->bindVars($sql_add, ':part', $v, 'noquotestring');
+                      $sql_add = $db->bindVars($sql_add, ':keywords:', $v, 'regexp');
+                      $search .= $sql_add;
+                    }
+                  }
+                  $new_fields = '';
+
+                  $zco_notifier->notify('NOTIFY_ADMIN_CUSTOMERS_LISTING_NEW_FIELDS', array(), $new_fields, $disp_order);
+
+                  $customers_query_raw = "SELECT c.customers_id, c.customers_lastname, c.customers_firstname, c.customers_email_address, c.customers_group_pricing, c.customers_telephone, c.customers_authorization, c.customers_referral, c.customers_secret,
+                                           a.entry_country_id, a.entry_company, a.entry_company, a.entry_street_address, a.entry_city, a.entry_postcode,
+                                           ci.customers_info_date_of_last_logon, ci.customers_info_date_account_created
+                                           " . $new_fields . ",
+                                           cgc.amount
+                                    from " . TABLE_CUSTOMERS . " c
+                                    left join " . TABLE_CUSTOMERS_INFO . " ci on c.customers_id= ci.customers_info_id
+                                    left join " . TABLE_ADDRESS_BOOK . " a on c.customers_id = a.customers_id and c.customers_default_address_id = a.address_book_id " . "
+                                    left join " . TABLE_COUPON_GV_CUSTOMER . " cgc on c.customers_id = cgc.customer_id
+                                    " . $search . "
+                                    order by " . $disp_order;
 
 // Split Page
 // reset page when page is unknown
-if (($_GET['page'] == '' or $_GET['page'] == '1') and $_GET['cID'] != '') {
-  $check_page = $db->Execute($customers_query_raw);
-  $check_count=1;
-  if ($check_page->RecordCount() > MAX_DISPLAY_SEARCH_RESULTS_CUSTOMER) {
-    while (!$check_page->EOF) {
-      if ($check_page->fields['customers_id'] == $_GET['cID']) {
-        break;
-      }
-      $check_count++;
-      $check_page->MoveNext();
-    }
-    $_GET['page'] = round((($check_count/MAX_DISPLAY_SEARCH_RESULTS_CUSTOMER)+(fmod_round($check_count,MAX_DISPLAY_SEARCH_RESULTS_CUSTOMER) !=0 ? .5 : 0)),0);
+                  if (($_GET['page'] == '' || $_GET['page'] == '1') && !empty($_GET['cID'])) {
+                    $check_page = $db->Execute($customers_query_raw);
+                    $check_count = 1;
+                    if ($check_page->RecordCount() > MAX_DISPLAY_SEARCH_RESULTS_CUSTOMER) {
+                      foreach ($check_page as $item) {
+                        if ($item['customers_id'] == $_GET['cID']) {
+                          break;
+                        }
+                        $check_count++;
+                      }
+                      $_GET['page'] = round((($check_count / MAX_DISPLAY_SEARCH_RESULTS_CUSTOMER) + (fmod_round($check_count, MAX_DISPLAY_SEARCH_RESULTS_CUSTOMER) != 0 ? .5 : 0)), 0);
 //    zen_redirect(zen_href_link(FILENAME_DSGVO_KUNDENEXPORT, 'cID=' . $_GET['cID'] . (isset($_GET['page']) ? '&page=' . $_GET['page'] : ''), 'NONSSL'));
-  } else {
-    $_GET['page'] = 1;
-  }
-}
+                    } else {
+                      $_GET['page'] = 1;
+                    }
+                  }
 
-    $customers_split = new splitPageResults($_GET['page'], MAX_DISPLAY_SEARCH_RESULTS_CUSTOMER, $customers_query_raw, $customers_query_numrows);
-    $customers = $db->Execute($customers_query_raw);
-    while (!$customers->EOF) {
-      $sql = "select customers_info_date_account_created as date_account_created,
-                                   customers_info_date_account_last_modified as date_account_last_modified,
-                                   customers_info_date_of_last_logon as date_last_logon,
-                                   customers_info_number_of_logons as number_of_logons
-                            from " . TABLE_CUSTOMERS_INFO . "
-                            where customers_info_id = '" . $customers->fields['customers_id'] . "'";
-      $info = $db->Execute($sql);
+                  $customers_split = new splitPageResults($_GET['page'], MAX_DISPLAY_SEARCH_RESULTS_CUSTOMER, $customers_query_raw, $customers_query_numrows);
+                  $customers = $db->Execute($customers_query_raw);
+                  foreach ($customers as $customer) {
+                    $sql = "SELECT customers_info_date_account_created as date_account_created,
+                             customers_info_date_account_last_modified as date_account_last_modified,
+                             customers_info_date_of_last_logon as date_last_logon,
+                             customers_info_number_of_logons as number_of_logons
+                      FROM " . TABLE_CUSTOMERS_INFO . "
+                      WHERE customers_info_id = " . (int)$customer['customers_id'];
+                    $info = $db->Execute($sql);
 
-      // if no record found, create one to keep database in sync
-        if ($info->RecordCount() == 0) {
-          $insert_sql = "insert into " . TABLE_CUSTOMERS_INFO . " (customers_info_id)
-                         values ('" . (int)$customers->fields['customers_id'] . "')";
-        $db->Execute($insert_sql);
-        $info = $db->Execute($sql);
-      }
+                    // if no record found, create one to keep database in sync
+                    if ($info->RecordCount() == 0) {
+                      $insert_sql = "INSERT INTO " . TABLE_CUSTOMERS_INFO . " (customers_info_id)
+                               VALUES ('" . (int)$customer['customers_id'] . "')";
+                      $db->Execute($insert_sql);
+                      $info = $db->Execute($sql);
+                    }
 
-      if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ($_GET['cID'] == $customers->fields['customers_id']))) && !isset($cInfo)) {
+                    if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ($_GET['cID'] == $customer['customers_id']))) && !isset($cInfo)) {
+                      $country = $db->Execute("SELECT countries_name
+                                         FROM " . TABLE_COUNTRIES . "
+                                         WHERE countries_id = " . (int)$customer['entry_country_id']);
 
-        
+                      $reviews = $db->Execute("SELECT COUNT(*) AS number_of_reviews
+                                         FROM " . TABLE_REVIEWS . "
+                                         WHERE customers_id = " . (int)$customer['customers_id']);
 
-        $cInfo_array = ($customers->fields);
-        $cInfo = new objectInfo($cInfo_array);
-      }
+                      $customer_info = array_merge($country->fields, $info->fields, $reviews->fields);
 
-        
+                      $cInfo_array = array_merge($customer, $customer_info);
+                      $cInfo = new objectInfo($cInfo_array);
+                    }
 
-      if (isset($cInfo) && is_object($cInfo) && ($customers->fields['customers_id'] == $cInfo->customers_id)) {
-        echo '          <tr id="defaultSelected" class="dataTableRowSelected" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\'' . zen_href_link(FILENAME_DSGVO_KUNDENEXPORT, zen_get_all_get_params(array('cID', 'action')) . 'cID=' . $cInfo->customers_id . '&action=edit', 'NONSSL') . '\'">' . "\n";
-      } else {
-        echo '          <tr class="dataTableRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href=\'' . zen_href_link(FILENAME_DSGVO_KUNDENEXPORT, zen_get_all_get_params(array('cID', 'action')) . 'cID=' . $customers->fields['customers_id'], 'NONSSL') . '\'">' . "\n";
-      }
+                    
+                    if (isset($cInfo) && is_object($cInfo) && ($customer['customers_id'] == $cInfo->customers_id)) {
+                      echo '          <tr id="defaultSelected" class="dataTableRowSelected" onclick="document.location.href=\'' . zen_href_link(FILENAME_DSGVO_KUNDENEXPORT, zen_get_all_get_params(array('cID', 'action')) . 'cID=' . $cInfo->customers_id . '&action=edit', 'NONSSL') . '\'" role="button">' . "\n";
+                    } else {
+                      echo '          <tr class="dataTableRow" onclick="document.location.href=\'' . zen_href_link(FILENAME_DSGVO_KUNDENEXPORT, zen_get_all_get_params(array('cID', 'action')) . 'cID=' . $customer['customers_id'], 'NONSSL') . '\'" role="button">' . "\n";
+                    }
 
-      $zc_address_book_count_list = zen_get_customers_address_book($customers->fields['customers_id']);
-      $zc_address_book_count = $zc_address_book_count_list->RecordCount();
-?>
-                <td class="dataTableContent" align="right"><?php echo $customers->fields['customers_id'] . ($zc_address_book_count == 1 ? TEXT_INFO_ADDRESS_BOOK_COUNT . $zc_address_book_count : '<a href="' . zen_href_link(FILENAME_DSGVO_KUNDENEXPORT, 'action=list_addresses' . '&cID=' . $customers->fields['customers_id'] . ($_GET['page'] > 0 ? '&page=' . $_GET['page'] : ''), 'NONSSL') . '">' . TEXT_INFO_ADDRESS_BOOK_COUNT . $zc_address_book_count . '</a>'); ?></td>
-                <td class="dataTableContent"><?php echo $customers->fields['customers_lastname']; ?></td>
-                <td class="dataTableContent"><?php echo $customers->fields['customers_firstname']; ?></td>
-                <td class="dataTableContent"><?php echo $customers->fields['entry_company']; ?></td>
+                    $zc_address_book_count_list = zen_get_customers_address_book($customer['customers_id']);
+                    $zc_address_book_count = $zc_address_book_count_list->RecordCount();
+                    ?>
+                <td class="dataTableContent text-right"><?php echo $customer['customers_id']; ?></td>
+                <td class="dataTableContent"><?php echo zen_output_string($customer['customers_lastname']); ?></td>
+                <td class="dataTableContent"><?php echo zen_output_string($customer['customers_firstname']); ?></td>
+                <td class="dataTableContent"><?php echo zen_output_string($customer['entry_company']); ?></td>
+                
+                
+              
                 <td class="dataTableContent"><?php echo zen_date_short($info->fields['date_account_created']); ?></td>
-                <td class="dataTableContent"><?php echo zen_date_short($customers->fields['customers_info_date_of_last_logon']); ?></td>               
-                <td class="dataTableContent" align="right"><?php if (isset($cInfo) && is_object($cInfo) && ($customers->fields['customers_id'] == $cInfo->customers_id)) { echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', ''); } else { echo '<a href="' . zen_href_link(FILENAME_DSGVO_KUNDENEXPORT, zen_get_all_get_params(array('cID')) . 'cID=' . $customers->fields['customers_id'] . ($_GET['page'] > 0 ? '&page=' . $_GET['page'] : ''), 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>'; } ?>&nbsp;</td>
-              </tr>
-<?php
-      $customers->MoveNext();
-    }
-?>
-              <tr>
-                <td colspan="5"><table border="0" width="100%" cellspacing="0" cellpadding="2">
-                  <tr>
-                    <td class="smallText" valign="top"><?php echo $customers_split->display_count($customers_query_numrows, MAX_DISPLAY_SEARCH_RESULTS_CUSTOMER, $_GET['page'], TEXT_DISPLAY_NUMBER_OF_CUSTOMERS); ?></td>
-                    <td class="smallText" align="right"><?php echo $customers_split->display_links($customers_query_numrows, MAX_DISPLAY_SEARCH_RESULTS_CUSTOMER, MAX_DISPLAY_PAGE_LINKS, $_GET['page'], zen_get_all_get_params(array('page', 'info', 'x', 'y', 'cID'))); ?></td>
-                  </tr>
-<?php
-    if (isset($_GET['search']) && zen_not_null($_GET['search'])) {
-?>
-                  <tr>
-                    <td align="right" colspan="2"><?php echo '<a href="' . zen_href_link(FILENAME_DSGVO_KUNDENEXPORT, '', 'NONSSL') . '">' . zen_image_button('button_reset.gif', IMAGE_RESET) . '</a>'; ?></td>
-                  </tr>
-<?php
-    }
-?>
-                </table></td>
-              </tr>
-            </table></td>
-<?php
-  $heading = array();
-  $contents = array();
+                <td class="dataTableContent"><?php echo zen_date_short($customer['customers_info_date_of_last_logon']); ?></td>
+                
+                
+               
+                </tr>
+                <?php
+              }
+              ?>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 configurationColumnRight">
+              <?php
+              $heading = array();
+              $contents = array();
 
-  switch ($action) {
-    
-    
-    default:
-      if (isset($_GET['search'])) $_GET['search'] = zen_output_string_protected($_GET['search']);
-      if (isset($cInfo) && is_object($cInfo)) {       
+              switch ($action) {
+                default:
+                  if (isset($_GET['search'])) {
+                    $_GET['search'] = zen_output_string_protected($_GET['search']);
+                  }
+                  if (isset($cInfo) && is_object($cInfo)) {
 
-        $heading[] = array('text' => '<b>' . TABLE_HEADING_ID . $cInfo->customers_id . ' ' . $cInfo->customers_firstname . ' ' . $cInfo->customers_lastname . '</b>' . '<br>' . $cInfo->customers_email_address);
+                    $heading[] = array('text' => '<h4>' . TABLE_HEADING_ID . $cInfo->customers_id . ' ' . $cInfo->customers_firstname . ' ' . $cInfo->customers_lastname . '</h4>' . '<br>' . $cInfo->customers_email_address);
 
         $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_DSGVO_KUNDENEXPORT, zen_get_all_get_params(array('cID', 'action', 'search')) . 'cID=' . $cInfo->customers_id . '&action=dsgvoexport', 'NONSSL') . '">' . zen_image_button('button_dsgvoexport.png', IMAGE_DSGVOEXPORT) . '</a>');
         
+                    }
         $zco_notifier->notify('NOTIFY_ADMIN_CUSTOMERS_MENU_BUTTONS', $cInfo, $contents);
-      }
-      break;
-  }
-  $zco_notifier->notify('NOTIFY_ADMIN_CUSTOMERS_MENU_BUTTONS_END', (isset($cInfo) ? $cInfo : new stdClass), $contents);
+                  
+                  
+                  break;
+             } 
+              $zco_notifier->notify('NOTIFY_ADMIN_CUSTOMERS_MENU_BUTTONS_END', (isset($cInfo) ? $cInfo : new stdClass), $contents);
 
-  if ( (zen_not_null($heading)) && (zen_not_null($contents)) ) {
-    echo '            <td width="25%" valign="top">' . "\n";
+              if ((zen_not_null($heading)) && (zen_not_null($contents))) {
+                $box = new box;
+                echo $box->infoBox($heading, $contents);
+              }
+              ?>
+          </div>
+        </div>
+        <div class="row">
+          <table class="table">
+            <tr>
+              <td><?php echo $customers_split->display_count($customers_query_numrows, MAX_DISPLAY_SEARCH_RESULTS_CUSTOMER, $_GET['page'], TEXT_DISPLAY_NUMBER_OF_CUSTOMERS); ?></td>
+              <td class="text-right"><?php echo $customers_split->display_links($customers_query_numrows, MAX_DISPLAY_SEARCH_RESULTS_CUSTOMER, MAX_DISPLAY_PAGE_LINKS, $_GET['page'], zen_get_all_get_params(array('page', 'info', 'x', 'y', 'cID'))); ?></td>
+            </tr>
+            <?php
+            if (isset($_GET['search']) && zen_not_null($_GET['search'])) {
+              ?>
+              <tr>
+                <td class="text-right" colspan="2"><?php echo '<a href="' . zen_href_link(FILENAME_DSGVO_KUNDENEXPORT, '', 'NONSSL') . '">' . zen_image_button('button_reset.gif', IMAGE_RESET) . '</a>'; ?></td>
+              </tr>
+              <?php
+            }
+            ?>
+          </table>
+        </div>
+        
+      <!-- body_text_eof //-->
+    </div>
+    <!-- body_eof //-->
 
-    $box = new box;
-    echo $box->infoBox($heading, $contents);
-
-    echo '            </td>' . "\n";
-  }
-?>
-          </tr>
-        </table></td>
-      </tr>
-
-    </table></td>
-<!-- body_text_eof //-->
-  </tr>
-</table>
-<!-- body_eof //-->
-
-<!-- footer //-->
-<?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
-<!-- footer_eof //-->
-<br>
-</body>
+    <!-- footer //-->
+    <?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
+    <!-- footer_eof //-->
+  </body>
 </html>
 <?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>

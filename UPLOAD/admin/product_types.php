@@ -1,11 +1,12 @@
 <?php
 /**
  * Zen Cart German Specific
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: product_types.php 789 2019-04-15 11:33:51Z webchills $
+ * @version $Id: product_types.php 2021-10-24 18:33:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -26,17 +27,6 @@ if (zen_not_null($action)) {
       $configuration_query = "SELECT configuration_key AS cfgkey, configuration_value AS cfgvalue
                               FROM " . TABLE_PRODUCT_TYPE_LAYOUT;
 
-      // set the WARN_BEFORE_DOWN_FOR_MAINTENANCE to false if DOWN_FOR_MAINTENANCE = true
-      if ((WARN_BEFORE_DOWN_FOR_MAINTENANCE == 'true') && (DOWN_FOR_MAINTENANCE == 'true')) {
-        $db->Execute("UPDATE " . TABLE_CONFIGURATION . "
-                      SET configuration_value = 'false',
-                          last_modified = '" . NOW . "'
-                      WHERE configuration_key = 'WARN_BEFORE_DOWN_FOR_MAINTENANCE'");
-      }
-
-      $configuration_query = "SELECT configuration_key AS cfgkey, configuration_value AS cfgvalue
-                              FROM " . TABLE_CONFIGURATION;
-
       zen_redirect(zen_href_link(FILENAME_PRODUCT_TYPES, 'gID=' . $_GET['gID'] . '&cID=' . $cID . '&ptID=' . $_GET['ptID'] . '&action=layout'));
       break;
     case 'insert':
@@ -44,8 +34,7 @@ if (zen_not_null($action)) {
       if (!isset($_POST['type_name'])) {
         break;
       }
-      if (isset($_GET['ptID']))
-        $type_id = zen_db_prepare_input($_GET['ptID']);
+      if (isset($_GET['ptID'])) $type_id = zen_db_prepare_input($_GET['ptID']);
       $type_name = zen_db_prepare_input($_POST['type_name']);
       $handler = zen_db_prepare_input($_POST['handler']);
       $allow_add_to_cart = zen_db_prepare_input(($_POST['catalog_add_to_cart'] ? 'Y' : 'N'));

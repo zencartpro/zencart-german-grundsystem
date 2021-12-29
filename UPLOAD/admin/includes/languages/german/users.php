@@ -1,21 +1,23 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: users.php 732 2020-01-18 10:49:16Z webchills $
+ * @version $Id: users.php 2021-12-27 18:49:16Z webchills $
  */
 
+if (!defined('HEADING_TITLE')) { //this file included by admin_account.php
 define('HEADING_TITLE', 'Admin Benutzer');
-
+}
 define('IMAGE_ADD_USER', 'Benutzer hinzufügen');
 
 
 define('TEXT_ID', 'ID');
-define('TEXT_NAME', 'Name');
+define('TEXT_ADMIN_NAME', 'Username');
 
-define('TEXT_PROFILE', 'Profil');
+define('TEXT_ADMIN_PROFILE', 'Profil');
 define('TEXT_CHOOSE_PROFILE', 'Profil wählen');
 define('TEXT_PASSWORD', 'Passwort');
 define('TEXT_CONFIRM_PASSWORD', 'Passwort bestätigen');

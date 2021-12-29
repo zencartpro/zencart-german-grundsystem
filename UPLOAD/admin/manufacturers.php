@@ -1,11 +1,11 @@
 <?php
 /**
- * @package admin
  * Zen Cart German Specific
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: manufacturers.php 790 2020-01-18 08:15:51Z webchills $
+ * @version $Id: manufacturers.php 2021-10-24 18:15:51Z webchills $
  */
 require('includes/application_top.php');
 

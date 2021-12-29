@@ -3,7 +3,8 @@
  * File contains just the zcPassword class
  *
  * @package classes
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * @version $Id: class.zcPassword.php  2016-02-17 09:54:58Z webchills $
 

@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: countries.php 629 2015-12-22 16:05:14Z webchills $
+ * @version $Id: countries.php 2021-12-01 09:32:14Z webchills $
  */
 
 define('HEADING_TITLE','Länder');
@@ -24,4 +25,4 @@ define('TEXT_INFO_HEADING_NEW_COUNTRY','Neues Land');
 define('TEXT_INFO_HEADING_EDIT_COUNTRY','Land bearbeiten');
 define('TEXT_INFO_HEADING_DELETE_COUNTRY','Land löschen');
 define('ERROR_COUNTRY_IN_USE', 'FEHLER: Das ausgewählte Land kann nicht gelöscht werden, da es mit Kundenkonten verbunden ist.');
-define('ISO_COUNTRY_CODES_LINK', '<a href="http://www.iso.org/iso/country_codes/country_codes" target="_blank">ISO 3166 Ländercode Referenz</a>');
+define('ISO_COUNTRY_CODES_LINK', '<a href="https://en.wikipedia.org/wiki/ISO_3166-1#Officially_assigned_code_elements" rel="noreferrer noopener" target="_blank">ISO 3166 Country Codes Referenz</a>');

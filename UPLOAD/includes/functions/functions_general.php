@@ -3,14 +3,15 @@
  * functions_general.php
  * General functions used throughout Zen Cart
  *
- * @package functions
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_general.php 806 2020-01-18 20:54:50Z webchills $
+ * @version $Id: functions_general.php 807 2021-11-28 19:22:50Z webchills $
  */
 /**
- * Stop from parsing any further PHP code
+ * Stop execution completely
 */
   function zen_exit() {
    session_write_close();
@@ -136,6 +137,7 @@
 ////
 // Returns the clients browser
   function zen_browser_detect($component) {
+    if (!isset($_SERVER['HTTP_USER_AGENT'])) return '';
     return stristr($_SERVER['HTTP_USER_AGENT'], $component);
   }
 
@@ -190,8 +192,8 @@
   }
 
 ////
-// Parse search string into indivual objects
-  function zen_parse_search_string($search_str = '', &$objects) {
+// Parse search string into individual objects
+  function zen_parse_search_string($search_str = '', &$objects = array()) {
     $search_str = trim(strtolower($search_str));
 
 // Break up $search_str on whitespace; quoted string will be reconstructed later
@@ -577,10 +579,6 @@
     }
   }
 
-////
-  function zen_setcookie($name, $value = '', $expire = 0, $path = '/', $domain = '', $secure = 0) {
-    setcookie($name, $value, $expire, $path, $domain, $secure);
-  }
 
   /**
    * Determine visitor's IP address, resolving any proxies where possible.
@@ -731,23 +729,28 @@
     }
   }
 
-////
-// return the size and maxlength settings in the form size="blah" maxlength="blah" based on maximum size being 70
-// uses $tbl = table name, $fld = field name
-// example: zen_set_field_length(TABLE_CATEGORIES_DESCRIPTION, 'categories_name')
-  function zen_set_field_length($tbl, $fld, $max=70) {
-    $field_length= zen_field_length($tbl, $fld);
+/**
+ * return the size and maxlength settings in the form size="blah" maxlength="blah" based on maximum size being 70
+ * uses $tbl = table name, $fld = field name
+ * example: zen_set_field_length(TABLE_CATEGORIES_DESCRIPTION, 'categories_name')
+ * @param string $tbl
+ * @param string $fld
+ * @param int $max
+ * @return string
+ */
+function zen_set_field_length($tbl, $fld, $max = 70)
+{
+    $field_length = zen_field_length($tbl, $fld);
     switch (true) {
-      case ($field_length > $max):
-        $length= 'size = "' . ($max+1) . '" maxlength= "' . $field_length . '"';
-        break;
-      default:
-        $length= 'size = "' . ($field_length+1) . '" maxlength = "' . $field_length . '"';
-        break;
+        case ($field_length > $max):
+            $length = 'size="' . ($max + 1) . '" maxlength="' . $field_length . '"';
+            break;
+        default:
+            $length = 'size="' . ($field_length + 1) . '" maxlength="' . $field_length . '"';
+            break;
     }
     return $length;
-  }
-
+}
 
 ////
 // Set back button
@@ -802,7 +805,7 @@
   function zen_get_buy_now_button($product_id, $link, $additional_link = false) {
     global $db;
 
-// show case only superceeds all other settings
+// show case only supercedes all other settings
     if (STORE_STATUS != '0') {
       return '<a href="' . zen_href_link(FILENAME_CONTACT_US, '', 'SSL') . '">' .  TEXT_SHOWCASE_ONLY . '</a>';
     }
@@ -857,7 +860,7 @@
         break;
       }
 
-    $button_check = $db->Execute("select product_is_call, products_quantity from " . TABLE_PRODUCTS . " where products_id = '" . (int)$product_id . "'");
+    $button_check = $db->Execute("SELECT product_is_call, products_quantity FROM " . TABLE_PRODUCTS . " WHERE products_id = " . (int)$product_id);
     switch (true) {
 // cannot be added to the cart
     case (zen_get_products_allow_add_to_cart($product_id) == 'N'):
@@ -1041,13 +1044,15 @@
  */
   function zen_check_url_get_terms() {
     global $db;
-    $sql = "select * from " . TABLE_GET_TERMS_TO_FILTER;
+    $sql = "SELECT * FROM " . TABLE_GET_TERMS_TO_FILTER;
     $query_result = $db->Execute($sql);
-    $retVal = false;
+
     foreach ($query_result as $row) {
-      if (isset($_GET[$row['get_term_name']]) && zen_not_null($_GET[$row['get_term_name']])) $retVal = true;
+      if (isset($_GET[$row['get_term_name']]) && zen_not_null($_GET[$row['get_term_name']])) {
+        return true;
+      }
     }
-    return $retVal;
+    return false;
   }
 
 
@@ -1422,20 +1427,6 @@
     $db->execute($sql);
   }
 
-  /**
-   * function issetorArray
-   *
-   * returns an array[key] or default value if key does not exist
-   *
-   * @param array $array
-   * @param $key
-   * @param null $default
-   * @return mixed
-   */
-  function issetorArray(array $array, $key, $default = null)
-  {
-    return isset($array[$key]) ? $array[$key] : $default;
-  }
 
   /////////////////////////////////////////////
 ////

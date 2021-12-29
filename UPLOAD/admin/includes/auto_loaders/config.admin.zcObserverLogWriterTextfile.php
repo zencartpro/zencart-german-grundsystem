@@ -1,9 +1,10 @@
 <?php
 /**
  * @package plugins
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version GIT: $Id: Author: DrByte  Jun 30 2014 New in v1.5.4 $
+ * @version $Id: config.admin.zcObserverLogWriterTextfile.php 2021-12-28 17:56:29Z webchills $
  *
  * Designed for v1.5.4+
  * Loadpoint 1 is to simply load this file

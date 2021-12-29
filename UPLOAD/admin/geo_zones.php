@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: geo_zones.php 795 2020-02-28 09:20:51Z webchills $
+ * @version $Id: geo_zones.php 2021-10-24 17:55:51Z webchills $
  */
 require('includes/application_top.php');
 

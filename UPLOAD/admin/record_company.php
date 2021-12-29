@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: record_company.php 790 2019-06-21 15:13:51Z webchills $
+ * @version $Id: record_company.php 2021-10-24 18:26:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -113,7 +114,7 @@ if (zen_not_null($action)) {
         }
       } else {
         $db->Execute("UPDATE " . TABLE_PRODUCT_MUSIC_EXTRA . "
-                      SET record_company_id = '0'
+                      SET record_company_id = 0 
                       WHERE record_company_id = " . (int)$record_company_id);
       }
 

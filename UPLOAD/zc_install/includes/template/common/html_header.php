@@ -1,10 +1,10 @@
 <?php
 /**
- * @package Installer
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: html_header.php 5 2019-04-12 17:49:16Z webchills $
+ * @version $Id: html_header.php 6 2021-11-28 17:49:16Z webchills $
  */
 ?>
 <!DOCTYPE html >
@@ -26,7 +26,7 @@
 
 <script src="<?php echo DIR_WS_INSTALL_TEMPLATE . 'foundation/modernizr.js'; ?>"></script>
 
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="includes/template/foundation/jquery.min.js"><\/script>');</script>
 </head>
 

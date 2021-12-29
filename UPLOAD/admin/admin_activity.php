@@ -2,11 +2,11 @@
 /**
  * Admin Activity Log Viewer/Archiver
  *
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: admin_activity.php 791 2019-06-15 15:13:51Z webchills $
+ * @version $Id: admin_activity.php 2021-11-29 19:13:51Z webchills $
  *
  * @TODO: prettify so on-screen output is more friendly, perhaps adding pagination support etc (using existing "s" and "p" params)
  * @TODO: prettify by hiding postdata until requested, either with hidden layers or other means
@@ -41,7 +41,7 @@ $filter_options[1] = array('id' => '1', 'text' => TEXT_EXPORTFILTER1, 'filter' =
 $filter_options[2] = array('id' => '2', 'text' => TEXT_EXPORTFILTER2, 'filter' => 'notice');
 $filter_options[3] = array('id' => '3', 'text' => TEXT_EXPORTFILTER3, 'filter' => 'warning');
 $filter_options[4] = array('id' => '4', 'text' => TEXT_EXPORTFILTER4, 'filter' => 'notice+warning');
-$post_filter = (isset($_POST['filter']) && (int)$_POST['filter'] >= 0 && (int)$_POST['filter'] < 5) ? (int)$_POST['filter'] : 4;
+$post_filter = (isset($_POST['filter']) && (int)$_POST['filter'] >= 0 && (int)$_POST['filter'] < 5) ? (int)$_POST['filter'] : ($post_format == 1 ? 0 : 4);
 $selected_filter = $filter_options[$post_filter]['filter'];
 
 zen_set_time_limit(600);
@@ -128,9 +128,10 @@ if ($action != '') {
         $messageStack->add_session(TEXT_NO_RECORDS_FOUND, 'error');
       } else { //process records
         $i = 0;
+        $exporter_output = '';
         // make a <table> tag if HTML output
         if ($format == "HTML") {
-          $exporter_output .= '<table border="1">' . $NL;
+          $exporter_output .= '<table class="table table-bordered">' . $NL;
         }
         // add column headers if CSV or HTML format
         if ($format == "CSV" || $format == "HTML") {
@@ -339,18 +340,18 @@ if ($action != '') {
             <div class="row"><?php echo TEXT_INSTRUCTIONS; ?></div>
             <div class="form-group"><?php echo zen_draw_label(TEXT_ACTIVITY_EXPORT_FILTER, 'filter', 'class="col-sm-3 control-label"'); ?>
               <div class="col-sm-9 col-md-6">
-                  <?php echo zen_draw_pull_down_menu('filter', $filter_options, $post_filter, 'class="form-control"'); ?>
+                  <?php echo zen_draw_pull_down_menu('filter', $filter_options, $post_filter, 'class="form-control" id="filter"'); ?>
               </div>
             </div>
             <div class="form-group"><?php echo zen_draw_label(TEXT_ACTIVITY_EXPORT_FORMAT, 'format', 'class="col-sm-3 control-label"'); ?>
               <div class="col-sm-9 col-md-6">
-                  <?php echo zen_draw_pull_down_menu('format', $available_export_formats, $format, 'class="form-control"'); ?>
+                  <?php echo zen_draw_pull_down_menu('format', $available_export_formats, $post_format, 'class="form-control" id="format"'); ?>
               </div>
             </div>
             <div class="form-group">
                 <?php echo zen_draw_label(TEXT_ACTIVITY_EXPORT_FILENAME, 'filename', 'class="col-sm-3 control-label"'); ?>
               <div class="col-sm-9 col-md-6">
-                  <?php echo zen_draw_input_field('filename', htmlspecialchars($file, ENT_COMPAT, CHARSET, TRUE), 'class="form-control" size="60"'); ?>
+                  <?php echo zen_draw_input_field('filename', htmlspecialchars($file, ENT_COMPAT, CHARSET, TRUE), 'class="form-control" size="60" id="filename"'); ?>
               </div>
             </div>
             <div class="form-group">

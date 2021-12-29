@@ -1,9 +1,9 @@
 <?php
 /**
- * @package Installer
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: database_default.php 3 2020-01-17 16:59:53Z webchills $ 
+ * @version $Id: database_default.php 4 2021-11-28 17:51:53Z webchills $ 
  */
 ?>
 <?php require(DIR_FS_INSTALL . DIR_WS_INSTALL_TEMPLATE . 'partials/partial_modal_progress_bar.php'); ?>
@@ -16,7 +16,7 @@
 
 <form id="db_setup" name="db_setup" method="post" action="index.php?main_page=admin_setup" data-abide="ajax">
   <input type="hidden" name="action" value="process" >
-  <input type="hidden" name="lng" value="<?php echo $lng; ?>" >
+  <input type="hidden" name="lng" value="<?php echo $installer_lng; ?>" >
   <?php foreach ($_POST as $key=>$value) {  ?>
   <?php if ($key != 'action') { ?>
     <input type="hidden" name="<?php echo $key; ?>" value="<?php echo $value; ?>" >
@@ -29,7 +29,7 @@
         <label class="inline" for="db_host"><a href="#" class="hasHelpText" id="DBHOST"><?php echo TEXT_DATABASE_SETUP_DB_HOST; ?></a></label>
       </div>
       <div class="small-9 columns">
-        <input type="text" name="db_host" id="db_host" value="<?php echo $db_host; ?>" tabindex="1" autofocus="autofocus" placeholder="<?php echo TEXT_EXAMPLE_DB_HOST; ?>" required>
+        <input type="text" name="db_host" id="db_host" value="<?php echo $db_host; ?>" tabindex="1" autofocus="autofocus" placeholder="<?php echo htmlentities(TEXT_EXAMPLE_DB_HOST, ENT_QUOTES); ?>" required>
         <small class="error"><?php echo TEXT_HELP_CONTENT_DBHOST; ?></small>
       </div>
     </div>
@@ -68,20 +68,13 @@
         <label class="inline" for="demoData"><a href="#" class="hasHelpText" id="DEMODATA"><?php echo TEXT_DATABASE_SETUP_LOAD_DEMO; ?></a></label>
       </div>
       <div class="small-9 columns">
-        <input type="checkbox" name="demoData" id="demoData" tabindex="5"><label class="inline" for="demoData"><?php echo TEXT_DATABASE_SETUP_LOAD_DEMO_DESCRIPTION; ?></label>
+        <input type="checkbox" name="demoData" id="demoData" tabindex="5" <?php echo $install_demo_data ? 'checked' : ''; ?>><label class="inline" for="demoData"><?php echo TEXT_DATABASE_SETUP_LOAD_DEMO_DESCRIPTION; ?></label>
       </div>
     </div>
   </fieldset>
   <fieldset>
     <legend><?php echo TEXT_DATABASE_SETUP_ADVANCED_SETTINGS; ?></legend>
-    <div class="row">
-      <div class="small-3 columns">
-        <label class="inline" for="db_charset"><a href="#" class="hasHelpText" id="DBCHARSET"><?php echo TEXT_DATABASE_SETUP_DB_CHARSET; ?></a></label>
-      </div>
-      <div class="small-9 columns">
-        <select name="db_charset" id="db_charset" tabindex="6" ><?php echo $dbCharsetOptions; ?></select>
-      </div>
-    </div>
+    <input type="hidden" name="db_charset" value="utf8mb4">
     <div class="row">
       <div class="small-3 columns">
         <label class="inline" for="db_prefix"><a href="#" class="hasHelpText" id="DBPREFIX"><?php echo TEXT_DATABASE_SETUP_DB_PREFIX; ?></a></label>
@@ -223,7 +216,7 @@ $(function()
           type: "POST",
            timeout: 100000,
           dataType: "json",
-          data: 'id='+textId,
+          data: 'id='+textId + '&lng=<?php echo $installer_lng; ?>',
           url: '<?php echo "ajaxGetHelpText.php"; ?>',
            success: function(data) {
              $('#modal-help-title').html(data.title);

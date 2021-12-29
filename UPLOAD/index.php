@@ -14,11 +14,11 @@
  * <li>Load application_bottom.php</li>
  * </ul>
  *
- * @package general
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+* Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: index.php 730 2018-12-21 11:49:16Z webchills $
+ * @version $Id: index.php 731 2021-10-24 17:32:16Z webchills $
  */
 /**
  * Load common library stuff 
@@ -56,9 +56,8 @@
   foreach ($directory_array as $value) { 
     $onload_file = DIR_WS_MODULES . 'pages/' . $current_page_base . '/' . $value;
     $read_contents='';
-    $lines = @file($onload_file);
-    foreach($lines as $line) {
-      $read_contents .= $line;
+    if ($lines = @file($onload_file)) {
+      $read_contents = implode('', $lines);
     }
   $za_onload_array[] = $read_contents;
   }
@@ -71,9 +70,8 @@
   foreach ($directory_array as $value) { 
     $onload_file = $tpl_dir . '/' . $value;
     $read_contents='';
-    $lines = @file($onload_file);
-    foreach($lines as $line) {
-      $read_contents .= $line;
+    if ($lines = @file($onload_file)) {
+      $read_contents = implode('', $lines);
     }
     $za_onload_array[] = $read_contents;
   }

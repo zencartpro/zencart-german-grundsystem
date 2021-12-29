@@ -4,11 +4,12 @@
  * database_tables.php
  * Defines the database table names used in the project
  *
- * @package initSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: database_tables.php 789 2019-08-06 10:13:51Z webchills $
+ * @version $Id: database_tables.php 789 2021-11-28 19:13:51Z webchills $
  * @private
  */
 
@@ -33,6 +34,7 @@ define('TABLE_CONFIGURATION_LANGUAGE' , DB_PREFIX . 'configuration_language');
 define('TABLE_CONFIGURATION_GROUP', DB_PREFIX . 'configuration_group');
 define('TABLE_COUNTER', DB_PREFIX . 'counter');
 define('TABLE_COUNTER_HISTORY', DB_PREFIX . 'counter_history');
+define('TABLE_COUNT_PRODUCT_VIEWS', DB_PREFIX . 'count_product_views');
 define('TABLE_COUNTRIES', DB_PREFIX . 'countries');
 define('TABLE_COUNTRIES_NAME', DB_PREFIX . 'countries_name');
 define('TABLE_COUPON_GV_QUEUE', DB_PREFIX . 'coupon_gv_queue');
@@ -75,6 +77,10 @@ define('TABLE_PAYPAL', DB_PREFIX . 'paypal');
 define('TABLE_PAYPAL_SESSION', DB_PREFIX . 'paypal_session');
 define('TABLE_PAYPAL_PAYMENT_STATUS', DB_PREFIX . 'paypal_payment_status');
 define('TABLE_PAYPAL_PAYMENT_STATUS_HISTORY', DB_PREFIX . 'paypal_payment_status_history');
+define('TABLE_PLUGIN_CONTROL', DB_PREFIX . 'plugin_control');
+define('TABLE_PLUGIN_CONTROL_VERSIONS', DB_PREFIX . 'plugin_control_versions');
+define('TABLE_PLUGIN_GROUPS', DB_PREFIX . 'plugin_groups');
+define('TABLE_PLUGIN_GROUPS_DESCRIPTION', DB_PREFIX . 'plugin_groups_description');
 define('TABLE_PRODUCTS', DB_PREFIX . 'products');
 define('TABLE_PRODUCT_TYPES', DB_PREFIX . 'product_types');
 define('TABLE_PRODUCT_TYPE_LAYOUT', DB_PREFIX . 'product_type_layout');

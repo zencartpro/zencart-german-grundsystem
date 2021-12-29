@@ -1,10 +1,11 @@
 <?php
 /**
- * @package htmleditors
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_html_editor.php 731 2015-12-21 19:55:16Z webchills $
+ * @version $Id: init_html_editor.php 2021-10-25 17:55:16Z webchills $
  */
 if (!defined('DIR_WS_EDITORS')) define('DIR_WS_EDITORS', 'editors/');
 if (!defined('IS_ADMIN_FLAG')) {
@@ -22,7 +23,7 @@ if (!defined('IS_ADMIN_FLAG')) {
  * NOTE: THERE SHOULD BE NO NEED TO EDIT ANYTHING BELOW THIS LINE:
  */
   $editors_list['NONE'] = array('desc' => EDITOR_NONE, 'handler' => '', 'special_needs' => ''); // plain text
-  if (is_dir(DIR_FS_CATALOG . DIR_WS_EDITORS . 'ckeditor')) $editors_list['CKEDITOR']  = array('desc' => EDITOR_CKEDITOR,  'handler' => 'ckeditor.php',  'special_needs' => '');
+  $editors_list['CKEDITOR']  = array('desc' => EDITOR_CKEDITOR,  'handler' => 'ckeditor.php',  'special_needs' => '');
   if (is_dir(DIR_FS_CATALOG . DIR_WS_EDITORS . 'tiny_mce')) $editors_list['TINYMCE']   = array('desc' => EDITOR_TINYMCE,   'handler' => 'tinymce.php',   'special_needs' => '');
 
 /**

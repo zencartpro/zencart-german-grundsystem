@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: salemaker.php 730 2015-12-22 15:49:16Z webchills $
+ * @version $Id: salemaker.php 2021-10-25 15:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'SaleMaker');
@@ -24,7 +25,6 @@ define('TEXT_SALEMAKER_DATE_START', 'Start Date:');
 define('TEXT_SALEMAKER_DATE_END', 'End Date:');
 define('TEXT_SALEMAKER_CATEGORIES', '<b>Or</b> check the categories to which this sale applies:');
 define('TEXT_SALEMAKER_POPUP', '<a href="javascript:session_win();"><span class="errorText"><b>Click here for Salemaker Usage Tips.</b></span></a>');
-define('TEXT_SALEMAKER_POPUP1', '<a href="javascript:session_win1();"><span class="errorText"><b>(More Info)</b></span></a>');
 define('TEXT_SALEMAKER_IMMEDIATELY', 'Immediately');
 define('TEXT_SALEMAKER_NEVER', 'Never');
 define('TEXT_SALEMAKER_ENTIRE_CATALOG', 'Check this box if you want the sale to be applied to <b>all products</b>:');
@@ -41,7 +41,12 @@ define('TEXT_INFO_DATE_END', 'Expires:');
 define('SPECIALS_CONDITION_DROPDOWN_0', 'Ignore Specials Price - Apply to Product Price and Replace Special');
 define('SPECIALS_CONDITION_DROPDOWN_1', 'Ignore SaleCondition - No Sale Applied When Special Exists');
 define('SPECIALS_CONDITION_DROPDOWN_2', 'Apply SaleDeduction to Specials Price - Otherwise Apply to Price');
-
+// moved to english.php
+/*
+define('DEDUCTION_TYPE_DROPDOWN_0', 'Deduct amount');
+define('DEDUCTION_TYPE_DROPDOWN_1', 'Percent');
+define('DEDUCTION_TYPE_DROPDOWN_2', 'New Price');
+*/
 define('TEXT_INFO_HEADING_COPY_SALE', 'Copy Sale');
 define('TEXT_INFO_COPY_INTRO', 'Enter a name for the copy of<br>&nbsp;&nbsp;"%s"');
 define('TEXT_INFO_HEADING_DELETE_SALE', 'Delete Sale');

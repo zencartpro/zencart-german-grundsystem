@@ -5,11 +5,12 @@
  * Loaded automatically by index.php?main_page=account_edit.<br />
  * View or change Customer Account Information
  *
- * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_account_edit_default.php 733 2019-04-12 17:49:16Z webchills $ 
+ * @version $Id: tpl_account_edit_default.php 2021-12-28 12:49:16Z webchills $ 
  */
 ?>
 <div class="centerColumn" id="accountEditDefault">
@@ -48,6 +49,7 @@
 <?php
   }
 ?>
+
 <label class="inputLabel" for="email-address"><?php echo ENTRY_EMAIL_ADDRESS; ?></label>
 <?php echo zen_draw_input_field('email_address', $account->fields['customers_email_address'], 'id="email-address" placeholder="' . ENTRY_EMAIL_ADDRESS_TEXT . '"'. ((int)ENTRY_EMAIL_ADDRESS_MIN_LENGTH > 0 ? ' required' : ''), 'email'); ?>
 <br class="clearBoth" />
@@ -72,7 +74,7 @@ if (ACCOUNT_FAX_NUMBER == 'true' ) {
   if (CUSTOMERS_REFERRAL_STATUS == 2 and $customers_referral == '') {
 ?>
 <label class="inputLabel" for="customers-referral"><?php echo ENTRY_CUSTOMERS_REFERRAL; ?></label>
-<?php echo zen_draw_input_field('customers_referral', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_referral', 15) . 'id="customers-referral"'); ?>
+<?php echo zen_draw_input_field('customers_referral', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_referral', 15) . ' id="customers-referral"'); ?>
 <br class="clearBoth" />
 <?php } ?>
 

@@ -1,23 +1,22 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: mail.php 627 2010-08-30 15:05:14Z webchills $
+ * @version $Id: mail.php 2021-12-02 16:23:14Z webchills $
  */
 define('HEADING_TITLE','Rundschreiben versenden');
-define('TEXT_CUSTOMER','Kunde:');
+
 define('TEXT_SUBJECT','Betreff:');
 define('TEXT_FROM','Absender:');
 define('TEXT_MESSAGE','Nur-Text <br />Nachricht:');
 define('TEXT_MESSAGE_HTML', 'Rich-Text <br />Nachricht:');
-define('TEXT_SELECT_CUSTOMER','Kunden auswählen');
-define('TEXT_ALL_CUSTOMERS','Alle Kunden');
-define('TEXT_NEWSLETTER_CUSTOMERS','An alle Newsletter Abonnementen');
+
 define('TEXT_ATTACHMENTS_LIST', 'Ausgewählter Anhang: ');
 define('TEXT_SELECT_ATTACHMENT', 'Anhang<br />auf dem Server: ');
-define('TEXT_SELECT_ATTACHMENT_TO_UPLOAD', 'Anhang<br />hochzuladen<br />&amp; anhängen: ');
+define('TEXT_SELECT_ATTACHMENT_TO_UPLOAD', 'Anhang<br />zum Hochladen<br />&amp; anhängen: ');
 define('TEXT_ATTACHMENTS_DIR', 'Ordner für Upload: ');
 define('NOTICE_EMAIL_SENT_TO','HINWEIS: E-Mail wurde versendet an: %s');
 define('NOTICE_EMAIL_FAILED_SEND', 'HINWEIS: Die E-Mail konnte nicht an alle Empfänger verschickt werden: %s');

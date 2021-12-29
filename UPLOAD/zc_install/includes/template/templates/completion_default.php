@@ -1,16 +1,17 @@
 <?php
 /**
- * @package Installer
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: completion_default.php 4 2019-06-16 18:59:53Z webchills $ */
+ * @version $Id: completion_default.php 5 2021-11-28 17:59:53Z webchills $ */
 ?>
 <?php require(DIR_FS_INSTALL . DIR_WS_INSTALL_TEMPLATE . 'partials/partial_modal_help.php'); ?>
 
-	<div align="center" class="alert-box success">
-		<div align="center" class="showModal button warning radius" id="NGINXCONF">
+	<div class="alert-box success text-center">
+		<div class="showModal button warning radius text-center" id="NGINXCONF">
 			<h6><?php echo TEXT_COMPLETION_NGINX_TEXT; ?></h6>
 		</div>
+
 <?php if ($adminDir == 'admin' && !defined('DEVELOPER_MODE')) { ?>
 		<br><br>
 		<div class="alert-box  secondary">
@@ -27,30 +28,31 @@
 		</div>
 		<br>
 <?php } ?>
-		<h5><font color="white">
-		
+
+		<h5 style="color:white">
+
 <?php if ($isUpgrade) { ?>
 		<?php echo TEXT_COMPLETION_UPGRADE_COMPLETE; ?>
 <?php } else { ?>
 		<?php echo TEXT_COMPLETION_INSTALL_COMPLETE; ?>
-		
+
 		<br>
 	<?php if ($catalogLink != '#') echo TEXT_COMPLETION_INSTALL_LINKS_BELOW; ?>
 <?php } ?>
 
-		</font></h5>
+		</h5>
 <?php if (!$isUpgrade && $catalogLink != '#') { ?>
 
-		<div align="center">
-			<a class="radius button" href="<?php echo $adminLink; ?>" target="_blank" tabindex="1">
+		<div class="text-center">
+			<a class="radius button" href="<?php echo $adminLink; ?>" rel="noopener" target="_blank" tabindex="1">
 				<?php echo TEXT_COMPLETION_ADMIN_LINK_TEXT; ?>:
-				
+
 				<br><br>
 				<u><?php echo $adminLink; ?></u>
 			</a>
-			<a class="radius button" href="<?php echo $catalogLink; ?>" target="_blank" tabindex="2">
+			<a class="radius button" href="<?php echo $catalogLink; ?>" rel="noopener" target="_blank" tabindex="2">
 				<?php echo TEXT_COMPLETION_CATALOG_LINK_TEXT; ?>:
-				
+
 				<br><br>
 				<u><?php echo $catalogLink; ?></u>
 			</a>
@@ -68,7 +70,7 @@
 				type: "POST",
 				timeout: 100000,
 				dataType: "json",
-				data: 'id='+textId,
+                data: 'id='+textId + '&lng=<?php echo $installer_lng; ?>',
 				url: '<?php echo "ajaxGetHelpText.php"; ?>',
 				success: function(data) 
 				{

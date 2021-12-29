@@ -5,11 +5,12 @@
  * Loaded automatically by index.php?main_page=document_product_info.<br />
  * Displays template according to "document-product" product-type needs
  *
- * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_document_product_info_display.php 802 2019-08-06 14:47:36Z webchills $
+ * @version $Id: tpl_document_product_info_display.php 2021-12-28 13:47:36Z webchills $
  */
 ?>
 <div class="centerColumn" id="docProductDisplay">
@@ -97,7 +98,7 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
               $the_button = '<input type="hidden" name="cart_quantity" value="1" />' . zen_draw_hidden_field('products_id', (int)$_GET['products_id']) . zen_image_submit(BUTTON_IMAGE_IN_CART, BUTTON_IN_CART_ALT);
             } else {
               // show the quantity box
-              $the_button = PRODUCTS_ORDER_QTY_TEXT . '<input type="text" name="cart_quantity" value="' . $products_get_buy_now_qty . '" maxlength="6" size="4" /><br />' . zen_get_products_quantity_min_units_display((int)$_GET['products_id']) . '<br />' . zen_draw_hidden_field('products_id', (int)$_GET['products_id']) . zen_image_submit(BUTTON_IMAGE_IN_CART, BUTTON_IN_CART_ALT);
+              $the_button = PRODUCTS_ORDER_QTY_TEXT . '<input type="text" name="cart_quantity" value="' . $products_get_buy_now_qty . '" maxlength="6" size="4" aria-label="' . ARIA_QTY_ADD_TO_CART . '"><br />' . zen_get_products_quantity_min_units_display((int)$_GET['products_id']) . '<br />' . zen_draw_hidden_field('products_id', (int)$_GET['products_id']) . zen_image_submit(BUTTON_IMAGE_IN_CART, BUTTON_IN_CART_ALT);
             }
     $display_button = zen_get_buy_now_button($_GET['products_id'], $the_button);
   ?>
@@ -125,6 +126,20 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
   }
 ?>
 <!--eof Product details list -->
+
+<?php
+if ($flag_show_ask_a_question) {
+?>
+<!-- bof Ask a Question --> 
+<br />
+<span id="productQuestions" class="biggerText">
+<b><?php echo '<a href="' . zen_href_link(FILENAME_ASK_A_QUESTION, 'pid=' . $_GET['products_id'], 'SSL') . '">' . ASK_A_QUESTION . '</a>'; ?></b>
+</span>
+<br class="clearBoth" />
+<!-- eof Ask a Question -->
+<?php
+}
+?>
 
 <!--bof Attributes Module -->
 <?php

@@ -5,11 +5,12 @@
  * Loaded automatically by index.php?main_page=product_music_info.<br />
  * Displays details of a music product
  *
- * @package templateSystem
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_product_music_info_display.php 4 2020-01-17 15:33:58Z webchills $
+ * @version $Id: tpl_product_music_info_display.php 2021-12-27 19:33:58Z webchills $
  */
 ?>
 <div class="centerColumn" id="productMusicDisplay">
@@ -94,6 +95,19 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
 ?>
 <!--eof Product details list -->
 
+<?php
+if ($flag_show_ask_a_question) {
+?>
+<!-- bof Ask a Question --> 
+<br />
+<span id="productQuestions" class="biggerText">
+<b><?php echo '<a href="' . zen_href_link(FILENAME_ASK_A_QUESTION, 'pid=' . $_GET['products_id'], 'SSL') . '">' . ASK_A_QUESTION . '</a>'; ?></b>
+</span>
+<br class="clearBoth" />
+<!-- eof Ask a Question -->
+<?php
+}
+?>
 <!--bof free ship icon  -->
 <?php if(zen_get_product_is_always_free_shipping($products_id_current) && $flag_show_product_info_free_shipping) { ?>
 <div id="freeShippingIcon"><?php echo TEXT_PRODUCT_FREE_SHIPPING_ICON; ?></div>
@@ -155,7 +169,7 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
       $the_button = '<input type="hidden" name="cart_quantity" value="1" />' . zen_draw_hidden_field('products_id', (int)$_GET['products_id']) . zen_image_submit(BUTTON_IMAGE_IN_CART, BUTTON_IN_CART_ALT);
     } else {
       // show the quantity box
-      $the_button = '<div class="max-qty">' . zen_get_products_quantity_min_units_display((int)$_GET['products_id']) . '</div>' . PRODUCTS_ORDER_QTY_TEXT . '<input type="text" name="cart_quantity" value="' . $products_get_buy_now_qty . '" maxlength="6" size="4" />' . zen_draw_hidden_field('products_id', (int)$_GET['products_id']) . zen_image_submit(BUTTON_IMAGE_IN_CART, BUTTON_IN_CART_ALT);
+      $the_button = '<div class="max-qty">' . zen_get_products_quantity_min_units_display((int)$_GET['products_id']) . '</div>' . PRODUCTS_ORDER_QTY_TEXT . '<input type="text" name="cart_quantity" value="' . $products_get_buy_now_qty . '" maxlength="6" size="4" aria-label="' . ARIA_QTY_ADD_TO_CART . '">' . zen_draw_hidden_field('products_id', (int)$_GET['products_id']) . zen_image_submit(BUTTON_IMAGE_IN_CART, BUTTON_IN_CART_ALT);
     }
     $display_button = zen_get_buy_now_button($_GET['products_id'], $the_button);
 ?>

@@ -1,44 +1,37 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: gv_mail.php 634 2019-06-16 17:39:16Z webchills $
+ * @version $Id: gv_mail.php 2021-12-02 16:39:16Z webchills $
  */
 
-require 'gv_name.php';
-define('HEADING_TITLE', TEXT_GV_NAME . ' an Kunden versenden');
 
-define('TEXT_CUSTOMER', 'Kunde:');
-define('TEXT_SUBJECT', 'Betreff:');
-define('TEXT_FROM', 'Absender:');
-define('TEXT_TO', 'E-Mail an:');
-define('TEXT_AMOUNT', 'Betrag');
-define('TEXT_MESSAGE', 'Nur-Text <br />Nachricht:');
-define('TEXT_RICH_TEXT_MESSAGE', 'Rich-Text <br />Nachricht:');
-define('TEXT_SINGLE_EMAIL', '<span class="smallText">Verwenden Sie dieses Feld, um eine einzelne E-Mail zu senden, ansonsten verwenden Sie das Drodown oben</span>');
-define('TEXT_SELECT_CUSTOMER', 'Kunde wählen');
-define('TEXT_ALL_CUSTOMERS', 'Alle Kunden');
-define('TEXT_NEWSLETTER_CUSTOMERS', 'An alle Newsletter Abonnementen');
+require DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'gv_name.php';
+define('HEADING_TITLE', 'Sende ' . TEXT_GV_NAME . ' an Kunden');
+
+define('TEXT_FROM', 'From:');
+define('TEXT_TO', 'Email To:');
+define('TEXT_TO_CUSTOMERS', 'To Customer Lists:');
+define('TEXT_TO_EMAIL', 'or To an Email Address:');
+define('TEXT_TO_EMAIL_NAME', 'Name (optional):');
+define('TEXT_TO_EMAIL_INFO', '<span class="smallText">Choose a list from the above drop-down or use the following fields for sending a single email.</span>');
+define('TEXT_SUBJECT', 'Subject:');
+define('TEXT_AMOUNT', TEXT_GV_NAME . ' Value:');
+define('ERROR_GV_AMOUNT', '<span class="smallText">Enter a number using a decimal point for fractions eg.: 25.00.</span>');
+define('TEXT_AMOUNT_INFO', '<span class="smallText">' . ERROR_GV_AMOUNT . '</span>');
+define('TEXT_HTML_MESSAGE', 'HTML<br>Message:');
+define('TEXT_MESSAGE', 'Text-Only<br>Message:');
+define('TEXT_MESSAGE_INFO', '<p>Optionally include a specific message, inserted prior to the standard ' . TEXT_GV_NAME . ' email text.</p>');
 
 define('NOTICE_EMAIL_SENT_TO', 'HINWEIS: E-Mail wurde versendet an: %s');
 define('ERROR_NO_CUSTOMER_SELECTED', 'FEHLER: Es wurde kein Kunde ausgewählt.');
-define('ERROR_NO_AMOUNT_SELECTED', 'FEHLER: Kein Betrag gewählt.');
+define('ERROR_NO_AMOUNT_ENTERED', 'FEHLER: Kein Betrag gewählt.');
 define('ERROR_NO_SUBJECT', 'FEHLER: Es wurde kein Betreff angegeben.');
-define('ERROR_GV_AMOUNT', 'Bitte den Wert ohne Symbole angeben. Beispiel: 25.00');
 
-define('TEXT_GV_ANNOUNCE', '<font color="#0000ff">Wir freuen uns, Ihnen einen ' . TEXT_GV_NAME . ' schenken zu können.</font>');
-define('TEXT_GV_WORTH', 'Der ' . TEXT_GV_NAME . ' hat einen Wert von ');
-define('TEXT_TO_REDEEM', 'Um den ' . TEXT_GV_NAME . ', einzulösen, klicken Sie bitte auf nachstehenden Link.');
-define('TEXT_WHICH_IS', ' notieren Sie sich hierfür bitte diese Gutscheinnummer: ');
-define('TEXT_IN_CASE', ' Klicken Sie nun auf den nachstehenden Link: ');
-define('TEXT_OR_VISIT', 'Alternativ dazu können Sie uns auf ');
-define('TEXT_ENTER_CODE', ' besuchen und tragen die Gutscheinnummer während Ihres Bestellvorgangs ein.');
-define('TEXT_CLICK_TO_REDEEM', 'Zum Einlösen bitte hier klicken');
 
-define ('TEXT_REDEEM_COUPON_MESSAGE_HEADER', 'Sie haben einen ' . TEXT_GV_NAME . ' erworben. Aus Sicherheitsgründen wurde der Betrag des ' . TEXT_GV_NAME . 's nicht sofort freigegeben. Der Shop Inhaber hat diesen Betrag nun freigegeben.');
-define ('TEXT_REDEEM_COUPON_MESSAGE_AMOUNT', "\n\n" . 'Der Betrag des  ' . TEXT_GV_NAME . 's war %s');
-define ('TEXT_REDEEM_COUPON_MESSAGE_BODY', "\n\n" . 'Sie können nun unseren Shop besuchen, sich anmelden und den Betrag des   ' . TEXT_GV_NAME . 's weiterverschicken.');
-
-define ('TEXT_REDEEM_COUPON_MESSAGE_FOOTER', "\n\n");
+define('TEXT_GV_ANNOUNCE', 'We\'re pleased to offer you a ' . TEXT_GV_NAME . ' for %s.');
+define('TEXT_GV_TO_REDEEM_TEXT', 'Use the following link to redeem the ' . TEXT_GV_NAME . "\n\n ". '%1$s%2$s' . "\n\n" . 'or visit ' . STORE_NAME . " at " . HTTP_CATALOG_SERVER . DIR_WS_CATALOG . "\n" . 'and enter the code %2$s on the Checkout-Payment page.');
+define('TEXT_GV_TO_REDEEM_HTML', '<a href="%1$s%2$s">Click here to redeem the ' . TEXT_GV_NAME . '</a> or visit <a href="' . HTTP_CATALOG_SERVER . DIR_WS_CATALOG . '">' . STORE_NAME . '</a> and enter the code <strong>%2$s</strong> on the Checkout-Payment page.');

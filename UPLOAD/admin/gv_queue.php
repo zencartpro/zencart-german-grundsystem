@@ -1,10 +1,10 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: gv_queue.php 733 2020-01-18 08:49:16Z webchills $
+ * @version $Id: gv_queue.php 2021-11-29 20:57:16Z webchills $
  */
 
   require('includes/application_top.php');
@@ -164,7 +164,7 @@
   $gv_split = new splitPageResults($_GET['page'], MAX_DISPLAY_SEARCH_RESULTS, $gv_query_raw, $gv_query_numrows);
   $gv_list = $db->Execute($gv_query_raw);
   while (!$gv_list->EOF) {
-    if (((!isset($_GET['gid'])) || (@$_GET['gid'] == $gv_list->fields['unique_id'])) && (!isset($gInfo))) {
+    if ((!isset($_GET['gid']) || $_GET['gid'] == $gv_list->fields['unique_id']) && (!isset($gInfo))) {
       $gInfo = new objectInfo($gv_list->fields);
     }
     if ( (is_object($gInfo)) && ($gv_list->fields['unique_id'] == $gInfo->unique_id) ) {

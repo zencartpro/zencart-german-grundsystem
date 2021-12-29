@@ -2,11 +2,12 @@
 /**
  * ot_coupon order-total module
  * Zen Cart German Specific
- * @package orderTotal
- * @copyright Copyright 2003-2020 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_coupon.php 744 2020-03-12 07:49:16Z webchills $
+ * @version $Id: ot_coupon.php 2021-11-29 15:49:16Z webchills $
  */
 /**
  * Order Total class  to handle discount coupons
@@ -245,7 +246,7 @@ class ot_coupon {
           $coupon_total = $orderTotalDetails['orderTotal']; // restricted products
         }
         if ($coupon_result->fields['coupon_calc_base'] == 1) {
-          $coupon_total_minimum = $orderTotalDetails['orderTotal']; // restricted products
+          $coupon_total_minimum = $orderTotalDetails['totalFull']; // all products
           $coupon_total = $orderTotalDetails['totalFull']; // all products
         }
 //echo 'Product: ' . $orderTotalDetails['orderTotal'] . ' Order: ' . $orderTotalDetails['totalFull'] . ' $coupon_total: ' . $coupon_total . '<br>';
@@ -509,7 +510,7 @@ class ot_coupon {
         $coupon_total = $orderTotalDetails['orderTotal']; // restricted products
       }
       if ($coupon->fields['coupon_calc_base'] == 1) {
-        $coupon_total_minimum = $orderTotalDetails['orderTotal']; // restricted products
+        $coupon_total_minimum = $orderTotalDetails['totalFull']; // all products
         $coupon_total = $orderTotalDetails['totalFull']; // all products
       }
 //echo 'ot_coupon coupon_total: ' . $coupon->fields['coupon_calc_base'] . '<br>$orderTotalDetails[orderTotal]: ' . $orderTotalDetails['orderTotal'] . '<br>$orderTotalDetails[totalFull]: ' . $orderTotalDetails['totalFull'] . '<br>$coupon_total: ' . $coupon_total . '<br><br>$coupon->fields[coupon_minimum_order]: ' . $coupon->fields['coupon_minimum_order'] . '<br>$coupon_total_minimum: ' . $coupon_total_minimum . '<br>';
@@ -590,7 +591,13 @@ class ot_coupon {
               if ($od_amount['total'] >= $orderTotalDetails['orderTotal']) $ratio = 1;
               foreach ($orderTotalDetails['orderTaxGroups'] as $key=>$value)
               {
-                $od_amount['tax_groups'][$key] = zen_round($orderTotalDetails['orderTaxGroups'][$key] * $ratio, $currencyDecimalPlaces);
+                $this_tax = $orderTotalDetails['orderTaxGroups'][$key]; 
+                if ($this->include_shipping != 'true') {
+                   if (isset($_SESSION['shipping_tax_description']) && $_SESSION['shipping_tax_description'] == $key) {
+                     $this_tax -= $orderTotalDetails['shippingTax']; 
+                   }
+                }
+                $od_amount['tax_groups'][$key] = zen_round($this_tax * $ratio, $currencyDecimalPlaces); 
                 $od_amount['tax'] += $od_amount['tax_groups'][$key];
               }
               if (DISPLAY_PRICE_WITH_TAX == 'true' && $coupon->fields['coupon_type'] == 'F') $od_amount['total'] = $od_amount['total'] + $od_amount['tax'];

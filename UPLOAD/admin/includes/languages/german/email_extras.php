@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+* Zen Cart German Specific
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: email_extras.php 632 2016-04-06 20:05:14Z webchills $
+ * @version $Id: email_extras.php 2021-12-01 10:05:14Z webchills $
  */
 
 define ('EMAIL_LOGO_FILENAME', 'header.jpg');  //diese Datei muss im Ordner email liegen
@@ -18,11 +19,13 @@ define ('EMAIL_LOGO_ALT_TITLE_TEXT', '');
 //
 define ('EMAIL_EXTRA_HEADER_INFO', '');
 
+// Define a message you'd like to add to an order update email
+define('EMAIL_ORDER_UPDATE_MESSAGE',''); 
 // office use only
 define('OFFICE_FROM','Absender:');
 define('OFFICE_EMAIL','E-Mail:');
-define('OFFICE_SENT_TO','An:');
-define('OFFICE_EMAIL_TO','E-Mail:');
+
+
 define('OFFICE_USE','Nur für den internen Gebrauch:');
 define('OFFICE_LOGIN_NAME','Kontoname:');
 define('OFFICE_LOGIN_EMAIL','E-Mail Adresse:');

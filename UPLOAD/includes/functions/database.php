@@ -1,11 +1,4 @@
 <?php 
-/**
-* These functions were in admin/includes/functions/database.php before Zen Cart 1.5.6e and have been moved to the frontend
-* @copyright Copyright 2003-2020 Zen Cart Development Team
-* @copyright Portions Copyright 2003 osCommerce
-* @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: database.php 1 2020-01-20 17:43:14Z webchills $
-*/
   function zen_db_perform($table, $data, $action = 'insert', $parameters = '') {
     global $db;
     if (strtolower($action) == 'insert') {

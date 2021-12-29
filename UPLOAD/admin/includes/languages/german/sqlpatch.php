@@ -1,10 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: sqlpatch.php 216 2015-12-22 16:39:16Z webchills $
+ * @version $Id: sqlpatch.php 2021-12-03 15:39:16Z webchills $
  */
 
 define('HEADING_TITLE', 'SQL Query Executor');
@@ -65,3 +66,13 @@ define('REASON_PRIMARY_KEY_DOESNT_EXIST_TO_DROP', 'Kann primary key on table %s 
 define('REASON_INDEX_ALREADY_EXISTS', 'Kann index %s in table %s nicht hinzufügen, da er bereits vorhanden ist.');
 define('REASON_PRIMARY_KEY_ALREADY_EXISTS', 'Kann primary key in table %s nicht hinzufügen, da er bereits vorhanden ist.');
 define('REASON_NO_PRIVILEGES', 'User ' . DB_SERVER_USERNAME . '@' . DB_SERVER . ' hat nicht die %s Rechte für Datenbank ' . DB_DATABASE . '.');
+define('ERROR_RENAME_TABLE', 'RENAME TABLE command not supported by SQLpatch tool. Please use phpMyAdmin instead.');
+define('ERROR_LINE_INCOMPLETE', 'Query incomplete: missing closing semicolon.');
+
+define('TEXT_EXECUTE_SUCCESS', 'Success: %u statement(s) processed.');
+define('ERROR_EXECUTE_FAILED', 'Query failed: %u statement(s) processed.');
+define('ERROR_EXECUTE_IGNORED', 'Note: %u statements ignored. See database table "upgrade_exceptions" for additional details.');
+
+define('TEXT_UPLOADQUERY_SUCCESS', 'Success: %u statement(s) processed via file upload');
+define('ERROR_UPLOADQUERY_FAILED', 'Query failed: %u statement(s) processed via file upload');
+define('ERROR_UPLOADQUERY_IGNORED', 'Note: %u statements ignored via file upload. See database table "upgrade_exceptions" for additional details.');
