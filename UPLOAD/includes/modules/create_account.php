@@ -2,13 +2,12 @@
 /**
  * Zen Cart German Specific
  * create_account header_php.php
- *
- * @package modules
+ * 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: create_account.php 2020-02-29 21:27:16Z webchills $
+ * @version $Id: create_account.php 2021-12-29 20:34:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_MODULE_START_CREATE_ACCOUNT');
@@ -36,7 +35,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 /**
  * Process form contents
  */
-if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
+if (isset($_POST['action']) && ($_POST['action'] == 'process') && !isset($login_page)) {
   $process = true;
   $antiSpam = !empty($_POST[$antiSpamFieldName]) ? 'spam' : '';
   if (!empty($_POST['firstname']) && preg_match('~https?://?~', $_POST['firstname'])) $antiSpam = 'spam';
@@ -68,7 +67,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
   $postcode = zen_db_prepare_input($_POST['postcode']);
   $city = zen_db_prepare_input($_POST['city']);
   if (ACCOUNT_STATE == 'true') {
-    $state = zen_db_prepare_input($_POST['state']);
+    $state = zen_db_prepare_input(isset($_POST['state']) ? $_POST['state'] : '');
     if (isset($_POST['zone_id'])) {
       $zone_id = zen_db_prepare_input($_POST['zone_id']);
     } else {
@@ -77,7 +76,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
   }
   $country = zen_db_prepare_input($_POST['zone_country_id']);
   $telephone = zen_db_prepare_input($_POST['telephone']);
-  $fax = zen_db_prepare_input($_POST['fax']);
+  if (ACCOUNT_FAX_NUMBER == 'true') $fax = zen_db_prepare_input($_POST['fax']);
   $customers_authorization = (int)CUSTOMERS_APPROVAL_AUTHORIZATION;
   $customers_referral = (isset($_POST['customers_referral']) ? zen_db_prepare_input($_POST['customers_referral']) : '');
 
@@ -147,9 +146,8 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
     $error = true;
     $messageStack->add('create_account', ENTRY_EMAIL_ADDRESS_CHECK_ERROR);
   } elseif ($email_address != $email_address_confirm) {
-      $error = true;
-
-      $messageStack->add('create_account', ENTRY_EMAIL_ADDRESS_CONFIRM_NOT_MATCHING);
+    $error = true;
+    $messageStack->add('create_account', ENTRY_EMAIL_ADDRESS_CONFIRM_NOT_MATCHING);
   } else {
     $check_email_query = "select count(*) as total
                             from " . TABLE_CUSTOMERS . "
@@ -286,8 +284,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
                            array('fieldName'=>'customers_lastname', 'value'=>$lastname, 'type'=>'stringIgnoreNull'),
                            array('fieldName'=>'customers_email_address', 'value'=>$email_address, 'type'=>'stringIgnoreNull'),
                            array('fieldName'=>'customers_nick', 'value'=>$nick, 'type'=>'stringIgnoreNull'),
-                           array('fieldName'=>'customers_telephone', 'value'=>$telephone, 'type'=>'stringIgnoreNull'),
-                           array('fieldName'=>'customers_fax', 'value'=>$fax, 'type'=>'stringIgnoreNull'),
+                           array('fieldName'=>'customers_telephone', 'value'=>$telephone, 'type'=>'stringIgnoreNull'),                           
                            array('fieldName'=>'customers_newsletter', 'value'=>$newsletter, 'type'=>'integer'),
                            array('fieldName'=>'customers_email_format', 'value'=>$email_format, 'type'=>'stringIgnoreNull'),
                            array('fieldName'=>'customers_default_address_id', 'value'=>0, 'type'=>'integer'),
@@ -297,6 +294,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
 
     if ((CUSTOMERS_REFERRAL_STATUS == '2' and $customers_referral != '')) $sql_data_array[] = array('fieldName'=>'customers_referral', 'value'=>$customers_referral, 'type'=>'stringIgnoreNull');
     if (ACCOUNT_GENDER == 'true') $sql_data_array[] = array('fieldName'=>'customers_gender', 'value'=>$gender, 'type'=>'stringIgnoreNull');
+    if (ACCOUNT_FAX_NUMBER == 'true') $sql_data_array[] = array('fieldName'=>'customers_fax', 'value'=>$fax, 'type'=>'stringIgnoreNull');
     if (ACCOUNT_DOB == 'true')  $sql_data_array[] = array('fieldName'=>'customers_dob', 'value'=>empty($_POST['dob']) || $dob_entered == '0001-01-01 00:00:00' ? zen_db_prepare_input('0001-01-01 00:00:00') : zen_date_raw($_POST['dob']), 'type'=>'date');
 
     $db->perform(TABLE_CUSTOMERS, $sql_data_array);

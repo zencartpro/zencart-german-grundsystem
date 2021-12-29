@@ -5,12 +5,12 @@
  * Loaded automatically by index.php?main_page=create_account.<br />
  * Displays Create Account form.
  *
- * @package templateSystem
+ 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_create_account.php 2020-01-17 16:33:58Z webchills $
+ * @version $Id: tpl_modules_create_account.php 2021-12-29 20:23:58Z webchills $
  */
 ?>
 
@@ -129,7 +129,7 @@
 ?>
 <br class="clearBoth" />
 <label class="inputLabel" for="fax"><?php echo ENTRY_FAX_NUMBER; ?></label>
-<?php echo zen_draw_input_field('fax', '', 'id="fax" placeholder="' . ENTRY_FAX_NUMBER_TEXT . '"', 'tel'); ?>
+<?php echo zen_draw_input_field('fax', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_fax', '32') . ' id="fax" placeholder="' . ENTRY_FAX_NUMBER_TEXT . '"', 'tel'); ?>
 <?php
   }
 ?>
@@ -141,7 +141,7 @@
 <fieldset>
 <legend><?php echo TABLE_HEADING_DATE_OF_BIRTH; ?></legend>
 <label class="inputLabel" for="dob"><?php echo ENTRY_DATE_OF_BIRTH; ?></label>
-<?php echo zen_draw_input_field('dob','', 'id="dob" placeholder="' . ENTRY_DATE_OF_BIRTH_TEXT . '"' . (ACCOUNT_DOB == 'true' && (int)ENTRY_DOB_MIN_LENGTH != 0 ? ' required' : '')); ?>
+<?php echo zen_draw_input_field('dob','', zen_set_field_length(TABLE_CUSTOMERS, 'customers_dob', '20') . ' id="dob" placeholder="' . ENTRY_DATE_OF_BIRTH_TEXT . '"' . (ACCOUNT_DOB == 'true' && (int)ENTRY_DOB_MIN_LENGTH != 0 ? ' required' : '')); ?>
 <br class="clearBoth" />
 </fieldset>
 <?php
@@ -153,15 +153,14 @@
 <label class="inputLabel" for="email-address"><?php echo ENTRY_EMAIL_ADDRESS; ?></label>
 <?php echo zen_draw_input_field('email_address', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_email_address', '40') . ' id="email-address" placeholder="' . ENTRY_EMAIL_ADDRESS_TEXT . '"' . ((int)ENTRY_EMAIL_ADDRESS_MIN_LENGTH > 0 ? ' required' : ''), 'email'); ?>
 <br class="clearBoth" />
-
 <label class="inputLabel" for="email-address-confirm"><?php echo ENTRY_EMAIL_ADDRESS_CONFIRM; ?></label>
-<?php echo zen_draw_input_field('email_address_confirm', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_email_address', '32') . ' id="email-address-confirm"') . (zen_not_null(ENTRY_EMAIL_ADDRESS_CONFIRM) ? '<span class="alert">' . ENTRY_EMAIL_ADDRESS_TEXT . '</span>': ''); ?>
+<?php echo zen_draw_input_field('email_address_confirm', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_email_address', '40') . ' id="email-address-confirm" placeholder="' . ENTRY_EMAIL_ADDRESS_TEXT . '"' . ((int)ENTRY_EMAIL_ADDRESS_MIN_LENGTH > 0 ? ' required' : ''), 'email'); ?>
 <br class="clearBoth" />
 <?php
   if ($display_nick_field == true) {
 ?>
 <label class="inputLabel" for="nickname"><?php echo ENTRY_NICK; ?></label>
-<?php echo zen_draw_input_field('nick','','id="nickname" placeholder="' . ENTRY_NICK_TEXT . '"'); ?>
+<?php echo zen_draw_input_field('nick','', zen_set_field_length(TABLE_CUSTOMERS, 'customers_nick', '32') . ' id="nickname" placeholder="' . ENTRY_NICK_TEXT . '"'); ?>
 <br class="clearBoth" />
 <?php
   }
