@@ -10,7 +10,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: html_header.php 2021-12-28 10:01:39Z webchills $
+ * @version $Id: html_header.php 2021-12-29 17:48:39Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -67,6 +67,9 @@ if (count($lng->catalog_languages) > 1) {
 }
 // EOF hreflang for multilingual sites
 ?>
+<?php
+$manufacturers_id = (isset($_GET['manufacturers_id'])) ? $_GET['manufacturers_id'] : '';
+?>
 <?php if (RSS_FEED_ENABLED == 'true'){ ?>
 <?php echo rss_feed_link_alternate();?>
 <?php } ?>
@@ -107,7 +110,7 @@ if($RI_CJLoader->get('status') && (!isset($Ajax) || !$Ajax->status())){
         if (!$file['defer']) {
           if($file['include']) {
               include($file['src']);
-          } else if (!$RI_CJLoader->get('minify_css') || $file['external']) {
+          } else if (!$RI_CJLoader->get('minify_css')) {
               
               echo '<link rel="stylesheet" type="text/css" href="'.$file['src'] .'" />'."\n";
           } else {

@@ -77,6 +77,9 @@ if (count($lng->catalog_languages) > 1) {
   }
   // EOF hreflang for multilingual sites
 ?>
+<?php
+$manufacturers_id = (isset($_GET['manufacturers_id'])) ? $_GET['manufacturers_id'] : '';
+?>
 <?php if (RSS_FEED_ENABLED == 'true'){ ?>
 <?php echo rss_feed_link_alternate();?>
 <?php } ?>

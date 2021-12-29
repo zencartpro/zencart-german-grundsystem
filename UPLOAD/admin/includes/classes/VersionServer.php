@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: VersionServer.php 2021-12-29 12:24:16Z webchills $
+ * @version $Id: VersionServer.php 2021-12-29 17:14:16Z webchills $
  */
 
 class VersionServer
@@ -18,9 +18,7 @@ class VersionServer
         if (defined('PROJECT_VERSIONSERVER_URL')) {
             $this->projectVersionServer = PROJECT_VERSIONSERVER_URL;
         }
-        if (defined('PLUGIN_VERSIONSERVER_URL')) {
-            $this->pluginVersionServer = PLUGIN_VERSIONSERVER_URL;
-        }
+        
     }
 
     public function getZcVersioninfo()
