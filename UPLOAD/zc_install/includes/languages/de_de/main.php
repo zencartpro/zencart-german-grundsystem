@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main.php 2021-12-28 19:38:29Z webchills $
+ * @version $Id: main.php 2021-12-29 16:48:29Z webchills $
  */
 
 
@@ -239,77 +239,77 @@ Sie können trotz dieser Situation mit der Installation fortfahren, aber bitte b
 'TEXT_VERSION_CHECK_CURRENT' => 'Ihre Zen Cart Version scheint aktuell zu sein.',
 'TEXT_ERROR_NEW_VERSION_AVAILABLE' => '<a href="https://www.zen-cart-pro.at">Es gibt eine neuere Version der deutschen Zen Cart Version, die Sie unter </a><a href="https://www.zen-cart-pro.at" style="text-decoration:underline" rel="noopener" target="_blank">www.zen-cart-pro.at</a> herunterladen können.',
 'TEXT_DB_VERSION_NOT_FOUND' => 'Eine Zen Cart Datenbank für %s wurde nicht gefunden!',
-'REASON_TABLE_ALREADY_EXISTS' => 'Cannot create table %s because it already exists',
-'REASON_TABLE_DOESNT_EXIST' => 'Cannot drop table %s because it does not exist.',
-'REASON_TABLE_NOT_FOUND' => 'Cannot execute because table %s does not exist.',
-'REASON_CONFIG_KEY_ALREADY_EXISTS' => 'Cannot insert configuration_key "%s" because it already exists',
-'REASON_COLUMN_ALREADY_EXISTS' => 'Cannot ADD column %s because it already exists.',
-'REASON_COLUMN_DOESNT_EXIST_TO_DROP' => 'Cannot DROP column %s because it does not exist.',
-'REASON_COLUMN_DOESNT_EXIST_TO_CHANGE' => 'Cannot CHANGE column %s because it does not exist.',
-'REASON_PRODUCT_TYPE_LAYOUT_KEY_ALREADY_EXISTS' => 'Cannot insert prod-type-layout configuration_key "%s" because it already exists',
-'REASON_INDEX_DOESNT_EXIST_TO_DROP' => 'Cannot drop index %s on table %s because it does not exist.',
-'REASON_PRIMARY_KEY_DOESNT_EXIST_TO_DROP' => 'Cannot drop primary key on table %s because it does not exist.',
-'REASON_INDEX_ALREADY_EXISTS' => 'Cannot add index %s to table %s because it already exists.',
-'REASON_PRIMARY_KEY_ALREADY_EXISTS' => 'Cannot add primary key to table %s because a primary key already exists.',
-'REASON_CONFIG_GROUP_KEY_ALREADY_EXISTS' => 'Cannot insert configuration_group_key "%s" because it already exists',
-'REASON_CONFIG_GROUP_ID_ALREADY_EXISTS' => 'Cannot insert configuration_group_id "%s" because it already exists',
-'TEXT_COMPLETION_NGINX_TEXT' => '<u>Important Security Information for Nginx</u>',
-'TEXT_HELP_TITLE_NGINXCONF' => 'Securing Zen Cart on Nginx Web Servers',
-'TEXT_HELP_CONTENT_NGINXCONF' => '<p>Your Zen Cart installation comes with security measures in a format native to the Apache Webserver. <br>
-See below to implement a similar set of measures for the Nginx Webserver.</p>
+'REASON_TABLE_ALREADY_EXISTS' => 'Kann Tabelle %s nicht anlegen, da sie bereits existiert',
+'REASON_TABLE_DOESNT_EXIST' => 'Kann Tabelle %s nicht löschen, da sie nicht existiert.',
+'REASON_TABLE_NOT_FOUND' => 'Ausführung nicht möglich da Tabelle %s nicht existiert.',
+'REASON_CONFIG_KEY_ALREADY_EXISTS' => 'Kann configuration_key "%s" nicht einfügen, da er bereits existiert',
+'REASON_COLUMN_ALREADY_EXISTS' => 'Kann Spalte %s nicht hinzufügen (ADD), da sie bereits existiert.',
+'REASON_COLUMN_DOESNT_EXIST_TO_DROP' => 'Kann Spalte %s nicht entfernen (DROP), da sie nicht existiert.',
+'REASON_COLUMN_DOESNT_EXIST_TO_CHANGE' => 'Kann Spalte %s nicht ändern (CHANGE), da sie nicht existiert.',
+'REASON_PRODUCT_TYPE_LAYOUT_KEY_ALREADY_EXISTS' => 'Kann prod-type-layout configuration_key "%s" nicht einfügen, da er bereits existiert',
+'REASON_INDEX_DOESNT_EXIST_TO_DROP' => 'Kann index %s von Tabelle %s nicht entfernen, da er nicht existiert.',
+'REASON_PRIMARY_KEY_DOESNT_EXIST_TO_DROP' => 'Kann primary key von table %s nicht entfernen, da er nicht existiert.',
+'REASON_INDEX_ALREADY_EXISTS' => 'Kann index %s nicht zu Tabelle %s hinzufügen, da er bereits existiert.',
+'REASON_PRIMARY_KEY_ALREADY_EXISTS' => 'Kann primary key nicht zu Tabelle %s hinzufügen, da bereits ein primary key existiert.',
+'REASON_CONFIG_GROUP_KEY_ALREADY_EXISTS' => 'Kann configuration_group_key "%s" nicht einfügen, da er bereits existiert',
+'REASON_CONFIG_GROUP_ID_ALREADY_EXISTS' => 'Kann configuration_group_id "%s" nicht hinzufügen, da sie bereits existiert',
+'TEXT_COMPLETION_NGINX_TEXT' => '<u>Wichtige Sicherheitsinformationen für Nginx</u>',
+'TEXT_HELP_TITLE_NGINXCONF' => 'Zen Cart auf Nginx Web Servern absichern',
+'TEXT_HELP_CONTENT_NGINXCONF' => '<p>Ihre Zen Cart-Installation wird mit Sicherheitsmaßnahmen in einem Format geliefert, das dem Apache-Webserver eigen ist. <br>
+Um einen ähnlichen Satz von Maßnahmen für den Nginx-Webserver zu implementieren gehen Sie wie folgt vor.</p>
 <hr>
 <ul style="list-style-type:square">
-<li>Go to your <strong>"zc_install/includes/nginx_conf"</strong> folder and open the following files using a text editor such as notepad or textedit:
+<li>Gehen Sie in den Ordner <strong>"zc_install/includes/nginx_conf"</strong> und öffnen Sie die folgenden Dateien mit einem Texteditor wie Notepad++ oder Ultraedit:
   <ul style="list-style-type:circle">
     <li>zencart_ngx_http.conf</li>
     <li>zencart_ngx_server.conf</li>
   </ul>
 </li>
-<li>Add the contents of <strong>"zencart_ngx_http.conf"</strong> under the <strong>"http"</strong> section of your Nginx configuration file.
+<li>Fügen Sie den Inhalt von <strong>"zencart_ngx_http.conf"</strong> unter dem Abschnitt <strong>"http"</strong> Ihrer Nginx-Konfigurationsdatei hinzu.
   <ul style="list-style-type:circle">
-    <li>Edit the caching durations in the <strong>"map"</strong> block to suit as required</li>
+    <li>Bearbeiten Sie die Caching-Dauern im <strong>"map"</strong>-Block nach Bedarf</li>
   </ul>
 </li>
-<li>Add the contents of <strong>"zencart_ngx_server.conf"</strong> to the relevant <strong>"server"</strong> block for Zen Cart in your Nginx configuration file.
+<li>Fügen Sie den Inhalt von <strong>"zencart_ngx_server.conf"</strong> in den entsprechenden <strong>"server"</strong>-Block für Zen Cart in Ihrer Nginx-Konfigurationsdatei ein.
   <ul style="list-style-type:circle">
-    <li>The directives may be used for SSL and/or Non SSL server blocks.</li>
-    <li>The directives should be placed at the beginning of the server block before any other location blocks.
+    <li>Die Direktiven können für SSL- und/oder Nicht-SSL-Serverblöcke verwendet werden.</li>
+    <li>Die Direktiven sollten am Anfang des Serverblocks vor allen anderen Standortblöcken platziert werden.
       <ul style="list-style-type:none">
-        <li>- The order in which the directives appear is important.</li>
-        <li>- Do not change this order without fully understanding the directives and implications.</li>
+        <li>- Die Reihenfolge, in der die Direktiven erscheinen, ist wichtig.</li>
+        <li>- Ändern Sie diese Reihenfolge nicht, ohne die Richtlinien und ihre Auswirkungen vollständig zu verstehen.</li>
       </ul>
   </ul>
 </li>
-<li>It is especially critical that these directives appear before any generic php handling location blocks such as ... <br>
+<li>Es ist besonders wichtig, dass diese Direktiven vor allen generischen php-Behandlungsblöcken wie ... erscheinen. <br>
   <pre><code>location ~ \.php { <strong>Nginx PHP Handling Directives;</strong> }</code></pre>
-  ... or any other location blocks that might be processed before these are.</li>
-<li>Instead, edit the <strong>"zencart_php_handler"</strong> location block to match your Nginx PHP Handling Directives.
+  ... oder andere Ortsblöcke, die vor diesen verarbeitet werden könnten.</li>
+<li>Bearbeiten Sie stattdessen den <strong>"zencart_php_handler"</strong> Location-Block, um Ihre Nginx PHP Handling Directives anzupassen.
   <ul style="list-style-type:circle">
-    <li>Simply duplicate the contents of your existing PHP handling location block.
+    <li>Duplizieren Sie einfach den Inhalt Ihres bestehenden PHP-Handling-Speicherplatzblocks.
       <ul style="list-style-type:none">
-        <li>- That is, copy and paste in the equivalent Nginx PHP Handling Directives.</li>
-        <li>- If you do not have an existing PHP handling location block, please refer to available guides such as from <a href="https://www.nginx.com/resources/wiki/start/topics/examples/phpfcgi/" rel="noopener" target="_blank"><u>The Nginx Website</u></a>.</li>
+        <li>- Das heißt, kopieren Sie die entsprechenden Nginx-PHP-Behandlungsrichtlinien und fügen Sie sie ein.</li>
+        <li>- Wenn Sie keinen bestehenden PHP-Handling-Location-Block haben, beziehen Sie sich bitte auf verfügbare Anleitungen wie die von <a href="https://www.nginx.com/resources/wiki/start/topics/examples/phpfcgi/" rel="noopener" target="_blank"><u>The Nginx Website</u></a>.</li>
       </ul>
     </li>
   </ul>
 </li>
-<li>If using plugins for "Pretty URLs", insert the relevant directives into the specified block.</li>
-<li>Reload Nginx.
+<li>Wenn Sie Plugins für "Pretty URLs" verwenden, fügen Sie die entsprechenden Direktiven in den angegebenen Block ein.</li>
+<li>Nginx neu laden.
   <ul style="list-style-type:circle">
-    <li>Do this before closing this dialog box.</li>
-    <li>Remember to delete the <strong>"zc_install"</strong> folder when done.
+    <li>Tun Sie dies, bevor Sie dieses Dialogfeld schließen.</li>
+    <li>Denken Sie daran, den Ordner <strong>"zc_install"</strong> zu löschen, wenn Sie fertig sind.
       <ul style="list-style-type:none">
-        <li>- Including the <strong>"zc_install/includes/nginx_conf"</strong> folder and its contents.</li>
+        <li>- Einschließlich des Ordners <strong>"zc_install/includes/nginx_conf"</strong> und seines Inhalts.</li>
       </ul>
     </li>
   </ul>
 </li>
 <ol>
 </div>
-<div class="alert-box alert"> <strong>IMPORTANT:</strong> These location blocks should be <strong>BEFORE</strong> any other location blocks in your Nginx configuration server block for Zen Cart.</div>
+<div class="alert-box alert"> <strong>WICHTIG:</strong> Diese Standortblöcke sollten <strong>VOR</strong> allen anderen Standortblöcken in Ihrem Nginx-Konfigurations-Serverblock für Zen Cart stehen.</div>
 <hr>',
-'TEXT_HELP_TITLE_AGREETOTERMS' => 'Agree To Terms',
-'TEXT_HELP_CONTENT_AGREETOTERMS' => '<a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html" rel="noopener" target="_blank">Original GPL 2.0 text</a>
+'TEXT_HELP_TITLE_AGREETOTERMS' => 'Den Lizenzbedingungen zustimmen',
+'TEXT_HELP_CONTENT_AGREETOTERMS' => '<p><b>Eine deutsche Übersetzung der GNU General Public License finden Sie online auf: http://www.gnu.de/documents/gpl-2.0.de.html</b></p>
 <h2>The GNU General Public License (GPL)</h2>
 <h3>Version 2, June 1991</h3>
 <tt>
