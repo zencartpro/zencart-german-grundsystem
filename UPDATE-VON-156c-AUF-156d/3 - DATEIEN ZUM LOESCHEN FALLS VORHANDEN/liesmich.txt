@@ -1,7 +1,0 @@
-DATEIEN ZUM LÖSCHEN (NICHT MEHR ENTHALTEN UND NICHT MEHR BENÖTIGT)
-
-Löschen Sie nun die folgenden Dateien aus Ihrer Shopinstallation:
---------------------------------------------------------------------------------------------
-includes\templates\classic\templates\super_data_body.php
-includes\templates\responsive_classic\templates\super_data_body.php
-includes\templates\template_default\templates\super_data_body.php
