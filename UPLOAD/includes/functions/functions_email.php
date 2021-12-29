@@ -4,12 +4,12 @@
  * Processes all outbound email from Zen Cart
  * Hooks into phpMailer class for actual email encoding and sending
  *
- * @package functions
+ 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_email.php 742 2020-01-18 20:22:16Z webchills $
+ * @version $Id: functions_email.php 2021-12-29 19:22:16Z webchills $
  */
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -163,8 +163,15 @@ use PHPMailer\PHPMailer\SMTP;
       $sql = $db->bindVars($sql, ':custEmailAddress:', $to_email_address, 'string');
       $result = $db->Execute($sql);
       $customers_email_format = ($result->RecordCount() > 0) ? $result->fields['customers_email_format'] : '';
+      /**
+       * Valid formats: 
+       * HTML - if HTML content has been provided/prepared, it will be used. EMAIL_USE_HTML must be set to true in configs
+       * TEXT - a text-only version of the email will be sent, and the HTML version ignored
+       * NONE or OUT - implies opt-out, ie: send no emails, so aborts sending
+       */
+      $zco_notifier->notify('NOTIFY_EMAIL_DETERMINING_EMAIL_FORMAT', $to_email_address, $customers_email_format, $module);
+
       if ($customers_email_format == 'NONE' || $customers_email_format == 'OUT') return false; //if requested no mail, then don't send.
-//      if ($customers_email_format == 'HTML') $customers_email_format = 'HTML'; // if they opted-in to HTML messages, then send HTML format
 
       // handling admin/"extra"/copy emails:
       if (ADMIN_EXTRA_EMAIL_FORMAT == 'TEXT' && substr($module,-6)=='_extra') {
@@ -184,9 +191,9 @@ use PHPMailer\PHPMailer\SMTP;
       //notifier intercept option
       $zco_notifier->notify('NOTIFY_EMAIL_AFTER_EMAIL_FORMAT_DETERMINED');
 
-      // now lets build the mail object with the phpmailer class
+      // Create a new mail object with the phpmailer class
       $mail = new PHPMailer();
-      $mail->XMailer = 'PHPMailer for Zen Cart';
+      $mail->XMailer = 'Self-Hosted Zen Cart merchant';
       $lang_code = strtolower(($_SESSION['languages_code'] == '' ? 'en' : $_SESSION['languages_code'] ));
       $mail->SetLanguage($lang_code);
       $mail->CharSet =  (defined('CHARSET')) ? CHARSET : "iso-8859-1";
@@ -198,7 +205,7 @@ use PHPMailer\PHPMailer\SMTP;
         case ('Gmail'):
           $mail->isSMTP();
           $mail->SMTPAuth = true;
-          $mail->SMTPSecure = 'tls';
+          $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
           $mail->Port = 587;
           $mail->Host = 'smtp.gmail.com';
           $mail->Username = (zen_not_null(trim(EMAIL_SMTPAUTH_MAILBOX))) ? trim(EMAIL_SMTPAUTH_MAILBOX) : EMAIL_FROM;
@@ -213,8 +220,8 @@ use PHPMailer\PHPMailer\SMTP;
           if ((int)EMAIL_SMTPAUTH_MAIL_SERVER_PORT != 25 && (int)EMAIL_SMTPAUTH_MAIL_SERVER_PORT != 0) $mail->Port = (int)EMAIL_SMTPAUTH_MAIL_SERVER_PORT;
           if ((int)$mail->Port < 30 && $mail->Host == 'smtp.gmail.com') $mail->Port = 587;
           //set encryption protocol to allow support for secured email protocols
-          if ($mail->Port == '465') $mail->SMTPSecure = 'ssl';
-          if ($mail->Port == '587') $mail->SMTPSecure = 'tls';
+          if ($mail->Port == '465') $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+          if ($mail->Port == '587') $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
           if (defined('SMTPAUTH_EMAIL_PROTOCOL') && SMTPAUTH_EMAIL_PROTOCOL != 'none') {
             $mail->SMTPSecure = SMTPAUTH_EMAIL_PROTOCOL;
           }
@@ -246,8 +253,8 @@ use PHPMailer\PHPMailer\SMTP;
 
       // set the reply-to address.  If none set yet, then use Store's default email name/address.
       // If sending from checkout or contact-us, use the supplied info
-      $email_reply_to_address = (isset($email_reply_to_address) && $email_reply_to_address != '') ? $email_reply_to_address : (in_array($module, array('contact_us', 'checkout_extra')) ? $from_email_address : EMAIL_FROM);
-      $email_reply_to_name = (isset($email_reply_to_name) && $email_reply_to_name != '') ? $email_reply_to_name : (in_array($module, array('contact_us', 'checkout_extra')) ? $from_email_name : STORE_NAME);
+      $email_reply_to_address = (isset($email_reply_to_address) && $email_reply_to_address != '') ? $email_reply_to_address : (in_array($module, array('contact_us', 'ask_a_question', 'checkout_extra')) ? $from_email_address : EMAIL_FROM);
+      $email_reply_to_name = (isset($email_reply_to_name) && $email_reply_to_name != '') ? $email_reply_to_name : (in_array($module, array('contact_us', 'ask_a_question', 'checkout_extra')) ? $from_email_name : STORE_NAME);
       $mail->addReplyTo($email_reply_to_address, $email_reply_to_name);
 
       $mail->setFrom($from_email_address, $from_email_name);
@@ -273,7 +280,7 @@ use PHPMailer\PHPMailer\SMTP;
         }
       }
       global $newAttachmentsList;
-      $zco_notifier->notify('NOTIFY_EMAIL_BEFORE_PROCESS_ATTACHMENTS', array('attachments'=>$attachments_list, 'module'=>$module));
+      $zco_notifier->notify('NOTIFY_EMAIL_BEFORE_PROCESS_ATTACHMENTS', array('attachments'=>$attachments_list, 'module'=>$module), $mail, $attachments_list);
       if (isset($newAttachmentsList) && is_array($newAttachmentsList)) $attachments_list = $newAttachmentsList;
       if (defined('EMAIL_ATTACHMENTS_ENABLED') && EMAIL_ATTACHMENTS_ENABLED && is_array($attachments_list) && sizeof($attachments_list) > 0) {
         foreach($attachments_list as $key => $val) {
@@ -448,6 +455,7 @@ use PHPMailer\PHPMailer\SMTP;
   $emodules_array[] = array('id' => 'product_notification', 'text' => 'Product Notifications');
   $emodules_array[] = array('id' => 'direct_email', 'text' => 'One-Time Email');
   $emodules_array[] = array('id' => 'contact_us', 'text' => 'Contact Us');
+  $emodules_array[] = array('id' => 'ask_a_question', 'text' => 'Ask A Question');
   $emodules_array[] = array('id' => 'coupon', 'text' => 'Send Coupon');
   $emodules_array[] = array('id' => 'coupon_extra', 'text' => 'Send Coupon');
   $emodules_array[] = array('id' => 'gv_queue', 'text' => 'Send-GV-Queue');
@@ -575,7 +583,7 @@ use PHPMailer\PHPMailer\SMTP;
     //  if (!isset($block['EMAIL_STYLESHEET']) || $block['EMAIL_STYLESHEET'] == '')      $block['EMAIL_STYLESHEET']       = str_replace(array("\r\n", "\n", "\r"), "",@file_get_contents(DIR_FS_EMAIL_TEMPLATES.'stylesheet.css'));
 
     if (!isset($block['EXTRA_INFO']))  $block['EXTRA_INFO']  = '';
-    if (substr($module,-6) != '_extra' && $module != 'contact_us')  $block['EXTRA_INFO']  = '';
+    if (substr($module,-6) != '_extra' && $module != 'contact_us' && $module != 'ask_a_question')  $block['EXTRA_INFO']  = '';
 
     $block['COUPON_BLOCK'] = '';
     if (isset($block['COUPON_TEXT_VOUCHER_IS']) && $block['COUPON_TEXT_VOUCHER_IS'] != '' && isset($block['COUPON_TEXT_TO_REDEEM']) && $block['COUPON_TEXT_TO_REDEEM'] != '') {
