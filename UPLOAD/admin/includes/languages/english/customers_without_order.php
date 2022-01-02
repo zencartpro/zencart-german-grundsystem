@@ -1,11 +1,11 @@
 <?php
 /**
- * @package admin
+ 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: customers_without_order.php 2019-04-13 14:49:16Z webchills $
+ * @version $Id: customers_without_order.php 2022-01-02 08:01:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Customers who have never completed a purchase');
@@ -30,7 +30,7 @@ define('TEXT_DELETE_INTRO', 'Are you sure you want to delete this customer?');
 define('TEXT_DELETE_REVIEWS', 'Delete %s review(s)');
 define('TEXT_INFO_HEADING_DELETE_CUSTOMER', 'Delete Customer');
 define('TYPE_BELOW', 'Type below');
-define('PLEASE_SELECT_ONE', 'Select One');
+
 define('TEXT_INFO_NUMBER_OF_ORDERS', 'Number of Orders:');
 define('TEXT_INFO_LIFETIME_VALUE', 'Customer Lifetime Value:');
 define('TEXT_INFO_LAST_ORDER','Last Order:');
@@ -69,3 +69,5 @@ define('PRIMARY_ADDRESS', '(primary address)');
 define('TEXT_MAXIMUM_ENTRIES', '<span class="coming"><strong>NOTE:</strong></span> A maximum of %s address book entries allowed.');
 define('TEXT_INFO_ADDRESS_BOOK_COUNT', ' | <a href="%s">%s Entries</a>');
 define('TEXT_INFO_ADDRESS_BOOK_COUNT_SINGLE', '');
+define('EMP_BUTTON_PLACEORDER_ALT', 'Place an order for this customer');
+define('EMP_BUTTON_PLACEORDER', 'Place Order');

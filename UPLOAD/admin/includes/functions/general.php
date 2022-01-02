@@ -1,12 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
- 
+ * Zen Cart German Specific 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: general.php 901 2021-11-28 19:37:33Z webchills $
+ * @version $Id: general.php 2022-01-02 08:01:33Z webchills $
  */
 
 ////
@@ -675,8 +674,7 @@ function zen_get_all_get_params($exclude_array = array())
 
     while (!$countries->EOF) {
       $countries_array[] = array('id' => $countries->fields['countries_id'],
-        'text' => $countries->fields['countries_name'],
-        'status' => $countries->fields['status'],
+        'text' => $countries->fields['countries_name'],        
       );
       $countries->MoveNext();
     }

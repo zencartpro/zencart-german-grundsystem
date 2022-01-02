@@ -1,10 +1,11 @@
 <?php
 /**
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: customers.php 2021-11-29 15:36:51Z webchills $
+ * @version $Id: customers.php 2022-01-02 07:45:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -90,7 +91,9 @@ if (zen_not_null($action)) {
       $customers_lastname = zen_db_prepare_input(zen_sanitize_string($_POST['customers_lastname']));
       $customers_email_address = zen_db_prepare_input($_POST['customers_email_address']);
       $customers_telephone = zen_db_prepare_input($_POST['customers_telephone']);
+      if (ACCOUNT_FAX_NUMBER == 'true'){
       $customers_fax = zen_db_prepare_input($_POST['customers_fax']);
+      }
       $customers_newsletter = zen_db_prepare_input($_POST['customers_newsletter']);
       $customers_group_pricing = (int)zen_db_prepare_input($_POST['customers_group_pricing']);
       $customers_email_format = zen_db_prepare_input($_POST['customers_email_format']);
@@ -120,7 +123,9 @@ if (zen_not_null($action)) {
 
       $entry_company = zen_db_prepare_input($_POST['entry_company']);
       $entry_company_error = false;
+      if (ACCOUNT_STATE == 'true'){
       $entry_state = zen_db_prepare_input($_POST['entry_state']);
+      }
       if (isset($_POST['entry_zone_id'])) $entry_zone_id = zen_db_prepare_input($_POST['entry_zone_id']);
 
       if (strlen($customers_firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) {
@@ -250,8 +255,7 @@ if (zen_not_null($action)) {
         $sql_data_array = array(array('fieldName' => 'customers_firstname', 'value' => $customers_firstname, 'type' => 'stringIgnoreNull'),
           array('fieldName' => 'customers_lastname', 'value' => $customers_lastname, 'type' => 'stringIgnoreNull'),
           array('fieldName' => 'customers_email_address', 'value' => $customers_email_address, 'type' => 'stringIgnoreNull'),
-          array('fieldName' => 'customers_telephone', 'value' => $customers_telephone, 'type' => 'stringIgnoreNull'),
-          array('fieldName' => 'customers_fax', 'value' => $customers_fax, 'type' => 'stringIgnoreNull'),
+          array('fieldName' => 'customers_telephone', 'value' => $customers_telephone, 'type' => 'stringIgnoreNull'),          
           array('fieldName' => 'customers_group_pricing', 'value' => $customers_group_pricing, 'type' => 'stringIgnoreNull'),
           array('fieldName' => 'customers_newsletter', 'value' => $customers_newsletter, 'type' => 'stringIgnoreNull'),
           array('fieldName' => 'customers_email_format', 'value' => $customers_email_format, 'type' => 'stringIgnoreNull'),
@@ -265,15 +269,19 @@ if (zen_not_null($action)) {
         if (ACCOUNT_DOB == 'true') {
           $sql_data_array[] = array('fieldName' => 'customers_dob', 'value' => ($customers_dob == '0001-01-01 00:00:00' ? '0001-01-01 00:00:00' : zen_date_raw($customers_dob)), 'type' => 'date');
         }
+        if (ACCOUNT_FAX_NUMBER == 'true'){
+          $sql_data_array[] = array('fieldName' => 'customers_fax', 'value' => $customers_fax, 'type' => 'stringIgnoreNull');
+        }
 
         $db->perform(TABLE_CUSTOMERS, $sql_data_array, 'update', "customers_id = '" . (int)$customers_id . "'");
 
         $db->Execute("UPDATE " . TABLE_CUSTOMERS_INFO . "
                       SET customers_info_date_account_last_modified = now()
                       WHERE customers_info_id = " . (int)$customers_id);
-
+        if (ACCOUNT_STATE == 'true') {
         if ($entry_zone_id > 0) {
           $entry_state = '';
+        }
         }
 
         $sql_data_array = array(array('fieldName' => 'entry_firstname', 'value' => $customers_firstname, 'type' => 'stringIgnoreNull'),
