@@ -1,12 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
- 
+ * Zen Cart German Specific 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_navigation.php 735 2021-10-26 10:49:16Z webchills $
+ * @version $Id: header_navigation.php 2022-12-02 15:18:16Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) die('Illegal Access');
@@ -45,10 +44,3 @@ $menuTitles = zen_get_menu_titles();
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
-<?php if ($url = page_has_help()) { ?>
-<div class="pull-right noprint">
-  <a href="<?php echo $url; ?>" rel="noopener" target="_blank" class="btn btn-sm btn-default btn-help" role="button" title="Help">
-    <i class="fa fa-question fa-lg" aria-hidden="true"></i>
-  </a>
-</div>
-<?php } ?>

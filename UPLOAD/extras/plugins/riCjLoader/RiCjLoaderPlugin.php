@@ -1,11 +1,12 @@
 <?php
 /**
  * Required functions for the CSS/JS Loader
- *
+ * Zen Cart German Specific
  * @author yellow1912 (RubikIntegration.com)
  * @author John William Robeson, Jr <johnny@localmomentum.net>
- * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License V2.0
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * modified for Zen Cart German PHP 7.4/8 2021-12-28 webchills
+ * changed browser detection to Wolfcast 2022-01-04 webchills
  * NOTES:
  * All .php files can be manipulated by PHP when they're called, and are copied in-full to the browser page
  */
@@ -14,7 +15,7 @@ class RiCjLoaderPlugin
 {
 	protected $jscript = array();
 	protected $css = array();
-        protected $meta = array();
+  protected $meta = array();
 	protected $template;
 	protected $page_directory = '';
 	protected $current_page_base = '';
@@ -444,11 +445,11 @@ class RiCjLoaderPlugin
 			}
 		}
 
-		if (file_exists(DIR_FS_CATALOG . 'extras/plugins/riCjLoader/lib/browser.php') && floatval(phpversion()) > 5) {
-			include(DIR_FS_CATALOG . 'extras/plugins/riCjLoader/lib/browser.php');
-			$browser = new _Browser();
-			$browser_name = preg_replace("/[^a-zA-Z0-9s]/", "-", strtolower($browser->getBrowser()));
-			$browser_version = floor($browser->getVersion());
+		if (file_exists(DIR_FS_CATALOG . 'extras/plugins/riCjLoader/lib/BrowserDetection.php')) {
+			include(DIR_FS_CATALOG . 'extras/plugins/riCjLoader/lib/BrowserDetection.php');
+			$browser = new Wolfcast\BrowserDetection();
+			$browser_name = preg_replace("/[^a-zA-Z0-9s]/", "-", strtolower($browser->getName()));
+			$browser_version = $browser->getVersion();
 
 			// this is to make it compatible with the other ie css hack
 			if ($browser_name == 'internet-explorer') {

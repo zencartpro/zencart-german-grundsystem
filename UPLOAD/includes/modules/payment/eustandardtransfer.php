@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: eustandardtransfer.php 576 2016-03-05 20:02:14 webchills $
+ * @version $Id: eustandardtransfer.php 2022-01-04 08:40:14 webchills $
 */
 
   class eustandardtransfer {
@@ -13,26 +13,20 @@
 
 // class constructor
     function __construct() {
-      global $order;
-    
+      global $order;    
       $this->code = 'eustandardtransfer';
       $this->title = MODULE_PAYMENT_EUTRANSFER_TEXT_TITLE;
       $this->description = MODULE_PAYMENT_EUTRANSFER_TEXT_DESCRIPTION;
       $this->sort_order = MODULE_PAYMENT_EUTRANSFER_SORT_ORDER;
       $this->email_footer = MODULE_PAYMENT_EUTRANSFER_TEXT_EMAIL_FOOTER;
-      $this->enabled = ((MODULE_PAYMENT_EUTRANSFER_STATUS == 'True') ? true : false);
-	  
-	 
+      $this->enabled = ((MODULE_PAYMENT_EUTRANSFER_STATUS == 'True') ? true : false);  	 
 
       if ((int)MODULE_PAYMENT_EUTRANSFER_ORDER_STATUS_ID > 0) {
         $this->order_status = MODULE_PAYMENT_EUTRANSFER_ORDER_STATUS_ID;
       }
       
-      if (is_object($order)) $this->update_status();
-             
-    }
-    
-    
+      if (is_object($order)) $this->update_status();             
+    } 
 
 // class methods
     function update_status() {
@@ -44,8 +38,7 @@
         $error = false;
         $countries_table = MODULE_PAYMENT_EUTRANSFER_COUNTRIES; 
         $country_zones = explode(",", $countries_table);
-        if (in_array($dest_country, $country_zones)) {
-            $dest_zone = $i;
+        if (in_array($dest_country, $country_zones)) {            
             $this->enabled = true;
         } else {
             $this->enabled = false;

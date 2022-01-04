@@ -1,11 +1,10 @@
 <?php
 /**
- * Zen Cart German Specific
- 
+ * Zen Cart German Specific 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: order.php 2021-11-28 20:05:25Z webchills $
+ * @version $Id: order.php 2022-01-04 08:38:25Z webchills $
  */
 /**
  * order class
@@ -344,12 +343,7 @@ class order extends base {
                         'currency_value' => $currencies->currencies[$_SESSION['currency']]['value'],
                         'payment_method' => (isset($GLOBALS[$paymentModule]) && is_object($GLOBALS[$paymentModule])) ? $GLOBALS[$paymentModule]->title : '',
                         'payment_module_code' => (isset($GLOBALS[$paymentModule]) && is_object($GLOBALS[$paymentModule])) ? $GLOBALS[$paymentModule]->code : '',
-                        'coupon_code' => isset($coupon_code) && is_object($coupon_code) ? $coupon_code->fields['coupon_code'] : '',
-    //                          'cc_type' => (isset($GLOBALS['cc_type']) ? $GLOBALS['cc_type'] : ''),
-    //                          'cc_owner' => (isset($GLOBALS['cc_owner']) ? $GLOBALS['cc_owner'] : ''),
-    //                          'cc_number' => (isset($GLOBALS['cc_number']) ? $GLOBALS['cc_number'] : ''),
-    //                          'cc_expires' => (isset($GLOBALS['cc_expires']) ? $GLOBALS['cc_expires'] : ''),
-    //                          'cc_cvv' => (isset($GLOBALS['cc_cvv']) ? $GLOBALS['cc_cvv'] : ''),
+                        'coupon_code' => isset($coupon_code) && is_object($coupon_code) ? $coupon_code->fields['coupon_code'] : '',    
                         'shipping_method' => (isset($_SESSION['shipping']['title'])) ? $_SESSION['shipping']['title'] : '',
                         'shipping_module_code' => $shipping_module_code,
                         'shipping_cost' => !empty($_SESSION['shipping']['cost']) ? $_SESSION['shipping']['cost'] : 0,
@@ -358,14 +352,13 @@ class order extends base {
                         'tax' => 0,
                         'total' => 0,
                         'tax_groups' => array(),
-                        'comments' => (isset($_SESSION['comments']) ? $_SESSION['comments'] : '')
-                        
+                        'comments' => (isset($_SESSION['comments']) ? $_SESSION['comments'] : '')                        
                         );
 
 
     if ($customer_address->RecordCount() > 0) {
       $this->customer = array('gender' => $customer_address->fields['customers_gender'],
-                               'firstname' => $customer_address->fields['customers_firstname'],
+                              'firstname' => $customer_address->fields['customers_firstname'],
                               'lastname' => $customer_address->fields['customers_lastname'],
                               'company' => $customer_address->fields['entry_company'],
                               'street_address' => $customer_address->fields['entry_street_address'],
@@ -447,9 +440,7 @@ class order extends base {
                                       'name' => $products[$i]['name'],
                                       'merkmale' => $products[$i]['merkmale'],
                                       'model' => $products[$i]['model'],
-                                      'image' => $products[$i]['image'], 
-                                      
-                                      
+                                      'image' => $products[$i]['image'],  
                                       'price' => $products[$i]['price'],
                                       'tax' => null, // calculated later
                                       'tax_groups' => null, // calculated later
@@ -737,10 +728,10 @@ class order extends base {
                             'language_code' => $_SESSION['languages_code'],
                             'order_weight' => $_SESSION['cart']->weight,
                             );
-
-    if ($_SESSION['mobilevisitor'] == true){
+                            
+    if (isset($_SESSION['mobilevisitor']) && $_SESSION['mobilevisitor'] == true) {    
     $sql_data_array['order_device'] = 'Mobile';
-    } else if ($_SESSION['tabletvisitor'] == true){
+    } else if (isset($_SESSION['tabletvisitor']) && $_SESSION['tabletvisitor'] == true) {
     $sql_data_array['order_device'] = 'Tablet';
     } else {
     $sql_data_array['order_device'] = 'Desktop';

@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 738 2021-11-28 21:49:16Z webchills $
+ * @version $Id: header_php.php 2022-01-04 08:52:16Z webchills $
  */
 // This should be first line of the script:
   $zco_notifier->notify('NOTIFY_HEADER_START_CHECKOUT_SHIPPING');
@@ -16,17 +16,19 @@
   
 // check if is mobile or tablet visitor to allow order report mobile, tablet or desktop
   
- if (!class_exists('Mobile_Detect')) {
+if (!class_exists('Mobile_Detect')) {
   include_once(DIR_WS_CLASSES . 'Mobile_Detect.php');
 }
+
 $detect = new Mobile_Detect;
 $isMobile = $detect->isMobile();
 $isTablet = $detect->isTablet();
- if ($detect->isMobile()) {
+
+if ($detect->isMobile()) {
 $_SESSION['mobilevisitor'] = true;
 $_SESSION['tabletvisitor'] = false;
-
 }
+
 if ($detect->isTablet()) {
 $_SESSION['tabletvisitor'] = true;
 $_SESSION['mobilevisitor'] = false;
@@ -67,8 +69,8 @@ $_SESSION['mobilevisitor'] = false;
           zen_redirect(zen_href_link(FILENAME_SHOPPING_CART));
           break;
         }
-      }
     }
+  }
 
 // if no shipping destination address was selected, use the customers own address as default
   if (empty($_SESSION['sendto'])) {

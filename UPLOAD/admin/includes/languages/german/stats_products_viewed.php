@@ -1,5 +1,5 @@
 <?php
-
+/**
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
@@ -9,7 +9,7 @@
 
 define('HEADING_TITLE','Die meist besuchten Artikel');
 define('TABLE_HEADING_NUMBER','Artikel ID');
-define('TABLE_HEADING_PRODUCTS','Artikelname');
+define('TABLE_HEADING_PRODUCTS','Artikelname (Sprache)');
 define('TABLE_HEADING_VIEWED','Besuche');
 define('TEXT_REPORT_START_DATE', 'Start Datum');
 define('TEXT_REPORT_END_DATE', 'End Datum');
