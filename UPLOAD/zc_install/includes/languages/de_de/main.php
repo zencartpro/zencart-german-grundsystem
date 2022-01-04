@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main.php 2021-12-29 16:48:29Z webchills $
+ * @version $Id: main.php 2022-01-04 17:48:29Z webchills $
  */
 
 
@@ -35,7 +35,7 @@ return [
 'TEXT_SYSTEM_SETUP_CATALOG_HTTPS_URL' => 'Shop Frontend HTTPS URL',
 'TEXT_SYSTEM_SETUP_CATALOG_PHYSICAL_PATH' => 'Storefront Physischer Pfad',
 'TEXT_SYSTEM_SETUP_AGREE_LICENSE' => 'Lizenzbedingungen akzeptieren: ',
-'TEXT_SYSTEM_SETUP_CLICK_TO_AGREE_LICENSE' => '(Kreuzen Sie die Checkbox an, um die GPL 2 Lizenzbedingungen zu akzeptieren. Klicken Sie den Titel in der linken Spalte an, um die Lizenzbedingungen anzuzeigen.)',
+'TEXT_SYSTEM_SETUP_CLICK_TO_AGREE_LICENSE' => '(Kreuzen Sie die Checkbox an, um die GPL Lizenzbedingungen zu akzeptieren. Klicken Sie den Titel in der linken Spalte an, um die Lizenzbedingungen anzuzeigen.)',
 'TEXT_SYSTEM_SETUP_ERROR_DIALOG_TITLE' => 'Es gibt einige Probleme',
 'TEXT_SYSTEM_SETUP_ERROR_DIALOG_CONTINUE' => 'Trotzdem weitermachen',
 'TEXT_SYSTEM_SETUP_ERROR_CATALOG_PHYSICAL_PATH' => 'Es scheint ein Problem zu geben mit dem ' . '%%TEXT_SYSTEM_SETUP_CATALOG_PHYSICAL_PATH%%',

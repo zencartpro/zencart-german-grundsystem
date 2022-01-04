@@ -7,7 +7,7 @@
 # * Zen Cart German Version - www.zen-cart-pro.at
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_zencart.sql 2021-12-29 09:50:16Z webchills $
+# * @version $Id: mysql_zencart.sql 2022-01-04 18:16:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -2461,7 +2461,7 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 
 
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('HTML Editor', 'HTML_EDITOR_PREFERENCE', 'CKEDITOR', 'Please select the HTML/Rich-Text editor you wish to use for composing Admin-related emails, newsletters, and product descriptions', '1', '110', 'zen_cfg_pull_down_htmleditors(', now());
-# New setting since 1.5.6e, admin switch for default value for customer notification when editing an order.
+# New setting since 1.5.7, admin switch for default value for customer notification when editing an order.
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Default for Notify Customer on Order Status Update?', 'NOTIFY_CUSTOMER_DEFAULT', '1', 'Set the default email behavior on status update to Send Email, Do Not Send Email, or Hide Update.', 1, 140, now(), now(), NULL, 'zen_cfg_select_drop_down(array( array(\'id\'=>\'1\', \'text\'=>\'Email\'), array(\'id\'=>\'0\', \'text\'=>\'No Email\'), array(\'id\'=>\'-1\', \'text\'=>\'Hide\')),');
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Show Category Counts - Admin', 'SHOW_COUNTS_ADMIN', 'true', 'Show Category Counts in Admin?', '1', '19', 'zen_cfg_select_option(array(\'true\', \'false\'), ', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Show linked status for categories', 'SHOW_CATEGORY_PRODUCTS_LINKED_STATUS', 'true', 'Show Category products linked status?', '1', '19', 'zen_cfg_select_option(array(\'true\', \'false\'), ', now());
@@ -2591,7 +2591,7 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Product Image - No Image picture', 'PRODUCTS_IMAGE_NO_IMAGE', 'no_picture.gif', 'Use automatic No Image when none is added to product<br />Default = no_picture.gif', '4', '61', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Image - Use Proportional Images on Products and Categories', 'PROPORTIONAL_IMAGES_STATUS', '1', 'Use Proportional Images on Products and Categories?<br /><br />NOTE: Do not use 0 height or width settings for Proportion Images<br />0= off 1= on', 4, 75, 'zen_cfg_select_option(array(\'0\', \'1\'), ', now());
 
-#Image Handler 5.1 new since 1.5.5f
+#Image Handler 5.2.0 new since 1.5.5f, updated since 1.5.7
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('IH resize images', 'IH_RESIZE', 'yes', 'Select either ''no'' which is old Zen-Cart behaviour or ''yes'' to activate automatic resizing and caching of images. If you want to use ImageMagick you have to specify the location of the <strong>convert</strong> binary in <em>includes/extra_configures/bmz_image_handler_conf.php</em>.', 4, 76, NULL, now(), NULL, 'zen_cfg_select_option(array(''yes'', ''no''),');
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('IH small images filetype', 'SMALL_IMAGE_FILETYPE', 'no_change', 'Select one of -jpg-, -gif- or -png-. Older versions of Internet Explorer -v6.0 and older- will have issues displaying -png- images with transparent areas. You better stick to -gif- for transparency if you MUST support older versions of Internet Explorer. However -png- is a MUCH BETTER format for transparency. Use -jpg- or -png- for larger images. -no_change- is old zen-cart behavior, use the same file extension for small images as uploaded image', 4, 77, NULL, now(), NULL, 'zen_cfg_select_option(array(''gif'', ''jpg'', ''png'', ''no_change''),');
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('IH small images background', 'SMALL_IMAGE_BACKGROUND', '255:255:255', 'If converted from an uploaded image with transparent areas, these areas become the specified color. Set to -transparent- to keep transparency', 4, 82, NULL, now(), NULL, 'zen_cfg_textarea_small(');
@@ -3308,7 +3308,7 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 ('pdf Invoice - Margins', 'RL_INVOICE3_MARGIN', '20|20|20|20', 'defines the margins:<br />top|right|bottom|left<br />(Note: 1inch = 72pt / 2.54cm; 1cm = 28,35pt)<br />', 37, 20, NOW(), NOW(), NULL, NULL),
 ('pdf Invoice - Accounting for free product', 'RL_INVOICE3_NOT_NULL_INVOICE', '0', 'Accounting for free product: send e-mail invoice', 37, 130, NOW(), NOW(), NULL, NULL),
 ('pdf Invoice - Send by orderstatus greater/equal than ', 'RL_INVOICE3_ORDERSTATUS', '3', 'only send invoice if orders_status greater or equal than', 37, 130, NOW(), NOW(), NULL, NULL),
-('pdf Invoice - Prefix for OrderNo', 'RL_INVOICE3_ORDER_ID_PREFIX', ': 2019', 'prefix for OrderNo<br />', 37, 110, NOW(), NOW(), NULL, NULL),
+('pdf Invoice - Prefix for OrderNo', 'RL_INVOICE3_ORDER_ID_PREFIX', ': 2022', 'prefix for OrderNo<br />', 37, 110, NOW(), NOW(), NULL, NULL),
 ('pdf Invoice - Paper Size/Units/Oriantation', 'RL_INVOICE3_PAPER', 'A4|mm|P', '1. papersize = A3|A4|A5|Letter|Legal <br />2. units: pt|mm|cm|inch <br />3. Oriantation: L|P<br />', 37, 10, NOW(), NOW(), NULL, NULL),
 ('pdf Invoice - pdf background file', 'RL_INVOICE3_PDF_BACKGROUND', '" . DIR_FS_CATALOG . DIR_WS_INCLUDES . "pdf/rechnung_de.pdf', 'absolute path to pdf background file<br />', 37, 60, NOW(), NOW(), NULL, NULL),
 ('pdf Invoice - Filename and path to store the pdf-file', 'RL_INVOICE3_PDF_PATH', '" . DIR_FS_CATALOG . "pdf/|1', 'absolute path to store the pdf-file (!!must be writeable !!)<br />Default: ../pdf/|1<br />', 37, 130, NOW(), NOW(), NULL, NULL),
@@ -3344,8 +3344,8 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 #Vataddon
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Display Vat Addon', 'DISPLAY_VATADDON_WHERE', 'ALL', 'Do you want to display the text incl. or excl. VAT plus shipping costs near the prices?<br />0=off<br/>ALL=everywhere<br/>product_info=only on products details page<br />', '1', '120', NULL, now(), NULL, 'zen_cfg_select_option(array(\'0\', \'ALL\', \'product_info\'), ');
 
-#EU Countries fuer Buttonloesung
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('EU Countries', 'EU_COUNTRIES_FOR_LAST_STEP', 'BE,BG,DK,DE,EE,FI,FR,GR,IE,IT,LV,LT,LU,MT,NL,AT,PL,PT,RO,SE,SK,SI,ES,CZ,HU,GB,CY,HR', 'Enter the countries which are part of the European Union. Two digit ISO codes, comma separated.', '1', '100', now(), now(), NULL, NULL);
+#EU Countries fuer Buttonloesung - Stand 01/2022
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('EU Countries', 'EU_COUNTRIES_FOR_LAST_STEP', 'BE,BG,DK,DE,EE,FI,FR,GR,IE,IT,LV,LT,LU,MT,NL,AT,PL,PT,RO,SE,SK,SI,ES,CZ,HU,CY,HR', 'Enter the countries which are part of the European Union. Two digit ISO codes, comma separated.', '1', '100', now(), now(), NULL, NULL);
 
 # New since 1.5.7 - global auth key
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('global auth key', 'GLOBAL_AUTH_KEY', '', '', 6, 30, now(), now(), NULL, NULL);
@@ -3542,13 +3542,13 @@ INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, l
 INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('responsive_classic', 'whats_new.php', 1, 0, 20, 0, 0);
 INSERT INTO layout_boxes (layout_template, layout_box_name, layout_box_status, layout_box_location, layout_box_sort_order, layout_box_sort_order_single, layout_box_status_single) VALUES ('responsive_classic', 'whos_online.php', 1, 1, 200, 200, 1);
 
-INSERT INTO orders_status VALUES ( '1', '1', 'Pending', 0);
-INSERT INTO orders_status VALUES ( '2', '1', 'Processing', 10);
-INSERT INTO orders_status VALUES ( '3', '1', 'Delivered', 20);
-INSERT INTO orders_status VALUES ( '4', '1', 'Update', 30);
-INSERT INTO orders_status VALUES ( '5', '1', 'Cancelled', 40);
-INSERT INTO orders_status VALUES ( '6', '1', 'Test Order', 50);
-INSERT INTO orders_status VALUES ( '7', '1', 'Resend Invoice', 60);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES ( '1', '1', 'Pending', 0);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES ( '2', '1', 'Processing', 10);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES ( '3', '1', 'Delivered', 20);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES ( '4', '1', 'Update', 30);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES ( '5', '1', 'Cancelled', 40);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES ( '6', '1', 'Test Order', 50);
+INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES ( '7', '1', 'Resend Invoice', 60);
 
 INSERT INTO product_types VALUES (1, 'Product - General', 'product', '1', 'Y', '', now(), now());
 INSERT INTO product_types VALUES (2, 'Product - Music', 'product_music', '1', 'Y', '', now(), now());
@@ -3566,265 +3566,345 @@ INSERT INTO products_options_types (products_options_types_id, products_options_
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name) VALUES (0, 1, 'TEXT');
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name) VALUES (0, 43, 'TEXT');
 
-# Steuerkonfiguration EU/Export
-INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (3, 'EU', 'EU Staaten', '2017-03-25 10:54:26', '2017-03-25 09:49:27');
-INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (4, 'Export', 'Staaten ausserhalb der EU', '2017-03-25 10:54:26', '2017-03-25 09:49:27');
-INSERT INTO tax_class (tax_class_id, tax_class_title, tax_class_description, last_modified, date_added) VALUES (1, 'reduzierter Steuersatz', 'reduzierter Steuersatz', NULL, '2017-03-25 19:46:30');
-INSERT INTO tax_class (tax_class_id, tax_class_title, tax_class_description, last_modified, date_added) VALUES (2, 'Normalsteuersatz', 'Normalsteuersatz', NULL, '2017-03-25 19:46:30');
-INSERT INTO tax_class (tax_class_id, tax_class_title, tax_class_description, last_modified, date_added) VALUES (3, 'Export', 'Export', NULL, '2017-03-25 19:46:30');
-INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (5, 3, 2, 10, '20.0000', '20%', '2017-03-25 10:24:32', '2017-03-25 10:03:07');
-INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (6, 3, 1, 20, '10.0000', '10%', '2017-03-25 10:24:44', '2017-03-25 10:03:47');
-INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (7, 4, 3, 30, '0.0000', '0%', '2017-03-25 10:24:44', '2017-03-25 10:03:47');
-# EU Staaten fuer Zone EU
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (1, 21, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (2, 33, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (3, 57, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (4, 81, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (5, 67, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (6, 72, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (7, 73, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (8, 84, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (9, 222, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (10, 103, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (11, 105, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (12, 53, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (13, 117, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (14, 123, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (15, 124, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (16, 150, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (17, 14, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (18, 170, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (19, 171, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (20, 175, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (21, 203, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (22, 189, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (23, 190, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (24, 195, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (25, 56, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (26, 97, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (27, 55, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (28, 132, NULL, 3, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-# Alle anderen Staaten fuer Zone Export
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (1, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (2, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (3, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (4, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (5, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (6, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (7, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (8, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (9, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (10, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (11, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (12, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (13, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (15, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (16, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (17, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (18, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (19, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (20, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (22, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (23, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (24, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (25, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (26, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (27, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (28, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (29, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (30, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (31, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (32, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (34, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (35, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (36, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (37, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (38, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (39, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (40, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (41, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (42, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (43, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (44, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (45, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (46, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (47, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (48, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (49, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (50, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (51, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (52, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (54, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (58, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (59, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (60, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (61, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (62, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (63, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (64, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (65, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (66, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (68, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (69, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (70, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (71, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (74, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (75, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (76, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (77, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (78, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (79, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (80, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (82, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (83, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (85, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (86, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (87, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (88, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (89, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (90, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (91, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (92, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (93, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (94, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (95, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (96, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (98, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (99, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (100, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (101, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (102, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (104, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (106, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (107, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (108, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (109, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (110, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (111, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (112, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (113, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (114, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (115, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (116, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (118, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (119, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (120, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (121, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (122, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (125, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (126, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (127, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (128, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (129, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (130, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (131, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (133, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (134, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (135, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (136, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (137, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (138, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (139, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (140, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (141, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (142, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (143, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (144, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (145, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (146, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (147, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (148, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (149, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (151, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (152, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (153, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (154, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (155, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (156, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (157, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (158, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (159, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (160, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (161, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (162, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (163, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (164, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (165, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (166, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (167, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (168, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (169, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (172, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (173, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (174, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (176, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (177, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (178, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (179, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (180, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (181, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (182, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (183, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (184, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (185, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (186, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (187, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (188, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (191, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (192, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (193, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (194, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (196, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (197, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (198, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (199, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (200, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (201, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (202, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (204, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (205, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (206, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (207, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (208, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (209, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (210, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (211, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (212, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (213, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (214, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (215, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (216, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (217, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (218, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (219, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (220, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (221, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (223, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (224, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (225, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (226, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (227, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (228, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (229, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (230, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (231, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (232, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (233, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (234, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (235, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (236, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (237, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (238, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (239, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (240, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (241, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (242, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (243, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (244, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (245, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (246, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (247, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
-INSERT INTO zones_to_geo_zones (zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (248, NULL, 4, '2017-05-20 10:09:11', '2017-05-20 10:09:11');
+# Steuerkonfiguration EU/Export mit eigener Zone fuer jedes EU Land - seit 1.5.6f
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (3, 'Österreich', 'Österreich', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (4, 'Export', 'Staaten ausserhalb der EU', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (5, 'Belgien', 'Belgien', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (6, 'Bulgarien', 'Bulgarien', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (7, 'Dänemark', 'Dänemark', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (8, 'Deutschland', 'Deutschland', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (9, 'Estland', 'Estland', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (10, 'Finnland', 'Finnland', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (11, 'Frankreich', 'Frankreich', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (12, 'Griechenland', 'Griechenland', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (13, 'Spanien', 'Spanien', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (14, 'Kroatien', 'Kroatien', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (15, 'Ungarn', 'Ungarn', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (16, 'Irland', 'Irland', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (17, 'Italien', 'Italien', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (18, 'Litauen', 'Litauen', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (19, 'Luxembourg', 'Luxembourg', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (20, 'Lettland', 'Lettland', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (21, 'Malta', 'Malta', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (22, 'Niederlande', 'Niederlande', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (23, 'Polen', 'Polen', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (24, 'Portugal', 'Portugal', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (25, 'Rumänien', 'Rumänien', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (26, 'Schweden', 'Schweden', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (27, 'Slowenien', 'Slowenien', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (28, 'Slowakei', 'Slowakei', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (29, 'Zypern', 'Zypern', now(), now());
+INSERT INTO geo_zones (geo_zone_id, geo_zone_name, geo_zone_description, last_modified, date_added) VALUES (30, 'Tschechien', 'Tschechien', now(), now());
+
+INSERT INTO tax_class (tax_class_id, tax_class_title, tax_class_description, last_modified, date_added) VALUES (1, 'reduzierter Steuersatz', 'reduzierter Steuersatz', NULL, '2020-07-09 19:46:30');
+INSERT INTO tax_class (tax_class_id, tax_class_title, tax_class_description, last_modified, date_added) VALUES (2, 'Normalsteuersatz', 'Normalsteuersatz', NULL, '2020-07-09 19:46:30');
+INSERT INTO tax_class (tax_class_id, tax_class_title, tax_class_description, last_modified, date_added) VALUES (3, 'Export', 'Export', NULL, '2020-07-09 19:46:30');
+# Steuersaetze separat fuer jedes EU-Land - vorbefuellt mit AT Steuersatz - seit 1.5.6f
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (5, 3, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (6, 3, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (7, 4, 3, 30, '0.0000', '0%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (8, 5, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (9, 5, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (10, 6, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (11, 6, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (12, 29, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (13, 29, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (14, 30, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (15, 30, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (16, 8, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (17, 8, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (18, 7, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (19, 7, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (20, 9, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (21, 9, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (22, 12, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (23, 12, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (24, 13, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (25, 13, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (26, 10, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (27, 10, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (28, 11, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (29, 11, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (30, 14, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (31, 14, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (32, 15, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (33, 15, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (34, 16, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (35, 16, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (36, 17, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (37, 17, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (38, 18, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (39, 18, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (40, 19, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (41, 19, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (42, 20, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (43, 20, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (44, 21, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (45, 21, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (46, 22, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (47, 22, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (48, 23, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (49, 23, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (50, 24, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (51, 24, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (52, 25, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (53, 25, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (54, 26, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (55, 26, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (56, 27, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (57, 27, 1, 20, '10.0000', '10%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (58, 28, 2, 10, '20.0000', '20%', now(), now());
+INSERT INTO tax_rates (tax_rates_id, tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) VALUES (59, 28, 1, 20, '10.0000', '10%', now(), now());
+# Neue Konfiguration seit 1.5.6f
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (252, 33, 0, 6, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (253, 57, 0, 7, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (254, 81, 0, 8, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (255, 67, 0, 9, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (256, 72, 0, 10, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (257, 73, 0, 11, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (249, 222, 0, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (17, 14, NULL, 3, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (275, 55, 0, 29, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (276, 56, 0, 30, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (29, 1, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (30, 2, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (31, 3, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (32, 4, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (33, 5, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (34, 6, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (35, 7, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (36, 8, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (37, 9, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (38, 10, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (39, 11, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (40, 12, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (41, 13, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (42, 15, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (43, 16, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (44, 17, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (45, 18, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (46, 19, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (47, 20, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (48, 22, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (49, 23, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (50, 24, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (51, 25, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (52, 26, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (53, 27, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (54, 28, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (55, 29, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (56, 30, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (57, 31, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (58, 32, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (59, 34, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (60, 35, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (61, 36, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (62, 37, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (63, 38, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (64, 39, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (65, 40, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (66, 41, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (67, 42, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (68, 43, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (69, 44, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (70, 45, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (71, 46, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (72, 47, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (73, 48, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (74, 49, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (75, 50, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (76, 51, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (77, 52, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (78, 54, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (79, 58, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (80, 59, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (81, 60, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (82, 61, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (83, 62, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (84, 63, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (85, 64, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (86, 65, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (87, 66, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (88, 68, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (89, 69, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (90, 70, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (91, 71, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (92, 74, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (93, 75, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (94, 76, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (95, 77, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (96, 78, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (97, 79, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (98, 80, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (99, 82, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (100, 83, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (101, 85, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (102, 86, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (103, 87, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (104, 88, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (105, 89, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (106, 90, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (107, 91, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (108, 92, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (109, 93, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (110, 94, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (111, 95, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (112, 96, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (113, 98, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (114, 99, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (115, 100, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (116, 101, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (117, 102, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (118, 104, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (119, 106, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (120, 107, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (121, 108, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (122, 109, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (123, 110, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (124, 111, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (125, 112, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (126, 113, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (127, 114, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (128, 115, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (129, 116, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (130, 118, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (131, 119, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (132, 120, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (133, 121, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (134, 122, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (135, 125, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (136, 126, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (137, 127, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (138, 128, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (139, 129, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (140, 130, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (141, 131, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (142, 133, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (143, 134, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (144, 135, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (145, 136, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (146, 137, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (147, 138, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (148, 139, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (149, 140, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (150, 141, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (151, 142, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (152, 143, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (153, 144, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (154, 145, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (155, 146, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (156, 147, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (157, 148, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (158, 149, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (159, 151, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (160, 152, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (161, 153, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (162, 154, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (163, 155, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (164, 156, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (165, 157, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (166, 158, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (167, 159, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (168, 160, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (169, 161, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (170, 162, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (171, 163, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (172, 164, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (173, 165, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (174, 166, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (175, 167, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (176, 168, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (177, 169, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (178, 172, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (179, 173, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (180, 174, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (181, 176, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (182, 177, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (183, 178, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (184, 179, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (185, 180, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (186, 181, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (187, 182, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (188, 183, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (189, 184, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (190, 185, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (191, 186, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (192, 187, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (193, 188, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (194, 191, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (195, 192, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (196, 193, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (197, 194, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (198, 196, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (199, 197, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (200, 198, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (201, 199, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (202, 200, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (203, 201, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (204, 202, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (205, 204, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (206, 205, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (207, 206, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (208, 207, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (209, 208, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (210, 209, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (211, 210, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (212, 211, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (213, 212, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (214, 213, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (215, 214, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (216, 215, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (217, 216, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (218, 217, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (219, 218, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (220, 219, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (221, 220, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (222, 221, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (223, 223, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (224, 224, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (225, 225, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (226, 226, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (227, 227, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (228, 228, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (229, 229, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (230, 230, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (231, 231, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (232, 232, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (233, 233, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (234, 234, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (235, 235, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (236, 236, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (237, 237, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (238, 238, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (239, 239, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (240, 240, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (241, 241, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (242, 242, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (243, 243, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (244, 244, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (245, 245, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (246, 246, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (247, 247, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (248, 248, NULL, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (250, 222, 0, 4, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (251, 21, 0, 5, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (258, 84, 0, 12, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (259, 195, 0, 13, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (260, 53, 0, 14, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (261, 97, 0, 15, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (262, 103, 0, 16, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (263, 105, 0, 17, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (264, 123, 0, 18, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (265, 124, 0, 19, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (266, 117, 0, 20, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (267, 132, 0, 21, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (268, 150, 0, 22, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (269, 170, 0, 23, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (270, 171, 0, 24, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (271, 175, 0, 25, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (272, 203, 0, 26, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (273, 190, 0, 27, now(), now());
+INSERT INTO zones_to_geo_zones (association_id, zone_country_id, zone_id, geo_zone_id, last_modified, date_added) VALUES (274, 189, 0, 28, now(), now());
 
 
 INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, set_function, date_added) VALUES ('Show Model Number', 'SHOW_PRODUCT_INFO_MODEL', '1', 'Display Model Number on Product Info 0= off 1= on', '1', '1', 'zen_cfg_select_drop_down(array(array(\'id\'=>\'1\', \'text\'=>\'True\'), array(\'id\'=>\'0\', \'text\'=>\'False\')), ', now());
@@ -4005,7 +4085,7 @@ INSERT INTO product_type_layout (configuration_title, configuration_key, configu
 INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, set_function, date_added) VALUES ('PRODUCT FREE SHIPPING Attribute Weight Prefix - Default', 'DEFAULT_PRODUCT_FREE_SHIPPING_PRODUCTS_ATTRIBUTES_WEIGHT_PREFIX', '1', 'PRODUCT FREE SHIPPING Attribute Weight Prefix<br />Default Attribute Weight Prefix<br />Blank, + or -', '5', '207', 'zen_cfg_select_drop_down(array(array(\'id\'=>\'0\', \'text\'=>\'Blank\'), array(\'id\'=>\'1\', \'text\'=>\'+\'), array(\'id\'=>\'2\', \'text\'=>\'-\')), ', now());
 ### eof: attribute default database updates and changes
 
-### bof: Add control to enable/disable the display of the 'Ask a Question' block for each product type
+### bof: Add control to enable/disable the display of the 'Ask a Question' block for each product type - new since 1.5.7
 INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, set_function, date_added) VALUES ('Show \"Ask a Question\" button?', 'SHOW_PRODUCT_INFO_ASK_A_QUESTION', '1', 'Display the \"Ask a Question\" button on product Info pages? (0 = False, 1 = True)', 1, 14, 'zen_cfg_select_drop_down(array(array(\'id\'=>\'1\', \'text\'=>\'True\'), array(\'id\'=>\'0\', \'text\'=>\'False\')), ', now());
 INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, set_function, date_added) VALUES ('Show \"Ask a Question\" button?', 'SHOW_PRODUCT_MUSIC_INFO_ASK_A_QUESTION', '1', 'Display the \"Ask a Question\" button on product Info pages? (0 = False, 1 = True)', 2, 14, 'zen_cfg_select_drop_down(array(array(\'id\'=>\'1\', \'text\'=>\'True\'), array(\'id\'=>\'0\', \'text\'=>\'False\')), ', now());
 INSERT INTO product_type_layout (configuration_title, configuration_key, configuration_value, configuration_description, product_type_id, sort_order, set_function, date_added) VALUES ('Show \"Ask a Question\" button?', 'SHOW_DOCUMENT_GENERAL_INFO_ASK_A_QUESTION', '1', 'Display the \"Ask a Question\" button on product Info pages? (0 = False, 1 = True)', 3, 14, 'zen_cfg_select_drop_down(array(array(\'id\'=>\'1\', \'text\'=>\'True\'), array(\'id\'=>\'0\', \'text\'=>\'False\')), ', now());
@@ -4274,7 +4354,7 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 ('IH - Grosse Bilder - Maximale Breite', 'LARGE_IMAGE_MAX_WIDTH', 43, 'Geben Sie eine maximale Breite für Ihre grossen Bilder an. Wenn Breite und Höhe leer gelassen oder auf 0 gesetzt werden, werden die grossen Bilder in ihrer grösse nicht verändert.', now(), now()),
 ('IH - Wasserzeichen - Position', 'WATERMARK_GRAVITY', 43, 'Wählen Sie die Position für das Wasserzeichen. Voreingestellt ist <strong>Center (Zentriert)</strong>.', now(), now()),
 ('IH - Grosse Bilder - Maximale Höhe', 'LARGE_IMAGE_MAX_HEIGHT', 43, 'Geben Sie eine maximale Höhe für Ihre grossen Bilder an. Wenn Breite und Höhe leer gelassen oder auf 0 gesetzt werden, werden die grossen Bilder in ihrer grösse nicht verändert.', now(), now()),
-('IH - Benennung der Bilder im cache/images Ordner', 'IH_CACHE_NAMING', 43, 'Wählen Sie die Methode aus, die Image Handler verwendet, um die skalierten Bilder im Verzeichnis cache/images zu benennen. <br /> <br /> Die <em> Hashed </ em> Methode wurde von Image Handler-Versionen vor 4.3.4 verwendet und verwendet einen MD5 - Hash, um die Dateinamen zu erzeugen. Es kann schwierig sein, die ursprüngliche Datei mithilfe dieser Methode visuell zu identifizieren. Wenn Sie in Ihren Produktbeschreibungen (oder anderen Seiten) fest codierte Links zu diesen Bildern haben, ändern Sie diese Einstellung auf <em> Hashed </ em>. <br /> <br />Seit Image Handler 5.1 können die Bilder mit einem <em> lesbaren Namen </ em> erzeugt werden. Dies ist eine gute Wahl für Neuinstallationen oder für aktualisierte Installationen ohne fest codierte Bildverknüpfungen und nun als Standard (Readable) voreingestellt.', now(), now()),
+('IH - Benennung der Bilder im cache/images Ordner', 'IH_CACHE_NAMING', 43, 'Wählen Sie die Methode, die <em>Image Handler</em> verwendet, um die verkleinerten Bilder im Verzeichnis <code>cache/images</code> zu benennen.<br><br><em>Hashed</em>: Verwendet einen &quot;MD5&quot; Hash, um die Dateinamen zu erzeugen.  Es kann &quot;schwierig&quot; sein, die Originaldatei mit dieser Methode visuell zu identifizieren.<br><br><em>Readable (Lesbar)</em>: Dies ist eine gute Wahl für neue Installationen oder für aktualisierte Installationen, die keine hardcodierten Bildverknüpfungen zu alten Hashed Dateinamen haben. <br><br><em>Mirrored (Gespiegelt)</em>: Ähnlich wie <em>Readable</em>, aber die Verzeichnisstruktur unter <code>cache/images</code> spiegelt die Struktur der Unterverzeichnisse der Originalbilder wider.', now(), now()),
 
 # Adminmenü ID 5 - Kundendetails
 ('Anrede', 'ACCOUNT_GENDER', 43, 'Auswahl der Anrede <br /> Diese wird bei Erstellung des Kundenkontos abgefragt und dann in allen E-Mails benutzt.<br /><br />Wenn diese Option auf FALSE gestellt wird, wird der Kunde stets mit Hallo VORNAME angesprochen.', now(), now()),
@@ -4315,7 +4395,7 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 ('Basis der Steuern', 'MODULE_SHIPPING_ITEM_TAX_BASIS', 43, 'Auf welcher Basis sollen Steuern berechnet werden? Mögliche Optionen:<br />Versand (Shipping) - auf Basis der Versandadresse des Kunden<br />Rechnung (Billing) - auf Basis der Rechnungsadresse des Kunden<br />Shop (Store) - auf Basis der Shopadresse, wenn die Rechnungs-/Versandadresse des Kunden innerhalb der Zone der Shopadresse liegt', now(), now()),
 ('Versandzone', 'MODULE_SHIPPING_ITEM_ZONE', 43, 'für welche Länder soll diese Versandart angeboten werden?<br/>Die auswählbaren Versandzonen entsprechen den angelegten Steuerzonen und den dort hinterlegten Ländern.', now(), now()),
 ('Sortierung', 'MODULE_SHIPPING_ITEM_SORT_ORDER', 43, 'Bestimmt die Sortierung der angezeigten Versandarten.', now(), now()),
-('Zahlungsart "Gratis" aktivieren', 'MODULE_PAYMENT_FREECHARGER_STATUS', 43, 'Wollen Sie die Zahlungsart "Gratis" anbieten?<br/><br/><b>Hinweis: Lassen Sie dieses Zahlungsmodul IMMER aktiv!<br/>Es wird für bestimmte Funktionalitäten benötigt und aktiviert sich nur, wenn der Gesamtbetrag wirklich 0 ist. Es bedeutet nicht, dass dem Kunden diese Zahlungsart zur Auswahl angeboten wird!<br/><br/><b>Nicht deinstallieren und auch nicht deaktivieren!', now(), now()),
+('Zahlungsart "Gratis" aktivieren', 'MODULE_PAYMENT_FREECHARGER_STATUS', 43, 'Wollen Sie die Zahlungsart "Gratis" anbieten?<br/><br/><b>Hinweis: Lassen Sie dieses Zahlungsmodul IMMER aktiv!</b><br/>Es wird für bestimmte Funktionalitäten benötigt und aktiviert sich nur, wenn der Gesamtbetrag wirklich 0 ist. Es bedeutet nicht, dass dem Kunden diese Zahlungsart zur Auswahl angeboten wird!<br/><br/><b>Nicht deinstallieren und auch nicht deaktivieren!</b>', now(), now()),
 ('Sortierung', 'MODULE_PAYMENT_FREECHARGER_SORT_ORDER', 43, 'Bestimmt die Sortierung der angezeigten Zahlungsarten.', now(), now()),
 ('Zahlungszone', 'MODULE_PAYMENT_FREECHARGER_ZONE', 43, 'für welche Länder soll diese Zahlungsart angeboten werden?<br/>Die auswählbaren Zahlungszonen entsprechen den angelegten Steuerzonen und den dort hinterlegten Ländern.', now(), now()),
 ('Bestellstatus', 'MODULE_PAYMENT_FREECHARGER_ORDER_STATUS_ID', 43, 'Legt den Bestellstatus für diese Zahlungsart fest.', now(), now()),
@@ -4905,7 +4985,7 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 ('pdf Rechnung - Rändereinstellungen', 'RL_INVOICE3_MARGIN', 43, 'Format: oben|rechts|unten|links<br />(Hinweis: 1inch = 72pt / 2.54cm; 1cm = 28,35pt)<br />Standard: 20|20|20|20<br />', now(), now()),
 ('pdf Rechnung - Rechnung bei Gratisprodukt', 'RL_INVOICE3_NOT_NULL_INVOICE', 43, 'Soll die Rechnung auch bei einem Gratisprodukt dem Mail hinzugefügt werden?', now(), now()),
 ('pdf Rechnung - Rechnungsversand bei Bestellstatus', 'RL_INVOICE3_ORDERSTATUS', 43, 'Rechnung nur mitschicken, wenn der Bestellstatus grösser/gleich ist [default: 3 == verschickt]', now(), now()),
-('pdf Rechnung - Präfix für Rechnungsnummer in der Rechnung', 'RL_INVOICE3_ORDER_ID_PREFIX', 43, 'Präfix für Rechnungsnummer in der Rechnung<br />Beispiel: : 2019/<br />', now(), now()),
+('pdf Rechnung - Präfix für Rechnungsnummer in der Rechnung', 'RL_INVOICE3_ORDER_ID_PREFIX', 43, 'Präfix für Rechnungsnummer in der Rechnung<br />Beispiel: : 2022/<br />', now(), now()),
 ('pdf Rechnung - Papiergrösse|Einheit|Orientierung', 'RL_INVOICE3_PAPER', 43, '1. Papiergrösse = A3|A4|A5|Letter|Legal <br />2. Einheit: pt|mm|cm|inch <br />3. Orientierung: L|P<br />', now(), now()),
 ('pdf Rechnung - PDF Hintergrunddatei', 'RL_INVOICE3_PDF_BACKGROUND', 43, 'PDF Hintergrunddatei<br />Standard: /www/htdocs/xxx/xxx/includes/pdf/rechnung_de.pdf<br />', now(), now()),
 ('pdf Rechnung - Speicherort und -name der PDF-Datei', 'RL_INVOICE3_PDF_PATH', 43, '1. Wo sollen PDF-Dateien gespeichert werden (!! muss beschreibbar sein !!)?<br />2. speichern ja|nein (1|0)<br />Standard: /www/htdocs/xxx/xxx/includes/pdf/|1<br />', now(), now()),
@@ -5128,5 +5208,5 @@ INSERT INTO product_type_layout_language (configuration_title, configuration_key
 ('PRODUCT FREE SHIPPING Attribut Gewicht Präfix - Standardeinstellung', 'DEFAULT_PRODUCT_FREE_SHIPPING_PRODUCTS_ATTRIBUTES_WEIGHT_PREFIX', 43, 'PRODUCT FREE SHIPPING Attribut Gewicht Präfix<br />Standard Gewicht Präfix<br />Leer, + oder -', now(), now());
 
 REPLACE INTO product_type_layout_language (configuration_title , configuration_key , languages_id, configuration_description, last_modified, date_added)
-VALUES ('20211227', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Übersetzungen', now(), now());
+VALUES ('20220104', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Übersetzungen', now(), now());
 ##### End of SQL setup for Zen Cart German.

@@ -1,6 +1,6 @@
 # MySQL file for Zen Cart Demo Products load
 # Zen Cart German Specific
-# $Id: mysql_demo.sql 71 2019-08-26 15:44:04Z webchills $
+# $Id: mysql_demo.sql 2022-01-04 18:30:04Z webchills $
 #
 
 # Configuration Settings:
@@ -93,8 +93,8 @@ INSERT INTO customers (customers_id, customers_gender, customers_firstname, cust
 #
 
 INSERT INTO customers_info (customers_info_id, customers_info_date_of_last_logon, customers_info_number_of_logons, customers_info_date_account_created, customers_info_date_account_last_modified, global_product_notifications) VALUES
-(1, '2019-06-18 09:00:00', 0, '2019-06-18 01:35:28', '2019-06-18 01:35:28', 0),
-(2, '2019-08-26 14:06:30', 1, '2019-08-26 14:06:30', NULL, 0);
+(1, '2022-01-01 09:00:00', 0, '2022-01-01 09:00:00', '2022-01-01 09:00:00', 0),
+(2, '2022-01-02 14:06:30', 1, '2022-01-02 14:06:30', NULL, 0);
 #
 # Dumping data for table ezpages
 #
@@ -1882,11 +1882,11 @@ INSERT INTO categories_description (categories_id, language_id, categories_name,
 
 
 INSERT INTO orders (orders_id, customers_id, customers_name, customers_company, customers_street_address, customers_suburb, customers_city, customers_postcode, customers_state, customers_country, customers_telephone, customers_email_address, customers_address_format_id, delivery_name, delivery_company, delivery_street_address, delivery_suburb, delivery_city, delivery_postcode, delivery_state, delivery_country, delivery_address_format_id, billing_name, billing_company, billing_street_address, billing_suburb, billing_city, billing_postcode, billing_state, billing_country, billing_address_format_id, payment_method, payment_module_code, shipping_method, shipping_module_code, coupon_code, cc_type, cc_owner, cc_number, cc_expires, cc_cvv, last_modified, date_purchased, orders_status, orders_date_finished, currency, currency_value, order_total, order_tax, paypal_ipn_id, ip_address, order_device) VALUES
-(1, 1, 'Peter Meier', 'Demofirma', 'Demogasse 17', '', 'Berlin', '10101', 'Berlin', 'Deutschland', '012345678', 'demo@zencartdemo.at', 5, 'Peter Meier', 'Demofirma', 'Demogasse 17', '', 'Berlin', '10101', 'Berlin', 'Deutschland', 5, 'Peter Meier', 'Demofirma', 'Demogasse 17', '', 'Berlin', '10101', 'Berlin', 'Deutschland', 5, 'Vorkasse/Banküberweisung', 'eustandardtransfer', 'Versandkosten pro Stück (Standard)', 'item', '', '', '', '', '', NULL, NULL, '2019-04-15 16:37:32', 1, NULL, 'EUR', 1.000000, 332.49, 30.00, 0, '192.168.1.1 - 192.168.1.2', 'Desktop');
+(1, 1, 'Peter Meier', 'Demofirma', 'Demogasse 17', '', 'Berlin', '10101', 'Berlin', 'Deutschland', '012345678', 'demo@zencartdemo.at', 5, 'Peter Meier', 'Demofirma', 'Demogasse 17', '', 'Berlin', '10101', 'Berlin', 'Deutschland', 5, 'Peter Meier', 'Demofirma', 'Demogasse 17', '', 'Berlin', '10101', 'Berlin', 'Deutschland', 5, 'Vorkasse/Banküberweisung', 'eustandardtransfer', 'Versandkosten pro Stück (Standard)', 'item', '', '', '', '', '', NULL, NULL, '2022-01-03 16:37:32', 1, NULL, 'EUR', 1.000000, 332.49, 30.00, 0, '192.168.1.1 - 192.168.1.2', 'Desktop');
 INSERT INTO orders_products (orders_products_id, orders_id, products_id, products_model, products_name, products_price, final_price, products_tax, products_quantity, onetime_charges, products_priced_by_attribute, product_is_free, products_discount_type, products_discount_type_from, products_prid) VALUES
 (1, 1, 1, 'MG200MMS', 'Matrox G200 MMS', 299.9900, 299.9900, 10.0000, 1, 0.0000, 0, 0, 0, 0, '1:edff669e5da95c1d027b04d5412532fa');
 INSERT INTO orders_status_history (orders_status_history_id, orders_id, orders_status_id, date_added, customer_notified, comments) VALUES
-(1, 1, 1, '2019-06-18 16:37:32', 1, 'Bitte schnellstmöglich versenden');
+(1, 1, 1, '2022-01-03 16:37:32', 1, 'Bitte schnellstmöglich versenden');
 INSERT INTO orders_total (orders_total_id, orders_id, title, text, value, class, sort_order) VALUES
 (1, 1, 'Zwischensumme:', '329,99 €', 329.9890, 'ot_subtotal', 100),
 (2, 1, 'Versandkosten pro Stück (Standard):', '2,50 €', 2.5000, 'ot_shipping', 200),

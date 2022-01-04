@@ -10,7 +10,9 @@
  */
 define('TABLE_HEADING_COMMENTS','Kommentare');
 define('TABLE_HEADING_PRODUCTS_MODEL','Artikelnummer');
+define('TABLE_HEADING_PRODUCTS','Artikel');
 define('TABLE_HEADING_TAX3','UST');
+define('TABLE_HEADING_TOTAL','Summe');
 define('TABLE_HEADING_EXTRA','Extra');
 define('TABLE_HEADING_QTY','Menge');
 define('TABLE_HEADING_PRICE_EXCLUDING_TAX','Einzelpreis');

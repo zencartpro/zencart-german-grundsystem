@@ -2,62 +2,55 @@
 /**
  * Zen Cart German Specific
  * Specials
- * @package page
+ * including salemaker items
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main_template_vars.php 731 2019-04-12 12:49:16Z webchills $
+ * @version $Id: main_template_vars.php 2022-01-04 18:38:16Z webchills $
  */
 
 if (MAX_DISPLAY_SPECIAL_PRODUCTS > 0 ) {
-// Start Salesmaker to Specials //	
-	$disp_order_default = PRODUCT_ALL_LIST_SORT_DEFAULT;
-	require(DIR_WS_MODULES . zen_get_module_directory(FILENAME_LISTING_DISPLAY_ORDER));
-	$order_by = isset($order_by) ? $order_by : 'ORDER BY s.specials_date_added DESC';
-	$sale_categories = $db->Execute("SELECT sale_categories_all FROM " . TABLE_SALEMAKER_SALES . " WHERE sale_status = 1");
-
-if ($sale_categories->RecordCount() > 0){
-	$sale_categories_all = '';
-	while(!$sale_categories->EOF) {
-	  	$sale_categories_all .= substr($sale_categories->fields['sale_categories_all'], 0, -1); 
-		  $sale_categories->MoveNext();
-	}
-	$sale_categories_all = substr($sale_categories_all, 1); 
-
-        $specials_query_raw = "SELECT p.products_type, p.products_id, pd.products_name, p.products_image, p.products_price, p.products_tax_class_id,
-                                    p.products_date_added,  p.products_model, p.products_quantity, p.products_weight, p.product_is_call,
-                                    p.product_is_always_free_shipping, p.products_qty_box_status,
-                                    p.master_categories_id
+  // INCLUDE SALE ITEMS IN SPECIALS LISTING
+  $sale_categories = $db->Execute("SELECT sale_categories_all FROM " . TABLE_SALEMAKER_SALES . " WHERE sale_status = 1");
+  if ($sale_categories->RecordCount() > 0) {
+  $sale_categories_all = '';
+  while(!$sale_categories->EOF) {
+    $sale_categories_all .= substr($sale_categories->fields['sale_categories_all'], 0, -1); // remove trailing comma
+    $sale_categories->MoveNext();
+  }
+  $sale_categories_all = substr($sale_categories_all, 1); // remove preceeding comma
+  $specials_query_raw = "SELECT DISTINCT(p.products_id), p.products_image, pd.products_name, p.master_categories_id
                          FROM " . TABLE_PRODUCTS . " p
                          LEFT JOIN " . TABLE_SPECIALS . " s ON (s.products_id = p.products_id)
                          LEFT JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd ON (pd.products_id = p.products_id)
+                         LEFT JOIN " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c ON (p2c.products_id = p.products_id)
                          WHERE p.products_status = '1'
-                           AND ( (s.status = 1 AND p.products_id = s.products_id) OR (p.master_categories_id IN ($sale_categories_all)) )
+                           AND ( (s.status = 1 AND p.products_id = s.products_id) OR (p2c.categories_id IN ($sale_categories_all)) )
                            AND p.products_id = pd.products_id
                            AND pd.language_id = :languagesID
-                         ".$extra.' '.$order_by;
-
-} else {
-  
-        $specials_query_raw = "SELECT p.products_type, p.products_id, pd.products_name, p.products_image, p.products_price, p.products_tax_class_id,
-                                    p.products_date_added,  p.products_model, p.products_quantity, p.products_weight, p.product_is_call,
-                                    p.product_is_always_free_shipping, p.products_qty_box_status,
-                                    p.master_categories_id
+                         GROUP BY p.products_id
+                         ORDER BY p.products_id DESC";
+  $specials_query_raw = $db->bindVars($specials_query_raw, ':languagesID', $_SESSION['languages_id'], 'integer');
+  $count_key = '*';
+  $zco_notifier->notify('NOTIFY_SPECIALS_MAIN_TEMPLATE_VARS_SQL_STRING', array(), $specials_query_raw, $count_key);
+  $specials_split = new splitPageResults($specials_query_raw, MAX_DISPLAY_SPECIAL_PRODUCTS, 'p.products_id');
+  } else {
+  // DEFAULT ZEN CART SPECIALS LISTING
+  $specials_query_raw = "SELECT p.products_id, p.products_image, pd.products_name, p.master_categories_id
                          FROM (" . TABLE_PRODUCTS . " p
                          LEFT JOIN " . TABLE_SPECIALS . " s on p.products_id = s.products_id
                          LEFT JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd on p.products_id = pd.products_id )
                          WHERE p.products_id = s.products_id and p.products_id = pd.products_id and p.products_status = '1'
                            AND s.status = 1
                            AND pd.language_id = :languagesID
-                         ".$extra.' '.$order_by;
-}
-
+                        ORDER BY s.specials_date_added DESC";
   $specials_query_raw = $db->bindVars($specials_query_raw, ':languagesID', $_SESSION['languages_id'], 'integer');
+  $count_key = '*';
+  $zco_notifier->notify('NOTIFY_SPECIALS_MAIN_TEMPLATE_VARS_SQL_STRING', array(), $specials_query_raw, $count_key);
   
-  $zco_notifier->notify('NOTIFY_SPECIALS_MAIN_TEMPLATE_VARS_SQL_STRING', array(), $specials_query_raw);
-  
-  $specials_split = new splitPageResults($specials_query_raw, MAX_DISPLAY_SPECIAL_PRODUCTS);
+  $specials_split = new splitPageResults($specials_query_raw, MAX_DISPLAY_SPECIAL_PRODUCTS, $count_key);
+}
   $specials = $db->Execute($specials_split->sql_query);
   $row = 0;
   $col = 0;

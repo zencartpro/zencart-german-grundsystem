@@ -12,6 +12,7 @@ define('TABLE_HEADING_COMMENTS', 'Comments');
 define('TABLE_HEADING_PRODUCTS_MODEL', 'Model');
 define('TABLE_HEADING_PRODUCTS', 'Products');
 define('TABLE_HEADING_TAX3', 'Tax');
+define('TABLE_HEADING_TOTAL', 'Total');
 define('TABLE_HEADING_EXTRA','Extra');
 define('TABLE_HEADING_QTY','Qty.');
 define('TABLE_HEADING_PRICE_EXCLUDING_TAX', 'Price');
