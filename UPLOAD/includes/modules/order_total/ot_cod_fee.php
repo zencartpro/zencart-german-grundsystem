@@ -8,7 +8,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright (c) 2002 Thomas Plänkers http://www.oscommerce.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_cod_fee.php 732 2019-04-12 11:49:16Z webchills $
+ * @version $Id: ot_cod_fee.php 2019-04-12 11:49:16Z webchills $
  */
 /**
  * COD-FEE Order Totals Module

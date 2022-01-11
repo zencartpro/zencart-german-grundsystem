@@ -2,12 +2,12 @@
 /**
  * ezpages_bar_header - used to display links to EZ-Pages content horizontally as a header element
  *
- * @package templateSystem
+ 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ezpages_bar_header.php 2020-01-17 14:59:06Z webchills $
+ * @version $Id: ezpages_bar_header.php 2022-01-11 15:59:06Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -17,7 +17,7 @@ $zco_notifier->notify('NOTIFY_START_EZPAGES_HEADERBAR');
 $var_linksList = array();
 
 // test if bar should display:
-if (EZPAGES_STATUS_HEADER == '1' || (EZPAGES_STATUS_HEADER == '2' && (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])))) {
+if (EZPAGES_STATUS_HEADER == '1' || (EZPAGES_STATUS_HEADER == '2' && zen_is_whitelisted_admin_ip())) {
   if (!$sniffer->table_exists(TABLE_EZPAGES_CONTENT)) {
     return; // early exit; db not upgraded
   }

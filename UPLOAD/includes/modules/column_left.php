@@ -2,12 +2,12 @@
 /**
  * column_left module
  *
- * @package templateStructure
+
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: column_left.php 2020-02-29 21:44:16Z webchills $
+ * @version $Id: column_left.php 2022-01-11 15:44:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -28,4 +28,3 @@ while (!$column_left_display->EOF and $box_cnt < 100) {
   $column_left_display->MoveNext();
 } // while column_left
 $box_id = ''; 
-?>

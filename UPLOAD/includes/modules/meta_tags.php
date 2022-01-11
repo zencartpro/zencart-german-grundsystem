@@ -2,12 +2,12 @@
 /**
  * meta_tags module
  * Zen Cart German Specific
- * @package modules
+
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: meta_tags.php 2020-01-22 20:41:16Z webchills $
+ * @version $Id: meta_tags.php 2022-01-11 15:41:16Z webchills $
  */
 $meta_tags_over_ride = false;
 $metatag_page_name = $current_page_base;

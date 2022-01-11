@@ -5,12 +5,12 @@
  *
  * Prepares list of additional product images to be displayed in template
  *
- * @package templateSystem
+
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: additional_images.php 2020-01-17 14:38:06Z webchills $
+ * @version $Id: additional_images.php 2022-01-11 15:38:06Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');

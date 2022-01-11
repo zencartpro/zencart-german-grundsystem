@@ -1,12 +1,12 @@
 <?php
 /**
  * Zen Cart German Specific
- * @package shippingMethod
+ 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: perweightunit.php 733 2019-04-12 12:49:16Z webchills $
+ * @version $Id: perweightunit.php 2022-01-11 16:05:16Z webchills $
  */
 /**
  * "Per Weight Unit" shipping module, allowing you to offer per-unit-rate shipping options
@@ -49,7 +49,7 @@ class perweightunit extends base {
    * @return perweightunit
    */
   function __construct() {
-    global $order, $db;
+    global $db;
 
     $this->code = 'perweightunit';
     $this->title = MODULE_SHIPPING_PERWEIGHTUNIT_TEXT_TITLE;
@@ -74,7 +74,18 @@ class perweightunit extends base {
       }
     }
 
-    if ( ($this->enabled == true) && ((int)MODULE_SHIPPING_PERWEIGHTUNIT_ZONE > 0) ) {
+    $this->update_status();
+  }
+
+  /**
+   * Perform various checks to see whether this module should be visible
+   */
+  function update_status() {
+    global $order, $db;
+    if (!$this->enabled) return;
+    if (IS_ADMIN_FLAG === true) return;
+
+    if ((int)MODULE_SHIPPING_PERWEIGHTUNIT_ZONE > 0) {
       $check_flag = false;
       $check = $db->Execute("select zone_id from " . TABLE_ZONES_TO_GEO_ZONES . "
                              where geo_zone_id = '" . MODULE_SHIPPING_PERWEIGHTUNIT_ZONE . "'
@@ -168,10 +179,9 @@ class perweightunit extends base {
    */
   function remove() {
     global $db;
-    $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key in ('" . implode("', '", $this->keys()) . "')");
+    $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key LIKE  'MODULE\_SHIPPING\_PERWEIGHTUNIT\_%'");
     // www.zen-cart-pro.at german admin languages_id == delete all
-    $db->Execute("delete from " . TABLE_CONFIGURATION_LANGUAGE . " where configuration_key in ('" . implode("', '", $this->keys()) . "')");
-  }
+     $db->Execute("delete from " . TABLE_CONFIGURATION_LANGUAGE . " where configuration_key LIKE  'MODULE\_SHIPPING\_PERWEIGHTUNIT\_%'");
   /**
    * Internal list of configuration keys used for configuration of the module
    *

@@ -1,21 +1,18 @@
 <?php
 /**
- * @package shippingMethod
+ 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: freeoptions.php 733 2019-07-20 09:49:16Z webchills $
+ * @version $Id: freeoptions.php 2022-01-11 16:03:16Z webchills $
  */
 
   class freeoptions extends base {
     var $code, $title, $description, $icon, $enabled;
     var $ck_freeoptions_total, $ck_freeoptions_weight, $ck_freeoptions_items;
 
-// class constructor
     function __construct() {
-      global $order, $db;
-
       $this->code = 'freeoptions';
       $this->title = MODULE_SHIPPING_FREEOPTIONS_TEXT_TITLE;
       $this->description = MODULE_SHIPPING_FREEOPTIONS_TEXT_DESCRIPTION;
@@ -31,7 +28,18 @@
           $this->enabled = ((MODULE_SHIPPING_FREEOPTIONS_STATUS == 'True') ? true : false);
       }
 
-      if ( ($this->enabled == true) && ((int)MODULE_SHIPPING_FREEOPTIONS_ZONE > 0) ) {
+      $this->update_status();
+    }
+
+  /**
+   * Perform various checks to see whether this module should be visible
+   */
+    function update_status() {
+      global $order, $db;
+      if (!$this->enabled) return;
+      if (IS_ADMIN_FLAG === true) return;
+
+      if ((int)MODULE_SHIPPING_FREEOPTIONS_ZONE > 0) {
         $check_flag = false;
         $check = $db->Execute("select zone_id from " . TABLE_ZONES_TO_GEO_ZONES . " where geo_zone_id = '" . MODULE_SHIPPING_FREEOPTIONS_ZONE . "' and zone_country_id = '" . $order->delivery['country']['id'] . "' order by zone_id");
         while (!$check->EOF) {
@@ -51,7 +59,6 @@
       }
     }
 
-// class methods
     function quote($method = '') {
       global $order;
       $order_weight = round($_SESSION['cart']->show_weight(),9);
