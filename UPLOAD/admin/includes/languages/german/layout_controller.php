@@ -8,7 +8,7 @@
  * @version $Id: layout_controller.php 2021-12-01 09:39:16Z webchills $
  */
 
-define('HEADING_TITLE','Tabellenspalten');
+define('HEADING_TITLE','Sideboxen');
 
 define('TABLE_HEADING_LAYOUT_BOX_NAME','Dateiname der Box');
 define('TABLE_HEADING_LAYOUT_BOX_STATUS','Linke/Rechte Spalte<br />Status');
@@ -21,12 +21,12 @@ define('TABLE_HEADING_ACTION','Aktion');
 define('TEXT_INFO_EDIT_INTRO','Führen Sie hier bitte die notwendigen Änderungen durch');
 define('TEXT_INFO_LAYOUT_BOX','Ausgewählte Box:');
 define('TEXT_INFO_LAYOUT_BOX_NAME','Name der Box:');
-define('TEXT_INFO_LAYOUT_BOX_LOCATION','Links/Rechts<br /><br />Wenn Sie nur eine Spalte im Template anzeigen lassen, dann wird diese Einstellung ignoriert<br /><br />');
-define('TEXT_INFO_LAYOUT_BOX_STATUS','Linke/Rechte Spalte<br /><br />Soll die Sidebox in der linken oder in der rechten Spalte im Template angezeigt werden?<br /><br />');
+define('TEXT_INFO_LAYOUT_BOX_LOCATION','Ort: (Einzelspalte ignoriert diese Einstellung)');
+define('TEXT_INFO_LAYOUT_BOX_STATUS','Linke/Rechte Spalte Status: ');
 
-define('TEXT_INFO_LAYOUT_BOX_STATUS_INFO','EIN= 1 AUS=0');
-define('TEXT_INFO_LAYOUT_BOX_SORT_ORDER','Linke/Rechte Spalte Sortierung<br /><br />Ein Eintrag muss nur erfolgen, wenn Sie im Template die linke UND die rechte Spalte anzeigen lassen.<br /><br />');
-define('TEXT_INFO_LAYOUT_BOX_SORT_ORDER_SINGLE','Einzelne Spalte Sortierung<br /><br />Ein Eintrag muss nur erfolgen, wenn Sie im Template NUR EINE SPALTE anzeigen lassen.<br /><br />');
+define('TEXT_INFO_LAYOUT_BOX_STATUS_SINGLE','Einzelne Spalte Status: ');
+define('TEXT_INFO_LAYOUT_BOX_SORT_ORDER','Linke/Rechte Spalte Sortierung');
+define('TEXT_INFO_LAYOUT_BOX_SORT_ORDER_SINGLE','Einzelne Spalte Sortierung');
 define('TEXT_INFO_INSERT_INTRO','Tragen Sie bitte die neue Box mit den notwendigen Daten ein');
 define('TEXT_INFO_DELETE_INTRO','Wollen Sie diese Box wirklich löschen?');
 
