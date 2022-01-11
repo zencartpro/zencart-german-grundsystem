@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2021-12-28 09:44:50Z webchills $
+ * @version $Id: header_php.php 2022-01-11 20:12:50Z webchills $
  */
 /**
  * Header code file for product reviews "write" page
@@ -57,7 +57,7 @@ $customer = $db->Execute($customer_query);
 $error = false;
 if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
   $rating = (int)$_POST['rating'];
-  $review_text = $_POST['review_text'];
+  $review_text = zen_clean_html($_POST['review_text']);
   $antiSpam = !empty($_POST[$antiSpamFieldName]) ? 'spam' : '';
   $zco_notifier->notify('NOTIFY_REVIEWS_WRITE_CAPTCHA_CHECK');
 
@@ -76,7 +76,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
   if ($error == false) {
     if ($antiSpam != '') {
       $zco_notifier->notify('NOTIFY_SPAM_DETECTED_DURING_WRITE_REVIEW');
-      $messageStack->add_session('header', (defined('ERROR_WRITE_REVIEW_SPAM_DETECTED') ? ERROR_WRITE_REVIEW_SPAM_DETECTED : TEXT_REVIEW_SUBMITTED_FOR_REVIEW), 'success');
+      $messageStack->add_session('product_info', (defined('ERROR_WRITE_REVIEW_SPAM_DETECTED') ? ERROR_WRITE_REVIEW_SPAM_DETECTED : TEXT_REVIEW_SUBMITTED_FOR_REVIEW), 'success');
     } else {
 
       $review_status = '1';
@@ -90,7 +90,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
 
       $sql = $db->bindVars($sql, ':productsID', (!empty($_GET['products_id']) ? $_GET['products_id'] : 0), 'integer');
       $sql = $db->bindVars($sql, ':customersID', $_SESSION['customer_id'], 'integer');
-    $sql = $db->bindVars($sql, ':customersName', $customer->fields['customers_firstname'], 'string');
+      $sql = $db->bindVars($sql, ':customersName', $customer->fields['customers_firstname'], 'string');
       $sql = $db->bindVars($sql, ':rating', $rating, 'string');
 
       $db->Execute($sql);
@@ -120,15 +120,14 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
         $html_msg['EMAIL_MESSAGE_HTML'] = str_replace('\n','',sprintf(EMAIL_PRODUCT_REVIEW_CONTENT_INTRO, $product_info->fields['products_name']));
         $html_msg['EMAIL_MESSAGE_HTML'] .= '<br />';
         $html_msg['EMAIL_MESSAGE_HTML'] .= str_replace('\n','',sprintf(EMAIL_PRODUCT_REVIEW_CONTENT_DETAILS, $review_text));
-        $extra_info=email_collect_extra_info($name,$email_address, $customer->fields['customers_firstname'] . ' ' . $customer->fields['customers_lastname'] , $customer->fields['customers_email_address'] );
+        $extra_info = email_collect_extra_info('', '', $customer->fields['customers_firstname'] . ' ' . $customer->fields['customers_lastname'] , $customer->fields['customers_email_address']);
         $html_msg['EXTRA_INFO'] = $extra_info['HTML'];
         $zco_notifier->notify('NOTIFY_EMAIL_READY_WRITE_REVIEW');
-        zen_mail('', SEND_EXTRA_REVIEW_NOTIFICATION_EMAILS_TO, $email_subject ,
-        $email_text . $extra_info['TEXT'], STORE_NAME, EMAIL_FROM, $html_msg, 'reviews_extra');
+        zen_mail('', SEND_EXTRA_REVIEW_NOTIFICATION_EMAILS_TO, $email_subject, $email_text . $extra_info['TEXT'], STORE_NAME, EMAIL_FROM, $html_msg, 'reviews_extra');
       }
       // end send email
       
-
+      $messageStack->add_session('product_info', (REVIEWS_APPROVAL == '1') ? TEXT_REVIEW_SUBMITTED_FOR_REVIEW : TEXT_REVIEW_SUBMITTED, 'success');
    }
     // MailBeez autologoff
     if (file_exists(DIR_FS_CATALOG . 'mailhive/mailbeez/review_advanced/includes/autologoff.php')) {

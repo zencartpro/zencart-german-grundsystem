@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 786 2014-07-05 10:13:51Z webchills $
+ * @version $Id: header_php.php 2014-07-05 10:13:51Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');

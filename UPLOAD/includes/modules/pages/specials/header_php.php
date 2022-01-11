@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 730 2019-04-12 12:49:16Z webchills $
+ * @version $Id: header_php.php 2019-04-12 12:49:16Z webchills $
  */
 $zco_notifier->notify('NOTIFY_HEADER_START_SPECIALS');
 require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));

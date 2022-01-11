@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 730 2019-06-15 21:49:16Z webchills $
+ * @version $Id: header_php.php 2019-06-15 21:49:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -33,4 +33,3 @@ if (zen_is_logged_in() || !empty($_SESSION['customer_guest_id'])) {
 
 // This should be last line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_END_LOGOFF');
-?>

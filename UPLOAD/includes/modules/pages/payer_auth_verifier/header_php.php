@@ -8,7 +8,7 @@
  * @copyright Portions Copyright 2005 CardinalCommerce
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 730 2019-06-15 21:49:16Z webchills $
+ * @version $Id: header_php.php 2019-06-15 21:49:16Z webchills $
  */
 /**
  * Purpose:

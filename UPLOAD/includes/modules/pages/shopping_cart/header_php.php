@@ -2,12 +2,12 @@
 /**
  * shopping_cart header_php.php
  *
- * @package page
+ 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2021-12-28 16:47:16Z webchills $
+ * @version $Id: header_php.php 2022-01-11 20:16:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -95,7 +95,7 @@ for ($i=0, $n=sizeof($products); $i<$n; $i++) {
       $attributes = $db->bindVars($attributes, ':optionsValuesID', $value, 'integer');
       $attributes = $db->bindVars($attributes, ':languageID', $_SESSION['languages_id'], 'integer');
       $attributes_values = $db->Execute($attributes);
-      //clr 030714 determine if attribute is a text attribute and assign to $attr_value temporarily
+     
       if ($value == PRODUCTS_OPTIONS_VALUES_TEXT_ID) {
         $attributeHiddenField .= zen_draw_hidden_field('id[' . $products[$i]['id'] . '][' . TEXT_PREFIX . $option . ']',  $products[$i]['attributes_values'][$option]);
         $attr_value = htmlspecialchars($products[$i]['attributes_values'][$option], ENT_COMPAT, CHARSET, TRUE);
@@ -129,7 +129,7 @@ for ($i=0, $n=sizeof($products); $i<$n; $i++) {
   $showFixedQuantity = (($show_products_quantity_max == 1 or zen_get_products_qty_box_status($products[$i]['id']) == 0) ? true : false);
   $showFixedQuantityAmount = $products[$i]['quantity'] . zen_draw_hidden_field('cart_quantity[]', $products[$i]['quantity']);
   $showMinUnits = zen_get_products_quantity_min_units_display($products[$i]['id']);
-  $quantityField = zen_draw_input_field('cart_quantity[]', $products[$i]['quantity'], 'size="4" class="cart_input_'.$products[$i]['id'].'"');
+  $quantityField = zen_draw_input_field('cart_quantity[]', $products[$i]['quantity'], 'size="4" class="cart_input_'.$products[$i]['id'].'" aria-label="' . ARIA_EDIT_QTY_IN_CART . '"');
   $ppe = $products[$i]['final_price'];
   $ppe = zen_round(zen_add_tax($ppe, zen_get_tax_rate($products[$i]['tax_class_id'])), $currencies->get_decimal_places($_SESSION['currency']));
   $ppt = $ppe * $products[$i]['quantity'];
@@ -154,7 +154,8 @@ for ($i=0, $n=sizeof($products); $i<$n; $i++) {
                             'buttonDelete'=>$buttonDelete,
                             'checkBoxDelete'=>$checkBoxDelete,
                             'id'=>$products[$i]['id'],
-                            'attributes'=>$attrArray);
+                            'attributes'=>$attrArray,
+                          );
 } // end FOR loop
 
 $define_page = zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] . '/html_includes/', FILENAME_DEFINE_SHOPPING_CART, 'false');

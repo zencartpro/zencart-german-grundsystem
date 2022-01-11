@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: header_php.php 2011-08-09 15:49:16Z hugo13 $
  */
 
 
@@ -31,5 +31,3 @@ if (CUSTOMERS_AUTHORIZATION_COLUMN_RIGHT_OFF == 'true') $flag_disable_right = tr
 if (CUSTOMERS_AUTHORIZATION_COLUMN_LEFT_OFF == 'true') $flag_disable_left = true;
 if (CUSTOMERS_AUTHORIZATION_FOOTER_OFF == 'true') $flag_disable_footer = true;
 if (CUSTOMERS_AUTHORIZATION_HEADER_OFF == 'true') $flag_disable_header = true;
-
-?>
