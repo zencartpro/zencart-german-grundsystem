@@ -4,13 +4,12 @@
  * Zen Cart German Specific
  * Loaded automatically by index.php?main_page=checkout_confirmation.<br />
  * Displays final checkout details, cart, payment and shipping info details.
- *
- 
+ * 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_checkout_confirmation_default.php 2021-12-27 19:57:16Z webchills $
+ * @version $Id: tpl_checkout_confirmation_default.php 2022-01-11 21:33:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="checkoutConfirmDefault">
@@ -189,20 +188,21 @@
 ?>
 
 <?php
- // zollhinweis für nicht EU
-        $dest_country = isset ($order->delivery['country']['iso_code_2']) ? $order->delivery['country']['iso_code_2'] : 0 ;
-        $dest_zone = 0;
+ // zollhinweis bei nicht EU - only if product is not virtual
+        if ($_SESSION['cart']->get_content_type() == 'virtual') {
+        // do nothing
+        } else {
+        $dest_country = isset ($order->delivery['country']['iso_code_2']) ? $order->delivery['country']['iso_code_2'] : 0 ;        
         $error = false;
         $countries_table = EU_COUNTRIES_FOR_LAST_STEP; 
         $country_zones = explode(",", $countries_table);
-        if ((!in_array($dest_country, $country_zones))&& ($order->delivery['country']['id'] != '')) {
-            $dest_zone = $i;
+        if ((!in_array($dest_country, $country_zones))&& ($order->delivery['country']['id'] != '')) {            
             echo TEXT_NON_EU_COUNTRIES;
         } else {
             // do nothing
         }
-        ?>
-
+      }
+?>
 
 <?php
   if (DISPLAY_WIDERRUF_DOWNLOADS_ON_CHECKOUT_CONFIRMATION == 'true') {
@@ -217,6 +217,4 @@
 ?>
 <div class="buttonRow forward confirm-order"><?php echo zen_image_submit(BUTTON_IMAGE_CONFIRM_ORDER, BUTTON_CONFIRM_ORDER_ALT, 'name="btn_submit" id="btn_submit"') ;?></div>
 </form>
-
-
 </div>

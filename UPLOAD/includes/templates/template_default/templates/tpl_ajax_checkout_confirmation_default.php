@@ -234,19 +234,21 @@ if (isset ($_SESSION['shipping']['extras']) && is_array ($_SESSION['shipping']['
 }
 ?>
 <?php
- // zollhinweis für nicht EU
-        $dest_country = isset ($order->delivery['country']['iso_code_2']) ? $order->delivery['country']['iso_code_2'] : 0 ;
-        $dest_zone = 0;
+ // zollhinweis bei nicht EU - only if product is not virtual
+        if ($_SESSION['cart']->get_content_type() == 'virtual') {
+        // do nothing
+        } else {
+        $dest_country = isset ($order->delivery['country']['iso_code_2']) ? $order->delivery['country']['iso_code_2'] : 0 ;        
         $error = false;
         $countries_table = EU_COUNTRIES_FOR_LAST_STEP; 
         $country_zones = explode(",", $countries_table);
-        if ((!in_array($dest_country, $country_zones))&& ($order->delivery['country']['id'] != '')) {
-            $dest_zone = $i;
+        if ((!in_array($dest_country, $country_zones))&& ($order->delivery['country']['id'] != '')) {            
             echo TEXT_NON_EU_COUNTRIES;
         } else {
             // do nothing
         }
-        ?>
+      }
+?>
 
 </div>
 <?php
