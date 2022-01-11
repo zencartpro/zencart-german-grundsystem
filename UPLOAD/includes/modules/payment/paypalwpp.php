@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypalwpp.php 2021-11-29 15:56:14Z webchills $
+ * @version $Id: paypalwpp.php 2022-01-11 16:34:14Z webchills $
  */
 /**
  * load the communications layer code
@@ -459,7 +459,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
    * When the order returns from the processor, this stores the results in order-status-history and logs data for subsequent use
    */
   function after_process() {
-    global $insert_id, $db, $order;
+    global $insert_id, $order;
     // FMF
     if ($this->fmfResponse != '') {
       $detailedMessage = $insert_id . "\n" . $this->fmfResponse . "\n" . MODULES_PAYMENT_PAYPALDP_TEXT_EMAIL_FMF_INTRO . "\n" . print_r($this->fmfErrors, TRUE);

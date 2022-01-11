@@ -2,13 +2,13 @@
 /**
  * functions used by payment module class for Paypal IPN payment method
  *
- * @package paymentMethod
+ 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright 2004 DevosC.com
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypal_functions.php 739 2020-01-17 11:50:16Z webchills $
+ * @version $Id: paypal_functions.php 2022-01-11 16:39:16Z webchills $
  */
 
 // Functions for paypal processing
@@ -321,7 +321,7 @@
  * Create order-history record from IPN data
  */
   function ipn_create_order_history_array($insert_id) {
-    $sql_data_array = array ('paypal_ipn_id' => $insert_id,
+    $sql_data_array = array ('paypal_ipn_id' => (int)$insert_id,
                              'txn_id' => $_POST['txn_id'],
                              'parent_txn_id' => $_POST['parent_txn_id'],
                              'payment_status' => $_POST['payment_status'],
@@ -387,6 +387,7 @@
   }
   function getRequestBodyContents(&$handle) {
     if ($handle) {
+      $line = '';
       while(!feof($handle)) {
         $line .= @fgets($handle, 1024);
       }
@@ -641,7 +642,7 @@
 /**
  * Write order-history update to ZC tables denoting the update supplied by the IPN
  */
-  function ipn_update_orders_status_and_history($ordersID, $new_status = 1, $txn_type) {
+  function ipn_update_orders_status_and_history($ordersID, $new_status = 1, $txn_type = '') {
     global $db;
     
     ipn_debug_email('IPN NOTICE :: Updating order #' . (int)$ordersID . ' to status: ' . (int)$new_status . ' (txn_type: ' . $txn_type . ')');
@@ -1002,13 +1003,3 @@
     return $logfilename;
   }
 
-if (!function_exists('curl_setopt_array')) {
-  function curl_setopt_array(&$ch, $curl_options) {
-    foreach ($curl_options as $option => $value) {
-      if (!curl_setopt($ch, $option, $value)) {
-        return FALSE;
-      }
-    }
-    return TRUE;
-  }
-}

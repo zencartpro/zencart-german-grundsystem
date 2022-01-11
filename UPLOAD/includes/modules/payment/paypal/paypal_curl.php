@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypal_curl.php 2021-11-29 15:36:36Z webchills $
+ * @version $Id: paypal_curl.php 2022-01-11 16:30:36Z webchills $
  */
 
 /**
@@ -550,7 +550,7 @@ class paypal_curl extends base {
       $value = str_replace('"', '', $value);
       // if the value contains a & or = symbol, handle it differently
       if (($this->_mode == 'payflow') && (strpos($value, '&') !== false || strpos($value, '=') !== false)) {
-        $name = str_replace('PAYMENTREQUEST_0_', '', $name);  // For Payflow, remove NVP v63.0+ extras from name
+        $name = str_replace(['PAYMENTREQUEST_0_', 'PAYMENTINFO_0_'], '', $name);  // For Payflow, remove NVP v63.0+ extras from name
         $string[] = $name . '[' . strlen($value) . ']=' . $value;
         if (PAYPAL_DEV_MODE == 'true') $this->log('_buildNameValueList - datacheck - adding braces and string count to: ' . $value . ' (' . $name . ')');
       } else {
