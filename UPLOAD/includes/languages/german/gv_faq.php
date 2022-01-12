@@ -1,16 +1,16 @@
 <?php
 /**
- * @package languageDefines
+ 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: gv_faq.php 295 2020-03-01 08:28:14Z webchills $
+ * @version $Id: gv_faq.php 2022-01-12 09:28:14Z webchills $
  */
 
 define('NAVBAR_TITLE', TEXT_GV_NAME . ' FAQ');
 define('HEADING_TITLE', TEXT_GV_NAME . ' FAQ');
-define('TEXT_INFORMATION', '<a name="Top"></a>
+define('TEXT_INFORMATION', '<a id="Top"></a>
   <a href="'.zen_href_link(FILENAME_GV_FAQ,'faq_item=1','NONSSL').'">Wie bestelle ich ' . TEXT_GV_NAMES . '</a><br />
   <a href="'.zen_href_link(FILENAME_GV_FAQ,'faq_item=2','NONSSL').'">Wie versende ich ' . TEXT_GV_NAMES . '</a><br />
   <a href="'.zen_href_link(FILENAME_GV_FAQ,'faq_item=3','NONSSL').'">Einkaufen mit ' . TEXT_GV_NAMES . 'n</a><br />
@@ -18,7 +18,7 @@ define('TEXT_INFORMATION', '<a name="Top"></a>
   <a href="'.zen_href_link(FILENAME_GV_FAQ,'faq_item=5','NONSSL').'">Wenn Probleme auftreten</a><br />
 ');
 if (empty($_GET['faq_item'])) {
-  $_GET['faq_item'] == '0';
+  $_GET['faq_item'] = '0';
 }
 switch ($_GET['faq_item']) {
   case '1':
@@ -66,8 +66,8 @@ Service, den Sie unter <a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS .'">' . STO
 
   break;
   default:
-define('SUB_HEADING_TITLE','');
-define('SUB_HEADING_TEXT','Bitte wählen Sie Ihr Thema, zu dem Sie Fragen haben.');
+  define('SUB_HEADING_TITLE','');
+  define('SUB_HEADING_TEXT','Bitte wählen Sie Ihr Thema, zu dem Sie Fragen haben.');
 
   }
 

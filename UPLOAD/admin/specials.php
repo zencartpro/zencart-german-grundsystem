@@ -1,11 +1,10 @@
 <?php
 /**
- 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: specials.php 2021-10-24 18:30:16Z webchills $
+ * @version $Id: specials.php 2022-01-12 10:41:16Z webchills $
  * structurally identical to featured.php, modifications should be replicated
  */
 require('includes/application_top.php');
@@ -267,7 +266,7 @@ if (zen_not_null($action)) {
                     }
                 }
             }
-// uncomment the following to not include things that cannot go in the cart
+// Uncomment the following to not include things that cannot go in the cart
 //          $not_for_cart = $db->Execute("SELECT p.products_id
 //                                        FROM " . TABLE_PRODUCTS . " p
 //                                        LEFT JOIN " . TABLE_PRODUCT_TYPES . " pt ON p.products_type = pt.type_id
@@ -412,14 +411,14 @@ if (zen_not_null($action)) {
 
                     // order of display
                     $order_by = " order by p.products_model"; //set sort order of table listing
-                    $specials_query_raw = "select p.products_id, p.products_quantity, pd.products_name, p.products_model, p.products_price, p.products_priced_by_attribute,
+                    $specials_query_raw = "SELECT p.products_id, p.products_quantity, pd.products_name, p.products_model, p.products_price, p.products_priced_by_attribute,
                                                   s.specials_id, s.specials_new_products_price, s.specials_date_added, s.specials_last_modified, s.expires_date, s.date_status_change, s.status, s.specials_date_available
-                                           from " . TABLE_PRODUCTS . " p,
+                                           FROM " . TABLE_PRODUCTS . " p,
                                                 " . TABLE_SPECIALS . " s,
                                                 " . TABLE_PRODUCTS_DESCRIPTION . " pd
-                                           where p.products_id = pd.products_id
-                                           and pd.language_id = " . (int)$_SESSION['languages_id'] . "
-                                           and p.products_id = s.products_id" . $search . $order_by;
+                                           WHERE p.products_id = pd.products_id
+                                           AND pd.language_id = " . (int)$_SESSION['languages_id'] . "
+                                           AND p.products_id = s.products_id" . $search . $order_by;
 
                     // Split Page
                     // reset page when page is unknown

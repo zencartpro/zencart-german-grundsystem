@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: perweightunit.php 2022-01-11 16:05:16Z webchills $
+ * @version $Id: perweightunit.php 2022-01-12 09:51:16Z webchills $
  */
 /**
  * "Per Weight Unit" shipping module, allowing you to offer per-unit-rate shipping options
@@ -181,7 +181,8 @@ class perweightunit extends base {
     global $db;
     $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key LIKE  'MODULE\_SHIPPING\_PERWEIGHTUNIT\_%'");
     // www.zen-cart-pro.at german admin languages_id == delete all
-     $db->Execute("delete from " . TABLE_CONFIGURATION_LANGUAGE . " where configuration_key LIKE  'MODULE\_SHIPPING\_PERWEIGHTUNIT\_%'");
+    $db->Execute("delete from " . TABLE_CONFIGURATION_LANGUAGE . " where configuration_key LIKE  'MODULE\_SHIPPING\_PERWEIGHTUNIT\_%'");
+    }
   /**
    * Internal list of configuration keys used for configuration of the module
    *
