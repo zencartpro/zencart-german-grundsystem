@@ -1,15 +1,14 @@
 <?php
 /**
- * password_funcs functions 
+ * password_funcs functions
  *
  * @package functions
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: password_funcs.php 733 2015-12-21 20:25:16Z webchills $
+ * @version $Id: password_funcs.php 2015-12-21 20:25:16Z webchills $
  */
-
 // //
 // This function validates a plain text password with an encrpyted password
 function zen_validate_password($plain, $encrypted, $userRef = NULL)

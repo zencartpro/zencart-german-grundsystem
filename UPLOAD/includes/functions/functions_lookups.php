@@ -9,7 +9,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_lookups.php 778 2021-11-28 20:40:42Z webchills $
+ * @version $Id: functions_lookups.php 2022-01-12 07:35:42Z webchills $
  */
 
 /**
@@ -25,10 +25,11 @@
       $countries_array['countries_name'] = '';
 
       $countries = "SELECT con.countries_name, co.countries_iso_code_2, co.countries_iso_code_3
-                    FROM " . TABLE_COUNTRIES . " co, " . TABLE_COUNTRIES_NAME . " con
-                    WHERE co.countries_id = '" . (int)$countries_id . "'
-                    AND con.countries_id = co.countries_id
-                    AND con.language_id = '" . (int)$_SESSION['languages_id'] . "'";
+                   FROM " . TABLE_COUNTRIES . " co
+                    LEFT JOIN " . TABLE_COUNTRIES_NAME . " con ON con.countries_id = co.countries_id
+                    AND con.language_id = " . (int)$_SESSION['languages_id'] ."
+                    WHERE co.countries_id = " . (int)$countries_id;
+
       if ($activeOnly) $countries .= " AND co.status != 0 ";
       $countries .= " ORDER BY con.countries_name";
 
@@ -48,10 +49,12 @@
     } else {
 
       $countries = "SELECT co.countries_id, con.countries_name
-                    FROM " . TABLE_COUNTRIES . " co, " . TABLE_COUNTRIES_NAME . " con";
-      if ($activeOnly) $countries .= " WHERE co.status != 0 ";
-      $countries .= " AND con.countries_id = co.countries_id";
-      $countries .= " AND con.language_id = '" . (int)$_SESSION['languages_id'] . "'";
+                    FROM " . TABLE_COUNTRIES . " co
+                    LEFT JOIN " . TABLE_COUNTRIES_NAME . " con ON con.countries_id = co.countries_id
+                    AND con.language_id = " . (int)$_SESSION['languages_id'];
+      if ($activeOnly) {
+        $countries .= " WHERE oc.status != 0 ";
+      }
       $countries .= " ORDER BY con.countries_name";
 
       $countries_values = $db->Execute($countries);

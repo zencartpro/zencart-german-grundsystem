@@ -2,12 +2,11 @@
 /**
  * plugin_support.php
  *
- 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: plugin_support.php 6 2021-11-28 18:59:58Z webchills $
+ * @version $Id: plugin_support.php 2021-11-28 18:59:58Z webchills $
  */
 /**
  * Functions to support plugin usage for plugins that DO NOT use the new zc_plugins folder added in v1.5.7

@@ -2,12 +2,11 @@
 /**
  * ezpages functions - used to prepare links for EZ-Pages
  *
- * @package functions
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_ezpages.php 731 2019-07-20 09:11:16Z webchills $
+ * @version $Id: functions_ezpages.php 2022-01-12 07:54:16Z webchills $
  */
 
 
@@ -53,7 +52,7 @@
       $ez_link = ($ez_pages_linkto =='') ?
         zen_href_link(FILENAME_EZPAGES, 'id=' . $ez_pages_id . ((int)$ez_pages_chapter != 0 ? '&chapter=' . $ez_pages_chapter : ''), ($ez_pages_is_ssl=='0' ? 'NONSSL' : 'SSL')) :
         $ez_pages_linkto;
-      $ez_link .= ($ez_pages_open_new_window == '1' ? '" target="_blank' : '');
+      $ez_link .= ($ez_pages_open_new_window == '1' ? '" rel="noopener" target="_blank' : '');
     }
 
     if ($ez_pages_return_full_url == false) {

@@ -3,16 +3,15 @@
  * functions_general.php
  * General functions used throughout Zen Cart
  *
- 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_general.php 807 2021-11-28 19:22:50Z webchills $
+ * @version $Id: functions_general.php 2022-01-12 07:55:50Z webchills $
  */
 /**
  * Stop execution completely
-*/
+ */
   function zen_exit() {
    session_write_close();
    exit();
@@ -542,13 +541,13 @@
     global $db;
     $code = zen_db_prepare_input($code);
 
-    $currency_code = "select code
-                      from " . TABLE_CURRENCIES . "
-                      where code = '" . zen_db_input($code) . "' LIMIT 1";
+    $currency_code = "SELECT code
+                      FROM " . TABLE_CURRENCIES . "
+                      WHERE code = '" . zen_db_input($code) . "' LIMIT 1";
 
-    $currency_first = "select code
-                      from " . TABLE_CURRENCIES . "
-                      order by value ASC LIMIT 1";
+    $currency_first = "SELECT code
+                      FROM " . TABLE_CURRENCIES . "
+                      ORDER BY value ASC LIMIT 1";
 
     $currency = $db->Execute(($getFirstDefault == false) ? $currency_code : $currency_first);
 
@@ -578,7 +577,6 @@
       return mt_rand();
     }
   }
-
 
   /**
    * Determine visitor's IP address, resolving any proxies where possible.
@@ -1098,10 +1096,10 @@ function zen_set_field_length($tbl, $fld, $max = 70)
   function zen_get_country_zones($country_id) {
     global $db;
     $zones_array = array();
-    $zones = $db->Execute("select zone_id, zone_name
-                           from " . TABLE_ZONES . "
-                           where zone_country_id = " . (int)$country_id . "
-                           order by zone_name");
+    $zones = $db->Execute("SELECT zone_id, zone_name
+                           FROM " . TABLE_ZONES . "
+                           WHERE zone_country_id = " . (int)$country_id . "
+                           ORDER BY zone_name");
     foreach ($zones as $zone) {
       $zones_array[] = array('id' => $zone['zone_id'], 'text' => $zone['zone_name']);
     }
@@ -1145,9 +1143,9 @@ function zen_set_field_length($tbl, $fld, $max = 70)
  */
   function zen_js_zone_list($country, $form, $field) {
     global $db;
-    $countries = $db->Execute("select distinct zone_country_id
-                               from " . TABLE_ZONES . "
-                               order by zone_country_id");
+    $countries = $db->Execute("SELECT DISTINCT zone_country_id
+                               FROM " . TABLE_ZONES . "
+                               ORDER BY zone_country_id");
     $num_country = 1;
     $output_string = '';
     while (!$countries->EOF) {
@@ -1157,9 +1155,9 @@ function zen_set_field_length($tbl, $fld, $max = 70)
         $output_string .= '  } else if (' . $country . ' == "' . $countries->fields['zone_country_id'] . '") {' . "\n";
       }
 
-      $states = $db->Execute("select zone_name, zone_id
-                              from " . TABLE_ZONES . "
-                              where zone_country_id = '" . $countries->fields['zone_country_id'] . "'
+      $states = $db->Execute("SELECT zone_name, zone_id
+                              FROM " . TABLE_ZONES . "
+                              WHERE zone_country_id = '" . $countries->fields['zone_country_id'] . "'
                               order by zone_name");
       $num_state = 1;
       while (!$states->EOF) {
@@ -1413,7 +1411,7 @@ function zen_set_field_length($tbl, $fld, $max = 70)
   function zen_update_music_artist_clicked($artistId, $languageId)
   {
     global $db;
-    $sql = "UPDATE " . TABLE_RECORD_ARTISTS_INFO . " set url_clicked = url_clicked +1, date_last_click = NOW() WHERE artists_id = :artistId: AND languages_id = :languageId:";
+    $sql = "UPDATE " . TABLE_RECORD_ARTISTS_INFO . " SET url_clicked = url_clicked +1, date_last_click = NOW() WHERE artists_id = :artistId: AND languages_id = :languageId:";
     $sql = $db->bindVars($sql, ':artistId:', $artistId, 'integer');
     $sql = $db->bindVars($sql, ':languageId:', $languageId, 'integer');
     $db->execute($sql);
@@ -1421,12 +1419,11 @@ function zen_set_field_length($tbl, $fld, $max = 70)
   function zen_update_record_company_clicked($recordCompanyId, $languageId)
   {
     global $db;
-    $sql = "UPDATE " . TABLE_RECORD_COMPANY_INFO . " set url_clicked = url_clicked +1, date_last_click = NOW() WHERE record_company_id = :rcId: AND languages_id = :languageId:";
+    $sql = "UPDATE " . TABLE_RECORD_COMPANY_INFO . " SET url_clicked = url_clicked +1, date_last_click = NOW() WHERE record_company_id = :rcId: AND languages_id = :languageId:";
     $sql = $db->bindVars($sql, ':rcId:', $recordCompanyId, 'integer');
     $sql = $db->bindVars($sql, ':languageId:', $languageId, 'integer');
     $db->execute($sql);
   }
-
 
   /////////////////////////////////////////////
 ////

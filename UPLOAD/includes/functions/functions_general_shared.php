@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_general_shared.php 2 2021-11-28 20:43:14Z webchills $
+ * @version $Id: functions_general_shared.php 2021-11-28 20:43:14Z webchills $
  */ 
 /**
  * Get which Zen Cart version is installed
@@ -30,6 +30,7 @@ function zen_is_whitelisted_admin_ip($ip = null)
     }
     return strpos(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $ip) !== false;
 }
+
 /**
  * Returns a string with conversions for security.
  * @param string The string to be parsed
@@ -38,7 +39,7 @@ function zen_is_whitelisted_admin_ip($ip = null)
 */
   function zen_output_string($string, $translate = false, $protected = false) {
     if ($protected == true) {
-      $double_encode = (IS_ADMIN_FLAG ? FALSE : TRUE); 
+      $double_encode = (IS_ADMIN_FLAG ? FALSE : TRUE);
       return htmlspecialchars($string, ENT_COMPAT, CHARSET, $double_encode);
     } else {
       if ($translate === false) {

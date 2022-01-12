@@ -4,8 +4,9 @@
  *
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Zcwilt 2020 May 20 New in v1.5.7 $
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
+ * @version $Id: QueryBuilder.php 2022-01-11 20:43:16Z webchills $
  */
 
 /**

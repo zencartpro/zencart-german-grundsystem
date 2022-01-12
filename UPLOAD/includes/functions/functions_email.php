@@ -4,13 +4,13 @@
  * Processes all outbound email from Zen Cart
  * Hooks into phpMailer class for actual email encoding and sending
  *
- 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_email.php 2021-12-29 19:22:16Z webchills $
+ * @version $Id: functions_email.php 2022-01-12 07:52:16Z webchills $
  */
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
@@ -100,12 +100,12 @@ use PHPMailer\PHPMailer\SMTP;
       }
 
       //define some additional html message blocks available to templates, then build the html portion.
-      if (is_array($block)) { 
-      if (!isset($block['EMAIL_TO_NAME']) || $block['EMAIL_TO_NAME'] == '')       $block['EMAIL_TO_NAME'] = $to_name;
-      if (!isset($block['EMAIL_TO_ADDRESS']) || $block['EMAIL_TO_ADDRESS'] == '') $block['EMAIL_TO_ADDRESS'] = $to_email_address;
-      if (!isset($block['EMAIL_SUBJECT']) || $block['EMAIL_SUBJECT'] == '')       $block['EMAIL_SUBJECT'] = $email_subject;
-      if (!isset($block['EMAIL_FROM_NAME']) || $block['EMAIL_FROM_NAME'] == '')   $block['EMAIL_FROM_NAME'] = $from_email_name;
-      if (!isset($block['EMAIL_FROM_ADDRESS']) || $block['EMAIL_FROM_ADDRESS'] == '') $block['EMAIL_FROM_ADDRESS'] = $from_email_address;
+      if (is_array($block)) {
+        if (!isset($block['EMAIL_TO_NAME']) || $block['EMAIL_TO_NAME'] == '')       $block['EMAIL_TO_NAME'] = $to_name;
+        if (!isset($block['EMAIL_TO_ADDRESS']) || $block['EMAIL_TO_ADDRESS'] == '') $block['EMAIL_TO_ADDRESS'] = $to_email_address;
+        if (!isset($block['EMAIL_SUBJECT']) || $block['EMAIL_SUBJECT'] == '')       $block['EMAIL_SUBJECT'] = $email_subject;
+        if (!isset($block['EMAIL_FROM_NAME']) || $block['EMAIL_FROM_NAME'] == '')   $block['EMAIL_FROM_NAME'] = $from_email_name;
+        if (!isset($block['EMAIL_FROM_ADDRESS']) || $block['EMAIL_FROM_ADDRESS'] == '') $block['EMAIL_FROM_ADDRESS'] = $from_email_address;
       }
       $email_html = (!is_array($block) && substr($block, 0, 6) == '<html>') ? $block : zen_build_html_email_from_template($module, $block);
       if (!is_array($block) && ($block == '' || $block == 'none')) $email_html = '';
@@ -159,10 +159,11 @@ use PHPMailer\PHPMailer\SMTP;
       // eof: body of the email clean-up
 
       //determine customer's email preference type: HTML or TEXT-ONLY  (HTML assumed if not specified)
-      $sql = "select customers_email_format from " . TABLE_CUSTOMERS . " where customers_email_address= :custEmailAddress:";
+      $sql = "SELECT customers_email_format FROM " . TABLE_CUSTOMERS . " WHERE customers_email_address= :custEmailAddress:";
       $sql = $db->bindVars($sql, ':custEmailAddress:', $to_email_address, 'string');
       $result = $db->Execute($sql);
       $customers_email_format = ($result->RecordCount() > 0) ? $result->fields['customers_email_format'] : '';
+      
       /**
        * Valid formats: 
        * HTML - if HTML content has been provided/prepared, it will be used. EMAIL_USE_HTML must be set to true in configs
@@ -419,9 +420,9 @@ use PHPMailer\PHPMailer\SMTP;
     $module = zen_db_prepare_input($module);
     $error_msgs = zen_db_prepare_input($error_msgs);
 
-    $db->Execute("insert into " . TABLE_EMAIL_ARCHIVE . "
+    $db->Execute("INSERT INTO " . TABLE_EMAIL_ARCHIVE . "
                   (email_to_name, email_to_address, email_from_name, email_from_address, email_subject, email_html, email_text, date_sent, module)
-                  values ('" . zen_db_input($to_name) . "',
+                  VALUES ('" . zen_db_input($to_name) . "',
                           '" . zen_db_input($to_email_address) . "',
                           '" . zen_db_input($from_email_name) . "',
                           '" . zen_db_input($from_email_address) . "',
@@ -449,6 +450,7 @@ use PHPMailer\PHPMailer\SMTP;
           'welcome',
       ));
   }
+
   //DEFINE EMAIL-ARCHIVABLE-MODULES LIST // this array will likely be used by the email archive log VIEWER module in future
   $emodules_array = array();
   $emodules_array[] = array('id' => 'newsletters', 'text' => 'Newsletters');
@@ -574,7 +576,7 @@ use PHPMailer\PHPMailer\SMTP;
     if (!isset($block['EMAIL_STORE_URL']) || $block['EMAIL_STORE_URL'] == '')       $block['EMAIL_STORE_URL']   = '<a href="'.HTTP_CATALOG_SERVER . DIR_WS_CATALOG.'">'.STORE_NAME.'</a>';
     if (!isset($block['EMAIL_STORE_OWNER']) || $block['EMAIL_STORE_OWNER'] == '')   $block['EMAIL_STORE_OWNER'] = STORE_OWNER;
     if (!isset($block['EMAIL_FOOTER_COPYRIGHT']) || $block['EMAIL_FOOTER_COPYRIGHT'] == '') $block['EMAIL_FOOTER_COPYRIGHT'] = EMAIL_FOOTER_COPYRIGHT;
-    if (!isset($block['EMAIL_DISCLAIMER']) || $block['EMAIL_DISCLAIMER'] == '')     $block['EMAIL_DISCLAIMER']  = sprintf(EMAIL_DISCLAIMER, '<a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS . '">'. STORE_OWNER_EMAIL_ADDRESS .' </a>');
+    if (!isset($block['EMAIL_DISCLAIMER']) || $block['EMAIL_DISCLAIMER'] == '')     $block['EMAIL_DISCLAIMER']  = sprintf(EMAIL_DISCLAIMER, '<a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS . '">'. STORE_OWNER_EMAIL_ADDRESS .'</a>');
     if (!isset($block['EMAIL_SPAM_DISCLAIMER']) || $block['EMAIL_SPAM_DISCLAIMER'] == '')   $block['EMAIL_SPAM_DISCLAIMER']  = EMAIL_SPAM_DISCLAIMER;
     if (!isset($block['EMAIL_DATE_SHORT']) || $block['EMAIL_DATE_SHORT'] == '')     $block['EMAIL_DATE_SHORT']  = zen_date_short(date("Y-m-d"));
     if (!isset($block['EMAIL_DATE_LONG']) || $block['EMAIL_DATE_LONG'] == '')       $block['EMAIL_DATE_LONG']   = zen_date_long(date("Y-m-d"));
@@ -593,7 +595,7 @@ use PHPMailer\PHPMailer\SMTP;
     $block['GV_BLOCK'] = '';
       if ( (isset($block['GV_ANNOUNCE']) && $block['GV_ANNOUNCE'] != '') && (isset($block['GV_REDEEM']) && $block['GV_REDEEM'] != '') ) {
           $block['GV_BLOCK'] = '<div class="gv-block">' . $block['GV_ANNOUNCE'] . '<br />' . $block['GV_REDEEM'] . '</div>';
-    }
+      }
 
     //prepare the "unsubscribe" link:
     if (IS_ADMIN_FLAG === true) { // is this admin version, or catalog?
@@ -807,9 +809,9 @@ use PHPMailer\PHPMailer\SMTP;
    */
   function zen_get_email_from_customers_id($customers_id) {
     global $db;
-    $customers_values = $db->Execute("select customers_email_address
-                               from " . TABLE_CUSTOMERS . "
-                               where customers_id = '" . (int)$customers_id . "'");
+    $customers_values = $db->Execute("SELECT customers_email_address
+                               FROM " . TABLE_CUSTOMERS . "
+                               WHERE customers_id = '" . (int)$customers_id . "'");
     if ($customers_values->EOF) return '';
     return $customers_values->fields['customers_email_address'];
   }
@@ -818,7 +820,7 @@ use PHPMailer\PHPMailer\SMTP;
     if (is_string($string)) {
       return trim(stripslashes($string));
     } elseif (is_array($string)) {
-      foreach ($string as $key => $value) { 
+      foreach ($string as $key => $value) {
         $string[$key] = zen_db_prepare_input($value);
       }
     }

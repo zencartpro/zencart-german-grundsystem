@@ -3,17 +3,19 @@
  * Zen Cart German Specific
  * Module Template - for shipping-estimator display
  *
- * @package templateSystem
+
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_shipping_estimator.php 2019-11-18 20:49:16Z webchills $
+ * @version $Id: tpl_modules_shipping_estimator.php 2022-01-11 07:43:16Z webchills $
  */
 ?>
 <div id="shippingEstimatorContent">
 <?php echo zen_draw_form('estimator', zen_href_link($show_in . '#view', '', $request_type), 'post'); ?>
-<?php echo zen_draw_hidden_field('scid', $selected_shipping['id']); ?>
+<?php if (is_array($selected_shipping)) {
+    zen_draw_hidden_field('scid', $selected_shipping['id']);
+} ?>
 <?php echo zen_draw_hidden_field('action', 'submit'); ?>
 <?php
   if($_SESSION['cart']->count_contents()) {
@@ -87,7 +89,7 @@
     }else{
 ?>
 <table id="seQuoteResults">
-<?php if (!zen_is_logged_in() || zen_in_guest_checkout()){ ?>
+<?php if (!zen_is_logged_in() || zen_in_guest_checkout()) { ?>
     <tr>
       <td colspan="2" class="seDisplayedAddressLabel">
         <?php echo CART_SHIPPING_QUOTE_CRITERIA; ?><br />

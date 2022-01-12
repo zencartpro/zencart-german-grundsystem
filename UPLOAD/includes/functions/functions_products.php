@@ -4,12 +4,11 @@
  * Functions related to products
  * Note: Several product-related lookup functions are located in functions_lookups.php
  *
- 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_products.php 2 2021-11-28 20:43:14Z webchills $
+ * @version $Id: functions_products.php 2021-11-28 20:43:14Z webchills $
  */
 
 /**
@@ -102,6 +101,7 @@ function zen_product_set_header_response($product_id, $product_info = null)
 
     if ($response_code === 200) return;
 }
+
 function zen_set_disabled_upcoming_status($products_id, $status) {
     $sql = "UPDATE " . TABLE_PRODUCTS . "
             SET products_status = " . (int)$status . ", products_date_available = NULL WHERE products_id = " . (int)$products_id;

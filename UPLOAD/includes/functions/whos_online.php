@@ -3,14 +3,12 @@
  * Zen Cart German Specific
  * whos_online functions
  *
- 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: whos_online.php 734 2021-11-28 20:49:16Z webchills $
+ * @version $Id: whos_online.php 2022-01-12 08:03:16Z webchills $
  */
-
 function zen_update_whos_online()
 {
     // exclude ajax pages from whos-online updates
@@ -35,48 +33,48 @@ function zen_update_whos_online()
 
     $wo_session_id = zen_session_id();
     $wo_ip_address = substr(isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'Unknown', 0, 45);
-  $wo_user_agent = substr(zen_db_prepare_input(isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : ''), 0, 254);
+    $wo_user_agent = substr(zen_db_prepare_input(isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : ''), 0, 254);
 
-	$_SERVER['QUERY_STRING'] = (isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] != '') ? $_SERVER['QUERY_STRING'] : zen_get_all_get_params();
-  if (isset($_SERVER['REQUEST_URI'])) {
-    $uri = $_SERVER['REQUEST_URI'];
-   } else {
-    if (isset($_SERVER['QUERY_STRING'])) {
-     $uri = $_SERVER['SCRIPT_NAME'] .'?'. $_SERVER['QUERY_STRING'];
+    $_SERVER['QUERY_STRING'] = (isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] != '') ? $_SERVER['QUERY_STRING'] : zen_get_all_get_params();
+    if (isset($_SERVER['REQUEST_URI'])) {
+        $uri = $_SERVER['REQUEST_URI'];
     } else {
-     $uri = $_SERVER['SCRIPT_NAME'] .'?'. $_SERVER['argv'][0];
+        if (isset($_SERVER['QUERY_STRING'])) {
+            $uri = $_SERVER['SCRIPT_NAME'] . '?' . $_SERVER['QUERY_STRING'];
+        } else {
+            $uri = $_SERVER['SCRIPT_NAME'] . '?' . $_SERVER['argv'][0];
+        }
     }
-  }
-  if (substr($uri, -1)=='?') $uri = substr($uri,0,strlen($uri)-1);
-  $wo_last_page_url = (zen_not_null($uri) ? substr($uri, 0, 254) : 'Unknown');
+    if (substr($uri, -1) == '?') $uri = substr($uri, 0, strlen($uri) - 1);
+    $wo_last_page_url = (zen_not_null($uri) ? substr($uri, 0, 254) : 'Unknown');
   // MailBeez
   // avoid /mailhive.php?cron_simple=1 in who is online table
   if (preg_match("/mailhive.php/", $wo_last_page_url)) {
    return false;
   }
   // - MailBeez
-  $current_time = time();
-  $xx_mins_ago = ($current_time - 900);
+    $current_time = time();
+    $xx_mins_ago = ($current_time - 900);
 
-  // remove entries that have expired
-  $sql = "delete from " . TABLE_WHOS_ONLINE . "
-          where time_last_click < '" . $xx_mins_ago . "'";
+    // remove entries that have expired
+    $sql = "DELETE FROM " . TABLE_WHOS_ONLINE . "
+            WHERE time_last_click < '" . $xx_mins_ago . "'";
 
-  $db->Execute($sql);
+    $db->Execute($sql);
 
-  $stored_customer_query = "select count(*) as count
-                              from " . TABLE_WHOS_ONLINE . "
-                              where session_id = '" . zen_db_input($wo_session_id) . "' and ip_address='" . zen_db_input($wo_ip_address) . "'";
+    $stored_customer_query = "SELECT count(*) as count
+                              FROM " . TABLE_WHOS_ONLINE . "
+                              WHERE session_id = '" . zen_db_input($wo_session_id) . "' AND ip_address='" . zen_db_input($wo_ip_address) . "'";
 
-  $stored_customer = $db->Execute($stored_customer_query);
+    $stored_customer = $db->Execute($stored_customer_query);
 
-  if (empty($wo_session_id)) {
-    $wo_full_name = '&yen;' . 'Spider';
-  }
+    if (empty($wo_session_id)) {
+        $wo_full_name = '&yen;' . 'Spider';
+    }
 
-  if ($stored_customer->fields['count'] > 0) {
-    $sql = "update " . TABLE_WHOS_ONLINE . "
-              set customer_id = '" . (int)$wo_customer_id . "',
+    if ($stored_customer->fields['count'] > 0) {
+        $sql = "UPDATE " . TABLE_WHOS_ONLINE . "
+                SET customer_id = '" . (int)$wo_customer_id . "',
                   full_name = '" . zen_db_input($wo_full_name) . "',
                   ip_address = '" . zen_db_input($wo_ip_address) . "',
                   time_last_click = '" . zen_db_input($current_time) . "',
