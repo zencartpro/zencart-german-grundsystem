@@ -6,7 +6,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  
- * @version $Id: page_not_found.php 627 2010-08-30 15:05:14Z webchills $
+ * @version $Id: page_not_found.php 2010-08-30 15:05:14Z webchills $
  */
 
 define('NAVBAR_TITLE', 'ERROR 404 - Seite nicht gefunden');

@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: whos_online.php 294 2015-12-23 19:28:14Z webchills $
+ * @version $Id: whos_online.php 2015-12-23 19:28:14Z webchills $
  */
  
 define('BOX_HEADING_WHOS_ONLINE','Wer ist online');

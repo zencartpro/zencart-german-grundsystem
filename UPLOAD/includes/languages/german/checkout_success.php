@@ -1,12 +1,12 @@
 <?php
 /**
- * @package languageDefines
+ 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  
- * @version $Id: checkout_success.php 629 2020-03-01 08:39:14Z webchills $
+ * @version $Id: checkout_success.php 2022-01-14 19:05:14Z webchills $
  */
 
 define('NAVBAR_TITLE_1','Kasse');
@@ -16,6 +16,7 @@ define('HEADING_TITLE','Vielen Dank! Wir haben Ihre Bestellung erhalten.');
 
 define('TEXT_SUCCESS','');
 define('TEXT_NOTIFY_PRODUCTS','Bitte informieren Sie mich über Updates zu diesem Artikel:');
+// Still used by some older templates
 define('TEXT_SEE_ORDERS','Sie können Ihre Bestellhistorie unter <a href="' . zen_href_link(FILENAME_ACCOUNT, '', 'SSL') . '">\'Mein Konto\'</a> ansehen.');
 define('TEXT_CONTACT_STORE_OWNER','Sollten Sie Fragen haben, wenden Sie sich bitte an unseren  <a href="' . zen_href_link(FILENAME_CONTACT_US) . '"> Kunden Service</a>.');
 define('TEXT_THANKS_FOR_SHOPPING','<strong>Vielen Dank für Ihre Onlinebestellung!</strong>');
@@ -30,7 +31,6 @@ define('TEXT_CHECKOUT_LOGOFF_GUEST', '<p><strong>ANMERKUNG:</strong> Um Ihren Au
 define('TEXT_CHECKOUT_LOGOFF_CUSTOMER', 'Vielen Dank für Ihren Einkauf! Bitte melden Sie sich vor Verlassen des Shops ab, um sicherzugehen das Informationen über Ihren Aufenthalt in unserem Shop nicht für die nächste Person sichtbar sind, die diesen Computer verwendet.');
 define('HEADING_ORDER_NUMBER', 'Bestellnummer %s');
 define('HEADING_ORDER_DATE', 'Bestelldatum:');
-define('HEADING_ORDER_TOTAL', 'Gesamtsumme:');
 
 define('HEADING_DELIVERY_ADDRESS', 'Lieferadresse');
 define('HEADING_SHIPPING_METHOD', 'Versandart');
@@ -44,9 +44,8 @@ define('HEADING_BILLING_ADDRESS', 'Rechnungsadresse');
 define('HEADING_PAYMENT_METHOD', 'Zahlungsart');
 
 define('HEADING_ORDER_HISTORY', 'Bestellhistorie &amp; Kommentare');
-define('TEXT_NO_COMMENTS_AVAILABLE', 'keine Kommentare');
 define('TABLE_HEADING_STATUS_DATE', 'Datum');
 define('TABLE_HEADING_STATUS_ORDER_STATUS', 'Bestellstatus');
 define('TABLE_HEADING_STATUS_COMMENTS', 'Kommentare');
-define('QUANTITY_SUFFIX', '&nbsp;  ');
+define('QUANTITY_SUFFIX', '&nbsp;Stück  ');
 define('ORDER_HEADING_DIVIDER', '&nbsp;-&nbsp;');

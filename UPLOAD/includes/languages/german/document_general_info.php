@@ -1,12 +1,10 @@
 <?php
 /**
- * @package languageDefines
- * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0 
- * @version $Id: document_general_info.php 629 2020-03-01 08:45:14Z webchills $
+ * @version $Id: document_general_info.php 2022-01-14 19:11:14Z webchills $
  */
 
 define('TEXT_PRODUCT_NOT_FOUND', 'Entschuldigen Sie bitte, aber der gewünschte Artikel konnte nicht gefunden werden.');
@@ -20,14 +18,10 @@ define('TEXT_PRODUCT_MANUFACTURER', 'Hergestellt von: ');
 define('TEXT_PRODUCT_WEIGHT', 'Versandgewicht: ');
 define('TEXT_PRODUCT_QUANTITY', ' Einheiten auf Lager');
 
-define('TEXT_XSELL_PRODUCTS', 'Zu diesem Artikel empfehlen wir...');
+
 
 // previous next product
 define('PREV_NEXT_PRODUCT', 'Artikel ');
-define('PREV_NEXT_FROM', ' von ');
-define('IMAGE_BUTTON_PREVIOUS','Vorheriger Artikel');
-define('IMAGE_BUTTON_NEXT','Nächster Artikel');
-define('IMAGE_BUTTON_RETURN_TO_PRODUCT_LIST','Zurück zur Artikelliste');
 
 // missing products
 //define('TABLE_HEADING_NEW_PRODUCTS', 'New Products For %s');

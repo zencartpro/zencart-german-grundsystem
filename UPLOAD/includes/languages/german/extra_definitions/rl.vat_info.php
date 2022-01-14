@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: rl.vat_info.php 657 2014-04-12 15:45:57Z webchills $
+ * @version $Id: rl.vat_info.php 2014-04-12 15:45:57Z webchills $
  */
 
 define('VAT_SHOW_TEXT_VERSANDKOSTENFREI','<br><span class="taxAddon">inkl. %s MwSt.</span>');

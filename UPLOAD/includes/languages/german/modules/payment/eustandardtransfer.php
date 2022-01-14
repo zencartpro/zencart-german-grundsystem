@@ -4,7 +4,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: eustandardtransfer.php 574 2015-12-23 20:36:14 webchills $
+ * @version $Id: eustandardtransfer.php 2015-12-23 20:36:14 webchills $
 */
 define('MODULE_PAYMENT_EUTRANSFER_TEXT_TITLE', 'Vorkasse/Banküberweisung');
 

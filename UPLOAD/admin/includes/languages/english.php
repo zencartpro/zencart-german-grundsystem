@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: english.php 2021-11-30 20:50:32Z webchills $
+ * @version $Id: english.php 2022-01-14 17:50:32Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -17,8 +17,8 @@ define('CONNECTION_TYPE_UNKNOWN', '\'%s\' is not a valid connection type for gen
 
 // added defines for header alt and text
 define('HEADER_ALT_TEXT', 'Admin Powered by Zen-Cart 1.5.7 - German version');
-define('HEADER_LOGO_WIDTH', '240px');
-define('HEADER_LOGO_HEIGHT', '70px');
+define('HEADER_LOGO_WIDTH', '240');
+define('HEADER_LOGO_HEIGHT', '70');
 define('HEADER_LOGO_IMAGE', 'logo.gif');
 define('TEXT_PASSWORD_LAST_CHANGE', 'Password changed on:&nbsp;');
 define('TEXT_LAST_LOGIN_INFO', 'Last login date [IP]:&nbsp;');
@@ -175,7 +175,6 @@ define('BOX_REPORTS_CUSTOMERS_REFERRALS', 'Customers Referral');
 // tools text
 define('BOX_HEADING_TOOLS', 'Tools');
 define('BOX_TOOLS_TEMPLATE_SELECT', 'Template Selection');
-define('BOX_TOOLS_BACKUP', 'Database Backup');
 define('BOX_TOOLS_BANNER_MANAGER', 'Banner Manager');
 define('BOX_TOOLS_MAIL', 'Send Email');
 define('BOX_TOOLS_NEWSLETTER_MANAGER', 'Newsletter and Product Notifications Manager');
@@ -287,7 +286,6 @@ define('ERROR_TOKEN_EXPIRED_PLEASE_RESUBMIT', 'ERROR: Sorry, there was an error 
 // images
 //define('IMAGE_ANI_SEND_EMAIL', 'Sending E-Mail');
 define('IMAGE_BACK', 'Back');
-define('IMAGE_BACKUP', 'Backup');
 define('IMAGE_CANCEL', 'Cancel');
 define('IMAGE_CONFIRM', 'Confirm');
 define('IMAGE_COPY', 'Copy');
@@ -330,7 +328,6 @@ define('IMAGE_ORDERS_INVOICE', 'Invoice');
 define('IMAGE_ORDERS_PACKINGSLIP', 'Packing Slip');
 
 define('IMAGE_PREVIEW', 'Preview');
-define('IMAGE_RESTORE', 'Restore');
 define('IMAGE_RESET', 'Reset');
 define('IMAGE_RESET_PWD', 'Reset Password');
 define('IMAGE_SAVE', 'Save');

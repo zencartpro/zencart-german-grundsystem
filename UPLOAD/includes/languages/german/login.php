@@ -7,7 +7,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  
- * @version $Id: login.php 629 2019-06-24 19:05:14Z webchills $
+ * @version $Id: login.php 2019-06-24 19:05:14Z webchills $
  */
 
 define('NAVBAR_TITLE','Anmelden');

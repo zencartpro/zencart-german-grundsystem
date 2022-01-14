@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: button_names.php 2021-12-27 21:11:14Z webchills $
+ * @version $Id: button_names.php 2022-01-14 19:11:14Z webchills $
  */
 
 
@@ -59,7 +59,7 @@ define('BUTTON_IMAGE_ASK_A_QUESTION', 'button_ask_a_question.gif');
 define('BUTTON_IMAGE_CREATE_ACCOUNT', 'button_create_account.gif');
 define('BUTTON_IMAGE_LOG_OFF', 'button_logoff.gif');
 /*
- * ALT tags used for buttons (text used for CSS buttons)
+ * ALT text is used as Button Text, or for the ALT tag on image-buttons
  */
  
 define('BUTTON_CREATE_ACCOUNT_ALT', 'Neues Konto erstellen');

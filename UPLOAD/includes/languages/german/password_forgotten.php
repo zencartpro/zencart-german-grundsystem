@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0 
- * @version $Id: password_forgotten.php 628 2018-04-01 10:05:14Z webchills $
+ * @version $Id: password_forgotten.php 2018-04-01 10:05:14Z webchills $
  */
 
 define('NAVBAR_TITLE_1','Anmelden');

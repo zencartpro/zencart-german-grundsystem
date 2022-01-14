@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0 
- * @version $Id: ot_gropu_pricing.php 294 2015-12-23 20:05:14Z webchills $
+ * @version $Id: ot_gropu_pricing.php 2015-12-23 20:05:14Z webchills $
  */
 
 define('MODULE_ORDER_TOTAL_GROUP_PRICING_TITLE', 'Gruppenermäßigung');

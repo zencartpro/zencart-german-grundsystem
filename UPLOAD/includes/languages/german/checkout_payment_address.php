@@ -1,12 +1,12 @@
 <?php
 /**
- * @package languageDefines
+ 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  
- * @version $Id: checkout_payment_address.php 627 2010-08-30 15:05:14Z webchills $
+ * @version $Id: checkout_payment_address.php 2022-01-14 19:05:14Z webchills $
  */
 
 
@@ -19,8 +19,7 @@ define('TABLE_HEADING_PAYMENT_ADDRESS','Rechnungsanschrift');
 define('TEXT_SELECTED_PAYMENT_DESTINATION','Dies ist Ihre derzeitige Rechnungsanschrift.');
 define('TITLE_PAYMENT_ADDRESS','<strong>Rechnungsanschrift:</strong>');
 
-define('TEXT_SELECT_OTHER_PAYMENT_DESTINATION','Bitte wählen Sie eine andere Rechnungsanschrift, wenn diese von der Lieferanschrift abweicht.');
-define('TITLE_PLEASE_SELECT','Bitte wählen Sie');
+define('TITLE_PLEASE_SELECT','Ändern Sie die Rechnungsadresse für diese Bestellung');
 
 define('TABLE_HEADING_NEW_PAYMENT_ADDRESS','...oder wählen Sie eine Anschrift aus Ihrem Adressbuch');
 

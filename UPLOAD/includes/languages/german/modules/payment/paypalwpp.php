@@ -1,12 +1,12 @@
 <?php
 /**
 * Zen Cart German Specific
-* @package languageDefines
+
 * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: paypalwpp.php 715 2020-02-08 10:57:24Z webchills $
+* @version $Id: paypalwpp.php 2022-01-14 19:57:24Z webchills $
 */
 
 define('MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_EC', 'PayPal Express');
@@ -156,8 +156,6 @@ define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_TITLE', '<strong>Bestell Autorisation</
 define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_PARTIAL_TEXT', 'Wollen Sie einen Teil dieser Bestellungen authorisieren, dann tragen Sie den Betrag hier ein:');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_BUTTON_TEXT_PARTIAL', 'Autorisieren');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_SUFFIX', '');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_TEXT_COMMENTS', '<strong>Hinweis für den Kunden:</strong>');
-define('MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_DEFAULT_MESSAGE', 'Rückerstattet vom Shopinhaber.');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_TITLE', '<strong>Autorisationen Abfangen</strong>');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_FULL', 'Wenn Sie alle oder einen Teil der ausstehenden Autorisationen für diesen Auftrag abfangen wollen, dann geben sie bitte den gewünschten Betrag ein. Bitte machen Sie auch einen Haken in die Bestätigung Checkbox, bevor Sie auf den Button Abfangen klicken..<br />');
 define('MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_BUTTON_TEXT_FULL', 'Abfangen');

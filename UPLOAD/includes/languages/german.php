@@ -1,12 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
- 
+ * Zen Cart German Specific 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2022-01-14 15:54:57Z webchills $
+ * @version $Id: german.php 2022-01-14 19:11:57Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -381,6 +380,9 @@ define('TEXT_PRODUCT_WEIGHT_UNIT','kg');
 // Shipping
 define('TEXT_SHIPPING_WEIGHT','kg');
 define('TEXT_SHIPPING_BOXES', 'Pakete');
+
+// Cross Sell
+define('TEXT_XSELL_PRODUCTS', 'Zu diesem Artikel empfehlen wir...');
 
 // Discount Savings
 define('PRODUCT_PRICE_DISCOUNT_PREFIX', 'Sie sparen ');

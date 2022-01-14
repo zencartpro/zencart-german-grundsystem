@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: product_free_shipping 658 2019-05-09 09:45:57Z webchills $
+ * @version $Id: product_free_shipping 2019-05-09 09:45:57Z webchills $
  */
 
 // defined as an image, text or a combination for Always Free Shipping

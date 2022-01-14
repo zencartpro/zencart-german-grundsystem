@@ -1,12 +1,12 @@
 <?php
 /**
  * Zen Cart German Specific
-* @package languageDefines
+ 
 * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: index.php 3 2020-03-01 09:00:16Z webchills $
+* @version $Id: index.php 2020-03-01 09:00:16Z webchills $
 */
 
 define('TEXT_MAIN','Definieren Sie hier Ihren persönlichen Text. Diesen Text können Sie in <strong>/includes/languages/german/responsive_classic/index.php</strong> editieren.');

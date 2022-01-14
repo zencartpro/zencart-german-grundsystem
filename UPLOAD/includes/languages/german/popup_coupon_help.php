@@ -1,14 +1,13 @@
 <?php
 /**
- * @package languageDefines
+ 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: popup_coupon_help.php 295 2019-05-09 09:28:14Z webchills $
+ * @version $Id: popup_coupon_help.php 2022-01-14 19:28:14Z webchills $
  */
 
-define('HEADING_COUPON_HELP','Aktionskupon Hilfe');
 define('TEXT_CLOSE_WINDOW','Fenster schließen [x]');
 define('TEXT_COUPON_HELP_HEADER','Herzlichen Glückwunsch! Sie haben Ihren Aktionskupon erfolgreich eingelöst.');
 define('TEXT_COUPON_HELP_NAME','<br /><br />Name des Aktionskupons: %s');
@@ -20,8 +19,7 @@ define('TEXT_COUPON_HELP_DATE','<br /><br />Dieser Aktionskupon ist von %s bis %
 define('TEXT_COUPON_HELP_RESTRICT','<br /><br />Artikel-/Kategoriebeschränkungen');
 define('TEXT_COUPON_HELP_CATEGORIES','Kategorie');
 define('TEXT_COUPON_HELP_PRODUCTS','Artikel');
-define('TEXT_ALLOW','erlauben');
-define('TEXT_DENY','verbieten');
+
 define('TEXT_ALLOWED', ' (erlaubt)');
 define('TEXT_DENIED', ' (nicht erlaubt)');
 

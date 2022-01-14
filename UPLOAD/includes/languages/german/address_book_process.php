@@ -1,11 +1,11 @@
 <?php
 /**
- * @package languageDefines
+
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: address_book_process.php 628 2015-06-01 09:05:14Z webchills $
+ * @version $Id: address_book_process.php 2022-01-14 17:05:14Z webchills $
  */
 
 define('NAVBAR_TITLE_1','Mein Konto');
@@ -17,10 +17,9 @@ define('HEADING_TITLE_ADD_ENTRY','Neuer Eintrag ins Adressbuch');
 define('HEADING_TITLE_MODIFY_ENTRY','Eintrag im Adressbuch aktualisieren');
 define('HEADING_TITLE_DELETE_ENTRY','Eintrag im Adressbuch löschen');
 define('HEADING_TITLE', 'Adress Details');
-define('DELETE_ADDRESS_TITLE','Anschrift löschen');
+
 define('DELETE_ADDRESS_DESCRIPTION','Sind Sie sicher dass Sie diese Anschrift aus Ihrem Adressbuch löschen wollen?');
-define('NEW_ADDRESS_TITLE','Neuer Eintrag ins Adressbuch');
-define('SELECTED_ADDRESS','Ausgewählte Anschrift:');
+
 define('SET_AS_PRIMARY','Als Hauptanschrift benutzen.');
 define('SUCCESS_ADDRESS_BOOK_ENTRY_DELETED','Die ausgewählte Anschrift wurde erfolgreich gelöscht.');
 define('SUCCESS_ADDRESS_BOOK_ENTRY_UPDATED','Ihr Adressbuch wurde erfolgreich aktualisiert.');

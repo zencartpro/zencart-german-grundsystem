@@ -7,7 +7,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  
- * @version $Id: header.php 629 2018-01-02 18:05:14Z webchills $
+ * @version $Id: header.php 2022-01-14 19:43:14Z webchills $
  */
 
 // header text in includes/header.php
@@ -21,7 +21,7 @@ define('HEADER_TITLE_LOGOFF','Abmelden');
 define('HEADER_TITLE_LOGIN','Anmelden');
 
 // added defines for header alt and text
-define('HEADER_ALT_TEXT', 'Powered by Zen Cart 1.5.6 - deutsche Version');
+define('HEADER_ALT_TEXT', 'Powered by Zen Cart 1.5.67- deutsche Version');
 define('HEADER_SALES_TEXT', '');
 define('HEADER_LOGO_WIDTH', '257px');
 define('HEADER_LOGO_HEIGHT', '68px');

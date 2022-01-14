@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: cardinal3dsecure.php 593 2017-03-20 21:11:24Z webchills $
+* @version $Id: cardinal3dsecure.php 2017-03-20 21:11:24Z webchills $
 */
 define('WARNING_SESSION_TIMEOUT', 'Es tut uns leid, aber Ihre Session ist abgelaufen. Ihre Artikelauswahl wurde gespeichert.<br /><br />Gehen Sie mit dem Link Home (falls oben sichtbar) zurück und loggen Sie sich erneut ein, um Ihren Warenkorb zu sehen und Ihre Bestellung abzuschliessen.<br /><br />Falls Sie auf diese Seite nach Nutzung des Zurück Buttons in Ihrem Browser gekommen sind, verwenden Sie den Vorwärts Button in Ihrem Browser um wieder zum Home Link zu gelangen. Vielen Dank!');
 define('ERROR_PAYMENT_FAILURE_TEXT', 'Ihre Zahlung konnte nicht abgeschlossen werden. Bitte wählen Sie eine andere Art der Zahlung.');

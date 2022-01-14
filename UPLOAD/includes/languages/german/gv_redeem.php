@@ -6,7 +6,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  
- * @version $Id: gv_redeem.php 629 2019-05-09 09:05:14Z webchills $
+ * @version $Id: gv_redeem.php 2019-05-09 09:05:14Z webchills $
  */
 
 define('NAVBAR_TITLE', 'Geschenkgutschein einlösen ');
