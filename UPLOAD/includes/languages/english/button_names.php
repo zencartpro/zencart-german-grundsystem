@@ -5,14 +5,13 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: button_names.php 2021-12-27 21:10:24Z webchills $
+ * @version $Id: button_names.php 2022-01-14 16:10:24Z webchills $
  */
 
 
 /**
  * define the button images used in the project
  */
-
 
 define('BUTTON_IMAGE_ADD_ADDRESS', 'button_add_address.gif');
 define('BUTTON_IMAGE_ADD_PRODUCTS_TO_CART','button_add_selected.gif');
@@ -32,7 +31,6 @@ define('BUTTON_IMAGE_DOWNLOAD', 'button_download.gif');
 define('BUTTON_IMAGE_EDIT_SMALL', 'small_edit.gif');
 define('BUTTON_IMAGE_IN_CART', 'button_in_cart.gif');
 define('BUTTON_IMAGE_LOGIN', 'button_login.gif');
-
 define('BUTTON_IMAGE_MY_ORDERS', 'button_my_orders.gif');
 define('BUTTON_IMAGE_NEXT', 'button_next.gif');
 define('BUTTON_IMAGE_PREVIOUS', 'button_prev.gif');
@@ -62,7 +60,7 @@ define('BUTTON_IMAGE_ASK_A_QUESTION', 'button_ask_a_question.gif');
 define('BUTTON_IMAGE_CREATE_ACCOUNT', 'button_create_account.gif');
 define('BUTTON_IMAGE_LOG_OFF', 'button_logoff.gif');
 /*
- * ALT tags used for buttons (text used for CSS buttons)
+ * ALT text is used as Button Text, or for the ALT tag on image-buttons
  */
  
 define('BUTTON_CREATE_ACCOUNT_ALT', 'Sign Up');
@@ -105,7 +103,7 @@ define('BUTTON_UPDATE_ALT', 'Update');
 define('BUTTON_VIEW_SMALL_ALT', 'View');
 define('BUTTON_WRITE_REVIEW_ALT', 'Write Review');
 define('BUTTON_READ_REVIEWS_ALT', 'Read the Review');
-define('BUTTON_GOTO_PROD_DETAILS_ALT', 'Detailed Information');
+define('BUTTON_GOTO_PROD_DETAILS_ALT', 'Product Details');
 define('BUTTON_MORE_REVIEWS_ALT', 'Read More Reviews');
 define('BUTTON_VIEW_ALL_ALT', 'View All');
 define('BUTTON_ASK_A_QUESTION_ALT', 'Ask a Question');

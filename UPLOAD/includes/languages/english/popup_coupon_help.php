@@ -1,14 +1,13 @@
 <?php
 /**
- * @package languageDefines
+ 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: popup_coupon_help.php 732 2019-06-15 18:49:16Z webchills $
+ * @version $Id: popup_coupon_help.php 2022-01-14 16:49:16Z webchills $
  */
 
-define('HEADING_COUPON_HELP', 'Discount Coupon Help');
 define('TEXT_CLOSE_WINDOW', 'Close Window [x]');
 define('TEXT_COUPON_HELP_HEADER', '<strong>The Discount Coupon Redemption Code you have entered is for</strong> ');
 define('TEXT_COUPON_HELP_NAME', '<br /><br />Coupon Name : %s');
@@ -20,8 +19,6 @@ define('TEXT_COUPON_HELP_DATE', '<br /><br />The coupon is valid between %s and 
 define('TEXT_COUPON_HELP_RESTRICT', '<br /><br />Product/Category Restrictions');
 define('TEXT_COUPON_HELP_CATEGORIES', 'Category');
 define('TEXT_COUPON_HELP_PRODUCTS', 'Product');
-define('TEXT_ALLOW', 'Allow');
-define('TEXT_DENY', 'Deny');
 
 define('TEXT_ALLOWED', ' (Allowed)');
 define('TEXT_DENIED', ' (Denied)');

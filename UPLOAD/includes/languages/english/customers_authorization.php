@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: customers_authorization.php 730 2015-12-22 17:49:16Z webchills $
+ * @version $Id: customers_authorization.php 2015-12-22 17:49:16Z webchills $
  */
 
 define('NAVBAR_TITLE', 'Customers Authorization Pending');

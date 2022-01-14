@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: create_account_success.php 732 2019-05-09 08:20:16Z webchills $
+ * @version $Id: create_account_success.php 2019-05-09 08:20:16Z webchills $
  */
 
 define('NAVBAR_TITLE_1', 'Create an Account');

@@ -1,18 +1,17 @@
 <?php
 /**
- * @package languageDefines
+ 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_coupon.php 731 2020-02-29 20:49:16Z webchills $
+ * @version $Id: ot_coupon.php 2022-01-14 17:49:16Z webchills $
  */
 
   define('MODULE_ORDER_TOTAL_COUPON_TITLE', 'Discount Coupon');
   define('MODULE_ORDER_TOTAL_COUPON_HEADER', TEXT_GV_NAMES . '/Discount Coupon');
   define('MODULE_ORDER_TOTAL_COUPON_DESCRIPTION', 'Discount Coupon');
   define('MODULE_ORDER_TOTAL_COUPON_TEXT_ENTER_CODE', TEXT_GV_REDEEM);
-  define('IMAGE_REDEEM_VOUCHER', 'Redeem Voucher');
   define('MODULE_ORDER_TOTAL_COUPON_REDEEM_INSTRUCTIONS', '<p>Please type your coupon code into the box next to  Redemption Code. Your coupon will be applied to the total and reflected in your cart after you click continue.</p><p>Please note: you may only use one coupon per order.</p>');
   define('MODULE_ORDER_TOTAL_COUPON_TEXT_CURRENT_CODE', 'Your Current Redemption Code: ');
   define('TEXT_COMMAND_TO_DELETE_CURRENT_COUPON_FROM_ORDER', 'REMOVE');

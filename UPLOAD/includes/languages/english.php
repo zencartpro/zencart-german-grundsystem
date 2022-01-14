@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: english.php 2021-12-03 17:20:32Z webchills $
+ * @version $Id: english.php 2022-01-14 16:43:32Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -376,6 +376,9 @@ define('ARIA_PAGINATION_','');
 // Shipping
   define('TEXT_SHIPPING_WEIGHT','kg');
   define('TEXT_SHIPPING_BOXES', 'Boxes');
+  
+// Cross Sell
+  define('TEXT_XSELL_PRODUCTS', 'Related Products'); 
 
 // Discount Savings
   define('PRODUCT_PRICE_DISCOUNT_PREFIX','Save:&nbsp;');

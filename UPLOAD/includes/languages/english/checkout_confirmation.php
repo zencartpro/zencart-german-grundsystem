@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: checkout_confirmation.php 730 2012-12-07 07:49:16Z webchills $
+ * @version $Id: checkout_confirmation.php 2022-01-14 16:49:16Z webchills $
  */
 
 define('NAVBAR_TITLE_1', 'Checkout');
@@ -23,7 +23,8 @@ define('HEADING_TAX', 'Tax');
 define('HEADING_ORDER_COMMENTS', 'Special Instructions or Order Comments');
 // no comments entered
 define('NO_COMMENTS_TEXT', 'None');
-define('OUT_OF_STOCK_CAN_CHECKOUT', 'Products marked with ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' are out of stock.<br />Items not in stock will be placed on backorder.');
+define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', '<strong>Final Step</strong>');
+define('TEXT_CONTINUE_CHECKOUT_PROCEDURE', '- continue to confirm your order. Thank you!');
 
 // buttonloesung
 define('TABLE_HEADING_SINGLEPRICE','Price');

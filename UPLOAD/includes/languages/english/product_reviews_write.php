@@ -1,11 +1,11 @@
 <?php
 /**
- * @package languageDefines
+
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: product_reviews_write.php 729 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: product_reviews_write.php 2022-01-14 16:57:16Z webchills $
  */
 
 define('NAVBAR_TITLE', 'Reviews');
@@ -16,11 +16,12 @@ define('SUB_TITLE_RATING', 'Choose a ranking for this item. 1 star is the worst 
 
 define('TEXT_NO_HTML', '<strong>NOTE:</strong>  HTML tags are not allowed.');
 define('TEXT_BAD', 'Worst');
-define('TEXT_GOOD', 'Best');
-define('TEXT_PRODUCT_INFO', '');
 
 define('TEXT_APPROVAL_REQUIRED', '<strong>NOTE:</strong>  Reviews require prior approval before they will be displayed');
 
 define('EMAIL_REVIEW_PENDING_SUBJECT','Product Review Pending Approval: %s');
 define('EMAIL_PRODUCT_REVIEW_CONTENT_INTRO','A Product Review for %s has been submitted and requires your approval.'."\n\n");
 define('EMAIL_PRODUCT_REVIEW_CONTENT_DETAILS','Review Details: %s');
+
+define('TEXT_REVIEW_SUBMITTED_FOR_REVIEW', 'Thank you, your post has been submitted for review.');
+define('TEXT_REVIEW_SUBMITTED', 'Thank you for submitting your review!');

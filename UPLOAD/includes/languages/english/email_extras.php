@@ -1,12 +1,12 @@
 <?php
 /**
 * Zen Cart German Specific
-* @package languageDefines
+
 * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: email_extras.php 809 2019-05-09 10:28:24Z webchills $
+* @version $Id: email_extras.php 2022-01-14 16:28:24Z webchills $
 */
 
 define ('EMAIL_LOGO_FILENAME', 'header.jpg');  //-File is present in /email folder
@@ -24,8 +24,6 @@ define ('EMAIL_EXTRA_HEADER_INFO', '');
 define('OFFICE_FROM','<strong>From:</strong>');
 define('OFFICE_EMAIL','<strong>Email:</strong>');
 
-define('OFFICE_SENT_TO','<strong>Sent To:</strong>');
-define('OFFICE_EMAIL_TO','<strong>To Email:</strong>');
 
 define('OFFICE_USE','<strong>Office Use Only:</strong>');
 define('OFFICE_LOGIN_NAME','<strong>Login Name:</strong>');
@@ -45,7 +43,7 @@ define('EMAIL_SPAM_DISCLAIMER', '-');
 // Define a message you'd like to add to an order confirmation email
 define('EMAIL_ORDER_MESSAGE',''); 
 
-define('EMAIL_FOOTER_COPYRIGHT','Copyright (c) ' . date('Y') . ' <a href="' . zen_href_link(FILENAME_DEFAULT) . '" target="_blank">' . STORE_NAME . '</a>');
+define('EMAIL_FOOTER_COPYRIGHT','Copyright (c) ' . date('Y') . ' <a href="' . zen_href_link(FILENAME_DEFAULT) . '">' . STORE_NAME . '</a>');
 define('TEXT_UNSUBSCRIBE', "\n\nTo unsubscribe from future newsletter and promotional mailings, simply click on the following link: \n");
 
 // email advisory for all emails customer generate - tell-a-friend and GV send
@@ -59,7 +57,6 @@ define('EMAIL_ADVISORY_INCLUDED_WARNING', '<strong>This message is included with
 define('SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO_SUBJECT','[CREATE ACCOUNT]');
 define('SEND_EXTRA_GV_CUSTOMER_EMAILS_TO_SUBJECT','[GV CUSTOMER SENT]');
 define('SEND_EXTRA_NEW_ORDERS_EMAILS_TO_SUBJECT','[NEW ORDER]');
-define('SEND_EXTRA_CC_EMAILS_TO_SUBJECT','[EXTRA CC ORDER info] #');
 
 // Low Stock Emails
 define('EMAIL_TEXT_SUBJECT_LOWSTOCK','Warning: Low Stock');

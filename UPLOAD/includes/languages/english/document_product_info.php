@@ -1,17 +1,15 @@
 <?php
 /**
- * @package languageDefines
- * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: document_product_info.php 731 2020-02-29 20:49:16Z webchills $
+ * @version $Id: document_product_info.php 2022-01-14 16:49:16Z webchills $
  */
 
 define('TEXT_PRODUCT_NOT_FOUND', 'Sorry, the product was not found.');
 define('TEXT_CURRENT_REVIEWS', 'Current Reviews:');
-define('TEXT_MORE_INFORMATION', 'For more information, please visit this product\'s <a href="%s" target="_blank">webpage</a>.');
+define('TEXT_MORE_INFORMATION', 'For more information, please visit this product\'s <a href="%s" rel="noreferrer noopener" target="_blank">webpage</a>.');
 define('TEXT_DATE_ADDED', 'This product was added to our catalog on %s.');
 define('TEXT_DATE_AVAILABLE', 'This product will be in stock on %s.');
 define('TEXT_ALSO_PURCHASED_PRODUCTS', 'Customers who bought this product also purchased...');
@@ -20,14 +18,10 @@ define('TEXT_PRODUCT_MANUFACTURER', 'Manufactured by: ');
 define('TEXT_PRODUCT_WEIGHT', 'Shipping Weight: ');
 define('TEXT_PRODUCT_QUANTITY', ' Units in Stock');
 
-define('TEXT_XSELL_PRODUCTS', 'Related Products'); 
+
 
 // previous next product
 define('PREV_NEXT_PRODUCT', 'Product ');
-define('PREV_NEXT_FROM', ' from ');
-define('IMAGE_BUTTON_PREVIOUS','Previous Item');
-define('IMAGE_BUTTON_NEXT','Next Item');
-define('IMAGE_BUTTON_RETURN_TO_PRODUCT_LIST','Back to Product List');
 
 // missing products
 //define('TABLE_HEADING_NEW_PRODUCTS', 'New Products For %s');
