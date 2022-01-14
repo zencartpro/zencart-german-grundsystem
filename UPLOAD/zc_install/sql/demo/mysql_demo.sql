@@ -1,6 +1,6 @@
 # MySQL file for Zen Cart Demo Products load
 # Zen Cart German Specific
-# $Id: mysql_demo.sql 2022-01-04 18:30:04Z webchills $
+# $Id: mysql_demo.sql 2022-01-14 21:58:04Z webchills $
 #
 
 # Configuration Settings:
@@ -945,7 +945,8 @@ INSERT INTO products_attributes (products_attributes_id, products_id, options_id
 (1098, 178, 1, 16, '100.0000', '+', 10, 0, 0, '+', 0, 1, 1, '', 1, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '', '', '0.0000', 0, '0.0000', 0, 0),
 (1099, 178, 1, 26, '100.0000', '+', 40, 0, 0, '+', 0, 0, 0, '', 1, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '', '', '0.0000', 0, '0.0000', 0, 0),
 (1100, 179, 17, 63, '0.0000', '+', 20, 0, 0, '+', 0, 0, 1, '', 1, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '', '', '0.0000', 0, '0.0000', 0, 0),
-(1103, 179, 17, 62, '0.0000', '+', 10, 0, 0, '+', 0, 1, 1, '', 1, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '', '', '0.0000', 0, '0.0000', 0, 0);
+(1103, 179, 17, 62, '0.0000', '+', 10, 0, 0, '+', 0, 1, 1, '', 1, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '', '', '0.0000', 0, '0.0000', 0, 0),
+(1105, 180, 17, 62, '0.0000', '+', 10, 0, 0, '+', 0, 0, 1, '', 1, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '', '', '0.0000', 0, '0.0000', 0, 0);
 
 #
 # Dumping data for table products_attributes_download
@@ -962,7 +963,8 @@ INSERT INTO products_attributes_download (products_attributes_id, products_attri
 (1093, 'test.zip', 7, 5),
 (1094, 'test2.zip', 7, 5),
 (1100, 'ms_word_sample.zip', 7, 5),
-(1103, 'pdf_sample.zip', 7, 5);
+(1103, 'pdf_sample.zip', 7, 5),
+(1105, 'pdf_sample.zip', 7, 5);
 
 #
 # Dumping data for table products_description
@@ -1221,10 +1223,22 @@ INSERT INTO products_description (products_id, language_id, products_name, produ
 (176, 43, 'Normal Product by the dozen', '<p>This is a normal product priced at $100</p><p>There are quantity discounts setup which will be discounted from the Products Price by the dozen.</p><p>Discounts are added on the Products Price Manager.</p>', '', '', 0),
 (177, 43, 'Special Product by the dozen', '<p>This is a Special product priced at $100 with a $75 Special</p><p>There are quantity discounts setup which will be discounted from the Special Price discounted by the dozen.</p><p>Discounts are added on the Products Price Manager.</p>', '', '', 0),
 (178, 43, 'Qty Discounts by 1 Special', '<p>This is a normal product priced at $60 with a special of $50</p><p>There are quantity discounts setup which will be discounted from the Products Price.</p><p>Discounts are added on the Products Price Manager.</p><p>The Discounts are offered in increments of 1.</p><p>Note: Attribute do not inherit the Mengenrabatte discounts.</p><p>Attribute will inherit Discounts from Specials or sales. This can be customized per attribute by marking the Attribute to Include Product Price Special or Sale Discounts.</p><p>Red is $100.00 and marked to include the Price to Special discount but will not inherit the Mengenrabatte discount.</p><p>Green is $100 and marked not to include the Price to Special discount and will not inherit the Mengenrabatte discount.</p>', '', '', 0),
-(179, 43, 'Downloadartikel', '<p>This product is set up to have a single download.</p><p>The Product Price is $39.99</p><p>The attributes are setup with 1 Option Name, for the download to allow for one download but of various types.</p><p>The Download is listed under:</p><p>Option Name: Documentation<br />Option Value: PDF - English<br />Option Value: MS Word - English</p>', '', '', 0);
+(179, 43, 'Downloadartikel', '<p>This product is set up to have a single download.</p><p>The Product Price is $39.99</p><p>The attributes are setup with 1 Option Name, for the download to allow for one download but of various types.</p><p>The Download is listed under:</p><p>Option Name: Documentation<br />Option Value: PDF - English<br />Option Value: MS Word - English</p>', '', '', 0),
+(180, 43, 'Einzeldownload, Einzeltyp', '<p>This product is set up to have a single download of PDF only.  In 1.5.7 and above, products like this can be added to the cart from the listing page.</p><p>The Product Price is $39.99</p><p>The Download is listed under:</p><p>Option Name: Documentation<br />Option Value: PDF - English<br /></p>','', '', 0);
 
+# Seeding some sample views
+INSERT INTO count_product_views (product_id, language_id, date_viewed, views) VALUES
+(160, 1, now(), 3),
+(168, 1, subdate(current_date, 3), 9),
+(168, 1, subdate(current_date, 2), 3),
+(168, 1, subdate(current_date, 1), 8),
+(168, 1, now(), 15),
+(169, 1, subdate(current_date, 1), 4),
+(169, 1, now(), 10),
+(171, 1, now(), 18),
+(172, 1, now(), 7);
 #
-# Dumping data for table products_discount_quantity
+# Dumping data for table `products_discount_quantity`
 #
 
 INSERT INTO products_discount_quantity (discount_id, products_id, discount_qty, discount_price) VALUES (4, 127, '12', '10.0000'),
@@ -1267,7 +1281,7 @@ INSERT INTO products_discount_quantity (discount_id, products_id, discount_qty, 
 (9, 178, '9', '10.0000');
 
 #
-# Dumping data for table products_options
+# Dumping data for table `products_options`
 #
 
 INSERT INTO products_options (products_options_id, language_id, products_options_name, products_options_sort_order, products_options_type, products_options_length, products_options_comment, products_options_size, products_options_images_per_row, products_options_images_style, products_options_rows) VALUES
@@ -1312,9 +1326,10 @@ INSERT INTO products_options (products_options_id, language_id, products_options
 
 
 #
-# Dumping data for table products_options_values
+# Dumping data for table `products_options_values`
 #
 
+#Remove TEXT
 INSERT INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) VALUES
 (1, 1, '4 mb', 10),
 (2, 1, '8 mb', 20),
@@ -1360,7 +1375,7 @@ INSERT INTO products_options_values (products_options_values_id, language_id, pr
 (64, 1, 'Download: MAC - English', 100),
 (34, 1, 'Wrapping', 40),
 (35, 1, 'Autographed Memorabilia Card', 30),
-(36, 1, 'Collector''s Tin', 20),
+(36, 1, 'Collector\'s Tin', 20),
 (37, 1, 'Select from below ...', 5),
 (38, 1, '$5.00', 5),
 (39, 1, '$10.00', 10),
@@ -1371,7 +1386,7 @@ INSERT INTO products_options_values (products_options_values_id, language_id, pr
 (44, 1, 'Select from below ...', 5),
 (45, 1, 'NONE', 5),
 (46, 1, 'None', 5),
-(47, 1, 'Embossed Collector''s Tin', 10),
+(47, 1, 'Embossed Collector\'s Tin', 10),
 (49, 1, 'Custom Handling', 20),
 (48, 1, 'None', 5),
 (50, 1, 'Same Day Shipping', 30),
@@ -1525,7 +1540,7 @@ INSERT INTO products_options_values_to_products_options (products_options_values
 (93, 5, 68);
 
 #
-# Dumping data for table products_to_categories
+# Dumping data for table `products_to_categories`
 #
 
 INSERT INTO products_to_categories (products_id, categories_id) VALUES
@@ -1673,46 +1688,47 @@ INSERT INTO products_to_categories (products_id, categories_id) VALUES
 (176, 55),
 (177, 55),
 (178, 55),
-(179, 60);
+(179, 60),
+(180, 63);
 
 #
-# Dumping data for table record_artists
+# Dumping data for table `record_artists`
 #
 
 INSERT INTO record_artists (artists_id, artists_name, artists_image, date_added, last_modified) VALUES (1, 'The Russ Tippins Band', 'sooty.jpg', '2019-06-18 20:53:00', NULL);
 
 #
-# Dumping data for table record_artists_info
+# Dumping data for table `record_artists_info`
 #
 
 INSERT INTO record_artists_info (artists_id, languages_id, artists_url, url_clicked, date_last_click) VALUES (1, 1, 'www.russtippins.com/', 0, NULL);
 
 #
-# Dumping data for table record_company
+# Dumping data for table `record_company`
 #
 
 INSERT INTO record_company (record_company_id, record_company_name, record_company_image, date_added, last_modified) VALUES (1, 'HMV Group', NULL, '2019-06-18 14:11:52', NULL);
 
 #
-# Dumping data for table record_company_info
+# Dumping data for table `record_company_info`
 #
 
 INSERT INTO record_company_info (record_company_id, languages_id, record_company_url, url_clicked, date_last_click) VALUES (1, 1, 'www.hmvgroup.com', 0, NULL);
 
 #
-# Dumping data for table reviews
+# Dumping data for table `reviews`
 #
 
 INSERT INTO reviews (reviews_id, products_id, customers_id, customers_name, reviews_rating, date_added, last_modified, reviews_read, status) VALUES (1, 19, 0, 'Bill Smith', 5, '2019-06-18 03:18:19', '0001-01-01 00:00:00', 11, 1);
 
 #
-# Dumping data for table reviews_description
+# Dumping data for table `reviews_description`
 #
 
 INSERT INTO reviews_description (reviews_id, languages_id, reviews_text) VALUES (1, 1, 'This really is a very funny but old movie!');
 
 #
-# Dumping data for table salemaker_sales
+# Dumping data for table `salemaker_sales`
 #
 
 INSERT INTO salemaker_sales (sale_id, sale_status, sale_name, sale_deduction_value, sale_deduction_type, sale_pricerange_from, sale_pricerange_to, sale_specials_condition, sale_categories_selected, sale_categories_all, sale_date_start, sale_date_end, sale_date_added, sale_date_last_modified, sale_date_status_change) VALUES (1, 1, 'Minus 10% Sale', '10.0000', 1, '1.0000', '1000.0000', 2, '25,28,45,47,58', ',25,28,45,47,58,', '2019-06-18', '2007-02-21', '2019-06-18', '2012-05-18', '2019-06-18'),
