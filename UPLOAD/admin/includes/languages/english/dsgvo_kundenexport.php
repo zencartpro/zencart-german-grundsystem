@@ -9,7 +9,7 @@
  */
 
 define('HEADING_TITLE', 'GDPR Customer Data Export');
-define('DSGVO_KUNDENEXPORT_OVERVIEW', 'According to Art. 20 GDPR, customers have the right to receive their personal data provided to the shop owner in a structured, common and machine-readable format. <br/> If customers inquire about this, you can create an up-to-date customer data record for each customer which also contains the customer\'s previous orders and any product reviews. <br/> Generates a csv file with semicolon separator and utf-8 character set. <br/> Select a customer, then click the Export button, to create and download a csv file from the current database.<br/>');
+define('DSGVO_KUNDENEXPORT_OVERVIEW', 'According to Art. 20 GDPR, customers have the right to receive their personal data provided to the shop owner in a structured, common and machine-readable format. <br> If customers inquire about this, you can create an up-to-date customer data record for each customer which also contains the customer\'s previous orders and any product reviews. <br> Generates a csv file with semicolon separator and utf-8 character set. <br> Select a customer, then click the Export button, to create and download a csv file from the current database.<br>');
 define('IMAGE_DSGVOEXPORT','GDPR Customer Data Export');
 define('TABLE_HEADING_ID', 'ID');
 define('TABLE_HEADING_FIRSTNAME', 'First Name');

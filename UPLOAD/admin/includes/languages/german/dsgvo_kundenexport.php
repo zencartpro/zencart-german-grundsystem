@@ -8,7 +8,7 @@
  */
 
 define('HEADING_TITLE', 'DSGVO Kundendatensatz Export');
-define('DSGVO_KUNDENEXPORT_OVERVIEW', 'Laut Art. 20 DSGVO haben Kunden das Recht, ihre personenbezogenen Daten, die sie dem Shopbetreiber bereitgestellt haben, in einem strukturierten, gängigen und maschinenlesebaren Format zu erhalten<br/>Wenn Kunden diesbezüglich anfragen, können Sie hier für jeden Kunden einen aktuellen Kundendatensatz erstellen, der auch die bisherigen Bestellungen und eventuell abgegebene Produktbewertungen des Kunden enthält.<br/>Generiert wird eine csv Datei mit Trennzeichen Semikolon und Zeichensatz utf-8.<br/>Wählen Sie einen Kunden aus und clicken Sie dann auf den Export Button, um eine csv Datei aus dem aktuellen Datenbestand zu erzeugen und herunterzuladen.<br/>');
+define('DSGVO_KUNDENEXPORT_OVERVIEW', 'Laut Art. 20 DSGVO haben Kunden das Recht, ihre personenbezogenen Daten, die sie dem Shopbetreiber bereitgestellt haben, in einem strukturierten, gängigen und maschinenlesebaren Format zu erhalten<br>Wenn Kunden diesbezüglich anfragen, können Sie hier für jeden Kunden einen aktuellen Kundendatensatz erstellen, der auch die bisherigen Bestellungen und eventuell abgegebene Produktbewertungen des Kunden enthält.<br>Generiert wird eine csv Datei mit Trennzeichen Semikolon und Zeichensatz utf-8.<br>Wählen Sie einen Kunden aus und clicken Sie dann auf den Export Button, um eine csv Datei aus dem aktuellen Datenbestand zu erzeugen und herunterzuladen.<br>');
 define('IMAGE_DSGVOEXPORT','DSGVO Kundendaten Export');
 define('TABLE_HEADING_ID', 'ID');
 define('TABLE_HEADING_FIRSTNAME', 'Vorname');

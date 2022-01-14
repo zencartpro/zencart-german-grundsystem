@@ -2,7 +2,7 @@
 define('MODULE_PAYMENT_BRAINTREE_TEXT_ADMIN_TITLE', 'Braintree');
 
 if (IS_ADMIN_FLAG === true) {
-define('MODULE_PAYMENT_BRAINTREE_TEXT_ADMIN_DESCRIPTION', 'Credit Card Payments via Braintree<br/><br /><img src="images/braintree-logo.jpg" alt="Braintree"/><br/><br/><a href="https://www.braintreepayments.com/" target="_blank">Braintree Info</a><br /><br/><a href="https://sandbox.braintreegateway.com/login" target="_blank">Braintree Sandbox Login</a><br/><br/><a href="https://www.braintreegateway.com/login" target="_blank">Braintree Live Login</a>');
+define('MODULE_PAYMENT_BRAINTREE_TEXT_ADMIN_DESCRIPTION', 'Credit Card Payments via Braintree<br><br><img src="images/braintree-logo.jpg" alt="Braintree"/><br><br><a href="https://www.braintreepayments.com/" target="_blank">Braintree Info</a><br /><br><a href="https://sandbox.braintreegateway.com/login" target="_blank">Braintree Sandbox Login</a><br><br><a href="https://www.braintreegateway.com/login" target="_blank">Braintree Live Login</a>');
 }
 
 define('MODULE_PAYMENT_BRAINTREE_TEXT_DESCRIPTION', 'Credit Card');

@@ -73,7 +73,7 @@ if (zen_not_null($action)) {
           echo HEADING_TITLE_SEARCH_DETAIL . ' ' . zen_draw_input_field('search') . zen_hide_session_id();
           if (isset($_GET['search']) && zen_not_null($_GET['search'])) {
             $keywords = zen_db_input(zen_db_prepare_input($_GET['search']));
-            echo '<br/ >' . TEXT_INFO_SEARCH_DETAIL_FILTER . $keywords;
+            echo '<br>' . TEXT_INFO_SEARCH_DETAIL_FILTER . $keywords;
           }
           ?>
           <?php echo '</form>'; ?>

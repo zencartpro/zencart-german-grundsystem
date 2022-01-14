@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2021-12-03 17:26:57Z webchills $
+ * @version $Id: german.php 2022-01-14 15:54:57Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -450,7 +450,7 @@ define('TABLE_HEADING_MODEL', 'Artikelnummer');
 
 define('TEXT_PRODUCTS_MIX_OFF', '*gemischt: AUS');
 define('TEXT_PRODUCTS_MIX_ON', '*gemischt: EIN');
-define('TEXT_PRODUCTS_MIX_OFF_SHOPPING_CART', '*gemischte Attributmerkmale: AUS');
+  define('TEXT_PRODUCTS_MIX_OFF_SHOPPING_CART','<br>*Sie können die Optionen dieses Artikels nicht mischen, um die Mindestanzahl zu erreichen.*<br>');
 define('TEXT_PRODUCTS_MIX_ON_SHOPPING_CART', '*gemischte Attributmerkmale: EIN');
 define('ERROR_MAXIMUM_QTY', 'Stückzahl angepasst - maximale Stückzahl wurde in den Warenkorb gelegt ');
 
@@ -467,25 +467,25 @@ define('TEXT_FILESIZE_MEGS', ' MB');
 define('TEXT_FILESIZE_UNKNOWN', 'Unbekannt');
 
 // shopping cart errors
-define('ERROR_PRODUCT', '<br/>Der Artikel: ');
+define('ERROR_PRODUCT', '<br>Der Artikel: ');
 define('ERROR_PRODUCT_STATUS_SHOPPING_CART','<br />Leider ist dieses Produkt derzeit nicht in unserem Warenbestand.<br />Das Produkt wurde aus dem Warenkorb entfernt.');
 define('ERROR_PRODUCT_ATTRIBUTES','<br />Der Artikel: ');
 define('ERROR_PRODUCT_STATUS_SHOPPING_CART_ATTRIBUTES','<br />Es tut uns leid, aber die gewählten Optionen für diesen Artikel haben sich geändert und stehen derzeit in unserem Sortiment nicht mehr zur Verfügung.<br />Dieser Artikel wurde aus Ihrem Warenkorb entfernt.');
 define('ERROR_PRODUCT_QUANTITY_MIN', '... minimale Stückzahl unterschritten -');
 define('ERROR_PRODUCT_QUANTITY_UNITS', '... ungültige Stückzahl -');
-define('ERROR_PRODUCT_OPTION_SELECTION', '... ungültige Attributmerkmale gewählt -');
-define('ERROR_PRODUCT_QUANTITY_ORDERED', 'Die Summe Ihrer Bestellung:');
+define('ERROR_PRODUCT_OPTION_SELECTION', '<br>... ungültige Attributmerkmale gewählt ');
+define('ERROR_PRODUCT_QUANTITY_ORDERED', '<br>Die Summe Ihrer Bestellung:');
 define('ERROR_PRODUCT_QUANTITY_MAX', '... maximale Stückzahl überschritten -');
 define('ERROR_PRODUCT_QUANTITY_MIN_SHOPPING_CART', '... minimale Stückzahl unterschritten -');
 define('ERROR_PRODUCT_QUANTITY_UNITS_SHOPPING_CART', '... ungültige Stückzahl -');
 define('ERROR_PRODUCT_QUANTITY_MAX_SHOPPING_CART', '... maximale Stückzahl überschritten -');
-define('WARNING_SHOPPING_CART_COMBINED', 'Achtung: Ihr aktueller Warenkorb wurde mit dem Warenkorb Ihres letzten Besuchs zusammengelegt. Bitte überprüfen Sie den Inhalt Ihres Warenkorbs, bevor Sie ihre Bestellung abschließen.');
+define('WARNING_SHOPPING_CART_COMBINED', 'HINWEIS: Ihr aktueller Warenkorb wurde mit dem Warenkorb Ihres letzten Besuchs zusammengelegt. Bitte überprüfen Sie den Inhalt Ihres Warenkorbs, bevor Sie ihre Bestellung abschließen.');
 define('WARNING_PRODUCT_QUANTITY_ADJUSTED', 'Die Menge wurde automatisch auf den verfügbaren Lagerbestand angepasst. ');
 define('OUT_OF_STOCK_CANT_CHECKOUT', 'Mit ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' gekennzeichnete Artikel sind derzeit nicht in ausreichender Menge lagernd.<br />Bitte ändern Sie die Menge bei den mit (' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ') gekennzeichneten Artikeln. Danke.');
 define('OUT_OF_STOCK_CAN_CHECKOUT', 'Mit ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' gekennzeichnete Artikel sind nicht lagernd.<br />Diese Artikel werden nachgeliefert.');
 
 // error on checkout when $_SESSION['customers_id' does not exist in customers table
-define('ERROR_CUSTOMERS_ID_INVALID', 'Die Kundeninformation konnte nicht verifiziert werden!<br />Bitte melden Sie sich an oder erstellen Sie Ihr Kundenkonto erneut ...');
+define('ERROR_CUSTOMERS_ID_INVALID', 'Die Kundeninformation konnte nicht verifiziert werden!<br>Bitte melden Sie sich an oder erstellen Sie Ihr Kundenkonto erneut ...');
 
 define('TABLE_HEADING_FEATURED_PRODUCTS','Empfohlene Artikel');
 
@@ -547,7 +547,7 @@ define('CART_SHIPPING_METHOD_ADDRESS', 'Adresse:');
 
 define('CART_ITEMS', 'im Warenkorb: ');
 
-define('ERROR_CART_UPDATE', 'Bitte aktualisieren Sie Ihre Bestellung ...<br />');
+define('ERROR_CART_UPDATE', '<strong>Bitte aktualisieren Sie Ihre Bestellung</strong>');
 
 define('EMPTY_CART_TEXT_NO_QUOTE', 'Uups! Ihre Sitzung ist abgelaufen ... Aktualisieren Sie bitte Ihren Warenkorb für die Versandkosten');
 define('CART_SHIPPING_QUOTE_CRITERIA', 'Die Versandkosten werden aufgrund der ausgewählten Adresse berechnet:');
@@ -605,8 +605,8 @@ define('TABLE_HEADING_PHONE_FAX_DETAILS', 'Wie kann man Sie erreichen?');
 define('TABLE_HEADING_DATE_OF_BIRTH', 'Bitte geben Sie Ihr Geburtsdatum an');
 define('TABLE_HEADING_LOGIN_DETAILS', 'Bitte geben Sie hier Ihre Anmeldedaten ein');
 define('TABLE_HEADING_REFERRAL_DETAILS', 'Wie wurden Sie auf unseren Shop aufmerksam?');
-define('ERROR_TEXT_COUNTRY_DISABLED_PLEASE_CHANGE', 'Lieder akzeptieren wie nicht länger Rechnungsadressen oder Lieferadressen in "%s".  Bitte ändern Sie diese Adresse, um fortzufahren.');
-define('ENTRY_EMAIL_PREFERENCE','Newsletter und E-Mail');
+define('ERROR_TEXT_COUNTRY_DISABLED_PLEASE_CHANGE', 'Leider akzeptieren wie nicht länger Rechnungsadressen oder Lieferadressen in "%s".  Bitte ändern Sie diese Adresse, um fortzufahren.');
+define('ENTRY_EMAIL_PREFERENCE','Newsletter und E-Mail Format');
 define('ENTRY_EMAIL_HTML_DISPLAY','HTML');
 define('ENTRY_EMAIL_TEXT_DISPLAY','nur TEXT');
 define('EMAIL_SEND_FAILED','FEHLER: E-Mail wurde nicht an: "%s" <%s> versendet. Betreff: "%s"');
@@ -630,7 +630,7 @@ define('TEXT_PRODUCTS_LISTING_ALPHA_SORTER_NAMES_RESET', '-- Zurücksetzen --');
 // init_customer_auth.php substitutes the customer's name (%$1s) and customer's email address (%$2s)
 // into this message.
 //
-define('EMP_SHOPPING_FOR_MESSAGE', 'Currently shopping for %1$s (%2$s).');
+define('EMP_SHOPPING_FOR_MESSAGE', 'Derzeit eingeloggt als %1$s (%2$s).');
 
 // -----
 // Identify the messageStack "severity" to be applied to the above message, one of 'success',

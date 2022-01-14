@@ -16,4 +16,4 @@ define('RL_INVOICE3_ADMIN_TEMPLATE', 'Rechnungsvorlage');
 define('RL_INVOICE3_HEADING_TITLE', 'PDF Rechnung');
 define('BOX_CONFIGURATION_PDF3', 'PDF Rechnung - Konfiguration');
 define('BOX_TOOLS_PDF3', 'PDF Rechnung - Rechnungsvorlage');  
-define('RL_INVOICE3_INFOTEXT', 'Hier können Sie das Grundlayout Ihrer pdf Rechnung mit einem visuellen Editor beeinflussen.<br/>Clicken Sie auf Rechnungsvorlage um den Editor zu starten. Ziehen Sie dann per Drag and Drop die verschiedenen Bereiche an die gewünschte Position.'); 
+define('RL_INVOICE3_INFOTEXT', 'Hier können Sie das Grundlayout Ihrer pdf Rechnung mit einem visuellen Editor beeinflussen.<br>Clicken Sie auf Rechnungsvorlage um den Editor zu starten. Ziehen Sie dann per Drag and Drop die verschiedenen Bereiche an die gewünschte Position.'); 

@@ -246,21 +246,21 @@ if (!defined('DIR_FS_EMAIL_EXPORT')) define('DIR_FS_EMAIL_EXPORT',DIR_FS_CATALOG
         <!-- body //-->
         <h1 class="pageHeading"><?php echo HEADING_TITLE; ?></h1>
  <div class="row"><?php echo TEXT_INSTRUCTIONS; ?>
- 	<br/><br/><?php echo zen_draw_form('export', FILENAME_EMAIL_EXPORT, 'action=save','post');//, 'onsubmit="return check_form(export);"'); ?>
+ 	<br><br><?php echo zen_draw_form('export', FILENAME_EMAIL_EXPORT, 'action=save','post');//, 'onsubmit="return check_form(export);"'); ?>
         <?php echo TEXT_EMAIL_EXPORT_FORMAT; ?><br />
 <?php echo zen_draw_pull_down_menu('format', $available_export_formats, $format); ?>
-<br/><br/>
+<br><br>
 <?php echo TEXT_PLEASE_SELECT_AUDIENCE; ?><br />
 <?php echo zen_draw_pull_down_menu('audience_selected', get_audiences_list('newsletters'), $query_name)?>
-<br/><br/>
+<br><br>
 <?php echo TEXT_EMAIL_EXPORT_FILENAME; ?><br />
 <?php echo zen_draw_input_field('filename', htmlspecialchars($file, ENT_COMPAT, CHARSET, TRUE), ' size="60"'); ?>
-<br/><br/>
+<br><br>
 <?php echo TEXT_EMAIL_EXPORT_SAVETOFILE; ?><br />
 <?php echo zen_draw_checkbox_field('savetofile', '1', $save_to_file_checked);
       echo TEXT_EMAIL_EXPORT_DEST . ' ' .DIR_FS_EMAIL_EXPORT; ?>
     </div>
-    <br/><br/>
+    <br><br>
     <div class="row">
            <div class="form-group">
           <div class="col-sm-12 text-left"><button type="submit" class="btn btn-primary"><?php echo IMAGE_EXPORT; ?></button> <a href="<?php echo zen_href_link(FILENAME_EMAIL_EXPORT) ?>" class="btn btn-default" role="button"><?php echo IMAGE_CANCEL; ?></a></div>

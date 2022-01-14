@@ -26,7 +26,7 @@
 
       if (PRODUCT_FEATURED_LIST_IMAGE != '0') {
         if ($featured_products->fields['products_image'] == '' and PRODUCTS_IMAGE_NO_IMAGE_STATUS == 0) {
-          $display_products_image = str_repeat('<br/>', substr(PRODUCT_FEATURED_LIST_IMAGE, 3, 1));
+          $display_products_image = str_repeat('<br>', substr(PRODUCT_FEATURED_LIST_IMAGE, 3, 1));
         } else {
           $display_products_image = '<a href="' . zen_href_link(zen_get_info_page($featured_products->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($featured_products->fields['master_categories_id']) . '&products_id=' . $featured_products->fields['products_id']) . '">' . zen_image(DIR_WS_IMAGES . $featured_products->fields['products_image'], $featured_products->fields['products_name'], IMAGE_FEATURED_PRODUCTS_LISTING_WIDTH, IMAGE_FEATURED_PRODUCTS_LISTING_HEIGHT) . '</a>' . str_repeat('<br  />', substr(PRODUCT_FEATURED_LIST_IMAGE, 3, 1));
         }

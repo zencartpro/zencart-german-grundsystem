@@ -19,4 +19,4 @@ define('TABLE_HEADING_PRODUCT_SORT', 'Sortierung');
 define('TEXT_NO_IMAGE', 'kein Bild vorhanden');
 define('TEXT_CROSS_SELL', 'Cross-Sell');
 define('TEXT_NO_CROSS_SELLS_DEFINED', 'keine Cross-Sells definiert');
-define('TEXT_XSELL_INFO', 'Hier können Sie Cross-Sells hinzufügen und die Sortierung bestehender Cross Sells bearbeiten.<br/>Wenn Sie viele Artikel haben, dann nutzen Sie die <a href="xsell_advanced.php"><u>Erweiterte Cross Sell Administration</u></a>, mit der Sie mehrere Cross Sells auf einmal durch Eingeben ihrer Artikelnummern anlegen können.');
+define('TEXT_XSELL_INFO', 'Hier können Sie Cross-Sells hinzufügen und die Sortierung bestehender Cross Sells bearbeiten.<br>Wenn Sie viele Artikel haben, dann nutzen Sie die <a href="xsell_advanced.php"><u>Erweiterte Cross Sell Administration</u></a>, mit der Sie mehrere Cross Sells auf einmal durch Eingeben ihrer Artikelnummern anlegen können.');

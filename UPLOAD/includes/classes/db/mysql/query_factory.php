@@ -160,7 +160,7 @@ class queryFactory extends base {
       echo $this->error_number . ' ' . $this->error_text;
       echo '<br />in:<br />[' . (strstr($this->zf_sql, 'db_cache') ? 'db_cache table' : $this->zf_sql) . ']<br />';
     } else {
-      echo '<span style="color:red;font-size:13px;font-family:Arial,Verdana,sans-serif;">FEHLER:<br/>Datenbankabfragen oder Datenbankeinträge schlagen fehl.</span>';
+      echo '<span style="color:red;font-size:13px;font-family:Arial,Verdana,sans-serif;">FEHLER:<br>Datenbankabfragen oder Datenbankeinträge schlagen fehl.</span>';
     }
     $backtrace_array = debug_backtrace();
     $query_factory_caller = '';
@@ -171,7 +171,7 @@ class queryFactory extends base {
       }
     }
     trigger_error($this->error_number . ':' . $this->error_text . ' :: ' . $this->zf_sql . $query_factory_caller, E_USER_ERROR);
-    if (defined('IS_ADMIN_FLAG') && IS_ADMIN_FLAG==true) echo '<br/><br/><span style="color:red;font-size:13px;font-family:Arial,Verdana,sans-serif;">Den Grund für diesen Fehler finden Sie in den Errorlogs.<br/>Gehen Sie so vor wie in den FAQ auf <a href="http://error.zen-cart-pro.at" target="_blank">http://error.zen-cart-pro.at</a> beschrieben.</span><br/><br/>';
+    if (defined('IS_ADMIN_FLAG') && IS_ADMIN_FLAG==true) echo '<br><br><span style="color:red;font-size:13px;font-family:Arial,Verdana,sans-serif;">Den Grund für diesen Fehler finden Sie in den Errorlogs.<br>Gehen Sie so vor wie in den FAQ auf <a href="http://error.zen-cart-pro.at" target="_blank">http://error.zen-cart-pro.at</a> beschrieben.</span><br><br>';
     echo '</div>';
   }
 

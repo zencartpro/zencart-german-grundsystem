@@ -57,7 +57,7 @@ define('TEXT_LANGUAGE_LOOKUP_CURRENT_ALL', 'Alle derzeit ausgewählten Sprachdat
 define('TEXT_INFO_NO_EDIT_AVAILABLE', 'Keine Bearbeitung erhältlich');
 define('TEXT_INFO_CONFIGURATION_HIDDEN', ' oder VERSTECKT');
 
-define('TEXT_INFO_DATABASE_OPTIMIZE', '<strong>Datenbank optimieren</strong> um vergeudeten Raum von gelöschten Aufzeichnungen zu entfernen.<br/>Das kann monatlich oder wöchentlich auf einer frequentierten Datenbank erforderlich sein.<br/>(Am besten während der nichtaktiven Zeiten die Optimierung laufen lassen.)');
+define('TEXT_INFO_DATABASE_OPTIMIZE', '<strong>Datenbank optimieren</strong> um vergeudeten Raum von gelöschten Aufzeichnungen zu entfernen.<br>Das kann monatlich oder wöchentlich auf einer frequentierten Datenbank erforderlich sein.<br>(Am besten während der nichtaktiven Zeiten die Optimierung laufen lassen.)');
 define('TEXT_INFO_OPTIMIZING_DATABASE_TABLES', 'Datenbank Tabellen Optimierung läuft. Die kann eine paar Minuten dauern, bitte warten Sie. Das vorherige Menü erscheint, sobald dieser Vorgang abgeschlossen ist ... ');
 define('SUCCESS_DB_OPTIMIZE', 'Datenbank-Optimierung - Tabellen verarbeiten: ');
 

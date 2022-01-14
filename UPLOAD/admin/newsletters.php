@@ -157,9 +157,9 @@ if (zen_not_null($action)) {
       <!-- body //-->
 
       <h1 class="pageHeading"><?php echo HEADING_TITLE; ?></h1>
-      <br/>
-      <span style="color:red; font-size:12px;">Hinweis: Ein Versand von Newslettern über Zen Cart wird NICHT empfohlen!<br/>Er ist nicht DSGVO-konform, da die Empfänger nie via Double-Optin zugestimmt haben.<br/>Verwenden Sie stattdessen echte Newslettersysteme und importieren Ihre Newsletterempfänger in diese Systeme oder koppeln Sie diese Systeme direkt mit Ihrem Zen Cart Shop.</span>
-      <br/>
+      <br>
+      <span style="color:red; font-size:12px;">Hinweis: Ein Versand von Newslettern über Zen Cart wird NICHT empfohlen!<br>Er ist nicht DSGVO-konform, da die Empfänger nie via Double-Optin zugestimmt haben.<br>Verwenden Sie stattdessen echte Newslettersysteme und importieren Ihre Newsletterempfänger in diese Systeme oder koppeln Sie diese Systeme direkt mit Ihrem Zen Cart Shop.</span>
+      <br>
       <div class="row">
         <div class="col-sm-offset-6 col-sm-6">
             <?php if ($action == 'new') { ?>

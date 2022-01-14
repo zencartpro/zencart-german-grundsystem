@@ -15,7 +15,7 @@
 <div class="centerColumn" id="checkoutConfirmDefault">
 
 <h1 id="checkoutConfirmDefaultHeading"><?php echo HEADING_TITLE; ?></h1>
-<div id="conditionslaststep"><?php echo TEXT_ZUSATZ_SCHRITT3; ?><br/><?php echo TEXT_CONDITIONS_ACCEPTED_IN_LAST_STEP; ?></div>
+<div id="conditionslaststep"><?php echo TEXT_ZUSATZ_SCHRITT3; ?><br><?php echo TEXT_CONDITIONS_ACCEPTED_IN_LAST_STEP; ?></div>
 
 <?php if ($messageStack->size('redemptions') > 0) echo $messageStack->output('redemptions'); ?>
 <?php if ($messageStack->size('checkout_confirmation') > 0) echo $messageStack->output('checkout_confirmation'); ?>
@@ -133,7 +133,7 @@
           <td class="cartProductDisplay"><?php echo $order->products[$i]['name']; ?>
           	
 
-          	<br/><?php echo $order->products[$i]['merkmale']; ?>
+          	<br><?php echo $order->products[$i]['merkmale']; ?>
        
 
           <?php  if (!empty($stock_check[$i])) echo $stock_check[$i]; ?>

@@ -8,9 +8,9 @@
  * @version $Id: rl.vat_info.php 658 2014-04-12 15:45:57Z webchills $
  */
  
-define('VAT_SHOW_TEXT_VERSANDKOSTENFREI','<br/><span class="taxAddon">incl. %s VAT</span>');
+define('VAT_SHOW_TEXT_VERSANDKOSTENFREI','<br><span class="taxAddon">incl. %s VAT</span>');
 
 if(DISPLAY_PRICE_WITH_TAX=='true')
-define('VAT_SHOW_TEXT','<br/><span class="taxAddon">incl. %s VAT<br/> plus <a href="' . zen_href_link(FILENAME_SHIPPING) . '">shipping and handling</a></span>');
+define('VAT_SHOW_TEXT','<br><span class="taxAddon">incl. %s VAT<br> plus <a href="' . zen_href_link(FILENAME_SHIPPING) . '">shipping and handling</a></span>');
 else
-define('VAT_SHOW_TEXT','<br/><span class="taxAddon">plus %s VAT<br/> plus <a href="' . zen_href_link(FILENAME_SHIPPING) . '">shipping and handling</a></span>');
+define('VAT_SHOW_TEXT','<br><span class="taxAddon">plus %s VAT<br> plus <a href="' . zen_href_link(FILENAME_SHIPPING) . '">shipping and handling</a></span>');

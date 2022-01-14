@@ -160,7 +160,7 @@ if (defined('MODULE_ORDER_TOTAL_GV_SHOW_QUEUE_IN_ADMIN') && MODULE_ORDER_TOTAL_G
 
     <div class="hidden-xs col-sm-3 col-sm-push-6 noprint adminHeaderAlerts">
         <?php if ($new_version) { ?>
-            <?php echo $new_version; ?><br/>
+            <?php echo $new_version; ?><br>
             <?php echo '(' . TEXT_CURRENT_VER_IS . ' v' . PROJECT_VERSION_MAJOR . '.' . PROJECT_VERSION_MINOR . (PROJECT_VERSION_PATCH1 != '' ? 'p' . PROJECT_VERSION_PATCH1 : '') . ')'; ?>
         <?php } ?>
     </div>

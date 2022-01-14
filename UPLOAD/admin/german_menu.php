@@ -38,15 +38,15 @@
 <div id="additionalpages">
 <h1>Entwicklerteam der deutschen Zen Cart Version</h1>
 <b>hugo13</b>
-<br/><br/>
+<br><br>
 <b>webchills</b>
-<br/><br/>
+<br><br>
 <b>MaleBorg</b>
-<br/><br/>
-Follow us on Twitter:<br/>
+<br><br>
+Follow us on Twitter:<br>
 <a href="https://www.twitter.com/zencartpro" target="_blank">www.twitter.com/zencartpro</a>
-<br/><br/>
-Source Code auf GitHub:<br/>
+<br><br>
+Source Code auf GitHub:<br>
 <a href="https://github.com/zencartpro" target="_blank">github.com/zencartpro</a>
 <br><br><br>
 <h1>Unterstützen</h1>

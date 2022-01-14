@@ -132,7 +132,7 @@ if ($page == 'manager') {
   echo HEADING_TITLE_SEARCH_DETAIL . ' ' . zen_draw_input_field('search');
   if (isset($_GET['search']) && zen_not_null($_GET['search'])) {
     $keywords = zen_db_input(zen_db_prepare_input($_GET['search']));
-    echo '<br/ >' . TEXT_INFO_SEARCH_DETAIL_FILTER . $keywords;
+    echo '<br>' . TEXT_INFO_SEARCH_DETAIL_FILTER . $keywords;
   }
   echo '</form>';
   echo '</div>';

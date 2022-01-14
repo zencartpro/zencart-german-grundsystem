@@ -25,7 +25,7 @@ define('TEXT_INFO_CURRENCY_THOUSANDS_POINT','1000er Trennzeichen');
 define('TEXT_INFO_CURRENCY_DECIMAL_PLACES','Dezimalstellen:');
 define('TEXT_INFO_CURRENCY_LAST_UPDATED','Letzte Aktualisierung:');
 
-define('TEXT_INFO_CURRENCY_VALUE','Wert:<br /><br/ ><strong>Achtung, wenn hier ein anderer Wert als 1 eingetragen ist, dann wird der jeweilige Artikelpreis mit diesem Wert multipliziert (siehe auch unter Beispielausgabe)!</strong><br /><br />');
+define('TEXT_INFO_CURRENCY_VALUE','Wert:<br /><br><strong>Achtung, wenn hier ein anderer Wert als 1 eingetragen ist, dann wird der jeweilige Artikelpreis mit diesem Wert multipliziert (siehe auch unter Beispielausgabe)!</strong><br /><br />');
 define('TEXT_INFO_CURRENCY_EXAMPLE','Beispielausgabe:');
 define('TEXT_INFO_INSERT_INTRO','Bitte tragen Sie die neue Währung mit den relevanten Daten ein');
 define('TEXT_INFO_DELETE_INTRO','Wollen Sie diese Währung wirklich löschen?');

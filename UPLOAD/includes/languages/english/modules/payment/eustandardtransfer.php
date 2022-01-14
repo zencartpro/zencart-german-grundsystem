@@ -15,7 +15,7 @@ define('MODULE_PAYMENT_EUTRANSFER_TEXT_DESCRIPTION',
 '<br />Account Name: ' . nl2br(MODULE_PAYMENT_EUTRANSFER_ACCNAM) . 
 '<br />IBAN:    ' . nl2br(MODULE_PAYMENT_EUTRANSFER_ACCIBAN) .
 '<br />BIC/SWIFT:   ' . nl2br(MODULE_PAYMENT_EUTRANSFER_BANKBIC) .
-'<br/>Your order will be processed as soon as we received the payment.</div>');
+'<br>Your order will be processed as soon as we received the payment.</div>');
    
 define('MODULE_PAYMENT_EUTRANSFER_TEXT_EMAIL_FOOTER', 
 "Please use the following details to transfer your total order value:\n" .

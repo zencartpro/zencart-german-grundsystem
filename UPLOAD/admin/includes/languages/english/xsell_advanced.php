@@ -39,4 +39,4 @@ define('XSELLA_SORT_ORDER', 'Sort Order');
 define('XSELLA_DELETE', 'Delete Cross-Sell');
 define('XSELLA_CONFIRM_DELETE', 'Delete Confirmation');
 define('XSELLA_CONFIRM_DELETE_INFO', 'To confirm that you wish to delete the following item, please click confirm below.');
-define('TEXT_XSELL_ADVANCED_INFO', 'Here you can add several cross-sells at once by entering the article number and also edit existing cross-sells.<br/>In order to be able to use this Cross Sell administration sensibly, each product in your shop must have a unique model number. Use <a href="finddupmodels.php"><u>Find duplicate and missing model numbers</u></a> to make sure that you have provided your products with unique model numbers.');
+define('TEXT_XSELL_ADVANCED_INFO', 'Here you can add several cross-sells at once by entering the article number and also edit existing cross-sells.<br>In order to be able to use this Cross Sell administration sensibly, each product in your shop must have a unique model number. Use <a href="finddupmodels.php"><u>Find duplicate and missing model numbers</u></a> to make sure that you have provided your products with unique model numbers.');
