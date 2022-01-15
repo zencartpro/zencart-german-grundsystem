@@ -6,7 +6,7 @@
 # * Zen Cart German Version - www.zen-cart-pro.at
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_zencart.sql 2022-01-14 20:16:16Z webchills $
+# * @version $Id: mysql_zencart.sql 2022-01-15 13:31:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -4134,16 +4134,7 @@ INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, so
 INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES (5, 43, 'Storniert', 40);
 INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES (6, 43, 'Testbestellung', 50);
 INSERT INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) VALUES (7, 43, 'Rechnung versenden', 60);
-
-## ZEN-DEUTSCH MENU einfuegen
-INSERT INTO admin_menus (menu_key, language_key, sort_order) 
-VALUES ('german1', 'BOX_HEADING_EXTRAS_GERMAN', 50);
-
-INSERT INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order) 
-VALUES  ('proponents', 'GERMAN_PROPONENTS', 'FILENAME_GERMAN', '', 'german1', 'Y', 30),
-        ('german10', 'GERMAN_FORUM', 'FILENAME_GERMAN', 'extern=https://www.zen-cart-pro.at/forum', 'german1', 'Y', 10),
-        ('german30', 'GERMAN_FAQ', 'FILENAME_GERMAN', 'extern=https://www.zen-cart-pro.at/forum/forums/69-FAQ-und-Tutorials', 'german1', 'Y', 20);
-        
+    
         
 REPLACE INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible) VALUES 
 (1, 43, 'Mein Shop', 'Generelle Informationen über den Shop', 1, 1),
@@ -4299,7 +4290,8 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 ('Max. Anzahl Bestellpositionen / Auftrag (Liste im Adminbereich)', 'MAX_DISPLAY_RESULTS_ORDERS_DETAILS_LISTING', 43, 'Max. Anzahl Bestellpositionen / Auftrag (Liste im Adminbereich)<br>0= unbegrenzt', now(), now()),
 ('Max. Anzahl PayPal IPN Transaktionen pro Seite', 'MAX_DISPLAY_SEARCH_RESULTS_PAYPAL_IPN', 43, 'Max. Anzahl PayPal IPN Transaktionen pro Seite<br />Standard: 20', now(), now()),
 ('Max. Spaltenanzahl - Artikel zu Kategorien-Manager', 'MAX_DISPLAY_PRODUCTS_TO_CATEGORIES_COLUMNS', 43, 'Max. Spaltenanzahl - Artikel zu Kategorien-Manager<br>3= default', now(), now()),
-('Max. Anzahl EZ-Pages', 'MAX_DISPLAY_SEARCH_RESULTS_EZPAGE', 43, 'Maximale Anzahl EZ-Pages<br />20 = Default', now(), now()),
+('Max. Anzahl EZ-Pages pro Seite', 'MAX_DISPLAY_SEARCH_RESULTS_EZPAGE', 43, 'Wieviele EZ-Pages sollen maximal auf einer Seite der Administration anzeigt werden?<br />20 = Voreinstellung', now(), now()),
+('Max. Anzahl Zeichen in Vorschauen', 'MAX_PREVIEW', 43, 'Wieviele Zeichen sollen in einer Vorschau maximal angezeigt werden?<br />100 = Voreinstellung', now(), now()),
 
 # Adminmenü ID 4 - Bilder
 ('Kleine Bilder: Breite', 'SMALL_IMAGE_WIDTH', 43, 'Die Breite (in Pixel) der kleinen Bilder', now(), now()),
