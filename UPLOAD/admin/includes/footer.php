@@ -1,12 +1,11 @@
 <?php
-/**
- 
+/** 
  * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: footer.php 798 2021-10-26 10:24:50Z webchills $
+ * @version $Id: footer.php 2022-01-15 17:24:50Z webchills $
  */
 
 // check and display zen cart version and history version in footer
@@ -25,11 +24,10 @@ define('MH_DIR_FS_CATALOG', (substr(DIR_FS_CATALOG, -1) != '/') ? DIR_FS_CATALOG
 
 ?>
 <footer>
-  <div id="footer">
-   
-    E-Commerce Engine Copyright &copy; 2003-<?php echo date('Y'); ?> <a href="http://www.zen-cart-pro.at" rel="noopener" target="_blank">Zen Cart - deutsche Version</a><br />
-    <?php echo '<a href="' . zen_href_link(FILENAME_SERVER_INFO) . '">' . $current_sinfo . '</a>'; ?>
-  </div>
+<div id="footer">
+E-Commerce Engine Copyright &copy; 2003-<?php echo date('Y'); ?> <?php echo '<a href="' . zen_href_link(FILENAME_GERMAN_HELP) . '"><u>Zen Cart - deutsche Version</u></a>'; ?><br><br>
+<?php echo '<a href="' . zen_href_link(FILENAME_SERVER_INFO) . '">' . $current_sinfo . '</a>'; ?>
+</div>
 </footer>
 <?php
 $zco_notifier->notify('NOTIFY_ADMIN_FOOTER_END');

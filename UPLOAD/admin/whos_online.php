@@ -1,12 +1,11 @@
 <?php
 /**
- 
- 
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: whos_online.php 2021-10-25 17:00:16Z webchills $
+ * @version $Id: whos_online.php 2022-01-15 17:51:16Z webchills $
  */
 // Default refresh interval (0=off).  NOTE: Using automated refresh may put you in breach of PCI Compliance
 $defaultRefreshInterval = 0;
@@ -106,13 +105,13 @@ $listingURL = FILENAME_WHOS_ONLINE . '.php?' . zen_get_all_get_params(['q', 't',
       }
       .dataTableRowBot .last-url-link a {color: #333;}
       .dataTableRowSelectedBot .last-url-link a {color: #333;}
-      .dataTableRowBot .last-url-link {background: #f0cbfa;}
-      .dataTableRowSelectedBot .last-url-link {background: #f0cbfa;}
+      .dataTableRowBot .last-url-link {background: #FDE1C4;}
+      .dataTableRowSelectedBot .last-url-link {background: #F2BF8C;}
 
       #wo-legend {float: left;}
-      #wo-filters { float: right; background-color: #599659; color: #fff}
-      #wo-filters .optionClick { display: inline-block; color: #fff; border: 1px solid #fff; font-weight: bold; padding: 1px; margin: 2px 1px;}
-      #wo-filters .chosen {background-color: #003D00;}
+      #wo-filters { float: right; background-color: #D7D6CC; color: #000000}
+      #wo-filters .optionClick { display: inline-block; color: #000000; border: 1px solid #000000; font-weight: bold; padding: 1px; margin: 2px 1px;}
+      #wo-filters .chosen {background-color: #666666; color:#FFFFFF;}
     </style>
   </head>
   <body onLoad="init()">

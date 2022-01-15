@@ -24,7 +24,13 @@ text-align:justify;
 } 
 .card-text a {
 font-size: 13px;
-}   
+}  
+#zencartprologo{
+width:281px;
+height:63px;
+float:right;
+margin:5px 5px 5px 40px;
+} 
 </style>
 <script src="includes/menu.js"></script>
 <script src="includes/general.js"></script>
@@ -46,12 +52,12 @@ kill.disabled = true;
 <!-- body //-->
 <h1 class="pageHeading">Hilfe zur deutschen Zen Cart Version 1.5.7</h1>
 <div class="card-text">
-Die deutsche Zen-Cart Version 1.5.7 ist eine Modifikation der amerikanischen Version 1.5.7c von <a href="https://www.zen-cart.com" target="_blank">zen-cart.com</a>.<br>
+<span id="zencartprologo"><a href="https://www.zen-cart-pro.at" target="_blank"><img src="images/zencartpro-logo.jpg" alt="www.zen-cart-pro.at - Die deutsche Zen Cart Version" title="www.zen-cart-pro.at - Die deutsche Zen Cart Version"/></a></span>Die deutsche Zen-Cart Version 1.5.7 ist eine Modifikation der amerikanischen Version 1.5.7c von <a href="https://www.zen-cart.com" target="_blank">zen-cart.com</a>.<br>
 Sie wurde nicht nur einfach ins Deutsche übersetzt, sondern auch funktional auf die Anforderungen, die an Onlineshops in Deutschland, Österreich und der Schweiz gestellt werden, angepasst und mit zahlreichen Erweiterungen ausgestattet.<br>
 Die deutsche Zen Cart Version wird seit 2003 von einem Team von Entwicklern in Österreich und Deutschland betreut und weiterentwickelt.<br/><br/>
 Website des Projekts: <a href="https://www.zen-cart-pro.at" target="_blank">www.zen-cart-pro.at</a>
 <br><br>
-Hier finden Sie eine Übersicht hilfreicher Seiten zur Bedienung und Konfiguration:
+Hier finden Sie eine Übersicht hilfreicher Seiten zu Bedienung, Konfiguration, Sicherheit und Erweiterung Ihres Onlineshop Systems:
 <br><br>
 </div>
 <table class="table table-hover">
@@ -68,11 +74,15 @@ Hier finden Sie eine Übersicht hilfreicher Seiten zur Bedienung und Konfigurati
 </tr>
 <tr class="dataTableRow" >
 <td class="dataTableContent"><a href="https://github.com/zencartpro/zencart-german-grundsystem/issues" target="_blank">Issues auf GitHub</a></td>
-<td class="dataTableContent">Du hast einen Fehler in der deutschen Zen Cart Version 1.5.7 gefunden?<br>Melde ihn auf Github!</td>
+<td class="dataTableContent">Du hast einen Fehler in der deutschen Zen Cart Version 1.5.7 gefunden?<br>Melde ihn auf Github!<br>Für Fehler in Zusatzmodulen bitte die Issues im jeweiligen Modul Repository verwenden.</td>
 </tr>
 <tr class="dataTableRow" >
 <td class="dataTableContent"><a href="https://dokumentation.zen-cart-pro.at" target="_blank">Onlinedokumentation</a></td>
 <td class="dataTableContent">Umfangreiche Onlinedokumentation zu Installation/Update/Konfiguration der deutschen Zen Cart Version</td>
+</tr>
+<tr class="dataTableRow" >
+<td class="dataTableContent"><a href="https://downloads.zen-cart-pro.at" target="_blank">Module & Erweiterungen</a></td>
+<td class="dataTableContent">In unserem Downloadbereich im Support Forum finden Sie zahlreiche gut getestete und dokumentiert Module,<br>mit denen Sie in der Grundinstallation nicht enthaltene Funktionalitäten hinzufügen können.</td>
 </tr>
 <tr class="dataTableRow" >
 <td class="dataTableContent"><a href="https://links.zen-cart-pro.at" target="_blank">Links</a></td>

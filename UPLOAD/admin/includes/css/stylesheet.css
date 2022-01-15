@@ -3,7 +3,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Erik Kerkhoven 2020 Apr 14 New in v1.5.7 $
+ * @version $Id: stylesheet.css 2022-01-15 17:45:04 webchills $
  */
 
 body {
@@ -768,7 +768,7 @@ footer, #footer {
 }
 
 footer, #footer, footer a, #footer a {
-    font-size: 0.9em;
+    font-size: 1em;
 }
 
 /*
