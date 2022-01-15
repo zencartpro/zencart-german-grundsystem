@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: collect_info.php 803 2021-10-26 09:33:50Z webchills $
+ * @version $Id: collect_info.php 2022-01-15 18:56:50Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -378,8 +378,8 @@ if (zen_get_categories_status($current_category_id) == 0 && $pInfo->products_sta
     if (!empty($pInfo->products_image)) { ?>
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9 col-md-6">
-                <?php echo zen_info_image($pInfo->products_image, $pInfo->categories_name); ?>
-                <br>
+                <span id="imagepreview"><?php echo zen_info_image($pInfo->products_image, $pInfo->categories_name); ?></span>
+                <br>	
                 <?php echo $pInfo->products_image; ?>
             </div>
         </div>

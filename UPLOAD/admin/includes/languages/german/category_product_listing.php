@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: category_product_listing.php 2021-12-01 09:29:16Z webchills $
+ * @version $Id: category_product_listing.php 2022-01-15 18:52:16Z webchills $
  */
 define('HEADING_TITLE', 'Kategorien / Artikel');
 define('HEADING_TITLE_GOTO', 'Gehe zu:');
@@ -27,7 +27,7 @@ define('TEXT_DELETE_CATEGORY_INTRO', 'Wollen Sie diese Kategorie wirklich lösch
 define('TEXT_DELETE_CATEGORY_INTRO_LINKED_PRODUCTS', '<strong>Warnung:</strong> Verbundene Artikel, deren Master Kategorie ID gelöscht wird, setzen nicht den richtigen Preis fest. Vor dem Entfernen einer Kategorie sollten Sie zuerst sicherstellen, daß die zu löschende Kategorie keine verbundenen Artikel enthält. Noch enthaltene verbundene Artikel sollten einer anderen Master Kategorie ID zugeordnet werden');
 define('TEXT_INFO_HEADING_MOVE_CATEGORY', 'Kategorie verschieben');
 define('TEXT_MOVE_CATEGORIES_INTRO', 'Bitte Kategorie auswählen, in die Sie <b>%s</b> verschieben wollen');
-define('TEXT_MOVE', 'Verschiebe Artikel<br /><strong>ID#%1$u %2$s</strong><br />aus der derzeitigen Kategorie<br /><strong>%3$s</strong><br />in:');
+define('TEXT_MOVE_PRODUCT', 'Verschiebe Artikel<br /><strong>ID#%1$u %2$s</strong><br />aus der derzeitigen Kategorie<br /><strong>%3$s</strong><br />in:');
 define('TEXT_INFO_HEADING_DELETE_PRODUCT', 'Artikel löschen');
 define('TEXT_DELETE_PRODUCT_INTRO', 'Entfernen Sie die Verlinkungen dieses Artikels in andere Kategorien oder löschen Sie den Artikel komplett.<br />Für eine einfachere Verlinkung/Entlinkung von Artikeln in mehrere Kategorien können Sie auch das Menü <a href="index.php?cmd=' . FILENAME_PRODUCTS_TO_CATEGORIES . '&amp;products_filter=%u">Artikel in mehrere Kategorien verlinken</a> verwenden.<br /><br /><strong>Verlinkte Kategorien</strong> sind vorausgewählt zum Löschen.<br />Die <strong>Master Kategorie</strong> (<span class="text-danger">highlighted</span>) ist bewusst nicht vorausgewählt, um versehentliches Löschen zu verhindern.<br /><br />Um einen Artikel komplett zu löschen, wählen Sie ALLE Kategorien einschließlich der Master Kategorie.');
 define('TEXT_INFO_HEADING_MOVE_PRODUCT', 'Artikel verschieben');

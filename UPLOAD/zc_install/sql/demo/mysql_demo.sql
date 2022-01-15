@@ -1,13 +1,13 @@
 # MySQL file for Zen Cart Demo Products load
 # Zen Cart German Specific
-# $Id: mysql_demo.sql 2022-01-14 21:58:04Z webchills $
+# $Id: mysql_demo.sql 2022-01-15 18:33:04Z webchills $
 #
 
 # Configuration Settings:
 UPDATE configuration SET configuration_value='true' WHERE configuration_key='DOWNLOAD_ENABLED';
 
 #
-# Dumping data for table address_book
+# Dumping data for table `address_book`
 #
 
 INSERT INTO address_book (address_book_id, customers_id, entry_gender, entry_company, entry_firstname, entry_lastname, entry_street_address, entry_suburb, entry_postcode, entry_city, entry_state, entry_country_id, entry_zone_id) VALUES
@@ -15,7 +15,7 @@ INSERT INTO address_book (address_book_id, customers_id, entry_gender, entry_com
 (2, 2, 'f', '', 'Petra', 'Müller', 'Teststrasse 17', '', '10345', 'Berlin', NULL, 81, 0);
 
 #
-# Dumping data for table categories
+# Dumping data for table `categories`
 #
 
 INSERT INTO categories (categories_id, categories_image, parent_id, sort_order, date_added, last_modified, categories_status) VALUES
@@ -80,16 +80,140 @@ INSERT INTO categories (categories_id, categories_image, parent_id, sort_order, 
 (63, 'categories/subcategory.gif', 0, 1530, '2019-06-18 03:18:19', '2019-06-18 17:45:24', 1),
 (64, 'categories/subcategory.gif', 0, 1550, '2019-06-18 15:22:27', NULL, 1);
 
-
 #
-# Dumping data for table customers
+# Dumping data for table `categories_description`
+#
+
+INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES
+(1, 1, 'Hardware', 'We offer a variety of Hardware from printers to graphics cards and mice to keyboards.'),
+(2, 1, 'Software', 'Select from an exciting list of software titles. <br /><br />Not seeing a title that you are looking for?'),
+(3, 1, 'DVD Movies', 'We offer a variety of DVD movies enjoyable for the whole family.<br /><br />Please browse the various categories to find your favorite movie today!'),
+(4, 1, 'Graphic Cards', ''),
+(5, 1, 'Printers', ''),
+(6, 1, 'Monitors', ''),
+(7, 1, 'Speakers', ''),
+(8, 1, 'Keyboards', ''),
+(9, 1, 'Mice', 'Pick the right mouse for your individual computer needs!<br /><br />Contact Us if you are looking for a particular mouse that we do not currently have in stock.'),
+(10, 1, 'Action', '<p>Get into the action with our Action collection of DVD movies!<br /><br />Don\'t miss the excitement and order your\'s today!<br /><br /></p>'),
+(11, 1, 'Science Fiction', ''),
+(12, 1, 'Comedy', ''),
+(13, 1, 'Cartoons', 'Something you can enjoy with children of all ages!'),
+(14, 1, 'Thriller', ''),
+(15, 1, 'Drama', ''),
+(16, 1, 'Memory', ''),
+(17, 1, 'CDROM Drives', ''),
+(18, 1, 'Simulation', ''),
+(19, 1, 'Action', ''),
+(20, 1, 'Strategy', ''),
+(60, 1, 'Downloads', ''),
+(58, 1, 'Real Sale', ''),
+(21, 1, 'Gift Certificates', 'Send a Gift Certificate today!<br /><br />Gift Certificates are good for anything in the store.'),
+(57, 1, 'Text Pricing', ''),
+(56, 1, 'Attributes', ''),
+(22, 1, 'Big Linked', 'All of these products are &quot;Linked Products&quot;.<br /><br />This means that they appear in more than one Category.<br /><br />However, you only have to maintain the product in one place.<br /><br />The Master Product is used for pricing purposes.'),
+(55, 1, 'Discount Qty', '<p>Discount Quantities can be set for Products or on the individual attributes.<br /><br />Discounts on the Product do NOT reflect on the attributes price.<br /><br />Only discounts based on Special and Sale Prices are applied to attribute prices.</p>'),
+(23, 1, 'Test Examples', ''),
+(24, 1, 'Free Call Stuff', ''),
+(25, 1, 'Test 10% by Attrib', ''),
+(27, 1, '$5.00 off', ''),
+(28, 1, 'Test 10%', ''),
+(31, 1, '10% off Skip', ''),
+(32, 1, '10% off Price', ''),
+(47, 1, '10% off Attrib', ''),
+(33, 1, 'A Top Level Cat', '<p>This is a top level category description.</p>'),
+(34, 1, 'SubLevel 2 A', 'This is a sublevel category description.'),
+(35, 1, 'SubLevel 2 B', ''),
+(36, 1, 'SubLevel 2 C', ''),
+(37, 1, 'Sub Sub Cat 2B1', ''),
+(38, 1, 'Sub Sub Cat 2B2', ''),
+(39, 1, 'Sub Sub Cat 2B3', ''),
+(40, 1, 'Sub Sub Cat 2A1', 'This is a sub-sub level category description.'),
+(41, 1, 'Sub Sub Cat 2C1', ''),
+(42, 1, 'Sub Sub Cat 2C3', ''),
+(43, 1, 'Sub Sub Cat 2A2', ''),
+(44, 1, 'Sub Sub Cat 2C2', ''),
+(45, 1, 'Minus 10%', ''),
+(46, 1, 'Set $100', ''),
+(48, 1, 'Abverkauf nach %', ''),
+(49, 1, 'Abverkauf Fixbetrag', ''),
+(50, 1, 'Abverkauf neuer Preis', ''),
+(51, 1, 'Set $100 Skip', ''),
+(52, 1, '€5.00 off Skip', ''),
+(53, 1, 'Big Unlinked', ''),
+(54, 1, 'Special Functions', '<p>The New Products show many of the newest features that have been added to Zen Cart.<br /><br />Take the time to review these and the other Demo Products to better understand all the options and features that Zen Cart has to offer.</p>'),
+(61, 1, 'Real', ''),
+(62, 1, 'Music', ''),
+(63, 1, 'Documents', 'Dokumente can now be added to the category tree. For example you may want to add servicing/Technical documents. Or use Dokumente as an integrated FAQ system on your site. The implemetation here is fairly spartan, but could be expanded to offer PDF downloads, links to purchaseable download files. The possibilities are endless and left to your imagination.'),
+(64, 1, 'Mixed Product Types', 'This is a category with mixed product types.\r\n\r\nThis includes both products and documents. There are two types of documents - Dokumente that are for reading and Dokumente that are for reading and purchasing.'),
+(1, 43, 'Hardware', 'Wir bieten verschiedenste Hardware von Druckern, über Grafikkarten bis in zu Mäusen und Tastaturen.'),
+(2, 43, 'Software', 'Wählen Sie aus einer spannenden Liste von Softwaretiteln.'),
+(3, 43, 'DVD', 'Wir bieten eine Vielzahl von DVD-Filmen für die ganze Familie an.<br /><br />Bitte durchsuchen Sie die verschiedenen Kategorien, um Ihren Lieblingsfilm zu finden!'),
+(4, 43, 'Grafikkarten', ''),
+(5, 43, 'Drucker', ''),
+(6, 43, 'Monitore', ''),
+(7, 43, 'Lautsprecher', ''),
+(8, 43, 'Tastaturen', ''),
+(9, 43, 'Mäuse', 'Wählen Sie die Computermaus, die am besten zu Ihren Bedürfnissen passt!<br /><br />Kontaktieren Sie uns, wenn Sie nach einer bestimmten Maus suchen, die wir derzeit nicht auf Lager haben.'),
+(10, 43, 'Action', ''),
+(11, 43, 'Science Fiction', ''),
+(12, 43, 'Komödien', ''),
+(13, 43, 'Cartoons', ''),
+(14, 43, 'Thriller', ''),
+(15, 43, 'Drama', ''),
+(16, 43, 'Speicher', ''),
+(17, 43, 'CDROM Laufwerke', ''),
+(18, 43, 'Simulation', ''),
+(19, 43, 'Action', ''),
+(20, 43, 'Strategie', ''),
+(60, 43, 'Downloads', ''),
+(58, 43, 'Real Sale', ''),
+(21, 43, 'Geschenkgutscheine', 'Verschenken Sie einen Geschenkgutschein!<br /><br />Geschenkgutscheine können für alle Artikel in unserem Shop eingelöst werden.'),
+(57, 43, 'Textpreise', ''),
+(56, 43, 'Attribute', ''),
+(22, 43, 'Verlinkte Artikel', 'All diese Artikel sind &quot;Verlinkte Artikel&quot;.<br /><br />Das bedeutet, dass sie in mehreren Kategorien erscheinen.<br /><br />Es gibt aber in Wirklichkeit nur einen Artikel, den Sie für Preis, Artiklebeschreibung usw. bearbeiten müssen.'),
+(55, 43, 'Mengenrabatte', '<p>Rabatt Mengen können für Produkte oder für die einzelnen Attribute festgelegt werden.<br /><br />Rabatte auf einen Artikel wirken sich NICHT auf Attributpreise aus.<br /><br />Auf Attributpreise werden nur Rabatte basierend auf Sonderangeboten angewendet.</p>'),
+(23, 43, 'Testbeispiele', ''),
+(24, 43, 'Für Preis anrufen', ''),
+(25, 43, 'Test 10% per Attribut', ''),
+(27, 43, '5 € reduziert', ''),
+(28, 43, 'Test 10%', ''),
+(31, 43, 'Minus 10% Ausnahme', ''),
+(32, 43, 'Minus 10% Preis', ''),
+(47, 43, 'Minus 10% Attribut', ''),
+(33, 43, 'Eine Hauptkategorie', '<p>Dies ist ein Beschreibungstext für eine Hauptkategorie.</p>'),
+(34, 43, 'Unterkategorie 2 A', 'Dies ist ein Beschreibungstext für eine Unterkategorie.'),
+(35, 43, 'Unterkategorie 2 B', ''),
+(36, 43, 'Unterkategorie 2 C', ''),
+(37, 43, 'Sub Sub Cat 2B1', ''),
+(38, 43, 'Sub Sub Cat 2B2', ''),
+(39, 43, 'Sub Sub Cat 2B3', ''),
+(40, 43, 'Sub Sub Cat 2A1', 'This is a sub-sub level categories description.'),
+(41, 43, 'Sub Sub Cat 2C1', ''),
+(42, 43, 'Sub Sub Cat 2C3', ''),
+(43, 43, 'Sub Sub Cat 2A2', ''),
+(44, 43, 'Sub Sub Cat 2C2', ''),
+(45, 43, 'Minus 10%', ''),
+(46, 43, 'Set $100', ''),
+(48, 43, 'Abverkauf nach %', ''),
+(49, 43, 'Abverkauf Fixbetrag', ''),
+(50, 43, 'Abverkauf neuer Preis', ''),
+(51, 43, 'Set $100 Skip', ''),
+(52, 43, '$5.00 off Skip', ''),
+(53, 43, 'Big Unlinked', ''),
+(54, 43, 'Spezialfunktionen', '<p>Diese Artikel zeigen einige Spezialfunktionen.<br /><br />Nehmen Sie sich die Zeit, diese und die anderen Demo-Produkte genau anzusehen, um alle Optionen und Funktionen von Zen Cart besser zu verstehen.</p>'),
+(61, 43, 'Real', ''),
+(62, 43, 'Musik', ''),
+(63, 43, 'Dokumente', 'Dokumente können in den Kategoriebaum aufgenommen werden. Zum Beispiel möchten Sie möglicherweise Technische Dokumente anbieten. Oder Dokumente als ein integriertes FAQ System auf Ihrer Seite anbietene. Die Implementierung hier ist ziemlich spartanisch, könnte aber erweitert werden, um PDF-Downloads und Links zu käuflichen Download-Dateien anzubieten.'),
+(64, 43, 'Gemischte Artikeltypen', '<p>Diese Kategorie zeigt die Verwendung verschiedener Artikeltypen</p><p>Inkludiert sind sowohl Artikel als auch Dokumentes.</p><p>Es gibt zwei Arten von Dokumenten: Kostenlose rein zum Lesen und kostenpflichtige, die gekauft werden können.');
+#
+# Dumping data for table `customers`
 #
 INSERT INTO customers (customers_id, customers_gender, customers_firstname, customers_lastname, customers_dob, customers_email_address, customers_nick, customers_default_address_id, customers_telephone, customers_fax, customers_password, customers_newsletter, customers_group_pricing, customers_email_format, customers_authorization, customers_referral, customers_paypal_payerid, customers_paypal_ec) VALUES
 (1, 'm', 'Peter', 'Meier', '1972-09-01 00:00:00', 'demo@zencartdemo.at', '', 1, '012345678', '', '$2y$10$REy8OkYjNBcU/Sv2UyNiTeosob87m8n3GFnrGnjL/ywHRX2yQs8d2', '0', 0, 'TEXT', 0, '', '', 0),
 (2, 'f', 'Petra', 'Müller', '0001-01-01 00:00:00', 'demo2@zancartdemo.at', '', 2, '030123456789', '', '$2y$10$REy8OkYjNBcU/Sv2UyNiTeosob87m8n3GFnrGnjL/ywHRX2yQs8d2', '0', 0, 'HTML', 0, '', '', 0);
 
 #
-# Dumping data for table customers_info
+# Dumping data for table `customers_info`
 #
 
 INSERT INTO customers_info (customers_info_id, customers_info_date_of_last_logon, customers_info_number_of_logons, customers_info_date_account_created, customers_info_date_account_last_modified, global_product_notifications) VALUES
@@ -163,7 +287,7 @@ INSERT INTO ezpages_content (pages_id, languages_id, pages_title, pages_html_tex
 (21, 43, 'Newsletter abbestellen', ''),
 (22, 43, 'Geschenkgutschein FAQ', '');
 #
-# Dumping data for table featured
+# Dumping data for table `featured`
 #
 
 INSERT INTO featured (featured_id, products_id, featured_date_added, featured_last_modified, expires_date, date_status_change, status, featured_date_available) VALUES 
@@ -179,14 +303,14 @@ INSERT INTO featured (featured_id, products_id, featured_date_added, featured_la
 (10, 169, '2019-06-18 15:47:45', NULL, '0001-01-01', NULL, 1, '0001-01-01');
 
 #
-# Dumping data for table group_pricing
+# Dumping data for table `group_pricing`
 #
 
 INSERT INTO group_pricing (group_id, group_name, group_percentage, last_modified, date_added) VALUES
 (1, 'Gruppe 10', '10.00', NULL, '2019-06-18 00:21:04');
 
 #
-# Dumping data for table manufacturers
+# Dumping data for table `manufacturers`
 #
 
 INSERT INTO manufacturers (manufacturers_id, manufacturers_name, manufacturers_image, date_added, last_modified) VALUES (1, 'Matrox', 'manufacturers/manufacturer_matrox.gif', '2019-06-18 03:18:19', NULL),
@@ -225,48 +349,48 @@ INSERT INTO manufacturers_info (manufacturers_id, languages_id, manufacturers_ur
 
 
 #
-# Dumping data for table media_clips
+# Dumping data for table `media_clips`
 #
 
 INSERT INTO media_clips (clip_id, media_id, clip_type, clip_filename, date_added, last_modified) VALUES (1, 1, 1, 'thehunter.mp3', '2019-06-18 20:57:43', '2019-06-18 20:57:43'),
 (6, 2, 1, 'thehunter.mp3', '2019-06-18 00:45:09', '2019-06-18 00:45:09');
 
 #
-# Dumping data for table media_manager
+# Dumping data for table `media_manager`
 #
 
 INSERT INTO media_manager (media_id, media_name, last_modified, date_added) VALUES (1, 'Russ Tippins - The Hunter', '2019-06-18 20:57:43', '2019-06-18 20:42:53'),
 (2, 'Help!', '2019-06-18 01:01:14', '2019-06-18 17:57:45');
 
 #
-# Dumping data for table media_to_products
+# Dumping data for table `media_to_products`
 #
 
 INSERT INTO media_to_products (media_id, product_id) VALUES (1, 166),
 (2, 169);
 
 #
-# Dumping data for table media_types
+# Dumping data for table `media_types`
 #
 
 #INSERT INTO media_types (type_id, type_name, type_ext) VALUES (1, 'MP3', '.mp3');
 
 #
-# Dumping data for table music_genre
+# Dumping data for table `music_genre`
 #
 
 INSERT INTO music_genre (music_genre_id, music_genre_name, date_added, last_modified) VALUES (1, 'Rock', '2019-06-18 20:53:26', NULL),
 (2, 'Jazz', '2019-06-18 20:53:45', NULL);
 
 #
-# Dumping data for table product_music_extra
+# Dumping data for table `product_music_extra`
 #
 
 INSERT INTO product_music_extra (products_id, artists_id, record_company_id, music_genre_id) VALUES (166, 1, 0, 1),
 (169, 1, 1, 2);
 
 #
-# Dumping data for table product_types_to_category
+# Dumping data for table `product_types_to_category`
 #
 
 INSERT INTO product_types_to_category (product_type_id, category_id) VALUES (3, 63),
@@ -401,7 +525,8 @@ INSERT INTO products (products_id, products_type, products_quantity, products_mo
 (176, 1, 1000, 'Normal', 'small_00.jpg', '100.0000', 0, '2019-06-18 16:45:25', '2019-06-18 16:47:22', NULL, 2, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, '100.0000', 55, 1, 0, 0, 0, 0, 0),
 (177, 1, 1000, 'Special', '2_small.jpg', '100.0000', 0, '2019-06-18 16:47:45', '2019-06-18 00:05:48', NULL, 2, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, '75.0000', 55, 1, 0, 0, 0, 0, 0),
 (179, 1, 1000, 'DOWNLOAD1', '1_small.jpg', '39.0000', 0, '2019-06-18 00:08:33', '2019-06-18 00:18:51', NULL, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, '39.0000', 60, 1, 0, 0, 0, 0, 0),
-(178, 1, 1000, 'Normal', '1_small.jpg', '60.0000', 0, '2019-06-18 16:54:52', '2019-06-18 17:15:02', NULL, 2, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, '50.0000', 55, 1, 0, 0, 0, 0, 0);
+(178, 1, '1000', 'Normal', '1_small.jpg', '60.0000', 0, '2004-10-05 16:54:52', '2004-10-05 17:15:02', NULL, '2.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 0, 0, 1, '0', 0, 1, 0, '50.0000', 55, 1, 0, 0, 0, 0, 0),
+(180, 4, '1000', 'DPT', 'samples/4_small.jpg', '0.9346', 0, '2004-07-12 15:32:40', '2004-07-12 17:46:49', NULL, '0.00', 1, 1, 0, '0', '1', '1', 0, 0, 0, 1, 0, 1, '0', 40, 0, 0, '0.9300', 63, 1, 0, 0, 0, 0, 0);
 
 #New Products
 UPDATE products SET products_date_added = NOW() WHERE products_id = 168 or products_id = 169 or products_id = 170;
@@ -418,7 +543,7 @@ UPDATE products SET products_date_available = NOW() + INTERVAL 27 DAY WHERE prod
 UPDATE products SET products_date_available = NOW() + INTERVAL 33 DAY WHERE products_id = 34;
 
 #
-# Dumping data for table products_attributes
+# Dumping data for table `products_attributes`
 #
 
 INSERT INTO products_attributes (products_attributes_id, products_id, options_id, options_values_id, options_values_price, price_prefix, products_options_sort_order, product_attribute_is_free, products_attributes_weight, products_attributes_weight_prefix, attributes_display_only, attributes_default, attributes_discounted, attributes_image, attributes_price_base_included, attributes_price_onetime, attributes_price_factor, attributes_price_factor_offset, attributes_price_factor_onetime, attributes_price_factor_onetime_offset, attributes_qty_prices, attributes_qty_prices_onetime, attributes_price_words, attributes_price_words_free, attributes_price_letters, attributes_price_letters_free, attributes_required) VALUES
@@ -949,7 +1074,7 @@ INSERT INTO products_attributes (products_attributes_id, products_id, options_id
 (1105, 180, 17, 62, '0.0000', '+', 10, 0, 0, '+', 0, 0, 1, '', 1, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '', '', '0.0000', 0, '0.0000', 0, 0);
 
 #
-# Dumping data for table products_attributes_download
+# Dumping data for table `products_attributes_download`
 #
 
 INSERT INTO products_attributes_download (products_attributes_id, products_attributes_filename, products_attributes_maxdays, products_attributes_maxcount) VALUES (26, 'unreal.zip', 7, 3),
@@ -967,7 +1092,7 @@ INSERT INTO products_attributes_download (products_attributes_id, products_attri
 (1105, 'pdf_sample.zip', 7, 5);
 
 #
-# Dumping data for table products_description
+# Dumping data for table `products_description`
 #
 
 INSERT INTO products_description (products_id, language_id, products_name, products_description, products_merkmale, products_url, products_viewed) VALUES
@@ -1097,6 +1222,7 @@ INSERT INTO products_description (products_id, language_id, products_name, produ
 (177, 1, 'Special Product by the dozen', '<p>This is a Special product priced at $100 with a $75 Special</p><p>There are quantity discounts setup which will be discounted from the Special Price discounted by the dozen.</p><p>Discounts are added on the Products Price Manager.</p>', '', '', 0),
 (178, 1, 'Qty Discounts by 1 Special', '<p>This is a normal product priced at $60 with a special of $50</p><p>There are quantity discounts setup which will be discounted from the Products Price.</p><p>Discounts are added on the Products Price Manager.</p><p>The Discounts are offered in increments of 1.</p><p>Note: Attribute do not inherit the Mengenrabatte discounts.</p><p>Attribute will inherit Discounts from Specials or sales. This can be customized per attribute by marking the Attribute to Include Product Price Special or Sale Discounts.</p><p>Red is $100.00 and marked to include the Price to Special discount but will not inherit the Mengenrabatte discount.</p><p>Green is $100 and marked not to include the Price to Special discount and will not inherit the Mengenrabatte discount.</p>', '', '', 0),
 (179, 1, 'Single Download', '<p>This product is set up to have a single download.</p><p>The Product Price is $39.99</p><p>The attributes are setup with 1 Option Name, for the download to allow for one download but of various types.</p><p>The Download is listed under:</p><p>Option Name: Documentation<br />Option Value: PDF - English<br />Option Value: MS Word - English</p>', '', '', 0),
+(180, 43, 'Einzeldownload, Einzeltyp', '<p>This product is set up to have a single download of PDF only.  In 1.5.7 and above, products like this can be added to the cart from the listing page.</p><p>The Product Price is $39.99</p><p>The Download is listed under:</p><p>Option Name: Documentation<br />Option Value: PDF - English<br /></p>','', '', 0),
 (1, 43, 'Matrox G200 MMS', '<p>Matrox Graphics Inc. hat seine Position als Vorreiter auf dem Gebiet der Multimonitore weiter ausgebaut und damit erneut die flexibelste und fortschrittlichste L&ouml;sung der Branche entwickelt. Einf&uuml;hrung der neuen Matrox G200 Multi-Monitor-Serie; Dies ist die erste Grafikkarte, die bis zu vier DVI-Digital-Flachbildschirme auf einer einzigen 8-Zoll-PCI-Karte unterst&uuml;tzt.<br />\r\n<br />\r\nMit der anhaltenden Nachfrage nach digitalen Flachbildschirmen am Finanzarbeitsplatz ist die Matrox G200 MMS die ultimative L&ouml;sung f&uuml;r flexible L&ouml;sungen. Die Matrox G200 MMS unterst&uuml;tzt auch die neue Digital Video Interface (DVI), die von der Digital Display Working Group (DDWG) entwickelt wurde, um die Akzeptanz von digitalen Flachbildschirmen zu erleichtern. Zu den weiteren Konfigurationen geh&ouml;ren die F&auml;higkeit zur Aufnahme von Composite-Videos und der integrierte TV-Tuner. Damit ist die Matrox G200 MMS die Komplettl&ouml;sung f&uuml;r gesch&auml;ftliche Anforderungen.<br />\r\n<br />\r\nBasierend auf dem preisgekr&ouml;nten MGA-G200-Grafikchip bietet die Matrox G200 Multi-Monitor-Serie &uuml;berlegene 2D / 3D-Grafikbeschleunigung, um die anspruchsvollen Anforderungen von Gesch&auml;ftsanwendungen wie Echtzeit-Aktienkursen (Versus), Live-Video-Feeds (Reuters) zu erf&uuml;llen &amp; Bloombergs), mehrere Windows-Anwendungen, Textverarbeitung, Tabellenkalkulation und CAD.</p>', '', 'www.matrox.com/mga/products/g200_mms/home.cfm', 1),
 (2, 43, 'Matrox G400 32MB', '<p><strong>Dramatisch unterschiedliche Hochleistungsgrafik</strong><br />\r\n<br />\r\nEinf&uuml;hrung der Millennium G400-Serie - ein v&ouml;llig anderes, leistungsstarkes Grafik-Erlebnis. Die Millennium G400-Serie ist mit dem schnellsten Grafikchip der Branche ausgestattet. Sie erm&ouml;glicht eine explosionsartige Beschleunigung um zwei Schritte und bietet eine noch nie dagewesene Bildqualit&auml;t sowie die vielseitigsten Anzeigeoptionen f&uuml;r alle Ihre 3D-, 2D- und DVD-Anwendungen. Als das leistungsst&auml;rkste und innovativste Werkzeug in Ihrem PC-Arsenal wird die Millennium G400-Serie nicht nur die Darstellung von Grafiken ver&auml;ndern, sondern auch die Art und Weise, wie Sie Ihren Computer verwenden, revolutionieren.<br />\r\n<br />\r\nHauptmerkmale:</p>\r\n\r\n<ul>\r\n	<li>Neuer Matrox G400 256-Bit DualBus-Grafikchip</li>\r\n	<li>Explosive 3D-, 2D- und DVD-Performance</li>\r\n	<li>DualHead Anzeige</li>\r\n	<li>Hervorragende DVD- und TV-Ausgabe</li>\r\n	<li>3D-Umgebung-Mapped Bump Mapping</li>\r\n	<li>Lebendige Farbwiedergabe</li>\r\n	<li>UltraSharp DAC von bis zu 360 MHz</li>\r\n	<li>3D-Rendering-Array-Prozessor</li>\r\n	<li>Unterst&uuml;tzung f&uuml;r 16 oder 32 MB Speicher</li>\r\n</ul>', '', 'www.matrox.com/mga/products/mill_g400/home.htm', 2),
 (3, 43, 'Microsoft IntelliMouse Pro', '<p>Jedes Element der IntelliMouse Pro - von der einzigartigen gew&ouml;lbten Form bis hin zur Struktur des Gummigriffs um die Basis - ist das Ergebnis umfangreicher Kunden- und Ergonomieforschung. Die beliebte Radsteuerung von Microsoft, die jetzt Zoom- und universelle Scrollfunktionen erm&ouml;glicht, bietet IntelliMouse Pro hervorragenden Komfort und Effizienz.</p>', '', 'www.microsoft.com/hardware/mouse/intellimouse.asp', 2),
@@ -1463,7 +1589,7 @@ INSERT INTO products_options_values (products_options_values_id, language_id, pr
 (68, 43, 'Buch Hardcover', 5);
 
 #
-# Dumping data for table products_options_values_to_products_options
+# Dumping data for table `products_options_values_to_products_options`
 #
 
 INSERT INTO products_options_values_to_products_options (products_options_values_to_products_options_id, products_options_id, products_options_values_id) VALUES
@@ -1774,127 +1900,6 @@ INSERT INTO specials (specials_id, products_id, specials_new_products_price, spe
 (48, 178, '50.0000', '2019-06-18 16:56:46', NULL, '0001-01-01', NULL, 1, '0001-01-01'),
 (50, 40, '75.0000', '2019-06-18 14:07:31', NULL, '0001-01-01', '0001-01-01 00:00:00', 1, '0001-01-01');
 
-INSERT INTO categories_description (categories_id, language_id, categories_name, categories_description) VALUES
-(1, 1, 'Hardware', 'We offer a variety of Hardware from printers to graphics cards and mice to keyboards.'),
-(2, 1, 'Software', 'Select from an exciting list of software titles. <br /><br />Not seeing a title that you are looking for?'),
-(3, 1, 'DVD Movies', 'We offer a variety of DVD movies enjoyable for the whole family.<br /><br />Please browse the various categories to find your favorite movie today!'),
-(4, 1, 'Graphic Cards', ''),
-(5, 1, 'Printer', ''),
-(6, 1, 'Monitors', ''),
-(7, 1, 'Speakers', ''),
-(8, 1, 'Keyboards', ''),
-(9, 1, 'Mice', 'Pick the right mouse for your individual computer needs!<br /><br />Contact Us if you are looking for a particular mouse that we do not currently have in stock.'),
-(10, 1, 'Action', '<p>Get into the action with our Action collection of DVD movies!<br /><br />Don''t miss the excitement and order your''s today!<br /><br /></p>'),
-(11, 1, 'Science Fiction', ''),
-(12, 1, 'Comedy', ''),
-(13, 1, 'Cartoons', 'Something you can enjoy with children of all ages!'),
-(14, 1, 'Thriller', ''),
-(15, 1, 'Drama', ''),
-(16, 1, 'Memory', ''),
-(17, 1, 'CDROM Drives', ''),
-(18, 1, 'Simulation', ''),
-(19, 1, 'Action', ''),
-(20, 1, 'Strategy', ''),
-(60, 1, 'Downloads', ''),
-(58, 1, 'Real Sale', ''),
-(21, 1, 'Gift Certificates', 'Send a gift certificate today!<br /><br />Gift certificates are good for anything in the store.'),
-(57, 1, 'Text Prices', ''),
-(56, 1, 'Attributes', ''),
-(22, 1, 'Linked products', 'All of these products are &quot;Linked Products&quot;.<br /><br />This means that they appear in more than one Category.<br /><br />However, you only have to maintain the product in one place.<br /><br />The Master Product is used for pricing purposes.'),
-(55, 1, 'Quantity Discounts', '<p>Discount Quantities can be set for Products or on the individual attributes.<br /><br />Discounts on the Product do NOT reflect on the attributes price.<br /><br />Only discounts based on Special and Sale Prices are applied to attribute prices.</p>'),
-(23, 1, 'Test Examples', ''),
-(24, 1, 'Call for price', ''),
-(25, 1, 'Test 10% by attribute', ''),
-(27, 1, '$5.00 off', ''),
-(28, 1, 'Test 10%', ''),
-(31, 1, 'Minus 10% Ausnahme', ''),
-(32, 1, 'Minus 10% Price', ''),
-(47, 1, 'Minus 10% Attribute', ''),
-(33, 1, 'A Main Category', '<p>This is a top level category description.</p>'),
-(34, 1, 'Sub category 2 A', 'This is a sublevel category description.'),
-(35, 1, 'Sub category 2 B', ''),
-(36, 1, 'Sub category 2 C', ''),
-(37, 1, 'Sub Sub Cat 2B1', ''),
-(38, 1, 'Sub Sub Cat 2B2', ''),
-(39, 1, 'Sub Sub Cat 2B3', ''),
-(40, 1, 'Sub Sub Cat 2A1', 'This is a sub-sub level category description.'),
-(41, 1, 'Sub Sub Cat 2C1', ''),
-(42, 1, 'Sub Sub Cat 2C3', ''),
-(43, 1, 'Sub Sub Cat 2A2', ''),
-(44, 1, 'Sub Sub Cat 2C2', ''),
-(45, 1, 'Minus 10%', ''),
-(46, 1, 'Set $100', ''),
-(48, 1, 'Abverkauf nach %', ''),
-(49, 1, 'Abverkauf Fixbetrag', ''),
-(50, 1, 'Abverkauf neuer Preis', ''),
-(51, 1, 'Set $100 Skip', ''),
-(52, 1, '€5.00 off Skip', ''),
-(53, 1, 'Big Unlinked', ''),
-(54, 1, 'Special Functions', '<p>The New Products show many of the newest features that have been added to Zen Cart.<br /><br />Take the time to review these and the other Demo Products to better understand all the options and features that Zen Cart has to offer.</p>'),
-(61, 1, 'Real', ''),
-(62, 1, 'Music', ''),
-(63, 1, 'Documents', 'Dokumente can now be added to the category tree. For example you may want to add servicing/Technical documents. Or use Dokumente as an integrated FAQ system on your site. The implemetation here is fairly spartan, but could be expanded to offer PDF downloads, links to purchaseable download files. The possibilities are endless and left to your imagination.'),
-(64, 1, 'Mixed Product Types', 'This is a category with mixed product types.\r\n\r\nThis includes both products and documents. There are two types of documents - Dokumente that are for reading and Dokumente that are for reading and purchasing.'),
-(1, 43, 'Hardware', 'Wir bieten verschiedenste Hardware von Druckern, über Grafikkarten bis in zu Mäusen und Tastaturen.'),
-(2, 43, 'Software', 'Wählen Sie aus einer spannenden Liste von Softwaretiteln.'),
-(3, 43, 'DVD', 'Wir bieten eine Vielzahl von DVD-Filmen für die ganze Familie an.<br /><br />Bitte durchsuchen Sie die verschiedenen Kategorien, um Ihren Lieblingsfilm zu finden!'),
-(4, 43, 'Grafikkarten', ''),
-(5, 43, 'Drucker', ''),
-(6, 43, 'Monitore', ''),
-(7, 43, 'Lautsprecher', ''),
-(8, 43, 'Tastaturen', ''),
-(9, 43, 'Mäuse', 'Wählen Sie die Computermaus, die am besten zu Ihren Bedürfnissen passt!<br /><br />Kontaktieren Sie uns, wenn Sie nach einer bestimmten Maus suchen, die wir derzeit nicht auf Lager haben.'),
-(10, 43, 'Action', ''),
-(11, 43, 'Science Fiction', ''),
-(12, 43, 'Komödien', ''),
-(13, 43, 'Cartoons', ''),
-(14, 43, 'Thriller', ''),
-(15, 43, 'Drama', ''),
-(16, 43, 'Speicher', ''),
-(17, 43, 'CDROM Laufwerke', ''),
-(18, 43, 'Simulation', ''),
-(19, 43, 'Action', ''),
-(20, 43, 'Strategie', ''),
-(60, 43, 'Downloads', ''),
-(58, 43, 'Real Sale', ''),
-(21, 43, 'Geschenkgutscheine', 'Verschenken Sie einen Geschenkgutschein!<br /><br />Geschenkgutscheine können für alle Artikel in unserem Shop eingelöst werden.'),
-(57, 43, 'Textpreise', ''),
-(56, 43, 'Attribute', ''),
-(22, 43, 'Verlinkte Artikel', 'All diese Artikel sind &quot;Verlinkte Artikel&quot;.<br /><br />Das bedeutet, dass sie in mehreren Kategorien erscheinen.<br /><br />Es gibt aber in Wirklichkeit nur einen Artikel, den Sie für Preis, Artiklebeschreibung usw. bearbeiten müssen.'),
-(55, 43, 'Mengenrabatte', '<p>Rabatt Mengen können für Produkte oder für die einzelnen Attribute festgelegt werden.<br /><br />Rabatte auf einen Artikel wirken sich NICHT auf Attributpreise aus.<br /><br />Auf Attributpreise werden nur Rabatte basierend auf Sonderangeboten angewendet.</p>'),
-(23, 43, 'Testbeispiele', ''),
-(24, 43, 'Für Preis anrufen', ''),
-(25, 43, 'Test 10% per Attribut', ''),
-(27, 43, '5 € reduziert', ''),
-(28, 43, 'Test 10%', ''),
-(31, 43, 'Minus 10% Ausnahme', ''),
-(32, 43, 'Minus 10% Preis', ''),
-(47, 43, 'Minus 10% Attribut', ''),
-(33, 43, 'Eine Hauptkategorie', '<p>Dies ist ein Beschreibungstext für eine Hauptkategorie.</p>'),
-(34, 43, 'Unterkategorie 2 A', 'Dies ist ein Beschreibungstext für eine Unterkategorie.'),
-(35, 43, 'Unterkategorie 2 B', ''),
-(36, 43, 'Unterkategorie 2 C', ''),
-(37, 43, 'Sub Sub Cat 2B1', ''),
-(38, 43, 'Sub Sub Cat 2B2', ''),
-(39, 43, 'Sub Sub Cat 2B3', ''),
-(40, 43, 'Sub Sub Cat 2A1', 'This is a sub-sub level categories description.'),
-(41, 43, 'Sub Sub Cat 2C1', ''),
-(42, 43, 'Sub Sub Cat 2C3', ''),
-(43, 43, 'Sub Sub Cat 2A2', ''),
-(44, 43, 'Sub Sub Cat 2C2', ''),
-(45, 43, 'Minus 10%', ''),
-(46, 43, 'Set $100', ''),
-(48, 43, 'Abverkauf nach %', ''),
-(49, 43, 'Abverkauf Fixbetrag', ''),
-(50, 43, 'Abverkauf neuer Preis', ''),
-(51, 43, 'Set $100 Skip', ''),
-(52, 43, '$5.00 off Skip', ''),
-(53, 43, 'Big Unlinked', ''),
-(54, 43, 'Spezialfunktionen', '<p>Diese Artikel zeigen einige Spezialfunktionen.<br /><br />Nehmen Sie sich die Zeit, diese und die anderen Demo-Produkte genau anzusehen, um alle Optionen und Funktionen von Zen Cart besser zu verstehen.</p>'),
-(61, 43, 'Real', ''),
-(62, 43, 'Musik', ''),
-(63, 43, 'Dokumente', 'Dokumente können in den Kategoriebaum aufgenommen werden. Zum Beispiel möchten Sie möglicherweise Technische Dokumente anbieten. Oder Dokumente als ein integriertes FAQ System auf Ihrer Seite anbietene. Die Implementierung hier ist ziemlich spartanisch, könnte aber erweitert werden, um PDF-Downloads und Links zu käuflichen Download-Dateien anzubieten.'),
-(64, 43, 'Gemischte Artikeltypen', '<p>Diese Kategorie zeigt die Verwendung verschiedener Artikeltypen</p><p>Inkludiert sind sowohl Artikel als auch Dokumentes.</p><p>Es gibt zwei Arten von Dokumenten: Kostenlose rein zum Lesen und kostenpflichtige, die gekauft werden können.');
 
 
 INSERT INTO orders (orders_id, customers_id, customers_name, customers_company, customers_street_address, customers_suburb, customers_city, customers_postcode, customers_state, customers_country, customers_telephone, customers_email_address, customers_address_format_id, delivery_name, delivery_company, delivery_street_address, delivery_suburb, delivery_city, delivery_postcode, delivery_state, delivery_country, delivery_address_format_id, billing_name, billing_company, billing_street_address, billing_suburb, billing_city, billing_postcode, billing_state, billing_country, billing_address_format_id, payment_method, payment_module_code, shipping_method, shipping_module_code, coupon_code, cc_type, cc_owner, cc_number, cc_expires, cc_cvv, last_modified, date_purchased, orders_status, orders_date_finished, currency, currency_value, order_total, order_tax, paypal_ipn_id, ip_address, order_device) VALUES
