@@ -5,12 +5,11 @@
  * Loaded automatically by index.php?main_page=product_info.<br />
  * Displays details of a typical product
  *
-
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_product_info_display.php 2021-12-27 19:47:36Z webchills $
+ * @version $Id: tpl_product_info_display.php 2022-01-16 19:16:36Z webchills $
  */
 
 //require(DIR_WS_MODULES . '/debug_blocks/product_info_prices.php');
@@ -214,14 +213,6 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
 }
 ?>
 <!--eof Reviews button and count -->
-<!--bof Facebook Like Button-->
-<?php 
-  if (FACEBOOK_LIKE_BUTTON_STATUS == 'true' && $_SERVER['https'] != 'on') {
-    require($template->get_template_dir('tpl_modules_facebook_like_button.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_facebook_like_button.php'); 
-  }
-?>
-<!--eof Facebook Like Button-->
-
 
 <!--bof Product date added/available-->
 <?php

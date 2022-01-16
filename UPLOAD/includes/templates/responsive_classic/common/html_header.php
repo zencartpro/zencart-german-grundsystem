@@ -4,13 +4,12 @@
  * Common Template
  *
  * outputs the html header. i,e, everything that comes before the \</head\> tag <br />
- *
- 
+ * 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: html_header.php 2021-12-28 21:46:39Z webchills $
+ * @version $Id: html_header.php 2022-01-16 19:43:39Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -94,9 +93,6 @@ function gaOptout() {
 document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
 window[disableStr] = true; }
 </script>
-<?php } ?>
-<?php if (FACEBOOK_OPEN_GRAPH_STATUS == 'true') { ?>
-<?php require($template->get_template_dir('facebook_open_graph.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/facebook_open_graph.php'); ?>
 <?php } ?>
 <script type="text/javascript">window.jQuery || document.write(unescape('%3Cscript type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4" crossorigin="anonymous"%3E%3C/script%3E'));</script>
 <?php if (file_exists(DIR_WS_TEMPLATE . "jscript/jquery.min.js")) { ?>

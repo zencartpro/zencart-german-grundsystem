@@ -10,7 +10,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_product_info_display.php 2021-12-28 16:59:24Z webchills $
+ * @version $Id: tpl_product_info_display.php 2022-01-16 19:17:24Z webchills $
  */
  //require(DIR_WS_MODULES . '/debug_blocks/product_info_prices.php');
 ?>
@@ -232,15 +232,6 @@ if ($flag_show_ask_a_question) {
     } // $flag_show_product_info_url
   }
 ?>
-<!--eof Product URL -->
-
-<!--bof Facebook Like Button-->
-<?php 
-  if (FACEBOOK_LIKE_BUTTON_STATUS == 'true' && $_SERVER['https'] != 'on') {
-    require($template->get_template_dir('tpl_modules_facebook_like_button.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_facebook_like_button.php'); 
-  }
-?>
-<!--eof Facebook Like Button-->
 <!--bof cross sell module-->
 <?php require($template->get_template_dir('tpl_modules_xsell_products.php', DIR_WS_TEMPLATE, $current_page_base,'templates'). '/' . 'tpl_modules_xsell_products.php'); ?> 
 <!--eof cross sell module-->
