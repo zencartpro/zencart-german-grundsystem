@@ -1,13 +1,12 @@
 <?php
 /**
- * rss_feed.php
- *
+ * Zen Cart German Specific
  * @package rss feed
  * @copyright Copyright 2004-2008 Andrew Berezin eCommerce-Service.com
- * @copyright Portions Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Portions Copyright 2003-2022 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: rss_feed.php, v 2.1.4 14.02.2008 15:26 Andrew Berezin $
+ * @version $Id: rss_feed.php 2022-01-16 18:56:04 webchills $
  */
 
 @define('RSS_HOMEPAGE_FEED', '');
@@ -17,8 +16,8 @@
 
   function rss_feed_title($feed=false) {
     global $current_category_id;
-    if(!$feed) {
-      $feed = $_GET['feed'];
+    if(!$feed) {      
+      $feed = $_GET['feed'] ?? '';
     } else {
       if(($i = strpos($feed, '&')) !== false) {
         $feed_args = substr($feed, $i+1);
@@ -26,9 +25,6 @@
       }
     }
     switch (true) {
-      case ($feed == 'news'):
-          $title = TEXT_RSS_NEWS;
-        break;
       case ($feed == 'categories'):
         $title = TEXT_RSS_CATEGORIES;
         if (isset($_GET['cPath']) && $current_category_id > 0) {
@@ -120,7 +116,7 @@
   }
 
   function rss_feed_link_alternate() {
-    $feed_array = array('specials', 'new_products', 'upcoming', 'featured', 'best_sellers'); // 'news'
+    $feed_array = array('specials', 'new_products', 'upcoming', 'featured', 'best_sellers'); 
     $link = '';
     foreach($feed_array as $i => $feed) {
       $link .= '<link rel="alternate" type="application/rss+xml" title="' . rss_feed_title($feed) . '" href="' . zen_href_link(FILENAME_RSS_FEED, 'feed=' . $feed, 'NONSSL', false) . '" />' . "\n";
@@ -163,4 +159,3 @@
     list($feed, $title) = rss_feed_current_page();
     return $title;
   }
-// EOF

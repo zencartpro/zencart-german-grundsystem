@@ -1,20 +1,18 @@
 <?php
 /**
- * rss_feed.php
- *
+ * Zen Cart German Specific
  * @package rss feed
  * @copyright Copyright 2005-2008 Andrew Berezin eCommerce-Service.com
  * @copyright Portions Copyright 2003-2022 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: rss_feed.php 2014-03-29 17:18 webchills$
+ * @version $Id: rss_feed.php 2022-01-16 19:17:18 webchills$
  */
 
 define('RSS_ICON', 'rss.gif');
 define('BUTTON_IMAGE_RSS_FEED', 'button_rss.gif');
 define('BUTTON_RSS_FEED_ALT', 'RSS Feed');
 define('TEXT_RSS_FEED', 'RSS Feed');
-define('TEXT_RSS_NEWS', 'RSS News');
 define('TEXT_RSS_PRODUCT', 'RSS Produkt Feed');
 define('TEXT_RSS_PRODUCTS', 'RSS Produkte Feed');
 define('TEXT_RSS_PRODUCTS_ALL', 'RSS Alle Produkte Feed');

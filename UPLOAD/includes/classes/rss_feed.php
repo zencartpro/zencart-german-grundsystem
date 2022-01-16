@@ -99,19 +99,15 @@ class rss_feed extends base {
       case 'lastBuildDate':
         $this->lastBuildDate = $value;
         break;
-// category $this->rss_feed_category
       case 'generator':
         $this->generator = $value;
         break;
       case 'docs':
         $this->docs = $value;
         break;
-// cloud $this->rss_feed_cloud
       case 'ttl':
         $this->ttl = $value;
         break;
-// image $this->rss_feed_image
-// textInput $this->rss_feed_textInput
       case 'skipHours':
         $this->skipHours = explode(',', $value);
         break;
@@ -167,7 +163,6 @@ class rss_feed extends base {
     $this->item['author'][] = $author;
     $this->item['category'][] = $category;
     $this->item['source'][] = $source;
-
     $this->item['ext_tags'][] = $ext_tags;
   }
 
@@ -313,7 +308,6 @@ class rss_feed extends base {
         $xtagE = $xtag;
         if(preg_match('@^(.*):(.*) type="(.*)"$@', $xtag, $m)) {
           $xtagE = $m[1] . ':' . $m[2];
-//          var_dump($xtag, $xtagE, $m);echo '<br />';
         }
         if(is_array($xval)) {
           foreach($xval as $xvalItem) {
@@ -357,7 +351,6 @@ class rss_feed extends base {
     $this->rssFeedCacheFileName = DIR_FS_RSSFEED_CACHE . '/rssfeed_' . md5($zf_query);
     if($this->rssFeedCacheFlag && is_writable($this->rssFeedCacheFileName)) {
       if(($this->rssFeedContent = file_get_contents($this->rssFeedCacheFileName))) {
-//        $this->rssFeedContent = unserialize($this->rssFeedContent);
         $this->rssFeedTimeCreated = filemtime($this->rssFeedCacheFileName);
         $this->rssFeedCacheFrom = true;
       }
@@ -468,7 +461,4 @@ class rss_feed extends base {
     $out = str_replace(array('<', '>'), array('(', ')'), $str);
     return $out;
   }
-
 }
-
-// EOF

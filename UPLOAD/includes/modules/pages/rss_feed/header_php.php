@@ -1,13 +1,12 @@
 <?php
 /**
- * rss_feed header_php.php
- *
+ * Zen Cart German Specific
  * @package rss feed
  * @copyright Copyright 2004-2008 Andrew Berezin eCommerce-Service.com
  * @copyright Portions Copyright 2003-2022 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php, 2015-03-06 20:23:04 webchills $
+ * @version $Id: header_php.php 2022-01-16 18:57:04 webchills $
  */
 //  @ini_set('display_errors', '1');
 //  error_reporting(E_ALL);
@@ -117,46 +116,6 @@ if(!$rss->rss_feed_cache($_SERVER['QUERY_STRING'], RSS_CACHE_TIME*60)) {
   }
 
   switch($_GET["feed"]) {
-
-
-
-    case "news":
-      require_once(DIR_WS_FUNCTIONS . 'news.php');
-      $date_selector = $db->Execute("SELECT news_date_published
-                                     FROM " . TABLE_NEWS_ARTICLES . "
-                                     WHERE news_status = '1'
-                                       AND to_days(news_date_published) <= to_days(now())
-                                     GROUP BY news_date_published DESC
-                                     LIMIT " . (int)NEWS_RSS_FEED_NUMBER_OF_DAYS);
-      while (!$date_selector->EOF) {
-        $article = $db->Execute("SELECT n.article_id, na.author_name, na.author_email, nt.news_article_name, nt.news_article_text, nt.news_article_shorttext, n.news_image, nt.news_image_text, n.news_date_published
-                                 FROM " . TABLE_NEWS_ARTICLES . " n
-                                   LEFT JOIN " . TABLE_NEWS_ARTICLES_TEXT . " nt ON (n.article_id = nt.article_id AND nt.language_id = " . (int)$_SESSION['languages_id'] . "), " .
-                                          TABLE_NEWS_AUTHORS . " na
-                                 WHERE n.authors_id = na.authors_id
-                                   AND n.news_status = '1'
-                                   AND n.news_date_published = '" . $date_selector->fields['news_date_published'] . "'
-                                 ORDER BY n.sort_order");
-        while (!$article->EOF) {
-          $xtags = array();
-          $link = zen_href_link(FILENAME_NEWS_ARTICLE, 'article_id=' . $article->fields['article_id'] . $additionalURL, 'NONSSL', false);
-          $rss->rss_feed_item($article->fields['news_article_name'],
-                              $link,
-                              array('url' => $link, 'PermaLink' => true),
-                              date('r', strtotime($article->fields['news_date_published'])),
-                              news_create_news_summary($article->fields['news_article_text'], $article->fields['news_article_shorttext']),
-                              $article->fields['news_image'],
-                              zen_href_link(FILENAME_NEWS_COMMENTS, 'article_id=' . $article->fields['article_id'] . $additionalURL, 'NONSSL', false),
-                              $article->fields['author_name'] . " <" . $article->fields['author_email'] . ">",
-                              false,
-                              false,
-                              $xtags
-                              );
-          $article->MoveNext();
-        }
-        $date_selector->MoveNext();
-      }
-      break;
 
     case "categories":
       // don't build a tree when no categories
@@ -475,4 +434,3 @@ date_default_timezone_set('Europe/Vienna');
       $categories->MoveNext();
     }
   }
-// EOF
