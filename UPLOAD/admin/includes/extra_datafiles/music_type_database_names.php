@@ -22,4 +22,3 @@ define('TABLE_MEDIA_MANAGER', DB_PREFIX . 'media_manager');
 define('TABLE_MEDIA_TYPES', DB_PREFIX . 'media_types');
 define('TABLE_MEDIA_CLIPS', DB_PREFIX . 'media_clips');
 define('TABLE_MEDIA_TO_PRODUCTS', DB_PREFIX . 'media_to_products');
-?>

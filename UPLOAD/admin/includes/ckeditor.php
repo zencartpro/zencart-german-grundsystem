@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2010 Kuroi Web Design
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ckeditor.php 290 2021-10-26 10:30:32Z webchills $
+ * @version $Id: ckeditor.php 2021-10-26 10:30:32Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');

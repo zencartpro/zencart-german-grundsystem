@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: image_handler.php 2021-11-28 17:10:51Z webchills $
+ * @version $Id: image_handler.php 2022-01-15 19:10:51Z webchills $
  */
 require 'includes/application_top.php';
 
@@ -259,7 +259,7 @@ if (count($ih_admin_actions) > 0) {
 /** -----------------------------------------------------
  * MANAGER TABPAGE
  */
-if ($ih_page == 'manager') {
+if ($ih_page === 'manager') {
     // -----
     // Set the current page, used by the previous/next display module.
     //

@@ -15,4 +15,3 @@ if (!defined('IS_ADMIN_FLAG')) {
   define('FILENAME_MUSIC_GENRE', 'music_genre');
   define('FILENAME_MEDIA_MANAGER', 'media_manager');
   define('FILENAME_MEDIA_TYPES', 'media_types');
-?>

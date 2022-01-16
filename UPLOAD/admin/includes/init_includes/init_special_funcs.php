@@ -32,5 +32,3 @@ if (!defined('IS_ADMIN_FLAG')) {
   require(DIR_FS_CATALOG . DIR_WS_FUNCTIONS . 'salemaker.php');
   zen_start_salemaker();
   zen_expire_salemaker();
-
-?>

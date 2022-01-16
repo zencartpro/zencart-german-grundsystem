@@ -9,7 +9,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: defined_paths.php 6 2019-04-12 08:26:00 webchills
+ * @version $Id: defined_paths.php 2019-04-12 08:26:00 webchills
  */
 function zen_parse_url($url, $element = 'array')
 {

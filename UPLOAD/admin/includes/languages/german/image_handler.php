@@ -14,7 +14,7 @@ define('IH_NEW_NAME_COPY_IMAGES', 'Neuer Bildname, zusätzliche Produktbilder mi
 define('IH_KEEP_NAME', 'Alten Bildnamen verwenden, zusätzliche Produktbilder behalten');
 define('IH_DELETE_FROM_DB_ONLY', 'Nur Bildreferenz aus der Datenbank löschen');
 define('IH_HEADING_TITLE', 'Image Handler 5');
-define('IH_HEADING_TITLE_PRODUCT_SELECT','Bitte wählen Sie ein Produkt aus um dessen zu Bilder bearbeiten.');
+define('IH_HEADING_TITLE_PRODUCT_SELECT','Bitte wählen Sie ein Produkt aus, um dessen zu Bilder bearbeiten.');
 define('TABLE_HEADING_PHOTO_NAME', 'Bildname');
 define('TABLE_HEADING_BASE_SIZE', 'Grundbild');
 define('TABLE_HEADING_SMALL_SIZE','Kleines Bild');
@@ -53,8 +53,8 @@ define('TEXT_MAIN', 'main');
 define('TEXT_ADDITIONAL', 'additional');
 define('TEXT_INFO_CONFIRM_DELETE_SURE', 'Sind Sie sicher, dass Sie dieses Bild in allen verschiedenen Größen löschen wollen?');
 define('TEXT_INFO_SELECT_ACTION', 'Wählen Sie eine Aktion');
-define('TEXT_NOT_NEEDED', 'Not needed');    //-Displayed for the 'Medium'-sized additional images
-define('TEXT_TABLE_CAPTION_INSTRUCTIONS', "<b>Note:</b> A product's additional images are <em>automatically</em> created in their 'small' and 'large' sizes <em>only</em> and show '" . TEXT_NOT_NEEDED . "' for their <b>Medium image</b>.  If your storefront uses other image-sizes for these (or the product's main) images, those images are created (and cached) 'on-demand'.");
+define('TEXT_NOT_NEEDED', 'nicht erforderlich');    //-Displayed for the 'Medium'-sized additional images
+define('TEXT_TABLE_CAPTION_INSTRUCTIONS', '<b>Hinweis:</b> Die zusätzlichen Bilder eines Artikels werden <em>automatisch</em> nur in den Größen klein und groß erstellt und zeigen <em>nicht erforderlich</em> für ihr <b>mittleres Bild</b>.<br>Wenn Ihr Frontend andere Bildgrößen für diese Bilder (oder die Hauptbilder des Artikels) verwendet, werden diese Bilder "on-demand" erstellt (und zwischengespeichert).');
 define('TEXT_MSG_FILE_NOT_FOUND', 'Diese Datei existiert nicht.');
 define('TEXT_MSG_ERROR_RETRIEVING_IMAGESIZE', 'Bilgröße konnte nicht ermittelt werden');
 define('TEXT_MSG_AUTO_BASE_ERROR', 'Fehler: Sie haben die automatische Bildbenamung ausgewählt, es existiert aber kein Hauptbild.');

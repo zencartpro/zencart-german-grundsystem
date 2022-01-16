@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Erik Kerkhoven 2020 Jun 17 Modified in v1.5.7 $
+ * @version $Id: TrafficDashboardWidget.php 2021-12-28 17:56:29Z webchills $
  */
 
 // to disable this module for everyone, uncomment the following "return" statement so the rest of this file is ignored
