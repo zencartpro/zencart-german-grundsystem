@@ -1,17 +1,16 @@
 <?php
-/**
- 
+/** 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: specials.php 2021-12-03 15:34:16Z webchills $
+ * @version $Id: specials.php 2021-01-17 16:05:16Z webchills $
  */
 
 define('HEADING_TITLE','Sonderangebote und Abverkäufe');
 
 define('TABLE_HEADING_PRODUCTS','Artikel');
-define('TABLE_HEADING_STOCK', 'Stock');
+define('TABLE_HEADING_STOCK', 'Lagerbestand');
 define('TABLE_HEADING_PRODUCTS_PRICE','Artikelpreis | Sonderpreis | Abverkauf');
 define('TABLE_HEADING_AVAILABLE_DATE', 'Verfügbar ab');
 define('TABLE_HEADING_EXPIRES_DATE','Ablaufdatum');

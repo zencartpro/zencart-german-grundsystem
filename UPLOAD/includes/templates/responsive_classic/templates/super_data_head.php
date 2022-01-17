@@ -1,13 +1,12 @@
 <?php 
-/** 
- 
+/**  
  * Zen Cart German Specific
  * @package open graph/microdata 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: super_data_head.php 2022-01-16 19:32:41Z webchills $
+ * @version $Id: super_data_head.php 2022-01-17 15:18:41Z webchills $
  */
 if (FACEBOOK_OPEN_GRAPH_STATUS == 'true') { ?>
 <script type="application/ld+json">
@@ -56,18 +55,22 @@ if (FACEBOOK_OPEN_GRAPH_STATUS == 'true') { ?>
 $products_image_base = preg_replace('/'.$products_image_extension . '$/', '', $fb_image);
 $products_image_medium = DIR_WS_IMAGES . 'medium/' . $products_image_base . IMAGE_SUFFIX_MEDIUM . $products_image_extension;
 $products_image_large  = DIR_WS_IMAGES . 'large/' . $products_image_base . IMAGE_SUFFIX_LARGE .  $products_image_extension;
-  } elseif (isset($_GET['cPath'])) {
+  } elseif (isset($_GET['cPath'])) {  	
     $fb_cPath_array = explode('_', $_GET['cPath']);
     $fb_cPath_size = sizeof($fb_cPath_array);
     $fb_categories_id = $fb_cPath_array[$fb_cPath_size - 1]; 
-  }
-  if ($fb_image == '' && FACEBOOK_OPEN_GRAPH_DEFAULT_IMAGE != '') { // if no products image, use the default image if enabled
+    if (FACEBOOK_OPEN_GRAPH_DEFAULT_IMAGE != '') { // if no products image, use the default image if enabled
    $fb_image = FACEBOOK_OPEN_GRAPH_DEFAULT_IMAGE;
-  }
-  if ($fb_image != '') {
-?>
-<?php 
-  }
+ } else {
+ 	$fb_image = '';
+ }  
+}else {
+	if (FACEBOOK_OPEN_GRAPH_DEFAULT_IMAGE != '') { // if no products image, use the default image if enabled
+	$fb_image = FACEBOOK_OPEN_GRAPH_DEFAULT_IMAGE;
+} else {
+ 	$fb_image = '';
+ }
+}
 ?>
 <meta property="og:image" content="<?php echo $fb_image; ?>" />
 <meta property="og:description" content="<?php echo META_TAG_DESCRIPTION; ?>" />

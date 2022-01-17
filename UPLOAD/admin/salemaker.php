@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: salemaker.php 2021-10-24 18:21:51Z webchills $
+ * @version $Id: salemaker.php 2022-01-17 15:44:51Z webchills $
  */
 //
 define('AUTOCHECK', 'False');
@@ -27,7 +27,7 @@ $deduction_type_array = array(
 
 $action = (isset($_GET['action']) ? $_GET['action'] : '');
 
-if (zen_not_null($action)) {
+if (!empty($action)) {
   switch ($action) {
     case 'setflag':
       if (isset($_POST['flag']) && ($_POST['flag'] == 1 || $_POST['flag'] == 0)) {
@@ -100,7 +100,7 @@ if (zen_not_null($action)) {
       break;
     case 'copyconfirm':
       $newname = zen_db_prepare_input($_POST['newname']);
-      if (zen_not_null($newname)) {
+      if (!empty($newname)) {
         $salemaker_sales = $db->Execute("SELECT *
                                          FROM " . TABLE_SALEMAKER_SALES . "
                                          WHERE sale_id = " . zen_db_input($_GET['sID']));
@@ -301,7 +301,7 @@ if (zen_not_null($action)) {
       <div class="row">
         <div class="col-sm-6"><?php echo TEXT_SALEMAKER_POPUP; ?></div>
         <div class="col-sm-6 text-right">
-          <button type="submit" class="btn btn-primary"><?php echo (($form_action == 'insert') ? IMAGE_INSERT : IMAGE_UPDATE); ?></button> <a href="<?php echo zen_href_link(FILENAME_SALEMAKER, 'page=' . $_GET['page'] . ($_GET['sID'] > 0 ? '&sID=' . $_GET['sID'] : '')); ?>" class="btn btn-default" role="button"><?php echo IMAGE_CANCEL; ?></a></div>
+          <button type="submit" class="btn btn-primary"><?php echo (($form_action == 'insert') ? IMAGE_INSERT : IMAGE_UPDATE); ?></button> <a href="<?php echo zen_href_link(FILENAME_SALEMAKER, 'page=' . $_GET['page'] . (!empty($_GET['sID']) ? '&sID=' . $_GET['sID'] : '')); ?>" class="btn btn-default" role="button"><?php echo IMAGE_CANCEL; ?></a></div>
       </div>
       <div class="form-group">
           <?php echo zen_draw_label(TEXT_SALEMAKER_NAME, 'name', 'class="col-sm-3 control-label"'); ?>
@@ -456,7 +456,7 @@ if (zen_not_null($action)) {
               <tr class="dataTableHeadingRow">
                 <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_SALE_NAME; ?></th>
                 <th class="dataTableHeadingContent right"><?php echo TABLE_HEADING_SALE_DEDUCTION; ?></th>
-                <th class="dataTableHeadingContent"></td>
+                <th class="dataTableHeadingContent"></th>
                 <th class="dataTableHeadingContent center"><?php echo TABLE_HEADING_SALE_DATE_START; ?></th>
                 <th class="dataTableHeadingContent center"><?php echo TABLE_HEADING_SALE_DATE_END; ?></th>
                 <th class="dataTableHeadingContent center"><?php echo TABLE_HEADING_STATUS; ?></th>
@@ -494,15 +494,15 @@ if (zen_not_null($action)) {
                       if ($salemaker_sale['sale_status'] == '1') {
                         echo zen_draw_form('setflag_products', FILENAME_SALEMAKER, 'action=setflag&sID=' . $salemaker_sale['sale_id'] . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '') . (isset($_GET['search']) ? '&search=' . $_GET['search'] : ''));
                         ?>
-                      <input type="image" src="<?php echo DIR_WS_IMAGES ?>icon_green_on.gif" title="<?php echo IMAGE_ICON_STATUS_ON; ?>" />
-                      <input type="hidden" name="flag" value="0" />
+                      <input type="image" src="<?php echo DIR_WS_IMAGES ?>icon_green_on.gif" title="<?php echo IMAGE_ICON_STATUS_ON; ?>">
+                      <input type="hidden" name="flag" value="0">
                       <?php echo '</form>'; ?>
                       <?php
                     } else {
                       echo zen_draw_form('setflag_products', FILENAME_SALEMAKER, 'action=setflag&sID=' . $salemaker_sale['sale_id'] . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '') . (isset($_GET['search']) ? '&search=' . $_GET['search'] : ''));
                       ?>
-                      <input type="image" src="<?php echo DIR_WS_IMAGES ?>icon_red_on.gif" title="<?php echo IMAGE_ICON_STATUS_OFF; ?>" />
-                      <input type="hidden" name="flag" value="1" />
+                      <input type="image" src="<?php echo DIR_WS_IMAGES ?>icon_red_on.gif" title="<?php echo IMAGE_ICON_STATUS_OFF; ?>">
+                      <input type="hidden" name="flag" value="1">
                       <?php echo '</form>'; ?>
                       <?php
                     }
@@ -542,10 +542,10 @@ if (zen_not_null($action)) {
                 $contents = array('form' => zen_draw_form('sales', FILENAME_SALEMAKER, 'page=' . $_GET['page'] . '&action=deleteconfirm') . zen_draw_hidden_field('sID', $sInfo->sale_id));
                 $contents[] = array('text' => TEXT_INFO_DELETE_INTRO);
                 $contents[] = array('text' => '<br><b>' . $sInfo->sale_name . '</b>');
-                $contents[] = array('align' => 'center', 'text' => '<br>' . zen_image_submit('button_delete.gif', IMAGE_DELETE) . '&nbsp;<a href="' . zen_href_link(FILENAME_SALEMAKER, 'page=' . $_GET['page'] . '&sID=' . $sInfo->sale_id) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');
+                $contents[] = array('align' => 'center', 'text' => '<br>' . '<button type="submit" class="btn btn-danger">' . IMAGE_DELETE . '</button>' . '&nbsp;<a href="' . zen_href_link(FILENAME_SALEMAKER, 'page=' . $_GET['page'] . '&sID=' . $sInfo->sale_id) . '"' . ' class="btn btn-default" role="button">' . IMAGE_CANCEL . '</a>');
                 break;
               default:
-                if (is_object($sInfo)) {
+                if (!empty($sInfo) && is_object($sInfo)) {
                   $heading[] = array('text' => '<h4>' . $sInfo->sale_name . '</h4>');
 
                   $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_SALEMAKER, 'page=' . $_GET['page'] . '&sID=' . $sInfo->sale_id . '&action=edit') . '" class="btn btn-primary" role="button">' . IMAGE_EDIT . '</a> <a href="' . zen_href_link(FILENAME_SALEMAKER, 'page=' . $_GET['page'] . '&sID=' . $sInfo->sale_id . '&action=copy') . '" class="btn btn-primary" role="button">' . IMAGE_COPY_TO . '</a> <a href="' . zen_href_link(FILENAME_SALEMAKER, 'page=' . $_GET['page'] . '&sID=' . $sInfo->sale_id . '&action=delete') . '" class="btn btn-warning" role="button">' . IMAGE_DELETE . '</a>');
@@ -562,7 +562,7 @@ if (zen_not_null($action)) {
                 }
                 break;
             }
-            if ((zen_not_null($heading)) && (zen_not_null($contents))) {
+            if (!empty($heading) && !empty($contents)) {
               $box = new box;
               echo $box->infoBox($heading, $contents);
             }
@@ -598,4 +598,4 @@ if (zen_not_null($action)) {
   <!-- footer_eof //-->
 </body>
 </html>
-<?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>
+<?php require(DIR_WS_INCLUDES . 'application_bottom.php');

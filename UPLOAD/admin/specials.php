@@ -4,25 +4,26 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: specials.php 2022-01-12 10:41:16Z webchills $
+ * @version $Id: specials.php 2022-01-17 15:59:16Z webchills $
  * structurally identical to featured.php, modifications should be replicated
  */
-require('includes/application_top.php');
+require 'includes/application_top.php';
 
-require(DIR_WS_CLASSES . 'currencies.php');
+require DIR_WS_CLASSES . 'currencies.php';
 $currencies = new currencies();
 
 $action = (isset($_GET['action']) ? $_GET['action'] : '');
+$currentPage = (isset($_GET['page']) && $_GET['page'] != '' ? (int)$_GET['page'] : 0);
 
-if (zen_not_null($action)) {
+if (!empty($action)) {
     switch ($action) {
         case 'setflag':
             if (isset($_POST['flag']) && ($_POST['flag'] === '1' || $_POST['flag'] === '0')) {
-                zen_set_specials_status($_GET['id'], $_POST['flag']);
+        zen_set_specials_status((int)$_POST['id'], (int)$_POST['flag']);
                 // reset products_price_sorter for searches etc.
                 $update_price = $db->Execute("SELECT products_id
                                       FROM " . TABLE_SPECIALS . "
-                                      WHERE specials_id = " . (int)$_GET['id']);
+                                      WHERE specials_id = " . (int)$_POST['id']);
                 zen_update_products_price_sorter($update_price->fields['products_id']);
                 zen_redirect(zen_href_link(FILENAME_SPECIALS, (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'sID=' . $_GET['id'] . (isset($_GET['search']) ? '&search=' . $_GET['search'] : ''), 'NONSSL'));
             }
@@ -31,8 +32,8 @@ if (zen_not_null($action)) {
             if (empty($_POST['products_id'])) {
                 $messageStack->add_session(ERROR_NOTHING_SELECTED, 'caution');
             } else {
-                $products_id = zen_db_prepare_input($_POST['products_id']);
-                $products_price = zen_db_prepare_input($_POST['products_price']);
+        $products_id = (int)$_POST['products_id'];
+        $products_price = (float)$_POST['products_price'];
 
                 $tmp_value = zen_db_prepare_input($_POST['specials_price']);
                 $specials_price = (!zen_not_null($tmp_value) || $tmp_value === '' || $tmp_value === 0) ? 0 : $tmp_value;
@@ -78,12 +79,12 @@ if (zen_not_null($action)) {
             }
             break;
         case 'update':
-            $specials_id = zen_db_prepare_input($_POST['specials_id']);
+      $specials_id = (int)$_POST['specials_id'];
 
             if ($_POST['products_priced_by_attribute'] === '1') {
                 $products_price = zen_get_products_base_price($_POST['update_products_id']);
             } else {
-                $products_price = zen_db_prepare_input($_POST['products_price']);
+        $products_price = (float)$_POST['products_price'];
             }
 
             $tmp_value = zen_db_prepare_input($_POST['specials_price']);
@@ -112,7 +113,7 @@ if (zen_not_null($action)) {
             zen_redirect(zen_href_link(FILENAME_SPECIALS, (isset($_GET['page']) && $_GET['page'] > 0 ? 'page=' . $_GET['page'] . '&' : '') . 'sID=' . (int)$specials_id . (isset($_GET['search']) ? '&search=' . $_GET['search'] : '')));
             break;
         case 'deleteconfirm':
-            $specials_id = zen_db_prepare_input($_POST['sID']);
+      $specials_id = (int)$_POST['sID'];
 
             // reset products_price_sorter for searches etc.
             $update_price = $db->Execute("SELECT products_id
@@ -387,7 +388,7 @@ if (zen_not_null($action)) {
                 <table class="table table-hover">
                     <thead>
                     <tr class="dataTableHeadingRow">
-                        <th class="dataTableHeadingContent text-center"><?php echo 'ID#'; ?></th>
+                        <th class="dataTableHeadingContent text-right"><?php echo 'ID'; ?></th>
                         <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_PRODUCTS_MODEL; ?></th>
                         <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_PRODUCTS; ?></th>
                         <th class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_STOCK; ?></th>
@@ -581,7 +582,7 @@ if (zen_not_null($action)) {
                         }
                         break;
                 }
-                if ((zen_not_null($heading)) && (zen_not_null($contents))) {
+                if (!empty($heading) && !empty($contents)) {
                     $box = new box();
                     echo $box->infoBox($heading, $contents);
                 }
@@ -599,4 +600,5 @@ if (zen_not_null($action)) {
 <!-- footer_eof //-->
 </body>
 </html>
-<?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>
+<?php
+require DIR_WS_INCLUDES . 'application_bottom.php';
