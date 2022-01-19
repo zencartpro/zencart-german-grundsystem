@@ -4,10 +4,9 @@
  * Defines the project version details
  * Specifies what version the PHP fileset relates to.
  * Also declares what version the database "should" reflect if properly maintained and kept in sync.
- *
+ * Zen Cart German Specific
  * THIS FILE SHOULD NEVER BE EDITED MANUALLY !!!!!!!!
- *
- 
+ * 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0

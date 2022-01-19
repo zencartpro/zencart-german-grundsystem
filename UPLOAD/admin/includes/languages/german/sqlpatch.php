@@ -1,16 +1,15 @@
 <?php
-/**
- 
+/** 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: sqlpatch.php 2021-12-03 15:39:16Z webchills $
+ * @version $Id: sqlpatch.php 2022-01-19 20:39:16Z webchills $
  */
 
-define('HEADING_TITLE', 'SQL Query Executor');
+define('HEADING_TITLE', 'SQL Patches installieren');
 define('HEADING_WARNING', 'Stellen Sie sicher, dass Sie VOR DEM AUSFÜHREN DIESES SCRIPTS eine VOLLSTÄNDIGE SICHERUNG IHRER DATENBANK erstellt haben!');
-define('HEADING_WARNING2', 'Wenn Sie 3rd-Party Kontributionen installieren, bedenken Sie bitte, dass Sie dies auf eigenen Gefahr machen.<br />Zen Cart&reg; gibt keine Garantie für die Sicherheit oder Funktion von 3rd-Party Kontributionen. Testen Sie die Kontributionen, bevor Sie diese auf eimen Live-System einsetzen!');
+define('HEADING_WARNING2', 'Wenn Sie 3rd-Party Kontributionen installieren, bedenken Sie bitte, dass Sie dies auf eigenen Gefahr machen.<br />Zen Cart gibt keine Garantie für die Sicherheit oder Funktion von 3rd-Party Kontributionen. Testen Sie die Kontributionen, bevor Sie diese auf eimen Live-System einsetzen!');
 define('HEADING_WARNING_INSTALLSCRIPTS', 'HINWEIS: Zen Cart Datenbank-Upgrade Scripts sollen NICHT über diese Seite ausgeführt werden.<br />Bitte laden Sie den neuen <strong>zc_install</strong> Ordner hoch und führen das Update dort durch um ein besseres Ergebnis zu erzielen.');
 define('TEXT_QUERY_RESULTS', 'Abfrageergebnisse:');
 define('TEXT_ENTER_QUERY_STRING', 'SQL-Befehl(e) ausführen:&nbsp;&nbsp;<br />(Abschliessen<br />mit ;)');
@@ -29,7 +28,7 @@ define('SQLPATCH_HELP_TEXT', 'Das Tool "SQLPATCH" gibt Ihnen die Möglichkeit, S
     '<h2>Erweiterte Funktionen</h2>Damit einzelne SQL Befehle in einem Block von MySQL ausgeführt werden, muss folgende Zeile am Beginn eines Blockes stehen "<code>#NEXT_X_ROWS_AS_ONE_COMMAND:xxx</code>".  Der Parser wird daraufhin die nächsten X Zeilen als einen Befehl interpretieren.<br />
 Wird dieses Skript in phpMyAdmin od. anderen Programmen ausgeführt, so wird die Zeile "#NEXT..." ignoriert.<br />
 <br /><strong>Anmerkung: </strong>SELECT.... FROM... und LEFT JOIN Befehle setzen voraus, dass "FROM" oder "LEFT JOIN" in einer eigenen Zeile stehen.<br /><br />
-<em><strong>Examples:</strong></em>
+<em><strong>Beispiele:</strong></em>
 <ul><li><code>#NEXT_X_ROWS_AS_ONE_COMMAND:4<br />
 SET @t1=0;<br />
 SELECT (@t1:=configuration_value) as t1 <br />
@@ -67,12 +66,12 @@ define('REASON_INDEX_ALREADY_EXISTS', 'Kann index %s in table %s nicht hinzufüg
 define('REASON_PRIMARY_KEY_ALREADY_EXISTS', 'Kann primary key in table %s nicht hinzufügen, da er bereits vorhanden ist.');
 define('REASON_NO_PRIVILEGES', 'User ' . DB_SERVER_USERNAME . '@' . DB_SERVER . ' hat nicht die %s Rechte für Datenbank ' . DB_DATABASE . '.');
 define('ERROR_RENAME_TABLE', 'RENAME TABLE command not supported by SQLpatch tool. Please use phpMyAdmin instead.');
-define('ERROR_LINE_INCOMPLETE', 'Query incomplete: missing closing semicolon.');
+define('ERROR_LINE_INCOMPLETE', 'Abfrage unvollständig: Semikolon am Ende fehlt.');
 
-define('TEXT_EXECUTE_SUCCESS', 'Success: %u statement(s) processed.');
-define('ERROR_EXECUTE_FAILED', 'Query failed: %u statement(s) processed.');
-define('ERROR_EXECUTE_IGNORED', 'Note: %u statements ignored. See database table "upgrade_exceptions" for additional details.');
+define('TEXT_EXECUTE_SUCCESS', 'Erfolgreich: %u statement(s) verarbeitet.');
+define('ERROR_EXECUTE_FAILED', 'Fehlgeschlagen: %u statement(s) verarbeitet.');
+define('ERROR_EXECUTE_IGNORED', 'Hinweis: %u statements ignoriert. Tabelle "upgrade_exceptions" ansehen für genauere Details.');
 
-define('TEXT_UPLOADQUERY_SUCCESS', 'Success: %u statement(s) processed via file upload');
-define('ERROR_UPLOADQUERY_FAILED', 'Query failed: %u statement(s) processed via file upload');
-define('ERROR_UPLOADQUERY_IGNORED', 'Note: %u statements ignored via file upload. See database table "upgrade_exceptions" for additional details.');
+define('TEXT_UPLOADQUERY_SUCCESS', 'Erfolg: %u statement(s) verarbeitet via Datei Upload');
+define('ERROR_UPLOADQUERY_FAILED', 'Fehlgeschlagen: %u statement(s) verarbeitet via Datei Upload');
+define('ERROR_UPLOADQUERY_IGNORED', 'Hinweis: %u statements ignoriert via Datei Upload. Tabelle "upgrade_exceptions" ansehen für genauere Details.');

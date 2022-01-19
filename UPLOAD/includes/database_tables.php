@@ -9,7 +9,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: database_tables.php 789 2021-11-28 19:13:51Z webchills $
+ * @version $Id: database_tables.php 2022-01-19 20:13:51Z webchills $
  * @private
  */
 
@@ -77,10 +77,6 @@ define('TABLE_PAYPAL', DB_PREFIX . 'paypal');
 define('TABLE_PAYPAL_SESSION', DB_PREFIX . 'paypal_session');
 define('TABLE_PAYPAL_PAYMENT_STATUS', DB_PREFIX . 'paypal_payment_status');
 define('TABLE_PAYPAL_PAYMENT_STATUS_HISTORY', DB_PREFIX . 'paypal_payment_status_history');
-define('TABLE_PLUGIN_CONTROL', DB_PREFIX . 'plugin_control');
-define('TABLE_PLUGIN_CONTROL_VERSIONS', DB_PREFIX . 'plugin_control_versions');
-define('TABLE_PLUGIN_GROUPS', DB_PREFIX . 'plugin_groups');
-define('TABLE_PLUGIN_GROUPS_DESCRIPTION', DB_PREFIX . 'plugin_groups_description');
 define('TABLE_PRODUCTS', DB_PREFIX . 'products');
 define('TABLE_PRODUCT_TYPES', DB_PREFIX . 'product_types');
 define('TABLE_PRODUCT_TYPE_LAYOUT', DB_PREFIX . 'product_type_layout');
@@ -111,6 +107,5 @@ define('TABLE_TAX_RATES', DB_PREFIX . 'tax_rates');
 define('TABLE_GEO_ZONES', DB_PREFIX . 'geo_zones');
 define('TABLE_ZONES_TO_GEO_ZONES', DB_PREFIX . 'zones_to_geo_zones');
 define('TABLE_UPGRADE_EXCEPTIONS', DB_PREFIX . 'upgrade_exceptions');
-define('TABLE_WISHLIST', DB_PREFIX . 'customers_wishlist');
 define('TABLE_WHOS_ONLINE', DB_PREFIX . 'whos_online');
 define('TABLE_ZONES', DB_PREFIX . 'zones');
