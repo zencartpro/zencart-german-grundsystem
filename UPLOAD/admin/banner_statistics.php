@@ -1,15 +1,17 @@
 <?php
 /**
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: banner_statistics.php 2021-11-29 20:03:51Z webchills $
+ * @version $Id: banner_statistics.php 2022-01-19 22:03:51Z webchills $
+ *
  * @TODO - align .flot_chart.flot-x-axis smarter in relation to .flot_chart, and add styling, such as slightly larger font and bold, etc
  * @TODO - expand the functionality to enable hover-points and hover-text describing each point on the graphs
  */
 require('includes/application_top.php');
-require('includes/functions/functions_graphs.php');
+require('includes/functions/functions_banner_graphs.php');
 
 $banner_id = (isset($_GET['bID'])) ? (int)$_GET['bID'] : 0;
 $type = (isset($_GET['type']) ? preg_replace('/[^a-z]/', '', $_GET['type']) : '');
@@ -212,7 +214,7 @@ $opts = array(
       <div class="form-group">
           <?php echo zen_draw_label(TITLE_TYPE, 'type', 'class="control-label col-sm-3"'); ?>
         <div class="col-sm-9 col-md-6">
-            <?php echo zen_draw_pull_down_menu('type', $type_array, (zen_not_null($type) ? $type : 'daily'), 'onChange="this.form.submit();" class="form-control"'); ?>
+            <?php echo zen_draw_pull_down_menu('type', $type_array, (!empty($type) ? $type : 'daily'), 'onChange="this.form.submit();" class="form-control"'); ?>
           <noscript><input type="submit" value="GO"></noscript>
         </div>
       </div>
