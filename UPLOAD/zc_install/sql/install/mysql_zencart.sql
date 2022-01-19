@@ -6,7 +6,7 @@
 # * Zen Cart German Version - www.zen-cart-pro.at
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_zencart.sql 2022-01-16 19:23:16Z webchills $
+# * @version $Id: mysql_zencart.sql 2022-01-19 19:50:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -856,22 +856,6 @@ CREATE TABLE get_terms_to_filter (
   get_term_table varchar(64) NOT NULL,
   get_term_name_field varchar(64) NOT NULL,
   PRIMARY KEY  (get_term_name)
-) ENGINE=MyISAM;
-
-# --------------------------------------------------------
-
-#
-# Table structure for table 'google_analytics_languages'
-# Zen Cart German Specific
-
-DROP TABLE IF EXISTS google_analytics_languages;
-CREATE TABLE google_analytics_languages (
-  languages_id int(11) NOT NULL auto_increment,
-  name varchar(50) NOT NULL default '',
-  code char(10) NOT NULL default '',
-  sort_order int(3) default NULL,
-  PRIMARY KEY  (languages_id),
-  KEY idx_languages_name_zen (name)
 ) ENGINE=MyISAM;
 
 # --------------------------------------------------------
@@ -2282,8 +2266,7 @@ VALUES ('configMyStore', 'BOX_CONFIGURATION_MY_STORE', 'FILENAME_CONFIGURATION',
        ('configIndexListing', 'BOX_CONFIGURATION_INDEX_LISTING', 'FILENAME_CONFIGURATION', 'gID=24', 'configuration', 'Y', 23),
        ('configDefinePageStatus', 'BOX_CONFIGURATION_DEFINE_PAGE_STATUS', 'FILENAME_CONFIGURATION', 'gID=25', 'configuration', 'Y', 24),
        ('configEzPagesSettings', 'BOX_CONFIGURATION_EZPAGES_SETTINGS', 'FILENAME_CONFIGURATION', 'gID=30', 'configuration', 'Y', 25),
-       ('configMinifySettings', 'BOX_CONFIGURATION_MINIFY', 'FILENAME_CONFIGURATION', 'gID=31', 'configuration', 'Y', 31),
-       ('configGoogleAnalytics','BOX_CONFIGURATION_GOOGLEANALYTICS','FILENAME_CONFIGURATION', 'gID=32', 'configuration', 'Y', 32),
+       ('configMinifySettings', 'BOX_CONFIGURATION_MINIFY', 'FILENAME_CONFIGURATION', 'gID=31', 'configuration', 'Y', 31),       
        ('configFacebook','BOX_CONFIGURATION_FACEBOOK','FILENAME_CONFIGURATION', 'gID=33', 'configuration', 'Y', 33),
        ('configRSSFeed','BOX_CONFIGURATION_RSSFEED','FILENAME_CONFIGURATION', 'gID=34', 'configuration', 'Y', 34),
        ('configZenColorbox','BOX_CONFIGURATION_ZEN_COLORBOX','FILENAME_CONFIGURATION', 'gID=35', 'configuration', 'Y', 35),
@@ -3158,22 +3141,6 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Minify Cache Time', 'MINIFY_CACHE_TIME_LENGHT', '31536000', 'Set minify cache time (in second). Default is 1 year (31536000)', 31, 4, NULL, now(), NULL, NULL);
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Latest Cache Time', 'MINIFY_CACHE_TIME_LATEST', '0', 'Normally you don\'t have to set this, but if you have just made changes to your js/css files and want to make sure they are reloaded right away, you can reset this to 0.', 31, 5, NULL, now(), NULL, NULL);
 
-#Google Analytics settings with IP address anonymization
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Analytics Enabled', 'GOOGLE_ANALYTICS_ENABLED', 'Disabled', 'Enables / disables this plugin.', 32, 1, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''Enabled'', ''Disabled''), ');
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Analytics Account', 'GOOGLE_ANALYTICS_UACCT', 'UA-XXXXXX-X', 'This number is the unique ID you were given by Google when you registered for your Google Analytics account. <b>Enter your Google Analytics account number below. It starts with UA</b>', 32, 2, NOW(), NOW(), NULL, NULL);
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Target Address', 'GOOGLE_ANALYTICS_TARGET', 'customers', 'This element is used in conjunction with Google E-Commerce Tracking. It indicates how you want your "transactions" to be identified in your Analytics reports.<br><br>Addresses consist of City,State, and Country.<br><br>This information can help you determine locality of orders placed, shipped to, or billed to.<br><br><b>Which address type do you want to use for recording transaction information?</b><br>', 32, 3, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''customers'', ''delivery'', ''billing''),');
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Affiliation', 'GOOGLE_ANALYTICS_AFFILIATION', '', 'This <b>optional</b> tracking element is used in conjunction with Google E-Commerce Tracking.<br><br>The Affiliation tag describes the affiliating store or processing site.<br><br>It can be used if you have multiple stores (or web sites) in various locations and is used to track from which location a particular sale originated.<br><br><b>If you have one, enter your optional partner or store affiliation in the space provided below.</b><br>', 32, 4, NOW(), NOW(), NULL, NULL);
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Use sku/code', 'GOOGLE_ANALYTICS_SKU_CODE', 'products_id', 'This tracking element is used in conjunction with Google Analytics E-Commerce tracking.<br><br>It enables you to track which products perform better than others using either the Product ID, or the Product Model Number as a unique identifier.<br><br>Indicate which identifier you want to use to track product performance by selecting one of the options below.</b>', 32, 5, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''products_id'', ''products_model''),');
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Activate Adwords Conversion Tracking', 'GOOGLE_CONVERSION_ACTIVE', 'No', 'This element enables you turn on or off Google Conversion Tracking.<br><br><span style="color:#ff0000;font-weight:bold;">Please Note:</span> Conversion tracking is used to track the effectiveness of Google AdWords paid search campaigns. If you are <b>not</b> running any paid search campaigns, then you should leave this set to "No".<br><br>If you are running Google AdWords (paid search) campaigns, then turning this on will place the proper conversion tracking code on your checkout success page and enable you to start tracking conversions.<br><br>Turning this on <b>requires you</b> to enter your unique Google Conversion Tracking ID in place of the "XXXXXXXXXXX" number shown in the next section.<br><br><b>Do you want to turn on Google AdWords Conversion Tracking?</b><br>', 32, 6, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''Yes'', ''No''), ');
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Google AdWords Conversion Tracking Number', 'GOOGLE_CONVERSION_IDNUM', 'XXXXXXXXXX', 'If you activated Conversion Tracking in the previous section, then you <b>must</b> enter your unique Google Conversion Tracking ID in place of the "XXXXXXXXXXX" shown in the space provided below.<br><br>If you have activated Conversion Tracking, and do not enter your number below, tracking will not work.<br><br><b>Enter your AdWords Conversion Tracking ID Number below.</b>', 32, 7, NOW(), NOW(), NULL, NULL);
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Google AdWords Language', 'GOOGLE_CONVERSION_LANG', 'de', 'Select the language to be used. The default is "English US".<br><br>For more hints and tips on how to use Google Analytics to increase sales from your store, visit <b><a href="http://www.zencartoptimization.com" target="blank">ZenCartOptimization.com</a></b><br><br><b>Select your language below</b><br>', 32, 8, NOW(), NOW(), NULL, 'zen_cfg_pull_down_google_languages(');
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Google Tracking Code Type To Use', 'GOOGLE_ANALYTICS_TRACKING_TYPE', 'universal', 'Select the type of tracking you wish to use. The default is the "universal" type. You have the ability to change this to the older "ga.js" method. <b>Select your tracking preference below.</b><br />', 32, 9, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''universal'', ''ga.js'', ''ga.js asynchronous''), ');
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Add Custom Tracking After Main Analytics Code?', 'GOOGLE_ANALYTICS_CUSTOM_CODE_ENABLED', 'Enable', 'Enables / disables inclusion of custom Javascript. Enable is the default as the needed code for IP address anonymization is preconfigured below to fulfill GDPR requirements.', 32, 10, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''Enable'', ''Disable''),');
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Google Custom Code - After', 'GOOGLE_ANALYTICS_CUSTOM_CODE', 'ga(\'set\', \'anonymizeIp\', true);', 'If you wish to include any additional Javascript code after the main tracking segment, insert it here. The needed code for IP address anonymization is preconfigured to fulfill GDPR requirements.<br /><br />', 32, 11, NOW(), NOW(), NULL, 'zen_cfg_textarea(');
-#New since 1.5.5: Demographics/Interest Reports and Conversion Label
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Demographics and Interest Reports', 'GOOGLE_ANALYTICS_DIR', 'Disabled', 'Enables / Disables Demographics and Interest Reports<br /><br />', 32, 12, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(''Enabled'', ''Disabled''),');
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Google Conversion Label', 'GOOGLE_CONVERSION_LABEL', 'purchase', 'Enter your Google Conversion Label (can be generated in Google Adwords or you can create a custom label for tracking elsewhere)<br /><br />', 32, 13, NOW(), NOW(), NULL, 'zen_cfg_textarea(');
-
 #Open Graph / Microdata Settings
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Open Graph - Enable Open Graph/Microdata', 'FACEBOOK_OPEN_GRAPH_STATUS', 'false', 'Enable Facebook Open Graph meta data?', 33, 1, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),');
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Open Graph - Application ID', 'FACEBOOK_OPEN_GRAPH_APPID', '', 'Please enter your application ID (<a href="http://developers.facebook.com/setup/" target="_blank">Get an application ID</a>)', 33, 2, NOW(), NOW(), NULL, NULL);
@@ -3367,7 +3334,6 @@ INSERT INTO configuration_group (configuration_group_id, language_id, configurat
 (25, 1,  'Define Page Status', 'Define Pages Options Settings', '25', '1'),
 (30, 1,  'EZ-Pages Settings', 'EZ-Pages Settings', 30, '1'),
 (31, 1,  'Minify Settings', 'Minify Settings', 31, '1'),
-(32, 1,  'Google Analytics', 'Google Analytics Settings', 32, '1'),
 (33, 1,  'Open Graph/Microdata', 'Open Graph/Microdata', 33, '1'),
 (34, 1,  'RSS Feed', 'RSS Feed Settings', 34, '1'),
 (35, 1,  'Zen Colorbox', 'Zen Colorbox Settings', 35, '1'),
@@ -3405,28 +3371,6 @@ INSERT INTO ezpages_content (pages_id, languages_id, pages_title, pages_html_tex
 (3, 1, 'Imprint', ''),
 (4, 1, 'Terms and Conditions', '');
 
-INSERT INTO google_analytics_languages VALUES (1,'Chinese (simplified) - Chinesisch (einfach)','zh_CN',1);
-INSERT INTO google_analytics_languages VALUES (2,'Chinese (traditional) - Chinesisch (traditionell)','zh_TW',2);
-INSERT INTO google_analytics_languages VALUES (3,'Danish - Dänisch','da',3);
-INSERT INTO google_analytics_languages VALUES (4,'Dutch - Holländisch','nl',4);
-INSERT INTO google_analytics_languages VALUES (5,'English (Australia)','en_AU',5);
-INSERT INTO google_analytics_languages VALUES (6,'English (UK))','en_GB',6);
-INSERT INTO google_analytics_languages VALUES (7,'English (US)','en_US',7);
-INSERT INTO google_analytics_languages VALUES (8,'Finnish - Finnisch','fi',8);
-INSERT INTO google_analytics_languages VALUES (9,'French - Französisch','fr',9);
-INSERT INTO google_analytics_languages VALUES (10,'German - Deutsch','de',10);
-INSERT INTO google_analytics_languages VALUES (11,'Hebrew - Hebräisch','iw',11);
-INSERT INTO google_analytics_languages VALUES (12,'Italian - Italienisch','it',12);
-INSERT INTO google_analytics_languages VALUES (13,'Japanese - Japanisch','ja',13);
-INSERT INTO google_analytics_languages VALUES (14,'Korean - Koreanisch','ko',14);
-INSERT INTO google_analytics_languages VALUES (15,'Norwegian - Norwegisch','no',15);
-INSERT INTO google_analytics_languages VALUES (16,'Polish - Polnisch','pl',16);
-INSERT INTO google_analytics_languages VALUES (17,'Portuguese (Brazil) - Portugiesisch (Brasilien)','pt_BR',17);
-INSERT INTO google_analytics_languages VALUES (18,'Portuguese (Portugal) - Portugiesisch (Portugal)','pt_PT',18);
-INSERT INTO google_analytics_languages VALUES (19,'Russian - Russisch','ru',19);
-INSERT INTO google_analytics_languages VALUES (20,'Spanish - Spanisch','es',20);
-INSERT INTO google_analytics_languages VALUES (21,'Swedish - Schwedisch','sv',21);
-INSERT INTO google_analytics_languages VALUES (22,'Turkish - Türkisch','tr',22);
 INSERT INTO languages VALUES (43,'Deutsch','de','icon.gif','german',1);
 INSERT INTO languages VALUES (1,'English','en','icon.gif','english',2);
 
@@ -4154,7 +4098,6 @@ REPLACE INTO configuration_group (configuration_group_id, language_id, configura
 (25, 43, 'Eigene Seiten', 'Eigene Seiten, die über den im Seiteneditor eingegebenen Texte festgelegt werden', 25, 1),
 (30, 43, 'EZ-Pages Einstellungen', 'EZ-Pages Einstellungen', 30, 1),
 (31, 43, 'Minify Einstellungen', 'Minify Einstellungen', 31, 1),
-(32, 43, 'Google Analytics Einstellungen', 'Google Analytics Einstellungen', 32, 1),
 (33, 43, 'Open Graph/Microdata', 'Open Graph/Microdata Einstellungen', 33, 1),
 (34, 43, 'RSS Feed', 'RSS Feed Einstellungen', 34, 1),
 (35, 43, 'Zen Colorbox', 'Zen Colorbox Einstellungen', 35, 1),
@@ -4824,21 +4767,6 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 ('Maximale URL Länge', 'MINIFY_MAX_URL_LENGHT', 43, 'Auf manchen Servern ist die Länge von POST/GET URLs beschränkt. Falls das auf Ihren Server zutrifft, können Sie hier den Wert verändern. Voreingestellt: 500', now(), now()),
 ('Minify Cache Zeit', 'MINIFY_CACHE_TIME_LENGHT', 43, 'Stellen Sie hier die Cache Zeit für Minify ein. Voreingestellt ist ein Jahr (31536000)', now(), now()),
 ('zuletzt gecached', 'MINIFY_CACHE_TIME_LATEST', 43, 'Hier müssen Sie normalerweise nichts einstellen. Falls Sie gerade Änderungen an Ihren CSS und Javascripts vorgenommen haben und erzwingen wollen, dass diese Änderungen sofort wirksam sind, stellen Sie auf 0.', now(), now()),
-
-# Adminmenü ID 32 - Google Analytics
-('GA - Google Analytics aktivieren?', 'GOOGLE_ANALYTICS_ENABLED', 43, 'Wollen Sie Google Analytics aktivieren? <br><br>Enabled = Ja<br>Disabled = Nein', now(), now()),
-('GA - Analytics Account', 'GOOGLE_ANALYTICS_UACCT', 43, 'Google Analytics:<br><br>Die ID, die Sie von Google bei der Anmeldung zu Google Analytics bekommen haben.<br>Format:<br>UA-XXXXXX-X<br><br><b>Tragen Sie hier Ihre Analytics Account Nummer ein:</b>', now(), now()),
-('GA - E-Commerce Tracking Zieladresse', 'GOOGLE_ANALYTICS_TARGET', 43, 'Google Analytics:<br><br>Diese Einstellung bezieht sich auf das Google E-Commerce Tracking und legt fest, ob sie die Auswertung auf Basis von Kundenadresse (customers), Rechnungsadresse (billing) oder Lieferadresse (delivery) haben wollen.<br><br><b>Welchen Adresstyp wollen Sie für die Aufzeichnung der Transaktionen verwenden?</b>', now(), now()),
-('GA - Affiliate', 'GOOGLE_ANALYTICS_AFFILIATION', 43, 'Google Analytics:<br><br>Falls ein Affiliate vorhanden ist (z.B. ein zweiter Shop) hier eintragen. Bei dieser Einstellung geht es darum auszuwerten, von welchem Partnershop/Partnerseite der Kunde ursprünglich kam.<br><br><b>Tragen Sie hier den Affiliate ein:</b>', now(), now()),
-('GA - SKU Code', 'GOOGLE_ANALYTICS_SKU_CODE', 43, 'Google Analytics:<br><br>Diese Einstellung bezieht sich auf das Google E-Commerce Tracking und legt fest, ob die Artikel ID oder die Artikelnummer in den Statistiken angezeigt werden soll.<br><br><b>Wählen Sie hier aus, was angezeigt werden soll: product_id = interne Zen-Cart Artikel ID<br>products_model = eingegebene Artikelnummer</b>', now(), now()),
-('GA - Conversion Tracking aktivieren?', 'GOOGLE_CONVERSION_ACTIVE', 43, 'Google Analytics:<br><br><b>WICHTIG:<br>Diese Einstellung nur aktivieren, wenn auch das kostenpflichtige Google Adwords genutzt wird!</b><br><br>Durch Aktivieren wird der Google Conversion Tracking Code in die Checkout Success Seite eingefügt. Dadurch kann die Effektivität der Adwords Kampagne ausgewertet werden. Wenn Sie hier das Conversion Tracking aktivieren, müssen Sie in der nächsten Option Ihre Conversion Tracking Nummer einstellen.<br><br><b>Wollen Sie Google AdWords Conversion Tracking aktivieren?</b>', now(), now()),
-('GA - Adwords Conversion Tracking Nummer', 'GOOGLE_CONVERSION_IDNUM', 43, 'Google Analytics:<br><br>Wenn Sie oben Conversion Tracking aktiviert haben, geben Sie hier Ihre Conversion Tracking ID anstelle der XXXXXXXXXXX ein. Sollten Sie hier keine Nummer eingeben, wird das Conversion Tracking nicht funktionieren.<br><br><b>Geben Sie hier Ihre AdWords Conversion Tracking ID ein:</b>', now(), now()),
-('GA - Google Adwords Sprache', 'GOOGLE_CONVERSION_LANG', 43, 'Google Analytics:<br><br>Spracheinstellung für Google Adwords. Voreingestellt ist: Deutsch<br><br><b>Wählen Sie die gewünschte Sprache aus:</b>', now(), now()),
-('GA - Art des Tracking Codes', 'GOOGLE_ANALYTICS_TRACKING_TYPE', 43, 'Google Analytics:<br><br>Welchen Tracking Code Typ wollen Sie verwenden? Voreingestellt ist der neueste universal Typ. Sie können das auf den veralteten ga.js oder auf den früher von Google angebotenen Asynchronous Typ umstellen. Besuchen Sie die <a href="http://code.google.com/apis/analytics/docs/tracking/home.html" target="_blank">Google Analytics Website</a> für genauere Informationen zu den verschiedenen Varianten<br><br><b>Wählen Sie Ihren Tracking Typ:</b>', now(), now()),
-('GA - Benutzerdefinierten Tracking Code nach dem Hauptcode einfügen?', 'GOOGLE_ANALYTICS_CUSTOM_CODE_ENABLED', 43, 'Google Analytics:<br><br>Wollen Sie einen weiteren benutzerdefinierten Trackingcode nach dem normalen Google Analytics Hauptcode einfügen? Das kann genutzt werden, um den Code an Ihre ganz individuellen Erfordernisse anzupassen. Fügen Sie Tracking Objekte entsprechend der Dokumentation der <a href="http://code.google.com/apis/analytics/docs/tracking/gaTrackingCustomVariables.html" target="_blank">Google Analytics Website</a> ein.<br><br>Voreingestellt ist: Aktiviert, damit der weiter unten vorkonfigurierte Code zur IP-Adressen Anonymisierung aufgerufen wird, um Google Analytics DSGVO-konform zu betreiben.<br><br>', now(), now()),
-('GA - Benutzerdefinierter Tracking Code', 'GOOGLE_ANALYTICS_CUSTOM_CODE', 43, 'Google Analytics:<br><br>Falls Sie benutzerdefinierten Tracking Code aktiviert haben, fügen Sie diesen hier ein.<br>Voreingestellt ist bereits die Anonymisierung der IP-Adresse, um Google Analytics DSGVO-konform zu betreiben.<br><br>', now(), now()),
-('GA - Demographie und Interessen', 'GOOGLE_ANALYTICS_DIR', 43, 'Google Analytics:<br><br>Reports fuer demographische Daten und Interessen aktivieren/deaktivieren', now(), now()),
-('GA - Conversion Label', 'GOOGLE_CONVERSION_LABEL', 43, 'Google Analytics:<br><br>Geben Sie Ihr Google Conversion Label ein (kann in Adwords generiert werden oder Sie verwenden ein eigenes Label)', now(), now()),
 
 # Adminmenü ID 33 - Open Graph / Microdata
 ('Open Graph - Open Graph aktivieren', 'FACEBOOK_OPEN_GRAPH_STATUS', 43, 'Wollen Sie die Open Graph/Microdaten aktivieren?', now(), now()),
