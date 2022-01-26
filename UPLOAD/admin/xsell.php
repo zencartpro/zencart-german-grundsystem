@@ -1,360 +1,573 @@
 <?php
 /**
- * @package Cross Sell Advanced
+ * Cross Sell Advanced
+ * Zen Cart German Specific
+ * Derived from:
  * Original Idea From Isaac Mualem im@imwebdesigning.com
+ * Portions Copyright (c) 2002 osCommerce
+ * Complete Recoding From Stephen Walker admin@snjcomputers.com
+ * Released under the GNU General Public License
+ *
  * Adapted to Zen Cart by Merlin - Spring 2005
  * Reworked for Zen Cart v1.3.0  03-30-2006
- * Reworked for ZenCart V1.5.2 by RodG Dec 2013   
- * Reworked for ZenCart V1.5.6 by webchills Aug 2019
+ * Reworked for ZenCart V1.5.2 by RodG Dec 2013
+ * Reworked for Zen Cart v1.5.7+ by lat9, Dec. 2021
  * @copyright Portions Copyright 2003-2022 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * @version $Id: xsell.php 1 2019-07-28 11:16:51 webchills $
  */
-
-global $db ;  
 require 'includes/application_top.php';
+
+// -----
+// Bring in the currencies' class, used by the zen_draw_products_pulldown function within
+// /admin/includes/modules/xsell/category_product_selection.php.
+//
 require DIR_WS_CLASSES . 'currencies.php';
 $currencies = new currencies();
-$languages_id = $_SESSION['languages_id'];
-switch($_GET['action']){
-  case 'update_cross' :
-    if ($_POST['product']){
-      foreach ($_POST['product'] as $temp_prod){
-        $db->execute('delete from ' . TABLE_PRODUCTS_XSELL . ' where xsell_id = "'.$temp_prod.'" and products_id = "'.$_GET['add_related_product_ID'].'"');
-      }
-    }
 
-    $sort_start_query = $db->execute('select sort_order from ' . TABLE_PRODUCTS_XSELL . ' where products_id = "'.$_GET['add_related_product_ID'].'" order by sort_order desc limit 1');
-  
-    $sort_start = $sort_start_query->fields ; 
-    $sort = (($sort_start['sort_order'] > 0) ? $sort_start['sort_order'] : '0');
-    if ($_POST['cross']){
-      foreach ($_POST['cross'] as $temp){
-        $sort++;
-        $insert_array = array();
-        $insert_array = array('products_id' => $_GET['add_related_product_ID'],
-        'xsell_id' => $temp,
-        'sort_order' => $sort);
-        zen_db_perform(TABLE_PRODUCTS_XSELL, $insert_array);
-      }
-    }
-    $messageStack->add(CROSS_SELL_SUCCESS, 'success');
-    break;
-  case 'update_sort' :
-    foreach ($_POST as $key_a => $value_a){
-      $db->execute('update ' . TABLE_PRODUCTS_XSELL . ' set sort_order = "' . $value_a . '" where xsell_id = "' . $key_a . '"');
-    }
-    $messageStack->add(SORT_CROSS_SELL_SUCCESS, 'success');
-    break;
+// -----
+// Initialize the languages-id in use and determine the action/next-action to be performed.
+//
+$languages_id = $_SESSION['languages_id'];
+$action = (isset($_POST['action'])) ? $_POST['action'] : (isset($_GET['action']) ? $_GET['action'] : '');
+$next_action = (isset($_POST['next_action'])) ? $_POST['next_action'] : (isset($_GET['next_action']) ? $_GET['next_action'] : '');
+
+// -----
+// Initialize variables used by the forms present in /includes/modules/xsell/category_product_selection.php
+//
+if (!empty($_POST['xsell_pid'])) {
+    $xsell_pid = (int)$_POST['xsell_pid'];
+} elseif (!empty($_GET['xsell_pid'])) {
+    $xsell_pid = (int)$_GET['xsell_pid'];
+} else {
+    $xsell_pid = 0;
+}
+if ($xsell_pid === 0) {
+    unset($_GET['xsell_pid']);
+} else {
+    $_GET['xsell_pid'] = $xsell_pid;
+}
+
+$xsell_main_pid = (isset($_POST['xsell_main_pid'])) ? (int)$_POST['xsell_main_pid'] : (isset($_GET['xsell_main_pid']) ? (int)$_GET['xsell_main_pid'] : 0);
+if ($xsell_main_pid === 0) {
+    unset($_GET['xsell_main_pid']);
+} else {
+    $_GET['xsell_main_pid'] = $xsell_main_pid;
+}
+
+if (!empty($_POST['xsell_category_id'])) {
+    $xsell_category_id = (int)$_POST['xsell_category_id'];
+} elseif (!empty($_GET['xsell_category_id'])) {
+    $xsell_category_id = (int)$_GET['xsell_category_id'];
+} else {
+    $xsell_category_id = 0;
+}
+if ($xsell_category_id === 0) {
+    unset($_GET['xsell_category_id']);
+} else {
+    $_GET['xsell_category_id'] = $xsell_category_id;
+}
+
+// -----
+// Handle the main products' pagination.
+//
+$xsell_page = (isset($_GET['page']) && ctype_digit($_GET['page'])) ? (int)$_GET['page'] : 1;
+if ($xsell_page < 1) {
+    $xsell_page = 1;
+}
+
+switch ($action){
+    // -----
+    // A new category has been selected via xsell's category_product_selection.php forms, either to choose
+    // a new, main product to cross-sell or to add a cross-sell product to a main product.
+    //
+    case 'new_cat':
+        if ($next_action !== '') {
+            $next_action = '&action=' . $next_action;
+        }
+        if ($xsell_main_pid !== 0) {
+            $next_action .= '&xsell_main_pid=' . $xsell_main_pid;
+        }
+        zen_redirect(zen_href_link(FILENAME_XSELL, 'page=' . $xsell_page . '&xsell_category_id=' . $xsell_category_id . $next_action));
+        break;
+
+    // -----
+    // A product has been selected from the upper categories/products form, then this is either a request
+    // to create a new cross-sell (selecting the main product) or to add a product cross-sell to a selected
+    // product.
+    //
+    case 'set_xsell_pid':
+        // -----
+        // If selected from the plugin's main-page, then a 'main' product has been selected for cross-sell
+        // definitions; the next action will be to create that main cross-sell.
+        //
+        if ($next_action === '') {
+            $next_action = 'new_xsell';
+            $main_pid = (int)$_POST['xsell_pid'];
+        // -----
+        // Otherwise, a product was selected from the 'new_xsell' action.  That product is a cross-sell for the
+        // currently-selected main product.
+        //
+        } else {
+            if ($xsell_main_pid === 0) {
+                $messageStack->add_session(ERROR_NO_MAIN_PRODUCT, 'error');
+                zen_redirect(zen_href_link(FILENAME_XSELL));
+            } else {
+                $check = $db->Execute(
+                    "SELECT products_id
+                       FROM " . TABLE_PRODUCTS . "
+                      WHERE products_id = $xsell_main_pid
+                      LIMIT 1"
+                );
+                if ($check->EOF) {
+                    $messageStack->add_session(sprintf(ERROR_INVALID_MAIN_PRODUCT, $xsell_main_pid), 'error');
+                    zen_redirect(zen_href_link(FILENAME_XSELL));
+                }
+                $check = $db->Execute(
+                    "SELECT *
+                       FROM " . TABLE_PRODUCTS_XSELL . "
+                      WHERE products_id = $xsell_main_pid
+                        AND xsell_id = " . (int)$_POST['xsell_pid'] . "
+                      LIMIT 1"
+                );
+                if (!$check->EOF) {
+                    $messageStack->add_session(ERROR_CROSS_SELL_EXISTS, 'error');
+                    zen_redirect(zen_href_link(FILENAME_XSELL, 'page=' . $xsell_page . '&action=new_xsell&xsell_main_pid=' . (int)$_POST['xsell_main_pid']));
+                }
+            }
+            $sql_data_array = [
+                'products_id' => $xsell_main_pid,
+                'xsell_id' => (int)$_POST['xsell_pid'],
+                'sort_order' => 1
+            ];
+            zen_db_perform(TABLE_PRODUCTS_XSELL, $sql_data_array);
+            $products_name = zen_get_products_name($xsell_main_pid);
+            $messageStack->add_session(sprintf(CROSS_SELL_SUCCESS, $products_name, $xsell_main_pid), 'success');
+            $main_pid = $xsell_main_pid;
+        }
+        $next_action = '&action=' . $next_action;
+        zen_redirect(zen_href_link(FILENAME_XSELL, 'page=' . $xsell_page . '&xsell_main_pid=' . $main_pid . $next_action));
+        break;
+
+    // -----
+    // The admin has requested that multiple products (by model numbers) be added to the current
+    // 'main' product, possibly selling those products "both ways".
+    //
+    case 'multi_xsell':
+        // -----
+        // There's got to be a main cross-sell product; if not, head back to the main, listing display.
+        //
+        if ($xsell_main_pid === 0) {
+            $messageStack->add_session(ERROR_NO_MAIN_PRODUCT, 'error');
+            zen_redirect(zen_href_link(FILENAME_XSELL));
+        }
+
+        // -----
+        // Up to six (6) model numbers can be supplied for the multiple cross-sell additions.  They don't
+        // have to be supplied 'in-order', so they'll each be checked to see if any were supplied.
+        //
+        $models = [];
+        for ($i = 1; $i <= 6; $i++) {
+            if (isset($_POST['model' . $i]) && $_POST['model' . $i] !== '') {
+                $models[] = $_POST['model' . $i];
+            }
+        }
+        $models = array_unique($models);
+        if (count($models) === 0) {
+            $messageStack->add(ERROR_NO_MODELS, 'error');
+            $action = 'new_xsell';
+            break;
+        }
+
+        // -----
+        // At this point, at least one model number was supplied.  Make sure that each model
+        // number is associated with a single, valid product.  If not, kick back for the admin
+        // to correct.
+        //
+        $error = false;
+        $products = [];
+        foreach ($models as $next_model) {
+            $model_products_ids = $db->Execute(
+                "SELECT products_id
+                   FROM " . TABLE_PRODUCTS . "
+                  WHERE products_model = '" . zen_db_input($next_model) . "'"
+            );
+            switch ($model_products_ids->RecordCount()) {
+                case 0:
+                    $error = true;
+                    $messageStack->add(sprintf(ERROR_MODEL_NO_EXIST, $next_model), 'error');
+                    break;
+                case 1:
+                    $products[] = $model_products_ids->fields['products_id'];
+                    break;
+                default:
+                    $error = true;
+                    $messageStack->add(sprintf(ERROR_MODEL_MULTIPLE_PRODUCTS, $next_model), 'error');
+                    break;
+            }
+        }
+        if ($error === true) {
+            $action = 'new_xsell';
+            break;
+        }
+
+        // -----
+        // Whew!  At least one valid model number has been supplied.  Create the cross-sells
+        // for the main product (and optionally the main product to each each model-number specified).
+        //
+        $selling_both_ways = (isset($_POST['both_ways']) && $_POST['both_ways'] === '1');
+        $xsells_inserted = 0;
+        foreach ($products as $xsell_products_id) {
+            $check = $db->Execute(
+                "SELECT *
+                   FROM " . TABLE_PRODUCTS_XSELL . "
+                  WHERE products_id = $xsell_main_pid
+                    AND xsell_id = $xsell_products_id
+                  LIMIT 1"
+            );
+            if ($check->EOF) {
+                $xsells_inserted++;
+                $db->Execute(
+                    "INSERT INTO " . TABLE_PRODUCTS_XSELL . "
+                        (products_id, xsell_id, sort_order)
+                     VALUES
+                        ($xsell_main_pid, $xsell_products_id, 1)"
+                );
+            }
+            if ($selling_both_ways === true) {
+                $check = $db->Execute(
+                    "SELECT *
+                       FROM " . TABLE_PRODUCTS_XSELL . "
+                      WHERE products_id = $xsell_products_id
+                        AND xsell_id = $xsell_main_pid
+                      LIMIT 1"
+                );
+                if ($check->EOF) {
+                    $xsells_inserted++;
+                    $db->Execute(
+                        "INSERT INTO " . TABLE_PRODUCTS_XSELL . "
+                            (products_id, xsell_id, sort_order)
+                         VALUES
+                            ($xsell_products_id, $xsell_main_pid, 1)"
+                    );
+                }
+            }
+        }
+        if ($xsells_inserted === 0) {
+            $messageStack->add(NO_MULTI_XSELLS_CREATED, 'warning');
+            $action = 'new_xsell';
+            break;
+        }
+
+        $messageStack->add_session(sprintf(MULTI_XSELL_SUCCESS, $xsells_inserted), 'success');
+        zen_redirect(zen_href_link(FILENAME_XSELL, 'page=' . $xsell_page . '&action=new_xsell&xsell_main_pid=' . $xsell_main_pid));
+        break;
+
+    // -----
+    // The admin has requested a modification to the currently defined cross-sells for a main
+    // product, either updating those cross-sells' sort-orders or removing a cross-sell for the
+    // current main product.
+    //
+    // The following $_POST variables are expected:
+    //
+    // - xsell_main_pid ... The 'main' cross-sell being modified; used to redirect back after processing.
+    // - sort ............. An array of sort_orders, keyed by their products_xsell 'ID' values.
+    // - del .............. An (optional) array of cross-sells to be removed, keyed by their products_xsell 'ID' values.
+    //
+    case 'update':
+        if (empty($_POST['xsell_main_pid'])) {
+            $messageStack->add_session(ERROR_MISSING_MAIN_PRODUCT, 'error');
+            zen_redirect(zen_href_link(FILENAME_XSELL));
+        }
+
+        if (!empty($_POST['del']) && is_array($_POST['del'])) {
+            $db->Execute(
+                "DELETE FROM " . TABLE_PRODUCTS_XSELL . "
+                  WHERE `ID` IN (" . implode(',', array_keys($_POST['del'])) . ")"
+            );
+        }
+
+        if (!empty($_POST['sort']) && is_array($_POST['sort'])) {
+            foreach ($_POST['sort'] as $xsell_id => $sort_order) {
+                $db->Execute(
+                    "UPDATE " . TABLE_PRODUCTS_XSELL . "
+                        SET sort_order = " . (int)$sort_order . "
+                      WHERE `ID` = " . (int)$xsell_id . "
+                      LIMIT 1"
+                );
+            }
+        }
+
+        $products_name = zen_get_products_name((int)$_POST['xsell_main_pid']);
+        $messageStack->add_session(sprintf(CROSS_SELL_SUCCESS, $products_name, $_POST['xsell_main_pid']), 'success');
+        zen_redirect(zen_href_link(FILENAME_XSELL, 'page=' . $xsell_page . '&action=new_xsell&xsell_main_pid=' . $_POST['xsell_main_pid']));
+        break;
+
+    // -----
+    // The admin has requested that a 'main' cross-sell and its cross-sell products be removed.
+    //
+    case 'delete':
+        if (!empty($_POST['xsell_main_delete'])) {
+            $products_name = zen_get_products_name($_POST['xsell_main_delete']);
+            if (!empty($products_name)) {
+                $db->Execute(
+                    "DELETE FROM " . TABLE_PRODUCTS_XSELL . "
+                      WHERE products_id = " . $_POST['xsell_main_delete']
+                );
+                $messageStack->add_session(sprintf(MAIN_CROSS_SELL_REMOVED, $products_name), 'success');
+            }
+        }
+        zen_redirect(zen_href_link(FILENAME_XSELL, 'page=' . $xsell_page));
+        break;
+
+    // -----
+    // Managing cross-sells for a 'main' product.  If there's no main product, something's
+    // gone awry; let the admin know and head back to the main page.
+    //
+    case 'new_xsell':
+        if ($xsell_main_pid === 0) {
+            $messageStack->add_session(ERROR_MISSING_MAIN_PRODUCT, 'error');
+            zen_redirect(zen_href_link(FILENAME_XSELL));
+        }
+        break;
+
+    default:
+        break;
 }
 ?>
 <!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
-  <head>
-    <meta charset="<?php echo CHARSET; ?>">
-    <title><?php echo TITLE; ?></title>
-    <link rel="stylesheet" href="includes/stylesheet.css">
-    <link rel="stylesheet" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
+<head>
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
     <style>
-  .productmenutitle{
-    cursor:pointer;
-    margin-bottom: 0px;
-    background-color:orange;
-    color:#FFFFFF;
-    font-weight:bold;
-    font-family:ms sans serif;
-    width:100%;
-    padding:3px;
-    font-size:12px;
-    text-align:center;
-  
-  }
-  .productmenutitle1{
-    cursor:pointer;
-    margin-bottom: 0px;
-    background-color: red;
-    color:#FFFFFF;
-    font-weight:bold;
-    font-family:ms sans serif;
-    width:100%;
-    padding:3px;
-    font-size:12px;
-    text-align:center;
-  
-  }
-</style>
-    <script src="includes/menu.js"></script>
-    <script src="includes/general.js"></script>
+    .smaller { font-size: smaller; }
+    .mb-3 { margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+<?php require DIR_WS_INCLUDES . 'header.php'; ?>
 
-    <script>
-      function init() {
-          cssjsmenu('navbar');
-          if (document.getElementById) {
-              var kill = document.getElementById('hoverJS');
-              kill.disabled = true;
-          }
-      }
-    </script>
-   
-  </head>
-
-<body onLoad="init()" >
-      <!-- header //-->
-      <?php require DIR_WS_INCLUDES . 'header.php'; ?>
-      <!-- header_eof //-->
-      <div class="container-fluid">
-        <!-- body //-->
-
-  <table border="0" width="100%" cellspacing="0" cellpadding="0">
-   <tr>
-    <td><?php echo zen_draw_separator('pixel_trans.gif', '100%', '10');?></td>
-   </tr>
-   <tr>
-    <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
-   </tr>
-   <tr>
-    <td><?php echo TEXT_XSELL_INFO; ?></td>
-   </tr>
-   <tr>
-    <td><?php echo zen_draw_separator('pixel_trans.gif', '100%', '15');?></td>
-   </tr>
-  </table>
-
+<div class="container-fluid">
+    <h1><?php echo HEADING_TITLE . ' &mdash; <span class="smaller">v' . XSELL_VERSION . '</span>'; ?></h1>
 <?php
-global $db ;  
-if ($_GET['add_related_product_ID'] == ''){
-$products_query_raw = 'select p.products_id, p.products_model, pd.products_name, p.products_id from '.TABLE_PRODUCTS.' p, '.TABLE_PRODUCTS_DESCRIPTION.' pd where p.products_id = pd.products_id and pd.language_id = "'.(int)$languages_id.'" order by p.products_id asc';
-$products_split = new splitPageResults($_GET['page'], 50, $products_query_raw, $products_query_numrows);
-$products_query = $db->execute($products_query_raw) or die(mysql_error());
-   
+// -----
+// Entry for overall display of current cross-sells with the option to create a new cross-sell ...
+//
+if ($action !== 'new_xsell') {
+    $current_xsells_raw =
+        "SELECT DISTINCT p.products_id, p.products_image, p.products_model, pd.products_name, p.master_categories_id
+           FROM " . TABLE_PRODUCTS . " p
+                INNER JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd
+                    ON pd.products_id = p.products_id
+                   AND pd.language_id = $languages_id
+                INNER JOIN " . TABLE_PRODUCTS_XSELL . " x
+                    ON x.products_id = p.products_id
+          ORDER BY p.products_id";
+    $xsells_split = new splitPageResults($xsell_page, MAX_DISPLAY_SEARCH_RESULTS, $current_xsells_raw, $xsells_query_numrows);
+    $current_xsells = $db->Execute($current_xsells_raw);
+
+    $no_xsells = $current_xsells->EOF;
+
+    $all_get_params = zen_get_all_get_params(['page', 'x', 'y', 'action', 'next_action', 'xsell_main_pid']);
+    $next_action = '';
 ?>
-  <table border="0" cellspacing="1" cellpadding="2" bgcolor="#FCFCFC" align="center">
-   <tr>
-    <td colspan="6"><table border="0" width="100%" cellspacing="0" cellpadding="2">
-     <tr>
-      <td class="smallText" valign="top"><?php echo $products_split->display_count($products_query_numrows, 50, $_GET['page'], TEXT_DISPLAY_NUMBER_OF_PRODUCTS); ?></td>
-      <td class="smallText" align="right"><?php echo $products_split->display_links($products_query_numrows, 50, MAX_DISPLAY_PAGE_LINKS, $_GET['page'], zen_get_all_get_params(array('page', 'info', 'x', 'y', 'cID', 'action'))); ?></td>
-     </tr>
-    </table></td>
-   </tr>
-   <tr class="dataTableHeadingRow">
-    <td class="dataTableHeadingContent" width="75"><?php echo TABLE_HEADING_PRODUCT_ID;?></td>
-    <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_PRODUCT_MODEL;?></td>
-    <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_PRODUCT_NAME;?></td>
-    <td class="dataTableHeadingContent" nowrap><?php echo TABLE_HEADING_CURRENT_SELLS;?></td>
-    <td class="dataTableHeadingContent" colspan="2" nowrap align="center"><?php echo TABLE_HEADING_UPDATE_SELLS;?></td>
-   </tr>
+    <p><?php echo TEXT_MAIN_INSTRUCTIONS; ?></p>
+    <h2><?php echo SUBHEADING_MAIN_ADD; ?></h2>
 <?php
+    require DIR_WS_MODULES . 'xsell/category_product_selection.php';
 
-while (!$products_query->EOF) {
-    $products = $products_query->fields ; 
+    echo zen_draw_form('delete', FILENAME_XSELL, zen_get_all_get_params(['action', 'next_action']) . 'action=delete&page=' . $xsell_page, 'post', 'id="delete-form"');
+    echo zen_draw_hidden_field('xsell_main_delete', '', 'id="main_delete"');
 ?>
-   <tr onMouseOver="cOn(this); this.style.cursor='pointer'; this.style.cursor='hand';" onMouseOut="cOut(this);" bgcolor='#F5F5F5' onClick=document.location.href="<?php echo zen_href_link(FILENAME_XSELL, 'add_related_product_ID=' . $products['products_id'], 'NONSSL');?>">
-    <td class="dataTableContent" valign="top">&nbsp;<?php echo $products['products_id'];?>&nbsp;</td>
-    <td class="dataTableContent" valign="top">&nbsp;<?php echo $products['products_model'];?>&nbsp;</td>
-    <td class="dataTableContent" valign="top">&nbsp;<?php echo $products['products_name'];?>&nbsp;</td>
-    <td class="dataTableContent" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="0">
+    <h2><?php echo SUBHEADING_MAIN_TITLE; ?></h2>
+
+    <div class="row mb-3">
+        <div class="col-sm-6">
+            <?php echo $xsells_split->display_count($xsells_query_numrows, MAX_DISPLAY_SEARCH_RESULTS, $xsell_page, TEXT_DISPLAY_NUMBER_OF_PRODUCTS); ?>
+        </div>
+        <div class="col-sm-6 text-right">
+            <?php echo $xsells_split->display_links($xsells_query_numrows, MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS, $xsell_page); ?>
+        </div>
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr class="dataTableHeadingRow">
+                <th class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_PRODUCT_ID; ?></th>
+                <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_PRODUCT_IMAGE; ?></th>
+                <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_PRODUCT_NAME; ?></th>
+                <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_PRODUCT_MODEL; ?></th>
+                <th class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_CURRENT_SELLS; ?></th>
+                <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_ACTION; ?></th>
+            </tr>
+        </thead>
+        <tbody>
 <?php
-$products_cross_query = $db->execute('select p.products_id, p.products_model, pd.products_name, p.products_id, x.products_id, x.xsell_id, x.sort_order, x.ID from '.TABLE_PRODUCTS.' p, '.TABLE_PRODUCTS_DESCRIPTION.' pd, '.TABLE_PRODUCTS_XSELL.' x where x.xsell_id = p.products_id and x.products_id = "'.$products['products_id'].'" and p.products_id = pd.products_id and pd.language_id = "'.(int)$languages_id.'" order by x.sort_order asc');
-$i=0;
-while (!$products_cross_query->EOF){
-    $products_cross = $products_cross_query->fields ;
-  $i++;
+    if ($no_xsells === true) {
 ?>
-   <tr>
-    <td class="dataTableContent">&nbsp;<?php echo $i . '.&nbsp;&nbsp;<b>' . $products_cross['products_model'] . '</b>&nbsp;' . $products_cross['products_name'];?>&nbsp;</td>
-   </tr>
+            <tr class="dataTableRow text-center">
+                <td colspan="6" class="dataTableContent"><?php echo TEXT_NO_CROSS_SELLS; ?></td>
+            </tr>
 <?php
-$products_cross_query->MoveNext() ;
-}
-if ($i <= 0){
+    } else {
+        foreach ($current_xsells as $xsell) {
+            $current_xsells = $db->Execute(
+                "SELECT COUNT(*) AS count
+                   FROM " . TABLE_PRODUCTS_XSELL . "
+                  WHERE products_id = " . $xsell['products_id']
+            );
 ?>
-   <tr>
-    <td class="dataTableContent">&nbsp;<?php echo TEXT_NO_CROSS_SELLS_DEFINED;?>&nbsp;</td>
-   </tr>
+            <tr class="dataTableRow">
+                <td class="dataTableContent text-center"><?php echo $xsell['products_id']; ?></td>
+                <td class="dataTableContent"><?php echo zen_image(DIR_WS_CATALOG_IMAGES . $xsell['products_image'], $xsell['products_name'], SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT, 'class="img-thumbnail"'); ?></td>
+                <td class="dataTableContent xsell-pname"><?php echo zen_output_string_protected($xsell['products_name']); ?></td>
+                <td class="dataTableContent"><?php echo zen_output_string_protected($xsell['products_model']); ?></td>
+                <td class="dataTableContent text-center"><?php echo $current_xsells->fields['count']; ?></td>
+                <td class="dataTableContent">
+                    <a href="<?php echo zen_href_link(FILENAME_XSELL, 'page=' . $xsell_page . '&action=new_xsell&xsell_main_pid=' . $xsell['products_id']); ?>" role="button" class="btn btn-primary"><?php echo IMAGE_EDIT; ?></a>
+                    <button type="submit" data-pid="<?php echo $xsell['products_id']; ?>" class="btn btn-danger xsell-main-delete"><?php echo IMAGE_DELETE; ?></button>
+                </td>
+            </tr>
 <?php
+        }
+    }
+?>
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <?php echo $xsells_split->display_count($xsells_query_numrows, MAX_DISPLAY_SEARCH_RESULTS, $xsell_page, TEXT_DISPLAY_NUMBER_OF_PRODUCTS); ?>
+        </div>
+        <div class="col-sm-6 text-right">
+            <?php echo $xsells_split->display_links($xsells_query_numrows, MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS, $xsell_page); ?>
+        </div>
+    </div>
+<?php
+    echo '</form>';
+// -----
+// Rendering starts to gather information for a new/edited cross-sell product.
+//
 } else {
+    $main_product = zen_get_products_name($xsell_main_pid) . ' [' . $xsell_main_pid . ']';
+    $next_action = $action;
 ?>
-   <tr>
-    <td class="dataTableContent"><?php echo zen_draw_separator('pixel_trans.gif', '100%', '10');?></td>
-   </tr>
-<?php
-}
-?>
-    </table></td>
-    <td class="dataTableContent" valign="top">&nbsp;<a href="<?php echo zen_href_link(FILENAME_XSELL, zen_get_all_get_params(array('action')) . 'add_related_product_ID=' . $products['products_id'], 'NONSSL');?>"><?php echo TEXT_EDIT_SELLS;?></a>&nbsp;</td>
-    <td class="dataTableContent" valign="top" align="center">&nbsp;<?php echo (($i > 0) ? '<a href="' . zen_href_link(FILENAME_XSELL, zen_get_all_get_params(array('action')) . 'sort=1&add_related_product_ID=' . $products['products_id'], 'NONSSL') .'">'.TEXT_SORT.'</a>&nbsp;' : '--')?></td>
-   </tr>
-<?php
-$products_query->MoveNext();
-}
-?>
-   <tr>
-    <td colspan="6"><table border="0" width="100%" cellspacing="0" cellpadding="2">
-     <tr>
-      <td class="smallText" valign="top"><?php echo $products_split->display_count($products_query_numrows, 50, $_GET['page'], TEXT_DISPLAY_NUMBER_OF_PRODUCTS); ?></td>
-      <td class="smallText" align="right"><?php echo $products_split->display_links($products_query_numrows, 50, MAX_DISPLAY_PAGE_LINKS, $_GET['page'], zen_get_all_get_params(array('page', 'info', 'x', 'y', 'cID', 'action'))); ?></td>
-     </tr>
-    </table></td>
-   </tr>
-  </table>
-<?php
-} elseif ($_GET['add_related_product_ID'] != '' && $_GET['sort'] == '') {
-  $products_name_query = $db->execute('select pd.products_name, p.products_model, p.products_image from '.TABLE_PRODUCTS.' p, '.TABLE_PRODUCTS_DESCRIPTION.' pd where p.products_id = "'.$_GET['add_related_product_ID'].'" and p.products_id = pd.products_id and pd.language_id ="'.(int)$languages_id.'"');
-  
+    <h2><?php echo sprintf(SUBHEADING_TITLE_NEW, $main_product); ?></h2>
+    <p><?php echo TEXT_EDIT_INSTRUCTIONS; ?></p>
 
- $products_name = $products_name_query->fields ;
-   
-  ?>
-  <table border="0" cellspacing="0" cellpadding="0" bgcolor="#FCFCFC" align="center">
+    <h3><?php echo SUBHEADING_NEW_ADD; ?></h3>
 <?php
-$products_query_raw = 'select p.products_id, p.products_model, p.products_image, p.products_price, pd.products_name, p.products_id from '.TABLE_PRODUCTS.' p, '.TABLE_PRODUCTS_DESCRIPTION.' pd where p.products_id = pd.products_id and pd.language_id = "'.(int)$languages_id.'" order by p.products_id asc';
-$products_split = new splitPageResults($_GET['page'], 50, $products_query_raw, $products_query_numrows);
-$products_query = $db->execute($products_query_raw);
+    $current_xsells = $db->Execute(
+        "SELECT x.*
+           FROM " . TABLE_PRODUCTS_XSELL . " x
+          WHERE x.products_id = $xsell_main_pid
+          ORDER BY x.sort_order, x.xsell_id"
+    );
+    $no_xsells = $current_xsells->EOF;
+
+    // -----
+    // Render the form through which a single product can be selected as a cross-sell for the current
+    // 'main' product.
+    //
+    require DIR_WS_MODULES . 'xsell/category_product_selection.php';
+
+    // -----
+    // Render the form through which multiple products_model values can be supplied as cross-sells for
+    // the current 'main' product.
+    //
 ?>
-   <tr>
-    <td colspan="6"><table border="0" width="100%" cellspacing="0" cellpadding="2">
-     <tr>
-      <td class="smallText" valign="top"><?php echo $products_split->display_count($products_query_numrows, 50, $_GET['page'], TEXT_DISPLAY_NUMBER_OF_PRODUCTS); ?></td>
-      <td class="smallText" align="right"><?php echo $products_split->display_links($products_query_numrows, 50, MAX_DISPLAY_PAGE_LINKS, $_GET['page'], zen_get_all_get_params(array('page', 'info', 'x', 'y', 'cID', 'action'))); ?></td>
-     </tr>
-    </table></td>
-   </tr>
-   <tr>
-    <td><?php echo zen_draw_form('update_cross', FILENAME_XSELL, zen_get_all_get_params(array('action')) . 'action=update_cross', 'post');?><table cellpadding="1" cellspacing="1" border="0">
-   <tr>
-    <td colspan="6"><table cellpadding="3" cellspacing="0" border="0" width="100%">
-     <tr class="dataTableHeadingRow">
-      <td valign="top" align="center" colspan="2"><span class="pageHeading"><?php echo TEXT_SETTING_SELLS.': '.$products_name['products_name'].' ('.TEXT_MODEL.': '.$products_name['products_model'].') ('.TEXT_PRODUCT_ID.': '.$_GET['add_related_product_ID'].')';?></span></td>
-     </tr>
-     <tr class="dataTableHeadingRow">
-      <td align="center" width="95%"><?php echo (file_exists(DIR_FS_CATALOG_IMAGES.$products['products_image']) ?  zen_image(DIR_WS_CATALOG_IMAGES.$products_name['products_image'], '', '', MEDIUM_IMAGE_HEIGHT) : DIR_WS_CATALOG_IMAGES.$products_name['products_image'] );?></td>
-      <td align="right" width="5%" valign="bottom"><?php echo zen_image_submit('button_update.gif', IMAGE_UPDATE) . '<br><br><a href="'.zen_href_link(FILENAME_XSELL, 'men_id=catalog').'">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '<br><br>' . zen_image_button('button_back.gif', IMAGE_BACK) . '</a>';?></td>
-     </tr>
-    </table></td>
-   </tr>
-     <tr class="dataTableHeadingRow">
-      <td class="dataTableHeadingContent" width="75">&nbsp;<?php echo TABLE_HEADING_PRODUCT_ID;?>&nbsp;</td>
-      <td class="dataTableHeadingContent">&nbsp;<?php echo TABLE_HEADING_PRODUCT_MODEL;?>&nbsp;</td>
-      <td class="dataTableHeadingContent">&nbsp;<?php echo TABLE_HEADING_PRODUCT_IMAGE;?>&nbsp;</td>
-      <td class="dataTableHeadingContent">&nbsp;<?php echo TABLE_HEADING_CROSS_SELL_THIS;?>&nbsp;</td>
-      <td class="dataTableHeadingContent">&nbsp;<?php echo TABLE_HEADING_PRODUCT_NAME;?>&nbsp;</td>
-    <td class="dataTableHeadingContent">&nbsp;<?php echo TABLE_HEADING_PRODUCT_PRICE;?>&nbsp;</td>
-   </tr>
+    <h3><?php echo SUBHEADING_MULTI_ADD; ?></h3>
+    <?php echo zen_draw_form('multi', FILENAME_XSELL, 'action=multi_xsell', 'post', 'class="form-horizontal"') . zen_draw_hidden_field('xsell_main_pid', $xsell_main_pid) . zen_draw_hidden_field('page', $xsell_page); ?>
+    <div class="row mb-3">
+<?php
+    for ($i = 1; $i <= 6; $i++) {
+        $model_field_name = 'model' . $i;
+        $model_default = (isset($_POST[$model_field_name])) ? zen_output_string_protected($_POST[$model_field_name]) : '';
+?>
+        <div class="col-sm-4 col-md-2"><?php echo zen_draw_input_field($model_field_name, $model_default, 'class="form-control"'); ?></div>
+<?php
+    }
+?>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 text-right">
+            <?php echo zen_draw_label(TEXT_BOTH_WAYS, 'both-ways', 'class="control-label"') . '&nbsp;&nbsp;' . zen_draw_checkbox_field('both_ways', '1', false, '', 'id="both-ways"'); ?>
+        </div>
+        <div class="col-sm-6 text-left">
+            <button type="submit" class="btn btn-info"><?php echo IMAGE_GO; ?></button>
+        </div>
+    </div>
+    <?php echo '</form>'; ?>
 <?php
 
-   while (!$products_query->EOF) { 
-     $products = $products_query->fields ; 
-  $xsold_query = $db->execute('select * from '.TABLE_PRODUCTS_XSELL.' where products_id = "'.$_GET['add_related_product_ID'].'" and xsell_id = "'.$products['products_id'].'"');
- 
- $xsold_count = $xsold_query->RecordCount() ;
-  ?>
-   <tr bgcolor='#FCFCFC'>
-    <td class="dataTableContent" align="center">&nbsp;<?php echo $products['products_id'];?>&nbsp;</td>
-    <td class="dataTableContent" align="center">&nbsp;<?php echo $products['products_model'];?>&nbsp;</td>
-    <td class="dataTableContent" align="center">&nbsp;<?php echo (is_file(DIR_FS_CATALOG_IMAGES.$products['products_image']) ?  zen_image(DIR_WS_CATALOG_IMAGES.$products['products_image'], '', '', SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT) : '<br>No Image<br>');?>&nbsp;</td>
- <td class="dataTableContent">&nbsp;<?php echo zen_draw_hidden_field('product[]', $products['products_id']) . zen_draw_checkbox_field('cross[]', $products['products_id'], ($xsold_count > 0), '', ' onMouseOver="this.style.cursor=\'hand\'"');?>&nbsp;<label onMouseOver="this.style.cursor='hand'"><?php echo TEXT_CROSS_SELL;?></label>&nbsp;</td>
-   
-    <td class="dataTableContent">&nbsp;<?php echo $products['products_name'];?>&nbsp;</td>
-    <td class="dataTableContent">&nbsp;<?php echo $currencies->format($products['products_price']);?>&nbsp;</td>
-   </tr>
-<?php
-$products_query->MoveNext() ; 
-}
+    // -----
+    // Render the form through which current cross-sells for the selected 'main' product can be removed
+    // or their sort-orders updated.
+    //
+    echo zen_draw_form('update', FILENAME_XSELL, zen_get_all_get_params(['action', 'next_action']) . 'action=update', 'post');
+    echo zen_draw_hidden_field('xsell_main_pid', $xsell_main_pid) . zen_draw_hidden_field('page', $xsell_page);
 ?>
-  </table></form></td>
-   </tr>
-   <tr>
-    <td colspan="6"><table border="0" width="100%" cellspacing="0" cellpadding="2">
-     <tr>
-      <td class="smallText" valign="top"><?php echo $products_split->display_count($products_query_numrows, 50, $_GET['page'], TEXT_DISPLAY_NUMBER_OF_PRODUCTS); ?></td>
-      <td class="smallText" align="right"><?php echo $products_split->display_links($products_query_numrows, 50, MAX_DISPLAY_PAGE_LINKS, $_GET['page'], zen_get_all_get_params(array('page', 'info', 'x', 'y', 'cID', 'action'))); ?></td>
-     </tr>
-    </table></td>
-   </tr>
-  </table>
-<?php
-}elseif($_GET['add_related_product_ID'] != '' && $_GET['sort'] != ''){
-  $products_name_query = $db->execute('select pd.products_name, p.products_model, p.products_image from '.TABLE_PRODUCTS.' p, '.TABLE_PRODUCTS_DESCRIPTION.' pd where p.products_id = "'.$_GET['add_related_product_ID'].'" and p.products_id = pd.products_id and pd.language_id ="'.(int)$languages_id.'"');
+    <h3><?php echo SUBHEADING_MANAGE_EXISTING; ?></h3>
 
-$products_name = $products_name_query->fields ; 
-  ?>
-  <table border="0" cellspacing="0" cellpadding="0" bgcolor="#FCFCFC" align="center">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr class="dataTableHeadingRow">
+                <th class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_PRODUCT_ID; ?></th>
+                <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_PRODUCT_IMAGE; ?></th>
+                <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_PRODUCT_NAME; ?></th>
+                <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_PRODUCT_MODEL; ?></th>
+                <th class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_PRODUCT_SORT; ?></th>
+                <th class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_REMOVE; ?></th>
+            </tr>
+        </thead>
+        <tbody>
 <?php
-$products_query_raw = 'select p.products_id as products_id, p.products_price, p.products_image, p.products_model, pd.products_name, p.products_id, x.products_id as xproducts_id, x.xsell_id, x.sort_order, x.ID from '.TABLE_PRODUCTS.' p, '.TABLE_PRODUCTS_DESCRIPTION.' pd, '.TABLE_PRODUCTS_XSELL.' x where x.xsell_id = p.products_id and x.products_id = "'.$_GET['add_related_product_ID'].'" and p.products_id = pd.products_id and pd.language_id = "'.(int)$languages_id.'" order by x.sort_order asc';
-$products_split = new splitPageResults($_GET['page'], 50, $products_query_raw, $products_query_numrows);
-$sort_order_drop_array = array();
-for($i=1;$i<=$products_query_numrows;$i++){
-  $sort_order_drop_array[] = array('id' => $i, 'text' => $i);
-}
-$products_query = $db->execute($products_query_raw);
+    if ($no_xsells === true) {
 ?>
-   <tr>
-    <td colspan="6"><table border="0" width="100%" cellspacing="0" cellpadding="2">
-     <tr>
-      <td class="smallText" valign="top"><?php echo $products_split->display_count($products_query_numrows, 50, $_GET['page'], TEXT_DISPLAY_NUMBER_OF_PRODUCTS); ?></td>
-      <td class="smallText" align="right"><?php echo $products_split->display_links($products_query_numrows, 50, MAX_DISPLAY_PAGE_LINKS, $_GET['page'], zen_get_all_get_params(array('page', 'info', 'x', 'y', 'cID', 'action'))); ?></td>
-     </tr>
-    </table></td>
-   </tr>
-   <tr>
-    <td><?php echo zen_draw_form('update_sort', FILENAME_XSELL, zen_get_all_get_params(array('action')) . 'action=update_sort', 'post');?><table cellpadding="1" cellspacing="1" border="0">
-   <tr>
-    <td colspan="6"><table cellpadding="3" cellspacing="0" border="0" width="100%">
-     <tr class="dataTableHeadingRow">
-      <td valign="top" align="center" colspan="2"><span class="pageHeading"><?php echo TEXT_SETTING_SELLS.': '.$products_name['products_name'].' ('.TEXT_MODEL.': '.$products_name['products_model'].') ('.TEXT_PRODUCT_ID.':'.$_GET['add_related_product_ID'].')';?></span></td>
-     </tr>
-     <tr class="dataTableHeadingRow">
-      <td align="center" width="95%"><?php echo zen_image(DIR_WS_CATALOG_IMAGES.$products_name['products_image'], '', '', MEDIUM_IMAGE_WIDTH, MEDIUM_IMAGE_HEIGHT);?></td>
-      <td align="right" valign="bottom" width="5%"><?php echo zen_image_submit('button_update.gif', IMAGE_UPDATE) . '<br><br><a href="'.zen_href_link(FILENAME_XSELL, 'men_id=catalog').'">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>';?></td>
-     </tr>
-    </table></td>
-   </tr>
-   <tr class="dataTableHeadingRow">
-    <td class="dataTableHeadingContent">&nbsp;<?php echo TABLE_HEADING_PRODUCT_ID;?>&nbsp;</td>
-    <td class="dataTableHeadingContent">&nbsp;<?php echo TABLE_HEADING_PRODUCT_MODEL;?>&nbsp;</td>
-    <td class="dataTableHeadingContent">&nbsp;<?php echo TABLE_HEADING_PRODUCT_IMAGE;?>&nbsp;</td>
-    <td class="dataTableHeadingContent" align="center">&nbsp;<?php echo TABLE_HEADING_PRODUCT_NAME;?>&nbsp;</td>
-    <td class="dataTableHeadingContent">&nbsp;<?php echo TABLE_HEADING_PRODUCT_PRICE;?>&nbsp;</td>
-    <td class="dataTableHeadingContent">&nbsp;<?php echo TABLE_HEADING_PRODUCT_SORT;?>&nbsp;</td>
-   </tr>
+            <tr class="dataTableRow text-center">
+                <td colspan="6" class="dataTableContent"><?php echo TEXT_NO_CROSS_SELL_PRODUCTS; ?></td>
+            </tr>
 <?php
+    } else {
+        foreach ($current_xsells as $xsell) {
+            $xsell_id = $xsell['xsell_id'];
+            $products_name = zen_get_products_name($xsell_id);
+?>
+            <tr class="dataTableRow">
+                <td class="dataTableContent text-center"><?php echo $xsell['xsell_id']; ?></td>
+                <td class="dataTableContent"><?php echo zen_image(DIR_WS_CATALOG_IMAGES . zen_get_products_image($xsell_id), $products_name, SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT, 'class="img-thumbnail"'); ?></td>
+                <td class="dataTableContent"><?php echo zen_output_string_protected($products_name); ?></td>
+                <td class="dataTableContent"><?php echo zen_output_string_protected(zen_get_products_model($xsell_id)); ?></td>
+                <td class="dataTableContent text-center"><?php echo zen_draw_input_field('sort[' . $xsell['ID'] . ']', $xsell['sort_order'], 'class="form-control text-right" size="4"'); ?></td>
+                <td class="dataTableContent text-center"><?php echo zen_draw_checkbox_field('del[' . $xsell['ID'] . ']', '1', false); ?></td>
+            </tr>
+<?php
+        }
+    }
+?>
+        </tbody>
+    </table>
 
-   while (!$products_query->EOF){ 
-    $products = $products_query->fields ;
-?>
-   <tr bgcolor='#F5F5F5'>
-    <td class="dataTableContent" align="center">&nbsp;<?php echo $products['products_id'];?>&nbsp;</td>
-    <td class="dataTableContent" align="center">&nbsp;<?php echo $products['products_model'];?>&nbsp;</td>
-    <td class="dataTableContent" align="center">&nbsp;<?php echo (is_file(DIR_FS_CATALOG_IMAGES.$products['products_image']) ?  zen_image(DIR_WS_CATALOG_IMAGES.$products['products_image'], '', '', SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT) : '<br>'.TEXT_NO_IMAGE.'<br>');?>&nbsp;</td>
-    <td class="dataTableContent" align="center">&nbsp;<?php echo $products['products_name'];?>&nbsp;</td>
-    <td class="dataTableContent" align="center">&nbsp;<?php echo $currencies->format($products['products_price']);?>&nbsp;</td>
-    <td class="dataTableContent" align="center">&nbsp;<?php echo zen_draw_pull_down_menu($products['products_id'], $sort_order_drop_array, $products['sort_order']);?>&nbsp;</td>
-     </tr>
+    <div class="row">
+        <div class="col-md-6">
+            <a href="<?php echo zen_href_link(FILENAME_XSELL, 'page=' . $xsell_page); ?>" role="button" class="btn btn-default"><?php echo IMAGE_BACK; ?></a>
+        </div>
+        <div class="col-md-6 text-right">
+            <button class="btn btn-info" type="submit"><?php echo IMAGE_UPDATE; ?></button>
+        </div>
+    </div>
 <?php
-$products_query->MoveNext() ; 
+    echo '</form>';
 }
 ?>
-    </table></form></td>
-   </tr>
-   <tr>
-    <td colspan="6"><table border="0" width="100%" cellspacing="0" cellpadding="2">
-     <tr>
-      <td class="smallText" valign="top"><?php echo $products_split->display_count($products_query_numrows, 50, $_GET['page'], TEXT_DISPLAY_NUMBER_OF_PRODUCTS); ?></td>
-      <td class="smallText" align="right"><?php echo $products_split->display_links($products_query_numrows, 50, MAX_DISPLAY_PAGE_LINKS, $_GET['page'], zen_get_all_get_params(array('page', 'info', 'x', 'y', 'cID', 'action'))); ?></td>
-     </tr>
-    </table></td>
-   </tr>
-  </table>
+</div>
+<!-- body_eof //-->
+<!-- footer //-->
+<div class="footer-area"><?php require DIR_WS_INCLUDES . 'footer.php'; ?></div>
+<!-- footer_eof //-->
+</body>
+</html>
 <?php
-}
-?>
-<!-- body_text_eof //-->
-      </div>
-      <!-- body_eof //-->
-      <!-- footer //-->
-  <?php require DIR_WS_INCLUDES . 'footer.php'; ?>
-      <!-- footer_eof //-->
-    </body>
-  </html>
+require DIR_WS_INCLUDES . 'application_bottom.php';
+

@@ -3,13 +3,12 @@
  * Zen Cart German Specific
  * filenames.php
  * Defines the filenames used in the project
- *
- 
+ * 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: filenames.php 2021-12-26 13:39:24Z webchills $
+ * @version $Id: filenames.php 2022-01-26 17:08:24Z webchills $
  */
 /**
  * define project filenames
@@ -184,7 +183,6 @@ define('FILENAME_DEFINE_WIDERRUFSRECHT', 'define_widerrufsrecht');
 define('FILENAME_ZAHLUNGSARTEN', 'zahlungsarten');
 define('FILENAME_DEFINE_ZAHLUNGSARTEN', 'define_zahlungsarten');
 define('FILENAME_XSELL', 'xsell');
-define('FILENAME_XSELL_ADVANCED', 'xsell_advanced');
 define('FILENAME_ZONES', 'zones');
 define('FILENAME_WHOS_ONLINE', 'whos_online');
 

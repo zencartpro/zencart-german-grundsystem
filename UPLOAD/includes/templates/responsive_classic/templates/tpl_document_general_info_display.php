@@ -4,13 +4,12 @@
  * Zen Cart German Specific
  * Loaded automatically by index.php?main_page=document_general_info.<br />
  * Displays template according to "document-general" product-type needs
- *
- 
+ * 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_document_general_info_display.php 2022-01-17 16:33:58Z webchills $
+ * @version $Id: tpl_document_general_info_display.php 2022-01-26 17:33:58Z webchills $
  */
 ?>
 <div class="centerColumn" id="docGeneralDisplay">
@@ -241,9 +240,9 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
   }
 ?>
 <!--eof Product URL -->
-<!--bof cross sell module-->
-<?php require($template->get_template_dir('tpl_modules_xsell_products.php', DIR_WS_TEMPLATE, $current_page_base,'templates'). '/' . 'tpl_modules_xsell_products.php'); ?> 
-<!--eof cross sell module-->
+<!--bof Cross Sells-->
+<?php include $template->get_template_dir('tpl_modules_xsell_products.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_modules_xsell_products.php';?>
+<!--eof Cross Sells-->
 <!--bof also purchased products module-->
 <?php require($template->get_template_dir('tpl_modules_also_purchased_products.php', DIR_WS_TEMPLATE, $current_page_base,'templates'). '/' . 'tpl_modules_also_purchased_products.php');?>
 <!--eof also purchased products module-->

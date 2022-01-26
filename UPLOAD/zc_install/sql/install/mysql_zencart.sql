@@ -6,7 +6,7 @@
 # * Zen Cart German Version - www.zen-cart-pro.at
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_zencart.sql 2022-01-19 19:50:16Z webchills $
+# * @version $Id: mysql_zencart.sql 2022-01-26 17:15:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -1834,14 +1834,15 @@ CREATE TABLE products_to_categories (
 #
 # Table structure for table 'products_xsell'
 # Zen Cart German Specific
+# changed table structure since 1.5.7 German
 
 DROP TABLE IF EXISTS products_xsell;
 CREATE TABLE products_xsell (
-  ID int(10) NOT NULL auto_increment,
-  products_id int(10) unsigned NOT NULL default '1',
-  xsell_id int(10) unsigned NOT NULL default '1',
-  sort_order int(10) unsigned NOT NULL default '1',
-  PRIMARY KEY  (ID), 
+  ID int(11) NOT NULL auto_increment,
+  products_id int(11) NOT NULL,
+  xsell_id int(11) NOT NULL,
+  sort_order int(11) NOT NULL default '1',
+  PRIMARY KEY (ID), 
   KEY idx_products_id_xsell (products_id)
 ) ENGINE=MyISAM;
 
@@ -2357,8 +2358,7 @@ VALUES ('configMyStore', 'BOX_CONFIGURATION_MY_STORE', 'FILENAME_CONFIGURATION',
        ('toolsShopvote', 'BOX_TOOLS_SHOPVOTE', 'FILENAME_SHOPVOTE', '', 'tools', 'Y', 101),
        ('findDuplicates', 'BOX_TOOLS_FINDDUPMODELS','FILENAME_FINDDUPMODELS', '', 'tools', 'Y', 102),
        ('configCrossSell','BOX_CONFIGURATION_XSELL','FILENAME_CONFIGURATION', 'gID=39', 'configuration','Y',39),
-       ('catalogCrossSell','BOX_CATALOG_XSELL','FILENAME_XSELL','','catalog','Y',100),
-       ('catalogCrossSellAdvanced','BOX_CATALOG_XSELL_ADVANCED','FILENAME_XSELL_ADVANCED','','catalog','Y',101);
+       ('catalogCrossSell','BOX_CATALOG_XSELL','FILENAME_XSELL','','catalog','Y',100);       
 
 
 # Insert a default profile for managing orders, as a built-in example of profile functionality
@@ -3291,10 +3291,10 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 #Cross Sell Settings
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES 
 ('Display Cross-Sell Products - Minimal', 'MIN_DISPLAY_XSELL', 1, 'This is the minimum number of configured Cross-Sell products required in order to cause the Cross Sell information to be displayed.<br />Default: 1', 39, 1, now() ,now(),NULL,NULL),
-('Display Cross-Sell Products - Maximal', 'MAX_DISPLAY_XSELL', 6, 'This is the maximum number of configured Cross-Sell products to be displayed.<br />Default: 6', 39, 2, now(), now(),NULL,NULL),
-('Cross-Sell Products Columns per Row', 'SHOW_PRODUCT_INFO_COLUMNS_XSELL_PRODUCTS', 3, 'Cross-Sell Products Columns to display per Row<br />0= off or set the sort order.<br />Default: 3', 39, 3, now(), now(),NULL, 'zen_cfg_select_option(array(0, 1, 2, 3, 4), '),
-('Cross-Sell - Display prices?', 'XSELL_DISPLAY_PRICE', 'false', 'Cross-Sell -- Do you want to display the product prices too?<br />Default: false', 39, 4, now(), now(),NULL, 'zen_cfg_select_option(array(\'true\',\'false\'), '),
-('Cross-Sell - Version', 'XSELL_VERSION', '1.5.0', 'Cross Sell Advanced Version', 39, 0, now(), now(), NULL, 'zen_cfg_read_only(');
+('Display Cross-Sell Products - Maximal', 'MAX_DISPLAY_XSELL', 6, 'Identify the maximum number of cross-sells to display on the storefront (default: <b>6</b>).<br><br>Set the value to <b>0</b> to disable the storefront display.', 39, 2, now(), now(),NULL,NULL),
+('Cross-Sell Products Columns per Row', 'SHOW_PRODUCT_INFO_COLUMNS_XSELL_PRODUCTS', 3, 'Identify the number of cross-sells to display per row (on the storefront).  Set the value to <em>0</em> to display <em>all</em> products on a single row.  Default: <b>3</b>.', 39, 3, now(), now(),NULL, 'zen_cfg_select_option(array(0, 1, 2, 3, 4), '),
+('Cross-Sell - Display prices?', 'XSELL_DISPLAY_PRICE', 'false', 'Should the cross-sell product prices be displayed on the storefront (default: \'false\')?', 39, 4, now(), now(),NULL, 'zen_cfg_select_option(array(\'true\',\'false\'), '),
+('Cross-Sell - Version', 'XSELL_VERSION', '2.0.1', 'Cross Sell Advanced Version', 39, 0, now(), now(), NULL, 'zen_cfg_read_only(');
 
 
 #Vataddon
@@ -4909,10 +4909,10 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 
 # Adminmenü ID 39 - Cross Sell
 ('Minimale Anzeige Cross-Sell Artikel', 'MIN_DISPLAY_XSELL', 43, 'Anzahl der Cross Sell Artikel, die mindestens für den jeweiligen Artikel angelegt sein müssen, damit die Cross Sell Info erscheint.<br />Standardwert: 1', now(), now()),
-('Maximale Anzeige Cross-Sell Artikel', 'MAX_DISPLAY_XSELL', 43, 'Anzahl der Cross Sell Artikel, die höchstens für den jeweiligen Artikel angezeigt werden sollen.<br />Standardwert: 6', now(), now()),
-('Cross-Sell Artikel pro Reihe', 'SHOW_PRODUCT_INFO_COLUMNS_XSELL_PRODUCTS', 43, 'Wieviele Cross-Sell Artikel sollen in einer Reihe angezeigt werden<br />0= aus, 1-4 für die jeweilige Anzahl.<br />Standardwert: 3', now(), now()),
-('Cross-Sell - Preis anzeigen?', 'XSELL_DISPLAY_PRICE', 43, 'Soll der Preis für die Cross Sell Artikel angezeigt werden?<br />Standardwert: false', now(), now()),
-('Cross-Sell Advanced Version', 'XSELL_VERSION', 43, 'Aktuell installierte Version dieses Moduls', now(), now()),
+('Maximale Anzeige Cross-Sell Artikel', 'MAX_DISPLAY_XSELL', 43, 'Geben Sie die maximale Anzahl der Cross-Sells an, die im Frontend angezeigt werden sollen (Standard: <b>6</b>).<br><br>Setzen Sie den Wert auf <b>0</b>, um die Anzeige im Frontend zu deaktivieren.', now(), now()),
+('Cross-Sell Artikel pro Reihe', 'SHOW_PRODUCT_INFO_COLUMNS_XSELL_PRODUCTS', 43, 'Geben Sie die Anzahl der Cross-Sells an, die pro Zeile (im Frontend) angezeigt werden sollen.  Setzen Sie den Wert auf <em>0</em>, um <em>alle</em> Produkte in einer einzigen Zeile anzuzeigen.  Voreinstellung: <b>3</b>.', now(), now()),
+('Cross-Sell - Preis anzeigen?', 'XSELL_DISPLAY_PRICE', 43, 'Soll der Preis für die Cross Sell Artikel im Frontend angezeigt werden?<br />Standardwert: false', now(), now()),
+('Cross-Sell Advanced Version', 'XSELL_VERSION', 43, 'Aktuell installierte Cross Sell Modul Version', now(), now()),
 
 # Deutsche Einträge für Versandmodul Versandkostenfrei mit Optionen
 ('Versandkostenfrei mit Optionen aktivieren', 'MODULE_SHIPPING_FREEOPTIONS_STATUS', 43, 'Wollen Sie "Versandkostenfrei mit Optionen" aktivieren?', now(), now()),
