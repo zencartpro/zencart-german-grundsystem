@@ -1,16 +1,15 @@
 <?php
 /**
  * Page Template
- *
+ * Zen Cart German Specific
  * Loaded automatically by index.php?main_page=checkout_payment.<br />
  * Displays the allowed payment modules, for selection by customer.
- *
- 
+ * 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_checkout_payment_default.php 2021-12-28 13:23:42Z webchills $
+ * @version $Id: tpl_checkout_payment_default.php 2022-01-28 17:23:42Z webchills $
  */
 ?>
 <?php echo $payment_modules->javascript_validation(); ?>
@@ -33,7 +32,7 @@
 <?php if (MAX_ADDRESS_BOOK_ENTRIES >= 2) { ?>
 <div class="buttonRow forward"><?php echo '<a href="' . zen_href_link(FILENAME_CHECKOUT_PAYMENT_ADDRESS, '', 'SSL') . '">' . zen_image_button(BUTTON_IMAGE_CHANGE_ADDRESS, BUTTON_CHANGE_ADDRESS_ALT) . '</a>'; ?></div>
 <?php } ?>
-<address><?php echo zen_address_label($_SESSION['customer_id'], $_SESSION['billto'], true, ' ', '<br />'); ?></address>
+<address><?php echo zen_address_label($_SESSION['customer_id'], $_SESSION['billto'], true, ' ', '<br>'); ?></address>
 </div>
 
 <div class="floatingBox important forward"><?php echo TEXT_SELECTED_BILLING_DESTINATION; ?></div>
@@ -101,7 +100,7 @@
       echo TEXT_ACCEPTED_CREDIT_CARDS . zen_get_cc_enabled('IMAGE_');
     }
 ?>
-<br class="clearBoth" />
+<br class="clearBoth">
 <?php } ?>
 
 <?php
@@ -127,13 +126,13 @@
     if (sizeof($selection) > 1) {
         if (empty($selection[$i]['noradio'])) {
  ?>
-<?php echo zen_draw_radio_field('payment', $selection[$i]['id'], ($selection[$i]['id'] == (isset($_SESSION['payment']) ? $_SESSION['payment'] : '')), 'id="pmt-'.$selection[$i]['id'].'"'); ?>
+<?php echo zen_draw_radio_field('payment', $selection[$i]['id'], ($selection[$i]['id'] == $_SESSION['payment'] ? true : false), 'id="pmt-'.$selection[$i]['id'].'" autocomplete="off"'); ?>
 <?php   } ?>
 <?php
     } else {
 
 ?>
-<?php echo zen_draw_hidden_field('payment', $selection[$i]['id'], 'id="pmt-'.$selection[$i]['id'].'"'); ?>
+<?php echo zen_draw_hidden_field('payment', $selection[$i]['id'], 'id="pmt-'.$selection[$i]['id'].'" autocomplete="off"'); ?>
 <?php
     }
 ?>
@@ -150,7 +149,7 @@
 <?php
     }
 ?>
-<br class="clearBoth" />
+<br class="clearBoth">
 
 <?php
     if (isset($selection[$i]['error'])) {
@@ -161,22 +160,26 @@
     } elseif (isset($selection[$i]['fields']) && is_array($selection[$i]['fields'])) {
 ?>
 
-<div class="ccinfo">
+<?php if (($selection[$i]['id']) == 'braintree_api') {  ?>
+    <div class="ccinfobraintree">
+<?php	} else {	?>
+		<div class="ccinfo">
+<?php } ?>
 <?php
       for ($j=0, $n2=sizeof($selection[$i]['fields']); $j<$n2; $j++) {
 ?>
-<label <?php echo (isset($selection[$i]['fields'][$j]['tag']) ? 'for="'.$selection[$i]['fields'][$j]['tag'] . '" ' : ''); ?>class="inputLabelPayment"><?php echo isset($selection[$i]['fields'][$j]['title']) ? $selection[$i]['fields'][$j]['title'] : ''; ?></label><?php echo $selection[$i]['fields'][$j]['field']; ?>
-<br class="clearBoth" />
+<label <?php echo (isset($selection[$i]['fields'][$j]['tag']) ? 'for="'.$selection[$i]['fields'][$j]['tag'] . '" ' : ''); ?>class="inputLabelPayment"><?php echo $selection[$i]['fields'][$j]['title']; ?></label><?php echo $selection[$i]['fields'][$j]['field']; ?>
+<br class="clearBoth">
 <?php
       }
 ?>
 </div>
-<br class="clearBoth" />
+<br class="clearBoth">
 <?php
     }
     $radio_buttons++;
 ?>
-<br class="clearBoth" />
+<br class="clearBoth">
 <?php
   }
 ?>
@@ -184,7 +187,7 @@
 </fieldset>
 <?php // ** BEGIN PAYPAL EXPRESS CHECKOUT **
       } else {
-        ?><input type="hidden" name="payment" value="<?php echo $_SESSION['payment']; ?>" /><?php
+        ?><input type="hidden" name="payment" value="<?php echo $_SESSION['payment']; ?>"><?php
       }
       // ** END PAYPAL EXPRESS CHECKOUT ** ?>
 <fieldset>
@@ -207,7 +210,7 @@
 
 <div class="buttonRow forward" id="paymentSubmit"><?php echo zen_image_submit(BUTTON_IMAGE_CONTINUE_CHECKOUT, BUTTON_CONTINUE_ALT, 'onclick="submitFunction('.zen_user_has_gv_account($_SESSION['customer_id']).','.$order->info['total'].')"'); ?></div>
 
-<div class="buttonRow back"><?php echo TITLE_CONTINUE_CHECKOUT_PROCEDURE . '<br />' . TEXT_CONTINUE_CHECKOUT_PROCEDURE; ?></div>
+<div class="buttonRow back"><?php echo TITLE_CONTINUE_CHECKOUT_PROCEDURE . '<br>' . TEXT_CONTINUE_CHECKOUT_PROCEDURE; ?></div>
 
 </form>
 </div>

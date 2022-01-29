@@ -1,12 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
- 
+ * Zen Cart German Specific 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: orders.php 2021-12-03 15:05:14Z webchills $
+ * @version $Id: orders.php 2022-01-29 16:15:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Bestellungen');
@@ -142,3 +141,5 @@ define('TEXT_MAP_SHIPPING_ADDRESS', 'Karte Lieferadresse');
 define('TEXT_MAP_BILLING_ADDRESS', 'Karte Rechnungsadresse');
 define('TEXT_EMAIL_LANGUAGE', 'Sprache der Bestellung: %s');
 define('SUCCESS_EMAIL_SENT', 'Email %s an Kunden gesandt');
+
+define('POPUP_ADMIN_NOTIFICATION', 'Klicken Sie für zusätzliche Optionen zur Zahlungsabwicklung');

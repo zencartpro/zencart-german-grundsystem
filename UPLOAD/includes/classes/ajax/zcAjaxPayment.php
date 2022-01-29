@@ -165,12 +165,12 @@ class zcAjaxPayment extends base
     }
 
     // if shipping-edit button should be overridden, do so
-    $editShippingButtonLink = zen_href_link (FILENAME_CHECKOUT_SHIPPING, '', 'SSL');
-    if (!empty($_SESSION['payment']) && method_exists (${$_SESSION['payment']}, 'alterShippingEditButton')) {
-      $theLink = ${$_SESSION['payment']}->alterShippingEditButton ();
-      if ($theLink)
-        $editShippingButtonLink = $theLink;
-    }
+   // $editShippingButtonLink = zen_href_link (FILENAME_CHECKOUT_SHIPPING, '', 'SSL');
+   // if (!empty($_SESSION['payment']) && method_exists (${$_SESSION['payment']}, 'alterShippingEditButton')) {
+   //   $theLink = ${$_SESSION['payment']}->alterShippingEditButton ();
+   //   if ($theLink)
+   //     $editShippingButtonLink = $theLink;
+   // }
     // deal with billing address edit button
     $flagDisablePaymentAddressChange = false;
     if (isset (${$_SESSION['payment']}->flagDisablePaymentAddressChange)) {

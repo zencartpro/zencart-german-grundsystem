@@ -6,7 +6,7 @@
 # * Zen Cart German Version - www.zen-cart-pro.at
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_zencart.sql 2022-01-26 17:15:16Z webchills $
+# * @version $Id: mysql_zencart.sql 2022-01-29 07:40:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -274,6 +274,47 @@ CREATE TABLE banners_history (
   banners_history_date datetime NOT NULL default '0001-01-01 00:00:00',
   PRIMARY KEY  (banners_history_id),
   KEY idx_banners_id_zen (banners_id)
+) ENGINE=MyISAM;
+
+# --------------------------------------------------------
+
+#
+# Table structure for table 'braintree'
+#
+
+
+DROP TABLE IF EXISTS braintree;
+CREATE TABLE braintree (
+  braintree_id int(11) NOT NULL auto_increment,
+  order_id int(11) NOT NULL,
+  txn_type varchar(256) NOT NULL,
+  module_name text NOT NULL,
+  reason_code text NOT NULL,
+  payment_type varchar(256) NOT NULL,
+  payment_status varchar(256) NOT NULL,
+  pending_reason varchar(256) NOT NULL,
+  first_name text NOT NULL,
+  last_name text NOT NULL,
+  payer_business_name text NOT NULL,
+  address_name text NOT NULL,
+  address_street text NOT NULL,
+  address_city text NOT NULL,
+  address_state text NOT NULL,
+  address_zip varchar(256) NOT NULL,
+  address_country varchar(256) NOT NULL,
+  payer_email text NOT NULL,
+  payer_phone text NOT NULL,
+  payment_date datetime NOT NULL,
+  txn_id varchar(256) NOT NULL,
+  parent_txn_id varchar(256) NOT NULL,
+  num_cart_items int(11) NOT NULL,
+  settle_amount decimal(10,2) NOT NULL,
+  settle_currency varchar(256) NOT NULL,
+  exchange_rate decimal(10,0) NOT NULL,
+  date_added datetime NOT NULL,
+  module_mode text NOT NULL,
+  PRIMARY KEY  (braintree_id),
+  UNIQUE KEY order_id (order_id)
 ) ENGINE=MyISAM;
 
 # --------------------------------------------------------
@@ -2193,19 +2234,6 @@ CREATE TABLE zones_to_geo_zones (
 ) ENGINE=MyISAM;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 # default data
 
 INSERT INTO template_select (template_id, template_dir, template_language) VALUES (1, 'responsive_classic', '0');
@@ -2358,7 +2386,8 @@ VALUES ('configMyStore', 'BOX_CONFIGURATION_MY_STORE', 'FILENAME_CONFIGURATION',
        ('toolsShopvote', 'BOX_TOOLS_SHOPVOTE', 'FILENAME_SHOPVOTE', '', 'tools', 'Y', 101),
        ('findDuplicates', 'BOX_TOOLS_FINDDUPMODELS','FILENAME_FINDDUPMODELS', '', 'tools', 'Y', 102),
        ('configCrossSell','BOX_CONFIGURATION_XSELL','FILENAME_CONFIGURATION', 'gID=39', 'configuration','Y',39),
-       ('catalogCrossSell','BOX_CATALOG_XSELL','FILENAME_XSELL','','catalog','Y',100);       
+       ('catalogCrossSell','BOX_CATALOG_XSELL','FILENAME_XSELL','','catalog','Y',100), 
+       ('customersBraintreeTransactions','BOX_CUSTOMERS_BRAINTREE_TRANSACTIONS','FILENAME_BRAINTREE_TRANSACTIONS','','customers','Y',100);    
 
 
 # Insert a default profile for managing orders, as a built-in example of profile functionality
@@ -5107,5 +5136,5 @@ INSERT INTO product_type_layout_language (configuration_title, configuration_key
 ('PRODUCT FREE SHIPPING Attribut Gewicht Präfix - Standardeinstellung', 'DEFAULT_PRODUCT_FREE_SHIPPING_PRODUCTS_ATTRIBUTES_WEIGHT_PREFIX', 43, 'PRODUCT FREE SHIPPING Attribut Gewicht Präfix<br />Standard Gewicht Präfix<br />Leer, + oder -', now(), now());
 
 REPLACE INTO product_type_layout_language (configuration_title , configuration_key , languages_id, configuration_description, last_modified, date_added)
-VALUES ('20220114', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Übersetzungen', now(), now());
+VALUES ('20220129', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Übersetzungen', now(), now());
 ##### End of SQL setup for Zen Cart German.

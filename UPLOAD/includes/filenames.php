@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: filenames.php 2022-01-26 17:08:24Z webchills $
+ * @version $Id: filenames.php 2022-01-28 20:24:24Z webchills $
  */
 /**
  * define project filenames
@@ -36,6 +36,7 @@ define('FILENAME_ATTRIBUTES_CONTROLLER', 'attributes_controller');
 define('FILENAME_BACKUP', 'backup');
 define('FILENAME_BANNER_MANAGER', 'banner_manager');
 define('FILENAME_BANNER_STATISTICS', 'banner_statistics');
+define('FILENAME_BRAINTREE_TRANSACTIONS', 'braintree_transactions');
 define('FILENAME_CACHE', 'cache');
 define('FILENAME_CATALOG_ACCOUNT_HISTORY_INFO', 'account_history_info');
 define('FILENAME_CATEGORIES', 'categories');
