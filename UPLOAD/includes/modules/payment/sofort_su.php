@@ -1,11 +1,11 @@
 <?php
 /**
-* Package Sofort für Zen Cart 1.5.6 deutsch und PHP 7.3
+* Package Sofort for Zen Cart 1.5.7 German and PHP 8
 * @copyright Copyright 2003-2022 Zen Cart Development Team
- * Zen Cart German Version - www.zen-cart-pro.at
+* Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* $Id: sofort_su.php 2019-06-25 17:58:20Z webchills $
+* $Id: sofort_su.php 2022-02-02 10:37:20Z webchills $
 */
 
 require_once(dirname(__FILE__) . '/../../../ext/modules/payment/sofort/helper/Util.php');
@@ -202,16 +202,15 @@ class sofort_su
      */
     function update_status()
     {
-        global $order, $db;
-        
+        global $order, $db;        
+              
         // check country
-        $dest_country = isset ($order->billing['country']['iso_code_2']) ? $order->billing['country']['iso_code_2'] : 0 ;
+        $dest_country = $order->billing['country']['iso_code_2'] ?? 0;
         $dest_zone = 0;
         $error = false;
         $countries_table = MODULE_PAYMENT_SOFORT_SU_COUNTRIES; 
         $country_zones = explode(",", $countries_table);
-        if (in_array($dest_country, $country_zones)) {
-            $dest_zone = $i;
+        if (in_array($dest_country, $country_zones)) {            
             $this->enabled = true;
         } else {
             $this->enabled = false;
@@ -663,7 +662,7 @@ class sofort_su
 
         include(DIR_FS_CATALOG . DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/payment/sofort_su.php');
 
-        include(DIR_FS_CATALOG . DIR_WS_LANGUAGES . 'modules/payment/sofort_states.php');
+        include(DIR_FS_CATALOG . 'includes/sofort_states.php');
         
         $this->install_states();
         

@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: order.php 2022-01-04 08:38:25Z webchills $
+ * @version $Id: order.php 2022-02-02 17:12:25Z webchills $
  */
 /**
  * order class
@@ -1166,9 +1166,9 @@ class order extends base {
     if ($this->content_type != 'virtual' && !$storepickup) {
       $email_order .= "\n" . EMAIL_TEXT_DELIVERY_ADDRESS . "\n" .
       EMAIL_SEPARATOR . "\n" .
-      zen_address_label($_SESSION['customer_id'], $_SESSION['sendto'], false, '', "\n") . "\n";
+      zen_address_label($_SESSION['customer_id'], $_SESSION['sendto'], false, '', "\n") . "\n\n";
     }
-    $email_order .= EMAIL_TEXT_TELEPHONE . $this->customer['telephone'] . "\n\n";
+    $email_order .= EMAIL_TEXT_TELEPHONE . $this->customer['telephone'] . "\n";
 
     //addresses area: Billing
     $email_order .= "\n" . EMAIL_TEXT_BILLING_ADDRESS . "\n" .

@@ -271,7 +271,7 @@ class Communication
                 $query = $db->Execute("SELECT * FROM `". DB_PREFIX . "pi_sofort_transaction` WHERE transaction_id = '" . $statusData['transaction_id'] . "'");
                 $query = $db->Execute("SELECT * FROM `" . TABLE_ORDERS . "` WHERE orders_id = " . (int) $query->fields['order_id']);
 
-                if ($query->fields['order_total'] == $statusData['amount']) {
+               
 
                     if ($query->fields['orders_status'] !== $payment->$property) {
 
@@ -289,28 +289,7 @@ class Communication
                             zen_db_perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
                         }
                     }
-                } else {
-                    $check_query = $db->Execute(
-                        "SELECT orders_status_id FROM " . TABLE_ORDERS_STATUS . " WHERE orders_status_name = '" . $db->prepareInput(MODULE_PAYMENT_SOFORT_CHECK_ENGLISH) . "' LIMIT 1"
-                    );
-
-                    $sql_data_array = array(
-                        'orders_id' => $query->fields['orders_id'],
-                        'orders_status_id' => $check_query->fields['orders_status_id'],
-                        'date_added' => 'now()',
-                        'customer_notified' => 0,
-                        'comments' => $this->_getComment('amount_wrong', $statusData)
-                    );
-
-                    if ($query->fields['orders_status'] !== $check_query->fields['orders_status_id']) {
-
-                        zen_db_perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
-
-                        $db->Execute(
-                            "UPDATE `" . TABLE_ORDERS . "` SET orders_status = " . (int) $check_query->fields['orders_status_id'] . " WHERE orders_id = " . (int) $query->fields['orders_id']
-                        );
-                    }
-                }
+                
             }
         }
     }
