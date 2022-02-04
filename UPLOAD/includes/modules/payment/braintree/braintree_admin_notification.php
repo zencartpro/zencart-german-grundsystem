@@ -8,7 +8,7 @@
 * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: braintree_admin_notification.php 2022-01-29 16:09:14 webchills $
+* @version $Id: braintree_admin_notification.php 2022-02-04 21:36:14 webchills $
 */
 
 $outputStartBlock = '';
@@ -126,7 +126,7 @@ $outputBraintree .= '<td valign="top"><table>'."\n";
 $outputBraintree .= '<tr><td class="main">'."\n";
 $outputBraintree .= MODULE_PAYMENT_BRAINTREE_ENTRY_CURRENCY."\n";
 $outputBraintree .= '</td><td class="main">'."\n";
-$outputBraintree .= $ipn->fields['mc_currency'] . ' ' . $response['CURRENCY'] ."\n";
+$outputBraintree .= $response['CURRENCY'] ."\n";
 $outputBraintree .= '</td></tr>'."\n";
 
 $outputBraintree .= '<tr><td class="main">'."\n";

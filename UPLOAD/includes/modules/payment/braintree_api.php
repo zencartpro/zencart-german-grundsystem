@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: braintree_api.php 2022-01-28 21:34:14 webchills $
+ * @version $Id: braintree_api.php 2022-02-04 22:39:14 webchills $
 */
 use Braintree\Gateway;
 use Braintree\Transaction;
@@ -750,6 +750,7 @@ class braintree_api extends base {
      */    
 
     function confirmation(){
+    	global $messageStack;
         $confirmation = ['title' => '', 'fields' => []];
         if(!empty($_POST['braintree_cc_firstname'])){
             $confirmation['fields'][] = [
@@ -796,7 +797,8 @@ class braintree_api extends base {
             ];
         }
 
-        return $confirmation;
+        return $confirmation;          
+        
     }
 
     /**
@@ -866,8 +868,7 @@ class braintree_api extends base {
      * Prepare and submit the final authorization to Braintree via the appropriate means as configured
      */
     function before_process() {
-        global $order, $messageStack;
-
+        global $order, $messageStack;        
         try{
 
             #region CC VALIDATION
@@ -938,7 +939,7 @@ class braintree_api extends base {
             }
 
             $result = $gateway = $this->gateway()->transaction()->sale($sale_options);
-            if($result->success){
+            if($result->success){            	
                 $this->zcLog('before_process - DP-5', 'Result: Success');
                 $this->transaction_id           = $result->transaction->id;
                 $this->payment_type = $result->transaction->creditCardDetails->cardType;
@@ -946,7 +947,7 @@ class braintree_api extends base {
                 $this->avs = $result->transaction->avsPostalCodeResponseCode;
                 $this->cvv2 = $result->transaction->cvvResponseCode;
 
-                $createdAt_date = new DateTime($result->transaction->createdAt->date);
+                $createdAt_date = new DateTime($result->transaction->createdAt->date??'');
                 $createdAt_formatted = $createdAt_date->format('Y-m-d H:i:s');
 
                 $this->payment_time = $createdAt_formatted;
@@ -1085,10 +1086,10 @@ class braintree_api extends base {
             'txn_type' => $this->transactiontype,
             'module_name' => $this->code,
             'module_mode' => 'USA',
-            'reason_code' => $this->reasoncode,
+            'reason_code' => '',
             'payment_type' => $this->payment_type,
             'payment_status' => $this->payment_status,
-            'pending_reason' => $this->pendingreason,
+            'pending_reason' => '',
             'first_name' => $_SESSION['bt_FIRSTNAME'],
             'last_name' => $_SESSION['bt_LASTNAME'],
             'payer_business_name' => $_SESSION['bt_BUSINESS'],
@@ -1162,7 +1163,7 @@ class braintree_api extends base {
             return FALSE;
 
         /**
-         * Read data from PayPal
+         * Read data from Braintree
          */
         try {
             $result = Braintree\Transaction::find($txnID);
@@ -1183,7 +1184,7 @@ class braintree_api extends base {
             $response['TRANSACTIONTYPE'] = $result->type;
             $response['PAYMENTTYPE'] = $result->creditCardDetails->cardType;
             $response['PAYMENTSTATUS'] = $result->status;
-            $createdAt_date = new DateTime($result->createdAt->date);
+            $createdAt_date = new DateTime($result->createdAt->date??'');
             $createdAt_formatted = $createdAt_date->format('Y-m-d H:i:s');
             $response['ORDERTIME'] = $createdAt_formatted;
             $response['CURRENCY'] = $result->currencyIsoCode;
@@ -1197,6 +1198,13 @@ class braintree_api extends base {
 
         return $response;
     }
+    
+  /**
+   * Determine whether the shipping-edit button should be displayed or not
+   */
+  function alterShippingEditButton() {
+    return false;   
+  }
 
     /**
      * Evaluate installation status of this module. Returns true if the status key is found.

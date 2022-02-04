@@ -10,3 +10,4 @@ define('BRAINTREE_MESSAGE_ALREADY_INSTALLED', 'Braintree Modul ist bereits insta
 define('BRAINTREE_MESSAGE_ERROR_PROCESSING', 'Fehler beim Verarbeiten der Transaktion: ');
 define('BRAINTREE_MESSAGE_PROCESSOR_DECLINE', 'Abgelehnt - Bitte verwenden Sie eine andere Kreditkarte.');
 define('BRAINTREE_MESSAGE_NETWORK_UNAVAILABLE', 'Netzwerk des Kartenverarbeiters nicht erreichbar - Bitte nochmal versuchen.');
+define('BRAINTREE_MESSAGE_PLEASE_CONFIRM_ORDER', 'Ihre Kreditkarte wurde erfolgreich verifiziert, es hat aber noch keine Zahlung stattgefunden. Bitte bestätigen Sie nun Ihre Bestellung mit dem Button unten. Erst dann werden Zahlung und Bestellung durchgeführt.');

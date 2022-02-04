@@ -1,12 +1,12 @@
 <?php
 /**
  * zcAjaxPayment
- *
+ * Zen Cart German Specific
  
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: zcAjaxPayment.php 2021-11-29 15:46:58Z webchills $
+ * @version $Id: zcAjaxPayment.php 2022-02-04 22:44:58Z webchills $
  */
 class zcAjaxPayment extends base
 {
@@ -129,7 +129,8 @@ class zcAjaxPayment extends base
     }
 
     // update customers_referral with $_SESSION['gv_id']
-    if ($_SESSION['cc_id']) {
+    if (!empty($_SESSION['cc_id'])){
+    
       $discount_coupon_query = "SELECT coupon_code
                             FROM ".TABLE_COUPONS."
                             WHERE coupon_id = :couponID";
@@ -165,12 +166,12 @@ class zcAjaxPayment extends base
     }
 
     // if shipping-edit button should be overridden, do so
-   // $editShippingButtonLink = zen_href_link (FILENAME_CHECKOUT_SHIPPING, '', 'SSL');
-   // if (!empty($_SESSION['payment']) && method_exists (${$_SESSION['payment']}, 'alterShippingEditButton')) {
-   //   $theLink = ${$_SESSION['payment']}->alterShippingEditButton ();
-   //   if ($theLink)
-   //     $editShippingButtonLink = $theLink;
-   // }
+   $editShippingButtonLink = zen_href_link (FILENAME_CHECKOUT_SHIPPING, '', 'SSL');
+//   if (!empty($_SESSION['payment']) && method_exists (${$_SESSION['payment']}, 'alterShippingEditButton')) {
+//   $theLink = ${$_SESSION['payment']}->alterShippingEditButton ();
+ //  if ($theLink)
+//   $editShippingButtonLink = $theLink;
+//   }
     // deal with billing address edit button
     $flagDisablePaymentAddressChange = false;
     if (isset (${$_SESSION['payment']}->flagDisablePaymentAddressChange)) {
