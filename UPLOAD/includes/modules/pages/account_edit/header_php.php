@@ -2,13 +2,12 @@
 /**
  * Zen Cart German Specific
  * Header code file for the customer's Account-Edit page
- *
- 
+ * 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2021-11-28 21:31:16Z webchills $
+ * @version $Id: header_php.php 2022-02-04 18:43:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ACCOUNT_EDIT');
@@ -36,7 +35,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
   $error = false;
 
   if (ACCOUNT_GENDER == 'true') {
-    if ( ($gender != 'm') && ($gender != 'f') ) {
+    if ( ($gender != 'm') && ($gender != 'f') && ($gender != 'd') ) {
       $error = true;
       $messageStack->add('account_edit', ENTRY_GENDER_ERROR);
     }
@@ -178,10 +177,13 @@ $account = $db->Execute($account_query);
 if (ACCOUNT_GENDER == 'true') {
   if (isset($gender)) {
     $male = ($gender == 'm') ? true : false;
+    $female = ($gender == 'f') ? true : false;
+    $divers = ($gender == 'd') ? true : false;
   } else {
     $male = ($account->fields['customers_gender'] == 'm') ? true : false;
-  }
-  $female = !$male;
+    $female = ($account->fields['customers_gender'] == 'f') ? true : false;
+    $divers = ($account->fields['customers_gender'] == 'd') ? true : false;
+  } 
 }
 
 if (!(isset($_POST['action']) && ($_POST['action'] == 'process'))) {

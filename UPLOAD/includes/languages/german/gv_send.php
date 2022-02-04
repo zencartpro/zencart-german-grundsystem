@@ -1,12 +1,12 @@
 <?php
 /**
- 
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  
- * @version $Id: gv_send.php 2022-01-14 19:05:14Z webchills $
+ * @version $Id: gv_send.php 2022-02-04 18:52:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Geschenkgutschein versenden');
@@ -23,7 +23,7 @@ define('ERROR_ENTRY_TO_NAME_CHECK', 'Empf채ngername wurde nicht ausgef체llt.  F�
 define('ERROR_ENTRY_AMOUNT_CHECK','<span class="errorText">Ung체ltiger oder zu hoher Betrag</span>');
 define('ERROR_ENTRY_EMAIL_ADDRESS_CHECK','<span class="errorText">Ung체ltige E-Mail Adresse</span>');
 define('MAIN_MESSAGE','<br />Sie haben sich entschieden, einen Geschenkgutschein im Wert von <strong>%s</strong><br />an <strong>%s</strong>, mit der E-Mail Adresse <strong>%s</strong>, zu versenden.<br /><br /><br />Der Inhalt Ihrer Nachricht lautet:<br />');
-define('SECONDARY_MESSAGE', 'Liebe(r) %s,<br /><br />' . 'Du hast einen Geschenkgutschein im Wert von %s von %s erhalten');
+define('SECONDARY_MESSAGE', 'Guten Tag %s,<br /><br />' . 'Du hast einen Geschenkgutschein im Wert von %s von %s erhalten');
 define('PERSONAL_MESSAGE','%s schreibt:');
 define('TEXT_SUCCESS','Herzlichen Gl체ckwunsch, der Geschenkgutschein wurde erfolgreich versendet.');
 define('TEXT_SEND_ANOTHER', 'Wollen Sie einen weiteren Geschenkgutschein versenden?');

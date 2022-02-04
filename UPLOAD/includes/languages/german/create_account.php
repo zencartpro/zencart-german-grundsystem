@@ -1,11 +1,11 @@
 <?php
 /**
- 
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: create_account.php 2020-03-01 08:40:14Z webchills $
+ * @version $Id: create_account.php 2022-02-04 18:51:14Z webchills $
  */
 
 define('NAVBAR_TITLE', 'Neues Konto erstellen');
@@ -20,7 +20,7 @@ define('ERROR_CREATE_ACCOUNT_SPAM_DETECTED', 'Vielen Dank, Ihre Registrierungsan
 define('EMAIL_SUBJECT', 'Herzlich Willkommen bei ' . STORE_NAME . '!');
 define('EMAIL_GREET_MR', 'Sehr geehrter Herr %s,' . "\n\n");
 define('EMAIL_GREET_MS', 'Sehr geehrte Frau %s,' . "\n\n");
-define('EMAIL_GREET_NONE', 'Sehr geehrte(r) Frau/Herr %s' . "\n\n");
+define('EMAIL_GREET_NONE', 'Guten Tag %s' . "\n\n");
 
 // First line of the greeting
 define('EMAIL_WELCOME', 'Herzlich Willkommen bei <strong>' . STORE_NAME . '</strong>.');

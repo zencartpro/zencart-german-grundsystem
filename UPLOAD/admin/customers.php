@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: customers.php 2022-01-02 07:45:51Z webchills $
+ * @version $Id: customers.php 2022-02-04 18:52:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -593,6 +593,9 @@ if (zen_not_null($action)) {
                     echo '</label>';
                     echo '<label class="radio-inline">';
                     echo zen_draw_radio_field('customers_gender', 'f', false, $cInfo->customers_gender) . FEMALE;
+                    echo '</label>';
+                    echo '<label class="radio-inline">';
+                    echo zen_draw_radio_field('customers_gender', 'd', false, $cInfo->customers_gender) . DIVERS;
                     echo '</label>&nbsp;' . ENTRY_GENDER_ERROR;
                   } else {
                     echo '<label class="radio-inline">';
@@ -600,6 +603,9 @@ if (zen_not_null($action)) {
                     echo '</label>';
                     echo '<label class="radio-inline">';
                     echo zen_draw_radio_field('customers_gender', 'f', false, $cInfo->customers_gender) . FEMALE;
+                    echo '</label>';
+                    echo '<label class="radio-inline">';
+                    echo zen_draw_radio_field('customers_gender', 'd', false, $cInfo->customers_gender) . DIVERS;
                     echo '</label>';
                   }
                   ?>

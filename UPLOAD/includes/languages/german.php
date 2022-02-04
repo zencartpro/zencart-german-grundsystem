@@ -1,11 +1,12 @@
 <?php
 /**
  * Zen Cart German Specific 
+ * 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2022-01-14 19:11:57Z webchills $
+ * @version $Id: german.php 2022-02-04 18:49:57Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -68,6 +69,7 @@ define('TEXT_GV_REDEEM', 'Gutscheinnummer');
 // text for gender
 define('MALE', 'Herr');
 define('FEMALE', 'Frau');
+define('DIVERS', 'Divers/keine Anrede');
 
 // text for date of birth example
 define('DOB_FORMAT_STRING', 'dd.mm.yyyy');

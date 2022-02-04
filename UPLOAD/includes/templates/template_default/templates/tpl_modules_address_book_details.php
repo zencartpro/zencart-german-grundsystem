@@ -9,7 +9,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_address_book_details.php 2019-07-03 22:49:16Z webchills $
+ * @version $Id: tpl_modules_address_book_details.php 2022-02-04 18:46:16Z webchills $
  */
 ?>
 <fieldset>
@@ -21,12 +21,15 @@
   if (ACCOUNT_GENDER == 'true') {
     if (isset($gender)) {
       $male = ($gender == 'm') ? true : false;
+      $female = ($gender == 'f') ? true : false;
+      $divers = ($gender == 'd') ? true : false;
     } else {
       $male = ($entry->fields['entry_gender'] == 'm') ? true : false;
-    }
-    $female = !$male;
+      $female = ($entry->fields['entry_gender'] == 'f') ? true : false;
+      $divers = ($entry->fields['entry_gender'] == 'd') ? true : false;
+    }    
 ?>
-<?php echo zen_draw_radio_field('gender', 'm', $male, 'id="gender-male"') . '<label class="radioButtonLabel" for="gender-male">' . MALE . '</label>' . zen_draw_radio_field('gender', 'f', $female, 'id="gender-female"') . '<label class="radioButtonLabel" for="gender-female">' . FEMALE . '</label>' . (zen_not_null(ENTRY_GENDER_TEXT) ? '<span class="alert">' . ENTRY_GENDER_TEXT . '</span>': ''); ?>
+<?php echo zen_draw_radio_field('gender', 'm', $male, 'id="gender-male"') . '<label class="radioButtonLabel" for="gender-male">' . MALE . '</label>' . zen_draw_radio_field('gender', 'f', $female, 'id="gender-female"') . '<label class="radioButtonLabel" for="gender-female">' . FEMALE . '</label>' . zen_draw_radio_field('gender', 'd', $divers, 'id="gender-divers"') . '<label class="radioButtonLabel" for="gender-divers">' . DIVERS . '</label>'  . (zen_not_null(ENTRY_GENDER_TEXT) ? '<span class="alert">' . ENTRY_GENDER_TEXT . '</span>': ''); ?>
 <br class="clearBoth" />
 
 <?php

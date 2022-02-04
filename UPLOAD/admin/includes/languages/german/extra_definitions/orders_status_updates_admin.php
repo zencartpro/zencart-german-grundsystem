@@ -8,13 +8,13 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: orders_status_updates_admin.php 2022-01-16 09:05:14Z webchills $
+ * @version $Id: orders_status_updates_admin.php 2022-02-04 18:58:14Z webchills $
  */
 define('OSH_EMAIL_SEPARATOR', '------------------------------------------------------');
 define('OSH_EMAIL_TEXT_SUBJECT', 'Bestellstatus aktualisiert');
 define('OSH_EMAIL_TEXT_ORDER_CUSTOMER_GENDER_MALE', 'Sehr geehrter Herr ');
 define('OSH_EMAIL_TEXT_ORDER_CUSTOMER_GENDER_FEMALE', 'Sehr geehrte Frau ');
-define('OSH_EMAIL_TEXT_ORDER_CUSTOMER_NEUTRAL', 'Sehr geehrte(r) ');
+define('OSH_EMAIL_TEXT_ORDER_CUSTOMER_NEUTRAL', 'Guten Tag ');
 define('OSH_EMAIL_TEXT_UPDATEINFO', 'Wir informieren Sie über den Status Ihrer Bestellung bei ');
 define('OSH_EMAIL_TEXT_ORDER_NUMBER', 'Bestellnummer:');
 define('OSH_EMAIL_TEXT_INVOICE_URL', 'Bestelldetails:');

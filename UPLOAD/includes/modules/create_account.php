@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: create_account.php 2021-12-29 20:34:16Z webchills $
+ * @version $Id: create_account.php 2022-02-04 18:34:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_MODULE_START_CREATE_ACCOUNT');
@@ -99,7 +99,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && !isset($login_
   }
 
   if (ACCOUNT_GENDER == 'true') {
-    if ( ($gender != 'm') && ($gender != 'f') ) {
+    if ( ($gender != 'm') && ($gender != 'f') && ($gender != 'd') ) {
       $error = true;
       $messageStack->add('create_account', ENTRY_GENDER_ERROR);
     }
@@ -374,11 +374,12 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && !isset($login_
     if (ACCOUNT_GENDER == 'true') {
       if ($gender == 'm') {
         $email_text = sprintf(EMAIL_GREET_MR, $lastname);
-      } else {
+      } else if ($gender == 'f') {
         $email_text = sprintf(EMAIL_GREET_MS, $lastname);
       }
-    } else {
+      else {
       $email_text = sprintf(EMAIL_GREET_NONE, $firstname);
+    }
     }
     $html_msg['EMAIL_GREETING'] = str_replace('\n','',$email_text);
     $html_msg['EMAIL_FIRST_NAME'] = $firstname;

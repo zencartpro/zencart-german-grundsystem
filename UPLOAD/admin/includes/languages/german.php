@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 670 2020-03-14 17:32:04Z webchills $
+ * @version $Id: german.php 2022-02-04 18:55:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -93,6 +93,7 @@ if (!defined('TEXT_GV_NAME')) {
 // text for gender
 define('MALE', 'Herr');
 define('FEMALE', 'Frau');
+define('DIVERS', 'Divers');
 
 define('TEXT_CHECK_ALL', 'Alle wählen');
 define('TEXT_UNCHECK_ALL', 'Alle abwählen');

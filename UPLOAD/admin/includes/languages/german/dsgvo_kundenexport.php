@@ -1,10 +1,11 @@
 <?php
 /** 
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: dsgvo_export.php 2021-12-27 17:05:14Z webchills $
+ * @version $Id: dsgvo_export.php 2022-02-04 18:57:14Z webchills $
  */
 
 define('HEADING_TITLE', 'DSGVO Kundendatensatz Export');
@@ -26,7 +27,7 @@ define('PRIMARY_ADDRESS', '(Standard Adresse)');
 define('TEXT_MAXIMUM_ENTRIES', '<span class="coming"><strong>Anmerkung:</strong></span> Es sind maximal %s Adressbucheinträge erlaubt.');
 
 define('CSV_HEADING_TITLE_SALUTATION','Anrede');
-define('CSV_HEADING_TITLE_GENDER','Herr/Frau');
+define('CSV_HEADING_TITLE_GENDER','Herr/Frau/Divers');
 define('DSGVO_CUSTOMERDATA_HEADING','KUNDENDATEN');
 define('DSGVO_CUSTOMERS_GENDER','Anrede');
 define('DSGVO_CUSTOMERS_FIRSTNAME','Vorname');

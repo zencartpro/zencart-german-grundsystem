@@ -1,13 +1,13 @@
 <?php
 /**
  * checkout_new_address.php
- *
+ * Zen Cart German Specific
  * @package modules
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: checkout_new_address.php 2020-01-17 14:49:16Z webchills $
+ * @version $Id: checkout_new_address.php 2022-02-04 18:42:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_MODULE_START_CHECKOUT_NEW_ADDRESS');
@@ -48,7 +48,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'submit')) {
     }
     $country = zen_db_prepare_input($_POST['zone_country_id']);
     if (ACCOUNT_GENDER == 'true') {
-      if ( ($gender != 'm') && ($gender != 'f') ) {
+      if ( ($gender != 'm') && ($gender != 'f') && ($gender != 'd') ) {
         $error = true;
         $messageStack->add('checkout_address', ENTRY_GENDER_ERROR);
       }
@@ -146,7 +146,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'submit')) {
                               array('fieldName'=>'entry_country_id', 'value'=>$country, 'type'=>'integer')
       );
 
-      if (ACCOUNT_GENDER == 'true') $sql_data_array[] = array('fieldName'=>'entry_gender', 'value'=>$gender, 'type'=>'enum:m|f');
+      if (ACCOUNT_GENDER == 'true') $sql_data_array[] = array('fieldName'=>'entry_gender', 'value'=>$gender, 'type'=>'enum:m|f|d');
       if (ACCOUNT_COMPANY == 'true') $sql_data_array[] = array('fieldName'=>'entry_company', 'value'=>$company, 'type'=>'stringIgnoreNull');
       if (ACCOUNT_SUBURB == 'true') $sql_data_array[] = array('fieldName'=>'entry_suburb', 'value'=>$suburb, 'type'=>'stringIgnoreNull');
       if (ACCOUNT_STATE == 'true') {

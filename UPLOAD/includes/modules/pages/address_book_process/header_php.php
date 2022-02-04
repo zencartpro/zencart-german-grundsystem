@@ -2,12 +2,12 @@
 /**
  * Header code file for the Address Book Process page
  *
-
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2020-02-29 21:13:16Z webchills $
+ * @version $Id: header_php.php 2022-02-04 18:44:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ADDRESS_BOOK_PROCESS');
@@ -79,7 +79,7 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
   $country = zen_db_prepare_input($_POST['zone_country_id']);
 
   if (ACCOUNT_GENDER == 'true') {
-    if ( ($gender != 'm') && ($gender != 'f') ) {
+    if ( ($gender != 'm') && ($gender != 'f') && ($gender != 'd') ) {
       $error = true;
       $messageStack->add('addressbook', ENTRY_GENDER_ERROR);
     }
@@ -179,7 +179,7 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
                            array('fieldName'=>'entry_city', 'value'=>$city, 'type'=>'stringIgnoreNull'),
                            array('fieldName'=>'entry_country_id', 'value'=>$country, 'type'=>'integer'));
 
-    if (ACCOUNT_GENDER == 'true') $sql_data_array[] = array('fieldName'=>'entry_gender', 'value'=>$gender, 'type'=>'enum:m|f');
+    if (ACCOUNT_GENDER == 'true') $sql_data_array[] = array('fieldName'=>'entry_gender', 'value'=>$gender, 'type'=>'enum:m|f|d');
     if (ACCOUNT_COMPANY == 'true') $sql_data_array[] = array('fieldName'=>'entry_company', 'value'=>$company, 'type'=>'stringIgnoreNull');
     if (ACCOUNT_SUBURB == 'true') $sql_data_array[] = array('fieldName'=>'entry_suburb', 'value'=>$suburb, 'type'=>'stringIgnoreNull');
     if (ACCOUNT_STATE == 'true') {
@@ -212,7 +212,7 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
                                 array('fieldName'=>'customers_lastname', 'value'=>$lastname, 'type'=>'stringIgnoreNull'),
                                 array('fieldName'=>'customers_default_address_id', 'value'=>$_GET['edit'], 'type'=>'integer'));
 
-        if (ACCOUNT_GENDER == 'true') $sql_data_array[] = array('fieldName'=>'customers_gender', 'value'=>$gender, 'type'=>'enum:m|f');
+        if (ACCOUNT_GENDER == 'true') $sql_data_array[] = array('fieldName'=>'customers_gender', 'value'=>$gender, 'type'=>'enum:m|f|d');
         $where_clause = "customers_id = :customersID";
         $where_clause = $db->bindVars($where_clause, ':customersID', $_SESSION['customer_id'], 'integer');
         $db->perform(TABLE_CUSTOMERS, $sql_data_array, 'update', $where_clause);
