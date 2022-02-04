@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: storepickup.php 2022-02-02 16:57:16Z webchills $
+ * @version $Id: storepickup.php 2022-02-04 19:52:16Z webchills $
  */
 /**
  * Store-Pickup / Will-Call shipping method
@@ -93,13 +93,11 @@ class storepickup extends base {
 
     // other status checks?
         // check country
-        $dest_country = $order->delivery['country']['iso_code_2'] ?? 0;        
-        $dest_zone = 0;
+        $dest_country = $order->delivery['country']['iso_code_2'] ?? 0;       
         $error = false;
         $countries_table = MODULE_SHIPPING_STOREPICKUP_COUNTRIES; 
         $country_zones = explode(",", $countries_table);
-        if (in_array($dest_country, $country_zones)) {
-            $dest_zone = $i;
+        if (in_array($dest_country, $country_zones)) {            
             $this->enabled = true;
         } else {
             $this->enabled = false;

@@ -5,7 +5,7 @@
 * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* $Id: sofort_su.php 2022-02-02 10:37:20Z webchills $
+* $Id: sofort_su.php 2022-02-04 19:53:20Z webchills $
 */
 
 require_once(dirname(__FILE__) . '/../../../ext/modules/payment/sofort/helper/Util.php');
@@ -205,8 +205,7 @@ class sofort_su
         global $order, $db;        
               
         // check country
-        $dest_country = $order->billing['country']['iso_code_2'] ?? 0;
-        $dest_zone = 0;
+        $dest_country = $order->billing['country']['iso_code_2'] ?? 0;        
         $error = false;
         $countries_table = MODULE_PAYMENT_SOFORT_SU_COUNTRIES; 
         $country_zones = explode(",", $countries_table);

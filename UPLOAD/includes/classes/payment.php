@@ -1,12 +1,12 @@
 <?php
 /**
  * Payment Class.
- *
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: payment.php 2021-11-28 20:11:16Z webchills $
+ * @version $Id: payment.php 2022-02-04 20:09:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -32,7 +32,7 @@ class payment extends base {
 
       $include_modules = array();
 
-      if ( (zen_not_null($module)) && (in_array($module . '.' . substr($PHP_SELF, (strrpos($PHP_SELF, '.')+1)), $this->modules)) ) {
+      if (!empty($module) && (in_array($module . '.' . substr($PHP_SELF, (strrpos($PHP_SELF, '.')+1)), $this->modules)) ) {
         $this->selected_module = $module;
 
         $include_modules[] = array('class' => $module, 'file' => $module . '.php');
@@ -96,7 +96,7 @@ class payment extends base {
         if (!isset($credit_covers) || $credit_covers == FALSE) $_SESSION['payment'] = $include_modules[0]['class'];
       }
 
-      if (zen_not_null($module) && in_array($module, $this->modules) && isset($GLOBALS[$module]->form_action_url)) {
+      if (!empty($module) && in_array($module, $this->modules) && isset($GLOBALS[$module]->form_action_url)) {
         $this->form_action_url = $GLOBALS[$module]->form_action_url;
       }
   }
