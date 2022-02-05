@@ -2,13 +2,13 @@
 /**
  * paypalwpp_admin_notification.php admin display component
  *
- 
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright 2004 DevosC.com
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypalwpp_admin_notification.php 2022-01-11 16:40:16Z webchills $
+ * @version $Id: paypalwpp_admin_notification.php 2022-02-05 19:14:16Z webchills $
  */
 if (!defined('TEXT_MAXIMUM_CHARACTERS_ALLOWED')) {
     define('TEXT_MAXIMUM_CHARACTERS_ALLOWED', ' chars allowed');
@@ -342,18 +342,18 @@ if (method_exists($this, '_doRefund')) {
     if (!isset($response['RESPMSG'])) {
         // full refund (only for PayPal transactions, not Payflow)
         $outputRefund .= MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_FULL;
-        $outputRefund .= '<br><input type="submit" name="fullrefund" value="' . MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_BUTTON_TEXT_FULL . '" title="' . MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_BUTTON_TEXT_FULL . '" />' . ' ' . MODULE_PAYMENT_PAYPALWPP_TEXT_REFUND_FULL_CONFIRM_CHECK . zen_draw_checkbox_field('reffullconfirm', '', false) . '<br>';
+        $outputRefund .= '<br><input type="submit" name="fullrefund" value="' . MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_BUTTON_TEXT_FULL . '" title="' . MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_BUTTON_TEXT_FULL . '">' . ' ' . MODULE_PAYMENT_PAYPALWPP_TEXT_REFUND_FULL_CONFIRM_CHECK . zen_draw_checkbox_field('reffullconfirm', '', false) . '<br>';
         $outputRefund .= MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_TEXT_FULL_OR;
     } else {
         $outputRefund .= MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_PAYFLOW_TEXT;
     }
     //partial refund - input field
     $outputRefund .= MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_PARTIAL_TEXT . ' ' . zen_draw_input_field('refamt', 'enter amount', 'size="8"');
-    $outputRefund .= '<input type="submit" name="partialrefund" value="' . MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_BUTTON_TEXT_PARTIAL . '" title="' . MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_BUTTON_TEXT_PARTIAL . '" /><br>';
+    $outputRefund .= '<input type="submit" name="partialrefund" value="' . MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_BUTTON_TEXT_PARTIAL . '" title="' . MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_BUTTON_TEXT_PARTIAL . '"><br>';
     //comment field
     $counterParams = 'onkeydown="characterCount(this.form[\'refnote\'],this.form.remainingRefund,255);" onkeyup="characterCount(this.form[\'refnote\'],this.form.remainingRefund,255);"';
     $outputRefund .= '<br>' . MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_TEXT_COMMENTS;
-    $outputRefund .= '<div style="text-align:right;margin-top:-1.2em"><input disabled="disabled" type="text" name="remainingRefund" size="1" maxlength="3" value="255" /> ' . TEXT_MAXIMUM_CHARACTERS_ALLOWED . '</div>';
+    $outputRefund .= '<div style="text-align:right;margin-top:-1.2em"><input disabled="disabled" type="text" name="remainingRefund" size="1" maxlength="3" value="255"> ' . TEXT_MAXIMUM_CHARACTERS_ALLOWED . '</div>';
     $outputRefund .= zen_draw_textarea_field('refnote', 'soft', '50', '3', MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_DEFAULT_MESSAGE, $counterParams);
     //message text
     $outputRefund .= '<br>' . MODULE_PAYMENT_PAYPAL_ENTRY_REFUND_SUFFIX;
@@ -368,7 +368,7 @@ if (method_exists($this, '_doAuth') && !isset($response['RESPMSG'])) {
     $outputAuth .= zen_draw_form('ppauth', FILENAME_ORDERS, zen_get_all_get_params(['action']) . 'action=doAuth', 'post', '', true);
     //partial auth - input field
     $outputAuth .= '<br>' . MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_PARTIAL_TEXT . ' ' . zen_draw_input_field('authamt', 'enter amount', 'length="8"') . zen_hide_session_id();
-    $outputAuth .= '<input type="submit" name="orderauth" value="' . MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_BUTTON_TEXT_PARTIAL . '" title="' . MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_BUTTON_TEXT_PARTIAL . '" />' . MODULE_PAYMENT_PAYPALWPP_TEXT_AUTH_FULL_CONFIRM_CHECK . zen_draw_checkbox_field('authconfirm', '', false) . '<br>';
+    $outputAuth .= '<input type="submit" name="orderauth" value="' . MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_BUTTON_TEXT_PARTIAL . '" title="' . MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_BUTTON_TEXT_PARTIAL . '">' . MODULE_PAYMENT_PAYPALWPP_TEXT_AUTH_FULL_CONFIRM_CHECK . zen_draw_checkbox_field('authconfirm', '', false) . '<br>';
     //message text
     $outputAuth .= '<br>' . MODULE_PAYMENT_PAYPAL_ENTRY_AUTH_SUFFIX;
     $outputAuth .= '</form>';
@@ -383,7 +383,7 @@ if (method_exists($this, '_doCapt')) {
     $outputCapt .= MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_FULL;
     $outputCapt .= '<br>' . MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_AMOUNT_TEXT . ' ' . zen_draw_input_field('captamt', 'enter amount', 'length="8"');
     $outputCapt .= '<br>' . MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_FINAL_TEXT . ' ' . zen_draw_checkbox_field('captfinal', '', true) . '<br>';
-    $outputCapt .= '<input type="submit" name="btndocapture" value="' . MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_BUTTON_TEXT_FULL . '" title="' . MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_BUTTON_TEXT_FULL . '" />' . ' ' . MODULE_PAYMENT_PAYPALWPP_TEXT_REFUND_FULL_CONFIRM_CHECK . zen_draw_checkbox_field('captfullconfirm', '', false);
+    $outputCapt .= '<input type="submit" name="btndocapture" value="' . MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_BUTTON_TEXT_FULL . '" title="' . MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_BUTTON_TEXT_FULL . '">' . ' ' . MODULE_PAYMENT_PAYPALWPP_TEXT_REFUND_FULL_CONFIRM_CHECK . zen_draw_checkbox_field('captfullconfirm', '', false);
     //comment field
     $outputCapt .= '<br>' . MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_TEXT_COMMENTS . '<br>' . zen_draw_textarea_field('captnote', 'soft', '50', '2', MODULE_PAYMENT_PAYPAL_ENTRY_CAPTURE_DEFAULT_MESSAGE);
     //message text
@@ -398,7 +398,7 @@ if (method_exists($this, '_doVoid')) {
     $outputVoid .= '<td>' . MODULE_PAYMENT_PAYPAL_ENTRY_VOID_TITLE . '<br>'. "\n";
     $outputVoid .= zen_draw_form('ppvoid', FILENAME_ORDERS, zen_get_all_get_params(['action']) . 'action=doVoid', 'post', '', true) . zen_hide_session_id();
     $outputVoid .= MODULE_PAYMENT_PAYPAL_ENTRY_VOID . '<br>' . zen_draw_input_field('voidauthid', 'enter auth ID', 'size="8"');
-    $outputVoid .= '<input type="submit" name="ordervoid" value="' . MODULE_PAYMENT_PAYPAL_ENTRY_VOID_BUTTON_TEXT_FULL . '" title="' . MODULE_PAYMENT_PAYPAL_ENTRY_VOID_BUTTON_TEXT_FULL . '" />' . ' ' . MODULE_PAYMENT_PAYPALWPP_TEXT_VOID_CONFIRM_CHECK . zen_draw_checkbox_field('voidconfirm', '', false);
+    $outputVoid .= '<input type="submit" name="ordervoid" value="' . MODULE_PAYMENT_PAYPAL_ENTRY_VOID_BUTTON_TEXT_FULL . '" title="' . MODULE_PAYMENT_PAYPAL_ENTRY_VOID_BUTTON_TEXT_FULL . '">' . ' ' . MODULE_PAYMENT_PAYPALWPP_TEXT_VOID_CONFIRM_CHECK . zen_draw_checkbox_field('voidconfirm', '', false);
     //comment field
     $outputVoid .= '<br>' . MODULE_PAYMENT_PAYPAL_ENTRY_VOID_TEXT_COMMENTS . '<br>' . zen_draw_textarea_field('voidnote', 'soft', '50', '3', MODULE_PAYMENT_PAYPAL_ENTRY_VOID_DEFAULT_MESSAGE);
     //message text

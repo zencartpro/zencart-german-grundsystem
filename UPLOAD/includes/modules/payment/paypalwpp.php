@@ -2,12 +2,12 @@
 /**
  * paypalwpp.php payment module class for PayPal Express Checkout payment method
  * Zen Cart German Specific
-
+ *
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypalwpp.php 2022-01-11 16:34:14Z webchills $
+ * @version $Id: paypalwpp.php 2022-02-05 08:38:14Z webchills $
  */
 /**
  * load the communications layer code
@@ -104,7 +104,7 @@ class paypalwpp extends base {
    * class constructor
    */
   function __construct() {
-    include_once(zen_get_file_directory(DIR_FS_CATALOG . DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/payment/', 'paypalwpp.php', 'false'));
+    
     global $order;
     $this->code = 'paypalwpp';
     $this->codeTitle = MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_EC;
@@ -267,7 +267,7 @@ class paypalwpp extends base {
      * since we are NOT processing via the gateway, we will only display MarkFlow payment option, and no CC fields
      */
     return array('id' => $this->code,
-                 'module' => '<img src="' . MODULE_PAYMENT_PAYPALEC_MARK_BUTTON_IMG . '" alt="' . MODULE_PAYMENT_PAYPALWPP_TEXT_BUTTON_ALTTEXT . '" /><span style="font-size:11px; font-family: Arial, Verdana;"> ' . MODULE_PAYMENT_PAYPALWPP_MARK_BUTTON_TXT . '</span>');
+                 'module' => '<img src="' . MODULE_PAYMENT_PAYPALEC_MARK_BUTTON_IMG . '" alt="' . MODULE_PAYMENT_PAYPALWPP_TEXT_BUTTON_ALTTEXT . '"><span style="font-size:11px; font-family: Arial, Verdana;"> ' . MODULE_PAYMENT_PAYPALWPP_MARK_BUTTON_TXT . '</span>');
   }
   function pre_confirmation_check() {
     // Since this is an EC checkout, do nothing.
@@ -467,27 +467,16 @@ if (false) { // disabled until clarification is received about coupons in PayPal
     }
 
     // add a new OSH record for this order's PP details
-    $commentString = "Transaction ID: :transID: " .
-                     (isset($this->responsedata['PPREF']) ? "\nPPRef: " . $this->responsedata['PPREF'] : "") .
-                     (isset($this->responsedata['AUTHCODE'])? "\nAuthCode: " . $this->responsedata['AUTHCODE'] : "") .
-                                 "\nPayment Type: :pmtType: " .
-                     ($this->payment_time != '' ? "\nTimestamp: :pmtTime: " : "") .
-                                 "\nPayment Status: :pmtStatus: " .
-                     (isset($this->responsedata['auth_exp']) ? "\nAuth-Exp: " . $this->responsedata['auth_exp'] : "") .
+    $commentString = "Transaction ID: " . $this->transaction_id .
+                     (isset($this->responsedata['PPREF']) ? "\nPPRef: " . $this->responsedata['PPREF'] : '') .
+                     (isset($this->responsedata['AUTHCODE'])? "\nAuthCode: " . $this->responsedata['AUTHCODE'] : '') .
+                                 "\nPayment Type: " . $this->payment_type .
+                     ($this->payment_time != '' ? ("\nTimestamp: " . $this->payment_time) : '') .
+                                 "\nPayment Status: " . $this->payment_status .
+                     (isset($this->responsedata['auth_exp']) ? "\nAuth-Exp: " . $this->responsedata['auth_exp'] : '') .
                      ($this->avs != 'N/A' ? "\nAVS Code: ".$this->avs."\nCVV2 Code: ".$this->cvv2 : '') .
-                     (trim($this->amt) != '' ? "\nAmount: :orderAmt: " : "");
-    $commentString = $db->bindVars($commentString, ':transID:', $this->transaction_id, 'noquotestring');
-    $commentString = $db->bindVars($commentString, ':pmtType:', $this->payment_type, 'noquotestring');
-    $commentString = $db->bindVars($commentString, ':pmtTime:', $this->payment_time, 'noquotestring');
-    $commentString = $db->bindVars($commentString, ':pmtStatus:', $this->payment_status, 'noquotestring');
-    $commentString = $db->bindVars($commentString, ':orderAmt:', $this->amt, 'noquotestring');
-
-    $sql_data_array= array(array('fieldName'=>'orders_id', 'value'=>$insert_id, 'type'=>'integer'),
-                           array('fieldName'=>'orders_status_id', 'value'=>$order->info['order_status'], 'type'=>'integer'),
-                           array('fieldName'=>'date_added', 'value'=>'now()', 'type'=>'noquotestring'),
-                           array('fieldName'=>'customer_notified', 'value'=>0, 'type'=>'integer'),
-                           array('fieldName'=>'comments', 'value'=>$commentString, 'type'=>'string'));
-    $db->perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
+                     (trim($this->amt) != '' ? ("\nAmount: " . $this->amt) : '');
+    zen_update_orders_history($insert_id, $commentString, null, $order->info['order_status'], 0);
 
     // store the PayPal order meta data -- used for later matching and back-end processing activities
     $paypal_order = array('order_id' => $insert_id,
@@ -745,7 +734,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
     // cannot remove EC if DP installed:
     if (defined('MODULE_PAYMENT_PAYPALDP_STATUS')) {
       // this language text is hard-coded in english since Website Payments Pro is not yet available in any countries that speak any other language at this time.
-      $messageStack->add_session('<strong>Sorry, you must remove PayPal Payments Pro (paypaldp) first.</strong> PayPal Payments Pro (Website Payments Pro) requires that you offer Express Checkout to your customers.<br /><a href="' . zen_href_link('modules.php?set=payment&module=paypaldp', '', 'NONSSL') . '">Click here to edit or remove your PayPal Payments Pro module.</a>' , 'error');
+      $messageStack->add_session('<strong>Sorry, you must remove PayPal Payments Pro (paypaldp) first.</strong> PayPal Payments Pro (Website Payments Pro) requires that you offer Express Checkout to your customers.<br><a href="' . zen_href_link('modules.php?set=payment&module=paypaldp', '', 'NONSSL') . '">Click here to edit or remove your PayPal Payments Pro module.</a>' , 'error');
       zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=paypalwpp', 'NONSSL'));
       return 'failed';
     }
@@ -1264,7 +1253,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
       $subtotalPRE = $optionsST;
       // Move shipping tax amount from Tax subtotal into Shipping subtotal for submission to PayPal, since PayPal applies tax to each line-item individually
       $module = substr($_SESSION['shipping']['id'], 0, strpos($_SESSION['shipping']['id'], '_'));
-      if (zen_not_null($order->info['shipping_method']) && DISPLAY_PRICE_WITH_TAX != 'true') {
+      if (!empty($order->info['shipping_method']) && DISPLAY_PRICE_WITH_TAX != 'true') {
         if (isset($GLOBALS[$module]) && $GLOBALS[$module]->tax_class > 0) {
           $shipping_tax_basis = (!isset($GLOBALS[$module]->tax_basis)) ? STORE_SHIPPING_TAX_BASIS : $GLOBALS[$module]->tax_basis;
           $shippingOnBilling = zen_get_tax_rate($GLOBALS[$module]->tax_class, $order->billing['country']['id'], $order->billing['zone_id']);
@@ -1644,8 +1633,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
           }
         }
       }
-      $this->zcLog('ec-step1-addr_check3', 'address details from override check:'.($address_arr == FALSE ? ' <NONE FOUND>' : print_r($address_arr, true)));
-
+      
       // Do we require a "confirmed" shipping address ?
       if (MODULE_PAYMENT_PAYPALWPP_CONFIRMED_ADDRESS == 'Yes') {
         $options['REQCONFIRMSHIPPING'] = 1;
@@ -2634,6 +2622,13 @@ if (false) { // disabled until clarification is received about coupons in PayPal
         $zone_id = 0;
       }
     }
+    // truncate long data
+    $address_question_arr['company'] = substr($address_question_arr['company'], 0, zen_field_length(TABLE_ADDRESS_BOOK, 'entry_company'));
+    $address_question_arr['street_address'] = substr($address_question_arr['street_address'], 0, zen_field_length(TABLE_ADDRESS_BOOK, 'entry_street_address'));
+    $address_question_arr['suburb'] = substr($address_question_arr['suburb'], 0, zen_field_length(TABLE_ADDRESS_BOOK, 'entry_suburb'));
+    $address_question_arr['city'] = substr($address_question_arr['city'], 0, zen_field_length(TABLE_ADDRESS_BOOK, 'entry_city'));
+    $address_question_arr['state'] = substr($address_question_arr['state'], 0, zen_field_length(TABLE_ADDRESS_BOOK, 'entry_state'));
+    $address_question_arr['postcode'] = substr($address_question_arr['postcode'], 0, zen_field_length(TABLE_ADDRESS_BOOK, 'entry_postcode'));
 
     // now run the insert
 
@@ -2892,7 +2887,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
       return (sizeof($this->fmfErrors)>0) ? $this->fmfErrors : FALSE;
     }
     if (!isset($response['L_SHORTMESSAGE0']) && isset($response['RESPMSG']) && $response['RESPMSG'] != '') $response['L_SHORTMESSAGE0'] = $response['RESPMSG'];
-    //echo '<br />basicError='.$basicError.'<br />' . urldecode(print_r($response,true)); die('halted');
+    //echo '<br>basicError='.$basicError.'<br>' . urldecode(print_r($response,true)); die('halted');
     $errorInfo = '';
     if (IS_ADMIN_FLAG === false) {
         $errorInfo = 'Problem occurred while customer ' . zen_output_string_protected($_SESSION['customer_id'] . ' ' . $_SESSION['customer_first_name'] . ' ' . $_SESSION['customer_last_name']) . ' was attempting checkout with PayPal Express Checkout.' . "\n\n";

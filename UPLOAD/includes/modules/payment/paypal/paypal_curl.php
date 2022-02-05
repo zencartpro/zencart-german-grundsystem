@@ -2,11 +2,11 @@
 /**
  * paypal_curl.php communications class for PayPal Express Checkout / Website Payments Pro / Payflow Pro payment methods
  *
- 
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypal_curl.php 2022-01-11 16:30:36Z webchills $
+ * @version $Id: paypal_curl.php 2022-02-05 09:12:36Z webchills $
  */
 
 /**
@@ -254,7 +254,7 @@ class paypal_curl extends base {
       $values['TENDER'] = 'C';
       $values['TRXTYPE'] = 'C';
       $values['AMT'] = round((float)$amount, 2);
-      if ($note != '') $values['COMMENT2'] = $note;
+      if ($note != '') $values['COMMENT2'] = substr($note, 0, 128);
     } elseif ($this->_mode == 'nvp') {
       $values['TRANSACTIONID'] = $txnID;
       if ($amount != 'Full' && (float)$amount > 0) {
@@ -264,7 +264,7 @@ class paypal_curl extends base {
       } else {
         $values['REFUNDTYPE'] = 'Full';
       }
-      if ($note != '') $values['NOTE'] = $note;
+      if ($note != '') $values['NOTE'] = substr($note, 0, 255);
     }
     return $this->_request($values, 'RefundTransaction');
   }
@@ -279,10 +279,10 @@ class paypal_curl extends base {
       $values['ORIGID'] = $txnID;
       $values['TENDER'] = 'C';
       $values['TRXTYPE'] = 'V';
-      if ($note != '') $values['COMMENT2'] = $note;
+      if ($note != '') $values['COMMENT2'] = substr($note, 0, 128);
     } elseif ($this->_mode == 'nvp') {
       $values['AUTHORIZATIONID'] = $txnID;
-      if ($note != '') $values['NOTE'] = $note;
+      if ($note != '') $values['NOTE'] = substr($note, 0, 255);
     }
     return $this->_request($values, 'DoVoid');
   }
@@ -323,14 +323,14 @@ class paypal_curl extends base {
       $values['TRXTYPE'] = 'D';
       $values['VERBOSITY'] = 'MEDIUM';
       if ($invNum != '') $values['INVNUM'] = $invNum;
-      if ($note != '') $values['COMMENT2'] = $note;
+      if ($note != '') $values['COMMENT2'] = substr($note, 0, 128);
     } elseif ($this->_mode == 'nvp') {
       $values['AUTHORIZATIONID'] = $txnID;
       $values['COMPLETETYPE'] = $captureType;
       $values['AMT'] = round((float)$amount, 2);
       $values['CURRENCYCODE'] = $currency;
       if ($invNum != '') $values['INVNUM'] = $invNum;
-      if ($note != '') $values['NOTE'] = $note;
+      if ($note != '') $values['NOTE'] = substr($note, 0, 255);
     }
     return $this->_request($values, 'DoCapture');
   }

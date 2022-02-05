@@ -9,7 +9,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_checkout_payment_default.php 2022-02-04 20:23:42Z webchills $
+ * @version $Id: tpl_checkout_payment_default.php 2022-02-05 08:57:42Z webchills $
  */
 ?>
 <?php echo $payment_modules->javascript_validation(); ?>
@@ -126,7 +126,7 @@
     if (sizeof($selection) > 1) {
         if (empty($selection[$i]['noradio'])) {
  ?>
-<?php echo zen_draw_radio_field('payment', $selection[$i]['id'], ($selection[$i]['id'] == $_SESSION['payment'] ? true : false), 'id="pmt-'.$selection[$i]['id'].'" autocomplete="off"'); ?>
+<?php echo zen_draw_radio_field('payment', $selection[$i]['id'], ($selection[$i]['id'] == ($_SESSION['payment'] ?? '')), 'id="pmt-'.$selection[$i]['id'].'" autocomplete="off"'); ?>
 <?php   } ?>
 <?php
     } else {
@@ -161,9 +161,9 @@
 ?>
 
 <?php if (($selection[$i]['id']) == 'braintree_api') {  ?>
-    <div class="ccinfobraintree">
+<div class="ccinfobraintree">
 <?php	} else {	?>
-		<div class="ccinfo">
+<div class="ccinfo">
 <?php } ?>
 <?php
       for ($j=0, $n2=sizeof($selection[$i]['fields']); $j<$n2; $j++) {

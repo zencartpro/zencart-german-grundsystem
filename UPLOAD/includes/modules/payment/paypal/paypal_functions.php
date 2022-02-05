@@ -2,13 +2,13 @@
 /**
  * functions used by payment module class for Paypal IPN payment method
  *
- 
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright 2004 DevosC.com
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypal_functions.php 2022-01-11 16:39:16Z webchills $
+ * @version $Id: paypal_functions.php 2022-02-05 09:13:16Z webchills $
  */
 
 // Functions for paypal processing
@@ -181,7 +181,7 @@
 
   // determine acceptable currencies
   function select_pp_currency() {
-    if (MODULE_PAYMENT_PAYPAL_CURRENCY == 'Selected Currency') {
+    if (!defined('MODULE_PAYMENT_PAYPAL_CURRENCY') || MODULE_PAYMENT_PAYPAL_CURRENCY == 'Selected Currency') {
       $my_currency = $_SESSION['currency'];
     } else {
       $my_currency = substr(MODULE_PAYMENT_PAYPAL_CURRENCY, 5);
@@ -304,7 +304,7 @@
                             'parent_txn_id' => $_POST['parent_txn_id'],
                             'num_cart_items' => (int)$_POST['num_cart_items'],
                             'mc_gross' => $_POST['mc_gross'],
-                            'mc_fee' => $_POST['mc_fee'],
+                            'mc_fee' => $_POST['mc_fee'] ?? 0, 
                             'settle_amount' => (isset($_POST['settle_amount']) && $_POST['settle_amount'] != '' ? $_POST['settle_amount'] : 0),
                             'settle_currency' => $_POST['settle_currency'],
                             'exchange_rate' => (isset($_POST['exchange_rate']) && $_POST['exchange_rate'] != '' ? $_POST['exchange_rate'] : 1),
@@ -733,7 +733,7 @@
       $subtotalPRE = $optionsST;
       // Move shipping tax amount from Tax subtotal into Shipping subtotal for submission to PayPal, since PayPal applies tax to each line-item individually
       $module = strpos($_SESSION['shipping']['id'], '_') > 0 ? substr($_SESSION['shipping']['id'], 0, strpos($_SESSION['shipping']['id'], '_')) : $_SESSION['shipping']['id'];
-      if (isset($GLOBALS[$module]) && zen_not_null($order->info['shipping_method']) && DISPLAY_PRICE_WITH_TAX != 'true') {
+      if (isset($GLOBALS[$module]) && !empty($order->info['shipping_method']) && DISPLAY_PRICE_WITH_TAX != 'true') {
         if ($GLOBALS[$module]->tax_class > 0) {
           $shipping_tax_basis = (!isset($GLOBALS[$module]->tax_basis)) ? STORE_SHIPPING_TAX_BASIS : $GLOBALS[$module]->tax_basis;
           $shippingOnBilling = zen_get_tax_rate($GLOBALS[$module]->tax_class, $order->billing['country']['id'], $order->billing['zone_id']);

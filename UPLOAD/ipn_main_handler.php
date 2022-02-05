@@ -1,12 +1,12 @@
 <?php
 /**
  * ipn_main_handler.php callback handler for PayPal IPN notifications
- *
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
-* Zen Cart German Version - www.zen-cart-pro.at
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ipn_main_handler.php 775 2021-10-24 17:37:29Z webchills $
+ * @version $Id: ipn_main_handler.php 2022-02-05 09:10:29Z webchills $
  */
 if (!defined('TEXT_RESELECT_SHIPPING')) define('TEXT_RESELECT_SHIPPING', 'You have changed the items in your cart since shipping was last calculated, and costs may have changed. Please verify/re-select your shipping method.');
 
@@ -115,9 +115,10 @@ Processing...
 
   $extraDebug = (defined('IPN_EXTRA_DEBUG_DETAILS') && IPN_EXTRA_DEBUG_DETAILS == 'All');
 
-  if (  (defined('MODULE_PAYMENT_PAYPALWPP_DEBUGGING') && strstr(MODULE_PAYMENT_PAYPALWPP_DEBUGGING, 'Log')) ||
-      (defined('MODULE_PAYMENT_PAYPAL_IPN_DEBUG') && strstr(MODULE_PAYMENT_PAYPAL_IPN_DEBUG, 'Log')) ||
-      ($_REQUEST['ppdebug'] == 'on' && strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])) || $extraDebug  ) {
+  if ((defined('MODULE_PAYMENT_PAYPALWPP_DEBUGGING') && strstr(MODULE_PAYMENT_PAYPALWPP_DEBUGGING, 'Log'))
+      || (defined('MODULE_PAYMENT_PAYPAL_IPN_DEBUG') && strstr(MODULE_PAYMENT_PAYPAL_IPN_DEBUG, 'Log'))
+      || (!empty($_REQUEST['ppdebug']) && $_REQUEST['ppdebug'] == 'on' && strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR']))
+      || $extraDebug) {
     $show_all_errors = true;
     $debug_logfile_path = ipn_debug_email('Breakpoint: 0 - Initializing debugging.');
     $logdir = defined('DIR_FS_LOGS') ? DIR_FS_LOGS : 'includes/modules/payment/paypal/logs';
@@ -152,9 +153,9 @@ Processing...
   }
 
   ipn_debug_email('Breakpoint: 2 - Validated transaction components');
-  if ($_POST['exchange_rate'] == '')  $_POST['exchange_rate'] = 1;
-  if ($_POST['num_cart_items'] == '') $_POST['num_cart_items'] = 1;
-  if ($_POST['settle_amount'] == '')  $_POST['settle_amount'] = 0;
+  if (empty($_POST['exchange_rate']))  $_POST['exchange_rate'] = 1;
+  if (empty($_POST['num_cart_items'])) $_POST['num_cart_items'] = 1;
+  if (empty($_POST['settle_amount']))  $_POST['settle_amount'] = 0;
 
   /**
    * is this a sandbox transaction?
@@ -179,10 +180,10 @@ Processing...
   $txn_type    = $lookupData['txn_type'];
   $parentLookup = $txn_type;
 
-  ipn_debug_email('Breakpoint: 4 - ' . 'Details:  txn_type=' . $txn_type . '    ordersID = '. $ordersID . '  IPN_id=' . $paypalipnID . "\n\n" . '   Relevant data from POST:' . "\n     " . 'txn_type = ' . $txn_type . "\n     " . 'parent_txn_id = ' . ($_POST['parent_txn_id'] =='' ? 'None' : $_POST['parent_txn_id']) . "\n     " . 'txn_id = ' . $_POST['txn_id']);
+  ipn_debug_email('Breakpoint: 4 - ' . 'Details:  txn_type=' . $txn_type . '    ordersID = '. $ordersID . '  IPN_id=' . $paypalipnID . "\n\n" . '   Relevant data from POST:' . "\n     " . 'txn_type = ' . $txn_type . "\n     " . 'parent_txn_id = ' . (empty($_POST['parent_txn_id']) ? 'None' : $_POST['parent_txn_id']) . "\n     " . 'txn_id = ' . $_POST['txn_id']);
 
   // ignore auth_status == 'Expired'
-  if ($_POST['auth_status'] === 'Expired' && $_POST['txn_type'] === 'web_accept') {
+  if (isset($_POST['auth_status']) && $_POST['auth_status'] === 'Expired' && isset($_POST['txn_type']) && $_POST['txn_type'] === 'web_accept') {
     ipn_debug_email('NOTICE :: IPN Processing Aborted -- we do not need to do anything with an "Expired" auth notification.');
     die();
   }
@@ -282,7 +283,7 @@ Processing...
       /**
        * delete IPN session from PayPal table -- housekeeping
        */
-      $db->Execute("delete from " . TABLE_PAYPAL_SESSION . " where session_id = '" . zen_db_input(str_replace('zenid=', '', $_POST['custom'])) . "'");
+      $db->Execute("delete from " . TABLE_PAYPAL_SESSION . " where session_id = '" . zen_db_input(str_replace($zenSessionId . '=', '', $_POST['custom'])) . "'");
       /**
        * require shipping class
        */
@@ -435,7 +436,7 @@ Processing...
         case 'voided':
         case ($_POST['payment_status'] == 'Refunded' || $_POST['payment_status'] == 'Reversed' || $_POST['payment_status'] == 'Voided'):
           //payment_status=Refunded or payment_status=Voided
-          $new_status = defined('MODULE_PAYMENT_PAYPALWPP_REFUNDED_STATUS_ID') ? MODULE_PAYMENT_PAYPALWPP_REFUNDED_STATUS_ID : 1;
+          $new_status = MODULE_PAYMENT_PAYPALWPP_REFUNDED_STATUS_ID;
           if (defined('MODULE_PAYMENT_PAYPAL_REFUND_ORDER_STATUS_ID') && (int)MODULE_PAYMENT_PAYPAL_REFUND_ORDER_STATUS_ID > 0 && !$isECtransaction) $new_status = MODULE_PAYMENT_PAYPAL_REFUND_ORDER_STATUS_ID;
           break;
         case 'echeck-denied':
