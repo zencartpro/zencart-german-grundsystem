@@ -10,7 +10,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_create_account.php 2022-02-04 18:47:58Z webchills $
+ * @version $Id: tpl_modules_create_account.php 2022-02-05 19:52:58Z webchills $
  */
 ?>
 
@@ -66,7 +66,6 @@
   <?php echo zen_draw_input_field('street_address', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_street_address', '40') . ' id="street-address" placeholder="' . ENTRY_STREET_ADDRESS_TEXT . '"'. ((int)ENTRY_STREET_ADDRESS_MIN_LENGTH > 0 ? ' required' : '')); ?>
 <br class="clearBoth" />
 
-<?php echo zen_draw_input_field($antiSpamFieldName, '', ' size="40" id="CAAS" style="visibility:hidden; display:none;" autocomplete="off"'); ?>
 <?php
   if (ACCOUNT_SUBURB == 'true') {
 ?>
@@ -199,3 +198,12 @@
 <br class="clearBoth" />
 </fieldset>
 <?php } ?>
+<div class="email-pot">
+<label for="email-us"></label>
+<?php echo zen_draw_input_field(SPAM_TEST_TEXT, '', ' id="email-us" title="do not fill in!" placeholder="do not fill in!" autocomplete="off"', 'email'); ?>
+</div>
+
+<div class="email-pot">
+<p><?php echo HUMAN_TEXT_NOT_DISPLAYED; ?></p>
+<?php echo zen_draw_radio_field(SPAM_TEST_USER, 'H1', '', 'id="user-1"') . '<span class="input-group-addon"><i class="fa fa-male fa-2x"></i></span>' . zen_draw_radio_field(SPAM_TEST_USER, 'C2', '', 'id="user-2"') . '<span class="input-group-addon"><i class="fa fa-laptop fa-2x"></i></span>'; ?>
+</div>

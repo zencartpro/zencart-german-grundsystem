@@ -1,0 +1,2 @@
+<?php
+define('HUMAN_TEXT_NOT_DISPLAYED', 'Um Spam zu verhindern, fragen wir Sie, ob Sie ein Mensch oder ein Computer sind.<br>Wenn Sie aus irgendeinem Grund diese Zeile lesen.<br><b>Nicht antworten!</b>');

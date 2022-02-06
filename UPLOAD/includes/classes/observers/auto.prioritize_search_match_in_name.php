@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: auto.prioritize_search_match_in_name.php 1 2019-07-22 08:13:51Z webchills $
+ * @version $Id: auto.prioritize_search_match_in_name.php 2019-07-22 08:13:51Z webchills $
  */
 
 class zcObserverPrioritizeSearchMatchInName extends base {

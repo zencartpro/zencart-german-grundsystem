@@ -6,7 +6,7 @@
 # * Zen Cart German Version - www.zen-cart-pro.at
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_zencart.sql 2022-01-29 07:40:16Z webchills $
+# * @version $Id: mysql_zencart.sql 2022-02-06 10:46:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -2295,7 +2295,8 @@ VALUES ('configMyStore', 'BOX_CONFIGURATION_MY_STORE', 'FILENAME_CONFIGURATION',
        ('configIndexListing', 'BOX_CONFIGURATION_INDEX_LISTING', 'FILENAME_CONFIGURATION', 'gID=24', 'configuration', 'Y', 23),
        ('configDefinePageStatus', 'BOX_CONFIGURATION_DEFINE_PAGE_STATUS', 'FILENAME_CONFIGURATION', 'gID=25', 'configuration', 'Y', 24),
        ('configEzPagesSettings', 'BOX_CONFIGURATION_EZPAGES_SETTINGS', 'FILENAME_CONFIGURATION', 'gID=30', 'configuration', 'Y', 25),
-       ('configMinifySettings', 'BOX_CONFIGURATION_MINIFY', 'FILENAME_CONFIGURATION', 'gID=31', 'configuration', 'Y', 31),       
+       ('configMinifySettings', 'BOX_CONFIGURATION_MINIFY', 'FILENAME_CONFIGURATION', 'gID=31', 'configuration', 'Y', 31),   
+       ('configSpamSettings', 'BOX_CONFIGURATION_SPAM_PROTECTION', 'FILENAME_CONFIGURATION', 'gID=32', 'configuration', 'Y', 32),     
        ('configFacebook','BOX_CONFIGURATION_FACEBOOK','FILENAME_CONFIGURATION', 'gID=33', 'configuration', 'Y', 33),
        ('configRSSFeed','BOX_CONFIGURATION_RSSFEED','FILENAME_CONFIGURATION', 'gID=34', 'configuration', 'Y', 34),
        ('configZenColorbox','BOX_CONFIGURATION_ZEN_COLORBOX','FILENAME_CONFIGURATION', 'gID=35', 'configuration', 'Y', 35),
@@ -3170,6 +3171,13 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Minify Cache Time', 'MINIFY_CACHE_TIME_LENGHT', '31536000', 'Set minify cache time (in second). Default is 1 year (31536000)', 31, 4, NULL, now(), NULL, NULL);
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Latest Cache Time', 'MINIFY_CACHE_TIME_LATEST', '0', 'Normally you don\'t have to set this, but if you have just made changes to your js/css files and want to make sure they are reloaded right away, you can reset this to 0.', 31, 5, NULL, now(), NULL, NULL);
 
+#Spam Protection settings - new since 1.5.7 - replaces google analytics
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Spam Protection Version Info', 'SPAM_VERSION', '1.0.0', 'Since version 1.5.7 an improved honeypot spam protection is integrated in the German Zen Cart version. The pages Contact, Registration, Ask a question and Write review are equipped with 3 additional hidden form fields. Spambots try to fill in all existing form fields, if hidden ones are filled in, it can only be spam. To prevent spambots from adding the names of the hidden fields to their lists, the names of these fields are automatically changed on a regular basis in the time frame you set below.<br>This is a significant improvement over older Zen Cart versions, but please note that even this solution cannot provide 100% spam protection.<br>Should you continue to receive spam via the store contact forms, you must secure the forms with a real captcha.', 32, 1, now(), now(), NULL, 'zen_cfg_read_only(');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Hidden radio field name', 'SPAM_TEST_TEXT', 'should_be_13', 'Current name of the hidden input field', 32, 2, now(), now(), NULL, NULL);
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Hidden radio field name', 'SPAM_TEST_USER', 'should_be_14', 'Current name of the hidden radio button field', 32, 3, now(), now(), NULL, NULL);
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Hidden CAPTCHA field name', 'SPAM_TEST_IQ', 'should_be_15', 'Current name of the hidden CAPTCHA field', 32, 4, now(), now(), NULL, NULL);
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Number of days for the name change', 'SPAM_CHANGE_DAYS', '10', 'Set here the number of days after which the above named fields should be renamed automatically.<br>Default: 10', 32, 5, now(), now(), NULL, NULL);
+
 #Open Graph / Microdata Settings
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Open Graph - Enable Open Graph/Microdata', 'FACEBOOK_OPEN_GRAPH_STATUS', 'false', 'Enable Facebook Open Graph meta data?', 33, 1, NOW(), NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),');
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES('Open Graph - Application ID', 'FACEBOOK_OPEN_GRAPH_APPID', '', 'Please enter your application ID (<a href="http://developers.facebook.com/setup/" target="_blank">Get an application ID</a>)', 33, 2, NOW(), NOW(), NULL, NULL);
@@ -3363,6 +3371,7 @@ INSERT INTO configuration_group (configuration_group_id, language_id, configurat
 (25, 1,  'Define Page Status', 'Define Pages Options Settings', '25', '1'),
 (30, 1,  'EZ-Pages Settings', 'EZ-Pages Settings', 30, '1'),
 (31, 1,  'Minify Settings', 'Minify Settings', 31, '1'),
+(32, 1,  'Spam Protection Settings', 'Spam Protection Settings', 32, '1'),
 (33, 1,  'Open Graph/Microdata', 'Open Graph/Microdata', 33, '1'),
 (34, 1,  'RSS Feed', 'RSS Feed Settings', 34, '1'),
 (35, 1,  'Zen Colorbox', 'Zen Colorbox Settings', 35, '1'),
@@ -4127,6 +4136,7 @@ REPLACE INTO configuration_group (configuration_group_id, language_id, configura
 (25, 43, 'Eigene Seiten', 'Eigene Seiten, die über den im Seiteneditor eingegebenen Texte festgelegt werden', 25, 1),
 (30, 43, 'EZ-Pages Einstellungen', 'EZ-Pages Einstellungen', 30, 1),
 (31, 43, 'Minify Einstellungen', 'Minify Einstellungen', 31, 1),
+(32, 43, 'Spamschutz Einstellungen', 'Spamschutz Einstellungen', 32, 1),
 (33, 43, 'Open Graph/Microdata', 'Open Graph/Microdata Einstellungen', 33, 1),
 (34, 43, 'RSS Feed', 'RSS Feed Einstellungen', 34, 1),
 (35, 43, 'Zen Colorbox', 'Zen Colorbox Einstellungen', 35, 1),
@@ -4796,6 +4806,13 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 ('Maximale URL Länge', 'MINIFY_MAX_URL_LENGHT', 43, 'Auf manchen Servern ist die Länge von POST/GET URLs beschränkt. Falls das auf Ihren Server zutrifft, können Sie hier den Wert verändern. Voreingestellt: 500', now(), now()),
 ('Minify Cache Zeit', 'MINIFY_CACHE_TIME_LENGHT', 43, 'Stellen Sie hier die Cache Zeit für Minify ein. Voreingestellt ist ein Jahr (31536000)', now(), now()),
 ('zuletzt gecached', 'MINIFY_CACHE_TIME_LATEST', 43, 'Hier müssen Sie normalerweise nichts einstellen. Falls Sie gerade Änderungen an Ihren CSS und Javascripts vorgenommen haben und erzwingen wollen, dass diese Änderungen sofort wirksam sind, stellen Sie auf 0.', now(), now()),
+
+# Adminmenü ID 32 - Spamschutz
+('Spamschutz', 'SPAM_VERSION', 43, 'Seit Version 1.5.7 ist in der deutschen Zen Cart Version ein verbesserter Honeypot Spamschutz integriert. Die Seiten Kontakt, Registrierung, Frage zum Artikel und Bewertung schreiben sind mit 3 zusätzlichen versteckten Formularfeldern ausgestattet. Spambots versuchen alle vorhandenen Formularfelder auszufüllen, werden versteckte ausgefüllt, kann es sich nur um Spam handeln. Damit Spambots die Namen der versteckten Felder nicht in ihre Listen aufnehmen können, werden die Namen dieser Felder automatisch regelmäßig gewechselt in dem Zeitrahmen, den Sie unten einstellen.<br>Das ist eine deutliche Verbesserung gegenüber älteren Zen Cart Versionen, bitte beachten Sie aber, dass auch diese Lösung keinen 100% Spamschutz bieten kann.<br>Sollten Sie weiterhin Spam über die Shop Kontaktformulare bekommen, müssen Sie die Formulare mit einem echten Captcha absichern.', now(), now()),
+('Name des versteckten Input Feldes', 'SPAM_TEST_TEXT', 43, 'Aktueller Name des versteckten Input Feldes', now(), now()),
+('Name des versteckten Radio Buttons', 'SPAM_TEST_USER', 43, 'Aktueller Name des versteckten Radio Buttons', now(), now()),
+('Name des versteckten Captcha Feldes', 'SPAM_TEST_IQ', 43, 'Aktueller Name des versteckten Captcha Feldes', now(), now()),
+('Anzahl der Tage für den Namenswechsel', 'SPAM_CHANGE_DAYS', 43, 'Stellen Sie hier die Anzahl der Tage ein, nach denen die oben benannten Felder automatisch umbenannt werden sollen.<br/>Voreinstellung: 10', now(), now()),
 
 # Adminmenü ID 33 - Open Graph / Microdata
 ('Open Graph - Open Graph aktivieren', 'FACEBOOK_OPEN_GRAPH_STATUS', 43, 'Wollen Sie die Open Graph/Microdaten aktivieren?', now(), now()),

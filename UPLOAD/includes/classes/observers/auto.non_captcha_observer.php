@@ -1,18 +1,21 @@
 <?php
 /**
  * Observer class used to detect spam input
- *
- 
+ * Zen Cart German Specific 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: auto.non_captcha_observer.php 2021-10-26 10:26:16Z webchills $
+ * @version $Id: auto.non_captcha_observer.php 2022-02-05 19:57:16Z webchills $
  */
 
 class zcObserverNonCaptchaObserver extends base
 {
-    private $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    /**
+     * Set to the number of days before auto-changing field names according to Antispam settings in admin
+     * @var integer
+     */
+    protected $max_days = SPAM_CHANGE_DAYS; 
 
     public function __construct()
     {
@@ -23,32 +26,75 @@ class zcObserverNonCaptchaObserver extends base
             'NOTIFY_REVIEWS_WRITE_CAPTCHA_CHECK',
         ]);
 
-        if (empty($_SESSION['antispam_fieldname'])) {
-            $_SESSION['antispam_fieldname'] = $this->generate_random_string($this->chars, 10);
-        }
-        $GLOBALS['antiSpamFieldName'] = $_SESSION['antispam_fieldname'];
     }
 
-    // This update method fires if no updateNotifyxxxxxx function is declared below to match the notifier hooks we're listening to
-    public function update(&$class, $eventID, $paramsArray)
-    {
-        $this->testURLSpam();
+    public function updateNotifyCreateAccountCaptchaCheck(&$class, $eventID, $paramsArray)
+    {       
+       
+        $this->testURLSpam();  // test for a url with in this name
         $this->testAntiSpamFields();
+        $this->rotateHoneypotFieldNames();
+        
     }
 
     public function updateNotifyContactUsCaptchaCheck(&$class, $eventID, $paramsArray)
     {
-        // sanitize the contact-us name field more aggressively
+        // sanitize the name field more aggressively
         $GLOBALS['name'] = zen_db_prepare_input(zen_sanitize_string($_POST['contactname']));
 
-        // fire default tests
-        $this->update($class, $eventID, $paramsArray);
+        $this->testURLSpam();  // test for a url with in this name
+        $this->testAntiSpamFields();
+        $this->rotateHoneypotFieldNames();
+        
+    }
+
+    public function updateNotifyReviewsWriteCaptchaCheck(&$class, $eventID, $paramsArray)
+    {
+        $this->testURLSpam();  // test for a url with in this name
+        $this->testAntiSpamFields();
+        $this->rotateHoneypotFieldNames();
+        
+    }
+
+    // generic fallback notifier watcher
+    public function update(&$class, $eventID, $paramsArray)
+    {
+        $this->testURLSpam();  // test for a url with in this name
+        $this->testAntiSpamFields();
+        $this->rotateHoneypotFieldNames();
+       
     }
 
     protected function testAntiSpamFields()
     {
-        if (!empty($_POST[$_SESSION['antispam_fieldname']]) || !empty($_POST['should_be_empty'])) {
-            $GLOBALS['antiSpam'] = 'spam';
+        if (defined('SPAM_TEST_TEXT') && defined('SPAM_TEST_USER')) {
+            $GLOBALS['antiSpam'] = isset($_POST[SPAM_TEST_TEXT]) ? zen_db_prepare_input($_POST[SPAM_TEST_TEXT]) : '';
+            $GLOBALS['antiSpam'] .= isset($_POST[SPAM_TEST_USER]) ? zen_db_prepare_input($_POST[SPAM_TEST_USER]) : '';
+        }
+    }    
+
+    protected function rotateHoneypotFieldNames()
+    {
+        global $db;
+
+        $check_date = $db->Execute("SELECT date_format(date_added, '%Y-%m-%d') as last_changed_date FROM " . TABLE_CONFIGURATION . " WHERE configuration_key = 'SPAM_TEST_TEXT' ");
+
+        $now = time(); //current date-time
+        $last_changed_date = strtotime($check_date->fields['last_changed_date']);
+        $datediff = $now - $last_changed_date;
+
+        $days_since = round($datediff / (60 * 60 * 24));
+
+        if ($days_since >= $this->max_days) {
+            $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';  //do numbers, lower case, upper case
+
+            $spam_text = $this->generate_random_string($permitted_chars, 10);  // setting 10 as the length for the field name
+            $spam_user = $this->generate_random_string($permitted_chars, 10);
+            $spam_iq = $this->generate_random_string($permitted_chars, 10);
+
+            $db->Execute("UPDATE " . TABLE_CONFIGURATION . " SET date_added = now(), configuration_value = '" . $spam_text . "'  WHERE configuration_key = 'SPAM_TEST_TEXT'");
+            $db->Execute("UPDATE " . TABLE_CONFIGURATION . " SET date_added = now(), configuration_value = '" . $spam_user . "'  WHERE configuration_key = 'SPAM_TEST_USER'");
+            $db->Execute("UPDATE " . TABLE_CONFIGURATION . " SET date_added = now(), configuration_value = '" . $spam_iq . "'  WHERE configuration_key = 'SPAM_TEST_IQ'");
         }
     }
 
@@ -64,51 +110,40 @@ class zcObserverNonCaptchaObserver extends base
 
         return $random_string;
     }
-
+    
     protected function testURLSpam()
     {
-        $test_string = '';
+        // The Regular Expression filter
+        $reg_exUrl = '/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/';
+        
+        // The Text you want to filter for urls, most common input fields used
+        $text = '';
+        //create account, no account, one page checkout, regester account, ask a question, contact us 
+        $text .= (!empty($_POST['firstname']) ? $_POST['firstname'] .  ' ' : '');
+        $text .= (!empty($_POST['lastname']) ? $_POST['lastname'] .  ' ' : '');
+        $text .= (!empty($_POST['contactname']) ? $_POST['contactname'] .  ' ' : '');
+        $text .= (!empty($_POST['company']) ? $_POST['company'] .  ' ' : '');
+        $text .= (!empty($_POST['street_address']) ? $_POST['street_address'] .  ' ' : '');
+        $text .= (!empty($_POST['suburb']) ? $_POST['suburb'] .  ' ' : '');
+        $text .= (!empty($_POST['city']) ? $_POST['city'] .  ' ' : '');
+        $text .= (!empty($_POST['enquiry']) ? $_POST['enquiry'] .  ' ' : '');
+      
+        //reviews
+        $text .= (!empty($_POST['review_text']) ? $_POST['review_text'] .  ' ' : '');
+        //password hint -- subject fields
+        $text .= (!empty($_POST['passwordhintA']) ? $_POST['passwordhintA'] .  ' ' : '');
+        $text .= (!empty($_POST['subject']) ? $_POST['subject'] : '');
 
-        // Simple regex to identify presence of an (unwanted) URL
-        $reg_exUrl = '~(https?|ftps?):/~';
-
-        $fields = array(
-            'firstname',
-            'lastname',
-            'contactname',
-            'company',
-            'street_address',
-            'suburb',
-            'city',
-            'state',
-            'zone_country_id',
-            'nick',
-            'customers_referral',
-            'telephone',
-            'fax',
-            'email_format',
-            'to_name',
-            'subject',
-            'passwordhintA',
-            'review_text', // comment-out if you actually want to allow URLs for this
-            'enquiry',     // comment-out if you actually want to allow URLs for this
-        );
-
-        // prepare for inspection
-        foreach ($fields as $field) {
-            if (!empty($_POST[$field])) {
-                $test_string .= $_POST[$field];
-            }
+        // Check if there is a url in the text
+        if(preg_match($reg_exUrl, $text, $url)) {
+        // We have a url where it should not be 
+        //$url holds the url you could have a log here.. not a good idea
+        zen_redirect(zen_href_link(FILENAME_CREATE_ACCOUNT_SUCCESS, '', 'SSL'));
         }
-
-        if (empty($test_string)) return;
-
-        $test_string = str_ireplace([HTTP_SERVER, HTTPS_SERVER], '', $test_string);
-
-        // inspect
-        if(preg_match($reg_exUrl, $test_string)) {
-            $GLOBALS['antiSpam'] = 'spam';
-        }
+        // if no urls in the text strip and return
+        $text = '';
+        return ;
+    
     }
 
 }

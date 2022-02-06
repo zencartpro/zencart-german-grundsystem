@@ -1,4 +1,72 @@
-# zencart-de-157
-Zen Cart 1.5.7 - deutsche Version
+Zen Cart 1.5.7 deutsch BETA
 
-BETA
+Systemvoraussetzungen:
+
+Linux Server mit Apache 2.2 oder Apache 2.4 oder Nginx
+Bei Nginx müssen die bei Apache durch .htaccess Unterstützung gewährleisteten Sicherheitsoptionen selbst manuell durchgeführt werden.
+Windows Server/IIS werden nicht unterstützt
+
+PHP
+mindestens: PHP 7.4.x
+höchstens: PHP 8.0.x
+
+MySQL oder MariaDB
+MySQL mindestens 5.1
+MySQL höchstens: 8.0.x
+MariaDB mindestens 10.1
+MariaDB höchstens 10.5
+
+
+Empfohlen:
+Apache 2.4
+PHP 8.0.x
+MySQL 8.0.x
+
+
+Installation grundsätzlich so wie in der 1.5.6 Dokumentation beschrieben:
+https://www.zen-cart-pro.at/documentation.html#section-2
+
+Vor der Installation Zugriffsrechte folgender Verzeichnisse/Dateien ändern:
+
+chmod 777
+/shop/cache
+/shop/cache/images
+/shop/cache/minify
+/shop/cache/rss
+/shop/images
+/shop/includes/languages/german/html_includes
+/shop/includes/languages/english/html_includes
+/shop/logs
+/shop/media
+/shop/pub
+/shop/admin/backups
+/shop/admin/images/graphs
+/zc_install/includes/nginx_conf
+
+chmod 666
+/zc_install/includes/nginx_conf/zencart_ngx_http.conf
+
+Wenn Mailbeez installiert werden soll, ist es nötig vor der Mailbeez Installation unter Tools > Mailbeez dem gesamten Unterordner mailhive und allen darin befindlichen Unterordnern und Dateien chmod 777 zu geben!
+
+Diese BETA enthält noch kein Updatescript und ist rein zum Testen einer Neuinstallation gedacht.
+
+Am besten mit den Demodaten unter PHP 8.0.x installieren
+Shopfunktionen und Adminfunktionen testen
+Achten auf:
+- falsche/fehlende Übersetzungen
+- weiße Seiten
+- Error Logs
+- Funktionsfehler
+
+Hinweise zu Error Logs unter PHP 8:
+Aufgrund des Override Systems für Sprachdateien in Zen Cart 1.5.x ist es unvermeidlich, dass es "doppelte" Sprachdefinitionen gibt.
+PHP 8 wird doppelte Sprachdefinitionen mit einem Logfile quittieren und darauf hinweisen.
+Unter Konfiguration > Protokollierung/Logfiles ist daher beim Logfiles Level für Adminbereich und Frontend "IgnoreDups" voreingestellt. 
+Das sollte auch so bleiben, die Einstellung Yes führt zu unzähligen, völlig unnötigen Warning Logs
+
+Fehler bitte - falls Github Account vorhanden - als Issues auf Github posten:
+https://github.com/zencartpro/zencart-german-grundsystem/issues
+Ansonsten bitte im Beta Test Thread im Forum posten.
+
+Danke fürs Testen!
+
