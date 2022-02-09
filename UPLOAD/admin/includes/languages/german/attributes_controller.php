@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: attributes_controller.php 2021-12-01 09:21:14Z webchills $
+ * @version $Id: attributes_controller.php 2022-02-09 09:48:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Attribut Manager: ');
@@ -15,7 +15,7 @@ define('HEADING_TITLE_VAL','Attributmerkmale');
 define('HEADING_TITLE_ATRIB','Attributmanager');
 define('HEADING_TITLE_ATRIB_SELECT','Bitte wählen Sie eine Kategorie, um sich Attributoptionen anzeigen zu lassen ...');
 
-define('TEXT_PRICES_AND_WEIGHTS', 'Preise und Gewicht');
+define('TEXT_PRICES_AND_WEIGHTS', 'Preise und Gewichte');
 define('TABLE_HEADING_ATTRIBUTES_PRICE_FACTOR', 'Preisfaktor: ');
 define('TABLE_HEADING_ATTRIBUTES_PRICE_FACTOR_OFFSET', 'Offset: ');
 define('TABLE_HEADING_ATTRIBUTES_PRICE_ONETIME', 'Einmalig:');
@@ -149,7 +149,7 @@ define('TEXT_CALL_FOR_PRICE','Preis bitte anfragen');
 define('TEXT_SAVE_CHANGES', 'ÄNDERUNGEN AKTUALISIEREN UND SPEICHERN:');
 
 
-define('TEXT_INFO_ALLOW_ADD_TO_CART_NO', 'Nicht zum Warenkorb hinzugefügt');
+
 
 define('TEXT_DELETE_ATTRIBUTES_OPTION_NAME_VALUES', 'Sollen wirklich ALLE Attributmerkmale des Attributnamens gelöscht werden ...');
 define('TEXT_INFO_PRODUCT_NAME', '<strong>Produkt Name: </strong>');
@@ -160,7 +160,7 @@ define('SUCCESS_ATTRIBUTES_DELETED_OPTION_NAME_VALUES', 'ALLE Attributmerkmale f
 define('BUTTON_ADDITIONAL_ACTIONS', 'Weitere Aktionen');
 define('TEXT_EDIT_OPTION_VALUE', 'Bearbeite Attribut');
 define('TEXT_DELETE_OPTION_VALUE', 'Lösche Attribut');
-define('TEXT_UPDATE_DEFAULTE_SORT_ORDER', 'Sortierreihenfolge auf Standard zurücksetzen');
+define('TEXT_UPDATE_DEFAULT_SORT_ORDER', 'Sortierreihenfolge auf Standard zurücksetzen');
 define('TEXT_DELETE_ALL_OPTIONS_FROM_PRODUCT', 'Alle Attribute von diesem Artikel entfernen');
 define('TEXT_COPY_ALL_OPTIONS_TO_PRODUCT', 'Attribute zu einem anderen Artikel kopieren');
 define('TEXT_COPY_ALL_OPTIONS_TO_CATEGORY', 'Attibute zu einer ganzen Kategorie kopieren');
