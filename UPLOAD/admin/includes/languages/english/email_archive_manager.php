@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: email_archive_manager.php 2015-12-22 15:49:16Z webchills $
+ * @version $Id: email_archive_manager.php 2022-02-09 13:10:16Z webchills $
  */
 
 define('SUBJECT_SIZE_LIMIT', 25);
@@ -46,6 +46,7 @@ define('TEXT_EMAIL_NUMBER', 'Email #');
 define('RADIO_1_MONTH', ' 1 month');
 define('RADIO_6_MONTHS', ' 6 months');
 define('RADIO_1_YEAR', ' 12 months');
+define('TEXT_RESEND_PREFIX','Resend: ');
 define('TRIM_CONFIRM_WARNING', 'Warning: This will permanently remove e-mail from the archive.<br />Are you sure?');
 define('POPUP_CONFIRM_RESEND', 'Are you sure you want to resend this message?');
 define('POPUP_CONFIRM_DELETE', 'Are you sure you want to delete this message?');

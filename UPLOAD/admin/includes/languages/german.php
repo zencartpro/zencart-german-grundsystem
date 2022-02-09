@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2022-02-09 09:31:04Z webchills $
+ * @version $Id: german.php 2022-02-09 18:29:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -768,3 +768,14 @@ define('ARIA_PAGINATION_','');
 define('TEXT_INFO_LANGUAGE_ID', 'Geben Sie den Telefon Ländercode OHNE 0 ein<br />(english MUSS 1 sein, deutsch MUSS 43 sein):');
 define('TEXT_INFO_LANGUAGE_CODE', 'Code:<br />(en = englisch, de = deutsch)');
 
+// Keepalive Module
+define('TEXT_TIMEOUT_WARNING', '**WARNUNG**');
+define('TEXT_TIMEOUT_TIME_REMAINING', ' verbleibende Zeit:');
+define('TEXT_TIMEOUT_SECONDS', 'Sekunden!');
+define('TEXT_TIMEOUT_ARE_YOU_STILL_THERE', 'Sind Sie noch da?');
+define('TEXT_TIMEOUT_WILL_LOGOUT_SOON', 'Sie waren inaktiv und werden demnächst automatisch ausgeloggt.');
+define('TEXT_TIMEOUT_STAY_LOGGED_IN', 'Weiterarbeiten');
+define('TEXT_TIMEOUT_LOGOUT_NOW', 'Jetzt abmelden');
+define('TEXT_TIMEOUT_TIMED_OUT_TITLE', 'Abgemeldet.');
+define('TEXT_TIMEOUT_LOGIN_AGAIN', 'Wieder anmelden');
+define('TEXT_TIMEOUT_TIMED_OUT_MESSAGE', 'Ihre Session ist abgelaufen. Sie waren inaktiv, daher wurden Sie automatisch ausgeloggt.');

@@ -1,16 +1,17 @@
 <?php
 /**
- * @package admin
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: email_archive_manager.php 2022-01-19 21:00:16Z webchills $
+ * @version $Id: email_archive_manager.php 2022-02-09 19:04:16Z webchills $
  */
   require('includes/application_top.php');
 
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
-  $isForDisplay = (($_GET['print_format'] < 1) ? true : false);
+  $printformat = (isset($_GET['print_format']) ? $_GET['print_format'] : ''); 
+  $isForDisplay = (($printformat < 1) ? true : false); 
+ 
   if ($action == 'prev_text' || $action == 'prev_html') {
     $isForDisplay = false;
   }
@@ -56,21 +57,22 @@
                                   'text' => $email_module->fields['module']);
     $email_module->MoveNext();
   }
-  $search_sd = ((isset($_GET['start_date']) && zen_not_null($_GET['start_date'])) ? true : false);
-  $search_ed = ((isset($_GET['end_date']) && zen_not_null($_GET['end_date'])) ? true : false);
+  $search_sd = ((isset($_GET['start_date']) && zen_not_null($_GET['start_date']) && $_GET['start_date'] != 1) ? true : false);
+  $search_ed = ((isset($_GET['end_date']) && zen_not_null($_GET['end_date']) && $_GET['end_date'] != 1) ? true : false);
   $search_text = ((isset($_GET['text']) && zen_not_null($_GET['text'])) ? true : false);
   $search_module = ((isset($_GET['module']) && zen_not_null($_GET['module']) && $_GET['module'] != 1) ? true : false);
-  $sd_raw = zen_date_raw($_GET['start_date']);
-  $ed_raw = zen_date_raw($_GET['end_date']);
+  $sd_raw = zen_date_raw(isset($_GET['start_date']) ? $_GET['start_date'] : '');
+  $ed_raw = zen_date_raw(isset($_GET['end_date']) ? $_GET['end_date'] : '');
+  
 ?>
-<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>">
-<title><?php echo TITLE; ?></title>
-<link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
+  <head>
+    <meta charset="<?php echo CHARSET; ?>">
+    <title><?php echo TITLE; ?></title>
+    <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
 <?php if ($isForDisplay) { ?>
-<link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
+    <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
 <link rel="stylesheet" type="text/css" href="includes/javascript/spiffyCal/spiffyCal_v2_1.css">
 <script language="JavaScript" src="includes/javascript/spiffyCal/spiffyCal_v2_1.js"></script>
 <script language="javascript" src="includes/menu.js"></script>
@@ -99,8 +101,8 @@
       window.location = "<?php echo zen_href_link(FILENAME_EMAIL_HISTORY, zen_get_all_get_params(array('action')) . 'action=resend'); ?>";
     }
   }
-// -->
 </script>
+
 <style type="text/css">
 <!--
 .warningBox{
@@ -123,11 +125,11 @@ border-width:3px;
       if ($isForDisplay) { ?>
 <body onload="init()">
 <div id="spiffycalendar" class="text"></div>
-<?php require(DIR_WS_INCLUDES . 'header.php'); ?>
+<?php require(DIR_WS_INCLUDES . 'header.php'); ?>    
 <script language="javascript">
 <!--
-var StartDate = new ctlSpiffyCalendarBox("StartDate", "search", "start_date", "btnDate1","<?php echo (($_GET['start_date'] == '') ? '' : $_GET['start_date']); ?>",scBTNMODE_CUSTOMBLUE);
-var EndDate = new ctlSpiffyCalendarBox("EndDate", "search", "end_date", "btnDate2","<?php echo (($_GET['end_date'] == '') ? '' : $_GET['end_date']); ?>",scBTNMODE_CUSTOMBLUE);
+var StartDate = new ctlSpiffyCalendarBox("StartDate", "search", "start_date", "btnDate1","<?php echo (isset($_GET['start_date']) ? $_GET['start_date'] : ''); ?>",scBTNMODE_CUSTOMBLUE);
+var EndDate = new ctlSpiffyCalendarBox("EndDate", "search", "end_date", "btnDate2","<?php echo (isset($_GET['end_date']) ? $_GET['end_date'] : ''); ?>",scBTNMODE_CUSTOMBLUE);
 -->
 </script>
 <?php } ?>
@@ -293,7 +295,7 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "search", "end_date", "btnDate
         <td class="pageHeading" align="right"><?php echo date('l M d, Y', time()); ?></td>
       </tr>
       <tr>
-        <td class="pageHeading"><?php echo $this_report; ?><br>&nbsp;</td>
+        <td class="pageHeading"><br>&nbsp;</td>
       </tr>
     <?php } else { ?>
       <tr>
@@ -337,7 +339,7 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "search", "end_date", "btnDate
               <tr>
                 <td class="smallText" valign="top"><?php
                   echo HEADING_MODULE_SELECT . '<br>';
-                  echo zen_draw_pull_down_menu('module', $email_module_array, $_GET['module']);
+                  echo zen_draw_pull_down_menu('module', $email_module_array, (isset($_GET['module']) ? $_GET['module'] : ''));                  
                 ?></td>
               </tr>
             </table></td>
@@ -465,12 +467,12 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "search", "end_date", "btnDate
     }
 
     $heading[] = array('text' => '<b>' . TEXT_ARCHIVE_ID . $archive->archive_id . '&nbsp; - &nbsp;' . zen_datetime_short($archive->date_sent) . '</b>');
-    $contents[] = array('align' => 'center', 'text' => $mail_button . '&nbsp;<a href="' . zen_href_link(FILENAME_EMAIL_HISTORY, 'archive_id=' . $archive->archive_id . '&action=resend_confirm') . '">' . zen_image_button('button_resend.gif', IMAGE_ICON_RESEND) . '</a>');
+    $contents[] = array('align' => 'center', 'text' => $mail_button . '&nbsp;<a class="btn btn-primary" href="' . zen_href_link(FILENAME_EMAIL_HISTORY, 'archive_id=' . $archive->archive_id . '&action=resend_confirm') . '">' . zen_image_button('button_resend.gif', IMAGE_ICON_RESEND) . '</a>');
     // Delete button
-    $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_EMAIL_HISTORY, 'archive_id=' . $archive->archive_id . '&action=delete_confirm') . '">' . zen_image_button('button_delete.gif', IMAGE_ICON_DELETE) . '</a>' . $html_button);
-    $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_EMAIL_HISTORY, 'archive_id=' . $archive->archive_id . '&action=prev_text') . '" TARGET="_blank">' . zen_image_button('button_prev_text.gif', IMAGE_ICON_TEXT) . '</a>' . $html_button);
+    $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_EMAIL_HISTORY, 'archive_id=' . $archive->archive_id . '&action=delete_confirm') . '">' . zen_image_button('button_delete.gif', IMAGE_ICON_DELETE) . '</a>');
+    $contents[] = array('align' => 'center', 'text' => '<a class="btn btn-primary" href="' . zen_href_link(FILENAME_EMAIL_HISTORY, 'archive_id=' . $archive->archive_id . '&action=prev_text') . '" TARGET="_blank">' . zen_image_button('button_prev_text.gif', IMAGE_ICON_TEXT) . '</a>');
     if ($archive->email_html != '') {
-      $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_EMAIL_HISTORY, 'archive_id=' . $archive->archive_id . '&action=prev_html') . '" TARGET="_blank">' . zen_image_button('button_prev_html.gif', IMAGE_ICON_HTML) . '</a>');
+      $contents[] = array('align' => 'center', 'text' => '<a class="btn btn-primary" href="' . zen_href_link(FILENAME_EMAIL_HISTORY, 'archive_id=' . $archive->archive_id . '&action=prev_html') . '" TARGET="_blank">' . zen_image_button('button_prev_html.gif', IMAGE_ICON_HTML) . '</a>');
     }
     $contents[] = array('text' => '<br>' . zen_draw_separator());
     $contents[] = array('text' => '<br><b>' . TEXT_EMAIL_MODULE . '</b>'. $archive->module);

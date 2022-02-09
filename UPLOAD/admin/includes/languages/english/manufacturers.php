@@ -1,11 +1,11 @@
 <?php
-/**
- 
+/** 
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: manufacturers.php 2021-10-25 19:49:16Z webchills $
+ * @version $Id: manufacturers.php 2022-02-09 16:36:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Manufacturers');
@@ -36,3 +36,5 @@ define('TEXT_DELETE_IMAGE', 'Delete manufacturers image?');
 define('TEXT_DELETE_PRODUCTS', 'Delete products from this manufacturer? (including product reviews, products on special, upcoming products)');
 define('TEXT_DELETE_WARNING_PRODUCTS', '<b>WARNING:</b> There are %s products still linked to this manufacturer!');
 
+define ('ICON_METATAGS_ON','Metatags defined');
+define ('ICON_METATAGS_OFF','Metatags not defined');
