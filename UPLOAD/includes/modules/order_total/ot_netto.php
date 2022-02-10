@@ -1,13 +1,13 @@
 <?php
 /**
  * ot_netto order-total module
- *
+ * Zen Cart German Specific
  * @package orderTotal
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_netto.php 733 2019-06-24 21:49:16Z webchills $
+ * @version $Id: ot_netto.php 2022-02-10 09:10:16Z webchills $
  */
 
   class ot_netto {
@@ -17,7 +17,7 @@
       $this->code = 'ot_netto';
       $this->title = MODULE_ORDER_TOTAL_NETTO_TITLE;
       $this->description = MODULE_ORDER_TOTAL_NETTO_DESCRIPTION; 
-      $this->enabled = (defined('MODULE_ORDER_TOTAL_NETTO_STATUS') && MODULE_PAYMENT_INVOICE_STATUS == 'True'); 
+      $this->enabled = (defined('MODULE_ORDER_TOTAL_NETTO_STATUS') && MODULE_ORDER_TOTAL_NETTO_STATUS == 'True'); 
       $this->sort_order = defined('MODULE_ORDER_TOTAL_NETTO_SORT_ORDER') ? MODULE_ORDER_TOTAL_NETTO_SORT_ORDER : null;
 
       $this->output = array();
@@ -25,7 +25,7 @@
 
     function process() {
       global $order, $currencies;
-      $Tax_total = 0;
+      $Tax_total = 0; 
 
       reset($order->info['tax_groups']);
       while (list($key, $value) = each($order->info['tax_groups'])) {

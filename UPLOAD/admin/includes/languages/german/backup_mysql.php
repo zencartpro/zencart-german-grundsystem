@@ -1,10 +1,11 @@
 <?php
 /** 
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: backup_mysql.php 2021-12-27 15:39:16Z webchills $
+ * @version $Id: backup_mysql.php 2022-02-10 17:01:16Z webchills $
  */
 
 // define the locations of the mysql utilities.  Typical location is in '/usr/bin/' ... but not on Windows servers.
@@ -42,6 +43,8 @@ define('TEXT_NO_EXTENSION', 'keine');
 define('TEXT_BACKUP_DIRECTORY', 'Sicherungsverzeichnis:');
 define('TEXT_LAST_RESTORATION', 'Letzte Wiederherstellung:');
 define('TEXT_FORGET', '(vergessen)');
+define('IMAGE_RESTORE', 'Wiederherstellen');
+define('ICON_FILE_DOWNLOAD', 'Datei herunterladen');
 
 define('ERROR_BACKUP_DIRECTORY_DOES_NOT_EXIST', 'FEHLER: das Verzeichnis für die Sicherung existiert nicht. Bitte beheben Sie den FEHLER in Ihrer configure.php.');
 define('ERROR_BACKUP_DIRECTORY_NOT_WRITEABLE', 'FEHLER: In das Verzeichnis für die Sicherung kann nicht geschrieben werden.');

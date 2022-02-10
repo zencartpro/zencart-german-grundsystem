@@ -1,13 +1,12 @@
 <?php
 /**
- * @package admin
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: backup_mysql.php 2021-12-03 16:04:51Z webchills $
+ * @version $Id: backup_mysql.php 2022-02-10 17:10:51Z webchills $
  */
-
 
   define('OS_DELIM', '');
 
@@ -143,7 +142,7 @@
         if ($debug=='ON' || (zen_not_null($dump_results) && $dump_results!='0')) $messageStack->add_session('Result code: '.$dump_results, 'caution');
 
         #parse the value that comes back from the script
-        if (zen_not_null($resultcodes)) list($strA, $strB) = preg_split ('/[|]/', $resultcodes);
+        if (!empty($resultcodes)) list($strA, $strB) = preg_split ('/[|]/', $resultcodes);
         if ($debug=='ON') $messageStack->add_session("valueA: " . $strA,'error');
         if ($debug=='ON') $messageStack->add_session("valueB: " . $strB,'error');
 

@@ -5,12 +5,13 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: manufacturers.php 2022-02-09 16:36:16Z webchills $
+ * @version $Id: manufacturers.php 2022-02-10 18:53:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Manufacturers');
 
 define('TABLE_HEADING_MANUFACTURERS', 'Manufacturers');
+define('TABLE_HEADING_ID', 'ID');
 define('TABLE_HEADING_ACTION', 'Action');
 
 define('TEXT_HEADING_NEW_MANUFACTURER', 'New Manufacturer');
@@ -36,5 +37,10 @@ define('TEXT_DELETE_IMAGE', 'Delete manufacturers image?');
 define('TEXT_DELETE_PRODUCTS', 'Delete products from this manufacturer? (including product reviews, products on special, upcoming products)');
 define('TEXT_DELETE_WARNING_PRODUCTS', '<b>WARNING:</b> There are %s products still linked to this manufacturer!');
 
-define ('ICON_METATAGS_ON','Metatags defined');
-define ('ICON_METATAGS_OFF','Metatags not defined');
+define('ICON_METATAGS_ON','Metatags defined');
+define('ICON_METATAGS_OFF','Metatags not defined');
+define('TEXT_UPLOAD_DIR','Upload Directory:');
+define('TEXT_IMAGE_MANUAL','<strong>Or, select an existing image file from server, filename:</strong>');
+define('TEXT_INFO_DATE_ADDED','Date Added:');
+define('TEXT_INFO_LAST_MODIFIED','Last modified:');
+define('TEXT_INFO_EDIT_INTRO','Please make any necessary changes');
