@@ -1,12 +1,12 @@
 <?php
 /**
 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
- * Zen Cart German Version - www.zen-cart-pro.at
- * @copyright Portions Copyright 2003 osCommerce
- * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: store_manager.php 2021-12-03 15:36:31Z webchills $
- */
+* @copyright Copyright 2003-2022 Zen Cart Development Team
+* Zen Cart German Version - www.zen-cart-pro.at
+* @copyright Portions Copyright 2003 osCommerce
+* @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
+* @version $Id: store_manager.php 2021-12-03 15:36:31Z webchills $
+*/
 define('HEADING_TITLE', 'Shopmanager');
 define('TABLE_CONFIGURATION_TABLE', 'Suche KONSTANTE Definitionen');
 
@@ -26,18 +26,15 @@ define('TEXT_INFO_PRODUCTS_VIEWED_UPDATE', '<strong>Setze ALLE meist gesehenen A
 define('TEXT_INFO_PRODUCTS_ORDERED_UPDATE', '<strong>ALLE meist gekauften Artikel zurücksetzen</strong><br />Anzahl bestellter Artikel auf 0 setzen: ');
 define('TEXT_INFO_MASTER_CATEGORIES_ID_UPDATE', '<strong>Setze ALLE Artikelhauptkategorie IDs</strong><br />zur Verwendung für verlinkte Artikel und Bepreisung zurück: ');
 
-  define('TEXT_NEW_ORDERS_ID', 'Neue Bestellnummer');
-  define('TEXT_INFO_SET_NEXT_ORDER_NUMBER', '<strong>Legen Sie hier Ihre nächste Bestellnummer fest</strong><br />HINWEIS: Ihre neue Bestellnummer muss größer sein als die bereits bestehenden Bestellungen in Ihrer Datenbank.');
-  define('TEXT_MSG_NEXT_ORDER', 'Ihre nächste Bestellnummer wurde ist %s');
-  define('TEXT_MSG_NEXT_ORDER_MAX', 'Basierend auf den bestehenden Bestellungen ist Ihre nächste Bestellnummer momentan: %s');
-  define('TEXT_MSG_NEXT_ORDER_TOO_LARGE', 'Aufgrund des Datenbanklimits können Sie keine Bestellnummer höher als 2000000000 einstellen. Bitte wählen Sie einen kleineren Wert.');
+define('TEXT_NEW_ORDERS_ID', 'Neue Bestellnummer');
+define('TEXT_INFO_SET_NEXT_ORDER_NUMBER', '<strong>Legen Sie hier Ihre nächste Bestellnummer fest</strong><br />HINWEIS: Ihre neue Bestellnummer muss größer sein als die bereits bestehenden Bestellungen in Ihrer Datenbank.');
+define('TEXT_MSG_NEXT_ORDER', 'Ihre nächste Bestellnummer wurde ist %s');
+define('TEXT_MSG_NEXT_ORDER_MAX', 'Basierend auf den bestehenden Bestellungen ist Ihre nächste Bestellnummer momentan: %s');
+define('TEXT_MSG_NEXT_ORDER_TOO_LARGE', 'Aufgrund des Datenbanklimits können Sie keine Bestellnummer höher als 2000000000 einstellen. Bitte wählen Sie einen kleineren Wert.');
 
 define('TEXT_CONFIGURATION_CONSTANT', '<strong>Suche KONSTANTE oder Sprachdateidefinitionen</strong>');
 define('TEXT_CONFIGURATION_KEY', 'Schlüssel oder Name:');
 define('TEXT_INFO_CONFIGURATION_UPDATE', '<strong>HINWEIS:</strong> KONSTANTEN sind immer in Großbuchstaben geschrieben.<br />Die Suche in Sprachdateien kann eine Alternative sein, wenn in den Datenbanktabellen nichts gefunden wurde.');
-
-
-
 
 define('TABLE_TITLE_KEY', '<strong>Schlüssel:</strong>');
 define('TABLE_TITLE_TITLE', '<strong>Titel:</strong>');
@@ -54,7 +51,7 @@ define('TEXT_LANGUAGE_LOOKUP_CURRENT_ADMIN', 'Alle Hauptsprachdateien - Admin ('
 define('TEXT_LANGUAGE_LOOKUP_CURRENT_ADMIN_LANGUAGE', 'Alle derzeit ausgewählten Sprachdateien - Admin (' . DIR_WS_ADMIN . DIR_WS_LANGUAGES . $_SESSION['language'] . '/*.php)');
 define('TEXT_LANGUAGE_LOOKUP_CURRENT_ALL', 'Alle derzeit ausgewählten Sprachdateien - Webshop/Admin');
 
-define('TEXT_INFO_NO_EDIT_AVAILABLE', 'Keine Bearbeitung erhältlich');
+define('TEXT_INFO_NO_EDIT_AVAILABLE', 'Keine Bearbeitung verfügbar');
 define('TEXT_INFO_CONFIGURATION_HIDDEN', ' oder VERSTECKT');
 
 define('TEXT_INFO_DATABASE_OPTIMIZE', '<strong>Datenbank optimieren</strong> um vergeudeten Raum von gelöschten Aufzeichnungen zu entfernen.<br>Das kann monatlich oder wöchentlich auf einer frequentierten Datenbank erforderlich sein.<br>(Am besten während der nichtaktiven Zeiten die Optimierung laufen lassen.)');
