@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: general.php 2022-01-12 10:23:33Z webchills $
+ * @version $Id: general.php 2022-02-11 18:23:33Z webchills $
  */
 
 ////
@@ -554,6 +554,19 @@ function zen_get_all_get_params($exclude_array = array())
     if ($product->EOF) return '';
     return $product->fields['products_name'];
   }
+  
+  
+  function zen_get_products_merkmale($product_id, $language_id = 0) {
+    global $db;  
+    
+    if ($language_id == 0) $language_id = $_SESSION['languages_id'];  
+    $merkmale = $db->Execute("SELECT products_merkmale
+                             FROM " . TABLE_PRODUCTS_DESCRIPTION . "
+                             WHERE products_id = " . (int)$product_id . "
+                             AND language_id = " . (int)$language_id);
+		if ($merkmale->EOF) return '';    
+    return $merkmale->fields['products_merkmale'];
+   } 
 
 
   function zen_get_products_description($product_id, $language_id) {
