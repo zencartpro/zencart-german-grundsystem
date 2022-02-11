@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: auto.non_captcha_observer.php 2022-02-05 19:57:16Z webchills $
+ * @version $Id: auto.non_captcha_observer.php 2022-02-11 18:00:16Z webchills $
  */
 
 class zcObserverNonCaptchaObserver extends base
@@ -89,12 +89,11 @@ class zcObserverNonCaptchaObserver extends base
             $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';  //do numbers, lower case, upper case
 
             $spam_text = $this->generate_random_string($permitted_chars, 10);  // setting 10 as the length for the field name
-            $spam_user = $this->generate_random_string($permitted_chars, 10);
-            $spam_iq = $this->generate_random_string($permitted_chars, 10);
+            $spam_user = $this->generate_random_string($permitted_chars, 10);            
 
             $db->Execute("UPDATE " . TABLE_CONFIGURATION . " SET date_added = now(), configuration_value = '" . $spam_text . "'  WHERE configuration_key = 'SPAM_TEST_TEXT'");
             $db->Execute("UPDATE " . TABLE_CONFIGURATION . " SET date_added = now(), configuration_value = '" . $spam_user . "'  WHERE configuration_key = 'SPAM_TEST_USER'");
-            $db->Execute("UPDATE " . TABLE_CONFIGURATION . " SET date_added = now(), configuration_value = '" . $spam_iq . "'  WHERE configuration_key = 'SPAM_TEST_IQ'");
+           
         }
     }
 
@@ -118,7 +117,7 @@ class zcObserverNonCaptchaObserver extends base
         
         // The Text you want to filter for urls, most common input fields used
         $text = '';
-        //create account, no account, one page checkout, regester account, ask a question, contact us 
+        //create account, no account, ask a question, contact us 
         $text .= (!empty($_POST['firstname']) ? $_POST['firstname'] .  ' ' : '');
         $text .= (!empty($_POST['lastname']) ? $_POST['lastname'] .  ' ' : '');
         $text .= (!empty($_POST['contactname']) ? $_POST['contactname'] .  ' ' : '');
