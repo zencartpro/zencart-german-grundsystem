@@ -4,7 +4,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: email_archive_manager.php 2022-02-09 19:04:16Z webchills $
+ * @version $Id: email_archive_manager.php 2022-02-12 09:52:16Z webchills $
  */
   require('includes/application_top.php');
 
@@ -28,6 +28,7 @@
   if ($action == 'delete') {
       $db->Execute("delete from " . TABLE_EMAIL_ARCHIVE . "
                                   where archive_id = '" . (int)$_GET['archive_id'] . "'");
+      $messageStack->add_session(SUCCESS_EMAIL_DELETED, 'success');
       zen_redirect(zen_href_link(FILENAME_EMAIL_HISTORY));
   }
   if ($action == 'trim_confirm') {
@@ -88,19 +89,29 @@
       kill.disabled = true;
     }
   }
+  
+  function keepAmpersand(string) {
+    return string.replace(/&amp;/g, "&").replace(/&quot;/g, "\"");
+  }  
+  
   function del_confirmation() {
-    var answer = confirm('<?php echo POPUP_CONFIRM_DELETE; ?>')
+    var answer = confirm('<?php echo POPUP_CONFIRM_DELETE; ?>');
+    var deletelink = "<?php echo zen_href_link(FILENAME_EMAIL_HISTORY, zen_get_all_get_params(array('action')) . 'action=delete'); ?>";
+    var deletelinkamp = keepAmpersand(deletelink);
     if (answer) {
-      window.location = "<?php echo zen_href_link(FILENAME_EMAIL_HISTORY, zen_get_all_get_params(array('action')) . 'action=delete'); ?>";
+      window.location = deletelinkamp;
     }
   }
 
   function confirmation() {
-    var answer = confirm('<?php echo POPUP_CONFIRM_RESEND; ?>')
+    var answer = confirm('<?php echo POPUP_CONFIRM_RESEND; ?>');
+    var resendlink = "<?php echo zen_href_link(FILENAME_EMAIL_HISTORY, zen_get_all_get_params(array('action')) . 'action=resend'); ?>";
+    var resendlinkamp = keepAmpersand(resendlink);
     if (answer) {
-      window.location = "<?php echo zen_href_link(FILENAME_EMAIL_HISTORY, zen_get_all_get_params(array('action')) . 'action=resend'); ?>";
+      window.location = resendlinkamp;
     }
   }
+// -->
 </script>
 
 <style type="text/css">

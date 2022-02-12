@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: email_archive_manager.php 2022-02-09 16:15:16Z webchills $
+ * @version $Id: email_archive_manager.php 2022-02-12 09:50:16Z webchills $
  */
 define('SUBJECT_SIZE_LIMIT', 25);
 define('MESSAGE_SIZE_LIMIT', 550);
@@ -50,6 +50,7 @@ define('POPUP_CONFIRM_RESEND', 'Wollen Sie dieses Email wirklich erneut versende
 define('POPUP_CONFIRM_DELETE', 'Wollen Sie dieses Email wirklich löschen?');
 define('SUCCESS_TRIM_ARCHIVE', 'Erfolg: Emails älter als <strong>%s</strong> wurden entfernt.');
 define('SUCCESS_EMAIL_RESENT', 'Erfolg: Email #%s wurde erneut versandt an %s');
+define('SUCCESS_EMAIL_DELETED', 'Erfolg: Email wurde gelöscht');
 
 define('IMAGE_ICON_HTML', ' HTML Email ansehen ');
 define('IMAGE_ICON_TEXT', ' Text Email ansehen ');
