@@ -12,7 +12,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: application_top.php 2021-12-25 08:45:24Z webchills $
+ * @version $Id: application_top.php 2022-02-12 17:03:24Z webchills $
  */
 use Zencart\FileSystem\FileSystem;
 use Zencart\PluginManager\PluginManager;
@@ -72,10 +72,10 @@ define('PAGE_PARSE_START_TIME', microtime());
 /**
  * Ensure minimum PHP version.
  * This is intended to run before any dependencies like short-array-syntax are loaded, in order to avoid unfriendly fatal errors caused by such incompatibility.
- * This version of Zen Cart actually requires newer than PHP 5.4, but we are only enforcing 5.4 here at this stage for the sake of this syntax matter.
- * See https://www.zen-cart.com/requirements or run zc_install to see actual requirements!
+ * This version of Zen Cart German actually requires newer than PHP 7.4, and we are enforcing 7.4.1 here at this stage for the sake of this syntax matter.
+ * See https://www.zen-cart-pro.at or run zc_install to see actual requirements!
  */
-if (!defined('PHP_VERSION_ID') || PHP_VERSION_ID < 50400) {
+if (!defined('PHP_VERSION_ID') || PHP_VERSION_ID < 70401) {
     require 'includes/templates/template_default/templates/tpl_zc_phpupgrade_default.php';
     exit(0);
 }

@@ -4,13 +4,13 @@
  * Zen Cart German Version - www.zen-cart-pro.at
 
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: index_default.php 8 2021-11-28 17:59:53Z webchills $
+ * @version $Id: index_default.php 2021-11-28 17:59:53Z webchills $
  */
 require(DIR_FS_INSTALL . DIR_WS_INSTALL_TEMPLATE . 'partials/partial_modal_help.php');
 $adjustWarnIssues = false;
 ?>
 <form id="systemCheck" name="systemCheck" method="post" action="index.php?main_page=<?php echo $formAction; ?>">
-<input type="hidden" name="lng" value="<?php echo $lng; ?>" >
+<input type="hidden" name="lng" value="<?php echo $installer_lng; ?>" >
 <?php if ($hasMultipleAdmins) { ?>
 	<?php $adjustWarnIssues = True ?>
     <div class="alert-box alert">

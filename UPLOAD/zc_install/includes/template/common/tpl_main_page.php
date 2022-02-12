@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_main_page.php 5 2021-11-28 17:49:16Z webchills $
+ * @version $Id: tpl_main_page.php 2022-02-12 18:03:16Z webchills $
  */
 ?>
 <body id="<?php echo $body_id; ?>">
@@ -47,7 +47,7 @@
         <?php require($body_code); ?>
         </div>
          <footer class="footer">
-           <p>Copyright &copy; 2003-<?php echo date('Y'); ?> <a href="http://www.zen-cart-pro.at" target="_blank">Zen Cart deutsch</a></p>
+           <p>Copyright &copy; 2003-<?php echo date('Y'); ?> <a href="http://www.zen-cart-pro.at" rel="noopener" target="_blank">Zen Cart deutsch</a></p>
          </footer>
       </div>
       </div>

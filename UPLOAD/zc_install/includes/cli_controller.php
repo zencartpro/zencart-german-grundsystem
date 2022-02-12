@@ -1,11 +1,10 @@
 <?php
 /**
- * @package Installer
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: cli_controller.php 3 2020-01-17 16:59:53Z webchills $
+ * @version $Id: cli_controller.php 2020-01-17 16:59:53Z webchills $
  */
 
 if (!file_exists(DIR_FS_INSTALL . 'includes/custom_settings.php')) {

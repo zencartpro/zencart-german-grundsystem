@@ -1,4 +1,4 @@
-$Id: spiders.txt 2022-01-19 20:24:16Z webchills $
+$Id: spiders.txt 2022-02-12 17:09:16Z webchills $
 bot
 collect
 crawl
@@ -84,6 +84,7 @@ csci
 curl
 cyberspyder
 datanyse
+datanyze
 depspid
 digger
 digimarc

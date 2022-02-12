@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: partial_modal_system_setup_errors.php 3 2015-12-26 21:49:16Z webchills $
+ * @version $Id: partial_modal_system_setup_errors.php 2015-12-26 21:49:16Z webchills $
  */
 ?>
 <div id="system-setup-errors" class="reveal-modal" data-reveal tabindex="-1">

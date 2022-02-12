@@ -1,7 +1,7 @@
 # Zen Cart German Specific
 # @copyright Copyright 2003-2022 Zen Cart Development Team
 # @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
-# @version $Id: $Id: .htaccess with pdf allowed 2017-03-05 15:40:51Z webchills $
+# @version $Id: $Id: .htaccess 2022-02-12 17:11:51Z webchills $
 #
 # This is used with Apache WebServers
 #
@@ -29,7 +29,7 @@
 </FilesMatch>
 
 # but now allow just *certain* necessary files:
-<FilesMatch "(?i).*\.(js|css|html?|ico|jpe?g|gif|webp|png|swf|flv|xml|xsl|otf|ttf|woff|eot|svg|map|pdf|PDF)$">
+<FilesMatch "(?i).*\.(js|css|html?|jpe?g|gif|webp|png|pdf|PDF|otf|ico|cur|map|eot|svgz?|ttf|woff2?|xml|xsl)$">
   <IfModule mod_authz_core.c>
     Require all granted
   </IfModule>
@@ -90,10 +90,10 @@ IndexIgnore */*
   ExpiresByType application/x-javascript A3600
   ExpiresByType text/css A3600
   ExpiresByType image/gif A604800
-  ExpiresByType video/x-flv A604800
   ExpiresByType application/pdf A604800
   ExpiresByType text/html A300
   ExpiresByType image/x-icon A86400
   ExpiresByType image/jpeg A2592000
   ExpiresByType image/png A2592000
+  ExpiresByType image/svg A2592000
 </ifmodule>

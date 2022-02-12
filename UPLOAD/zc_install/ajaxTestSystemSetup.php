@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ajaxTestSystemSetup.php 2 2019-04-12 13:59:53Z webchills $
+ * @version $Id: ajaxTestSystemSetup.php 2019-04-12 13:59:53Z webchills $
  */
 define('IS_ADMIN_FLAG', false);
 define('DIR_FS_INSTALL', __DIR__ . '/');
