@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: it_recht_kanzlei_api.php 2020-03-07 15:02:51Z webchills $
+ * @version $Id: it_recht_kanzlei_api.php 2022-02-18 18:38:51Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -30,10 +30,7 @@ class it_recht_kanzlei {
     // Catch errors - no data sent
     (string)$post_xml = $post_xml;
     
-    // read POST-XML and remove form slashes
-    if(get_magic_quotes_gpc()){
-      $post_xml = stripslashes($post_xml);
-    }
+    
     // Post XML from other system
     if(trim($post_xml) == ''){
       $this->return_error('12');
@@ -332,7 +329,7 @@ class it_recht_kanzlei {
   }
   
   function set_shopversion() {
-    if (!$this->shopversion) {
+    if (!isset ($this->shopversion)) {
       $project = PROJECT_VERSION_MAJOR.'.'.PROJECT_VERSION_MINOR;
         $this->shopversion = $project;
       
