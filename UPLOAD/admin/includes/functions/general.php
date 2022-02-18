@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: general.php 2022-02-11 18:23:33Z webchills $
+ * @version $Id: general.php 2022-02-18 19:20:33Z webchills $
  */
 
 ////
@@ -2250,7 +2250,7 @@ function zen_copy_products_attributes($products_id_from, $products_id_to) {
  */
 function zen_set_field_length($tbl, $fld, $max = 50, $override = false)
 {
-    $field_length = zen_field_length($tbl, $fld);
+    $field_length = (int)zen_field_length($tbl, $fld);
     switch (true) {
         case (($override == false and $field_length > $max)):
             $length = 'size="' . ($max + 1) . '" maxlength="' . $field_length . '"';
