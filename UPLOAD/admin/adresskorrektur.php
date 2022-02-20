@@ -1,17 +1,16 @@
 <?php
 /**
- * @package admin
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: adresskorrektur.php 2016-08-01 16:13:51Z webchills $
+ * @version $Id: adresskorrektur.php 2022-02-20 08:34:51Z webchills $
  */
   
-require('includes/application_top.php');
+require 'includes/application_top.php';
 
 // Use the normal order class instead of the admin one
-include(DIR_FS_CATALOG . DIR_WS_CLASSES . 'order.php');
+require DIR_FS_CATALOG . DIR_WS_CLASSES . 'order.php';
 
 $oID = zen_db_prepare_input($_GET['oID']);
   
@@ -28,7 +27,7 @@ $oID = zen_db_prepare_input($_GET['oID']);
 		
 
 		$order_updated = false;
-		$sql_data_array = array(
+		$sql_data_array = [
 			'customers_name' => zen_db_prepare_input($_POST['update_customer_name']),
 			'customers_company' => zen_db_prepare_input($_POST['update_customer_company']),
 			'customers_street_address' => zen_db_prepare_input($_POST['update_customer_street_address']),
@@ -59,7 +58,7 @@ $oID = zen_db_prepare_input($_GET['oID']);
 			'delivery_postcode' => zen_db_prepare_input($_POST['update_delivery_postcode']),
 			'delivery_country' => zen_db_prepare_input($_POST['update_delivery_country'])
 			
-		);
+		];
 
 		
 
@@ -101,95 +100,35 @@ $order_updated = true;
   }
 
 ?>
-<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>">
-<title><?php echo TITLE; ?></title>
-<link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-<link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-<script language="javascript" src="includes/menu.js"></script>
-<script language="javascript" src="includes/general.js"></script>
-<script type="text/javascript">
-  <!--
-  function init()
-  {
-    cssjsmenu('navbar');
-    if (document.getElementById)
-    {
-      var kill = document.getElementById('hoverJS');
-      kill.disabled = true;
-    }
-  }
-  // -->
-</script>
+  <head>
+    <meta charset="<?php echo CHARSET; ?>">
+    <title><?php echo TITLE; ?></title>
+    <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
+    <script src="includes/menu.js"></script>
+    <script src="includes/general.js"></script>
+
 </head>
-<body onload="init()">
+<body onLoad="init()">
 <!-- header //-->
 <div class="header-area">
 <?php
-	require(DIR_WS_INCLUDES . 'header.php');
+    require DIR_WS_INCLUDES . 'header.php';
 ?>
 </div>
 <!-- header_eof //-->
+
+    <!-- body //-->
+    <div class="container-fluid">
 <?php
   if (($action == 'edit') && ($order_exists == true)) {
-    
-// BEGIN - Add Super Orders Order Navigation Functionality
-    $get_prev = $db->Execute("SELECT orders_id FROM " . TABLE_ORDERS . " WHERE orders_id < '" . $oID . "' ORDER BY orders_id DESC LIMIT 1");
 
-    if (zen_not_null($get_prev->fields['orders_id'])) {
-      $prev_button = '            <INPUT class="normal_button button" TYPE="BUTTON" VALUE="<<< ' . $get_prev->fields['orders_id'] . '" ONCLICK="window.location.href=\'' . zen_href_link(FILENAME_ORDERS, 'oID=' . $get_prev->fields['orders_id'] . '&action=edit') . '\'">';
-    }
-    else {
-      $prev_button = '            <INPUT class="normal_button button" TYPE="BUTTON" VALUE="' . BUTTON_TO_LIST . '" ONCLICK="window.location.href=\'' . zen_href_link(FILENAME_ORDERS) . '\'">';
-    }
-
-
-    $get_next = $db->Execute("SELECT orders_id FROM " . TABLE_ORDERS . " WHERE orders_id > '" . $oID . "' ORDER BY orders_id ASC LIMIT 1");
-
-    if (zen_not_null($get_next->fields['orders_id'])) {
-      $next_button = '            <INPUT class="normal_button button" TYPE="BUTTON" VALUE="' . $get_next->fields['orders_id'] . ' >>>" ONCLICK="window.location.href=\'' . zen_href_link(FILENAME_ORDERS, 'oID=' . $get_next->fields['orders_id'] . '&action=edit') . '\'">';
-    }
-    else {
-      $next_button = '            <INPUT class="normal_button button" TYPE="BUTTON" VALUE="' . BUTTON_TO_LIST . '" ONCLICK="window.location.href=\'' . zen_href_link(FILENAME_ORDERS) . '\'">';
-  }
-// END - Add Super Orders Order Navigation Functionality
 ?>
 <!-- body //-->
 <table border="0" width="100%" cellspacing="2" cellpadding="2">
-  <tr>
-<!-- body_text //-->
-    <td width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
-
-  <tr>
-        <td width="100%"><table border="0" width="100%" cellspacing="0" cellpadding="0">
-          <tr>
-<!-- BEGIN - Add Super Orders Order Navigation Functionality -->
-            <td class="pageHeading"> &nbsp; </td>
-            <td class="pageHeading" align="right"><?php echo zen_draw_separator('pixel_trans.gif', 1, HEADING_IMAGE_HEIGHT); ?></td>
-            <td class="main" valign="middle"> &nbsp; </td>
-            <td align="center">
-	    <table border="0" cellspacing="3" cellpadding="0">
-              <tr>
-                <td class="main" align="center" valign="bottom"><?php echo $prev_button; ?></td>
-                <td class="smallText" align="center" valign="bottom"><?php
-                  echo SELECT_ORDER_LIST . '<br />';
-                  echo zen_draw_form('input_oid', FILENAME_ORDERS, '', 'get', '', true);
-                  echo zen_draw_input_field('oID', '', 'size="6"');
-                  echo zen_draw_hidden_field('action', 'edit');
-                  echo '</form>';
-                ?></td>
-                <td class="main" align="center" valign="bottom"><?php echo $next_button; ?></td>
-              </tr>
-            </table>
-	    </td>
-<!-- END - Add Super Orders Order Navigation Functionality -->
-					<td class="pageHeading" align="right"> &nbsp; </td>
-				</tr>
-			</table>
-		</td>
-	</tr>
+ 
 
 
       <tr>
@@ -362,15 +301,18 @@ $order_updated = true;
 <!-- body_text_eof //-->
   </tr>
 </table>
+</div>
 <?php } ?>
 <!-- body_eof //-->
 
 <!-- footer //-->
-<?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
+<?php 
+require DIR_WS_INCLUDES . 'footer.php'; 
+?>
 <!-- footer_eof //-->
 <br>
 </body>
 </html>
 <?php
 unset ($_SESSION['customer_id']);
-require(DIR_WS_INCLUDES . 'application_bottom.php');
+require DIR_WS_INCLUDES . 'application_bottom.php';
