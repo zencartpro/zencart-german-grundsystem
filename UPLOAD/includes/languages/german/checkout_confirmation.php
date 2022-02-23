@@ -7,7 +7,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  
- * @version $Id: checkout_confirmation.php 2022-01-14 18:05:14Z webchills $
+ * @version $Id: checkout_confirmation.php 2022-02-19 15:38:14Z webchills $
  */
 
 define('NAVBAR_TITLE_1','Bestellung');
@@ -24,8 +24,7 @@ define('HEADING_TAX','MwSt.');
 define('HEADING_ORDER_COMMENTS','Anmerkungen oder Hinweise');
 // no comments entered
 define('NO_COMMENTS_TEXT','Keine');
-define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', '<strong>Final Step</strong>');
-define('TEXT_CONTINUE_CHECKOUT_PROCEDURE', '- continue to confirm your order. Thank you!');
+
 // buttonloesung
 define('TABLE_HEADING_SINGLEPRICE','Einzelpreis');
 define('TABLE_HEADING_PRODUCTIMAGE','Artikelbild');
