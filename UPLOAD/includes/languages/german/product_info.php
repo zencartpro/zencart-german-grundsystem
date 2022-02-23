@@ -5,14 +5,14 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0 
- * @version $Id: product_info.php 2022-01-14 19:05:14Z webchills $
+ * @version $Id: product_info.php 2022-02-23 20:14:14Z webchills $
  */
 
 define('TEXT_PRODUCT_NOT_FOUND', 'Entschuldigen Sie bitte, aber der gewünschte Artikel konnte nicht gefunden werden.');
 define('TEXT_CURRENT_REVIEWS','Bewertungen:');
 define('TEXT_MORE_INFORMATION','Für weitere Informationen besuchen Sie diese <a href="%s" target="_blank">Webseite</a>.');
 define('TEXT_DATE_ADDED','Dieser Artikel wurde am  %s im Shop aufgenommen.');
-define('TEXT_DATE_AVAILABLE','Dieser Artikel wird vorraussichtlich am %s auf Lager sein.');
+define('TEXT_DATE_AVAILABLE','Dieser Artikel wird voraussichtlich am %s auf Lager sein.');
 define('TEXT_ALSO_PURCHASED_PRODUCTS','Kunden die diesen Artikel gekauft haben, haben auch diese Artikel gekauft...');
 define('TEXT_PRODUCT_OPTIONS','<strong>Bitte wählen Sie:</strong>');
 define('TEXT_PRODUCT_MANUFACTURER','Hergestellt von: ');
