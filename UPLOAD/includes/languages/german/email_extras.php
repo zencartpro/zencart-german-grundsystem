@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: email_extras.php 2022-01-14 19:05:14Z webchills $
+* @version $Id: email_extras.php 2022-02-25 17:32:14Z webchills $
 */
 
 define ('EMAIL_LOGO_FILENAME', 'header.jpg');  //-File is present in /email folder
@@ -41,10 +41,10 @@ define('EMAIL_DISCLAIMER', '');
 define('EMAIL_SPAM_DISCLAIMER', '-');
 // Define a message you'd like to add to an order confirmation email
 define('EMAIL_ORDER_MESSAGE',''); 
-define('EMAIL_FOOTER_COPYRIGHT','Copyright (c) ' . date('Y') . ' <a href="' . zen_href_link(FILENAME_DEFAULT) . '" target="_blank">' . STORE_NAME . '</a>');
-define('TEXT_UNSUBSCRIBE', "\n\n" . 'Um diesen Newsletter abzubestellen, klicken Sie bitte auf folgenden Link: ' . "\n");
+define('EMAIL_FOOTER_COPYRIGHT','Copyright (c) ' . date('Y') . ' <a href="' . zen_href_link(FILENAME_DEFAULT) . '">' . STORE_NAME . '</a>');
+define('TEXT_UNSUBSCRIBE', "\n\nUm sich von zukünftigen Newsletter- und Infomails abzumelden, klicken Sie einfach auf den folgenden Link: \n");
 // email advisory for all emails customer generate -  and GV send
-define('EMAIL_ADVISORY', '-----' . "\n" . '<strong>WICHTIG:</strong> Aus Sicherheitsgründen werden alle gesendeten E-Mails zwischengespeichert.<br />Sollten Sie diesbezüglich Fragen haben, wenden Sie sich bitte an: ' . STORE_OWNER_EMAIL_ADDRESS);
+define('EMAIL_ADVISORY', '-----' . "\n" . '<strong>WICHTIG:</strong> Aus Sicherheitsgründen werden alle gesendeten E-Mails zwischengespeichert. Sollten Sie diesbezüglich Fragen haben, wenden Sie sich bitte an: ' . STORE_OWNER_EMAIL_ADDRESS . "\n\n");
 
 // email advisory included warning for all emails customer generate - and GV send
 define('EMAIL_ADVISORY_INCLUDED_WARNING', '<strong>Diese Nachricht ist in allen E-Mails dieser Seite enthalten:</strong>');

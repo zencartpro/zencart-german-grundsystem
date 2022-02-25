@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: email_extras.php 2022-01-14 16:28:24Z webchills $
+* @version $Id: email_extras.php 2022-02-25 17:32:14Z webchills $
 */
 
 define ('EMAIL_LOGO_FILENAME', 'header.jpg');  //-File is present in /email folder
@@ -46,10 +46,10 @@ define('EMAIL_ORDER_MESSAGE','');
 define('EMAIL_FOOTER_COPYRIGHT','Copyright (c) ' . date('Y') . ' <a href="' . zen_href_link(FILENAME_DEFAULT) . '">' . STORE_NAME . '</a>');
 define('TEXT_UNSUBSCRIBE', "\n\nTo unsubscribe from future newsletter and promotional mailings, simply click on the following link: \n");
 
-// email advisory for all emails customer generate - tell-a-friend and GV send
+// email advisory for all emails customer generate - and GV send
 define('EMAIL_ADVISORY', '-----' . "\n" . '<strong>IMPORTANT:</strong> For your protection and to prevent malicious use, all emails sent via this web site are logged and the contents recorded and available to the store owner. If you feel that you have received this email in error, please send an email to ' . STORE_OWNER_EMAIL_ADDRESS . "\n\n");
 
-// email advisory included warning for all emails customer generate - tell-a-friend and GV send
+// email advisory included warning for all emails customer generate - and GV send
 define('EMAIL_ADVISORY_INCLUDED_WARNING', '<strong>This message is included with all emails sent from this site:</strong>');
 
 

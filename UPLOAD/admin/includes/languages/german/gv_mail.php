@@ -30,6 +30,6 @@ define('ERROR_NO_AMOUNT_ENTERED', 'FEHLER: Gutscheinbetrag ungültig.');
 define('ERROR_NO_SUBJECT', 'FEHLER: Es wurde kein Betreff angegeben.');
 
 
-define('TEXT_GV_ANNOUNCE', 'Wir freuen uns, Ihnen einen ' . TEXT_GV_NAME . ' schenken zu können für %s.');
+define('TEXT_GV_ANNOUNCE', 'Wir freuen uns, Ihnen einen ' . TEXT_GV_NAME . ' schenken zu können im Wert von %s.');
 define('TEXT_GV_TO_REDEEM_TEXT', 'Verwenden Sie den folgenden Link zum Einlösen des ' . TEXT_GV_NAME . "\n\n ". '%1$s%2$s' . "\n\n" . 'oder besuchen Sie ' . STORE_NAME . " auf " . HTTP_CATALOG_SERVER . DIR_WS_CATALOG . "\n" . 'und geben Sie den Code %2$s während des Bestellvorgangs ein.');
-define('TEXT_GV_TO_REDEEM_HTML', '<a href="%1$s%2$s">klicken Sie hier zum Einlösen des ' . TEXT_GV_NAME . '</a> oder besuchen Sie <a href="' . HTTP_CATALOG_SERVER . DIR_WS_CATALOG . '">' . STORE_NAME . '</a> und geben Sie den Code <strong>%2$s</strong> währedn des Bestellvorgangs ein.');
+define('TEXT_GV_TO_REDEEM_HTML', '<br><a href="%1$s%2$s">Klicken Sie hier zum Einlösen</a> oder besuchen Sie unseren Shop auf <a href="' . HTTP_CATALOG_SERVER . DIR_WS_CATALOG . '">' . STORE_NAME . '</a> und geben Sie den Code <strong>%2$s</strong> während des Bestellvorgangs ein.');
