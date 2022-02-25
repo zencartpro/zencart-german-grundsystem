@@ -17,13 +17,13 @@ define('TEXT_TO', 'Email To:');
 define('TEXT_TO_CUSTOMERS', 'To Customer Lists:');
 define('TEXT_TO_EMAIL', 'or To an Email Address:');
 define('TEXT_TO_EMAIL_NAME', 'Name (optional):');
-define('TEXT_TO_EMAIL_INFO', '<span class="smallText">Choose a list from the above drop-down or use the following fields for sending a single email.</span>');
+define('TEXT_TO_EMAIL_INFO', 'Choose a list from the above drop-down or use the following fields for sending a single email.');
 define('TEXT_SUBJECT', 'Subject:');
 define('TEXT_AMOUNT', TEXT_GV_NAME . ' Value:');
-define('ERROR_GV_AMOUNT', '<span class="smallText">Enter a number using a decimal point for fractions eg.: 25.00.</span>');
-define('TEXT_AMOUNT_INFO', '<span class="smallText">' . ERROR_GV_AMOUNT . '</span>');
-define('TEXT_HTML_MESSAGE', 'HTML<br>Message:');
-define('TEXT_MESSAGE', 'Text-Only<br>Message:');
+define('ERROR_GV_AMOUNT', 'Enter a number using a decimal point for fractions eg.: 25.00.');
+define('TEXT_AMOUNT_INFO', 'Enter a number using a decimal point for fractions eg.: 25.00.');
+define('TEXT_HTML_MESSAGE', 'HTML Message:');
+define('TEXT_MESSAGE', 'Text-Only Message:');
 define('TEXT_MESSAGE_INFO', '<p>Optionally include a specific message, inserted prior to the standard ' . TEXT_GV_NAME . ' email text.</p>');
 
 define('NOTICE_EMAIL_SENT_TO', 'Notice: %1s email(s) sent to %2s');
