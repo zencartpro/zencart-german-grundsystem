@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: orders.php 2022-02-20 08:40:51Z webchills $
+ * @version $Id: orders.php 2022-02-26 08:04:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -609,20 +609,6 @@ if (!empty($action) && $order_exists === true) {
               <tr>
                 <td><strong><?php echo ENTRY_EMAIL_ADDRESS; ?></strong></td>
                 <td><?php echo '<a href="mailto:' . $order->customer['email_address'] . '">' . $order->customer['email_address'] . '</a>'; ?></td>
-              </tr>
-              <tr>
-                <td><strong><?php echo TEXT_INFO_IP_ADDRESS; ?></strong></td>
-                <?php
-                if (!empty($order->info['ip_address'])) {
-                  $lookup_ip = substr($order->info['ip_address'], 0, strpos($order->info['ip_address'], ' '));
-                  $whois_url = 'https://tools.dnsstuff.com/#whois|type=ipv4&&value=' . $lookup_ip;
-                  //$whois_url = 'https://whois.domaintools.com/' . $lookup_ip;
-                  $zco_notifier->notify('ADMIN_ORDERS_IP_LINKS', $lookup_ip, $whois_url);
-                  ?>
-                  <td class="noprint"><a href="<?php echo $whois_url; ?>" rel="noreferrer noopener" target="_blank"><?php echo $order->info['ip_address']; ?></a></td>
-                <?php } else { ?>
-                  <td><?php echo TEXT_UNKNOWN; ?></td>
-                <?php } ?>
               </tr>
               <tr>
                 <td class="noprint"><strong><?php echo ENTRY_CUSTOMER; ?></strong></td>

@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2022-02-09 18:29:04Z webchills $
+ * @version $Id: german.php 2022-02-26 08:32:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -196,9 +196,6 @@ define('BOX_TOOLS_EZPAGES','EZ-Pages');
 
 define('BOX_HEADING_EXTRAS', 'Extras');
 
-
-
-
 define('BOX_TOOLS_DEFINE_CONDITIONS', 'AGB');
 
 
@@ -243,7 +240,7 @@ define('JS_STATE_SELECT', '-- Bitte wählen Sie --');
 define('JS_COUNTRY', '* Das Land muss ausgewählt sein.\n');
 define('JS_TELEPHONE', '* Die Telefonnummer muss aus mindestens  ' . ENTRY_TELEPHONE_MIN_LENGTH . ' Zeichen bestehen.\n');
 
-define('JS_ERROR_SUBMITTED', 'This form has already been submitted. Please press OK and wait for this process to be completed.');
+define('JS_ERROR_SUBMITTED', 'Dieses Formular wurde bereits abgeschickt. Bitte drücken Sie OK und warten Sie, bis der Vorgang abgeschlossen ist.');
 
 define('TEXT_NO_ORDER_HISTORY', 'keine Bestellhistorie verfügbar');
 
@@ -485,9 +482,7 @@ define('_DECEMBER', 'Dezember');
 define('TEXT_DISPLAY_NUMBER_OF_GIFT_VOUCHERS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Gutscheinen)');
 define('TEXT_DISPLAY_NUMBER_OF_COUPONS', 'Zeige <b>%d</b> bis <b>%d</b> (von <b>%d</b> Aktionkupons)');
 
-
 define('TEXT_VALID_CATEGORIES_ID', 'Kategorie ID');
-
 
 define('DEFINE_LANGUAGE', 'Sprache wählen:');
 
@@ -654,7 +649,6 @@ define('TEXT_SORT_CATEGORIES_SORT_ORDER_PRODUCTS_NAME', 'Kategorie Sortierung, K
 define('TEXT_SORT_CATEGORIES_NAME', 'Kategoriename');
 
 
-
 define('TABLE_HEADING_YES', 'Ja');
 define('TABLE_HEADING_NO', 'Nein');
 define('TEXT_PRODUCTS_IMAGE_MANUAL', '<br /><strong>Oder wählen Sie ein bestehendes Bild vom Server, Dateiname:</strong>');
@@ -677,7 +671,6 @@ define('BUTTON_NEXT_ALT', 'Nächster Artikel');
 
 define('BUTTON_PRODUCTS_TO_CATEGORIES', 'Mehrfachkategorie Link Manager');
 
-
 define('TEXT_INFO_OPTION_NAMES_VALUES_COPIER_STATUS', 'Alle globalen Kopier-, Hinzufügen- und Löscheigenschaften sind z.Zt. AUS');
 define('TEXT_SHOW_OPTION_NAMES_VALUES_COPIER_ON', 'Anzeige globale Eigenschaften - AN');
 define('TEXT_SHOW_OPTION_NAMES_VALUES_COPIER_OFF', 'Anzeige globale Eigenschaften - AUS');
@@ -693,12 +686,12 @@ define('SUCCESS_CATEGORY_MOVED', 'Erfolgreich! Kategorie erfolgreich verschoben 
 define('ERROR_CANNOT_MOVE_CATEGORY_TO_CATEGORY_SELF', 'FEHLER: Kategorie kann nicht in sich selbst verschoben werden! ID#');
 
 // messages for function zen_copy_products_attributes
-  define('WARNING_ATTRIBUTE_COPY_SAME_ID','Warning: Attribute Copy aborted. Cannot copy from Product ID#%u to Product ID#%u (same ID).');
-  define('WARNING_ATTRIBUTE_COPY_NO_ATTRIBUTES','Warning: Attribute Copy aborted. No Attributes found for source Product ID#%u, "%s".');
-  define('WARNING_ATTRIBUTE_COPY_INVALID_ID','Warning: Attribute Copy to Product ID#%u aborted. Invalid ID');
-  define('TEXT_ATTRIBUTE_COPY_SKIPPING','Skipping Attribute ID#%u for Product ID#%u');
-  define('TEXT_ATTRIBUTE_COPY_INSERTING','Attribute ID#%u copied from Product ID#%u to Product ID#%u');
-  define('TEXT_ATTRIBUTE_COPY_UPDATING', 'Attribute ID#%u updated for Product ID#%u');
+define('WARNING_ATTRIBUTE_COPY_SAME_ID','Warnung: Attribut-Kopie abgebrochen. Kann nicht von Produkt-ID#%u nach Produkt-ID#%u (gleiche ID) kopiert werden.');
+define('WARNING_ATTRIBUTE_COPY_NO_ATTRIBUTES','Warnung: Attribut-Kopie abgebrochen. Keine Attribute für Quellartikel ID#%u, "%s" gefunden.');
+define('WARNING_ATTRIBUTE_COPY_INVALID_ID','Warnung: Attribut-Kopie nach Artikel-ID#%u abgebrochen. Ungültige ID');
+define('TEXT_ATTRIBUTE_COPY_SKIPPING','Überspringen Attribut ID#%u für Artikel-ID#%u');
+define('TEXT_ATTRIBUTE_COPY_INSERTING','Attribut ID#%u kopiert von Artikel ID#%u zu Artikel ID#%u');
+define('TEXT_ATTRIBUTE_COPY_UPDATING', 'Attribut ID#%u aktualisiert für Artikel ID#%u');
 // EZ-PAGES Alerts
 define('TEXT_EZPAGES_STATUS_HEADER_ADMIN', 'Achtung: EZ-PAGES HEADER - Nur für Admin IP aktiviert');
 define('TEXT_EZPAGES_STATUS_FOOTER_ADMIN', 'Achtung: EZ-PAGES FOOTER - Nur für Admin IP aktiviert');
@@ -725,7 +718,6 @@ define('TEXT_ERROR_INCORRECT_PASSWORD_DURING_RESET_FOR_USER', 'Falsches Passwort
 define('CATEGORY_HAS_SUBCATEGORIES', 'Achtung: Kategorie besitzt Unterkategorien<br />Artikel können nicht hinzugefügt werden');
 
 define('WARNING_WELCOME_DISCOUNT_COUPON_EXPIRES_IN', 'Warnung! Der Aktionskupon "Willkommensgeschenk" läuft in %s Tagen ab.');
-
 
 define('WARNING_EMAIL_SYSTEM_DISABLED', 'WARNUNG: Das Emailsystem ist abgeschaltet. Es werden keine Emails vom Shop versendet, bevor Sie das nicht unter Admin->Konfiguration->Email Optionen aktivieren..');
 define('WARNING_EMAIL_SYSTEM_DEVELOPER_OVERRIDE', 'WARNING: The sending of emails has been disabled as developer switch "DEVELOPER_OVERRIDE_EMAIL_STATUS" is set to "false".');

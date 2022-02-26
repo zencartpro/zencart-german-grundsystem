@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2022-02-04 18:49:57Z webchills $
+ * @version $Id: german.php 2022-02-26 08:19:57Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -63,8 +63,6 @@ define('TEXT_GV_NAMES', 'Geschenkgutscheine');
 
 // used for redeem code, redemption code, or redemption id
 define('TEXT_GV_REDEEM', 'Gutscheinnummer');
-
-
 
 // text for gender
 define('MALE', 'Herr');
@@ -261,7 +259,7 @@ define('FORM_REQUIRED_INFORMATION', '* = Pflichtfeld');
 define('ENTRY_REQUIRED_SYMBOL', '*');
 define('TEXT_FIELD_REQUIRED', '&nbsp;<span class="alert">*</span>');
 
-  // constants for use in zen_prev_next_display function
+// constants for use in zen_prev_next_display function
 define('TEXT_RESULT_PAGE', '');
 define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Artikeln)');
 define('TEXT_DISPLAY_NUMBER_OF_ORDERS', 'Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Bestellungen)');
@@ -277,20 +275,20 @@ define('PREVNEXT_TITLE_NEXT_PAGE', 'Nächste Seite');
 
 define('PREVNEXT_TITLE_PAGE_NO', 'Seite %d');
 define('PREVNEXT_TITLE_PREV_SET_OF_NO_PAGE', 'Vorherige %d Seiten');
-define('PREVNEXT_TITLE_NEXT_SET_OF_NO_PAGE', 'Nächsten %d Seiten');
+define('PREVNEXT_TITLE_NEXT_SET_OF_NO_PAGE', 'Nächste %d Seiten');
 
-  define('PREVNEXT_BUTTON_PREV', '[&laquo;&nbsp;Prev]');
-  define('PREVNEXT_BUTTON_NEXT', '[Next&nbsp;&raquo;]');
-define('ARIA_PAGINATION_ROLE_LABEL_GENERAL','Pagination');
-define('ARIA_PAGINATION_ROLE_LABEL_FOR','%s Pagination'); // eg: "Search results Pagination"
-define('ARIA_PAGINATION_PREVIOUS_PAGE','Go to Previous Page');
-define('ARIA_PAGINATION_NEXT_PAGE','Go to Next Page');
-define('ARIA_PAGINATION_CURRENT_PAGE','Current Page');
-define('ARIA_PAGINATION_CURRENTLY_ON',', now on page %s');
-define('ARIA_PAGINATION_GOTO','Go to ');
-define('ARIA_PAGINATION_PAGE_NUM','Page %s');
-define('ARIA_PAGINATION_ELLIPSIS_PREVIOUS','Get previous group of pages');
-define('ARIA_PAGINATION_ELLIPSIS_NEXT','Get next group of pages');
+define('PREVNEXT_BUTTON_PREV', '[&laquo;&nbsp;Vorherige]');
+define('PREVNEXT_BUTTON_NEXT', '[Nächste&nbsp;&raquo;]');
+define('ARIA_PAGINATION_ROLE_LABEL_GENERAL','Seitenumbruch');
+define('ARIA_PAGINATION_ROLE_LABEL_FOR','%s Seitenumbruch'); // eg: "Search results Pagination"
+define('ARIA_PAGINATION_PREVIOUS_PAGE','Gehe zur vorherigen Seite');
+define('ARIA_PAGINATION_NEXT_PAGE','Gehe zur nächsten Seite');
+define('ARIA_PAGINATION_CURRENT_PAGE','Aktuelle Seitee');
+define('ARIA_PAGINATION_CURRENTLY_ON',', jetzt auf Seite %s');
+define('ARIA_PAGINATION_GOTO','Gehe zu ');
+define('ARIA_PAGINATION_PAGE_NUM','Seite %s');
+define('ARIA_PAGINATION_ELLIPSIS_PREVIOUS','Gehe zur vorherigen Seitengruppe');
+define('ARIA_PAGINATION_ELLIPSIS_NEXT','Gehe zur nächsten Seitengruppe');
 define('ARIA_PAGINATION_','');
 
 define('TEXT_BASE_PRICE', 'ab ');
@@ -311,13 +309,11 @@ define('TEXT_NO_NEW_PRODUCTS', 'Weitere neue Artikel erscheinen in Kürze. Bitte
 
 define('TEXT_UNKNOWN_TAX_RATE', 'Unbekannter Steuersatz');
 
+define('WARNING_COULD_NOT_LOCATE_LANG_FILE', 'WARNUNG: Sprachdatei wurde nicht gefunden: ');
 
-
-  define('WARNING_COULD_NOT_LOCATE_LANG_FILE', 'WARNING: Could not locate language file: ');
-
-  define('TEXT_CCVAL_ERROR_INVALID_DATE', 'The expiration date entered for the credit card is invalid. Please check the date and try again.');
-  define('TEXT_CCVAL_ERROR_INVALID_NUMBER', 'The credit card number entered is invalid. Please check the number and try again.');
-  define('TEXT_CCVAL_ERROR_UNKNOWN_CARD', 'The credit card number starting with %s was not entered correctly, or we do not accept that kind of card. Please try again or use another credit card.');
+define('TEXT_CCVAL_ERROR_INVALID_DATE', 'Das eingegebene Gültigkeitsdatum der Kreditkarte ist ungültig. Bitte überprüfen Sie das Datum und versuchen Sie es erneut.');
+define('TEXT_CCVAL_ERROR_INVALID_NUMBER', 'Die eingegebene Kreditkartennummer ist ungültig. Bitte überprüfen Sie die Nummer und versuchen Sie es erneut.');
+define('TEXT_CCVAL_ERROR_UNKNOWN_CARD', 'Die Kreditkartennummer, die mit %s beginnt, wurde nicht korrekt eingegeben, oder wir akzeptieren diese Art von Karte nicht. Bitte versuchen Sie es erneut oder verwenden Sie eine andere Kreditkarte.');
 
 define('BOX_INFORMATION_DISCOUNT_COUPONS', 'Aktionskupon');
 define('BOX_INFORMATION_GV', TEXT_GV_NAME . ' FAQ');
@@ -366,9 +362,9 @@ define('HEADING_ADDRESS_INFORMATION', 'Adressinformation');
 // cart contents
 define('PRODUCTS_ORDER_QTY_TEXT_IN_CART', 'Stück im Warenkorb: ');
 define('PRODUCTS_ORDER_QTY_TEXT', 'Anzahl: ');
-  define('ARIA_QTY_ADD_TO_CART','Enter quantity to add to cart');
-  define('ARIA_EDIT_QTY_IN_CART','Edit quantity in cart');
-  define('ARIA_DELETE_ITEM_FROM_CART', 'Delete this item from the cart');
+define('ARIA_QTY_ADD_TO_CART','Menge eingeben, die in den Warenkorb gelegt werden soll');
+define('ARIA_EDIT_QTY_IN_CART','Menge im Warenkorb ändern');
+define('ARIA_DELETE_ITEM_FROM_CART', 'Artikel aus Warenkorb löschen');
 
 // success messages for added to cart when display cart is off
 // set to blank for no messages
