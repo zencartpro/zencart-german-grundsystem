@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: copupon_admin_export.php 2021-10-24 17:26:14 $
+ * @version $Id: copupon_admin_export.php 2022-02-27 19:31:14 $
  *
  */
 require ('includes/application_top.php');
@@ -21,8 +21,8 @@ $available_export_formats[0] = array('id' => '0' , 'text' => 'Export as HTML (id
 $available_export_formats[1] = array('id' => '1' , 'text' => 'Export to CSV (ideal for importing to spreadsheets)', 'format' => 'CSV'); // export to CSV
 //  $available_export_formats[2]=array('id' => '2', 'text' => 'Export to TXT', 'format' => 'TXT');
 //  $available_export_formats[3]=array('id' => '3', 'text' => 'Export to XML', 'format' => 'XML');
-$save_to_file_checked = (isset($_POST['savetofile']) && zen_not_null($_POST['savetofile']) ? $_POST['savetofile'] : 0);
-$post_format = (isset($_POST['format']) && zen_not_null($_POST['format']) ? $_POST['format'] : 1);
+$save_to_file_checked = (isset($_POST['savetofile']) && !empty($_POST['savetofile']) ? $_POST['savetofile'] : 0);
+$post_format = (isset($_POST['format']) && !empty($_POST['format']) ? $_POST['format'] : 1);
 $format = $available_export_formats[$post_format]['format'];
 $file = (isset($_POST['filename']) ? preg_replace('/[^\w\.\-]/', '', $_POST['filename']) : 'coupon_export_' . date('Y-m-d_H-i-s') . '.csv');
 if (!preg_match('/.*\.(csv|txt|html?|xml)$/', $file)) $file .= '.txt';
@@ -262,9 +262,7 @@ if ($action != '')
 <!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
 <head>
-<meta charset="<?php echo CHARSET; ?>">
-<title><?php echo HEADING_TITLE; ?></title>
-<link href="includes/css/stylesheet.css" rel="stylesheet" type="text/css"/>
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
 </head>
 <body>
 <?php
@@ -300,27 +298,12 @@ if ($action != '')
 } //endif $action
 
 ?>
-<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>">
-<title><?php echo TITLE; ?></title>
-<link rel="stylesheet" type="text/css" href="includes/css/stylesheet.css">
-<link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-<script type="text/javascript" src="includes/menu.js"></script>
-<script type="text/javascript">
-  function init()
-  {
-    cssjsmenu('navbar');
-    if (document.getElementById)
-    {
-      var kill = document.getElementById('hoverJS');
-      kill.disabled = true;
-    }
-  }
-</script>
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
 </head>
-<body onload="init()">
+<body>
 <!-- header //-->
 <?php
 require (DIR_WS_INCLUDES . 'header.php');
@@ -356,19 +339,19 @@ require (DIR_WS_INCLUDES . 'header.php');
             <td class="main" colspan="2"><?php echo TEXT_INSTRUCTIONS; ?></td>
           </tr>
           <tr>
-            <td class="main"><strong><?php echo TEXT_ACTIVITY_EXPORT_FORMAT; ?></strong><br /><?php echo zen_draw_pull_down_menu('format', $available_export_formats, $format); ?></td>
+            <td class="main"><strong><?php echo TEXT_ACTIVITY_EXPORT_FORMAT; ?></strong><br><?php echo zen_draw_pull_down_menu('format', $available_export_formats, $format); ?></td>
           </tr>
           <tr>
             <td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
           </tr>
           <tr>
-            <td class="main"><strong><?php echo TEXT_ACTIVITY_EXPORT_FILENAME; ?></strong><br /><?php echo zen_draw_input_field('filename', htmlspecialchars($file, ENT_COMPAT, CHARSET, TRUE), ' size="60"'); ?></td>
+            <td class="main"><strong><?php echo TEXT_ACTIVITY_EXPORT_FILENAME; ?></strong><br><?php echo zen_draw_input_field('filename', htmlspecialchars($file, ENT_COMPAT, CHARSET, TRUE), ' size="60"'); ?></td>
           </tr>
           <tr>
             <td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
           </tr>
           <tr>
-            <td class="main"><?php echo zen_draw_checkbox_field('savetofile', '1', $save_to_file_checked); ?> <strong><?php echo TEXT_ACTIVITY_EXPORT_SAVETOFILE; ?></strong><br />
+            <td class="main"><?php echo zen_draw_checkbox_field('savetofile', '1', $save_to_file_checked); ?> <strong><?php echo TEXT_ACTIVITY_EXPORT_SAVETOFILE; ?></strong><br>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php echo TEXT_ACTIVITY_EXPORT_DEST; ?></strong> <em><?php echo DIR_FS_COUPON_EXPORT; ?></em>
               </td>
           </tr>
@@ -386,7 +369,7 @@ require (DIR_WS_INCLUDES . 'header.php');
     </table>
     <!-- body_eof //--> <!-- footer //-->
 <?php require (DIR_WS_INCLUDES . 'footer.php'); ?>
-<!-- footer_eof //--> <br />
+<!-- footer_eof //--> <br>
 
 </body>
 </html>

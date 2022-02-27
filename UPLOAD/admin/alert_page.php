@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: alert_page.php 2021-11-29 20:01:24Z webchills $
+ * @version $Id: alert_page.php 2022-02-27 19:22:24Z webchills $
  */
 require('includes/application_top.php');
 $adminDirectoryExists = $installDirectoryExists = false;
@@ -20,9 +20,11 @@ if (!$adminDirectoryExists && !$installDirectoryExists) {
 }
 ?>
 <!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Zen Cart!</title>
     <meta name="robots" content="noindex, nofollow">
 </head>
@@ -35,7 +37,7 @@ if (!$adminDirectoryExists && !$installDirectoryExists) {
             <li><?php echo ALERT_REMOVE_ZCINSTALL; ?><br><br></li>
         <?php } ?>
         <?php if ($adminDirectoryExists) { ?>
-	<li><?php echo ALERT_RENAME_ADMIN; ?><br /><a href="https://www.zen-cart-pro.at/forum/threads/9870-Wie-benenne-ich-das-admin-Verzeichnis-in-Zen-Cart-1-5-x-um" target="_blank"><?php echo ADMIN_RENAME_FAQ_NOTE; ?></a></li>
+	<li><?php echo ALERT_RENAME_ADMIN; ?><br><a href="https://www.zen-cart-pro.at/forum/threads/9870-Wie-benenne-ich-das-admin-Verzeichnis-in-Zen-Cart-1-5-x-um" target="_blank"><?php echo ADMIN_RENAME_FAQ_NOTE; ?></a></li>
 	<?php  } ?>
 	</ul>
     <?php if ($adminDirectoryExists) { ?>

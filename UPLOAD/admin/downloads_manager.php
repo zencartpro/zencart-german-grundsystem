@@ -1,23 +1,23 @@
 <?php
 /**
- 
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: downloads_manager.php 2021-10-24 17:49:16Z webchills $
+ * @version $Id: downloads_manager.php 2022-02-27 19:35:16Z webchills $
  */
 
-require('includes/application_top.php');
+require 'includes/application_top.php';
 
-require(DIR_WS_CLASSES . 'currencies.php');
+require DIR_WS_CLASSES . 'currencies.php';
 $currencies = new currencies();
 
 $languages = zen_get_languages();
 
 $action = (isset($_GET['action']) ? $_GET['action'] : '');
 
-if (zen_not_null($action)) {
+if (!empty($action)) {
   switch ($action) {
     case 'insert':
     case 'save':
@@ -40,26 +40,12 @@ if (zen_not_null($action)) {
 <!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
   <head>
-    <meta charset="<?php echo CHARSET; ?>">
-    <title><?php echo TITLE; ?></title>
-    <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-    <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-    <script src="includes/menu.js"></script>
-    <script src="includes/general.js"></script>
-    <script>
-      function init() {
-          cssjsmenu('navbar');
-          if (document.getElementById) {
-              var kill = document.getElementById('hoverJS');
-              kill.disabled = true;
-          }
-      }
-    </script>
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
   </head>
   <!-- <body onload="init()"> -->
-  <body onload="init()">
+  <body>
     <!-- header //-->
-    <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
+    <?php require DIR_WS_INCLUDES . 'header.php'; ?>
     <!-- header_eof //-->
     <div class="container-fluid">
       <h1><?php echo HEADING_TITLE; ?></h1>
@@ -246,8 +232,9 @@ if (zen_not_null($action)) {
     </div>
     <!-- body_text_eof //-->
     <!-- footer //-->
-    <?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
+    <?php require DIR_WS_INCLUDES . 'footer.php'; ?>
     <!-- footer_eof //-->
   </body>
 </html>
-<?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>
+<?php
+require DIR_WS_INCLUDES . 'application_bottom.php';

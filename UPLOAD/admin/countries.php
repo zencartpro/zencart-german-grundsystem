@@ -5,10 +5,10 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: countries.php 2021-11-29 20:04:51Z webchills $
+ * @version $Id: countries.php 2022-02-27 19:29:51Z webchills $
  */
 
-  require('includes/application_top.php');
+require 'includes/application_top.php';
 
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
 
@@ -116,25 +116,11 @@
 <!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
   <head>
-    <meta charset="<?php echo CHARSET; ?>">
-    <title><?php echo TITLE; ?></title>
-    <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-    <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-    <script src="includes/menu.js"></script>
-    <script src="includes/general.js"></script>
-    <script>
-      function init() {
-          cssjsmenu('navbar');
-          if (document.getElementById) {
-              var kill = document.getElementById('hoverJS');
-              kill.disabled = true;
-          }
-      }
-    </script>
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
   </head>
-<body onload="init()">
-<!-- header //-->
-<?php require(DIR_WS_INCLUDES . 'header.php'); ?>
+  <body>
+    <!-- header //-->
+    <?php require DIR_WS_INCLUDES . 'header.php'; ?>
 <!-- header_eof //-->
 
 <!-- body //-->
@@ -302,8 +288,9 @@
     <!-- body_eof //-->
 
     <!-- footer //-->
-    <?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
+    <?php require DIR_WS_INCLUDES . 'footer.php'; ?>
     <!-- footer_eof //-->
   </body>
 </html>
-<?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>
+<?php
+require DIR_WS_INCLUDES . 'application_bottom.php';

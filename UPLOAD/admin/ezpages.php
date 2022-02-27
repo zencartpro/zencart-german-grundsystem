@@ -6,9 +6,9 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ezpages.php 2021-10-24 17:52:51Z webchills $
+ * @version $Id: ezpages.php 2022-02-27 19:37:51Z webchills $
  */
-require('includes/application_top.php');
+require 'includes/application_top.php';
    
 
 if (!isset($_SESSION['ez_sort_order'])) {
@@ -218,29 +218,15 @@ if (zen_not_null($action)) {
 <!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
   <head>
-    <meta charset="<?php echo CHARSET; ?>">
-    <title><?php echo TITLE; ?></title>
-    <link rel="stylesheet" href="includes/stylesheet.css">
-    <link rel="stylesheet" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-    <script src="includes/menu.js"></script>
-    <script src="includes/general.js"></script>
-    <script>
-      function init() {
-          cssjsmenu('navbar');
-          if (document.getElementById) {
-              var kill = document.getElementById('hoverJS');
-              kill.disabled = true;
-          }
-      }
-    </script>
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
     <?php
     if ($editor_handler != '') {
-      include ($editor_handler);
+      include $editor_handler;
     }
     ?>
   </head>
-  <body onLoad="init()">
-      <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
+  <body>
+    <?php require DIR_WS_INCLUDES . 'header.php'; ?>
     <!-- header_eof //-->
     <!-- body //-->
     <div class="container-fluid">
@@ -706,7 +692,7 @@ if (zen_not_null($action)) {
                   break;
               }
 
-              if ((zen_not_null($heading)) && (zen_not_null($contents))) {
+            if (!empty($heading) && !empty($contents)) {
                 $box = new box;
                 echo $box->infoBox($heading, $contents);
               }

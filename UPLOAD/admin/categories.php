@@ -1,10 +1,11 @@
 <?php
 /**
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: categories.php 2021-11-29 20:03:51Z webchills $
+ * @version $Id: categories.php 2022-02-27 19:26:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -14,21 +15,20 @@ $parameters = [
   'categories_name' => '',
   'categories_description' => '',
   'categories_image' => '',
-  'sort_order' => ''
+  'sort_order' => '',
 ];
 $cInfo = new objectInfo($parameters);
 
 $categoryId = (isset($_GET['cID']) ? (int)$_GET['cID'] : '');
-if ($categoryId != '') {
+if (!empty($categoryId)) {
   $category = $db->Execute("SELECT c.categories_id, cd.categories_name, cd.categories_description, c.categories_image,
                                    c.sort_order, c.date_added, c.last_modified
-                            FROM " . TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd
-                            WHERE c.categories_id = " . $categoryId . "
-                            AND c.categories_id = cd.categories_id
-                            AND cd.language_id = " . (int)$_SESSION['languages_id']);
+                            FROM " . TABLE_CATEGORIES . " c
+                            LEFT JOIN " . TABLE_CATEGORIES_DESCRIPTION . " cd ON (c.categories_id = cd.categories_id AND cd.language_id = " . (int)$_SESSION['languages_id'] . ")
+                            WHERE c.categories_id = " . $categoryId);
   $cInfo->updateObjectInfo($category->fields);
 }
-$action = (isset($_GET['action']) ? $_GET['action'] : '');
+$action = $_GET['action'] ?? '';
 
 if (isset($_GET['page'])) {
   $_GET['page'] = (int)$_GET['page'];
@@ -42,7 +42,7 @@ if (isset($_GET['cID'])) {
 
 $zco_notifier->notify('NOTIFY_BEGIN_ADMIN_CATEGORIES', $action);
 
-if (zen_not_null($action)) {
+if (!empty($action)) {
   switch ($action) {
 
     case 'remove_type':

@@ -1,10 +1,11 @@
 <?php
 /**
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: password_forgotten.php 2021-10-24 18:20:16Z webchills $
+ * @version $Id: password_forgotten.php 2022-02-27 19:54:16Z webchills $
  */
 // reset-token is good for only 24 hours:
 define('ADMIN_PWD_TOKEN_DURATION', (24 * 60 * 60));
@@ -103,13 +104,7 @@ $has_duplicate_admin_emails = ($result->RecordCount() > 0);
 <!DOCTYPE html>
 <html <?php echo HTML_PARAMS; ?>>
   <head>
-    <meta charset="<?php echo CHARSET; ?>">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php echo TITLE; ?></title>
-    <link rel="stylesheet" href="includes/css/bootstrap.min.css">
-    <link rel="stylesheet" href="includes/css/font-awesome.min.css">
-    <link href="includes/css/login.css" rel="stylesheet">
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
     <meta name="robots" content="noindex, nofollow">
   </head>
   <body id="login">

@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: modules.php 2021-10-24 18:07:51Z webchills $
+ * @version $Id: modules.php 2022-02-27 19:46:51Z webchills $
  */
 function getConfigLanguage($cKey){
      global $db;
@@ -46,7 +46,7 @@ $set = (isset($_GET['set']) ? $_GET['set'] : (isset($_POST['set']) ? $_POST['set
 
 $is_ssl_protected = (substr(HTTP_SERVER, 0, 5) == 'https') ? TRUE : FALSE;
 
-if (zen_not_null($set)) {
+if (!empty($set)) {
   switch ($set) {
     case 'shipping':
       $module_type = 'shipping';
@@ -90,7 +90,7 @@ $notifications = new AdminNotifications();
 $availableNotifications = $notifications->getNotifications($notificationType, $_SESSION['admin_id']);
 
 $action = (isset($_GET['action']) ? $_GET['action'] : '');
-if (zen_not_null($action)) {
+if (!empty($action)) {
   $admname = '{' . preg_replace('/[^\w]/', '*', zen_get_admin_name()) . '[' . (int)$_SESSION['admin_id'] . ']}';
   switch ($action) {
     case 'save':
@@ -121,7 +121,7 @@ if (zen_not_null($action)) {
       }
       $msg = sprintf(TEXT_EMAIL_MESSAGE_ADMIN_SETTINGS_CHANGED, preg_replace('/[^\w]/', '*', (!empty($_GET['module']) ? $_GET['module'] : (!empty($_GET['set']) ? $_GET['set'] : 'UNKNOWN'))), $admname);
       zen_record_admin_activity($msg, 'warning');
-      zen_mail(STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, TEXT_EMAIL_SUBJECT_ADMIN_SETTINGS_CHANGED, $msg, STORE_NAME, EMAIL_FROM, ['EMAIL_MESSAGE_HTML' => $msg], 'admin_settings_changed');
+      zen_mail(STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, TEXT_EMAIL_SUBJECT_ADMIN_SETTINGS_CHANGED, $msg, STORE_NAME, EMAIL_FROM, ['EMAIL_MESSAGE_HTML' => nl2br($msg)], 'admin_settings_changed');
       zen_redirect(zen_href_link(FILENAME_MODULES, 'set=' . $set . (!empty($_GET['module']) ? '&module=' . $_GET['module'] : ''), 'SSL'));
       break;
     case 'install':
@@ -138,7 +138,7 @@ if (zen_not_null($action)) {
             $module = new $class();
             $msg = sprintf(TEXT_EMAIL_MESSAGE_ADMIN_MODULE_INSTALLED, preg_replace('/[^\w]/', '*', $_POST['module']), $admname);
             zen_record_admin_activity($msg, 'warning');
-            zen_mail(STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, TEXT_EMAIL_SUBJECT_ADMIN_SETTINGS_CHANGED, $msg, STORE_NAME, EMAIL_FROM, ['EMAIL_MESSAGE_HTML' => $msg], 'admin_settings_changed');
+            zen_mail(STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, TEXT_EMAIL_SUBJECT_ADMIN_SETTINGS_CHANGED, $msg, STORE_NAME, EMAIL_FROM, ['EMAIL_MESSAGE_HTML' => nl2br($msg) ], 'admin_settings_changed');
             $result = $module->install();
           }
       }
@@ -156,7 +156,7 @@ if (zen_not_null($action)) {
               $module = new $class();
               $msg    = sprintf(TEXT_EMAIL_MESSAGE_ADMIN_MODULE_REMOVED, preg_replace('/[^\w]/', '*', $_POST['module']), $admname);
               zen_record_admin_activity($msg, 'warning');
-              zen_mail(STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, TEXT_EMAIL_SUBJECT_ADMIN_SETTINGS_CHANGED, $msg, STORE_NAME, EMAIL_FROM, ['EMAIL_MESSAGE_HTML'=>$msg], 'admin_settings_changed');
+              zen_mail(STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, TEXT_EMAIL_SUBJECT_ADMIN_SETTINGS_CHANGED, $msg, STORE_NAME, EMAIL_FROM, ['EMAIL_MESSAGE_HTML' => nl2br($msg) ], 'admin_settings_changed');
               $result = $module->remove();
           }
       }
@@ -168,23 +168,9 @@ if (zen_not_null($action)) {
 <!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
   <head>
-    <meta charset="<?php echo CHARSET; ?>">
-    <title><?php echo TITLE; ?></title>
-    <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-    <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-    <script src="includes/menu.js"></script>
-    <script src="includes/general.js"></script>
-    <script>
-      function init() {
-          cssjsmenu('navbar');
-          if (document.getElementById) {
-              var kill = document.getElementById('hoverJS');
-              kill.disabled = true;
-          }
-      }
-    </script>
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
   </head>
-  <body onLoad="init()">
+  <body>
     <!-- header //-->
     <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
     <!-- header_eof //-->
@@ -434,7 +420,7 @@ if (zen_not_null($action)) {
           }
           ?>
           <?php
-          if ((zen_not_null($heading)) && (zen_not_null($contents))) {
+          if (!empty($heading) && !empty($contents)) {
             $box = new box();
             echo $box->infoBox($heading, $contents);
           }

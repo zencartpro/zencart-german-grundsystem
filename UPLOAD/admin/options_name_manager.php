@@ -1,10 +1,11 @@
 <?php
 /**
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: options_name_manager.php 2021-10-24 18:10:16Z webchills $
+ * @version $Id: options_name_manager.php 2022-02-27 19:52:16Z webchills $
  */
 require 'includes/application_top.php';
 $languages = zen_get_languages();
@@ -37,11 +38,12 @@ $option_order_by = !empty($_GET['option_order_by']) && $_GET['option_order_by'] 
 if (!empty($_POST['options_id'])) { // selected Option Name from Global Tools dropdowns (not used for ADD ALL/DELETE ALL)
     $_SESSION['selectedOptionId'] = (int)$_POST['options_id'];
 }
+$form_id = '';
 if (!empty($_POST['form_wrapper_id'])) { // id of surrounding div of the submitted form: on redirect, focus browser viewport on same id/anchor
     $form_id = zen_db_prepare_input($_POST['form_wrapper_id']);
 }
 
-if (zen_not_null($action)) {
+if (!empty($action)) {
     switch ($action) {
         case 'add_product_options': // insert a new Option Name
             $option_name_array = $_POST['option_name']; // array
@@ -387,11 +389,7 @@ function translate_type_to_name($opt_type)
 <!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
 <head>
-    <meta charset="<?php echo CHARSET; ?>">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php echo TITLE; ?></title>
-    <link rel="stylesheet" href="includes/stylesheet.css">
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
 </head>
 <body>
 <?php require DIR_WS_INCLUDES . 'header.php'; ?>
@@ -683,7 +681,7 @@ function translate_type_to_name($opt_type)
     } else {
         $category_path = false;
     }
-    $selectedOptionId = !empty($_SESSION['selectedOptionId']) ? (int)$_SESSION['selectedOptionId'] : ''; // set after change of Option Name select dropdopwn
+    $selectedOptionId = !empty($_SESSION['selectedOptionId']) ? (int)$_SESSION['selectedOptionId'] : ''; // set after change of Option Name select dropdown
 
     $options_names = $db->Execute("SELECT products_options_id, products_options_name
                                         FROM " . TABLE_PRODUCTS_OPTIONS . "

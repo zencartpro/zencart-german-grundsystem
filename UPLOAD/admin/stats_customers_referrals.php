@@ -1,11 +1,11 @@
 <?php
 /**
- 
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: stats_customers_referrals.php 2021-10-25 17:49:16Z webchills $
+ * @version $Id: stats_customers_referrals.php 2022-02-27 20:05:16Z webchills $
  */
 require('includes/application_top.php');
 
@@ -21,23 +21,9 @@ include DIR_FS_CATALOG . DIR_WS_CLASSES . 'order.php';
 <!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
   <head>
-    <meta charset="<?php echo CHARSET; ?>">
-    <title><?php echo TITLE; ?></title>
-    <link rel="stylesheet" href="includes/stylesheet.css">
-    <link rel="stylesheet" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-    <script src="includes/menu.js"></script>
-    <script src="includes/general.js"></script>
-    <script>
-      function init() {
-          cssjsmenu('navbar');
-          if (document.getElementById) {
-              var kill = document.getElementById('hoverJS');
-              kill.disabled = true;
-          }
-      }
-    </script>
+      <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
   </head>
-  <body onload="init()">
+  <body>
     <!-- header //-->
     <?php
     require(DIR_WS_INCLUDES . 'header.php');
@@ -50,7 +36,7 @@ include DIR_FS_CATALOG . DIR_WS_CLASSES . 'order.php';
       <h1 class="pageHeading"><?php echo HEADING_TITLE; ?></h1>
       <?php
 // select all customer_referrals
-      $customers_referral_query = "select distinct customers_referral from " . TABLE_CUSTOMERS . " where customers_referral != ''";
+      $customers_referral_query = "SELECT customers_referral, count(*) AS count FROM " . TABLE_CUSTOMERS . " WHERE customers_referral != '' GROUP BY customers_referral";
       $customers_referral = $db->Execute($customers_referral_query);
 
       $customers_referrals = array();
@@ -61,7 +47,7 @@ include DIR_FS_CATALOG . DIR_WS_CLASSES . 'order.php';
       foreach ($customers_referral as $customer_referral) {
         $customers_referrals[] = array(
           'id' => $customer_referral['customers_referral'],
-          'text' => $customer_referral['customers_referral']);
+          'text' => $customer_referral['customers_referral'] . ' (' . $customer_referral['count'] . ')');
       }
       ?>
       <?php echo zen_draw_form('new_date', FILENAME_STATS_CUSTOMERS_REFERRALS, '', 'get', 'class="form-horizontal"'); ?>
@@ -146,8 +132,8 @@ include DIR_FS_CATALOG . DIR_WS_CLASSES . 'order.php';
           <tr>
             <td class="main"><?php echo zen_date_long($customers_order['date_purchased']); ?></td>
             <td class="main"><?php echo TEXT_ORDER_NUMBER; ?> <?php echo $customers_order['orders_id']; ?></td>
-            <td class="main"><?php echo TEXT_COUPON_ID; ?> <?php echo $customers_order['coupon_code']; ?></td>
-            <td class="main"><a href="<?php echo zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('oID', 'action')) . 'oID=' . $customers_order['orders_id'] . '&action=edit', 'NONSSL'); ?>" class="btn btn-primary" role="button"><?php echo IMAGE_EDIT; ?></a></td>
+            <td class="main"><?php echo (!empty($customers_order['coupon_code']) ? TEXT_COUPON_ID . ' ' . $customers_order['coupon_code'] : ''); ?></td>
+            <td class="main"><a href="<?php echo zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('oID', 'action')) . 'oID=' . $customers_order['orders_id'] . '&action=edit', 'NONSSL'); ?>" class="btn btn-primary" role="button"><?php echo IMAGE_DETAILS; ?></a></td>
           </tr>
 
           <?php for ($i = 0, $n = sizeof($order->totals); $i < $n; $i++) { ?>

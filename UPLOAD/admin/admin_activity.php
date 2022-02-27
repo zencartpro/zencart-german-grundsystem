@@ -1,12 +1,12 @@
 <?php
 /**
  * Admin Activity Log Viewer/Archiver
- *
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: admin_activity.php 2021-11-29 19:13:51Z webchills $
+ * @version $Id: admin_activity.php 2022-02-27 19:19:51Z webchills $
  *
  * @TODO: prettify so on-screen output is more friendly, perhaps adding pagination support etc (using existing "s" and "p" params)
  * @TODO: prettify by hiding postdata until requested, either with hidden layers or other means
@@ -28,8 +28,8 @@ $available_export_formats[0] = array('id' => '0', 'text' => TEXT_EXPORTFORMAT0, 
 $available_export_formats[1] = array('id' => '1', 'text' => TEXT_EXPORTFORMAT1, 'format' => 'CSV'); // export to CSV
 //  $available_export_formats[2]=array('id' => '2', 'text' => TEXT_EXPORTFORMAT2, 'format' => 'TXT');
 //  $available_export_formats[3]=array('id' => '3', 'text' => TEXT_EXPORTFORMAT3, 'format' => 'XML');
-$save_to_file_checked = (isset($_POST['savetofile']) && zen_not_null($_POST['savetofile']) ? $_POST['savetofile'] : 0);
-$post_format = (isset($_POST['format']) && zen_not_null($_POST['format']) ? $_POST['format'] : 1);
+$save_to_file_checked = (isset($_POST['savetofile']) && !empty($_POST['savetofile']) ? $_POST['savetofile'] : 0);
+$post_format = (isset($_POST['format']) && !empty($_POST['format']) ? $_POST['format'] : 1);
 $format = $available_export_formats[$post_format]['format'];
 $file = (isset($_POST['filename']) ? preg_replace('/[^\w\.-]/', '', $_POST['filename']) : 'admin_activity_archive_' . date('Y-m-d_H-i-s') . '.csv');
 if (!preg_match('/.*\.(csv|txt|html?|xml)$/', $file)) {
@@ -256,9 +256,7 @@ if ($action != '') {
             <!doctype html>
             <html <?php echo HTML_PARAMS; ?>>
               <head>
-                <meta charset="<?php echo CHARSET; ?>">
-                <title><?php echo TITLE; ?></title>
-                <link rel="stylesheet" href="includes/stylesheet.css">
+                  <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
               </head>
               <body>
                   <?php
@@ -306,23 +304,9 @@ if ($action != '') {
 <!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
   <head>
-    <meta charset="<?php echo CHARSET; ?>">
-    <title><?php echo TITLE; ?></title>
-    <link rel="stylesheet" href="includes/stylesheet.css">
-    <link rel="stylesheet" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-    <script src="includes/menu.js"></script>
-    <script src="includes/general.js"></script>
-    <script>
-      function init() {
-          cssjsmenu('navbar');
-          if (document.getElementById) {
-              var kill = document.getElementById('hoverJS');
-              kill.disabled = true;
-          }
-      }
-    </script>
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
   </head>
-  <body onload="init()">
+  <body>
     <!-- header //-->
     <?php
     require (DIR_WS_INCLUDES . 'header.php');
@@ -390,7 +374,7 @@ if ($action != '') {
     </div>
     <!-- body_eof //--> <!-- footer //-->
     <?php require (DIR_WS_INCLUDES . 'footer.php'); ?>
-    <!-- footer_eof //--> <br />
+    <!-- footer_eof //--> <br>
 
   </body>
 </html>

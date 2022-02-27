@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: rl_invoice3_ajax.php 2020-02-21 16:19:17Z webchills $
+ * @version $Id: rl_invoice3_ajax.php 2022-02-27 20:28:17Z webchills $
  */
  
 $show_all_errors = false;
@@ -32,7 +32,6 @@ if($oID < 1){
     exit();
 }
 $pdfT = new rl_invoice3($oID, $paper['orientation'], $paper['unit'], $paper['format']); 
-#$pdfT->checkInstall();
 
 $param = zen_sanitize_string($_GET['p']);
 
@@ -72,15 +71,10 @@ class rl_invoice3_ajax {
     }
     function getContent() {
         return $this->content;
-    }
-    
-    
+    }  
 
     
     function getFormsave(){
-        #rldp($this->updateArray , '$updateArray');
-        #rldp($_GET, 'GET');
-        #rldp($_POST, 'POST');
         
         $ret = '';
         foreach ($this->updateArray  as $key => $values) {
@@ -98,31 +92,21 @@ class rl_invoice3_ajax {
                         $v = $_POST[$t];
                     }
                     $sqlVal .= $v . '|';
-                    #echo "$t :: $v: <br />";
+                   
                 }
                 $sqlVal = substr($sqlVal, 0, -1);
                 $sql = "UPDATE " . TABLE_CONFIGURATION . " SET configuration_value = '" . $sqlVal . "' WHERE configuration_key = '$key'";
                 $t = str_replace('UPDATE configuration SET configuration_value =', '', $sql);
                 $ret .= str_replace('WHERE configuration_key =', '=', $t) . '<br />';
-                #echo "$sql <hr>";
+               
                 $this->db->Execute($sql);
             }
-            #$sql = "UPDATE RL_INVOICE3 SET configuration_value = '" . $_POST[$value] . "' WHERE configuration_key = '$value'";
-            #echo "$sql\n";
-            #$this->db->Execute($sql);
+           
         }
         return '<h1 style="color:#FF0000; background-color: #DDEE22;">Data saved</h1>' . $ret;
     }
     
     function getDefaultvalues(){
-/*        
-        {"RL_INVOICE3_ADDRESS1_POS":["0","30"],"RL_INVOICE3_ADDRESS2_POS":["90","36"],"RL_INVOICE3_DELTA":["20"
-
-,"20"],"RL_INVOICE3_MARGIN":["25","10","30","20"],"RL_INVOICE3_PAPER":["A4","mm","P"],"RL_INVOICE3_DELTA_2PAGE"
-
-:["15"],"RL_INVOICE3_ADDRESS_WIDTH":["80","60"]}
-        */
-
         
         $resp = array();
         foreach ($this->updateArray  as $key => $values) {
@@ -134,19 +118,17 @@ class rl_invoice3_ajax {
                     $resp[$key . '_' . $value] = $tmp[$k];
                 }
             }
-            #return json_encode($resp);  
+            
         }
         $x[] = $resp;
-        #return json_encode($x);
-        return json_encode($resp);
-        #echo rldp($resp, 'DEFAULT');
+        
+        return json_encode($resp);       
         
     }
     
 }
 $rl = new rl_invoice3_ajax($param);
 echo $rl->getContent();
-
 
 
     class InvoiceAjax {
@@ -161,6 +143,4 @@ echo $rl->getContent();
     $o = new InvoiceAjax(
         'rl_1', 'value',
         'rl_2', array('element 1', 'element 2')) ;
-    ##rldp((array)$o);
-    
     

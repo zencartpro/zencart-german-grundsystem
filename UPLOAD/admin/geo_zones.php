@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: geo_zones.php 2021-10-24 17:55:51Z webchills $
+ * @version $Id: geo_zones.php 2022-02-27 19:38:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -20,7 +20,7 @@ if (isset($_GET['spage'])) {
   $_GET['spage'] = (int)$_GET['spage'];
 }
 
-if (zen_not_null($saction)) {
+if (!empty($saction)) {
   switch ($saction) {
     case 'insert_sub':
       $zID = zen_db_prepare_input($_GET['zID']);
@@ -47,7 +47,7 @@ if (zen_not_null($saction)) {
       $db->Execute("UPDATE " . TABLE_ZONES_TO_GEO_ZONES . "
                     SET geo_zone_id = " . (int)$zID . ",
                         zone_country_id = " . (int)$zone_country_id . ",
-                        zone_id = " . (zen_not_null($zone_id) ? (int)$zone_id : 'null') . ",
+                        zone_id = " . (!empty($zone_id) ? (int)$zone_id : 'null') . ",
                         last_modified = now()
                     WHERE association_id = " . (int)$sID);
 
@@ -67,7 +67,7 @@ if (zen_not_null($saction)) {
 
 $action = (isset($_GET['action']) ? $_GET['action'] : '');
 
-if (zen_not_null($action)) {
+if (!empty($action)) {
   switch ($action) {
     case 'insert_zone':
       $geo_zone_name = zen_db_prepare_input($_POST['geo_zone_name']);
@@ -119,15 +119,8 @@ if (zen_not_null($action)) {
 <!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
   <head>
-    <meta charset="<?php echo CHARSET; ?>">
-    <title><?php echo TITLE; ?></title>
-    <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-    <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-    <script src="includes/menu.js"></script>
-    <script src="includes/general.js"></script>
-    <?php
-    if (isset($_GET['zID']) && (($saction == 'edit') || ($saction == 'new'))) {
-      ?>
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
+    <?php if (isset($_GET['zID']) && (($saction == 'edit') || ($saction == 'new'))) { ?>
       <script>
         function resetZoneSelected(theForm) {
             if (theForm.state.value != '') {
@@ -167,7 +160,7 @@ if (zen_not_null($action)) {
       // -->
     </script>
   </head>
-  <body onLoad="init()">
+  <body>
     <!-- header //-->
     <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
     <!-- header_eof //-->
@@ -441,7 +434,7 @@ if (zen_not_null($action)) {
                 }
               }
 
-              if ((zen_not_null($heading)) && (zen_not_null($contents))) {
+              if (!empty($heading) && !empty($contents)) {
                 $box = new box;
                 echo $box->infoBox($heading, $contents);
               }
