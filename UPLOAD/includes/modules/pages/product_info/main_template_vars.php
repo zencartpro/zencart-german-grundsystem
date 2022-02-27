@@ -1,13 +1,13 @@
 <?php
 /**
  *  product_info main_template_vars.php
- 
+ *
  
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main_template_vars.php 2021-11-29 15:34:36Z webchills $
+ * @version $Id: main_template_vars.php 2022-02-27 08:30:36Z webchills $
  */
 /*
  * Extracts and constructs the data to be used in the product-type template tpl_TYPEHANDLER_info_display.php
@@ -93,7 +93,6 @@
 
     $products_discount_type = $product_info->fields['products_discount_type'];
     $products_discount_type_from = $product_info->fields['products_discount_type_from'];
-  }
 
   require(DIR_WS_MODULES . zen_get_module_directory('product_prev_next.php'));
 
@@ -126,11 +125,15 @@
     }
     $dir->close();
   }
-  if (sizeof($directory_array)) sort($directory_array);
+        if (sizeof($directory_array)) {
+            sort($directory_array);
+        }
 
-  for ($i = 0, $n = sizeof($directory_array); $i < $n; $i++) {
-    if (file_exists($extras_dir . $directory_array[$i])) include($extras_dir . $directory_array[$i]);
-  }
+        for ($i = 0, $n = sizeof($directory_array); $i < $n; $i++) {
+            if (file_exists($extras_dir . $directory_array[$i])) {
+                include($extras_dir . $directory_array[$i]);
+            }
+        }
 
 // build show flags from product type layout settings
   $flag_show_product_info_starting_at = zen_get_show_product_switch($_GET['products_id'], 'starting_at');
@@ -150,11 +153,10 @@
   require(DIR_WS_MODULES . zen_get_module_directory(FILENAME_PRODUCTS_QUANTITY_DISCOUNTS));
 
   $zco_notifier->notify('NOTIFY_MAIN_TEMPLATE_VARS_EXTRA_PRODUCT_INFO');
-
+    }
 
   require($template->get_template_dir($tpl_page_body,DIR_WS_TEMPLATE, $current_page_base,'templates'). $tpl_page_body);
 
-  //require(DIR_WS_MODULES . zen_get_module_directory(FILENAME_ALSO_PURCHASED_PRODUCTS));
 
   // This should be last line of the script:
   $zco_notifier->notify('NOTIFY_MAIN_TEMPLATE_VARS_END_PRODUCT_INFO');
