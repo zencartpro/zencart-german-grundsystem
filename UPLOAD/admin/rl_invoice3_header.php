@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: rl_invoice3_header.php 2016-06-19 07:19:17Z webchills $
+ * @version $Id: rl_invoice3_header.php 2022-02-28 17:19:17Z webchills $
  */
  
 $v1 = HTML_PARAMS;
@@ -24,7 +24,7 @@ echo <<<END
 <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
 <script type="text/javascript" src="includes/menu.js"></script>
 <script type="text/javascript" src="includes/general.js"></script>
-<script type="text/javascript" src="rl_invoice3/ajax/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="rl_invoice3/ajax/jquery-2.0.2.min.js"></script>
 <script type="text/javascript" src="rl_invoice3/ajax/jquery-ui.js"></script>
 <script type="text/javascript" src="rl_invoice3/ajax/jquery.form.js"></script>
 <script type="text/javascript" src="rl_invoice3/ajax/jquery.spin.js"></script>

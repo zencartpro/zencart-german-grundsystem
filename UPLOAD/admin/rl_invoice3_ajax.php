@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: rl_invoice3_ajax.php 2022-02-27 20:28:17Z webchills $
+ * @version $Id: rl_invoice3_ajax.php 2022-02-28 17:34:17Z webchills $
  */
  
 $show_all_errors = false;
@@ -14,6 +14,7 @@ require_once ('includes/application_top.php');
 require (DIR_WS_CLASSES . 'currencies.php');
 include (DIR_WS_CLASSES . 'order.php');
 require_once ('../includes/classes/class.rl_invoice3.php');
+require_once ('../includes/languages/german/extra_definitions/rl_invoice3.php');
 $papDef = array('format' => 'A4', 'unit' => 'mm', 'orientation' => 'P');
 $pap = rl_invoice3::getDefault(RL_INVOICE3_PAPER, array('format' => 'A4', 'unit' => 'mm', 'orientation' => 'P'));
 $paper = array();

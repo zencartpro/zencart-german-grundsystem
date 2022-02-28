@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header-rl_invoice3.php 2021-12-26 13:44:17Z webchills $
+ * @version $Id: header-rl_invoice3.php 2022-02-28 17:44:17Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -15,11 +15,6 @@ if (!defined('IS_ADMIN_FLAG')) {
 if (defined('STRICT_ERROR_REPORTING') && STRICT_ERROR_REPORTING == true) {
   $messageStack->add('STRICT ERROR REPORTING IS ON', 'error');
 }
-/*
- * pull in any necessary JS for the page
- * Left here for lagacy pages that do not use the new admin_html_head.php file
- */
-require_once DIR_WS_INCLUDES . 'javascript_loader.php';
 
 $version_check_requested = (isset($_GET['vcheck']) && $_GET['vcheck'] != '') ? true : false;
 
