@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: coupon_admin.php 2021-12-01 09:18:08Z webchills $
+ * @version $Id: coupon_admin.php 2022-03-02 19:44:08Z webchills $
  */
 
 
@@ -25,7 +25,7 @@ define('TEXT_RICH_TEXT_MESSAGE', 'Rich-Text Nachricht:');
 define('TEXT_CONFIRM_DELETE','Wollen Sie diesen Aktionskupon wirklich löschen?');
 define('TEXT_SEE_RESTRICT','Verwendungseinschränkung:');
 
-define('TEXT_COUPON_ANNOUNCE', 'Wir erlauben uns, Ihnen einen Aktionskupon anzubieten.');
+define('TEXT_COUPON_ANNOUNCE', 'Wir freuen uns, Ihnen einen Aktionskupon anzubieten.');
 
 define('TEXT_TO_REDEEM','Sie können diesen Aktionskupon während des Bestellvorgangs einlösen. Sie brauchen nur die Nummer des Aktionskupons in das entsprechende Eingabefeld einzugeben und abschließend auf "Einlösen" zu klicken.');
 

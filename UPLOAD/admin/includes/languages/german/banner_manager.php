@@ -1,11 +1,11 @@
 <?php
 /**
- 
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: banner_manager.php 2022-01-19 21:41:14Z webchills $
+ * @version $Id: banner_manager.php 2022-03-02 19:41:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Banner Manager');
@@ -69,23 +69,17 @@ define('SUCCESS_BANNER_STATUS_UPDATED', 'Erfolgreich: Der Bannerstatus wurde akt
 
 define('ERROR_BANNER_TITLE_REQUIRED', 'Fehler: Ein Bannername wird benötigt.');
 define('ERROR_BANNER_GROUP_REQUIRED', 'Fehler: Eine Bannergruppe wird benötigt.');
-define('ERROR_IMAGE_DIRECTORY_DOES_NOT_EXIST', 'Achtung! Das Zielverzeichnis existiert nicht: %s');
-define('ERROR_IMAGE_DIRECTORY_NOT_WRITEABLE', 'Achtung! Das Zielverzeichnis ist nicht beschreibbar: %s');
 define('ERROR_IMAGE_DOES_NOT_EXIST', 'Fehler: Bild existiert nicht');
 define('ERROR_IMAGE_IS_NOT_WRITEABLE', 'Fehler: Bild kann nicht entfernt werden');
 define('ERROR_UNKNOWN_STATUS_FLAG', 'Fehler: Unbekannter Status gesetzt.');
 define('ERROR_BANNER_IMAGE_REQUIRED', 'Fehler: Banner Bild erforderlich.');
 
-define('ERROR_UNKNOWN_BANNER_OPEN_NEW_WINDOW', 'Fehler: Banner konnte nihct als im neuen Fenster öffnen gesetzt werden.');
-define('ERROR_UNKNOWN_BANNER_ON_SSL', 'Fehler: Banner konnte nicht zur Verwendung mit SSL gesetzt werden.');
-define('ERROR_GRAPHS_DIRECTORY_DOES_NOT_EXIST', 'Achtung! Das Grafikverzeichnis existiert nicht. Bitte erstellen Sie das Verzeichnis \'graphs\'  im Ordner \'images\'.');
-define('ERROR_GRAPHS_DIRECTORY_NOT_WRITEABLE', 'Achtung! Das graphs Verzeichnis ist nicht beschreibbar. Es befindet sich hier: <strong>' . DIR_WS_ADMIN . 'images/graphs</strong>');
 
 
 define('TEXT_LEGEND_BANNER_ON_SSL', 'SSL anzeigen');
 define('TEXT_LEGEND_BANNER_OPEN_NEW_WINDOWS', 'Neues Fenster');
 
-
+// Tooltip Text for images in Banner Manager
 define('IMAGE_ICON_BANNER_OPEN_NEW_WINDOWS_ON', 'Neues Fenster öffnen - EIN');
 define('IMAGE_ICON_BANNER_OPEN_NEW_WINDOWS_OFF', 'Neues Fenster öffnen - AUS');
 define('IMAGE_ICON_BANNER_ON_SSL_ON', 'Auf SSL Seiten darstellen - EIN');

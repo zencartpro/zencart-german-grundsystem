@@ -4,10 +4,10 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: specials.php 2021-01-17 16:05:16Z webchills $
+ * @version $Id: specials.php 2022-03-02 20:05:16Z webchills $
  */
 
-define('HEADING_TITLE','Sonderangebote und Abverkäufe');
+define('HEADING_TITLE','Sonderangebote');
 
 define('TABLE_HEADING_PRODUCTS','Artikel');
 define('TABLE_HEADING_STOCK', 'Lagerbestand');
@@ -34,7 +34,7 @@ define('TEXT_INFO_NEW_PRICE', 'Sonderpreis:');
 define('TEXT_INFO_ORIGINAL_PRICE', 'Original Preis:');
 define('TEXT_INFO_DISPLAY_PRICE', 'Derzeit angezeigter Preis:');
 define('TEXT_INFO_STATUS_CHANGED', 'Status geändert:');
-define('TEXT_IMAGE_NONEXISTENT','(kein Bild definiert)');
+
 
 define('TEXT_INFO_HEADING_DELETE_SPECIALS','Sonderpreis löschen');
 define('TEXT_INFO_DELETE_INTRO','Wollen Sie diesen Sonderpreis wirklich löschen?');

@@ -4,7 +4,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: sqlpatch.php 2022-01-19 20:39:16Z webchills $
+ * @version $Id: sqlpatch.php 2022-03-02 20:04:16Z webchills $
  */
 
 define('HEADING_TITLE', 'SQL Patches installieren');
@@ -29,29 +29,29 @@ define('SQLPATCH_HELP_TEXT', 'Das Tool "SQLPATCH" gibt Ihnen die Möglichkeit, S
 Wird dieses Skript in phpMyAdmin od. anderen Programmen ausgeführt, so wird die Zeile "#NEXT..." ignoriert.<br />
 <br /><strong>Anmerkung: </strong>SELECT.... FROM... und LEFT JOIN Befehle setzen voraus, dass "FROM" oder "LEFT JOIN" in einer eigenen Zeile stehen.<br /><br />
 <em><strong>Beispiele:</strong></em>
-<ul><li><code>#NEXT_X_ROWS_AS_ONE_COMMAND:4<br />
-SET @t1=0;<br />
-SELECT (@t1:=configuration_value) as t1 <br />
-FROM configuration <br />
-WHERE configuration_key = \'KEY_NAME_HERE\';<br />
-UPDATE product_type_layout SET configuration_value = @t1 WHERE configuration_key = \'KEY_NAME_TO_CHECK_HERE\';<br />
-DELETE FROM configuration WHERE configuration_key = \'KEY_NAME_HERE\';<br />&nbsp;</li>
+<ul><li><code>#NEXT_X_ROWS_AS_ONE_COMMAND:4<br>
+SET @t1=0;<br>
+SELECT (@t1:=configuration_value) as t1 <br>
+FROM configuration <br>
+WHERE configuration_key = \'KEY_NAME_HERE\';<br>
+UPDATE product_type_layout SET configuration_value = @t1 WHERE configuration_key = \'KEY_NAME_TO_CHECK_HERE\';<br>
+DELETE FROM configuration WHERE configuration_key = \'KEY_NAME_HERE\';</code><br>&nbsp;</li>
 
-<li>#NEXT_X_ROWS_AS_ONE_COMMAND:1<br />
-INSERT INTO tablename <br />
-(col1, col2, col3, col4)<br />
-SELECT col_a, col_b, col_3, col_4<br />
-FROM table2;<br />&nbsp;</li>
+<li><code>#NEXT_X_ROWS_AS_ONE_COMMAND:1<br>
+INSERT INTO tablename <br>
+(col1, col2, col3, col4)<br>
+SELECT col_a, col_b, col_3, col_4<br>
+FROM table2;</code><br>&nbsp;</li>
 
-<li>#NEXT_X_ROWS_AS_ONE_COMMAND:1<br />
-INSERT INTO table1 <br />
-(col1, col2, col3, col4 )<br />
-SELECT p.othercol_a, p.othercol_b, po.othercol_c, pm.othercol_d<br />
-FROM table2 p, table3 pm<br />
-LEFT JOIN othercol_f po<br />
-ON p.othercol_f = po.othercol_f<br />
-WHERE p.othercol_f = pm.othercol_f;</li>
-</ul></code>');
+<li><code>#NEXT_X_ROWS_AS_ONE_COMMAND:1<br>
+INSERT INTO table1 <br>
+(col1, col2, col3, col4 )<br>
+SELECT p.othercol_a, p.othercol_b, po.othercol_c, pm.othercol_d<br>
+FROM table2 p, table3 pm<br>
+LEFT JOIN othercol_f po<br>
+ON p.othercol_f = po.othercol_f<br>
+WHERE p.othercol_f = pm.othercol_f;</code><br>&nbsp;</li>
+</ul>' );
 define('REASON_TABLE_ALREADY_EXISTS', 'Tabelle(Table) %s kann nicht erstellt werden, da sie bereits vorhanden ist.');
 define('REASON_TABLE_DOESNT_EXIST', 'Tabelle(Table) %s kann nicht gedroppt werden, da sie nicht vorhanden ist.');
 define('REASON_TABLE_NOT_FOUND', 'Kann nicht ausgeführt werden, da Tabelle(Table) %s nicht vorhanden ist.');

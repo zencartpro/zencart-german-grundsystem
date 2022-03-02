@@ -23,7 +23,7 @@ define('TABLE_HEADING_DOWNLOAD', 'Download-Artikel');
 define('TABLE_TEXT_FILENAME', 'Dateiname:');
 define('TABLE_TEXT_MAX_DAYS', 'Ablauftage:');
 define('TABLE_TEXT_MAX_COUNT', 'Maximale Download-Anzahl:');
-define('TEXT_WARNING_OF_DELETE', 'Diese Option ist Artikel und Optionen zugewiesen - ein Löschen wird nicht empfohlen.');
+define('TEXT_WARNING_OF_DELETE', '<span class="alert">Diese Option ist Artikel und Optionen zugewiesen - ein Löschen wird nicht empfohlen.</span>');
 define('TEXT_OK_TO_DELETE', 'Diese Option ist keinen Artikeln und keinen Optionen zugewiesen und kann gelöscht werden.');
 define('TEXT_OPTION_ID', 'Option ID');
 define('TEXT_OPTION_NAME', 'Attributname');

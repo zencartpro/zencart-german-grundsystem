@@ -5,12 +5,12 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: countries.php 2021-12-01 09:32:14Z webchills $
+ * @version $Id: countries.php 2022-03-02 19:32:14Z webchills $
  */
 
 define('HEADING_TITLE','Länder');
 define('TABLE_HEADING_COUNTRY_NAME','Land');
-define('TABLE_HEADING_COUNTRY_CODES','ISO Code');
+define('TABLE_HEADING_COUNTRY_CODES','ISO Codes');
 define('TABLE_HEADING_COUNTRY_STATUS', 'Status');
 define('TABLE_HEADING_ACTION','Aktion');
 define('TEXT_INFO_EDIT_INTRO','Führen Sie hier bitte die notwendigen Änderungen durch');

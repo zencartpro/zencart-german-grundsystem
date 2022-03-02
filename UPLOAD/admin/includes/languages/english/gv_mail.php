@@ -1,11 +1,11 @@
 <?php
 /**
- 
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: gv_mail.php 2021-11-30 20:49:16Z webchills $
+ * @version $Id: gv_mail.php 2022-03-02 19:49:16Z webchills $
  */
 
 
@@ -19,7 +19,7 @@ define('TEXT_TO_EMAIL', 'or To an Email Address:');
 define('TEXT_TO_EMAIL_NAME', 'Name (optional):');
 define('TEXT_TO_EMAIL_INFO', 'Choose a list from the above drop-down or use the following fields for sending a single email.');
 define('TEXT_SUBJECT', 'Subject:');
-define('TEXT_AMOUNT', TEXT_GV_NAME . ' Value:');
+define('TEXT_AMOUNT', ' Value:');
 define('ERROR_GV_AMOUNT', 'Enter a number using a decimal point for fractions eg.: 25.00.');
 define('TEXT_AMOUNT_INFO', 'Enter a number using a decimal point for fractions eg.: 25.00.');
 define('TEXT_HTML_MESSAGE', 'HTML Message:');
@@ -33,5 +33,5 @@ define('ERROR_NO_SUBJECT', 'Error: no Email Subject entered.');
 
 define('TEXT_GV_ANNOUNCE', 'We\'re pleased to offer you a ' . TEXT_GV_NAME . ' for %s.');
 define('TEXT_GV_TO_REDEEM_TEXT', 'Use the following link to redeem the ' . TEXT_GV_NAME . "\n\n ". '%1$s%2$s' . "\n\n" . 'or visit ' . STORE_NAME . " at " . HTTP_CATALOG_SERVER . DIR_WS_CATALOG . "\n" . 'and enter the code %2$s on the Checkout-Payment page.');
-define('TEXT_GV_TO_REDEEM_HTML', '<a href="%1$s%2$s">Click here to redeem the ' . TEXT_GV_NAME . '</a> or visit <a href="' . HTTP_CATALOG_SERVER . DIR_WS_CATALOG . '">' . STORE_NAME . '</a> and enter the code <strong>%2$s</strong> on the Checkout-Payment page.');
+define('TEXT_GV_TO_REDEEM_HTML', '<br><a href="%1$s%2$s">Click here to redeem the ' . TEXT_GV_NAME . '</a> or visit <a href="' . HTTP_CATALOG_SERVER . DIR_WS_CATALOG . '">' . STORE_NAME . '</a> and enter the code <strong>%2$s</strong> on the Checkout-Payment page.');
 

@@ -1,11 +1,11 @@
 <?php
 /**
- * @package admin
+
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: whos_online.php 629 2016-04-09 09:28:14Z webchills $
+ * @version $Id: whos_online.php 2022-03-02 20:07:14Z webchills $
  */
 
 define('HEADING_TITLE','Wer ist online');
@@ -40,11 +40,8 @@ define('TEXT_EMPTY_CART', '<strong>Leerer Warenkorb</strong>');
 define('TEXT_WHOS_ONLINE_FILTER_SPIDERS', 'Spiders ausschliessen');
 define('TEXT_WHOS_ONLINE_FILTER_ADMINS', 'Admin IP Addressen ausschliessen?');
 
-define('WHOIS_TIMER_REMOVE', 1200); // seconds when removed from whos_online table - 1200 default = 20 minutes
-define('WHOIS_TIMER_INACTIVE', 180); // seconds when considered inactive - 180 default = 3 minutes
-define('WHOIS_TIMER_DEAD', 540); // seconds when considered dead - 540 default = 9 minutes
-define('WHOIS_SHOW_HOST', '1'); // show Last Clicked time and host name - 1 default
-define('WHOIS_REPEAT_LEGEND_BOTTOM', '12'); // show legend on bottom when more than how many entries - 12 default
+// show Last Clicked time and host name - 1 both(default), 0=time-only
+if (!defined('WHOIS_SHOW_HOST')) define('WHOIS_SHOW_HOST', '1');
 
 define('TEXT_DUPLICATE_IPS', 'Doppelte IP Adressen: ');
 define('TEXT_TOTAL_UNIQUE_USERS', 'Einzigartige User gesamt: ');

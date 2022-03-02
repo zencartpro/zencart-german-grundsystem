@@ -5,9 +5,9 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: mail.php 2021-12-02 16:23:14Z webchills $
+ * @version $Id: mail.php 2022-03-02 19:23:14Z webchills $
  */
-define('HEADING_TITLE','Rundschreiben versenden');
+define('HEADING_TITLE','Email an Kunden senden');
 
 define('TEXT_SUBJECT','Betreff:');
 define('TEXT_FROM','Absender:');

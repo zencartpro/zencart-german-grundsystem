@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: email_export.php 2019-06-17 11:49:16Z webchills $
+ * @version $Id: email_export.php 2022-03-02 19:49:16Z webchills $
  */
 define('HEADING_TITLE', 'Emailadressen Export');
 define('TEXT_EMAIL_EXPORT_FORMAT', 'Dateiformat für den Export:');
