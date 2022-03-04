@@ -6,7 +6,7 @@
 # * Zen Cart German Version - www.zen-cart-pro.at
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_zencart.sql 2022-02-11 17:55:16Z webchills $
+# * @version $Id: mysql_zencart.sql 2022-03-03 20:41:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -4442,8 +4442,10 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 ('Leerer Warenkorb: "Monatliche Sonderangebote" anzeigen', 'SHOW_SHOPPING_CART_EMPTY_SPECIALS_PRODUCTS', 43, 'Sollen "Monatliche Sonderangebote" in der Ansicht "leerer Warenkorb" angezeigt werden?<br />0= Nein (oder Sortierung einstellen)', now(), now()),
 ('Leerer Warenkorb: "Artikelankündigungen" anzeigen', 'SHOW_SHOPPING_CART_EMPTY_UPCOMING', 43, 'Sollen "Artikelankündigungen" in der Ansicht "leerer Warenkorb" angezeigt werden?<br />0= Nein (oder Sortierung einstellen)', now(), now()),
 ('Zeige Hinweis beim Login über den zusammengelegten Warenkorb an', 'SHOW_SHOPPING_CART_COMBINED', 43, 'Sobald ein Kunde sich anmeldet und von der letzten Anmeldung noch Artikel im Warenkorb hat, werden die aktuell im Warenkorb vorhandenen Artikel mit dem Warenkorb der letzten Anmeldung kombiniert.<br /><br />Soll der Kunde auf diesen Vorgang hingewiesen werden?<br /><br />0= NEIN, zeige keinen Hinweis an<br />1= JA, und gehe automatisch zum Warenkorb<br />2= JA, aber gehe nicht automatisch zum Warenkorb', now(), now()),
+('Deaktivierte Artikel bei Erreichen des Verfügbarkeitsdatums aktivieren', 'ENABLE_DISABLED_UPCOMING_PRODUCT', 43, 'Wie soll ein versteckter (deaktivierter) Artikel mit einem zukünftigen Verfügbarkeitsdatum für Kunden sichtbar (aktiv) gemacht werden, wenn das Datum erreicht ist?<br />Manual = Manuell aktivieren<br/>Automatic = Automatisch aktivieren<br/>', now(), now()),
+('Deaktivierter Artikelstatus für Suchmaschinen', 'DISABLED_PRODUCTS_TRIGGER_HTTP200', 43, 'Wenn ein Artikel als deaktiviert (Status=0) eingestellt ist, aber nicht aus der Datenbank gelöscht wird, sollen Suchmaschinen ihn dann trotzdem als verfügbar anzeigen?<br><br>true = HTTP 200 Antwort zurückgeben<br>false = HTTP 410 zurückgeben<br><br/>(Löschen des Artikels gibt HTTP 404 zurück)<br><br/><b>Voreinstellung: false</b><br/><br/>', now(), now()),
 
-# Adminmenü ID 10 - Protokollierung und Logfiles
+ # Adminmenü ID 10 - Protokollierung und Logfiles
 ('Speichern der Zeit für Seitenaufbau', 'STORE_PAGE_PARSE_TIME', 43, 'Sollen die Zeiten für den Seitenaufbau einer Seite gespeichert werden?', now(), now()),
 ('Protokolldatei für Seitenaufbau: Speicherort', 'STORE_PAGE_PARSE_TIME_LOG', 43, 'Verzeichnis und Dateiname der Protokolldatei für Seitenaufbau', now(), now()),
 ('Protokolldatei für Seitenaufbau: Datumsformat', 'STORE_PARSE_DATE_TIME_FORMAT', 43, 'Datumsformat für die Protokolldatei', now(), now()),
@@ -5148,7 +5150,15 @@ INSERT INTO product_type_layout_language (configuration_title, configuration_key
 ('PRODUCT FREE SHIPPING Attribut ist inkludiert im Basispreis - Standardeinstellung', 'DEFAULT_PRODUCT_FREE_SHIPPING_ATTRIBUTES_PRICE_BASE_INCLUDED', 43, 'PRODUCT FREE SHIPPING Attribut ist inkludiert im Basispreis<br />Inkludiert im Basispreis bei "Preis per Attribut"<br />0= NEIN 1= JA', now(), now()),
 ('PRODUCT FREE SHIPPING Attribut wird benötigt - Standardeinstellung', 'DEFAULT_PRODUCT_FREE_SHIPPING_ATTRIBUTES_REQUIRED', 43, 'PRODUCT FREE SHIPPING Attribut wird benötigt<br />Attribut wird für Text benötigt<br />0= NEIN 1= JA', now(), now()),
 ('PRODUCT FREE SHIPPING Attribut Preis Präfix - Standardeinstellung', 'DEFAULT_PRODUCT_FREE_SHIPPING_PRICE_PREFIX', 43, 'PRODUCT FREE SHIPPING Attribut Preis Präfix<br />Standard Preis Präfix<br />Leer, + oder -', now(), now()),
-('PRODUCT FREE SHIPPING Attribut Gewicht Präfix - Standardeinstellung', 'DEFAULT_PRODUCT_FREE_SHIPPING_PRODUCTS_ATTRIBUTES_WEIGHT_PREFIX', 43, 'PRODUCT FREE SHIPPING Attribut Gewicht Präfix<br />Standard Gewicht Präfix<br />Leer, + oder -', now(), now());
+('PRODUCT FREE SHIPPING Attribut Gewicht Präfix - Standardeinstellung', 'DEFAULT_PRODUCT_FREE_SHIPPING_PRODUCTS_ATTRIBUTES_WEIGHT_PREFIX', 43, 'PRODUCT FREE SHIPPING Attribut Gewicht Präfix<br />Standard Gewicht Präfix<br />Leer, + oder -', now(), now()),
+
+##### new since 1.5.7 ####
+
+('Frage zum Artikel Button anzeigen', 'SHOW_PRODUCT_INFO_ASK_A_QUESTION', 43, 'Den Button Frage zum Artikel auf der Artikeldetailseite anzeigen? (0 = AUS, 1 = AN)', now(), now()),
+('Frage zum Artikel Button anzeigen', 'SHOW_PRODUCT_MUSIC_INFO_ASK_A_QUESTION', 43, 'Den Button Frage zum Artikel auf der Artikeldetailseite anzeigen? (0 = AUS, 1 = AN)', now(), now()),
+('Frage zum Artikel Button anzeigen', 'SHOW_DOCUMENT_GENERAL_INFO_ASK_A_QUESTION', 43, 'Den Button Frage zum Artikel auf der Artikeldetailseite anzeigen? (0 = AUS, 1 = AN)', now(), now()),
+('Frage zum Artikel Button anzeigen', 'SHOW_DOCUMENT_PRODUCT_INFO_ASK_A_QUESTION', 43, 'Den Button Frage zum Artikel auf der Artikeldetailseite anzeigen? (0 = AUS, 1 = AN)', now(), now()),
+('Frage zum Artikel Button anzeigen', 'SHOW_PRODUCT_FREE_SHIPPING_INFO_ASK_A_QUESTION', 43, 'Den Button Frage zum Artikel auf der Artikeldetailseite anzeigen? (0 = AUS, 1 = AN)', now(), now());
 
 REPLACE INTO product_type_layout_language (configuration_title , configuration_key , languages_id, configuration_description, last_modified, date_added)
 VALUES ('20220129', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Übersetzungen', now(), now());

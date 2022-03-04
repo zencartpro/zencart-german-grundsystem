@@ -1,5 +1,9 @@
 Zen Cart 1.5.7 deutsch BETA
 
+Diese BETA ist rein zum TESTEN einer Neuinstallation oder eines Updates gedacht.
+NICHT FÜR PRODUKTIVSYSTEME GEEIGNET
+NICHT FÜR IHREN LIVESHOP GEEIGNET
+
 Systemvoraussetzungen:
 
 Linux Server mit Apache 2.2 oder Apache 2.4 oder Nginx
@@ -48,7 +52,9 @@ chmod 666
 
 Wenn Mailbeez installiert werden soll, ist es nötig vor der Mailbeez Installation unter Tools > Mailbeez dem gesamten Unterordner mailhive und allen darin befindlichen Unterordnern und Dateien chmod 777 zu geben!
 
-Diese BETA enthält noch kein Updatescript und ist rein zum Testen einer Neuinstallation gedacht.
+Diese BETA ist rein zum TESTEN einer Neuinstallation oder eines Updates gedacht.
+NICHT FÜR PRODUKTIVSYSTEME GEEIGNET
+NICHT FÜR IHREN LIVESHOP GEEIGNET
 
 Am besten mit den Demodaten unter PHP 8.0.x installieren
 Shopfunktionen und Adminfunktionen testen
