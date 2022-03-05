@@ -2,13 +2,13 @@
 /**
 * @package Braintree SCA for Zen Cart German 1.5.7 and PHP 8
 * Zen Cart German Specific
-* based on braintree_web 3.85.2 and braintree_php 6.5.1 (December 2021)
+* based on braintree_web 3.85.2 and braintree_php 6.7.0 (March 2022)
 * @copyright Copyright 2018-2021 Numinix
 * @copyright Copyright 2003-2022 Zen Cart Development Team
 * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: braintree_admin_notification.php 2022-02-04 21:36:14 webchills $
+* @version $Id: braintree_admin_notification.php 2022-03-05 16:31:14 webchills $
 */
 
 $outputStartBlock = '';
