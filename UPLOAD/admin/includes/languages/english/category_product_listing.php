@@ -1,11 +1,11 @@
 <?php
 /**
-
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: category_product_listing.php 2021-11-30 20:55:16Z webchills $
+ * @version $Id: category_product_listing.php 2022-03-20 08:31:16Z webchills $
  */
 define('HEADING_TITLE', 'Categories / Products');
 define('HEADING_TITLE_GOTO', 'Go To:');
@@ -86,3 +86,7 @@ define('WARNING_PRODUCTS_IN_TOP_INFO', 'WARNING: You have Products in the Top Le
 
 define('TEXT_COPY_MEDIA_MANAGER', 'Copy media?');
 define('SUCCESS_ATTRIBUTES_DELETED','Attributes successfully deleted');
+
+define('TEXT_INFO_HEADING_CHANGE_PRICE', 'Update Price'); 
+define('TEXT_CHANGE_PRICE_INTRO', 'Product: %s.');
+define('TEXT_CHANGE_PRICE_LABEL', 'Price Update:');

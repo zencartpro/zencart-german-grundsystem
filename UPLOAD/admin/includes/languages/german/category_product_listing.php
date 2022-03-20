@@ -1,11 +1,11 @@
 <?php
 /**
- 
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: category_product_listing.php 2022-01-15 18:52:16Z webchills $
+ * @version $Id: category_product_listing.php 2022-03-20 08:32:16Z webchills $
  */
 define('HEADING_TITLE', 'Kategorien / Artikel');
 define('HEADING_TITLE_GOTO', 'Gehe zu:');
@@ -59,17 +59,12 @@ define('TEXT_COPY_ATTRIBUTES_DELETE', '<strong>Löschen</strong> - Bestehende At
 define('TEXT_COPY_ATTRIBUTES_UPDATE', '<strong>Aktualisieren</strong> mit neuen Einstellungen/Preisen, dann neue hinzufügen');
 define('TEXT_COPY_ATTRIBUTES_IGNORE', '<strong>Ignorieren</strong> Bestehende Attribute werden beibehalten und nur die neuen Attribute hinzugefügt');
 
-
-
 // Products and Attribute Copy Options
-
 define('TEXT_COPY_ATTRIBUTES', 'Artikelattribute zum Duplikat kopieren?');
-
 
 // Products and Discount Copy Options
 define('TEXT_COPY_DISCOUNTS_ONLY', 'wird nur verwendet für duplizierte Artikel mit Mengenrabatten ...');
 define('TEXT_COPY_DISCOUNTS', 'Mengenrabatte des Artikels zum Duplikat kopieren?');
-
 
 // From categories.php in 1.5.5
 // categories status
@@ -90,3 +85,7 @@ define('TEXT_SUBCATEGORIES_STATUS_NOCHANGE', 'Unverändert');
 define('WARNING_PRODUCTS_IN_TOP_INFO', 'WARNUNG: Sie haben Produkte in der Hauptkategorie. Dadurch werden die Preise im Shop nicht richtig zugeordnet. Folgende Produkte wurden gefunden: ');
 define('TEXT_COPY_MEDIA_MANAGER', 'Medien kopieren?');
 define('SUCCESS_ATTRIBUTES_DELETED','Attribute erfolgreich gelöscht');
+
+define('TEXT_INFO_HEADING_CHANGE_PRICE', 'Nettopreis ändern'); 
+define('TEXT_CHANGE_PRICE_INTRO', 'Artikel: %s.');
+define('TEXT_CHANGE_PRICE_LABEL', 'Neuer Nettopreis:');

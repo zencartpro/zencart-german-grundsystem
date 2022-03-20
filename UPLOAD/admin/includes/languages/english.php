@@ -1,12 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
- 
+ * Zen Cart German Specific 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: english.php 2022-02-04 18:55:32Z webchills $
+ * @version $Id: english.php 2022-03-20 08:33:32Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -570,6 +569,8 @@ define('TEXT_INFO_MASTER_CATEGORIES_ID', '<strong>NOTE: Master Category is used 
 define('TEXT_YES', 'Yes');
 define('TEXT_NO', 'No');
 define('TEXT_CANCEL', 'Cancel');
+
+define('ICON_CHANGE_PRICE', 'Change Price');
 
 // shipping error messages
 define('ERROR_SHIPPING_CONFIGURATION', '<strong>Shipping Configuration errors!</strong>');

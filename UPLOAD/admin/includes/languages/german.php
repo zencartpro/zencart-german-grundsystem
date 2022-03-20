@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2022-02-26 08:32:04Z webchills $
+ * @version $Id: german.php 2022-03-20 08:32:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -576,6 +576,8 @@ define('TEXT_INFO_MASTER_CATEGORIES_ID', '<strong>HINWEIS: Die Hauptkategorie wi
 define('TEXT_YES', 'Ja');
 define('TEXT_NO', 'Nein');
 define('TEXT_CANCEL', 'Abbrechen');
+
+define('ICON_CHANGE_PRICE', 'Nettopreis ändern');
 
 // shipping error messages
 define('ERROR_SHIPPING_CONFIGURATION', '<strong>Fehler in der Versandkonfiguration!</strong>');

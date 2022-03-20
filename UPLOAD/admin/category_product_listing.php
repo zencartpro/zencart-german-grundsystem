@@ -1,10 +1,11 @@
 <?php
 /**
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: category_product_listing.php 2021-11-29 15:42:16Z webchills $
+ * @version $Id: category_product_listing.php 2022-03-20 08:42:16Z webchills $
  */
 require 'includes/application_top.php';
 $languages = zen_get_languages();
@@ -35,6 +36,19 @@ if (!isset($_GET['reset_categories_products_sort_order'])) {
 
 if (zen_not_null($action)) {
   switch ($action) {
+// bof update price
+ case 'price_update':
+    break;
+    case 'change_price_confirm';
+    $price =  zen_db_prepare_input($_POST['price']);
+    $prid =(int)zen_db_prepare_input($_POST['products_id']);
+     {
+    $sql = "UPDATE" . TABLE_PRODUCTS . " SET products_price = '" . $price . "' WHERE products_id ='". $prid ."'";
+    $db->Execute("update " . TABLE_PRODUCTS . " set products_price = '"  .$price ."' where products_id ='". $prid ."'");    
+    }
+    zen_redirect(zen_href_link(FILENAME_CATEGORY_PRODUCT_LISTING, 'cPath=' . $cPath . '&pID=' . $prid . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')));
+        break; 
+        //eof price update
     case 'set_categories_products_sort_order':
       $_SESSION['categories_products_sort_order'] = $_GET['reset_categories_products_sort_order'];
       $action = '';
@@ -981,6 +995,14 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
                           <i class="fa fa-asterisk fa-lg" aria-hidden="true"></i>
                         </a>
                       <?php } ?>
+                      <!-- bof price update-->
+                      <?php echo '<a href="' . zen_href_link(FILENAME_CATEGORY_PRODUCT_LISTING, 'cPath=' . $cPath . '&pID=' . $products->fields['products_id'] . '&action=price_update') . '">'; ?>
+                             <div class="fa-stack fa-lg pricemanager-on">
+                                <i class="fa fa-euro fa-stack-2x base" title="<?php echo ICON_CHANGE_PRICE; ?>"></i>
+                                <i class="fa fa-euro fa-stack-2x overlay" style="background-color: grey;color:white" aria-hidden="true" title="<?php echo ICON_CHANGE_PRICE; ?>"></i>
+                             </div>
+                            </a>
+                            <!-- eof price update-->
                     </div>
                   </td>
                 <?php } ?>
@@ -992,6 +1014,16 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
         $heading = [];
         $contents = [];
         switch ($action) {
+// bof price update in admin
+                            
+              case 'price_update':
+          $heading[] = array('text' => '<b>' . TEXT_INFO_HEADING_CHANGE_PRICE. '</b>');
+          $contents = array('form' => zen_draw_form('products', FILENAME_CATEGORY_PRODUCT_LISTING, 'action=change_price_confirm&cPath=' . $cPath . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')) . zen_draw_hidden_field('products_id', $pInfo->products_id));
+          $contents[] = array('text' => sprintf(TEXT_CHANGE_PRICE_INTRO, $pInfo->products_name));
+          $contents[] = array('align' => 'center', 'text' => '<br />' . '<br />' . TEXT_CHANGE_PRICE_LABEL . zen_draw_input_field('price', '', 'size="6"'));
+          $contents[] = array('align' => 'center', 'text' => '<br />' . zen_image_submit('button_update.gif', IMAGE_UPDATE) . ' <a href="' . zen_href_link(FILENAME_CATEGORY_PRODUCT_LISTING, 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');
+          break;
+          //eof price update 
           case 'setflag_categories':
             $heading[] = array('text' => '<h5>' . TEXT_INFO_HEADING_STATUS_CATEGORY . '</h5>' . '<h4>' . zen_output_generated_category_path($current_category_id) . ' > ' . zen_get_category_name($cInfo->categories_id, $_SESSION['languages_id']) . '</h4>');
             $contents = array('form' => zen_draw_form('categories', FILENAME_CATEGORY_PRODUCT_LISTING, 'action=update_category_status&cPath=' . $_GET['cPath'] . '&cID=' . $_GET['cID'] . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '') . ($search_result ? '&search=' . $_GET['search'] : ''), 'post', 'enctype="multipart/form-data"') . zen_draw_hidden_field('categories_id', $cInfo->categories_id) . zen_draw_hidden_field('categories_status', $cInfo->categories_status));
