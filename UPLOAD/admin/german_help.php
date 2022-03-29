@@ -5,7 +5,7 @@
 * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: german_help.php 2022-01-15 16:02:16Z webchills $
+* @version $Id: german_help.php 2022-03-29 16:25:16Z webchills $
 */
 require('includes/application_top.php');
 ?>
@@ -52,7 +52,7 @@ kill.disabled = true;
 <!-- body //-->
 <h1 class="pageHeading">Hilfe zur deutschen Zen Cart Version 1.5.7</h1>
 <div class="card-text">
-<span id="zencartprologo"><a href="https://www.zen-cart-pro.at" target="_blank"><img src="images/zencartpro-logo.jpg" alt="www.zen-cart-pro.at - Die deutsche Zen Cart Version" title="www.zen-cart-pro.at - Die deutsche Zen Cart Version"/></a></span>Die deutsche Zen-Cart Version 1.5.7 ist eine Modifikation der amerikanischen Version 1.5.7c von <a href="https://www.zen-cart.com" target="_blank">zen-cart.com</a>.<br>
+<span id="zencartprologo"><a href="https://www.zen-cart-pro.at" target="_blank"><img src="images/zencartpro-logo.jpg" alt="www.zen-cart-pro.at - Die deutsche Zen Cart Version" title="www.zen-cart-pro.at - Die deutsche Zen Cart Version"/></a></span>Die deutsche Zen-Cart Version 1.5.7 ist eine Modifikation der amerikanischen Version 1.5.7d von <a href="https://www.zen-cart.com" target="_blank">zen-cart.com</a>.<br>
 Sie wurde nicht nur einfach ins Deutsche übersetzt, sondern auch funktional auf die Anforderungen, die an Onlineshops in Deutschland, Österreich und der Schweiz gestellt werden, angepasst und mit zahlreichen Erweiterungen ausgestattet.<br>
 Die deutsche Zen Cart Version wird seit 2003 von einem Team von Entwicklern in Österreich und Deutschland betreut und weiterentwickelt.<br/><br/>
 Website des Projekts: <a href="https://www.zen-cart-pro.at" target="_blank">www.zen-cart-pro.at</a>
@@ -82,15 +82,11 @@ Hier finden Sie eine Übersicht hilfreicher Seiten zu Bedienung, Konfiguration, 
 </tr>
 <tr class="dataTableRow" >
 <td class="dataTableContent"><a href="https://downloads.zen-cart-pro.at" target="_blank">Module & Erweiterungen</a></td>
-<td class="dataTableContent">In unserem Downloadbereich im Support Forum finden Sie zahlreiche gut getestete und dokumentiert Module,<br>mit denen Sie in der Grundinstallation nicht enthaltene Funktionalitäten hinzufügen können.</td>
+<td class="dataTableContent">In unserem Downloadbereich auf der zen-cart-pro.at Website finden Sie zahlreiche gut getestete und dokumentierte Module,<br>mit denen Sie in der Grundinstallation nicht enthaltene Funktionalitäten hinzufügen können.</td>
 </tr>
 <tr class="dataTableRow" >
 <td class="dataTableContent"><a href="https://links.zen-cart-pro.at" target="_blank">Links</a></td>
 <td class="dataTableContent">Nützliche andere Websites rund um Zen Cart</td>
-</tr>
-<tr class="dataTableRow" >
-<td class="dataTableContent"><a href="https://forum.zen-cart-pro.at" target="_blank">Support Forum</a></td>
-<td class="dataTableContent">User helfen Usern im Supportforum der deutschen Zen Cart Version</td>
 </tr>
 <tr class="dataTableRow" >
 <td class="dataTableContent"><a href="https://newsletter.zen-cart-pro.at" target="_blank">Newsletter</a></td>
@@ -99,16 +95,16 @@ Sie werden nicht zugespammt, wir versenden ausschließlich bei Bedarf Informatio
 </tr>
 <tr class="dataTableRow" >
 <td class="dataTableContent"><a href="https://twitter.com/zencartpro" target="_blank">Follow us on Twitter</a></td>
-<td class="dataTableContent">Folgen Sie uns auf Twitter und bleiben Sie informiert, wenn neue Versionen oder neue Beiträge im Forum erscheinen.</td>
+<td class="dataTableContent">Folgen Sie uns auf Twitter und bleiben Sie über neue Github Aktivitäten und neue Versionen informiert.</td>
 </tr>
 <tr class="dataTableRow" >
 <td class="dataTableContent"><a href="https://spenden.zen-cart-pro.at" target="_blank">Unterstützen</a><br/><a href="https://spenden.zen-cart-pro.at" target="_blank"><img src="images/zencartpro-donation-white.png" alt="Jede Spende hilft!" title="Jede Spende hilft!"></a></td>
 <td class="dataTableContent">Unterstützen Sie die Weiterentwicklung der deutschen Zen Cart Version mit einer Spende!<br>
-Die deutsche Zen-Cart Version steht kostenlos zur Verfügung. Ebenso die Module im Downloadbereich.<br><br>
-Da wir Ihnen diese Software kostenfrei zur Verfügung stellen, freuen wir uns über Spenden.<br><br>
-Diese Spenden helfen uns, die Kosten für die Wartung, Upgrades, Updates, den kostenlosen Support und die stetige Weiterentwicklung dieser Software für Ihren Online-Shop zu decken.<br>
-Auch für die Zeit, die für die Weiterentwicklung neuer Versionen und im Forum aufgewendet wird, um Fragen zu beantworten, die Ihrem Shop neue Möglichkeiten eröffnen.<br>
-<br>Sie haben von der deutschen Zen Cart Version und dem Support der Community in unserem Forum profitiert?<br>
+Die deutsche Zen-Cart Version steht kostenlos zur Verfügung. Ebenso die Module.<br><br>
+Da wir Ihnen diese Software kostenfrei zur Verfügung stellen, freuen wir uns über Spenden.<br>
+Um unsere laufenden Kosten (Server, Lizenzgebühren, usw.) abzudecken freuen wir uns über jede Unterstützung.<br/>
+Auch für die Zeit, die für die Weiterentwicklung neuer Versionen aufgewendet wird.<br>
+<br>Sie haben von der deutschen Zen Cart Version profitiert?<br>
 Geben Sie etwas zurück!</td>
 </tr>
 </tbody>
