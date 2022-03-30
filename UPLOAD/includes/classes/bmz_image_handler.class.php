@@ -1,13 +1,14 @@
 <?php
 /**
  * @package Image Handler 5.2.0
+ * Zen Cart German Specific
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
  * @copyright Copyright 2018-2022 lat 9 - Vinos de Frutas Tropicales
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: bmz_image_handler.class.php 2021-11-28 17:01:51Z webchills $
+ * @version $Id: bmz_image_handler.class.php 2022-03-30 18:33:51Z webchills $
  */
  
 if (!defined('IH_DEBUG_ADMIN')) {
@@ -871,9 +872,11 @@ class ih_image
      */
     protected function calculate_gravity($canvaswidth, $canvasheight, $overlaywidth, $overlayheight, $gravity) 
     {
+        $canvaswidth = (int)$canvaswidth;
+        $canvasheight = (int)$canvasheight;
         // Calculate overlay position from gravity setting. Center as default.
-        $startheight = (int)($canvasheight - $overlayheight) / 2;
-        $startwidth = (int)($canvaswidth - $overlaywidth) / 2;
+        $startheight = (int)(($canvasheight - $overlayheight) / 2);
+        $startwidth = (int)(($canvaswidth - $overlaywidth) / 2);
         if (strpos($gravity, 'North') !== false) {
             $startheight = 0;
         } elseif (strpos($gravity, 'South') !== false) {
