@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_ezpages.php 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: tpl_ezpages.php 2022-04-02 15:13:16Z webchills $
  */
   $content = "";
   $content .= '<div id="' . str_replace('_', '-', $box_id . 'Content') . '" class="sideBoxContent">';
@@ -17,4 +17,3 @@
   } // end FOR loop
   $content  .= '</ul>' . "\n";
   $content .= '</div>';
-?>
