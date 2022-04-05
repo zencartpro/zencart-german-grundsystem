@@ -1,7 +1,7 @@
 <?php
 
 /**
- * SALES REPORT 3.3.3
+ * SALES REPORT 3.5.1
  *
  * This is where everything starts and ends. This file builds the HTML display, calls the class file
  * to build the data, then displays that data for the user.
@@ -95,6 +95,7 @@ while (!$payments->EOF) {
     $payments->MoveNext();
 }
 
+$show_country_and_state = false; 
 // -----
 // Build arrays for dropdowns in search menu
 //
@@ -223,8 +224,8 @@ if ($date_target == 'status') {
     $date_status = false;
 }
 
-$payment_method = (isset($_GET['payment_method']) && in_array($_GET['payment_method'], $payment_key)) ? $_GET['payment_method'] : '0';
-$payment_method_omit = (isset($_GET['payment_method_omit']) && in_array($_GET['payment_method_omit'], $payment_key)) ? $_GET['payment_method_omit'] : '0';
+$payment_method = (isset($_GET['payment_method']) && array_key_exists($_GET['payment_method'], $payment_key)) ? $_GET['payment_method'] : '0';
+$payment_method_omit = (isset($_GET['payment_method_omit']) && array_key_exists($_GET['payment_method_omit'], $payment_key)) ? $_GET['payment_method_omit'] : '0';
 $current_status = (isset($_GET['current_status']) && array_key_exists((int)$_GET['current_status'], $status_key)) ? (int)$_GET['current_status'] : 0;
 $excluded_status = (isset($_GET['excluded_status']) && array_key_exists((int)$_GET['excluded_status'], $status_key)) ? (int)$_GET['excluded_status'] : 0;
 $manufacturer = (isset($_GET['manufacturer']) && in_array((int)$_GET['manufacturer'], $manufacturer_key)) ? (int)$_GET['manufacturer'] : 0;
@@ -971,6 +972,10 @@ if ($output_format == 'print' || $output_format == 'display') {
                 <tr class="lineItemHeadingRow">
                     <td class="lineItemHeadingContent"><?php echo TABLE_HEADING_ORDERS_ID . show_arrow('oID'); ?></td>
                     <td class="lineItemHeadingContent"><?php echo TABLE_HEADING_CUSTOMER . show_arrow('last_name'); ?></td>
+<?php if ($show_country_and_state) { ?> 
+                    <td class="lineItemHeadingContent"><?php echo TABLE_HEADING_COUNTRY . show_arrow('country'); ?></td>
+                    <td class="lineItemHeadingContent"><?php echo TABLE_HEADING_STATE . show_arrow('state'); ?></td>
+<?php } ?> 
                     <td class="lineItemHeadingContent center" colspan="2"><?php echo TABLE_HEADING_NUM_PRODUCTS . show_arrow('num_products'); ?></td>
                     <td class="lineItemHeadingContent right"><?php echo TABLE_HEADING_TOTAL_GOODS . show_arrow('goods'); ?></td>
 <?php 
@@ -1005,6 +1010,10 @@ if ($output_format == 'print' || $output_format == 'display') {
                 <tr class="lineItemRow">
                     <td class="lineItemContent center"><strong><a href="<?php echo zen_href_link(FILENAME_ORDERS, 'oID=' . $o_data['oID'] . '&action=edit'); ?>"><?php echo $o_data['oID']; ?></a></strong></td>
                     <td class="lineItemContent"><?php echo $o_data['last_name'] . ', ' . $o_data['first_name']; ?></td>
+<?php if ($show_country_and_state) { ?> 
+                    <td class="lineItemContent"><?php echo $o_data['country']; ?></td>
+                    <td class="lineItemContent"><?php echo $o_data['state']; ?></td>
+<?php } ?>
                     <td class="lineItemContent right"><?php echo $o_data['num_products']; ?></td>
                     <td class="lineItemContent no-wrap"><?php echo (sizeof($o_data['diff_products']) > 1 ? TEXT_DIFF . sizeof($o_data['diff_products']) : ($o_data['num_products'] > 1 ? TEXT_SAME : TEXT_SAME_ONE) ); ?></td>
                     <td class="lineItemContent right"><?php echo $currencies->format($o_data['goods']); ?></td>
@@ -1096,7 +1105,7 @@ if ($output_format == 'print' || $output_format == 'display') {
 <?php 
             } 
 ?>
-                            <td class="lineItemHeadingContent right"<?php echo TABLE_HEADING_PRODUCT_TOTAL . show_arrow('grand'); ?></td>
+                            <td class="lineItemHeadingContent right"><?php echo TABLE_HEADING_PRODUCT_TOTAL . show_arrow('grand'); ?></td>
                         </tr>
 <?php
             foreach ($timeframe['products'] as $key => $p_data) {

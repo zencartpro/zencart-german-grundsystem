@@ -1,11 +1,12 @@
 <?php
 /**
- * SALES REPORT 3.3.2
+ * SALES REPORT 3.5.1
  *
  * @author     Frank Koehl (PM: BlindSide)
  * @author     Conor Kerr <conor.kerr_zen-cart@dev.ceon.net>
  * @updated by stellarweb to work with version 1.5.0 02-29-12
  * @updated by lat9, supporting zc1.5.5/1/5.6, 2019-06-20
+ * @updated by webchills, supporting 1.5.7 German, 2022-04-05
  * @copyright  Portions Copyright 2003-2006 Zen Cart Development Team
  * @copyright  Portions Copyright 2003 osCommerce
  * @license    http://www.gnu.org/copyleft/gpl.html   GNU Public License V2.0
@@ -15,9 +16,9 @@ if (!defined('IS_ADMIN_FLAG')) {
 }
 
 // -----
-// Bail if an admin isn't logged in, e.g. if a currency-cron is running.
+// Bail the required function isn't loaded, e.g. if a currency-cron is running.
 //
-if (empty($_SESSION['admin_id'])) {
+if (!function_exists('zen_page_key_exists')) {
     return;
 }
 

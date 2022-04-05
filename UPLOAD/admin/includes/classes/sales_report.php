@@ -1,6 +1,6 @@
 <?php
 /**
- * SALES REPORT 3.3.3
+ * SALES REPORT 3.5.1
  *
  * The class file acts as the engine in the sales report.  All the data displayed is gathered and
  * calculated in here. The logic tree provides a brief summary of the main functions at work every
@@ -474,8 +474,33 @@ class sales_report
                 case 'ot_coupon':
                 case 'ot_group_pricing':
                 case 'ot_better_together':
+                case 'ot_big_chooser':
+                case 'ot_bigspender_discount':
+                case 'ot_bogo_discount':
+                case 'ot_case_discounts':
+                case 'ot_combination_discounts':
+                case 'ot_freegift_chooser':
+                case 'ot_freegift_spender':
+                case 'ot_frequency_discount':
+                case 'ot_giftwrap_checkout':
+                case 'ot_manufacturer_discount':
+                case 'ot_military_discount':
+                case 'ot_newsletter_discount':
+                case 'ot_quantity_discount':
+                case 'ot_table_discounts':
+                case 'ot_rewards':
                     $order_discount += $value;
                     $this->timeframe[$id]['total']['discount'] += $value;
+                    $this->build_li_orders($oID, 'discount', $value);
+                    $this->timeframe[$id]['total']['discount_qty']++;
+                    $this->build_li_orders($oID, 'discount_qty', 1);
+                    break;
+
+                case 'ot_roundup':
+                case 'ot_cod_fee':
+                case 'ot_loworderfee':
+                    $order_discount -= $value;
+                    $this->timeframe[$id]['total']['discount'] -= $value;
                     $this->build_li_orders($oID, 'discount', $value);
                     $this->timeframe[$id]['total']['discount_qty']++;
                     $this->build_li_orders($oID, 'discount_qty', 1);
@@ -591,7 +616,8 @@ class sales_report
                 // won't work for some customers' names, but will work for the majority.
                 //
                 $c_data = $GLOBALS['db']->Execute(
-                    "SELECT customers_id, customers_name
+                    "SELECT customers_id, customers_name, 
+                            delivery_country, delivery_state 
                        FROM " . TABLE_ORDERS . "
                       WHERE orders_id = $oID
                       LIMIT 1"
@@ -602,6 +628,8 @@ class sales_report
                 $firstname = array_shift($pieces);
                 $this->timeframe[$id]['orders'][$oID]['first_name'] = zen_db_output($firstname);
                 $this->timeframe[$id]['orders'][$oID]['last_name'] = zen_db_output(implode(' ', $pieces));
+                $this->timeframe[$id]['orders'][$oID]['country'] = $c_data->fields['delivery_country'];
+                $this->timeframe[$id]['orders'][$oID]['state'] = $c_data->fields['delivery_state'];
             }
 
             // add the passed $value to the passed $field in the ['orders'] array
@@ -956,7 +984,7 @@ class sales_report
                     if (DISPLAY_MANUFACTURER) {
                         $line[] = TABLE_HEADING_MANUFACTURER;
                     }
-                    $line[] = TABLE_HEADING_MODEL;
+                    $line[] = TABLE_HEADING_MODEL_NO;
                     $line[] = TABLE_HEADING_BASE_PRICE;
                     $line[] = TABLE_HEADING_FINAL_PRICE;
                     $line[] = TABLE_HEADING_QUANTITY;
@@ -978,6 +1006,8 @@ class sales_report
                         TABLE_HEADING_ORDERS_ID,
                         CSV_HEADING_LAST_NAME,
                         CSV_HEADING_FIRST_NAME,
+                        CSV_HEADING_COUNTRY, 
+                        CSV_HEADING_STATE, 
                         TABLE_HEADING_NUM_PRODUCTS,
                         TABLE_HEADING_TOTAL_GOODS
                     );
@@ -1127,6 +1157,8 @@ class sales_report
                             $o_data['oID'],
                             $o_data['last_name'],
                             $o_data['first_name'],
+                            $o_data['country'],
+                            $o_data['state'],
                             $o_data['num_products'],
                             $o_data['goods']
                         );

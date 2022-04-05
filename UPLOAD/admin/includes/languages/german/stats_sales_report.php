@@ -1,7 +1,7 @@
 <?php
 
 /**
- * SALES REPORT 3.3.3
+ * SALES REPORT 3.5.1
  *
  * The language file contains all the text that appears on the report. The first set of
  * configuration defines actually impact the report's output and behavior.
@@ -13,7 +13,7 @@
  * @copyright  Portions Copyright 2003-2022 Zen Cart Development Team
  * @copyright  Portions Copyright 2003 osCommerce
  * @license    http://www.gnu.org/copyleft/gpl.html   GNU Public License V2.0
- * @translation by webchills 2020-02-05
+ * @translation by webchills 2022-04-05
  */
 
 //////////////////////////////////////////////////////////
@@ -208,6 +208,8 @@ define('TABLE_FOOTER_TIMEFRAMES', ' Zeiträume');
 // Order Line Items
 define('TABLE_HEADING_ORDERS_ID', 'Bestellnummer');
 define('TABLE_HEADING_CUSTOMER', 'Kunde');
+define('TABLE_HEADING_COUNTRY', 'Land');
+define('TABLE_HEADING_STATE', 'Bundesland');
 define('TABLE_HEADING_ORDER_TOTAL', 'Bestellwert');
 define('TABLE_HEADING_ORDER_TOTAL_VALIDATION', 'Gesamtsumme gültig');
 
@@ -216,7 +218,7 @@ define('TABLE_HEADING_PRODUCT_ID', 'Prod ID');
 define('TABLE_HEADING_PRODUCT_NAME', 'Artikelname');
 define('TABLE_HEADING_PRODUCT_ATTRIBUTES', 'Attribute');
 define('TABLE_HEADING_MANUFACTURER', 'Hersteller');
-define('TABLE_HEADING_MODEL', 'Artikelnummer');
+define('TABLE_HEADING_MODEL_NO', 'Artikelnummer');
 define('TABLE_HEADING_BASE_PRICE', 'Einzelpreis');
 define('TABLE_HEADING_FINAL_PRICE', 'Endpreis');
 define('TABLE_HEADING_QUANTITY', 'Menge');
@@ -252,6 +254,8 @@ define('CSV_HEADING_START_DATE', 'Startdatum');
 define('CSV_HEADING_END_DATE', 'Enddatum');
 define('CSV_HEADING_LAST_NAME', 'Nachname');
 define('CSV_HEADING_FIRST_NAME', 'Vorname');
+define('CSV_HEADING_COUNTRY', 'Land');
+define('CSV_HEADING_STATE', 'Bundesland');
 define('CSV_SEPARATOR', ',');
 define('CSV_NEWLINE', "\n");
 

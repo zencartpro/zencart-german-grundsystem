@@ -1,6 +1,6 @@
 <?php
 /**
- * SALES REPORT 3.3.3
+ * SALES REPORT 3.5.1
  *
  * All the javascript code specific to the Sales Report resides in this file. Covers the reports
  * on-screen dynamic abilities and pre-launch form checking. 

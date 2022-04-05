@@ -1,7 +1,7 @@
 <?php
 
 /**
- * SALES REPORT 3.3.3
+ * SALES REPORT 3.5.1
  *
  * The language file contains all the text that appears on the report. The first set of
  * configuration defines actually impact the report's output and behavior.
@@ -200,6 +200,8 @@ define('TABLE_FOOTER_TIMEFRAMES', ' Timeframes');
 // Order Line Items
 define('TABLE_HEADING_ORDERS_ID', 'Order ID');
 define('TABLE_HEADING_CUSTOMER', 'Customer');
+define('TABLE_HEADING_COUNTRY', 'Country');
+define('TABLE_HEADING_STATE', 'State');
 define('TABLE_HEADING_ORDER_TOTAL', 'Order Total');
 define('TABLE_HEADING_ORDER_TOTAL_VALIDATION', 'OT Valid');
 
@@ -208,7 +210,7 @@ define('TABLE_HEADING_PRODUCT_ID', 'Prod ID');
 define('TABLE_HEADING_PRODUCT_NAME', 'Product Name');
 define('TABLE_HEADING_PRODUCT_ATTRIBUTES', 'Attributes');
 define('TABLE_HEADING_MANUFACTURER', 'Manufacturer');
-define('TABLE_HEADING_MODEL', 'Model No.');
+define('TABLE_HEADING_MODEL_NO', 'Model No.');
 define('TABLE_HEADING_BASE_PRICE', 'Base Price');
 define('TABLE_HEADING_FINAL_PRICE', 'Final Price');
 define('TABLE_HEADING_QUANTITY', 'Qty.');
@@ -244,6 +246,8 @@ define('CSV_HEADING_START_DATE', 'Start Date');
 define('CSV_HEADING_END_DATE', 'End Date');
 define('CSV_HEADING_LAST_NAME', 'Last Name');
 define('CSV_HEADING_FIRST_NAME', 'First Name');
+define('CSV_HEADING_COUNTRY', 'Country');
+define('CSV_HEADING_STATE', 'State');
 define('CSV_SEPARATOR', ',');
 define('CSV_NEWLINE', "\n");
 
