@@ -1,7 +1,7 @@
 <?php
 /**
  * Shipping Estimator module
- *
+ * Zen Cart German Specific
  * Customized by: Linda McGrath osCommerce@WebMakers.com to:
  * - Handles Free Shipping for orders over $total as defined in the Admin
  * - Shows Free Shipping on Virtual products
@@ -12,7 +12,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * portions Copyright (c) 2003 Edwin Bekaert (edwin@ednique.com)
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: shipping_estimator.php 2022-01-11 15:28:24Z webchills $
+ * @version $Id: shipping_estimator.php 2022-04-08 20:28:24Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -199,14 +199,14 @@ if ($_SESSION['cart']->count_contents() > 0) {
             $method = '';
         }
 
-        if (zen_not_null($module)) {
+        if (!empty($module)) {
             foreach ($quotes as $key => $value) {
                 if (!isset($value['id'])) {
                     continue;
                 }
                 if ($value['id'] == $module) {
                     $selected_quote[0] = $value;
-                    if (zen_not_null($method)) {
+                    if (!empty($method)) {
                         foreach ($selected_quote[0]['methods'] as $qkey=>$qval) {
                             if ($qval['id'] == $method) {
                                 $selected_quote[0]['methods'] = array($qval);
@@ -217,7 +217,7 @@ if ($_SESSION['cart']->count_contents() > 0) {
                 }
             }
 
-            if (isset($selected_quote[0]['error']) && $selected_quote[0]['error'] || !zen_not_null($selected_quote[0]['methods'][0]['cost'])) {
+            if (!isset($selected_quote) || (isset($selected_quote[0]['error']) && $selected_quote[0]['error']) || !zen_not_null($selected_quote[0]['methods'][0]['cost'])) {
                 $order->info['shipping_method'] = isset($selected_shipping['title']) ? $selected_shipping['title'] : '';
                 $order->info['shipping_cost'] = isset($selected_shipping['cost']) ? $selected_shipping['cost'] : 0;
                 $order->info['total']+= isset($selected_shipping['cost']) ? $selected_shipping['cost'] : 0;
