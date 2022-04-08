@@ -3,7 +3,7 @@
  * Zen Cart German Specific
  * Page Template
  *
- * Loaded automatically by index.php?main_page=shopping_cart.<br />
+ * Loaded automatically by index.php?main_page=shopping_cart.
  * Displays shopping-cart contents
  *
 
@@ -11,7 +11,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_shopping_cart_default.php 2021-12-28 21:35:58Z webchills $
+ * @version $Id: tpl_shopping_cart_default.php 2022-04-08 22:06:58Z webchills $
  */
 ?>
 <?php 
@@ -94,9 +94,9 @@ if (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATU
   } else {
     echo $product['quantityField'];
   }
-?><br />
-        <span class="alert bold"><?php echo $product['flagStockCheck'];?></span><br />
-        <br /><?php echo $product['showMinUnits']; ?>
+?><br>
+        <span class="alert bold"><?php echo $product['flagStockCheck'];?></span><br>
+        <br><?php echo $product['showMinUnits']; ?>
        </td>
 
        <td class="cartQuantityUpdate"><?php echo $product['buttonUpdate']; ?></td>
@@ -107,7 +107,7 @@ if (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATU
        <td class="cartProductDisplay">
 
 <a href="<?php echo $product['linkProductsName']; ?>"><span class="cartImage back"><?php echo $product['productsImage']; ?></span><span class="cartProdTitle"><?php echo $product['productsName'] . '<span class="alert bold">' . $product['flagStockCheck'] . '</span>'; ?></span></a>
-<br class="clearBoth" />
+<br class="clearBoth">
 <?php
   echo $product['attributeHiddenField'];
   if (isset($product['attributes']) && is_array($product['attributes'])) {
@@ -135,9 +135,9 @@ if (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATU
        <td class="cartQuantity">
 <?php
   if ($product['flagShowFixedQuantity']) {
-    echo $product['showFixedQuantityAmount'] . '<br /><span class="alert bold">' . $product['flagStockCheck'] . '</span><br /><br />' . $product['showMinUnits'];
+    echo $product['showFixedQuantityAmount'] . '<br><span class="alert bold">' . $product['flagStockCheck'] . '</span><br><br>' . $product['showMinUnits'];
   } else {
-    echo $product['quantityField'] . '<br /><span class="alert bold">' . $product['flagStockCheck'] . '</span><br /><br />' . $product['showMinUnits'];
+    echo $product['quantityField'] . '<br><span class="alert bold">' . $product['flagStockCheck'] . '</span><br><br>' . $product['showMinUnits'];
   }
 ?>
        </td>
@@ -170,7 +170,7 @@ if (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATU
 </table>
 
 <div id="cartSubTotal"><?php echo SUB_TITLE_SUB_TOTAL; ?> <?php echo $cartShowTotal; ?></div>
-<br class="clearBoth" />
+<br class="clearBoth">
 
 <!--bof shopping cart buttons-->
 <div class="buttonRow forward"><?php echo '<a href="' . zen_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL') . '">' . zen_image_button(BUTTON_IMAGE_CHECKOUT, BUTTON_CHECKOUT_ALT) . '</a>'; ?></div>
@@ -189,7 +189,7 @@ if (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATU
 <!--eof shopping cart buttons-->
 </form>
 
-<br class="clearBoth" />
+<br class="clearBoth">
 <?php
     if (SHOW_SHIPPING_ESTIMATOR_BUTTON == '1') {
 ?>

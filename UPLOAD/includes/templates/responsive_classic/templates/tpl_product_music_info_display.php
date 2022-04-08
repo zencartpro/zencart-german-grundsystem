@@ -2,14 +2,14 @@
 /**
  * Page Template
  * Zen Cart German Specific
- * Loaded automatically by index.php?main_page=product_music_info.<br />
+ * Loaded automatically by index.php?main_page=product_music_info.
  * Displays details of a music product
  * 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_product_music_info_display.php 2022-01-26 17:33:58Z webchills $
+ * @version $Id: tpl_product_music_info_display.php 2022-04-08 22:03:58Z webchills $
  */
 ?>
 <div class="centerColumn" id="productMusicDisplay">
@@ -48,7 +48,7 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
 <div id="pinfo-left">
 <!--bof Main Product Image -->
 <?php
-  if (zen_not_null($products_image)) {
+  if (!empty($products_image)) {
   ?>
 <?php
 /**
@@ -98,11 +98,11 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
 if ($flag_show_ask_a_question) {
 ?>
 <!-- bof Ask a Question --> 
-<br />
+<br>
 <span id="productQuestions" class="biggerText">
 <b><?php echo '<a href="' . zen_href_link(FILENAME_ASK_A_QUESTION, 'pid=' . $_GET['products_id'], 'SSL') . '">' . ASK_A_QUESTION . '</a>'; ?></b>
 </span>
-<br class="clearBoth" />
+<br class="clearBoth">
 <!-- eof Ask a Question -->
 <?php
 }
@@ -120,7 +120,7 @@ if ($flag_show_ask_a_question) {
 <?php
 // base price
   if ($show_onetime_charges_description == 'true') {
-    $one_time = '<span >' . TEXT_ONETIME_CHARGE_SYMBOL . TEXT_ONETIME_CHARGE_DESCRIPTION . '</span><br />';
+    $one_time = '<span>' . TEXT_ONETIME_CHARGE_SYMBOL . TEXT_ONETIME_CHARGE_DESCRIPTION . '</span><br>';
   } else {
     $one_time = '';
   }
@@ -134,7 +134,7 @@ if ($flag_show_ask_a_question) {
 ?>
 <?php
 /**
- * display the product atributes
+ * display the product attributes
  */
   require($template->get_template_dir('/tpl_modules_attributes.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_attributes.php'); ?>
 <?php
@@ -211,11 +211,11 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
     // if more than 0 reviews, then show reviews button; otherwise, show the "write review" button
     if ($reviews->fields['count'] > 0 ) { ?>
 <div id="productReviewLink" class="buttonRow back"><?php echo '<a href="' . zen_href_link(FILENAME_PRODUCT_REVIEWS, zen_get_all_get_params()) . '">' . zen_image_button(BUTTON_IMAGE_REVIEWS, BUTTON_REVIEWS_ALT) . '</a>'; ?></div>
-<br class="clearBoth" />
+<br class="clearBoth">
 <p class="reviewCount"><?php echo ($flag_show_product_info_reviews_count == 1 ? TEXT_CURRENT_REVIEWS . ' ' . $reviews->fields['count'] : ''); ?></p>
 <?php } else { ?>
 <div id="productReviewLink" class="buttonRow back"><?php echo '<a href="' . zen_href_link(FILENAME_PRODUCT_REVIEWS_WRITE, zen_get_all_get_params(array())) . '">' . zen_image_button(BUTTON_IMAGE_WRITE_REVIEW, BUTTON_WRITE_REVIEW_ALT) . '</a>'; ?></div>
-<br class="clearBoth" />
+<br class="clearBoth">
 <?php
   }
 }
@@ -243,7 +243,7 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
 
 <!--bof Product URL -->
 <?php
-  if (zen_not_null($products_record_company_url)) {
+  if (!empty($products_record_company_url)) {
     if ($flag_show_product_music_info_record_company == 1) {
 ?>
     <p id="productInfoLink" class="productMusic centeredContent"><?php echo sprintf(TEXT_RECORD_COMPANY_URL, zen_href_link(FILENAME_REDIRECT, 'action=music_record_company&record_company_id=' . zen_output_string_protected($music_extras->fields['record_company_id']), 'NONSSL', true, false)); ?></p>

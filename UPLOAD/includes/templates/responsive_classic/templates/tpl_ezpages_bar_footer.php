@@ -2,14 +2,14 @@
 /**
  * Page Template
  *
- * Displays EZ-Pages footer-bar content.<br />
+ * Displays EZ-Pages footer-bar content.
  *
  * @package templateSystem
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_ezpages_bar_footer.php 2020-03-01 09:24:58Z webchills $
+ * @version $Id: tpl_ezpages_bar_footer.php 2022-04-08 21:24:58Z webchills $
  */
 
 /**

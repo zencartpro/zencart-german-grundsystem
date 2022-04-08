@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_products_all_default.php 2018-01-02 17:33:58Z webchills $
+ * @version $Id: tpl_products_all_default.php 2022-04-08 22:05:58Z webchills $
  */
 ?>
 <div class="centerColumn" id="allProductsDefault">
@@ -17,7 +17,7 @@
 <div id="filter-wrapper" class="group">
 <?php
 /**
- * display the product order dropdown
+ * display the product sort dropdown
  */
 require($template->get_template_dir('/tpl_modules_listing_display_order.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_listing_display_order.php'); ?>
 </div>

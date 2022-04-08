@@ -2,8 +2,8 @@
 /**
  * Page Template
  *
- * Loaded by main_page=index<br />
- * Displays category/sub-category listing<br />
+ * Loaded by main_page=index
+ * Displays category/sub-category listing
  * Uses tpl_index_category_row.php to render individual items
  *
  * @package templateSystem
@@ -11,7 +11,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_index_categories.php 2016-04-06 11:33:58Z webchills $
+ * @version $Id: tpl_index_categories.php 2022-04-08 21:33:58Z webchills $
  */
 ?>
 <div class="centerColumn" id="indexCategories">
@@ -60,7 +60,7 @@ if ($show_welcome != true) { ?>
     if ($current_categories_description != '') {
 ?>
 <div id="categoryDescription" class="catDescContent"><?php echo $current_categories_description;  ?></div>
-<br class="clearBoth" />
+<br class="clearBoth">
 <?php } // categories_description ?>
 
 <?php

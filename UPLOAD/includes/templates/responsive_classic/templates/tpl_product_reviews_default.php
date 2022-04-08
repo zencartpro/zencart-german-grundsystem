@@ -7,14 +7,14 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_product_reviews_default.php 2021-12-27 20:06:58Z webchills $
+ * @version $Id: tpl_product_reviews_default.php 2022-04-08 22:06:58Z webchills $
  */
 ?>
 <div class="centerColumn" id="reviewsDefault">
 <?php if ($messageStack->size('product_info') > 0) echo $messageStack->output('product_info'); ?>
 <div id="reviews-top">
 <?php
-  if (zen_not_null($products_image)) {
+  if (!empty($products_image)) {
   /**
    * require the image display code
    */
@@ -41,7 +41,7 @@
   }
   $the_button = $link;
   $products_link = '';
-  echo zen_get_buy_now_button($review->fields['products_id'], $the_button, $products_link) . '<br />' . zen_get_products_quantity_min_units_display($review->fields['products_id']);
+  echo zen_get_buy_now_button($review->fields['products_id'], $the_button, $products_link) . '<br>' . zen_get_products_quantity_min_units_display($review->fields['products_id']);
 ?>
 
 
@@ -86,7 +86,7 @@
   } else {
 ?>
 
-<div id="productReviewsDefaultNoReviews" class="content group"><?php echo TEXT_NO_REVIEWS . (REVIEWS_APPROVAL == '1' ? '<br />' . TEXT_APPROVAL_REQUIRED: ''); ?></div>
+<div id="productReviewsDefaultNoReviews" class="content group"><?php echo TEXT_NO_REVIEWS . (REVIEWS_APPROVAL == '1' ? '<br>' . TEXT_APPROVAL_REQUIRED: ''); ?></div>
 
 <?php
   }

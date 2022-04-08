@@ -2,14 +2,14 @@
 /**
  * Page Template
  * Zen Cart German Specific
- * Loaded automatically by index.php?main_page=document_product_info.<br />
+ * Loaded automatically by index.php?main_page=document_product_info.
  * Displays template according to "document-product" product-type needs
  * 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_document_product_info_display.php 2022-01-26 17:31:58Z webchills $
+ * @version $Id: tpl_document_product_info_display.php 2022-04-08 21:31:58Z webchills $
  */
 ?>
 <div class="centerColumn" id="docProductDisplay">
@@ -48,7 +48,7 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
 <div id="pinfo-left" class="group">
 <!--bof Main Product Image -->
 <?php
-  if (zen_not_null($products_image)) {
+  if (!empty($products_image)) {
   ?>
 <?php
 /**
@@ -111,7 +111,7 @@ if ($flag_show_ask_a_question) {
 <?php
 // base price
   if ($show_onetime_charges_description == 'true') {
-    $one_time = '<span >' . TEXT_ONETIME_CHARGE_SYMBOL . TEXT_ONETIME_CHARGE_DESCRIPTION . '</span><br />';
+    $one_time = '<span>' . TEXT_ONETIME_CHARGE_SYMBOL . TEXT_ONETIME_CHARGE_DESCRIPTION . '</span><br>';
   } else {
     $one_time = '';
   }
@@ -203,11 +203,11 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
     // if more than 0 reviews, then show reviews button; otherwise, show the "write review" button
     if ($reviews->fields['count'] > 0 ) { ?>
 <div id="productReviewLink" class="buttonRow back"><?php echo '<a href="' . zen_href_link(FILENAME_PRODUCT_REVIEWS, zen_get_all_get_params()) . '">' . zen_image_button(BUTTON_IMAGE_REVIEWS, BUTTON_REVIEWS_ALT) . '</a>'; ?></div>
-<br class="clearBoth" />
+<br class="clearBoth">
 <p class="reviewCount"><?php echo ($flag_show_product_info_reviews_count == 1 ? TEXT_CURRENT_REVIEWS . ' ' . $reviews->fields['count'] : ''); ?></p>
 <?php } else { ?>
 <div id="productReviewLink" class="buttonRow back"><?php echo '<a href="' . zen_href_link(FILENAME_PRODUCT_REVIEWS_WRITE, zen_get_all_get_params(array())) . '">' . zen_image_button(BUTTON_IMAGE_WRITE_REVIEW, BUTTON_WRITE_REVIEW_ALT) . '</a>'; ?></div>
-<br class="clearBoth" />
+<br class="clearBoth">
 <?php
 }
 }
@@ -235,7 +235,7 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
 
 <!--bof Product URL -->
 <?php
-  if (zen_not_null($products_url)) {
+  if (!empty($products_url)) {
     if ($flag_show_product_info_url == 1) {
 ?>
     <p id="productInfoLink" class="docProduct centeredContent"><?php echo sprintf(TEXT_MORE_INFORMATION, zen_href_link(FILENAME_REDIRECT, 'action=product&products_id=' . zen_output_string_protected($_GET['products_id']), 'NONSSL', true, false)); ?></p>

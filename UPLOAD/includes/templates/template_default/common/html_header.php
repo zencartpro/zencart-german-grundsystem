@@ -9,7 +9,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: html_header.php 2022-01-19 19:53:39Z webchills $
+ * @version $Id: html_header.php 2022-04-08 22:32:39Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -31,8 +31,10 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" <?php echo HTML_PARAMS; ?>>
 <head>
+<meta charset="<?php echo CHARSET; ?>" />
+<link rel="dns-prefetch" href="https://code.jquery.com">
 <title><?php echo META_TAG_TITLE; ?></title>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>" />
+
 <meta name="keywords" content="<?php echo META_TAG_KEYWORDS; ?>" />
 <meta name="description" content="<?php echo META_TAG_DESCRIPTION; ?>" />
 <meta name="language" content="<?php echo META_TAG_LANGUAGE; ?>" />
@@ -73,8 +75,10 @@ $manufacturers_id = (isset($_GET['manufacturers_id'])) ? $_GET['manufacturers_id
 <?php echo rss_feed_link_alternate();?>
 <?php } ?>
 
-<script type="text/javascript">window.jQuery || document.write(unescape('%3Cscript type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4" crossorigin="anonymous"%3E%3C/script%3E'));</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script type="text/javascript">window.jQuery || document.write(unescape('%3Cscript type="text/javascript" src="<?php echo $template->get_template_dir('.js',DIR_WS_TEMPLATE, $current_page_base,'jscript'); ?>/jquery.min.js"%3E%3C/script%3E'));</script>
+
+
 
 <?php
 /**
