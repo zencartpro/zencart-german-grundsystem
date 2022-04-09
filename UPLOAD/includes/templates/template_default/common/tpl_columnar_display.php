@@ -9,7 +9,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_columnar_display.php 2021-12-28 11:49:16Z webchills $
+ * @version $Id: tpl_columnar_display.php 2022-04-09 16:37:16Z webchills $
  */
 
 $zco_notifier->notify('NOTIFY_TPL_COLUMNAR_DISPLAY_START', $current_page_base, $list_box_contents, $title);
@@ -40,7 +40,7 @@ if (is_array($list_box_contents)) {
       }
     }
 ?>
-<br class="clearBoth" />
+<br class="clearBoth">
 <?php
   }
 }

@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_login_default.php 2022-04-09 08:27:16Z webchills $
+ * @version $Id: tpl_login_default.php 2022-04-09 16:39:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="loginDefault">
@@ -50,7 +50,7 @@
 
 <?php if ($_SESSION['cart']->count_contents() > 0) { ?>
 <?php if ($ec_button_enabled) { ?>	
-  <br class="clearBoth" />	
+  <br class="clearBoth">	
   	<fieldset id="paypallogin">
 <legend><?php echo HEADING_PAYPAL_CUSTOMER_SPLIT; ?></legend>
 <div class="information"><?php echo TEXT_PAYPAL_CUSTOMER_SPLIT; ?></div>

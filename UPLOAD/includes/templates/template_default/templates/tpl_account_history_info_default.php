@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_account_history_info_default.php 2022-04-09 08:45:05Z webchills $
+ * @version $Id: tpl_account_history_info_default.php 2022-04-09 16:37:05Z webchills $
  */
 ?>
 <div class="centerColumn" id="accountHistInfo">
@@ -75,7 +75,7 @@
 ?>
      <div class="amount larger forward"><?php echo $order->totals[$i]['text'] ?></div>
      <div class="lineTitle larger forward"><?php echo $order->totals[$i]['title'] ?></div>
-<br class="clearBoth" />
+<br class="clearBoth">
 <?php
   }
 ?>

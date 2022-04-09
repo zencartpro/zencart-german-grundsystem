@@ -10,7 +10,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_account_edit_default.php 2022-04-09 08:45:16Z webchills $ 
+ * @version $Id: tpl_account_edit_default.php 2022-04-09 16:37:16Z webchills $ 
  */
 ?>
 <div class="centerColumn" id="accountEditDefault">
@@ -55,7 +55,7 @@
 <br class="clearBoth">
 <label class="inputLabel" for="email-address-confirm"><?php echo ENTRY_EMAIL_ADDRESS_CONFIRM; ?></label>
 <?php echo zen_draw_input_field('email_address_confirm', $account->fields['customers_email_address'], 'id="email-address-confirm"') . (zen_not_null(ENTRY_EMAIL_ADDRESS_CONFIRM) ? '<span class="alert">' . ENTRY_EMAIL_ADDRESS_TEXT . '</span>': ''); ?>
-<br class="clearBoth" />
+<br class="clearBoth">
 <label class="inputLabel" for="telephone"><?php echo ENTRY_TELEPHONE_NUMBER; ?></label>
 <?php echo zen_draw_input_field('telephone', $account->fields['customers_telephone'], 'id="telephone" placeholder="' . ENTRY_TELEPHONE_NUMBER_TEXT . '"' . ((int)ENTRY_TELEPHONE_MIN_LENGTH > 0 ? ' required' : ''), 'tel'); ?>
 <br class="clearBoth">

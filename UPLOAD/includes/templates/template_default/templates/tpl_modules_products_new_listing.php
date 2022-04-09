@@ -10,7 +10,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_products_new_listing.php 2022-04-09 08:49:16Z webchills $
+ * @version $Id: tpl_modules_products_new_listing.php 2022-04-09 16:40:16Z webchills $
  */
 ?>
 <table class="products-listing productsNewListing">
@@ -41,35 +41,35 @@
       }
 
       if (PRODUCT_NEW_LIST_MODEL != '0' and zen_get_show_product_switch($products_new->fields['products_id'], 'model')) {
-        $display_products_model = TEXT_PRODUCT_MODEL . $products_new->fields['products_model'] . str_repeat('<br class="clearBoth" />', substr(PRODUCT_NEW_LIST_MODEL, 3, 1));
+        $display_products_model = TEXT_PRODUCT_MODEL . $products_new->fields['products_model'] . str_repeat('<br class="clearBoth">', substr(PRODUCT_NEW_LIST_MODEL, 3, 1));
       } else {
         $display_products_model = '';
       }
 
       if (PRODUCT_NEW_LIST_WEIGHT != '0' and zen_get_show_product_switch($products_new->fields['products_id'], 'weight')) {
-        $display_products_weight = '<br />' . TEXT_PRODUCTS_WEIGHT . $products_new->fields['products_weight'] . TEXT_SHIPPING_WEIGHT . str_repeat('<br class="clearBoth" />', substr(PRODUCT_NEW_LIST_WEIGHT, 3, 1));
+        $display_products_weight = '<br />' . TEXT_PRODUCTS_WEIGHT . $products_new->fields['products_weight'] . TEXT_SHIPPING_WEIGHT . str_repeat('<br class="clearBoth">', substr(PRODUCT_NEW_LIST_WEIGHT, 3, 1));
       } else {
         $display_products_weight = '';
       }
 
       if (PRODUCT_NEW_LIST_QUANTITY != '0' and zen_get_show_product_switch($products_new->fields['products_id'], 'quantity')) {
         if ($products_new->fields['products_quantity'] <= 0) {
-          $display_products_quantity = TEXT_OUT_OF_STOCK . str_repeat('<br class="clearBoth" />', substr(PRODUCT_NEW_LIST_QUANTITY, 3, 1));
+          $display_products_quantity = TEXT_OUT_OF_STOCK . str_repeat('<br class="clearBoth">', substr(PRODUCT_NEW_LIST_QUANTITY, 3, 1));
         } else {
-          $display_products_quantity = TEXT_PRODUCTS_QUANTITY . $products_new->fields['products_quantity'] . str_repeat('<br class="clearBoth" />', substr(PRODUCT_NEW_LIST_QUANTITY, 3, 1));
+          $display_products_quantity = TEXT_PRODUCTS_QUANTITY . $products_new->fields['products_quantity'] . str_repeat('<br class="clearBoth">', substr(PRODUCT_NEW_LIST_QUANTITY, 3, 1));
         }
       } else {
         $display_products_quantity = '';
       }
 
       if (PRODUCT_NEW_LIST_DATE_ADDED != '0' and zen_get_show_product_switch($products_new->fields['products_id'], 'date_added')) {
-        $display_products_date_added = TEXT_DATE_ADDED . ' ' . zen_date_long($products_new->fields['products_date_added']) . str_repeat('<br class="clearBoth" />', substr(PRODUCT_NEW_LIST_DATE_ADDED, 3, 1));
+        $display_products_date_added = TEXT_DATE_ADDED . ' ' . zen_date_long($products_new->fields['products_date_added']) . str_repeat('<br class="clearBoth">', substr(PRODUCT_NEW_LIST_DATE_ADDED, 3, 1));
       } else {
         $display_products_date_added = '';
       }
 
       if (PRODUCT_NEW_LIST_MANUFACTURER != '0' and zen_get_show_product_switch($products_new->fields['products_id'], 'manufacturer')) {
-        $display_products_manufacturers_name = ($products_new->fields['manufacturers_name'] != '' ? TEXT_MANUFACTURER . ' ' . $products_new->fields['manufacturers_name'] . str_repeat('<br class="clearBoth" />', substr(PRODUCT_NEW_LIST_MANUFACTURER, 3, 1)) : '');
+        $display_products_manufacturers_name = ($products_new->fields['manufacturers_name'] != '' ? TEXT_MANUFACTURER . ' ' . $products_new->fields['manufacturers_name'] . str_repeat('<br class="clearBoth">', substr(PRODUCT_NEW_LIST_MANUFACTURER, 3, 1)) : '');
       } else {
         $display_products_manufacturers_name = '';
       }
