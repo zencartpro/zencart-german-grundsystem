@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main_template_vars.php 2022-01-04 18:38:16Z webchills $
+ * @version $Id: main_template_vars.php 2022-04-09 12:38:16Z webchills $
  */
 
 if (MAX_DISPLAY_SPECIAL_PRODUCTS > 0 ) {
@@ -42,9 +42,9 @@ if (MAX_DISPLAY_SPECIAL_PRODUCTS > 0 ) {
                          LEFT JOIN " . TABLE_SPECIALS . " s on p.products_id = s.products_id
                          LEFT JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd on p.products_id = pd.products_id )
                          WHERE p.products_id = s.products_id and p.products_id = pd.products_id and p.products_status = '1'
-                           AND s.status = 1
-                           AND pd.language_id = :languagesID
-                        ORDER BY s.specials_date_added DESC";
+                         AND s.status = 1
+                         AND pd.language_id = :languagesID
+                         ORDER BY s.specials_date_added DESC";
   $specials_query_raw = $db->bindVars($specials_query_raw, ':languagesID', $_SESSION['languages_id'], 'integer');
   $count_key = '*';
   $zco_notifier->notify('NOTIFY_SPECIALS_MAIN_TEMPLATE_VARS_SQL_STRING', array(), $specials_query_raw, $count_key);
@@ -71,7 +71,7 @@ if (MAX_DISPLAY_SPECIAL_PRODUCTS > 0 ) {
       $products_price = zen_get_products_display_price($specials->fields['products_id']);
       $specials->fields['products_name'] = zen_get_products_name($specials->fields['products_id']);
       $list_box_contents[$row][$col] = array('params' => 'class="specialsListBoxContents"' . ' ' . 'style="width:' . $col_width . '%;"',
-                                             'text' => '<a href="' . zen_href_link(zen_get_info_page($specials->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($specials->fields['master_categories_id']) . '&products_id=' . $specials->fields['products_id']) . '">' . (($specials->fields['products_image'] == '' and PRODUCTS_IMAGE_NO_IMAGE_STATUS == 0) ? '' : zen_image(DIR_WS_IMAGES . $specials->fields['products_image'], $specials->fields['products_name'], SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT) . '</a>') . '<br /><a href="' . zen_href_link(zen_get_info_page($specials->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($specials->fields['master_categories_id']) . '&products_id=' . $specials->fields['products_id']) . '">' . $specials->fields['products_name'] . '</a><br />' . $products_price);
+                                             'text' => '<a href="' . zen_href_link(zen_get_info_page($specials->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($specials->fields['master_categories_id']) . '&products_id=' . $specials->fields['products_id']) . '">' . (($specials->fields['products_image'] == '' and PRODUCTS_IMAGE_NO_IMAGE_STATUS == 0) ? '' : zen_image(DIR_WS_IMAGES . $specials->fields['products_image'], $specials->fields['products_name'], SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT) . '</a>') . '<br><a href="' . zen_href_link(zen_get_info_page($specials->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($specials->fields['master_categories_id']) . '&products_id=' . $specials->fields['products_id']) . '">' . $specials->fields['products_name'] . '</a><br>' . $products_price);
       $col ++;
       if ($col > (SHOW_PRODUCT_INFO_COLUMNS_SPECIALS_PRODUCTS - 1)) {
         $col = 0;
@@ -79,9 +79,9 @@ if (MAX_DISPLAY_SPECIAL_PRODUCTS > 0 ) {
       }
       $specials->MoveNext();
     }
-    
+
     $zco_notifier->notify('NOTIFY_SPECIALS_MAIN_TEMPLATE_VARS_END', array(), $list_box_contents);
-    
+
     require($template->get_template_dir('tpl_specials_default.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_specials_default.php');
   }
 }

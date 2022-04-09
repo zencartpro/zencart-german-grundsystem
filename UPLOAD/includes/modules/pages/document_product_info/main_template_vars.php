@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main_template_vars.php 2021-11-29 15:47:36Z webchills $
+ * @version $Id: main_template_vars.php 2022-04-09 11:47:36Z webchills $
  */
 /*
  * Extracts and constructs the data to be used in the product-type template tpl_TYPEHANDLER_info_display.php
@@ -23,15 +23,13 @@
   $product_not_found = $product_info->EOF;
 
   if (!defined('DISABLED_PRODUCTS_TRIGGER_HTTP200') || DISABLED_PRODUCTS_TRIGGER_HTTP200 !== 'true') {
-    if (!$product_not_found && $product_info->fields['products_status'] != 1) {
+      if (!$product_not_found && $product_info->fields['products_status'] != 1) {
       $product_not_found = true;
     }
   }
 
   if ($product_not_found) {
-
     $tpl_page_body = '/tpl_product_info_noproduct.php';
-
   } else {
 
     $tpl_page_body = '/tpl_document_product_info_display.php';
@@ -56,15 +54,14 @@
 // if review must be approved or disabled do not show review
     $review_status = " AND r.status = 1";
 
-    $reviews_query = "select count(*) as count from " . TABLE_REVIEWS . " r, "
+    $reviews_query = "SELECT count(*) AS count FROM " . TABLE_REVIEWS . " r, "
                                                        . TABLE_REVIEWS_DESCRIPTION . " rd
                        WHERE r.products_id = " . (int)$_GET['products_id'] . "
-                       and r.reviews_id = rd.reviews_id
+                       AND r.reviews_id = rd.reviews_id
                        AND rd.languages_id = " . (int)$_SESSION['languages_id'] .
                        $review_status;
 
     $reviews = $db->Execute($reviews_query);
-
 
   $products_name = $product_info->fields['products_name'];
   $products_model = $product_info->fields['products_model'];
@@ -99,11 +96,12 @@
   }
 
   require(DIR_WS_MODULES . zen_get_module_directory('product_prev_next.php'));
+
   $module_show_categories = PRODUCT_INFO_CATEGORIES;
   $module_next_previous = PRODUCT_INFO_PREVIOUS_NEXT;
 
   $products_id_current = (int)$_GET['products_id'];
-  
+
 /**
  * Load product-type-specific main_template_vars
  */

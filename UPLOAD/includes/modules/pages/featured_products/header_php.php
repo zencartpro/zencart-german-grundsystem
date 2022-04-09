@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2021-11-29 15:22:16Z webchills $
+ * @version $Id: header_php.php 2022-04-09 11:02:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -25,13 +25,13 @@ $featured_products_array = array();
 $featured_products_query_raw = "SELECT p.products_id, p.products_type, pd.products_name, p.products_image, p.products_price, p.products_tax_class_id, p.products_date_added, m.manufacturers_name, p.products_model, p.products_quantity, p.products_weight, p.product_is_call,
                                   p.product_is_always_free_shipping, p.products_qty_box_status,
                                   p.master_categories_id
-                                  FROM (" . TABLE_PRODUCTS . " p
-                                  LEFT JOIN " . TABLE_MANUFACTURERS . " m on (p.manufacturers_id = m.manufacturers_id), " .
-TABLE_PRODUCTS_DESCRIPTION . " pd
-                                  LEFT JOIN " . TABLE_FEATURED . " f on pd.products_id = f.products_id )
-                                  WHERE p.products_status = 1 and p.products_id = f.products_id and f.status = 1
-                                  AND p.products_id = pd.products_id and pd.language_id = :languagesID " .
-$order_by;
+                                  FROM " . TABLE_PRODUCTS . " p
+                                  LEFT JOIN " . TABLE_MANUFACTURERS . " m ON (p.manufacturers_id = m.manufacturers_id)
+                                  INNER JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd ON (p.products_id = pd.products_id AND pd.language_id = :languagesID)
+                                  LEFT JOIN " . TABLE_FEATURED . " f ON (p.products_id = f.products_id)
+                                  WHERE p.products_status = 1
+                                  AND f.status = 1
+                                  " . $order_by;
 
 $featured_products_query_raw = $db->bindVars($featured_products_query_raw, ':languagesID', $_SESSION['languages_id'], 'integer');
 
@@ -43,12 +43,15 @@ $featured_products_split = new splitPageResults($featured_products_query_raw, MA
 //check to see if we are in normal mode ... not showcase, not maintenance, etc
 $show_submit = zen_run_normal();
 
+$how_many = 0;
+$show_top_submit_button = false;
+$show_bottom_submit_button = false;
+
 // check whether to use multiple-add-to-cart, and whether top or bottom buttons are displayed
 if (PRODUCT_FEATURED_LISTING_MULTIPLE_ADD_TO_CART > 0 and $show_submit == true and $featured_products_split->number_of_rows > 0) {
 
   // check how many rows
   $check_products_all = $db->Execute($featured_products_split->sql_query);
-  $how_many = 0;
   while (!$check_products_all->EOF) {
     if (zen_has_product_attributes($check_products_all->fields['products_id'])) {
     } else {
@@ -72,13 +75,9 @@ if (PRODUCT_FEATURED_LISTING_MULTIPLE_ADD_TO_CART > 0 and $show_submit == true a
 
   if ( (($how_many > 0 and $show_submit == true and $featured_products_split->number_of_rows > 0) and (PRODUCT_FEATURED_LISTING_MULTIPLE_ADD_TO_CART == 1 or  PRODUCT_FEATURED_LISTING_MULTIPLE_ADD_TO_CART == 3)) ) {
     $show_top_submit_button = true;
-  } else {
-    $show_top_submit_button = false;
   }
   if ( (($how_many > 0 and $show_submit == true and $featured_products_split->number_of_rows > 0) and (PRODUCT_FEATURED_LISTING_MULTIPLE_ADD_TO_CART >= 2)) ) {
     $show_bottom_submit_button = true;
-  } else {
-    $show_bottom_submit_button = false;
   }
 }
 

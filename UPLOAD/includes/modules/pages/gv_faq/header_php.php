@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2020-01-17 10:49:16Z webchills $
+ * @version $Id: header_php.php 2022-04-09 11:03:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -27,11 +27,21 @@ if (zen_is_logged_in() && !zen_in_guest_checkout()) {
   $gv_query = $db->bindVars($gv_query, ':customersID', $_SESSION['customer_id'], 'integer');
   $gv_result = $db->Execute($gv_query);
 
-  if ($gv_result->fields['amount'] > 0 ) {
+  if (!$gv_result->EOF && $gv_result->fields['amount'] > 0 ) {
     $customer_has_gv_balance = true;
     $customer_gv_balance = $currencies->format($gv_result->fields['amount']);
   }
 }
+
+$gv_faq_item =  (empty($_GET['faq_item'])) ? 0 : (int)$_GET['faq_item'];
+
+$subHeadingText = 'SUB_HEADING_TEXT_' . $gv_faq_item;
+$subHeadingTitle = 'SUB_HEADING_TITLE_' . $gv_faq_item;
+if (!defined($subHeadingText)) $subHeadingText = 'SUB_HEADING_TEXT_0';
+if (!defined($subHeadingTitle)) $subHeadingTitle = 'SUB_HEADING_TITLE_0';
+$subHeadingText = constant($subHeadingText);
+$subHeadingTitle = constant($subHeadingTitle);
+
 $breadcrumb->add(NAVBAR_TITLE);
 
 // This should be last line of the script:

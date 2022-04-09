@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2020-01-22 20:32:16Z webchills $
+ * @version $Id: header_php.php 2022-04-09 10:32:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -48,7 +48,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'send')) {
                 $check_customer = $db->Execute($sql);
                 $customer_email = $check_customer->fields['customers_email_address'];
                 $customer_name  = $check_customer->fields['customers_firstname'] . ' ' . $check_customer->fields['customers_lastname'];
-                $customer_telephone = $check_customer->fields['customers_telephone']; 
+                $customer_telephone = $check_customer->fields['customers_telephone'];
             } else {
                 $customer_email = NOT_LOGGED_IN_TEXT;
                 $customer_name = NOT_LOGGED_IN_TEXT;
@@ -84,15 +84,15 @@ if (isset($_GET['action']) && ($_GET['action'] == 'send')) {
             // Prepare Text-only portion of message
             $text_message = OFFICE_FROM . "\t" . $name . "\n" .
               OFFICE_EMAIL . "\t" . $email_address . "\n";
-            if (!empty($telephone)) $text_message .= OFFICE_LOGIN_PHONE . "\t" . $telephone . "\n"; 
+            if (!empty($telephone)) $text_message .= OFFICE_LOGIN_PHONE . "\t" . $telephone . "\n";
             $text_message .= "\n" .
             '------------------------------------------------------' . "\n\n" .
-            strip_tags($_POST['enquiry']) .  "\n\n" .
+            $enquiry .  "\n\n" .
             '------------------------------------------------------' . "\n\n" .
             $extra_info['TEXT'];
             // Prepare HTML-portion of message
-            $html_msg['EMAIL_MESSAGE_HTML'] = strip_tags($_POST['enquiry']);
-            $html_msg['CONTACT_US_OFFICE_FROM'] = OFFICE_FROM . ' ' . $name . '<br />' . OFFICE_EMAIL . '(' . $email_address . ')';
+            $html_msg['EMAIL_MESSAGE_HTML'] = $enquiry;
+            $html_msg['CONTACT_US_OFFICE_FROM'] = OFFICE_FROM . ' ' . $name . '<br>' . OFFICE_EMAIL . '(' . $email_address . ')';
             $html_msg['EXTRA_INFO'] = $extra_info['HTML'];
             // Send message
             zen_mail($send_to_name, $send_to_email, EMAIL_SUBJECT, $text_message, $name, $email_address, $html_msg, 'contact_us');
@@ -117,8 +117,8 @@ if (ENABLE_SSL == 'true' && $request_type != 'SSL') {
     zen_redirect(zen_href_link(FILENAME_CONTACT_US, '', 'SSL'));
 }
 
-$email_address = '';
-$name = '';
+$name = $name ?? '';
+$email_address = $email_address ?? '';
 
 // default email and name if customer is logged in
 if (zen_is_logged_in()) {
@@ -130,7 +130,7 @@ if (zen_is_logged_in()) {
     $check_customer = $db->Execute($sql);
     $email_address = $check_customer->fields['customers_email_address'];
     $name = $check_customer->fields['customers_firstname'] . ' ' . $check_customer->fields['customers_lastname'];
-    $telephone = $check_customer->fields['customers_telephone']; 
+    $telephone = $check_customer->fields['customers_telephone'];
 }
 
 $send_to_array = array();

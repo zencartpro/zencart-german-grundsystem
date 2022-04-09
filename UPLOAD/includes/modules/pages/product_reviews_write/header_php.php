@@ -3,23 +3,20 @@
  * Zen Cart German Specific
  * reviews Write
  *
- * @package page
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2022-01-11 20:12:50Z webchills $
+ * @version $Id: header_php.php 2022-04-09 11:12:50Z webchills $
  */
 /**
  * Header code file for product reviews "write" page
-
  */
 
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_PRODUCT_REVIEWS_WRITE');
 
 $antiSpamFieldName = isset($_SESSION['antispam_fieldname']) ? $_SESSION['antispam_fieldname'] : 'should_be_empty';
-
 // MailBeez autologin
 if (file_exists(DIR_FS_CATALOG . 'mailhive/mailbeez/review_advanced/includes/autologin.php')) {
     include_once(DIR_FS_CATALOG . 'mailhive/mailbeez/review_advanced/includes/autologin.php');
@@ -118,15 +115,15 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
         $email_subject = sprintf(EMAIL_REVIEW_PENDING_SUBJECT,$product_info->fields['products_name']);
         $html_msg['EMAIL_SUBJECT'] = sprintf(EMAIL_REVIEW_PENDING_SUBJECT,$product_info->fields['products_name']);
         $html_msg['EMAIL_MESSAGE_HTML'] = str_replace('\n','',sprintf(EMAIL_PRODUCT_REVIEW_CONTENT_INTRO, $product_info->fields['products_name']));
-        $html_msg['EMAIL_MESSAGE_HTML'] .= '<br />';
+        $html_msg['EMAIL_MESSAGE_HTML'] .= '<br>';
         $html_msg['EMAIL_MESSAGE_HTML'] .= str_replace('\n','',sprintf(EMAIL_PRODUCT_REVIEW_CONTENT_DETAILS, $review_text));
-        $extra_info = email_collect_extra_info('', '', $customer->fields['customers_firstname'] . ' ' . $customer->fields['customers_lastname'] , $customer->fields['customers_email_address']);
+        $extra_info=email_collect_extra_info('', '', $customer->fields['customers_firstname'] . ' ' . $customer->fields['customers_lastname'] , $customer->fields['customers_email_address'] );
         $html_msg['EXTRA_INFO'] = $extra_info['HTML'];
         $zco_notifier->notify('NOTIFY_EMAIL_READY_WRITE_REVIEW');
         zen_mail('', SEND_EXTRA_REVIEW_NOTIFICATION_EMAILS_TO, $email_subject, $email_text . $extra_info['TEXT'], STORE_NAME, EMAIL_FROM, $html_msg, 'reviews_extra');
       }
       // end send email
-      
+
       $messageStack->add_session('product_info', (REVIEWS_APPROVAL == '1') ? TEXT_REVIEW_SUBMITTED_FOR_REVIEW : TEXT_REVIEW_SUBMITTED, 'success');
    }
     // MailBeez autologoff
@@ -146,10 +143,11 @@ if (file_exists(DIR_FS_CATALOG . 'mailhive/mailbeez/review_advanced/includes/aut
 $products_price = zen_get_products_display_price($product_info->fields['products_id']);
 
 $products_name = $product_info->fields['products_name'];
-
+$rating = $rating ?? '';
+$review_text = $review_text ?? '';
 $products_model = '';
 if ($product_info->fields['products_model'] != '') {
-  $products_model = '<br /><span class="smallText">[' . $product_info->fields['products_model'] . ']</span>';
+  $products_model = '<br><span class="smallText">[' . $product_info->fields['products_model'] . ']</span>';
 }
 
 // set image

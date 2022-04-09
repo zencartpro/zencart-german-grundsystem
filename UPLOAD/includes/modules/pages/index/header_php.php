@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2021-11-29 15:20:16Z webchills $
+ * @version $Id: header_php.php 2022-04-09 11:04:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -16,8 +16,8 @@ $zco_notifier->notify('NOTIFY_HEADER_START_INDEX');
 // the following cPath references come from application_top/initSystem
 // -----
 // If $cPath exists, implying that the $current_category_id has been set, determine whether
-// that category exists and is enabled.  If so, determine whether the valid category has at
-// least one product or one sub-category.
+// that category exists and is enabled.  If so, determine whether the valid category has
+// at least one product or one sub-category.
 //
 $category_depth = 'top';
 $current_category_not_found = false;
@@ -28,9 +28,9 @@ if (isset($cPath) && zen_not_null($cPath)) {
     if ($cPath > 0) {
         $category_status_query =
             "SELECT categories_status
-               FROM " . TABLE_CATEGORIES . "
-              WHERE categories_id = :currentCategoryId
-              LIMIT 1";
+             FROM " . TABLE_CATEGORIES . "
+             WHERE categories_id = :currentCategoryId
+             LIMIT 1";
         $category_status_query = $db->bindVars($category_status_query, ':currentCategoryId', $current_category_id, 'integer');
         $category_status = $db->Execute($category_status_query);
         if ($category_status->EOF) {
@@ -41,9 +41,9 @@ if (isset($cPath) && zen_not_null($cPath)) {
     }
     $category_products_query =
         "SELECT products_id
-           FROM " . TABLE_PRODUCTS_TO_CATEGORIES . "
-          WHERE categories_id = :currentCategoryId
-          LIMIT 1";
+         FROM " . TABLE_PRODUCTS_TO_CATEGORIES . "
+         WHERE categories_id = :currentCategoryId
+         LIMIT 1";
     $category_products_query = $db->bindVars($category_products_query, ':currentCategoryId', $current_category_id, 'integer');
     $category_products = $db->Execute($category_products_query);
     if (!$category_products->EOF) {
@@ -51,21 +51,21 @@ if (isset($cPath) && zen_not_null($cPath)) {
     } else {
         $category_parent_query =
             "SELECT parent_id
-               FROM " . TABLE_CATEGORIES . "
-              WHERE parent_id = :currentCategoryId
-              LIMIT 1";
+             FROM " . TABLE_CATEGORIES . "
+             WHERE parent_id = :currentCategoryId
+             LIMIT 1";
         $category_parent_query = $db->bindVars($category_parent_query, ':currentCategoryId', $current_category_id, 'integer');
         $category_parent = $db->Execute($category_parent_query);
         $current_category_has_subcats = !$category_parent->EOF;
     }
-    
+
     // -----
     // Give an observer the chance to override the default handling for the category.
     //
     $category_redirect_handled = false;
     $zco_notifier->notify(
-        'NOTIFY_INDEX_CATEGORY_STATUS_CHECK', 
-        array('cPath' => $cPath, 'current_category_id' => $current_category_id),
+        'NOTIFY_INDEX_CATEGORY_STATUS_CHECK',
+        ['cPath' => $cPath, 'current_category_id' => $current_category_id],
         $category_redirect_handled,
         $current_category_not_found,
         $current_category_is_disabled,
@@ -73,7 +73,7 @@ if (isset($cPath) && zen_not_null($cPath)) {
         $current_category_has_subcats,
         $category_depth
     );
-    
+
     // -----
     // If an observer hasn't overridden the default handling for the category's display:
     //
@@ -87,7 +87,7 @@ if (isset($cPath) && zen_not_null($cPath)) {
     //    - Set the flag to cause noindex/nofollow to be included for the page
     //    - Issue a 410 (Gone).
     //
-    //    Note: Stores that wish to to operate as in Zen Cart versions prior to v157a, where a disabled 
+    //    Note: Stores that wish to to operate as in Zen Cart versions prior to v157a, where a disabled
     //    category is still displayed can comment the above section 'out'.
     //
     // 3. Otherwise, the category is present and not disabled. Determine the category 'depth' to be displayed.

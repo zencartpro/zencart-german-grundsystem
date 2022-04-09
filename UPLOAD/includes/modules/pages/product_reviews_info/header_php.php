@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: header_php.php 2022-04-09 11:42:16Z webchills $
  */
 /**
  * Header code file for product review info page
@@ -17,11 +17,11 @@
   // This should be first line of the script:
   $zco_notifier->notify('NOTIFY_HEADER_START_PRODUCT_REVIEWS_INFO');
 
-  if (isset($_GET['reviews_id']) && zen_not_null($_GET['reviews_id']) && isset($_GET['products_id']) && zen_not_null($_GET['products_id'])) {
+  if (!empty($_GET['reviews_id']) && !empty($_GET['products_id'])) {
 
 // check product exists and current
 // if product does not exist or is status 0 send to _info page
-    $products_reviews_check_query = "SELECT count(*) AS count 
+    $products_reviews_check_query = "SELECT count(*) AS count
                                      FROM " . TABLE_PRODUCTS . " p
                                      WHERE p.products_id= :productsID
                                      AND p.products_status = 1";
@@ -37,7 +37,7 @@
 // if review must be approved or disabled do not show review
     $review_status = " and r.status = '1'";
 
-    $reviews_count_query = "SELECT count(*) as count 
+    $reviews_count_query = "SELECT count(*) as count
                             FROM " . TABLE_REVIEWS . " r, " . TABLE_REVIEWS_DESCRIPTION . " rd
                             WHERE r.products_id = :productsID
                             AND r.reviews_id = rd.reviews_id
@@ -99,7 +99,7 @@
   $products_name = $review_info->fields['products_name'];
 
   if ($review_info->fields['products_model'] != '') {
-    $products_model = '<br /><span class="smallText">[' . $review_info->fields['products_model'] . ']</span>';
+    $products_model = '<br><span class="smallText">[' . $review_info->fields['products_model'] . ']</span>';
   } else {
     $products_model = '';
   }

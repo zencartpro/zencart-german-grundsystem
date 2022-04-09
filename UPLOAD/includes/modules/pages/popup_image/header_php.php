@@ -7,15 +7,14 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2022-01-11 20:18:16Z webchills $
+ * @version $Id: header_php.php 2022-04-09 11:18:16Z webchills $
  */
 /**
  * Header code file for the product-larger-images popup window
- *
  */
 
 // This should be first line of the script:
-  $zco_notifier->notify('NOTIFY_HEADER_START_POPUP_IMAGES_ADDITIONAL');
+  $zco_notifier->notify('NOTIFY_HEADER_START_POPUP_IMAGES');
 
   $_SESSION['navigation']->remove_current_page();
 
@@ -31,11 +30,13 @@
   $products_values_query = $db->bindVars($products_values_query, ':languagesID', $_SESSION['languages_id'], 'integer');
 
   $products_values = $db->Execute($products_values_query);
+
   // Ensure data/variable is available for use downstream.
   if ($products_values->EOF) {
     $products_values->fields['products_image'] = '';
     $products_values->fields['products_name'] = '';
   }
+
   $products_image = $products_values->fields['products_image'];
 
   //auto replace with defined missing image

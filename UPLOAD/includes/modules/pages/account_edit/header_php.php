@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2022-02-04 18:43:16Z webchills $
+ * @version $Id: header_php.php 2022-04-09 10:43:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ACCOUNT_EDIT');
@@ -18,7 +18,8 @@ if (!zen_is_logged_in()) {
 }
 
 require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
-if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
+$error = false;
+if (!empty($_POST['action']) && $_POST['action'] == 'process') {
   if (ACCOUNT_GENDER == 'true') $gender = zen_db_prepare_input($_POST['gender']);
   $firstname = zen_db_prepare_input($_POST['firstname']);
   $lastname = zen_db_prepare_input($_POST['lastname']);
@@ -32,7 +33,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
 
   if (CUSTOMERS_REFERRAL_STATUS == '2' and $_POST['customers_referral'] != '') $customers_referral = zen_db_prepare_input($_POST['customers_referral']);
 
-  $error = false;
+  
 
   if (ACCOUNT_GENDER == 'true') {
     if ( ($gender != 'm') && ($gender != 'f') && ($gender != 'd') ) {
@@ -196,7 +197,7 @@ if (!(isset($_POST['action']) && ($_POST['action'] == 'process'))) {
   }
 }
 // if DOB field has database default setting, show blank:
-$dob = ($dob == '0001-01-01 00:00:00') ? '' : $dob;
+$dob = (empty($dob) || $dob == '0001-01-01 00:00:00') ? '' : $dob;
 
 $customers_referral = $account->fields['customers_referral'];
 

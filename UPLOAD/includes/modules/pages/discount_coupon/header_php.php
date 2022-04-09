@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2019-04-12 12:13:51Z webchills $
+ * @version $Id: header_php.php 2022-04-09 10:58:51Z webchills $
  */
 
   require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
@@ -31,7 +31,7 @@
         $coupon_desc = $db->Execute("select * from " . TABLE_COUPONS_DESCRIPTION . " where coupon_id = '" . (int)$lookup_coupon_id . "' and language_id = '" . (int)$_SESSION['languages_id'] . "'");
         $text_coupon_help = TEXT_COUPON_HELP_HEADER;
         $text_coupon_help .= sprintf(TEXT_COUPON_HELP_NAME, $coupon_desc->fields['coupon_name']);
-        if (zen_not_null($coupon_desc->fields['coupon_description'])) $text_coupon_help .= sprintf(TEXT_COUPON_HELP_DESC, zen_output_string_protected($coupon_desc->fields['coupon_description']));
+        if (!empty($coupon_desc->fields['coupon_description'])) $text_coupon_help .= sprintf(TEXT_COUPON_HELP_DESC, zen_output_string_protected($coupon_desc->fields['coupon_description']));
         $coupon_amount = $coupon->fields['coupon_amount'];
         switch ($coupon->fields['coupon_type']) {
           case 'F': // amount Off

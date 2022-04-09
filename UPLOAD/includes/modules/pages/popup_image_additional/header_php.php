@@ -1,7 +1,7 @@
 <?php
 /**
  * pop up image additional
- 
+ *
  
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
@@ -31,7 +31,7 @@
   $products_image = '';
   
   if (!$products_values->EOF) {
-  $products_image = $products_values->fields['products_image'];
+    $products_image = $products_values->fields['products_image'];
   }
   $products_image_extension = substr($products_image, strrpos($products_image, '.'));
   $products_image_base = preg_replace('|'.$products_image_extension.'$|', '', $products_image);
@@ -47,5 +47,6 @@
   if ($realUserPath === false || strpos($realUserPath, $realBase) !== 0) {
       $_GET['products_image_large_additional'] = '';
   }
+
   // This should be last line of the script:
   $zco_notifier->notify('NOTIFY_HEADER_END_POPUP_IMAGES_ADDITIONAL');

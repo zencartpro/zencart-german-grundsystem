@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2020-01-17 10:51:16Z webchills $
+ * @version $Id: header_php.php 2022-04-09 10:51:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -40,9 +40,11 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
   $check_customer_query = $db->bindVars($check_customer_query, ':emailAddress', $email_address, 'string');
   $check_customer = $db->Execute($check_customer_query);
 
+  $sessionMessage = SUCCESS_PASSWORD_SENT;
+
   if ($check_customer->RecordCount() > 0) {
 
-    $zco_notifier->notify('NOTIFY_PASSWORD_FORGOTTEN_VALIDATED', $email_address);
+    $zco_notifier->notify('NOTIFY_PASSWORD_FORGOTTEN_VALIDATED', $email_address, $sessionMessage);
 
     $new_password = zen_create_PADSS_password( (ENTRY_PASSWORD_MIN_LENGTH > 0 ? ENTRY_PASSWORD_MIN_LENGTH : 5) );
     $crypted_password = zen_encrypt_password($new_password);
@@ -59,16 +61,18 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
     $html_msg['EMAIL_MESSAGE_HTML'] = sprintf(EMAIL_PASSWORD_REMINDER_BODY, $new_password);
 
     // send the email
+    // Note: If this mail frequently winds up in spam folders, try replacing 
+    // $html_msg to 'none' in the call below. 
     zen_mail($check_customer->fields['customers_firstname'] . ' ' . $check_customer->fields['customers_lastname'], $email_address, EMAIL_PASSWORD_REMINDER_SUBJECT, sprintf(EMAIL_PASSWORD_REMINDER_BODY, $new_password), STORE_NAME, EMAIL_FROM, $html_msg,'password_forgotten');
 
     // handle 3rd-party integrations
     $zco_notifier->notify('NOTIFY_PASSWORD_FORGOTTEN_CHANGED', $email_address, $check_customer->fields['customers_id'], $new_password);
 
   } else {
-    $zco_notifier->notify('NOTIFY_PASSWORD_FORGOTTEN_NOT_FOUND', $email_address);
+    $zco_notifier->notify('NOTIFY_PASSWORD_FORGOTTEN_NOT_FOUND', $email_address, $sessionMessage);
   }
 
-    $messageStack->add_session('login', SUCCESS_PASSWORD_SENT, 'success');
+    $messageStack->add_session('login', $sessionMessage, 'success');
 
     zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
 }

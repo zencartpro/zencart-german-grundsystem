@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2014-07-05 10:49:16Z webchills $
+ * @version $Id: header_php.php 2022-04-09 11:49:16Z webchills $
  */
 
   // This should be first line of the script:
@@ -42,10 +42,11 @@
   $products_name = $review->fields['products_name'];
 
   if ($review->fields['products_model'] != '') {
-    $products_model = '<br /><span class="smallText">[' . $review->fields['products_model'] . ']</span>';
+    $products_model = '<br><span class="smallText">[' . $review->fields['products_model'] . ']</span>';
   } else {
     $products_model = '';
   }
+
 
 // set image
 //  $products_image = $review->fields['products_image'];
