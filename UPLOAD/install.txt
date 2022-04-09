@@ -11,7 +11,7 @@ Bei Nginx müssen die bei Apache durch .htaccess Unterstützung gewährleisteten
 Windows Server/IIS werden nicht unterstützt
 
 PHP
-mindestens: PHP 7.4.x
+mindestens: PHP 7.3.x
 höchstens: PHP 8.0.x
 
 MySQL oder MariaDB

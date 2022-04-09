@@ -5,11 +5,10 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: backup_mysql.php 2022-02-10 17:10:51Z webchills $
+ * @version $Id: backup_mysql.php 2022-04-09 18:10:51Z webchills $
  */
 
-  define('OS_DELIM', '');
-
+  define('OS_DELIM', '');  
   require('includes/application_top.php');
   $debug = '';
   $dump_params = '';
@@ -247,14 +246,12 @@
         $load_params .= ' ' . DB_DATABASE; // this needs to be the 2nd-last parameter
         $load_params .= ' < "' . $restore_from . '"'; // this needs to be the LAST parameter
         $load_params .= " 2>&1";
-        //DEBUG echo $mysql_exe . ' ' . $load_params;
+     
 
         if (file_exists($restore_from) && $specified_restore_file != '') {
           $toolfilename = (isset($_GET['tool']) && $_GET['tool'] != '') ? $_GET['tool'] : $mysql_exe;
 
-          // remove " marks in parameters for friendlier IIS support
-//REQUIRES TESTING:          if (strstr($toolfilename,'.exe')) $load_params = str_replace('"','',$load_params);
-
+        
           if ($debug=='ON') $messageStack->add_session('COMMAND: '.OS_DELIM.$toolfilename . ' ' . $load_params.OS_DELIM, 'caution');
 
           $resultcodes=exec(OS_DELIM . $toolfilename . $load_params . OS_DELIM, $output, $load_results );
