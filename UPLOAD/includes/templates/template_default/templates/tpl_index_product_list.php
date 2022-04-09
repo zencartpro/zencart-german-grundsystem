@@ -2,7 +2,7 @@
 /**
  * Page Template
  *
- * Loaded by main_page=index<br />
+ * Loaded by main_page=index
  * Displays product-listing when a particular category/subcategory is selected for browsing
  *
  * @package templateSystem
@@ -10,7 +10,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_index_product_list.php 2019-04-12 18:49:16Z webchills $
+ * @version $Id: tpl_index_product_list.php 2022-04-09 08:49:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="indexProductList">
@@ -85,7 +85,7 @@ if (PRODUCT_LIST_CATEGORIES_IMAGE_STATUS == 'true') {
 <?php
   }
 ?>
-<br class="clearBoth" />
+<br class="clearBoth">
 
 <?php
 /**

@@ -2,15 +2,15 @@
 /**
  * Page Template
  * Zen Cart German Specific
- * Loaded by index.php?main_page=site_map <br />
+ * Loaded by index.php?main_page=site_map
  * Displays site-map and some hard-coded navigation components
  *
- * @package templateSystem
+ 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_site_map_default.php 2020-01-17 16:18:36Z webchills $
+ * @version $Id: tpl_site_map_default.php 2022-04-09 09:18:36Z webchills $
  */
 ?>
 <div class="centerColumn" id="siteMap">
@@ -42,8 +42,10 @@
           <li><?php echo '<a href="' . zen_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL') . '">' . PAGE_CHECKOUT_SHIPPING . '</a>'; ?></li>
 <?php } //endif ?>
           <li><?php echo '<a href="' . zen_href_link(FILENAME_ADVANCED_SEARCH) . '">' . PAGE_ADVANCED_SEARCH . '</a>'; ?></li>
+          <li><?php echo '<a href="' . zen_href_link(FILENAME_PRODUCTS_ALL) . '">' . PAGE_PRODUCTS_ALL. '</a>'; ?></li>
           <li><?php echo '<a href="' . zen_href_link(FILENAME_PRODUCTS_NEW) . '">' . PAGE_PRODUCTS_NEW . '</a>'; ?></li>
           <li><?php echo '<a href="' . zen_href_link(FILENAME_SPECIALS) . '">' . PAGE_SPECIALS . '</a>'; ?></li>
+          <li><?php echo '<a href="' . zen_href_link(FILENAME_FEATURED) . '">' . PAGE_FEATURED . '</a>'; ?></li>
           <li><?php echo '<a href="' . zen_href_link(FILENAME_REVIEWS) . '">' . PAGE_REVIEWS . '</a>'; ?></li>
           <li><?php echo BOX_HEADING_INFORMATION; ?>
           <ul>
@@ -66,7 +68,7 @@
             <li><?php echo '<a href="' . zen_href_link(FILENAME_CONTACT_US, '', 'SSL') . '">' . BOX_INFORMATION_CONTACT . '</a>'; ?></li>
 <?php } ?>
 <?php if (!empty($external_bb_url) && !empty($external_bb_text)) { ?>
-            <li><?php echo '<a href="' . $external_bb_url . '" target="_blank">' . $external_bb_text . '</a>'; ?></li>
+            <li><?php echo '<a href="' . $external_bb_url . '" rel="noopener" target="_blank">' . $external_bb_text . '</a>'; ?></li>
 <?php } ?>
 <?php if (defined('MODULE_ORDER_TOTAL_GV_STATUS') && MODULE_ORDER_TOTAL_GV_STATUS == 'true') { ?>
             <li><?php echo '<a href="' . zen_href_link(FILENAME_GV_FAQ) . '">' . BOX_INFORMATION_GV . '</a>'; ?></li>
@@ -146,6 +148,6 @@
           <ul>
      </ul>
 </div>
-<br class="clearBoth" />
+<br class="clearBoth">
 <div class="buttonRow back"><?php echo zen_back_link() . zen_image_button(BUTTON_IMAGE_BACK, BUTTON_BACK_ALT) . '</a>'; ?></div>
 </div>

@@ -2,8 +2,8 @@
 /**
  * Page Template
  *
- * Main index page<br />
- * Displays greetings, welcome text (define-page content), and various centerboxes depending on switch settings in Admin<br />
+ * Main index page
+ * Displays greetings, welcome text (define-page content), and various centerboxes depending on switch settings in Admin
  * Centerboxes are called as necessary
  *
  * @package templateSystem
@@ -11,7 +11,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_index_default.php 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: tpl_index_default.php 2022-04-09 08:49:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="indexDefault">
@@ -21,15 +21,6 @@
 <h2 class="greeting"><?php echo zen_customer_greeting(); ?></h2>
 <?php } ?>
 
-<!-- deprecated - to use uncomment this section
-<?php if (TEXT_MAIN) { ?>
-<div id="" class="content"><?php echo TEXT_MAIN; ?></div>
-<?php } ?>-->
-
-<!-- deprecated - to use uncomment this section
-<?php if (TEXT_INFORMATION) { ?>
-<div id="" class="content"><?php echo TEXT_INFORMATION; ?></div>
-<?php } ?>-->
 
 <?php if (DEFINE_MAIN_PAGE_STATUS >= 1 and DEFINE_MAIN_PAGE_STATUS <= 2) { ?>
 <?php

@@ -2,7 +2,7 @@
 /**
  * Page Template
  * Zen Cart German Specific
- * Loaded automatically by index.php?main_page=contact_us.<br />
+ * Loaded automatically by index.php?main_page=contact_us.
  * Displays contact us page form.
  *
  * 
@@ -10,7 +10,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_contact_us_default.php 2022-02-05 19:49:16Z webchills $
+ * @version $Id: tpl_contact_us_default.php 2022-04-09 08:49:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="contactUsDefault">
@@ -49,7 +49,7 @@
 <fieldset id="contactUsForm">
 <legend><?php echo HEADING_TITLE; ?></legend>
 <div class="alert forward"><?php echo FORM_REQUIRED_INFORMATION; ?></div>
-<br class="clearBoth" />
+<br class="clearBoth">
 
 <?php
 // show dropdown if set
@@ -57,22 +57,22 @@
 ?>
 <label class="inputLabel" for="send-to"><?php echo SEND_TO_TEXT; ?></label>
 <?php echo zen_draw_pull_down_menu('send_to',  $send_to_array, 0, 'id="send-to"') . '<span class="alert">' . ENTRY_REQUIRED_SYMBOL . '</span>'; ?>
-<br class="clearBoth" />
+<br class="clearBoth">
 <?php
     }
 ?>
 
 <label class="inputLabel" for="contactname"><?php echo ENTRY_NAME; ?></label>
-<?php echo zen_draw_input_field('contactname', $name, ' size="40" id="contactname" placeholder="' . ENTRY_REQUIRED_SYMBOL . '" required'); ?>
-<br class="clearBoth" />
+<?php echo zen_draw_input_field('contactname', $name, ' size="40" id="contactname" placeholder="' . ENTRY_REQUIRED_SYMBOL . '" autofocus required'); ?>
+<br class="clearBoth">
 
 <label class="inputLabel" for="email-address"><?php echo ENTRY_EMAIL; ?></label>
 <?php echo zen_draw_input_field('email', ($email_address), ' size="40" id="email-address" autocomplete="off" placeholder="' . ENTRY_REQUIRED_SYMBOL . '" required', 'email'); ?>
-<br class="clearBoth" />
+<br class="clearBoth">
 
 <label class="inputLabel" for="telephone"><?php echo ENTRY_TELEPHONE; ?></label>
-<?php echo zen_draw_input_field('telephone', ($telephone), ' size="20" id="telephone" autocomplete="off"'); ?>
-<br class="clearBoth" />
+<?php echo zen_draw_input_field('telephone', ($telephone), ' size="20" id="telephone" autocomplete="off"', 'tel'); ?>
+<br class="clearBoth">
 <label for="enquiry"><?php echo ENTRY_ENQUIRY; ?></label>
 <?php echo zen_draw_textarea_field('enquiry', '30', '7', $enquiry, 'id="enquiry" placeholder="' . ENTRY_REQUIRED_SYMBOL . '" required'); ?>
 

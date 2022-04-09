@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_products_new_default.php 2016-02-29 15:49:16Z webchills $
+ * @version $Id: tpl_products_new_default.php 2022-04-09 08:59:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="newProductsDefault">
@@ -26,7 +26,7 @@ require($template->get_template_dir('/tpl_modules_listing_display_order.php',DIR
 
 <?php
     if ($show_top_submit_button == true or $show_bottom_submit_button == true) {
-      echo zen_draw_form('multiple_products_cart_quantity', zen_href_link(FILENAME_PRODUCTS_NEW, zen_get_all_get_params(array('action')) . 'action=multiple_products_add_product'), 'post', 'enctype="multipart/form-data"');
+      echo zen_draw_form('multiple_products_cart_quantity', zen_href_link(FILENAME_PRODUCTS_NEW, zen_get_all_get_params(array('action')) . 'action=multiple_products_add_product', 'SSL'), 'post', 'enctype="multipart/form-data"');
     }
   }
 ?>
@@ -39,7 +39,7 @@ require($template->get_template_dir('/tpl_modules_listing_display_order.php',DIR
 <?php
   } // top submit button
 ?>
-<br class="clearBoth" />
+<br class="clearBoth">
 
 <?php
   if (($products_new_split->number_of_rows > 0) && ((PREV_NEXT_BAR_LOCATION == '1') || (PREV_NEXT_BAR_LOCATION == '3'))) {
@@ -49,7 +49,7 @@ require($template->get_template_dir('/tpl_modules_listing_display_order.php',DIR
 <?php
   }
 ?>
-<br class="clearBoth" />
+<br class="clearBoth">
 
 <?php
 /**
@@ -65,7 +65,7 @@ require($template->get_template_dir('/tpl_modules_products_new_listing.php',DIR_
 <?php
   }
 ?>
-<br class="clearBoth" />
+<br class="clearBoth">
 
 <?php
   if ($show_bottom_submit_button == true) {

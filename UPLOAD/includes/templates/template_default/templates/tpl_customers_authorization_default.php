@@ -2,7 +2,7 @@
 /**
  * Page Template
  *
- * Loaded automatically by index.php?main_page=customers_authorization.<br />
+ * Loaded automatically by index.php?main_page=customers_authorization.
  * Displays information if customer authorization checks fail.
  *
  

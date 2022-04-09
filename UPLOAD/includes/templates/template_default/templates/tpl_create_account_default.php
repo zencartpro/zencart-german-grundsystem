@@ -2,7 +2,7 @@
 /**
  * Page Template
  *
- * Loaded automatically by index.php?main_page=create_account.<br />
+ * Loaded automatically by index.php?main_page=create_account.
  * Displays Create Account form.
  *
  

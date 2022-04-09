@@ -2,7 +2,7 @@
 /**
  * Page Template
  *
- * Loaded automatically by index.php?main_page=checkout_success.<br />
+ * Loaded automatically by index.php?main_page=checkout_success.
  * Displays confirmation details after order has been successfully processed.
  *
  
@@ -10,7 +10,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_checkout_success_default.php 2021-12-28 13:49:16Z webchills $
+ * @version $Id: tpl_checkout_success_default.php 2022-04-09 08:49:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="checkoutSuccess">
@@ -68,7 +68,7 @@ if (isset($additional_payment_messages) && $additional_payment_messages != '') {
 
 <div id="checkoutSuccessContactLink"><?php echo TEXT_CONTACT_STORE_OWNER;?></div>
 
-<br class="clearBoth" />
+<br class="clearBoth">
 
 <!-- bof order details -->
 <?php
@@ -76,7 +76,7 @@ require($template->get_template_dir('tpl_account_history_info_default.php',DIR_W
 ?>
 <!-- eof order details -->
 
-<br class="clearBoth" />
+<br class="clearBoth">
 <!--bof -product notifications box-->
 <?php
 /**
@@ -92,7 +92,7 @@ require($template->get_template_dir('tpl_account_history_info_default.php',DIR_W
 <?php foreach ($notificationsArray as $notifications) { ?>
 <?php echo zen_draw_checkbox_field('notify[]', $notifications['products_id'], true, 'id="notify-' . $notifications['counter'] . '"') ;?>
 <label class="checkboxLabel" for="<?php echo 'notify-' . $notifications['counter']; ?>"><?php echo $notifications['products_name']; ?></label>
-<br />
+<br>
 <?php } ?>
 <div class="buttonRow forward"><?php echo zen_image_submit(BUTTON_IMAGE_UPDATE, BUTTON_UPDATE_ALT); ?></div>
 <?php echo '</form>'; ?>

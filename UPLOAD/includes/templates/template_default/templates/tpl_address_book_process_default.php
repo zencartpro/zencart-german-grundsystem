@@ -2,7 +2,7 @@
 /**
  * Page Template
  *
- * Loaded automatically by index.php?main_page=address_book_process.<br />
+ * Loaded automatically by index.php?main_page=address_book_process.
  * Allows customer to add a new address book entry
  *
  * @package templateSystem
@@ -10,7 +10,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_address_book_process_default.php 2016-02-29 12:49:16Z webchills $
+ * @version $Id: tpl_address_book_process_default.php 2022-04-09 08:18:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="addressBookProcessDefault">
@@ -26,8 +26,8 @@
 ?>
 <div class="alert"><?php echo DELETE_ADDRESS_DESCRIPTION; ?></div>
 
-<address><?php echo zen_address_label($_SESSION['customer_id'], $_GET['delete'], true, ' ', '<br />'); ?></address>
-<br class="clearBoth" />
+<address><?php echo zen_address_label($_SESSION['customer_id'], $_GET['delete'], true, ' ', '<br>'); ?></address>
+<br class="clearBoth">
  
 
 <div class="buttonRow forward">
@@ -47,7 +47,7 @@
 ?>
 <?php   require($template->get_template_dir('tpl_modules_address_book_details.php', DIR_WS_TEMPLATE, $current_page_base,'templates'). '/' . 'tpl_modules_address_book_details.php'); ?>
 
-<br class="clearBoth" />
+<br class="clearBoth">
 <?php
     if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
 ?>

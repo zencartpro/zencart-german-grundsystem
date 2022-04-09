@@ -2,7 +2,7 @@
 /**
  * tpl_modules_checkout_address_book.php
  *
- * @package templateSystem
+ 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
@@ -12,7 +12,7 @@
 ?>
 <?php
 /**
- * require code to get address book details
+ * get address book details
  */
   require(DIR_WS_MODULES . zen_get_module_directory('checkout_address_book.php'));
 ?>

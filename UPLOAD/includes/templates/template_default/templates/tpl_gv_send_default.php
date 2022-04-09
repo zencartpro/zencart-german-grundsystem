@@ -2,14 +2,14 @@
 /**
  * Page Template
  *
- * Template used to collect/display details of sending a GV to a friend from own GV balance. <br />
+ * Template used to collect/display details of sending a GV to a friend from own GV balance.
  *
- * @package templateSystem
+ 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_gv_send_default.php 2020-01-17 16:49:16Z webchills $
+ * @version $Id: tpl_gv_send_default.php 2022-04-09 08:49:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="gvSendDefault">
@@ -68,7 +68,7 @@
 <div class="buttonRow back"><?php echo zen_image_submit(BUTTON_IMAGE_EDIT_SMALL, BUTTON_EDIT_SMALL_ALT, 'name="edit" value="edit"'); ?></div>
 
 </form>
-<br class="clearBoth" />
+<br class="clearBoth">
 
 <div class="advisory"><?php echo EMAIL_ADVISORY_INCLUDED_WARNING . str_replace('-----', '', EMAIL_ADVISORY); ?></div>
 <!--EOF GV send confirm -->
@@ -79,7 +79,7 @@
 <h1 id="gvSendDefaultHeadingSend"><?php echo HEADING_TITLE; ?></h1>
 
 <div id="gvSendDefaultMainContent" class="content"><?php echo HEADING_TEXT; ?></div>
-<br class="clearBoth" />
+<br class="clearBoth">
 <?php if ($messageStack->size('gv_send') > 0) echo $messageStack->output('gv_send'); ?>
 
 <?php echo zen_draw_form('gv_send_send', zen_href_link(FILENAME_GV_SEND, 'action=send', 'SSL', false)); ?>
@@ -89,15 +89,15 @@
 
 <label class="inputLabel" for="to-name"><?php echo ENTRY_NAME; ?></label>
 <?php echo zen_draw_input_field('to_name', (!empty($_POST['to_name']) ? $_POST['to_name'] : ''), 'size="40" id="to-name"') . '<span class="alert">' . ENTRY_REQUIRED_SYMBOL . '</span>';?>
-<br class="clearBoth" />
+<br class="clearBoth">
 
 <label class="inputLabel" for="email-address"><?php echo ENTRY_EMAIL; ?></label>
 <?php echo zen_draw_input_field('email', (!empty($_POST['email'])? $_POST['email'] : ''), 'size="40" id="email-address"', 'email') . '<span class="alert">' . ENTRY_REQUIRED_SYMBOL . '</span>'; ?>
-<br class="clearBoth" />
+<br class="clearBoth">
 
 <label class="inputLabel" for="amount"><?php echo ENTRY_AMOUNT; ?></label>
 <?php echo zen_draw_input_field('amount', (!empty($_POST['amount']) ? $_POST['amount'] : ''), 'id="amount"', 'text', false) . '<span class="alert">' . ENTRY_REQUIRED_SYMBOL . '</span>'; ?>
-<br class="clearBoth" />
+<br class="clearBoth">
 
 <label for="message-area"><?php echo ENTRY_MESSAGE; ?></label>
 <?php echo zen_draw_textarea_field('message', 50, 10, (!empty($_POST['message']) ? stripslashes($_POST['message']) : ''), 'id="message-area"'); ?>
@@ -105,7 +105,7 @@
 
 <div class="buttonRow forward"><?php echo zen_image_submit(BUTTON_IMAGE_SEND, BUTTON_SEND_ALT); ?></div>
 <div class="buttonRow back"><?php echo zen_back_link() . zen_image_button(BUTTON_IMAGE_BACK, BUTTON_BACK_ALT) . '</a>'; ?></div>
-<br class="clearBoth" />
+<br class="clearBoth">
 </form>
 
 <div class="advisory"><?php echo EMAIL_ADVISORY_INCLUDED_WARNING . str_replace('-----', '', EMAIL_ADVISORY); ?></div>

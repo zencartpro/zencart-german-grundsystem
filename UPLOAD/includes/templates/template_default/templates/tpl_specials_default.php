@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_specials_default.php 2016-02-29 13:49:16Z webchills $
+ * @version $Id: tpl_specials_default.php 2022-04-09 09:49:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="specialsListing">
@@ -20,7 +20,7 @@
 
 <div id="specialsListingTopNumber" class="navSplitPagesResult back"><?php echo $specials_split->display_count(TEXT_DISPLAY_NUMBER_OF_SPECIALS); ?></div>
 <div id="specialsListingTopLinks" class="navSplitPagesLinks forward"><?php echo TEXT_RESULT_PAGE . $specials_split->display_links($max_display_page_links, zen_get_all_get_params(array('page', 'info', 'x', 'y', 'main_page')), $paginateAsUL); ?></div>
-<br class="clearBoth" />
+<br class="clearBoth">
 <?php
   } // split page
 ?>
@@ -38,7 +38,7 @@
 
 <div id="specialsListingBottomNumber" class="navSplitPagesResult back"><?php echo $specials_split->display_count(TEXT_DISPLAY_NUMBER_OF_SPECIALS); ?></div>
 <div id="specialsListingBottomLinks" class="navSplitPagesLinks forward"><?php echo TEXT_RESULT_PAGE . $specials_split->display_links($max_display_page_links, zen_get_all_get_params(array('page', 'info', 'x', 'y', 'main_page')), $paginateAsUL); ?></div>
-<br class="clearBoth" />
+<br class="clearBoth">
 <?php
   } // split page
 ?>

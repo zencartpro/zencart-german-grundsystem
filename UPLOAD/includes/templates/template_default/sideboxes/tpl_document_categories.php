@@ -54,6 +54,6 @@
         }
       }
 
-      $content .= '<br />';
+      $content .= '<br>';
     }
       $content .= '</div>';

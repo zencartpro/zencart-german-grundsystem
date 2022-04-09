@@ -4,7 +4,7 @@
  * Zen Cart German Specific
  * This page is auto-displayed if the PHP version is too old.
  * It's primarily intended to be a friendlier face than just a blank page
- * which would appear if short-array-syntax is used on PHP 5.3 or older.
+ * which would appear if incompatible PHP expectations were triggered.
  * This way someone installing Zen Cart on an ancient PHP version will at least
  * know this basic need and be able to make the change before proceeding.
  * For the German Zen Cart Version we force at least PHP 7.4.x
@@ -237,7 +237,7 @@ include 'includes/version.php';
       <div class="appInfo">
         
         <p class="zenData">
-          Copyright 2004 - <?php echo date('Y'); ?> <a href="https://www.zen-cart-pro.at" target="_blank">www.zen-cart-pro.at - Die deutsche Zen Cart Version</a><br>the art of e-commerce - übersetzt, angepasst und erweitert zur Verwendung im deutschsprachigen Raum
+          Copyright 2004 - <?php echo date('Y'); ?> <a href="https://www.zen-cart-pro.at" rel="noopener" target="_blank">www.zen-cart-pro.at - Die deutsche Zen Cart Version</a><br>the art of e-commerce - übersetzt, angepasst und erweitert zur Verwendung im deutschsprachigen Raum
          
         </p>
       </div>

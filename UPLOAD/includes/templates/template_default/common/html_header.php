@@ -3,13 +3,13 @@
  * Zen Cart German Specific
  * Common Template
  *
- * outputs the html header. i,e, everything that comes before the \</head\> tag <br />
+ * outputs the html header. i,e, everything that comes before the \</head\> tag
  *
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: html_header.php 2022-04-08 22:32:39Z webchills $
+ * @version $Id: html_header.php 2022-04-09 09:32:39Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -32,6 +32,7 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
 <html xmlns="http://www.w3.org/1999/xhtml" <?php echo HTML_PARAMS; ?>>
 <head>
 <meta charset="<?php echo CHARSET; ?>" />
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 <link rel="dns-prefetch" href="https://code.jquery.com">
 <title><?php echo META_TAG_TITLE; ?></title>
 

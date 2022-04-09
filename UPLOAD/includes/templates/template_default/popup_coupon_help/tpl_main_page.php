@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_main_page.php 733 2019-04-12 17:10:16Z webchills $
+ * @version $Id: tpl_main_page.php 2022-04-09 09:10:16Z webchills $
  */
 ?>
 <body id="popupCouponHelp" onload="resize();">
@@ -21,9 +21,9 @@
   $sql = $db->bindVars($sql, ':langID:', $_SESSION['languages_id'], 'integer');
   $coupon_desc = $db->Execute($sql);
 
-  $text_coupon_help = TEXT_COUPON_HELP_HEADER;
+  $text_coupon_help = '<strong>' . TEXT_COUPON_HELP_HEADER . '</strong>';
   $text_coupon_help .= sprintf(TEXT_COUPON_HELP_NAME, $coupon_desc->fields['coupon_name']);
-  if (zen_not_null($coupon_desc->fields['coupon_description'])) $text_coupon_help .= sprintf(TEXT_COUPON_HELP_DESC, $coupon_desc->fields['coupon_description']);
+  if (!empty($coupon_desc->fields['coupon_description'])) $text_coupon_help .= sprintf(TEXT_COUPON_HELP_DESC, $coupon_desc->fields['coupon_description']);
   $coupon_amount = $coupon->fields['coupon_amount'];
   switch ($coupon->fields['coupon_type']) {
     case 'F': // amount Off
@@ -43,24 +43,24 @@
     break;
     default:
   }
-  if ($coupon->fields['coupon_is_valid_for_sales'] == 0 ) $text_coupon_help .= TEXT_NO_PROD_SALES;
+  if ($coupon->fields['coupon_is_valid_for_sales'] == 0 ) $text_coupon_help .= '<p>' . TEXT_NO_PROD_SALES . '</p>';
 
-  if ($coupon->fields['coupon_minimum_order'] > 0 ) $text_coupon_help .= sprintf(TEXT_COUPON_HELP_MINORDER, $currencies->format($coupon->fields['coupon_minimum_order']));
-  $text_coupon_help .= sprintf(TEXT_COUPON_HELP_DATE, zen_date_short($coupon->fields['coupon_start_date']),zen_date_short($coupon->fields['coupon_expire_date']));
+  if ($coupon->fields['coupon_minimum_order'] > 0 ) $text_coupon_help .= '<p>' . sprintf(TEXT_COUPON_HELP_MINORDER, $currencies->format($coupon->fields['coupon_minimum_order'])) . '</p>';
+  $text_coupon_help .= '<p>' . sprintf(TEXT_COUPON_HELP_DATE, zen_date_short($coupon->fields['coupon_start_date']),zen_date_short($coupon->fields['coupon_expire_date'])) . '</p>';
   $text_coupon_help .= '<strong>' . TEXT_COUPON_HELP_RESTRICT . '</strong>';
 
   if ($coupon->fields['coupon_zone_restriction'] > 0) {
-    $text_coupon_help .= '<br /><br />' . TEXT_COUPON_GV_RESTRICTION_ZONES;
+    $text_coupon_help .= '<br><br>' . TEXT_COUPON_GV_RESTRICTION_ZONES;
   }
 
-  $text_coupon_help .= '<br /><br />' .  TEXT_COUPON_HELP_CATEGORIES;
+  $text_coupon_help .= '<br><br>' .  TEXT_COUPON_HELP_CATEGORIES;
   $sql = "select * from " . TABLE_COUPON_RESTRICT . "  where coupon_id=:couponID: and category_id !='0'";
   $sql = $db->bindVars($sql, ':couponID:', $_GET['cID'], 'integer');
   $get_result=$db->Execute($sql);
 
   $cats = array();
   if ($get_result->RecordCount() == 1 && $get_result->fields['category_id'] == '-1') {
-    $cats[] = array("name" => TEXT_NO_CAT_TOP_ONLY_DENY);
+    $cats[] = array("name" => '<p>' . TEXT_NO_CAT_TOP_ONLY_DENY . '</p>');
   } else {
     $skip_cat_restriction = true;
     while (!$get_result->EOF) {
@@ -77,7 +77,7 @@
       $get_result->MoveNext();
     }
 
-    if ($skip_cat_restriction == false || sizeof($cats) == 0) $cats[] = array("name" => TEXT_NO_CAT_RESTRICTIONS);
+    if ($skip_cat_restriction == false || sizeof($cats) == 0) $cats[] = array("name" => '<p>' . TEXT_NO_CAT_RESTRICTIONS . '</p>');
   }
   sort($cats);
   $mycats = array();
@@ -104,7 +104,7 @@
     $get_result->MoveNext();
   }
 
-  if (sizeof($prods) == 0) $prods[] = array("name"=>TEXT_NO_PROD_RESTRICTIONS);
+  if (sizeof($prods) == 0) $prods[] = array("name"=> '<p>' . TEXT_NO_PROD_RESTRICTIONS . '</p>');
 
   sort($prods);
   $myprods = array();

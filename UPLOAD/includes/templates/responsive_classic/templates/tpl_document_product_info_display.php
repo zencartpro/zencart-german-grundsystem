@@ -9,13 +9,13 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_document_product_info_display.php 2022-04-08 21:31:58Z webchills $
+ * @version $Id: tpl_document_product_info_display.php 2022-04-09 09:31:58Z webchills $
  */
 ?>
 <div class="centerColumn" id="docProductDisplay">
 
 <!--bof Form start-->
-<?php echo zen_draw_form('cart_quantity', zen_href_link(zen_get_info_page($_GET['products_id']), zen_get_all_get_params(array('action')) . 'action=add_product', $request_type), 'post', 'enctype="multipart/form-data"') . "\n"; ?>
+<?php echo zen_draw_form('cart_quantity', zen_href_link(zen_get_info_page($_GET['products_id']), zen_get_all_get_params(array('action')) . 'action=add_product', $request_type), 'post', 'enctype="multipart/form-data" id="addToCartForm"') . "\n"; ?>
 <!--eof Form start-->
 
 <?php if ($messageStack->size('product_info') > 0) echo $messageStack->output('product_info'); ?>
@@ -45,7 +45,7 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
 <h1 id="productName" class="docProduct"><?php echo $products_name; ?></h1>
 <!--eof Product Name-->
 
-<div id="pinfo-left" class="group">
+<div id="pinfo-left">
 <!--bof Main Product Image -->
 <?php
   if (!empty($products_image)) {
@@ -69,8 +69,7 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
 <!--eof Additional Product Images -->
 </div>
 
-<div id="pinfo-right" class="group grids">
-<!--bof Product Price block -->
+<div id="pinfo-right">
 <!--bof Product details list  -->
 <?php if ( (($flag_show_product_info_model == 1 and $products_model != '') or ($flag_show_product_info_weight == 1 and $products_weight !=0) or ($flag_show_product_info_quantity == 1) or ($flag_show_product_info_manufacturer == 1 and !empty($manufacturers_name))) ) { ?>
 <ul id="productDetailsList">
@@ -89,11 +88,10 @@ if ($flag_show_ask_a_question) {
 ?>
 <!-- bof Ask a Question --> 
 <br>
-<span id="productQuestions" class="">
-<?php echo '<a href="' . zen_href_link(FILENAME_ASK_A_QUESTION, 'pid=' . $_GET['products_id'], 'SSL') . '">' . zen_image_button(BUTTON_IMAGE_ASK_A_QUESTION, BUTTON_ASK_A_QUESTION_ALT) . '</a>'; ?>
+<span id="productQuestions" class="biggerText">
+<b><?php echo '<a href="' . zen_href_link(FILENAME_ASK_A_QUESTION, 'pid=' . $_GET['products_id'], 'SSL') . '">' . ASK_A_QUESTION . '</a>'; ?></b>
 </span>
 <br class="clearBoth">
-<br>
 <!-- eof Ask a Question -->
 <?php
 }
@@ -105,7 +103,7 @@ if ($flag_show_ask_a_question) {
 <!--eof free ship icon  -->
 </div>
 
-<div id="cart-box" class="grids">
+<div id="cart-box">
 <!--bof Product Price block -->
 <h2 id="productPrices" class="docProduct">
 <?php
@@ -156,11 +154,13 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
   $display_qty = (($flag_show_product_info_in_cart_qty == 1 and $_SESSION['cart']->in_cart($_GET['products_id'])) ? '<p>' . PRODUCTS_ORDER_QTY_TEXT_IN_CART . $_SESSION['cart']->get_quantity($_GET['products_id']) . '</p>' : '');
   if ($products_qty_box_status == 0 or $products_quantity_order_max== 1) {
     // hide the quantity box and default to 1
-    $the_button = '<input type="hidden" name="cart_quantity" value="1" />' . zen_draw_hidden_field('products_id', (int)$_GET['products_id']) . zen_image_submit(BUTTON_IMAGE_IN_CART, BUTTON_IN_CART_ALT);
+      $the_button = '<input type="hidden" name="cart_quantity" value="1">';
   } else {
     // show the quantity box
-      $the_button = '<div class="max-qty">' . zen_get_products_quantity_min_units_display((int)$_GET['products_id']) . '</div><span class="qty-text">' . PRODUCTS_ORDER_QTY_TEXT . '</span><input type="text" name="cart_quantity" value="' . $products_get_buy_now_qty . '" maxlength="6" size="4" aria-label="' . ARIA_QTY_ADD_TO_CART . '">' . zen_draw_hidden_field('products_id', (int)$_GET['products_id']) . zen_image_submit(BUTTON_IMAGE_IN_CART, BUTTON_IN_CART_ALT);
+      $the_button = '<div class="max-qty">' . zen_get_products_quantity_min_units_display((int)$_GET['products_id']) . '</div><span class="qty-text">' . PRODUCTS_ORDER_QTY_TEXT . '</span><input type="text" name="cart_quantity" value="' . $products_get_buy_now_qty . '" maxlength="6" size="4" aria-label="' . ARIA_QTY_ADD_TO_CART . '">';
   }
+    $the_button .= zen_draw_hidden_field('products_id', (int)$_GET['products_id']);
+    $the_button .= zen_image_submit(BUTTON_IMAGE_IN_CART, BUTTON_IN_CART_ALT, ' id="addToCartButton"');
   $display_button = zen_get_buy_now_button($_GET['products_id'], $the_button);
 ?>
 <?php if ($display_qty != '' or $display_button != '') { ?>

@@ -2,14 +2,14 @@
 /**
  * Page Template
  * Zen Cart German Specific
- * Loaded automatically by index.php?main_page=checkout_payment.<br />
+ * Loaded automatically by index.php?main_page=checkout_payment.
  * Displays the allowed payment modules, for selection by customer.
  * 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_checkout_payment_default.php 2022-02-05 08:57:42Z webchills $
+ * @version $Id: tpl_checkout_payment_default.php 2022-04-09 08:57:42Z webchills $
  */
 ?>
 <?php echo $payment_modules->javascript_validation(); ?>

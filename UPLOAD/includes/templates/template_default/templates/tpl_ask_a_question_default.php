@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_ask_a_question.php 2022-02-05 19:51:51Z webchills $
+ * @version $Id: tpl_ask_a_question.php 2022-04-09 08:51:51Z webchills $
  */
 ?>
 <div class="centerColumn" id="askAQuestion">
@@ -68,7 +68,7 @@
 <br class="clearBoth">
 
 <label class="inputLabel" for="telephone"><?php echo ENTRY_TELEPHONE; ?></label>
-<?php echo zen_draw_input_field('telephone', ($telephone), ' size="20" id="telephone" autocomplete="off" placeholder="' . ENTRY_REQUIRED_SYMBOL . '" required', 'telephone'); ?>
+<?php echo zen_draw_input_field('telephone', ($telephone), ' size="20" id="telephone" autocomplete="off" placeholder="' . ENTRY_REQUIRED_SYMBOL . '" required', 'tel'); ?>
 <br class="clearBoth">
 
 <label for="enquiry"><?php echo ENTRY_ENQUIRY; ?></label>

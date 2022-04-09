@@ -2,7 +2,7 @@
 /**
  * Page Template
  *
- * Loaded automatically by index.php?main_page=account_notifications.<br />
+ * Loaded automatically by index.php?main_page=account_notifications.
  * Allows customer to manage product notifications
  *
  * @package templateSystem
@@ -10,7 +10,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_account_notifications_default.php 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: tpl_account_notifications_default.php 2022-04-09 08:49:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="accountNotifications">
@@ -25,7 +25,7 @@
 
 <?php echo zen_draw_checkbox_field('product_global', '1', (($global->fields['global_product_notifications'] == '1') ? true : false), 'id="globalnotify"'); ?>
 <label class="checkboxLabel" for="globalnotify"><?php echo GLOBAL_NOTIFICATIONS_DESCRIPTION; ?></label>
-<br class="clearBoth" />
+<br class="clearBoth">
 </fieldset>
 
 <?php
@@ -46,7 +46,7 @@
 ?>
 <?php echo zen_draw_checkbox_field('notify[]', $notifications['products_id'], true, 'id="notify-' . $notifications['counter'] . '"'); ?>
 <label class="checkboxLabel" for="<?php echo 'notify-' . $notifications['counter']; ?>"><?php echo $notifications['products_name']; ?></label>
-<br />
+<br>
 <?php
   }
 ?>

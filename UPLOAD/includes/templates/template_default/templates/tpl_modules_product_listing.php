@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_product_listing.php 2022-04-02 15:24:16Z webchills $
+ * @version $Id: tpl_modules_product_listing.php 2022-04-09 08:24:16Z webchills $
  */
  include(DIR_WS_MODULES . zen_get_module_directory(FILENAME_PRODUCT_LISTING));
 ?>
@@ -17,7 +17,7 @@
     if ($show_top_submit_button == true) {
 ?>
 <div class="buttonRow forward"><?php echo zen_image_submit(BUTTON_IMAGE_ADD_PRODUCTS_TO_CART, BUTTON_ADD_PRODUCTS_TO_CART_ALT, 'id="submit1" name="submit1"'); ?></div>
-<br class="clearBoth" />
+<br class="clearBoth">
 <?php
     } // show top submit
 ?>
@@ -26,7 +26,7 @@
 ?>
 <div id="productsListingTopNumber" class="navSplitPagesResult back"><?php echo $listing_split->display_count(TEXT_DISPLAY_NUMBER_OF_PRODUCTS); ?></div>
 <div id="productsListingListingTopLinks" class="navSplitPagesLinks forward"><?php echo TEXT_RESULT_PAGE . $listing_split->display_links($max_display_page_links, zen_get_all_get_params(array('page', 'info', 'x', 'y', 'main_page')), $paginateAsUL); ?></div>
-<br class="clearBoth" />
+<br class="clearBoth">
 <?php
 }
 ?>
@@ -46,7 +46,7 @@ if (PRODUCT_LISTING_LAYOUT_STYLE == 'columns') {
 ?>
 <div id="productsListingBottomNumber" class="navSplitPagesResult back"><?php echo $listing_split->display_count(TEXT_DISPLAY_NUMBER_OF_PRODUCTS); ?></div>
 <div  id="productsListingListingBottomLinks" class="navSplitPagesLinks forward"><?php echo TEXT_RESULT_PAGE . $listing_split->display_links($max_display_page_links, zen_get_all_get_params(array('page', 'info', 'x', 'y')), $paginateAsUL); ?></div>
-<br class="clearBoth" />
+<br class="clearBoth">
 <?php
   }
 ?>
@@ -56,14 +56,14 @@ if (PRODUCT_LISTING_LAYOUT_STYLE == 'columns') {
     if ($show_bottom_submit_button == true) {
 ?>
 <div class="buttonRow forward"><?php echo zen_image_submit(BUTTON_IMAGE_ADD_PRODUCTS_TO_CART, BUTTON_ADD_PRODUCTS_TO_CART_ALT, 'id="submit2" name="submit1"'); ?></div>
-<br class="clearBoth" />
+<br class="clearBoth">
 <?php
     } // show_bottom_submit_button
 ?>
 </div>
 
 <?php
-// if ($show_top_submit_button == true or $show_bottom_submit_button == true or (PRODUCT_LISTING_MULTIPLE_ADD_TO_CART != 0 and $show_submit == true and $listing_split->number_of_rows > 0)) {
+// if ($show_top_submit_button == true || $show_bottom_submit_button == true || (PRODUCT_LISTING_MULTIPLE_ADD_TO_CART != 0 && $show_submit == true && $listing_split->number_of_rows > 0)) {
   if ($show_top_submit_button == true or $show_bottom_submit_button == true) {
 ?>
 </form>

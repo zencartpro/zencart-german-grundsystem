@@ -2,14 +2,14 @@
 /**
  * Page Template
  * Zen Cart German Specific
- * Displays the FAQ pages for the Gift-Certificate/Voucher system.<br />
+ * Displays the FAQ pages for the Gift-Certificate/Voucher system.
  *
- * @package templateSystem
+ 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_gv_faq_default.php 2021-12-28 16:03:16Z webchills $
+ * @version $Id: tpl_gv_faq_default.php 2022-04-09 08:03:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="gvFaqDefault">
@@ -28,14 +28,14 @@
 <h1 id="gvFaqDefaultHeading"><?php echo HEADING_TITLE; ?></h1>
 
 <div id="gvFaqDefaultMainContent" class="content"><?php echo TEXT_INFORMATION; ?></div>
-<br class="clearBoth"/>
+<br class="clearBoth">
 
 <h2 id="gvFaqDefaultSubHeading"><?php echo SUB_HEADING_TITLE; ?></h2>
 
 <div id="gvFaqDefaultContent" class="content"><?php echo SUB_HEADING_TEXT; ?></div>
 
 <div class="buttonRow back"><?php echo zen_back_link() . zen_image_button(BUTTON_IMAGE_BACK, BUTTON_BACK_ALT) . '</a>'; ?></div>
-<br class="clearBoth" />
+<br class="clearBoth">
 
 
 <form action="<?php echo zen_href_link(FILENAME_GV_REDEEM, '', 'NONSSL', false); ?>" method="get">

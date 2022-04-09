@@ -15,7 +15,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_header.php 2021-12-28 11:49:16Z webchills $
+ * @version $Id: tpl_header.php 2022-04-09 09:49:16Z webchills $
  */
 ?>
 
@@ -65,7 +65,7 @@ if (!isset($flag_disable_header) || !$flag_disable_header) {
 <div id="navMainSearch">
   <?php require(DIR_WS_MODULES . zen_get_module_sidebox_directory('search_header.php')); ?>
 </div>
-<br class="clearBoth" />
+<br class="clearBoth">
 </div>
 <!--eof-navigation display-->
 
@@ -93,7 +93,7 @@ if (!isset($flag_disable_header) || !$flag_disable_header) {
     </div>
 <?php } // no HEADER_SALES_TEXT or SHOW_BANNERS_GROUP_SET2 ?>
 </div>
-<br class="clearBoth" />
+<br class="clearBoth">
 <!--eof-branding display-->
 
 <!--eof-header logo and navigation display-->

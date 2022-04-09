@@ -2,19 +2,19 @@
 /**
  * Page Template
  * Zen Cart German Specific
- * @package templateSystem
+ 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_product_reviews_write_default.php 2022-02-05 19:53:16Z webchills $
+ * @version $Id: tpl_product_reviews_write_default.php 2022-04-09 08:53:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="reviewsWrite">
 <?php echo zen_draw_form('product_reviews_write', zen_href_link(FILENAME_PRODUCT_REVIEWS_WRITE, 'action=process&products_id=' . $_GET['products_id'], 'SSL'), 'post', 'onsubmit="return checkForm(product_reviews_write);"'); ?>
 <!--bof Main Product Image -->
       <?php
-        if (zen_not_null($products_image)) {
+        if (!empty($products_image)) {
     ?>
   <div id="reviewWriteMainImage" class="centeredContent back"><?php
         	/**
@@ -40,7 +40,7 @@
 <h2 id="reviewsWritePrice"><?php echo $products_price; ?></h2>
 
 <h3 id="reviewsWriteReviewer" class=""><?php echo SUB_TITLE_FROM, zen_output_string_protected($customer->fields['customers_firstname'] . ' ' . $customer->fields['customers_lastname']); ?></h3>
-<br class="clearBoth" />
+<br class="clearBoth">
 
 <?php if ($messageStack->size('review_text') > 0) echo $messageStack->output('review_text'); ?>
 
@@ -75,8 +75,8 @@
 <?php echo zen_draw_radio_field(SPAM_TEST_USER, 'H1', '', 'id="user-1"') . '<span class="input-group-addon"><i class="fa fa-male fa-2x"></i></span>' . zen_draw_radio_field(SPAM_TEST_USER, 'C2', '', 'id="user-2"') . '<span class="input-group-addon"><i class="fa fa-laptop fa-2x"></i></span>'; ?>
 </div>
     <div class="buttonRow forward"><?php echo zen_image_submit(BUTTON_IMAGE_SUBMIT, BUTTON_SUBMIT_ALT); ?></div>
-<br class="clearBoth" />
+<br class="clearBoth">
 
-<div id="reviewsWriteReviewsNotice" class="notice"><?php echo TEXT_NO_HTML . (REVIEWS_APPROVAL == '1' ? '<br />' . TEXT_APPROVAL_REQUIRED: ''); ?></div>
+<div id="reviewsWriteReviewsNotice" class="notice"><?php echo TEXT_NO_HTML . (REVIEWS_APPROVAL == '1' ? '<br>' . TEXT_APPROVAL_REQUIRED: ''); ?></div>
 </form>
 </div>

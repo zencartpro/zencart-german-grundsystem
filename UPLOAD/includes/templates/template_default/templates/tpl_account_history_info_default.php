@@ -1,23 +1,18 @@
 <?php
 /**
- * Zen Cart German Specific
- * Page Template
+ * Displays information related to a single specific order, both for checkout_success and in account_history_info
  *
- * Loaded automatically by index.php?main_page=account_edit.<br />
- * Displays information related to a single specific order
- *
- 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_account_history_info_default.php 2021-12-28 12:45:05Z webchills $
+ * @version $Id: tpl_account_history_info_default.php 2022-04-09 08:45:05Z webchills $
  */
 ?>
 <div class="centerColumn" id="accountHistInfo">
 
 <div class="forward"><?php echo HEADING_ORDER_DATE . ' ' . zen_date_long($order->info['date_purchased']); ?></div>
-<br class="clearBoth" />
+<br class="clearBoth">
 
 <?php if ($current_page != FILENAME_CHECKOUT_SUCCESS) { ?>
 <h2 id="orderHistoryDetailedOrder"><?php echo HEADING_TITLE . ORDER_HEADING_DIVIDER . sprintf(HEADING_ORDER_NUMBER, zen_output_string_protected($_GET['order_id'])); ?></h2>
@@ -73,7 +68,7 @@
   }
 ?>
 </table>
-<hr />
+<hr>
 <div id="orderTotals">
 <?php
   for ($i=0, $n=sizeof($order->totals); $i<$n; $i++) {
@@ -135,13 +130,13 @@ if (sizeof($statusArray)) {
 </table>
 <?php } ?>
 
-<hr />
+<hr>
 <div id="myAccountShipInfo" class="floatingBox back">
 <?php
   if (!empty($order->delivery['format_id'])) {
 ?>
 <h3><?php echo HEADING_DELIVERY_ADDRESS; ?></h3>
-<address><?php echo zen_address_format($order->delivery['format_id'], $order->delivery, 1, ' ', '<br />'); ?></address>
+<address><?php echo zen_address_format($order->delivery['format_id'], $order->delivery, 1, ' ', '<br>'); ?></address>
 <?php
   }
 ?>
@@ -160,12 +155,12 @@ if (sizeof($statusArray)) {
 
 <div id="myAccountPaymentInfo" class="floatingBox forward">
 <h3><?php echo HEADING_BILLING_ADDRESS; ?></h3>
-<address><?php echo zen_address_format($order->billing['format_id'], $order->billing, 1, ' ', '<br />'); ?></address>
+<address><?php echo zen_address_format($order->billing['format_id'], $order->billing, 1, ' ', '<br>'); ?></address>
 
 <h4><?php echo HEADING_PAYMENT_METHOD; ?></h4>
 <div><?php echo $order->info['payment_method']; ?></div>
 </div>
-<br class="clearBoth" />
+<br class="clearBoth">
 
 <?php if(RL_INVOICE3_STATUS=='true') {?>
 <?php
