@@ -7,18 +7,20 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: categories_tabs.php 2019-04-12 12:49:16Z webchills $
+ * @version $Id: categories_tabs.php 2022-04-09 15:45:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
 $order_by = " order by c.sort_order, cd.categories_name ";
 
-$categories_tab_query = "select c.sort_order, c.categories_id, cd.categories_name from " .
-TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd
-                          where c.categories_id=cd.categories_id and c.parent_id= '0' and cd.language_id='" . (int)$_SESSION['languages_id'] . "' and c.categories_status='1'" .
-$order_by;
-$categories_tab = $db->Execute($categories_tab_query);
+$sql = "SELECT c.sort_order, c.categories_id, cd.categories_name
+        FROM " . TABLE_CATEGORIES . " c
+        LEFT JOIN " . TABLE_CATEGORIES_DESCRIPTION . " cd ON (c.categories_id = cd.categories_id AND cd.language_id = " . (int)$_SESSION['languages_id'] . ")
+        WHERE c.parent_id= " . (int)TOPMOST_CATEGORY_PARENT_ID . "
+        AND c.categories_status=1 " .
+        $order_by;
+$categories_tab = $db->Execute($sql);
 
 $links_list = array();
 while (!$categories_tab->EOF) {

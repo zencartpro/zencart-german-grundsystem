@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: class.zcPassword.php  2016-02-17 09:54:58Z webchills $
+ * @version $Id: class.zcPassword.php 2022-04-09 16:54:58Z webchills $
 
  */
 /**
@@ -15,9 +15,6 @@
  * helper class for managing password hashing for different PHP versions
  *
  * Updates admin/customer tables on successful login
- * For php < 5.3.7 uses custom code to create hashes using SHA256 and longer salts
- * For php >= 5.3.7 and < 5.5.0 uses https://github.com/ircmaxell/PHP-PasswordLib
- * For php >= 5.5.0 uses inbuilt php functions
  *
  * @package classes
  */
@@ -48,11 +45,6 @@ class zcPassword extends base
    */
   public function __construct($phpVersion = PHP_VERSION)
   {
-    if (version_compare($phpVersion, '5.3.7', '<')) {
-      require_once (realpath(dirname(__FILE__)) . '/../functions/password_compat.php');
-    } elseif (version_compare($phpVersion, '5.5.0', '<')) {
-      require_once (realpath(dirname(__FILE__)) . '/vendors/password_compat-master/lib/password.php');
-    }
   }
   /**
    * Determine the password type

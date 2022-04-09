@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: downloads.php 2019-04-12 12:49:16Z webchills $
+ * @version $Id: downloads.php 2022-04-09 15:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -92,7 +92,7 @@ if ($downloadsOnThisOrder) {
     $zv_filesize = TEXT_FILESIZE_UNKNOWN;
     if ($data['filesize'] > 0) {
       $zv_filesize = $data['filesize'];
-      if ($zv_filesize >= 11000) {
+      if ($zv_filesize >= 1024*1024/10) {
         $zv_filesize = number_format($zv_filesize/1024/1024,1);
         $zv_filesize_units = TEXT_FILESIZE_MEGS;
       } else if ($zv_filesize >= 1024) {

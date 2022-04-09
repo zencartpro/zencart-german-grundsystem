@@ -7,12 +7,12 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: listing_display_order.php 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: listing_display_order.php 2022-04-09 15:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
-if (!isset($_GET['main_page']) || !zen_not_null($_GET['main_page'])) $_GET['main_page'] = 'index';
+if (empty($_GET['main_page'])) $_GET['main_page'] = 'index';
 if (!isset($_GET['disp_order'])) {
   $_GET['disp_order'] = $disp_order_default;
   $disp_order = $disp_order_default;

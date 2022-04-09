@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: categories_ul_generator.php 2019-04-14 16:13:16Z webchills $
+ * @version $Id: categories_ul_generator.php 2022-04-09 15:13:16Z webchills $
  */
 
 class zen_categories_ul_generator {
@@ -43,6 +43,7 @@ class zen_categories_ul_generator {
     
     function buildBranch($parent_id, $level = 0, $submenu=true, $parent_link='')
     {
+        $parent_id = (int)$parent_id;
         $level = (int)$level;
         $result = sprintf($this->parent_group_start_string, ($submenu==true) ? ' class="level'. ((float)$level+1) . '"' : '' );
         

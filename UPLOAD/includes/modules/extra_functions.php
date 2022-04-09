@@ -1,7 +1,6 @@
 <?php
 /**
  * Load in any user functions
- * see  {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
  * @package initSystem
  * @copyright Copyright 2003-2022 Zen Cart Development Team

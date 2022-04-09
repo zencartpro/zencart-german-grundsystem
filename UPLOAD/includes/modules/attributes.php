@@ -10,7 +10,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: attributes.php 2022-01-11 15:42:16Z webchills $
+ * @version $Id: attributes.php 2022-04-09 15:42:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -170,7 +170,7 @@ while (!$products_options_names->EOF) {
             // collect price information if it exists
             if ($products_options->fields['attributes_discounted'] == 1) {
                 // apply product discount to attributes if discount is on
-                $new_attributes_price = zen_get_attributes_price_final($products_options->fields["products_attributes_id"], 1, '', 'false', $products_price_is_priced_by_attributes);
+                $new_attributes_price = zen_get_attributes_price_final($products_options->fields["products_attributes_id"], 1, '', false, $products_price_is_priced_by_attributes);
                 //$new_attributes_price = zen_get_discount_calc((int)$_GET['products_id'], true, $new_attributes_price);
             } else {
                 // discount is off do not apply
@@ -549,11 +549,10 @@ while (!$products_options_names->EOF) {
 
 
         // default
-        // find default attribute if set. Intended for dropdown's default
+        // find default attribute if set for default dropdown
         if ($products_options->fields['attributes_default'] == '1') {
-            $selected_dropdown_attribute = $products_options_value_id;
+            $selected_attribute = $products_options_value_id;
         }
-        $selected_attribute = $selected_dropdown_attribute;
 
         $products_options->MoveNext();
         // end of inner while() loop

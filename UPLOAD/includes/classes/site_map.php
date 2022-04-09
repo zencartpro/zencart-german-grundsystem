@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: site_map.php 2019-04-12 11:49:16Z webchills $
+ * @version $Id: site_map.php 2022-04-09 16:03:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -49,6 +49,8 @@ if (!defined('IS_ADMIN_FLAG')) {
    }
 
    function buildBranch($parent_id, $level = 0, $parent_link = '') {
+    $parent_id = (int)$parent_id;
+    $level = (int)$level;
     $result = $this->parent_group_start_string;
 
     if (isset($this->data[$parent_id])) {

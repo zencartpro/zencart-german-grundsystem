@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: navigation_history.php 2021-11-28 20:04:29Z webchills $
+ * @version $Id: navigation_history.php 2022-04-09 16:04:29Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -144,18 +144,18 @@ class navigationHistory extends base {
         echo $key . '=' . $value . '&';
       }
       if (sizeof($this->path[$i]['post']) > 0) {
-        echo '<br />';
+        echo '<br>';
         foreach($this->path[$i]['post'] as $key => $value) {
-          echo '&nbsp;&nbsp;<strong>' . $key . '=' . $value . '</strong><br />';
+          echo '&nbsp;&nbsp;<strong>' . $key . '=' . $value . '</strong><br>';
         }
       }
-      echo '<br />';
+      echo '<br>';
     }
 
     if (sizeof($this->snapshot) > 0) {
-      echo '<br /><br />';
+      echo '<br><br>';
 
-      echo $this->snapshot['mode'] . ' ' . $this->snapshot['page'] . '?' . zen_array_to_string($this->snapshot['get'], array(zen_session_name())) . '<br />';
+      echo $this->snapshot['mode'] . ' ' . $this->snapshot['page'] . '?' . zen_array_to_string($this->snapshot['get'], array(zen_session_name())) . '<br>';
     }
   }
 

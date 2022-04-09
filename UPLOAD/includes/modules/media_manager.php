@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: media_manager.php 2022-01-11 15:49:16Z webchills $
+ * @version $Id: media_manager.php 2022-04-09 15:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -18,7 +18,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 $zv_collection_query = "select media_id, product_id from " . TABLE_MEDIA_TO_PRODUCTS . "
                         where product_id = '" . (int)$_GET['products_id'] . "'";
 $zq_collections = $db->Execute($zv_collection_query);
-$za_media_manager = array();
+$za_media_manager = [];
 $zv_product_has_media = false;
 /**
  * loop thru collections to identify actual media clips
