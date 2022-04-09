@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_account_history_info_default.php 2022-04-09 16:37:05Z webchills $
+ * @version $Id: tpl_account_history_info_default.php 2022-04-09 17:15:05Z webchills $
  */
 ?>
 <div class="centerColumn" id="accountHistInfo">
@@ -163,7 +163,7 @@ if (sizeof($statusArray)) {
 <br class="clearBoth">
 
 <?php if(RL_INVOICE3_STATUS=='true') {?>
-<?php
+<?php    
     require_once(DIR_WS_INCLUDES . 'classes/class.rl_invoice3.php');
     $pdfT = new rl_invoice3($_GET['order_id'], $paper['orientation'], $paper['unit'], $paper['format']);
     // use $pdfT->getPDFAttachments('NO') if only the invoice should be shown

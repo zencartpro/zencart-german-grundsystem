@@ -6,9 +6,10 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: class.rl_invoice3.php 2021-12-26 19:19:17Z webchills $
+ * @version $Id: class.rl_invoice3.php 2022-04-09 17:26:17Z webchills $
  */
- 
+
+error_reporting(E_ERROR);
 define('FPDF_FONTPATH', DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/font/');
 include_once (DIR_FS_CATALOG . DIR_WS_INCLUDES . 'pdf/fpdi.php');
 function ExtractNumberX($number) {
@@ -20,8 +21,8 @@ class rl_invoice3 extends fpdi {
     function __construct($oID, $orientation, $unit, $format) {
         global $db;
         $this->db = $db;
-        $this->oID = $oID;
-        
+        $this->oID = $oID;        
+       
         if(is_null($unit)){
             $paper = $this->getDefault(RL_INVOICE3_PAPER, array('format' => 'A4', 'unit' => 'mm', 'orientation' => 'P'));  
             $this->pdf = new FPDI($paper['orientation'], $paper['unit'], $paper['format']);
@@ -252,7 +253,7 @@ function CheckPageBreak($h) {
         }
         return $ok;
     }
-    public static function getDefault($var = 'NIX', $def, $exp = '|') {
+    public static function getDefault($var = 'NIX', $def ='', $exp = '|' ) {
         $def = (array)$def;
         $tmp = explode($exp, trim($var));
         if (is_array($def)) {
@@ -265,13 +266,11 @@ function CheckPageBreak($h) {
             }
         }
         $c = count($def);
-        if ($count = 1) {
-            #$def = $def[0];
-            
-        }
+        
         return $def;
     }
-    function getDefaultCheck($var = 'NIX', $def, $exp = '|') {
+    function getDefaultCheck($var = 'NIX', $def ='', $exp = '|') {
+        
         $tmp = explode($exp, trim($var));
         $i = 0;
         foreach($def as $key => $val) {
@@ -305,7 +304,7 @@ function CheckPageBreak($h) {
         $this->pdf->SetFont($this->fonts2['general'], '', $this->t1Opt['fontSizeInvoiceNumber']); 
             
         $this->pdf->SetY($this->delta['addrInvoice'] + $this->pdf->GetY());
-        $dat = str_replace('@DATE@', strftime(DATE_FORMAT_SHORT), 'RL_INVOICE3_CITY');
+        
         $tmp = ENTRY_ORDER_ID . sprintf("%s%05d", RL_INVOICE3_ORDER_ID_PREFIX, $this->oID);
         $this->pdf->Cell($this->maxWidth, $hoehe, $tmp, '', 1, 'L');
         if(RL_INVOICE3_ORDERDATE=='true'){
