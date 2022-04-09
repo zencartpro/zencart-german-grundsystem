@@ -10,7 +10,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_account_default.php 2022-04-08 21:47:58Z webchills $
+ * @version $Id: tpl_account_default.php 2022-04-09 16:32:58Z webchills $
  */
 ?>
 <?php 
@@ -44,7 +44,7 @@
     <td class="accountOrderId"><?php if ($display_as_mobile) { echo '<b class="hide">' . TABLE_HEADING_ORDER_NUMBER . '&#58;&nbsp;&nbsp;</b>'; }?><?php echo TEXT_NUMBER_SYMBOL . $orders['orders_id']; ?></td>
     <td class="accountOrderAddress"><?php if ($display_as_mobile) { echo '<b class="hide">' . TABLE_HEADING_SHIPPED_TO . '&#58;&nbsp;&nbsp;</b>'; }?><address><?php echo zen_output_string_protected($orders['order_name']) . '<br>' . $orders['order_country']; ?></address></td>
     <td class="accountOrderStatus"><?php if ($display_as_mobile) { echo '<b class="hide">' . TABLE_HEADING_STATUS . '&#58;&nbsp;&nbsp;</b>'; }?><?php echo $orders['orders_status_name']; ?></td>
-    <td class="accountOrderTotal alignRight"><?php if ($display_as_mobile) { echo '<b class="hide">' . TABLE_HEADING_TOTAL . '&#58;&nbsp;&nbsp;</b>'; }?><?php echo $currencies->format($orders['order_total'], false, $orders['currency']); ?></td>
+    <td class="accountOrderTotal alignRight"><?php if ($display_as_mobile) { echo '<b class="hide">' . TABLE_HEADING_TOTAL . '&#58;&nbsp;&nbsp;</b>'; }?><?php echo $orders['order_total']; ?></td>
     <td class="accountOrderViewButton alignCenter"><?php echo '<a href="' . zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $orders['orders_id'], 'SSL') . '"> ' . zen_image_button(BUTTON_IMAGE_VIEW_SMALL, BUTTON_VIEW_SMALL_ALT) . '</a>'; ?></td>
   </tr>
 

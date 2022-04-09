@@ -8,11 +8,10 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: information.php 2022-01-11 15:58:16Z webchills $
+ * @version $Id: information.php 2022-04-09 16:17:16Z webchills $
  */
 
-  unset($information);
-  $information = array();
+$information = [];
 
   if (DEFINE_SHIPPINGINFO_STATUS <= 1) {
     $information[] = '<a href="' . zen_href_link(FILENAME_SHIPPING) . '">' . BOX_INFORMATION_SHIPPING . '</a>';
@@ -46,11 +45,11 @@
     $information[] = '<a href="' . zen_href_link(FILENAME_SITE_MAP) . '">' . BOX_INFORMATION_SITE_MAP . '</a>';
   }
 
-  // only show GV FAQ when installed
+// only show GV FAQ when feature enabled
   if (defined('MODULE_ORDER_TOTAL_GV_STATUS') && MODULE_ORDER_TOTAL_GV_STATUS == 'true') {
     $information[] = '<a href="' . zen_href_link(FILENAME_GV_FAQ) . '">' . BOX_INFORMATION_GV . '</a>';
   }
-  // only show Discount Coupon FAQ when installed
+// only show Discount Coupon FAQ when feature enabled
   if (DEFINE_DISCOUNT_COUPON_STATUS <= 1 && defined('MODULE_ORDER_TOTAL_COUPON_STATUS') && MODULE_ORDER_TOTAL_COUPON_STATUS == 'true') {
     $information[] = '<a href="' . zen_href_link(FILENAME_DISCOUNT_COUPON) . '">' . BOX_INFORMATION_DISCOUNT_COUPONS . '</a>';
   }
