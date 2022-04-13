@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: general.php 2022-02-18 19:20:33Z webchills $
+ * @version $Id: general.php 2022-04-13 18:45:33Z webchills $
  */
 
 ////
@@ -2700,7 +2700,7 @@ function zen_draw_products_pull_down_categories_attributes($name, $parameters = 
 
   function zen_get_configuration_group_value($lookup) {
     global $db;
-    $configuration_query= $db->Execute("select configuration_group_title from " . TABLE_CONFIGURATION_GROUP . " where configuration_group_id =" . (int)$lookup);
+    $configuration_query= $db->Execute("select configuration_group_title from " . TABLE_CONFIGURATION_GROUP . " where language_id = '" . (int)$_SESSION['languages_id'] . "' AND configuration_group_id ='" . (int)$lookup . "'");
     if ( $configuration_query->RecordCount() == 0 ) {
       return (int)$lookup;
     }
