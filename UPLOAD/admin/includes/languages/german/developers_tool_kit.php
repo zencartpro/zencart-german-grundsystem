@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: developers_tool_kit.php 2021-12-25 08:50:27Z webchills $
+* @version $Id: developers_tool_kit.php 2022-04-13 19:50:27Z webchills $
 */
 define('HEADING_TITLE', 'Developers Tool Kit');
 define('TABLE_CONFIGURATION_TABLE', 'KONSTANTEN Definition suchen');
@@ -54,7 +54,7 @@ define('TEXT_ALL_FILES_LOOKUPS', 'Alle Dateien durchsuchen:');
 define('TEXT_ALL_FILES_LOOKUP_CURRENT', 'Alle Dateien - Webshop/Admin');
 define('TEXT_ALL_FILES_LOOKUP_CURRENT_CATALOG', 'Alle Dateien - Webshop');
 define('TEXT_ALL_FILES_LOOKUP_CURRENT_ADMIN', 'Alle Dateien - Admin');
-define('TEXT_INFO_NO_EDIT_AVAILABLE', 'Editieren nicht verfügbar');
+
 define('TEXT_INFO_CONFIGURATION_HIDDEN', ' oder, versteckt');
 define('TEXT_SEARCH_ALL_FILES', 'Durchsuche ALLE Dateien nach: ');
 define('TEXT_SEARCH_DATABASE_TABLES', 'Durchsuche die Konfigurationstabellen in der Datenbank nach: ');
