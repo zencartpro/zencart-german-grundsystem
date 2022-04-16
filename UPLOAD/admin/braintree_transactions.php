@@ -4,7 +4,7 @@
  * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @version $Id: braintree_transactions.php 2022-01-29 08:54:14 webchills $
+ * @version $Id: braintree_transactions.php 2022-04-16 09:26:14 webchills $
 */
 
   require('includes/application_top.php');
@@ -155,7 +155,7 @@ kill.disabled = true;
 
   }
 
-  $bt_split = new splitPageResults($_GET['page'], MAX_DISPLAY_SEARCH_RESULTS_PAYPAL_IPN, $braintree_query_raw, $bt_query_numrows);
+  $bt_split = new splitPageResults($_GET['page'], MAX_DISPLAY_SEARCH_RESULTS_BRAINTREE_IPN, $braintree_query_raw, $bt_query_numrows);
   $braintree_response = $db->Execute($braintree_query_raw);
   foreach ($braintree_response as $braintree_tran) {
     if ((!isset($_GET['braintreeId']) || (isset($_GET['braintreeId']) && ($_GET['braintreeId'] == $braintree_response->fields['braintree_id']))) && !isset($btInfo) ) {
@@ -181,8 +181,8 @@ kill.disabled = true;
   }
 ?>
               <tr>
-                    <td colspan="3" class="smallText"><?php echo $bt_split->display_count($bt_query_numrows, MAX_DISPLAY_SEARCH_RESULTS_PAYPAL_IPN, $_GET['page'], "Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Transaktionen)"); ?></td>
-                    <td colspan="3" class="smallText"><?php echo $bt_split->display_links($bt_query_numrows, MAX_DISPLAY_SEARCH_RESULTS_PAYPAL_IPN, MAX_DISPLAY_PAGE_LINKS, $_GET['page'], (zen_not_null($selected_status) ? '&payment_status=' . $selected_status : '') . (zen_not_null($braintree_sort_order) ? '&braintree_sort_order=' . $braintree_sort_order : '')); ?></td>
+                    <td colspan="3" class="smallText"><?php echo $bt_split->display_count($bt_query_numrows, MAX_DISPLAY_SEARCH_RESULTS_BRAINTREE_IPN, $_GET['page'], "Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Transaktionen)"); ?></td>
+                    <td colspan="3" class="smallText"><?php echo $bt_split->display_links($bt_query_numrows, MAX_DISPLAY_SEARCH_RESULTS_BRAINTREE_IPN, MAX_DISPLAY_PAGE_LINKS, $_GET['page'], (zen_not_null($selected_status) ? '&payment_status=' . $selected_status : '') . (zen_not_null($braintree_sort_order) ? '&braintree_sort_order=' . $braintree_sort_order : '')); ?></td>
                   </tr>
                 </table>
            </div>

@@ -118,8 +118,6 @@ define('MODULE_PAYMENT_BRAINTREE_ENTRY_AUTH_TITLE', '<strong>Autorisierungen</st
 define('MODULE_PAYMENT_BRAINTREE_ENTRY_AUTH_PARTIAL_TEXT', 'Wenn Sie einen Teil dieser Bestellung autorisieren möchten, geben Sie hier den Betrag ein.:');
 define('MODULE_PAYMENT_BRAINTREE_ENTRY_AUTH_BUTTON_TEXT_PARTIAL', 'Autorisierung durchführen');
 define('MODULE_PAYMENT_BRAINTREE_ENTRY_AUTH_SUFFIX', '');
-define('MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_TEXT_COMMENTS', '<strong>Hinweis, der dem Kunden angezeigt wird:</strong>');
-define('MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_DEFAULT_MESSAGE', 'Erstattet vom Shopinhaber.');
 
 define('MODULE_PAYMENT_BRAINTREE_ENTRY_CAPTURE_TITLE', '<strong>Autorisierungen erfassen</strong>');
 define('MODULE_PAYMENT_BRAINTREE_ENTRY_CAPTURE_FULL', 'Wenn Sie die ausstehenden autorisierten Beträge für diesen Auftrag ganz oder teilweise erfassen möchten, geben Sie den Capture-Betrag ein und wählen Sie, ob dies die endgültige Erfassung für diesen Auftrag ist.  Aktivieren Sie das Bestätigungsfeld, bevor Sie Ihre Capture-Anfrage senden.<br />');

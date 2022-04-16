@@ -10,7 +10,7 @@ define('TABLE_HEADING_PAYMENT_STATUS', 'Status');
 define('TABLE_HEADING_PAYMENT_MESSAGE', 'Rückmeldung');
 define('TABLE_HEADING_PAYMENT_REFNUM', 'Referenznummer');
 define('TABLE_HEADING_ACTION', 'Aktion');
-define('MAX_DISPLAY_SEARCH_RESULTS_PAYPAL_IPN', 50);
+define('MAX_DISPLAY_SEARCH_RESULTS_BRAINTREE_IPN', 50);
 define('TEXT_INFO_BRAINTREE_RESPONSE_BEGIN', 'Braintree Zahlung ');
 define('TEXT_INFO_BRAINTREE_RESPONSE_END', ' für Bestellung');
 define('HEADING_PAYMENT_STATUS', 'Status');
