@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: english.php 2022-04-16 10:10:32Z webchills $
+ * @version $Id: english.php 2022-04-16 10:55:32Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -13,6 +13,7 @@ if (!defined('IS_ADMIN_FLAG'))
 }
 
 define('CONNECTION_TYPE_UNKNOWN', '\'%s\' is not a valid connection type for generating URLs' . PHP_EOL . '%s' . PHP_EOL);
+define('CONFIGURATION_MENU_ENTRIES_TO_SORT_BY_NAME', '1');
 
 // added defines for header alt and text
 define('HEADER_ALT_TEXT', 'Admin Powered by Zen-Cart 1.5.7 - German version');
