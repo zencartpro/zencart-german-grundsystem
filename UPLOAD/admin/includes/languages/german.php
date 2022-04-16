@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2022-03-20 08:32:04Z webchills $
+ * @version $Id: german.php 2022-04-16 10:10:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -127,13 +127,18 @@ define('BOX_CONFIGURATION_ALL_LISTING', 'Liste - Alle Artikel');
 define('BOX_CONFIGURATION_INDEX_LISTING', 'Liste - Artikelindex');
 define('BOX_CONFIGURATION_DEFINE_PAGE_STATUS', 'Define Pages Einstellungen');
 define('BOX_CONFIGURATION_EZPAGES_SETTINGS', 'EZ-Pages Einstellungen');
+define('BOX_CONFIGURATION_SPAM_PROTECTION', 'Spamschutz');
+define('BOX_CONFIGURATION_MINIFY', 'Minify');
+define('BOX_CONFIGURATION_ZEN_COLORBOX', 'Zen Colorbox Einstellungen');
+define('BOX_CONFIGURATION_FACEBOOK', 'Open Graph / Microdata');
+define('BOX_CONFIGURATION_RSSFEED', 'RSS Feed');
+define('BOX_CONFIGURATION_SHOPVOTE', 'Shopvote Konfiguration');
 
 // modules box text
 define('BOX_HEADING_MODULES', 'Module');
 define('BOX_MODULES_PAYMENT', 'Zahlungsarten');
 define('BOX_MODULES_SHIPPING', 'Versandarten');
 define('BOX_MODULES_ORDER_TOTAL', 'Zusammenfassung');
-
 
 // categories box text
 define('BOX_HEADING_CATALOG', 'Webshop');
@@ -159,6 +164,9 @@ define('BOX_CUSTOMERS_GROUP_PRICING', 'Gruppenpreise');
 define('BOX_CUSTOMERS_PAYPAL', 'PayPal IPN');
 define('BOX_CUSTOMERS_INVOICE', 'Rechnung');
 define('BOX_CUSTOMERS_PACKING_SLIP', 'Lieferschein');
+define('BOX_CUSTOMERS_WITHOUT_ORDER', 'Kunden, die nie etwas bestellt haben');
+define('BOX_DSGVO_KUNDENEXPORT', 'DSGVO Kundendatensatz Export');
+define('BOX_CUSTOMERS_UPLOADS', 'Von Kunden hochgeladene Dateien');
 
 // taxes box text
 define('BOX_HEADING_LOCATION_AND_TAXES', 'Länder & Steuern');
@@ -175,15 +183,14 @@ define('BOX_REPORTS_PRODUCTS_PURCHASED', 'Gekaufte Artikel');
 define('BOX_REPORTS_ORDERS_TOTAL', 'Umsatz pro Kunde');
 define('BOX_REPORTS_PRODUCTS_LOWSTOCK', 'Artikelbestand');
 define('BOX_REPORTS_CUSTOMERS_REFERRALS', 'Herkunftsverweise (Referrals)');
+define('BOX_REPORTS_DISABLED_STOCK', 'Deaktivierte Artikel');
+define('BOX_REPORTS_SALES_REPORT', 'Verkaufsbericht');
+define('BOX_REPORTS_SALES_REPORT_GRAPHS', 'Graphischer Verkaufsbericht');
 
 // tools text
 define('BOX_HEADING_TOOLS', 'Tools');
 define('BOX_TOOLS_TEMPLATE_SELECT', 'Template Auswahl');
-define('BOX_TOOLS_BACKUP', 'Datenbanksicherung');
 define('BOX_TOOLS_BANNER_MANAGER', 'Bannermanager');
-
-
-
 define('BOX_TOOLS_MAIL', 'Email senden');
 define('BOX_TOOLS_NEWSLETTER_MANAGER', 'Newsletter & Artikelbenachrichtigungen Manager');
 define('BOX_TOOLS_DEFINE_PAGES_EDITOR','Seiteneditor');
@@ -193,6 +200,10 @@ define('BOX_TOOLS_STORE_MANAGER', 'Shopmanager');
 define('BOX_TOOLS_DEVELOPERS_TOOL_KIT', 'Developers Tool Kit');
 define('BOX_TOOLS_SQLPATCH','SQL Patches installieren');
 define('BOX_TOOLS_EZPAGES','EZ-Pages');
+define('BOX_TOOLS_BACKUP_MYSQL', 'Datenbanksicherung');
+define('BOX_TOOLS_EMAIL_EXPORT', 'Emailadressen Export');
+define('BOX_TOOLS_FINDDUPMODELS', 'Doppelte und fehlende Artikelnummern finden');
+define('BOX_TOOLS_SHOPVOTE', 'Shopvote');
 
 define('BOX_HEADING_EXTRAS', 'Extras');
 

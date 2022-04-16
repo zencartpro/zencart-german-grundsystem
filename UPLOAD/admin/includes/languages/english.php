@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: english.php 2022-03-20 08:33:32Z webchills $
+ * @version $Id: english.php 2022-04-16 10:10:32Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -122,6 +122,13 @@ define('BOX_CONFIGURATION_ALL_LISTING', 'All Listing');
 define('BOX_CONFIGURATION_INDEX_LISTING', 'Index Listing');
 define('BOX_CONFIGURATION_DEFINE_PAGE_STATUS', 'Define Page Status');
 define('BOX_CONFIGURATION_EZPAGES_SETTINGS', 'EZ-Pages Settings');
+define('BOX_CONFIGURATION_SPAM_PROTECTION', 'Spam Protection');
+define('BOX_CONFIGURATION_MINIFY', 'Minify');
+define('BOX_CONFIGURATION_ZEN_COLORBOX', 'Zen Colorbox Settings');
+define('BOX_CONFIGURATION_FACEBOOK', 'Open Graph / Microdata');
+define('BOX_CONFIGURATION_RSSFEED', 'RSS Feed');
+define('BOX_CONFIGURATION_SHOPVOTE', 'Shopvote Configuration');
+
 
 // modules box text
 define('BOX_HEADING_MODULES', 'Modules');
@@ -155,6 +162,9 @@ define('BOX_CUSTOMERS_GROUP_PRICING', 'Group Pricing');
 define('BOX_CUSTOMERS_PAYPAL', 'PayPal IPN');
 define('BOX_CUSTOMERS_INVOICE', 'Invoice');
 define('BOX_CUSTOMERS_PACKING_SLIP', 'Packing Slip');
+define('BOX_CUSTOMERS_WITHOUT_ORDER', 'Customers who have never completed a purchase');
+define('BOX_DSGVO_KUNDENEXPORT', 'GDPR Customer Data Export');
+define('BOX_CUSTOMERS_UPLOADS', 'Uploads');
 
 // taxes box text
 define('BOX_HEADING_LOCATION_AND_TAXES', 'Locations / Taxes');
@@ -171,6 +181,9 @@ define('BOX_REPORTS_PRODUCTS_PURCHASED', 'Products Purchased');
 define('BOX_REPORTS_ORDERS_TOTAL', 'Customer Orders-Total');
 define('BOX_REPORTS_PRODUCTS_LOWSTOCK', 'Products Low Stock');
 define('BOX_REPORTS_CUSTOMERS_REFERRALS', 'Customers Referral');
+define('BOX_REPORTS_DISABLED_STOCK', 'Disabled Stock');
+define('BOX_REPORTS_SALES_REPORT', 'Sales Report');
+define('BOX_REPORTS_SALES_REPORT_GRAPHS', 'Sales Report with Graphs');
 
 // tools text
 define('BOX_HEADING_TOOLS', 'Tools');
@@ -185,6 +198,10 @@ define('BOX_TOOLS_STORE_MANAGER', 'Store Manager');
 define('BOX_TOOLS_DEVELOPERS_TOOL_KIT', 'Developers Tool Kit');
 define('BOX_TOOLS_SQLPATCH','Install SQL Patches');
 define('BOX_TOOLS_EZPAGES','EZ-Pages');
+define('BOX_TOOLS_BACKUP_MYSQL', 'Database Backup - MySQL');
+define('BOX_TOOLS_EMAIL_EXPORT', 'Export Email Addresses');
+define('BOX_TOOLS_FINDDUPMODELS', 'Find Duplicate Models');
+define('BOX_TOOLS_SHOPVOTE', 'Shopvote');
 
 define('BOX_HEADING_EXTRAS', 'Extras');
 
