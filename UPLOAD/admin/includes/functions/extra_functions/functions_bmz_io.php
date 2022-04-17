@@ -2,12 +2,12 @@
 /**
  * @package Image Handler
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
- * @copyright Copyright 2018 lat 9 - Vinos de Frutas Tropicales
+ * @copyright Copyright 2018-2022 lat 9 - Vinos de Frutas Tropicales
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_bmz_io.php 2018-06-15 16:13:51Z webchills $
+ * @version $Id: functions_bmz_io.php 2022-04-17 16:13:51Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG') || IS_ADMIN_FLAG !== true) {
     exit('Invalid access');
@@ -28,7 +28,7 @@ function remove_dir($dirname)
     if ($dir = @dir($dirname)) {
         $dir->rewind();
         while (false !== ($file = $dir->read())) {
-            //echo $dirname . '/' . $file . '<br />';
+            
             if (($file != ".") && ($file != "..") && ($file != ".htaccess") && ($file != ".keep")) {
                 if (is_dir($dirname . '/' . $file)) {
                     // another directory, recurse

@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: category_product_listing.php 2022-03-20 08:42:16Z webchills $
+ * @version $Id: category_product_listing.php 2022-04-17 16:42:16Z webchills $
  */
 require 'includes/application_top.php';
 $languages = zen_get_languages();
@@ -1020,8 +1020,8 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
           $heading[] = array('text' => '<b>' . TEXT_INFO_HEADING_CHANGE_PRICE. '</b>');
           $contents = array('form' => zen_draw_form('products', FILENAME_CATEGORY_PRODUCT_LISTING, 'action=change_price_confirm&cPath=' . $cPath . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')) . zen_draw_hidden_field('products_id', $pInfo->products_id));
           $contents[] = array('text' => sprintf(TEXT_CHANGE_PRICE_INTRO, $pInfo->products_name));
-          $contents[] = array('align' => 'center', 'text' => '<br />' . '<br />' . TEXT_CHANGE_PRICE_LABEL . zen_draw_input_field('price', '', 'size="6"'));
-          $contents[] = array('align' => 'center', 'text' => '<br />' . zen_image_submit('button_update.gif', IMAGE_UPDATE) . ' <a href="' . zen_href_link(FILENAME_CATEGORY_PRODUCT_LISTING, 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');
+          $contents[] = array('align' => 'center', 'text' => '<br>' . '<br>' . TEXT_CHANGE_PRICE_LABEL . zen_draw_input_field('price', '', 'size="6"'));
+          $contents[] = array('align' => 'center', 'text' => '<br>' . zen_image_submit('button_update.gif', IMAGE_UPDATE) . ' <a href="' . zen_href_link(FILENAME_CATEGORY_PRODUCT_LISTING, 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');
           break;
           //eof price update 
           case 'setflag_categories':

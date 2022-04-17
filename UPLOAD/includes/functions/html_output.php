@@ -9,7 +9,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: html_output.php 2021-11-29 15:44:58Z webchills $
+ * @version $Id: html_output.php 2022-04-17 09:00:58Z webchills $
  */
 
 /*
@@ -24,7 +24,7 @@
     if (!zen_not_null($page)) {
       trigger_error("zen_href_link($page, $parameters, $connection), unable to determine the page link.",
             E_USER_ERROR);
-      die('</td></tr></table></td></tr></table><br /><br /><strong class="note">Error!<br /><br />Unable to determine the page link!</strong><br /><br /><!--' . $page . '<br />' . $parameters . ' -->');
+      die('</td></tr></table></td></tr></table><br><br><strong class="note">Error!<br><br>Unable to determine the page link!</strong><br><br><!--' . $page . '<br>' . $parameters . ' -->');
     }
 
     if ($connection == 'NONSSL') {
@@ -37,7 +37,7 @@
       }
     } else {
       trigger_error("zen_href_link($page, $parameters, $connection), Unable to determine connection method on a link! Known methods: NONSSL SSL", E_USER_ERROR);
-      die('</td></tr></table></td></tr></table><br /><br /><strong class="note">Error!<br /><br />Unable to determine connection method on a link!<br /><br />Known methods: NONSSL SSL</strong><br /><br />');
+      die('</td></tr></table></td></tr></table><br><br><strong class="note">Error!<br><br>Unable to determine connection method on a link!<br><br>Known methods: NONSSL SSL</strong><br><br>');
     }
 
     if ($use_dir_ws_catalog) {

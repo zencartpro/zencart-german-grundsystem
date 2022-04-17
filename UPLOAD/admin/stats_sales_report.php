@@ -342,7 +342,7 @@ if ($output_format === false) {
     // if any required field is empty, cancel the report and alert the user
     // JavaScript checks should usually catch these, this is "just in case"
     if (!$start_date || !$end_date || !$date_target || !$detail_level || !$output_format) {
-        $messageStack->add_session(ERROR_MISSING_REQ_INFO . '<br />' . $_GET['start_date'] . '<br />' . $_GET['end_date'], 'error');
+        $messageStack->add_session(ERROR_MISSING_REQ_INFO . '<br>' . $_GET['start_date'] . '<br>' . $_GET['end_date'], 'error');
         zen_redirect(zen_href_link(FILENAME_STATS_SALES_REPORT, zen_get_all_get_params(array('output_format')), 'NONSSL'));
     }
 
@@ -466,10 +466,10 @@ if ($output_format == 'print') {
 <table border="0" width="100%" cellspacing="2" cellpadding="2">
     <!-- PRINT HEADER -->
     <tr>
-        <td class="center" colspan="2"><?php echo '<a href="' . zen_href_link(FILENAME_STATS_SALES_REPORT, zen_get_all_get_params(array('output_format')) . 'output_format=none', 'NONSSL') . '"><span class="pageHeading">' . PAGE_HEADING . '</span></a><br />'; ?></td>
+        <td class="center" colspan="2"><?php echo '<a href="' . zen_href_link(FILENAME_STATS_SALES_REPORT, zen_get_all_get_params(array('output_format')) . 'output_format=none', 'NONSSL') . '"><span class="pageHeading">' . PAGE_HEADING . '</span></a><br>'; ?></td>
     </tr>
     <tr>
-        <td class="center" colspan="2"><?php echo '<a href="' . zen_href_link(FILENAME_STATS_SALES_REPORT, zen_get_all_get_params(array('output_format')) . 'output_format=none', 'NONSSL') . '"><span class="pageHeading">' . $start_date . PRINT_DATE_TO . $end_date . '</span></a><br />'; ?></td>
+        <td class="center" colspan="2"><?php echo '<a href="' . zen_href_link(FILENAME_STATS_SALES_REPORT, zen_get_all_get_params(array('output_format')) . 'output_format=none', 'NONSSL') . '"><span class="pageHeading">' . $start_date . PRINT_DATE_TO . $end_date . '</span></a><br>'; ?></td>
     </tr>
     <tr class="v-top">
         <td><table>
@@ -578,10 +578,10 @@ if ($output_format == 'print') {
                                 <td class="smallText"><strong><?php echo SEARCH_DATE_CUSTOM; ?></strong>&nbsp;<button id="choose-preset" type="button"><?php echo BUTTON_TIMEFRAME_PRESET; ?></button></td>
                             </tr>
                             <tr>
-                                <td class="smallText"><?php echo SEARCH_START_DATE ?><br /><script>StartDate.writeControl(); StartDate.dateFormat="<?php echo DATE_FORMAT_SPIFFYCAL; ?>";</script></td>
+                                <td class="smallText"><?php echo SEARCH_START_DATE ?><br><script>StartDate.writeControl(); StartDate.dateFormat="<?php echo DATE_FORMAT_SPIFFYCAL; ?>";</script></td>
                             </tr>
                             <tr>
-                                <td class="smallText"><?php echo SEARCH_END_DATE; ?><br /><script>EndDate.writeControl(); EndDate.dateFormat="<?php echo DATE_FORMAT_SPIFFYCAL; ?>";</script></td>
+                                <td class="smallText"><?php echo SEARCH_END_DATE; ?><br><script>EndDate.writeControl(); EndDate.dateFormat="<?php echo DATE_FORMAT_SPIFFYCAL; ?>";</script></td>
                             </tr>
                         </table></td>
                         <td><table>
@@ -590,7 +590,7 @@ if ($output_format == 'print') {
                             </tr>
                             <tr>
                                 <td class="smallText"><?php
-                                    echo zen_draw_radio_field('date_target', 'purchased', ($date_target == 'purchased')) . ' ' . RADIO_DATE_TARGET_PURCHASED . '<br />' .
+                                    echo zen_draw_radio_field('date_target', 'purchased', ($date_target == 'purchased')) . ' ' . RADIO_DATE_TARGET_PURCHASED . '<br>' .
                                          zen_draw_radio_field('date_target', 'status', ($date_target != 'purchased')) . ' ' . RADIO_DATE_TARGET_STATUS;
                                 ?></td>
                             </tr>
@@ -616,22 +616,22 @@ if ($output_format == 'print') {
                         </table></td>
                         <td><table>
                             <tr>
-                                <td class="smallText"><strong><?php echo SEARCH_PAYMENT_METHOD . '</strong><br />' . zen_draw_pull_down_menu('payment_method', $payments_array, $payment_method, 'id="payment_method"'); ?></td>
+                                <td class="smallText"><strong><?php echo SEARCH_PAYMENT_METHOD . '</strong><br>' . zen_draw_pull_down_menu('payment_method', $payments_array, $payment_method, 'id="payment_method"'); ?></td>
                             </tr>
                             <tr>
-                                <td class="smallText"><strong><?php echo SEARCH_PAYMENT_METHOD_OMIT . '</strong><br />' . zen_draw_pull_down_menu('payment_method_omit', $payments_array, $payment_method_omit, 'id="payment_method_omit"'); ?></td>
+                                <td class="smallText"><strong><?php echo SEARCH_PAYMENT_METHOD_OMIT . '</strong><br>' . zen_draw_pull_down_menu('payment_method_omit', $payments_array, $payment_method_omit, 'id="payment_method_omit"'); ?></td>
                             </tr>
                             <tr>
-                                <td class="smallText"><strong><?php echo SEARCH_CURRENT_STATUS . '</strong><br />' . zen_draw_pull_down_menu('current_status', array_merge(array(array('id' => '0', 'text' => TEXT_EMPTY_SELECT)), $status_array), $current_status, 'id="current_status"'); ?></td>
+                                <td class="smallText"><strong><?php echo SEARCH_CURRENT_STATUS . '</strong><br>' . zen_draw_pull_down_menu('current_status', array_merge(array(array('id' => '0', 'text' => TEXT_EMPTY_SELECT)), $status_array), $current_status, 'id="current_status"'); ?></td>
                             </tr>
                             <tr>
-                                <td class="smallText"><strong><?php echo SEARCH_EXCLUDED_STATUS . '</strong><br />' . zen_draw_pull_down_menu('excluded_status', array_merge(array(array('id' => '0', 'text' => TEXT_EMPTY_SELECT)), $status_array), $excluded_status, 'id="excluded-status"'); ?></td>
+                                <td class="smallText"><strong><?php echo SEARCH_EXCLUDED_STATUS . '</strong><br>' . zen_draw_pull_down_menu('excluded_status', array_merge(array(array('id' => '0', 'text' => TEXT_EMPTY_SELECT)), $status_array), $excluded_status, 'id="excluded-status"'); ?></td>
                             </tr>
 <?php 
     if (count($manufacturer_array) != 0) { 
 ?>
                             <tr>
-                                <td class="smallText"><strong><?php echo SEARCH_MANUFACTURER . '</strong><br />' . zen_draw_pull_down_menu('manufacturer', $manufacturer_array, $manufacturer, 'id="manufacturer"'); ?></td>
+                                <td class="smallText"><strong><?php echo SEARCH_MANUFACTURER . '</strong><br>' . zen_draw_pull_down_menu('manufacturer', $manufacturer_array, $manufacturer, 'id="manufacturer"'); ?></td>
                             </tr>
 <?php 
 } 
@@ -653,9 +653,9 @@ if ($output_format == 'print') {
                             </tr>
                             <tr>
                                 <td class="smallText"><?php echo
-                                    zen_draw_radio_field('timeframe', 'day', $timeframe == 'day') . SEARCH_TIMEFRAME_DAY . '<br />' .
-                                    zen_draw_radio_field('timeframe', 'week', $timeframe == 'week') . SEARCH_TIMEFRAME_WEEK . '<br />' .
-                                    zen_draw_radio_field('timeframe', 'month', $timeframe == 'month') . SEARCH_TIMEFRAME_MONTH . '<br />' .
+                                    zen_draw_radio_field('timeframe', 'day', $timeframe == 'day') . SEARCH_TIMEFRAME_DAY . '<br>' .
+                                    zen_draw_radio_field('timeframe', 'week', $timeframe == 'week') . SEARCH_TIMEFRAME_WEEK . '<br>' .
+                                    zen_draw_radio_field('timeframe', 'month', $timeframe == 'month') . SEARCH_TIMEFRAME_MONTH . '<br>' .
                                     zen_draw_radio_field('timeframe', 'year', $timeframe == 'year') . SEARCH_TIMEFRAME_YEAR; ?>
                                 </td>
                             </tr>
@@ -666,14 +666,14 @@ if ($output_format == 'print') {
                             </tr>
                             <tr>
                                 <td class="smallText"><?php echo
-                                    zen_draw_radio_field('timeframe_sort', 'asc', $timeframe_sort == 'asc') . zen_image(DIR_WS_IMAGES . 'icons/up_arrow.gif') . '&nbsp;' . RADIO_TIMEFRAME_SORT_ASC . '<br />' .
+                                    zen_draw_radio_field('timeframe_sort', 'asc', $timeframe_sort == 'asc') . zen_image(DIR_WS_IMAGES . 'icons/up_arrow.gif') . '&nbsp;' . RADIO_TIMEFRAME_SORT_ASC . '<br>' .
                                     zen_draw_radio_field('timeframe_sort', 'desc', $timeframe_sort != 'asc') . zen_image(DIR_WS_IMAGES . 'icons/down_arrow.gif') . '&nbsp;' . RADIO_TIMEFRAME_SORT_DESC; ?>
                                 </td>
                             </tr>
                         </table></td>
                         <td><table>
                             <tr>
-                                <td class="smallText"><strong><?php echo SEARCH_DETAIL_LEVEL; ?></strong><br /><?php echo zen_draw_pull_down_menu('detail_level', $detail_array, $detail_level, 'id="detail_level"'); ?></td>
+                                <td class="smallText"><strong><?php echo SEARCH_DETAIL_LEVEL; ?></strong><br><?php echo zen_draw_pull_down_menu('detail_level', $detail_array, $detail_level, 'id="detail_level"'); ?></td>
                             </tr>
                         </table></td>
         <!-- end table nesting -->          
@@ -686,10 +686,10 @@ if ($output_format == 'print') {
                                 <td class="smallText">
                                     <?php echo zen_draw_pull_down_menu('li_sort_a', $order_sorts_array, $li_sort_a_order, 'id="li-sort-a-order"') .
                                                zen_draw_pull_down_menu('li_sort_a', $product_sorts_array, $li_sort_a_product, 'id="li-sort-a-product"'); ?>
-                                    <br />
+                                    <br>
                                     <?php echo
                                         zen_draw_radio_field('li_sort_order_a', 'asc', $li_sort_order_a == 'asc') . zen_image(DIR_WS_IMAGES . 'icons/up_arrow.gif') . '&nbsp;' . RADIO_LI_SORT_ASC . 
-                                        '<br />' .
+                                        '<br>' .
                                         zen_draw_radio_field('li_sort_order_a', 'desc', $li_sort_order_a != 'asc') . zen_image(DIR_WS_IMAGES . 'icons/down_arrow.gif') . '&nbsp;' . RADIO_LI_SORT_DESC; 
                                     ?>
                                  </td>
@@ -703,9 +703,9 @@ if ($output_format == 'print') {
                                 <td class="smallText">
                                     <?php echo zen_draw_pull_down_menu('li_sort_b', $order_sorts_array, $li_sort_b_order, 'id="li-sort-b-order"') .
                                                zen_draw_pull_down_menu('li_sort_b', $product_sorts_array, $li_sort_b_product, 'id="li-sort-b-product"'); ?>
-                                    <br />
+                                    <br>
                                     <?php echo
-                                    zen_draw_radio_field('li_sort_order_b', 'asc', $li_sort_order_b == 'asc') . zen_image(DIR_WS_IMAGES . 'icons/up_arrow.gif') . '&nbsp;' . RADIO_LI_SORT_ASC . '<br />' .
+                                    zen_draw_radio_field('li_sort_order_b', 'asc', $li_sort_order_b == 'asc') . zen_image(DIR_WS_IMAGES . 'icons/up_arrow.gif') . '&nbsp;' . RADIO_LI_SORT_ASC . '<br>' .
                                     zen_draw_radio_field('li_sort_order_b', 'desc', $li_sort_order_b != 'asc') . zen_image(DIR_WS_IMAGES . 'icons/down_arrow.gif') . '&nbsp;' . RADIO_LI_SORT_DESC; ?>
                                 </td>
                             </tr>
@@ -719,14 +719,14 @@ if ($output_format == 'print') {
                 <fieldset><legend><?php echo HEADING_TITLE_PROCESS; ?></legend>
                 <table class="table">
                     <tr class="v-bot">
-                        <td class="smallText"><strong><?php echo SEARCH_OUTPUT_FORMAT; ?></strong><br /><?php echo zen_draw_pull_down_menu('output_format', $output_array, $output_format, 'id="output-format"'); ?></td>
-                        <td class="smallText"><?php echo zen_draw_separator('pixel_trans.gif', 175, 1); ?><br />
+                        <td class="smallText"><strong><?php echo SEARCH_OUTPUT_FORMAT; ?></strong><br><?php echo zen_draw_pull_down_menu('output_format', $output_array, $output_format, 'id="output-format"'); ?></td>
+                        <td class="smallText"><?php echo zen_draw_separator('pixel_trans.gif', 175, 1); ?><br>
                             <span id="span-auto-print"><?php echo zen_draw_checkbox_field('auto_print', '1', false) . CHECKBOX_AUTO_PRINT; ?></span>
                             <span id="span-csv-header"><?php echo zen_draw_checkbox_field('csv_header', '1', false) . CHECKBOX_CSV_HEADER; ?></span>
                         </td>
                         <td class="smallText right" id="order-total-validation"><?php echo zen_draw_checkbox_field('order_total_validation', '1', false) . CHECKBOX_VALIDATE_TOTALS; ?></td>
                         <td class="smallText right"><?php echo zen_draw_checkbox_field('new_window', '1', $new_window, '', 'id="new-window"') . CHECKBOX_NEW_WINDOW; ?>
-                            <br /><button type="button" id="btn-submit"><?php echo BUTTON_SEARCH; ?></button>
+                            <br><button type="button" id="btn-submit"><?php echo BUTTON_SEARCH; ?></button>
                         </td>
                     </tr>
                 </table></fieldset>

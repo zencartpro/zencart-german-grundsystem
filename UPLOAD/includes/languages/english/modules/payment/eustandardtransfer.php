@@ -10,11 +10,11 @@
 define('MODULE_PAYMENT_EUTRANSFER_TEXT_TITLE', 'Moneyorder');
 
 define('MODULE_PAYMENT_EUTRANSFER_TEXT_DESCRIPTION', 
-'<div class="eustandardtransferdescription">Please use the following details to transfer your total order value:<br />' .
-'<br />Bank name:  ' . nl2br(MODULE_PAYMENT_EUTRANSFER_BANKNAM) .
-'<br />Account Name: ' . nl2br(MODULE_PAYMENT_EUTRANSFER_ACCNAM) . 
-'<br />IBAN:    ' . nl2br(MODULE_PAYMENT_EUTRANSFER_ACCIBAN) .
-'<br />BIC/SWIFT:   ' . nl2br(MODULE_PAYMENT_EUTRANSFER_BANKBIC) .
+'<div class="eustandardtransferdescription">Please use the following details to transfer your total order value:<br>' .
+'<br>Bank name:  ' . nl2br(MODULE_PAYMENT_EUTRANSFER_BANKNAM) .
+'<br>Account Name: ' . nl2br(MODULE_PAYMENT_EUTRANSFER_ACCNAM) . 
+'<br>IBAN:    ' . nl2br(MODULE_PAYMENT_EUTRANSFER_ACCIBAN) .
+'<br>BIC/SWIFT:   ' . nl2br(MODULE_PAYMENT_EUTRANSFER_BANKBIC) .
 '<br>Your order will be processed as soon as we received the payment.</div>');
    
 define('MODULE_PAYMENT_EUTRANSFER_TEXT_EMAIL_FOOTER', 

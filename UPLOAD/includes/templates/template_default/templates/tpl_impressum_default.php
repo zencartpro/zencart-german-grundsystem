@@ -2,7 +2,7 @@
 /**
  * Page Template
  *
- * Loaded automatically by index.php?main_page=impressum.<br />
+ * Loaded automatically by index.php?main_page=impressum
  * Displays impressum page.
  *
  * @package templateSystem

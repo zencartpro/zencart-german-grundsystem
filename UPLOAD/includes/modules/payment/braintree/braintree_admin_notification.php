@@ -150,25 +150,25 @@ $settled_result = Braintree\Transaction::find($response['TRANSACTIONID']);
 
 $outputRefund .= '<td><table class="noprint">'."\n";
 $outputRefund .= '<tr style="background-color : #eeeeee; border-style : dotted;">'."\n";
-$outputRefund .= '<td class="main">' . MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_TITLE . '<br />'. "\n";
+$outputRefund .= '<td class="main">' . MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_TITLE . '<br>'. "\n";
 $outputRefund .= zen_draw_form('pprefund', FILENAME_ORDERS, zen_get_all_get_params(array('action')) . 'action=doRefund', 'post', '', true) . zen_hide_session_id();
 $outputRefund .= MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_PAYFLOW_TEXT;
 
 // full refund
 $outputRefund .= MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_FULL;
-$outputRefund .= '<br /><input type="submit" name="fullrefund" value="' . MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_BUTTON_TEXT_FULL . '" title="' . MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_BUTTON_TEXT_FULL . '" />' . ' ' . MODULE_PAYMENT_BRAINTREE_TEXT_REFUND_FULL_CONFIRM_CHECK . zen_draw_checkbox_field('reffullconfirm', '', false) . '<br />';
+$outputRefund .= '<br><input type="submit" name="fullrefund" value="' . MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_BUTTON_TEXT_FULL . '" title="' . MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_BUTTON_TEXT_FULL . '" />' . ' ' . MODULE_PAYMENT_BRAINTREE_TEXT_REFUND_FULL_CONFIRM_CHECK . zen_draw_checkbox_field('reffullconfirm', '', false) . '<br>';
 $outputRefund .= MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_TEXT_FULL_OR;
 
 if($settled_result && ($settled_result->status == "settled" || $settled_result->status == "settling")) {
 //partial refund - input field
 $outputRefund .= MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_PARTIAL_TEXT . ' ' . zen_draw_input_field('refamt', 'enter amount', 'length="8"');
-$outputRefund .= '<input type="submit" name="partialrefund" value="' . MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_BUTTON_TEXT_PARTIAL . '" title="' . MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_BUTTON_TEXT_PARTIAL . '" /><br />';
+$outputRefund .= '<input type="submit" name="partialrefund" value="' . MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_BUTTON_TEXT_PARTIAL . '" title="' . MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_BUTTON_TEXT_PARTIAL . '" /><br>';
 }
 
 //comment field
-$outputRefund .= '<br />' . MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_TEXT_COMMENTS . '<br />' . zen_draw_textarea_field('refnote', 'soft', '50', '3', MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_DEFAULT_MESSAGE);
+$outputRefund .= '<br>' . MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_TEXT_COMMENTS . '<br>' . zen_draw_textarea_field('refnote', 'soft', '50', '3', MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_DEFAULT_MESSAGE);
 //message text
-$outputRefund .= '<br />' . MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_SUFFIX;
+$outputRefund .= '<br>' . MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_SUFFIX;
 $outputRefund .= '</form>';
 $outputRefund .='</td></tr></table></td>'."\n";
 

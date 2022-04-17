@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: sniffer.php 2015-12-21 19:49:16Z webchills $
+ * @version $Id: sniffer.php 2022-04-17 08:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -45,7 +45,7 @@ class sniffer extends base {
     $sql = "show fields from " . $table_name;
     $result = $db->Execute($sql);
     while (!$result->EOF) {
-      // echo 'fields found='.$result->fields['Field'].'<br />';
+      // echo 'fields found='.$result->fields['Field'].'<br>';
       if  ($result->fields['Field'] == $field_name) {
         return true; // exists, so return with no error
       }
@@ -59,7 +59,7 @@ class sniffer extends base {
     $sql = "show fields from " . $table_name;
     $result = $db->Execute($sql);
     while (!$result->EOF) {
-      // echo 'fields found='.$result->fields['Field'].'<br />';
+      // echo 'fields found='.$result->fields['Field'].'<br>';
       if  ($result->fields['Field'] == $field_name) {
         if  ($result->fields['Type'] == $field_type) {
           return true; // exists and matches required type, so return with no error

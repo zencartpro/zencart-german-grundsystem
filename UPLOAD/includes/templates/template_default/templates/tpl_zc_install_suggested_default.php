@@ -9,11 +9,10 @@
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_zc_install_suggested_default.php 2021-12-28 16:42:24Z webchills $
+ * @version $Id: tpl_zc_install_suggested_default.php 2022-04-17 17:02:24Z webchills $
  */
 $relPath = (file_exists('includes/templates/template_default/images/logo.gif')) ? '' : '../';
 $instPath = (file_exists('zc_install/index.php')) ? 'zc_install/index.php' : (file_exists('../zc_install/index.php') ? '../zc_install/index.php' : '');
-$docsPath = (file_exists('docs/index.html')) ? 'docs/index.html' : (file_exists('../docs/index.html') ? '../docs/index.html' : '');
 ?>
 <!DOCTYPE html>
 <html <?php echo HTML_PARAMS; ?>>
@@ -224,14 +223,14 @@ $docsPath = (file_exists('docs/index.html')) ? 'docs/index.html' : (file_exists(
       <h2>Sie bekommen diese Seite aus einem der folgenden Gründe angezeigt:</h2>
       <ol>
         
-<li>Sie benutzen <strong>Zen Cart zum ersten Mal</strong> und haben noch keine Installation durchgeführt.<br />
+<li>Sie benutzen <strong>Zen Cart zum ersten Mal</strong> und haben noch keine Installation durchgeführt.<br>
 Sollte das der Fall sein, dann
           <?php if ($instPath) { ?>
             <a href="<?php echo $instPath; ?>">CLICKEN SIE HIER</a> um die Installation zu starten.
           <?php } else { ?>
             dann laden Sie das Verzeichnis "zc_install" mit Ihrem FTP Programm in Ihr Shopverzeichnis hoch und rufen dann <a href="<?php echo $instPath; ?>">zc_install/index.php</a> in Ihrem Browser auf (oder laden Sie diese Seite erneut, um einen Link dahin angezeigt zu bekommen).
           <?php } ?>
-<br /><br />
+<br><br>
 </li>
         <li>
           Es ist <strong>nicht das erstemal</strong> dass Sie Zen Cart verwenden und Sie haben kürzlich die Installation bereits abgeschlossen.
@@ -260,7 +259,7 @@ Sollte das der Fall sein, dann
               <br>
             </li>
             <li>
-              Weitere Informationen erhalten Sie im <a href="https://www.zen-cart-pro.at/forum" target="_blank">deutschsprachigen Supportforum</a>
+              Weitere Informationen erhalten Sie in <a href="https://dokumentation.zen-cart-pro.at" target="_blank">Onlinedokumentation der deutschen Zen Cart Version</a>
             </li>
           </ul>
         </li>
@@ -275,15 +274,11 @@ Sollte das der Fall sein, dann
     <div>
       <h2>Um die Installation zu starten:</h2>
       <ol>
-          <?php if ($docsPath) { ?>
+          
           <li>
-            Lesen Sie vorab die <a href="https://www.zen-cart-pro.at/documentation.html" target="_blank">INSTALLATIONSANLEITUNG</a>
+           Die Installationsanleitung finden Sie online <a href="https://installationsanleitung.zen-cart-pro.at" target="_blank">hier</a>.
           </li>
-        <?php } else { ?>
-          <li>
-           Die Installationsanleitung finden Sie online <a href="https://www.zen-cart-pro.at/documentation.html" target="_blank">hier</a> und auch im Ordner ANLEITUNG in der zip Datei des Zen Cart Downloads.
-          </li>
-        <?php } ?>
+      
         <?php if ($instPath) { ?>
           <li>
             Rufen Sie <a href="<?php echo $instPath; ?>">zc_install/index.php</a> in Ihrem Browser auf.
@@ -291,7 +286,7 @@ Sollte das der Fall sein, dann
         <?php } else { ?>
 <li>Sie müssen das Verzeichnis "zc_install" per FTP in Ihr Shopverzeichnis hochladen und dann <a href="<?php echo $instPath; ?>">zc_install/index.php</a> via Ihrem Browser aufrufen (oder laden Sie diese Seite erneut, um einen Link dahin angezeigt zu bekommen).</li>
         <?php } ?>
-<li>Das <a href="https://www.zen-cart-pro.at/forum/" target="_blank">deutschsprachige Supportforum</a> steht Ihnen bei Problemen ebenfalls zur Verfügung.</li>
+<li>Die <a href="https://www.zen-cart-pro.at" target="_blank">deutschsprachige Knowledgebase</a> steht Ihnen zur Unterstützung ebenfalls zur Verfügung.</li>
       </ol>
     </div>
   </div>

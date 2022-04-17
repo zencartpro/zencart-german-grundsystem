@@ -2,7 +2,7 @@
 /**
  * Page Template
  * Zen Cart German Specific
- * Loaded automatically by index.php?main_page=product_info.<br />
+ * Loaded automatically by index.php?main_page=product_info.
  * Displays details of a typical product
  *
  * @copyright Copyright 2003-2022 Zen Cart Development Team

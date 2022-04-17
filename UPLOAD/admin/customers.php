@@ -1019,7 +1019,7 @@ if (zen_not_null($action)) {
             foreach ($addressArray as $addresses) {
               ?>
               <h3 class="addressBookDefaultName"><?php echo zen_output_string_protected($addresses['firstname'] . ' ' . $addresses['lastname']); ?><?php if ($addresses['address_book_id'] == zen_get_customers_address_primary($_GET['cID'])) echo '&nbsp;' . PRIMARY_ADDRESS; ?></h3>
-              <address><?php echo zen_address_format($addresses['format_id'], $addresses['address'], true, ' ', '<br />'); ?></address>
+              <address><?php echo zen_address_format($addresses['format_id'], $addresses['address'], true, ' ', '<br>'); ?></address>
 
               <br class="clearBoth">
             <?php } // end list ?>

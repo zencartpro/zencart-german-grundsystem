@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_to_categories.php 2022-01-14 17:23:16Z webchills $
+ * @version $Id: products_to_categories.php 2022-04-17 08:43:16Z webchills $
  */
 
 define('HEADING_TITLE','Products to Multiple Categories Link Manager');
@@ -84,7 +84,7 @@ define('SUCCESS_REMOVED_PRODUCT', 'product: %1$s was removed from category ID#%2
 define('SUCCESS_REMOVE_LINKED_PRODUCTS', '%u linked product(s) removed');
 define('WARNING_REMOVE_FROM_IN_TO_LINKED', 'WARNING: Nothing to do! No products in Target Category ID#%1$u are linked from Reference Category ID#%2$u');
 define('WARNING_PRODUCT_MASTER_CATEGORY_IN_TARGET','Product: ID#%1$u "%2$s" (%3$s)<br>has the same master category id as the target category ID#%4$u<br>');
-define('WARNING_REMOVE_LINKED_PRODUCTS_MASTER_CATEGORIES_ID_CONFLICT', '<strong>WARNING: MASTER CATEGORIES ID CONFLICT!</strong><br>Reference Category ID#%1$u for removal of linked products in Target Category ID#%2$u.<br>You have requested the removal of some linked products from a target category. One or more of those products has the same master category ID as the target category. This means that the product is not "linked" to the target category but "resides" in that category and so cannot be removed as part of this request to remove <i>linked</i> products.<br>If you wish to <i>retain</i> this product, you must change it\'s master category ID to another category (i.e. "Move" it) before carrying out this process again. This may be done on this page or via the "Move" action on a Category-Product listing page. The first product with a conflicting master category ID has been already selected for editing.<br/>If you wish to <i>delete</i> this product, you must use the "Delete" action on the Category-Product listing page.');
+define('WARNING_REMOVE_LINKED_PRODUCTS_MASTER_CATEGORIES_ID_CONFLICT', '<strong>WARNING: MASTER CATEGORIES ID CONFLICT!</strong><br>Reference Category ID#%1$u for removal of linked products in Target Category ID#%2$u.<br>You have requested the removal of some linked products from a target category. One or more of those products has the same master category ID as the target category. This means that the product is not "linked" to the target category but "resides" in that category and so cannot be removed as part of this request to remove <i>linked</i> products.<br>If you wish to <i>retain</i> this product, you must change it\'s master category ID to another category (i.e. "Move" it) before carrying out this process again. This may be done on this page or via the "Move" action on a Category-Product listing page. The first product with a conflicting master category ID has been already selected for editing.<br>If you wish to <i>delete</i> this product, you must use the "Delete" action on the Category-Product listing page.');
 
 // Reset Master Categories ID for all products in a category
 define('TEXT_HEADING_RESET_ALL_PRODUCTS_TO_CATEGORY_MASTER', 'Reset the Master Category ID for ALL Products in a Category');

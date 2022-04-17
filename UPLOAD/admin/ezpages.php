@@ -1,7 +1,6 @@
 <?php
 /**
- * Zen Cart German Specific
- 
+ * Zen Cart German Specific 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
@@ -392,7 +391,7 @@ if (zen_not_null($action)) {
           <div class="col-sm-9 col-md-6">
             <label class="radio-inline"><?php echo zen_draw_radio_field('status_visible', '1', ($ezInfo->status_visible == 1)) . TEXT_YES; ?></label>
             <label class="radio-inline"><?php echo zen_draw_radio_field('status_visible', '0', ($ezInfo->status_visible == 0)) . TEXT_NO; ?></label>
-            <br /><br /><?php echo TABLE_HEADING_PAGE_IS_VISIBLE_EXPLANATION; ?>
+            <br><br><?php echo TABLE_HEADING_PAGE_IS_VISIBLE_EXPLANATION; ?>
           </div>
         </div>
         <div class="row"><?php echo zen_draw_separator('pixel_black.gif', '100%', '1'); ?></div>

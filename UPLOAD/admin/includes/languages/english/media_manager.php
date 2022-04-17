@@ -1,6 +1,5 @@
 <?php
-/**
- 
+/** 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
@@ -15,7 +14,7 @@ define('TABLE_HEADING_ACTION', 'Action');
 define('TEXT_HEADING_NEW_MEDIA_COLLECTION', 'New Media Collection');
 define('TEXT_NEW_INTRO', 'Please enter the details of the new media collection below');
 define('TEXT_MEDIA_COLLECTION_NAME', 'Media Collection Name');
-define('TEXT_MEDIA_EDIT_INSTRUCTIONS', 'Use the section above to change the Media Collection Name, then clicking on the save button.<br /><br />
+define('TEXT_MEDIA_EDIT_INSTRUCTIONS', 'Use the section above to change the Media Collection Name, then clicking on the save button.<br><br>
                                         Use the selection below to add or remove media clips from the media collection.');
 define('TEXT_DATE_ADDED', 'Date Added:');
 define('TEXT_LAST_MODIFIED', 'Last Modified:');

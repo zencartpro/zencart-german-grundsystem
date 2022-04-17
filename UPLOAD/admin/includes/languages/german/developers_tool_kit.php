@@ -2,20 +2,20 @@
 /**
 * Zen Cart German Specific
 * @copyright Copyright 2003-2022 Zen Cart Development Team
- * Zen Cart German Version - www.zen-cart-pro.at
+* Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: developers_tool_kit.php 2022-04-13 19:50:27Z webchills $
+* @version $Id: developers_tool_kit.php 2022-04-17 16:50:27Z webchills $
 */
 define('HEADING_TITLE', 'Developers Tool Kit');
 define('TABLE_CONFIGURATION_TABLE', 'KONSTANTEN Definition suchen');
 define('SUCCESS_PRODUCT_UPDATE_PRODUCTS_PRICE_SORTER', '<strong>Erfolgreiche</strong> Aktualisierung der Artikelpreis Sortierung');
 define('ERROR_CONFIGURATION_KEY_NOT_FOUND', '<strong>Fehler:</strong> Keine passenden Konfigurationsschlüssel gefunden ...');
 define('ERROR_CONFIGURATION_KEY_NOT_ENTERED', '<strong>Fehler:</strong> Kein Konfigurationsschlüssel oder Text eingegeben ... Suche abgebrochen');
-define('TEXT_INFO_PRODUCTS_PRICE_SORTER_UPDATE', '<strong>Aktualisiere ALLE Artikelpreis Sortierungen</strong><br />damit nach angezeigtem Preis sortiert wird: ');
+define('TEXT_INFO_PRODUCTS_PRICE_SORTER_UPDATE', '<strong>Aktualisiere ALLE Artikelpreis Sortierungen</strong><br>damit nach angezeigtem Preis sortiert wird: ');
 define('TEXT_CONFIGURATION_CONSTANT', '<strong>KONSTANTEN und LANGUAGE Definition suchen</strong>');
 define('TEXT_CONFIGURATION_KEY', 'Schlüssel oder Name:');
-define('TEXT_INFO_CONFIGURATION_UPDATE', '<strong>Anmerkung:</strong> KONSTANTEN groß schreiben!<br />Dateien werden erst durchsucht wenn nichts in der Datenbank gefunden werden konnte');
+define('TEXT_INFO_CONFIGURATION_UPDATE', '<strong>Anmerkung:</strong> KONSTANTEN groß schreiben!<br>Dateien werden erst durchsucht wenn nichts in der Datenbank gefunden werden konnte');
 define('TABLE_TITLE_KEY', '<strong>Schlüssel:</strong>');
 define('TABLE_TITLE_TITLE', '<strong>Titel:</strong>');
 define('TABLE_TITLE_DESCRIPTION', '<strong>Beschreibung:</strong>');

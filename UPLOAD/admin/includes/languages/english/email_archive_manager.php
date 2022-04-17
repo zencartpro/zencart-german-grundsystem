@@ -1,6 +1,5 @@
 <?php
 /**
- * @package admin
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
@@ -47,7 +46,7 @@ define('RADIO_1_MONTH', ' 1 month');
 define('RADIO_6_MONTHS', ' 6 months');
 define('RADIO_1_YEAR', ' 12 months');
 define('TEXT_RESEND_PREFIX','Resend: ');
-define('TRIM_CONFIRM_WARNING', 'Warning: This will permanently remove e-mail from the archive.<br />Are you sure?');
+define('TRIM_CONFIRM_WARNING', 'Warning: This will permanently remove e-mail from the archive.<br>Are you sure?');
 define('POPUP_CONFIRM_RESEND', 'Are you sure you want to resend this message?');
 define('POPUP_CONFIRM_DELETE', 'Are you sure you want to delete this message?');
 define('SUCCESS_TRIM_ARCHIVE', 'Success: E-mail older than <strong>%s</strong> has been removed');

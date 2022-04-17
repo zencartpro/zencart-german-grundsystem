@@ -1,11 +1,10 @@
 <?php
 /**
-
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: localization.php 2021-10-25 17:49:16Z webchills $
+ * @version $Id: localization.php 2022-04-17 16:49:16Z webchills $
  */
 /**
  * Dependencies:
@@ -154,8 +153,7 @@ function quote_boc_currency($currencyCode = '', $base = DEFAULT_CURRENCY)
 
 
   function doCurlCurrencyRequest($method, $url, $vars = '') {
-    //echo '-----------------<br />';
-    //echo 'URL: ' . $url . ' VARS: ' . $vars . '<br />';
+    
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL,$url);
     curl_setopt($ch, CURLOPT_VERBOSE, 0);
@@ -176,16 +174,14 @@ function quote_boc_currency($currencyCode = '', $base = DEFAULT_CURRENCY)
     }
     $data = curl_exec($ch);
     $error = curl_error($ch);
-    //$info=curl_getinfo($ch);
+    
     curl_close($ch);
 
     if ($error != '') {
       global $messageStack;
       if (is_object($messageStack)) $messageStack->add_session('cURL communication ERROR: ' . $error, 'error');
     }
-    //echo 'INFO: <pre>'; print_r($info); echo '</pre><br />';
-    //echo 'ERROR: ' . $error . '<br />';
-    //print_r($data) ;
+    
 
     if ($data != '') {
       return $data;

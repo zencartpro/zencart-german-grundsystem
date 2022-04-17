@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: bmz_image_handler.class.php 2022-03-30 18:33:51Z webchills $
+ * @version $Id: bmz_image_handler.class.php 2022-04-17 08:50:51Z webchills $
  */
  
 if (!defined('IH_DEBUG_ADMIN')) {
@@ -673,7 +673,7 @@ class ih_image
                 $overlay_color = imagecolorsforindex($overlay, $c);
                 //  echo $overlay_color['alpha'] . ':' . $overlay_color['red'] . ':' . $overlay_color['green'] . ':' . $overlay_color['blue'] . ' ==&gt; ';
                 $color = $this->alphablend($background_color, $overlay_color, $threshold);
-                // echo $color['alpha'] . ':' . $color['red'] . ':' . $color['green'] . ':' . $color['blue'] . '<br />';
+                // echo $color['alpha'] . ':' . $color['red'] . ':' . $color['green'] . ':' . $color['blue'] . '<br>';
 
                 if ($threshold > -1 && $color['alpha'] > $threshold) {
                     $color = $background_override;

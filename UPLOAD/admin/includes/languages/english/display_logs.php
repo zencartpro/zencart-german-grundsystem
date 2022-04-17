@@ -1,6 +1,5 @@
 <?php
 /**
-
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
@@ -47,7 +46,7 @@ define('TEXT_LARGEST', 'largest');
 // %6$s ... The "excluded" prefixes for the log-files displayed.
 //
 $imageName = zen_image (DIR_WS_IMAGES . 'icon_info.gif', ICON_INFO_VIEW);
-define('TEXT_INSTRUCTIONS', '<br /><br />The files can be sorted in either ascending or descending order (based on either the last-modified date or the file-size) by clicking on one of the <em>Asc</em> or <em>Desc</em> links. Click on an ' . $imageName . ' icon to view the contents of the associated file.  Only the first %1$u bytes of the selected file will be read; if a file is &quot;over-sized&quot;, its <em>File Size</em> will be highlighted like <span class="bigfile">this</span>.<br /><br />Clicking the <strong>delete all</strong> button will delete all files currently being viewed; clicking <strong>delete selected</strong> will delete only those files with checked checkboxes.<br /><br />Currently viewing the %2$s %3$u of %4$u log files with these <code>%5$s</code> prefixes and <b>not</b> matching these <code>%6$s</code>.<br />');
+define('TEXT_INSTRUCTIONS', '<br><br>The files can be sorted in either ascending or descending order (based on either the last-modified date or the file-size) by clicking on one of the <em>Asc</em> or <em>Desc</em> links. Click on an ' . $imageName . ' icon to view the contents of the associated file.  Only the first %1$u bytes of the selected file will be read; if a file is &quot;over-sized&quot;, its <em>File Size</em> will be highlighted like <span class="bigfile">this</span>.<br><br>Clicking the <strong>delete all</strong> button will delete all files currently being viewed; clicking <strong>delete selected</strong> will delete only those files with checked checkboxes.<br><br>Currently viewing the %2$s %3$u of %4$u log files with these <code>%5$s</code> prefixes and <b>not</b> matching these <code>%6$s</code>.<br>');
 
 define('JS_MESSAGE_DELETE_ALL_CONFIRM', 'Are you sure you want to delete these \'+n+\' files?');
 define('JS_MESSAGE_DELETE_SELECTED_CONFIRM', 'Are you sure you want to delete the \'+selected+\' selected file(s)?');

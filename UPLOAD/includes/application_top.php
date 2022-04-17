@@ -12,10 +12,9 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: application_top.php 2022-04-09 18:30:24Z webchills $
+ * @version $Id: application_top.php 2022-04-17 08:30:24Z webchills $
  */
 use Zencart\FileSystem\FileSystem;
-use Zencart\PluginManager\PluginManager;
 use Zencart\InitSystem\InitSystem;
 use Zencart\LanguageLoader\CatalogLanguageLoader;
 /**
@@ -95,8 +94,8 @@ define('DEBUG_AUTOLOAD', false);
 /**
  * set the level of error reporting
  *
- * Note STRICT_ERROR_REPORTING should never be set to true on a production site. <br />
- * It is mainly there to show php warnings during testing/bug fixing phases.<br />
+ * Note STRICT_ERROR_REPORTING should never be set to true on a production site.
+ * It is mainly there to show php warnings during testing/bug fixing phases.
  */
 if (DEBUG_AUTOLOAD || (defined('STRICT_ERROR_REPORTING') && STRICT_ERROR_REPORTING == true)) {
   @ini_set('display_errors', TRUE);

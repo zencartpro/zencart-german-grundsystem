@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_previous_next_display.php 2020-01-18 16:49:16Z webchills $
+ * @version $Id: products_previous_next_display.php 2022-04-17 15:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -16,7 +16,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 <!-- heading -->
 <div class="row"><strong>
         <?php echo(HEADING_TITLE == '' ? HEADING_TITLE2 : HEADING_TITLE); ?>&nbsp;-&nbsp;<?php echo zen_output_generated_category_path($current_category_id); ?></strong>
-    <?php echo '<br />' . TEXT_CATEGORIES_PRODUCTS; ?>
+    <?php echo '<br>' . TEXT_CATEGORIES_PRODUCTS; ?>
 </div>
 <!-- heading eof -->
 <!-- category/product status -->

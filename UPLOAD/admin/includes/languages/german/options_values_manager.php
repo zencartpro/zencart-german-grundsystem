@@ -1,11 +1,10 @@
 <?php
-/**
- 
+/** 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: options_values_manager.php 2021-12-03 22:00:14Z webchills $
+ * @version $Id: options_values_manager.php 2022-04-17 16:00:14Z webchills $
  */
 
 
@@ -68,12 +67,12 @@ define('TEXT_OPTION_VALUE_SIZE', 'Darstellungsgröße:');
 define('TEXT_OPTION_VALUE_MAX', 'Maximale Länge:');
 define('TEXT_ATTRIBUTES_IMAGE', 'Muster des Attributsbildes:');
 define('TEXT_ATTRIBUTES_IMAGE_DIR', 'Verzeichnis des Attributsbildes:');
-define('TEXT_ATTRIBUTES_FLAGS', 'Attributs-<br />kennzeichen:');
-define('TEXT_ATTRIBUTES_DISPLAY_ONLY', 'Nur zur<br />Darstellung benötigt:');
-define('TEXT_ATTRIBUTES_IS_FREE', 'Attribut ist kostenlos<br />wenn der Artikel kostenlos ist:');
-define('TEXT_ATTRIBUTES_DEFAULT', 'Attribut, welches standardmäßig<br />markiert werden soll:');
-define('TEXT_ATTRIBUTE_IS_DISCOUNTED', 'Rabatte verwenden die vom<br />Artikel verwendet werden:');
-define('TEXT_ATTRIBUTE_PRICE_BASE_INCLUDED', 'Inklusive Grundpreis<br />wenn Preis durch Attribute bestimmt wird:');
+define('TEXT_ATTRIBUTES_FLAGS', 'Attributs-<br>kennzeichen:');
+define('TEXT_ATTRIBUTES_DISPLAY_ONLY', 'Nur zur<br>Darstellung benötigt:');
+define('TEXT_ATTRIBUTES_IS_FREE', 'Attribut ist kostenlos<br>wenn der Artikel kostenlos ist:');
+define('TEXT_ATTRIBUTES_DEFAULT', 'Attribut, welches standardmäßig<br>markiert werden soll:');
+define('TEXT_ATTRIBUTE_IS_DISCOUNTED', 'Rabatte verwenden die vom<br>Artikel verwendet werden:');
+define('TEXT_ATTRIBUTE_PRICE_BASE_INCLUDED', 'Inklusive Grundpreis<br>wenn Preis durch Attribute bestimmt wird:');
 define('TEXT_PRODUCT_OPTIONS_INFO', 'Für weitere Einstellungen bitte Artikeloptionen bearbeiten');
 
 // Option Names/Values copier from one to another
@@ -83,14 +82,14 @@ define('TEXT_SELECT_OPTION_FROM', 'Abzugleichender Optionsname:');
 define('TEXT_SELECT_OPTION_VALUES_FROM', 'Abzugleichender Optionswert:');
 define('TEXT_SELECT_OPTION_TO', 'Hinzuzufügender Optionsname:');
 define('TEXT_SELECT_OPTION_VALUES_TO', 'Hinzuzufügender Optionswert:');
-define('TEXT_SELECT_OPTION_VALUES_TO_CATEGORIES_ID', 'leeres Feld = ALLE Artikel, oder<br />geben Sie eine Kategorie ID für die zu aktualisierenden Artikel an');
+define('TEXT_SELECT_OPTION_VALUES_TO_CATEGORIES_ID', 'leeres Feld = ALLE Artikel, oder<br>geben Sie eine Kategorie ID für die zu aktualisierenden Artikel an');
 
 // Option Name/Value to Option Name for Category with Product defaults
 define('TEXT_OPTION_VALUE_COPY_OPTIONS_TO', '<strong>Kopiere Optionsname u. Wert zu Artikel mit einem bestimmten Optionsnamen ...</strong>');
 define('TEXT_INFO_OPTION_VALUE_COPY_OPTIONS_TO', 'Selektieren Sie einen Optionsnamen und Wert der aktuell einem Produkt/Produkte zugeordnet ist, damit sie diese Information einer Kategorie od. allen Artikeln zuweisen können die einen bestimmten Optionsnamen besitzen.
-                                                 <br /><strong>z.B.:</strong> Hinzufügen Optionsname: Color, Optionswert: Red, zu allen Artikeln mit dem Optionsnamen: Size
-                                                 <br /><strong>z.B.:</strong> Hinzufügen Optionsname: Color, Optionswert: Red, mit default Werten von Artikel-ID: 34 zu allen Artikeln mit dem Optionsnamen: Size
-                                                 <br /><strong>z.B.:</strong> Hinzufügen Optionsname: Color, Optionswert: Red, mit default Werten von Artikel-ID: 34 zu allen Artikeln mit dem Optionsnamen: Size fü Kategorie ID: 65
+                                                 <br><strong>z.B.:</strong> Hinzufügen Optionsname: Color, Optionswert: Red, zu allen Artikeln mit dem Optionsnamen: Size
+                                                 <br><strong>z.B.:</strong> Hinzufügen Optionsname: Color, Optionswert: Red, mit default Werten von Artikel-ID: 34 zu allen Artikeln mit dem Optionsnamen: Size
+                                                 <br><strong>z.B.:</strong> Hinzufügen Optionsname: Color, Optionswert: Red, mit default Werten von Artikel-ID: 34 zu allen Artikeln mit dem Optionsnamen: Size fü Kategorie ID: 65
       ');
 define('TEXT_SELECT_OPTION_TO_ADD_TO', 'mit Optionsname:');
 define('TEXT_SELECT_OPTION_FROM_ADD', 'Optionsname hinzufügen:');

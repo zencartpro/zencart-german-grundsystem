@@ -1,11 +1,10 @@
 <?php
 /**
- * @package admin
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: email_archive_manager.php 2022-02-12 09:50:16Z webchills $
+ * @version $Id: email_archive_manager.php 2022-04-17 16:50:16Z webchills $
  */
 define('SUBJECT_SIZE_LIMIT', 25);
 define('MESSAGE_SIZE_LIMIT', 550);
@@ -45,7 +44,7 @@ define('RADIO_1_MONTH', ' 1 Monat');
 define('RADIO_6_MONTHS', ' 6 Monate');
 define('RADIO_1_YEAR', ' 12 Monate');
 define('TEXT_RESEND_PREFIX','Erneut senden: ');
-define('TRIM_CONFIRM_WARNING', 'Warnung: Dies wird Emails permanent aus dem Archiv löschen.<br />Sind Sie sicher?');
+define('TRIM_CONFIRM_WARNING', 'Warnung: Dies wird Emails permanent aus dem Archiv löschen.<br>Sind Sie sicher?');
 define('POPUP_CONFIRM_RESEND', 'Wollen Sie dieses Email wirklich erneut versenden?');
 define('POPUP_CONFIRM_DELETE', 'Wollen Sie dieses Email wirklich löschen?');
 define('SUCCESS_TRIM_ARCHIVE', 'Erfolg: Emails älter als <strong>%s</strong> wurden entfernt.');

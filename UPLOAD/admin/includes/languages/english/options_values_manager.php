@@ -1,11 +1,10 @@
 <?php
-/**
- 
+/** 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: options_values_manager.php 2021-10-25 19:49:16Z webchills $
+ * @version $Id: options_values_manager.php 2022-04-17 16:49:16Z webchills $
  */
 
 define('HEADING_TITLE_OPT', 'Product Options');
@@ -24,7 +23,7 @@ define('TABLE_TEXT_FILENAME', 'Filename:');
 define('TABLE_TEXT_MAX_DAYS', 'Expiry days:');
 define('TABLE_TEXT_MAX_COUNT', 'Maximum download count:');
 
-define('TEXT_WARNING_OF_DELETE', '<span class="alert">This option has products and values linked to it - it is not safe to delete it.<br />NOTE: Any associated Download files for this Option Value will not be removed from the server.</span>');
+define('TEXT_WARNING_OF_DELETE', '<span class="alert">This option has products and values linked to it - it is not safe to delete it.<br>NOTE: Any associated Download files for this Option Value will not be removed from the server.</span>');
 define('TEXT_OK_TO_DELETE', 'This option has no products and values linked to it - it is safe to delete it.');
 define('TEXT_OPTION_ID', 'Option ID');
 define('TEXT_OPTION_NAME', 'Option Name');
@@ -64,12 +63,12 @@ define('TABLE_TEXT_MAX_COUNT_SHORT', 'Max:');
   define('TEXT_ATTRIBUTES_IMAGE','Attributes Image Swatch:');
   define('TEXT_ATTRIBUTES_IMAGE_DIR','Attributes Image Directory:');
 
-  define('TEXT_ATTRIBUTES_FLAGS','Attribute<br />Flags:');
-  define('TEXT_ATTRIBUTES_DISPLAY_ONLY', 'Used For<br />Display Purposes Only:');
-  define('TEXT_ATTRIBUTES_IS_FREE', 'Attribute is Free<br />When Product is Free:');
-  define('TEXT_ATTRIBUTES_DEFAULT', 'Default Attribute<br />to be Marked Selected:');
-  define('TEXT_ATTRIBUTE_IS_DISCOUNTED', 'Apply Same Discounts<br />Used by Product:');
-  define('TEXT_ATTRIBUTE_PRICE_BASE_INCLUDED','Include in Base Price<br />When Priced by Attributes');
+  define('TEXT_ATTRIBUTES_FLAGS','Attribute<br>Flags:');
+  define('TEXT_ATTRIBUTES_DISPLAY_ONLY', 'Used For<br>Display Purposes Only:');
+  define('TEXT_ATTRIBUTES_IS_FREE', 'Attribute is Free<br>When Product is Free:');
+  define('TEXT_ATTRIBUTES_DEFAULT', 'Default Attribute<br>to be Marked Selected:');
+  define('TEXT_ATTRIBUTE_IS_DISCOUNTED', 'Apply Same Discounts<br>Used by Product:');
+  define('TEXT_ATTRIBUTE_PRICE_BASE_INCLUDED','Include in Base Price<br>When Priced by Attributes');
 
   define('TEXT_PRODUCT_OPTIONS_INFO','Edit Product Options for additional settings');
 
@@ -80,14 +79,14 @@ define('TABLE_TEXT_MAX_COUNT_SHORT', 'Max:');
   define('TEXT_SELECT_OPTION_VALUES_FROM', 'Option Value to match:');
   define('TEXT_SELECT_OPTION_TO', 'Option Name to add:');
   define('TEXT_SELECT_OPTION_VALUES_TO', 'Option Value to add:');
-  define('TEXT_SELECT_OPTION_VALUES_TO_CATEGORIES_ID', 'Leave blank for ALL Products or<br />enter a Category ID for Products to update');
+  define('TEXT_SELECT_OPTION_VALUES_TO_CATEGORIES_ID', 'Leave blank for ALL Products or<br>enter a Category ID for Products to update');
 
 // Option Name/Value to Option Name for Category with Product defaults
   define('TEXT_OPTION_VALUE_COPY_OPTIONS_TO', '<strong>Copy Option Name/Value to Products with existing Option Name ...</strong>');
   define('TEXT_INFO_OPTION_VALUE_COPY_OPTIONS_TO', 'Select an Option Name and Value that currently exists on a product or products to add to all products or to only the products in the selected category that have the selected Option Name.
-                                                   <br /><strong>Example:</strong> Add Option Name: Color Option Value: Red to all Products with Option Name: Size
-                                                   <br /><strong>Example:</strong> Add Option Name: Color Option Value: Green with default values from Products ID: 34 to all Products with Option Name: Size
-                                                   <br /><strong>Example:</strong> Add Option Name: Color Option Value: Green with default values from Products ID: 34 to all Products with Option Name: Size for Categories ID: 65
+                                                   <br><strong>Example:</strong> Add Option Name: Color Option Value: Red to all Products with Option Name: Size
+                                                   <br><strong>Example:</strong> Add Option Name: Color Option Value: Green with default values from Products ID: 34 to all Products with Option Name: Size
+                                                   <br><strong>Example:</strong> Add Option Name: Color Option Value: Green with default values from Products ID: 34 to all Products with Option Name: Size for Categories ID: 65
         ');
   define('TEXT_SELECT_OPTION_TO_ADD_TO', 'Option Name to add to:');
   define('TEXT_SELECT_OPTION_FROM_ADD', 'Option Name to add:');

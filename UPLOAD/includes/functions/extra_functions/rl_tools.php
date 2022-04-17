@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: rl_tools.php 2022-02-23 21:28:16Z webchills $
+ * @version $Id: rl_tools.php 2022-04-17 08:57:16Z webchills $
  */
 
 function getProdTypeLangArr($fields){
@@ -30,7 +30,7 @@ function getProdTypeLangArr($fields){
 function rldp($call, $cname = 'NIX', $show = true)
 {
      if($show){
-         echo '<br />' . $cname . ":<pre>";
+         echo '<br>' . $cname . ":<pre>";
          if (!is_array($call)){
              $call = htmlspecialchars($call);
              }

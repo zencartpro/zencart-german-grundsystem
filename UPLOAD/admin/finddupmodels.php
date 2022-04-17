@@ -132,5 +132,5 @@ function show_table($call)
       }
    }
    echo '</table>';
-   echo '<br /><br />';
+   echo '<br><br>';
 }

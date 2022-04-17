@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: backup_mysql.php 2022-04-09 18:10:51Z webchills $
+ * @version $Id: backup_mysql.php 2022-04-17 18:10:51Z webchills $
  */
 
   define('OS_DELIM', '');  
@@ -67,16 +67,16 @@
       if (@file_exists($path.'mysqldump'))     $mysqldump_exe = $path.'mysqldump';
       if (@file_exists($path.'mysqldump.exe')) $mysqldump_exe = $path.'mysqldump.exe';
     }
-    if ($debug=='ON') $messageStack->add_session('Checking Path: '.$path.'<br />','caution');
+    if ($debug=='ON') $messageStack->add_session('Checking Path: '.$path.'<br>','caution');
     if ($mysql_exe != 'unknown' && $mysqldump_exe != 'unknown') break;
   }
 
   if (!$mysqldump_exe){
-    $messageStack->add_session('WARNING: "mysqldump" binary not found. Backups may not work.<br />Please set full path to MYSQLDUMP binary in langauges/backup_mysql.php','error');
+    $messageStack->add_session('WARNING: "mysqldump" binary not found. Backups may not work.<br>Please set full path to MYSQLDUMP binary in langauges/backup_mysql.php','error');
     $mysqldump_exe = ((@file_exists($mysqldump_exe) ? $mysqldump_exe : 'mysqldump' ) );
   }
   if (!$mysql_exe){
-    $messageStack->add_session('WARNING: "mysql" binary not found. Restores may not work.<br />Please set full path to MYSQL binary in langauges/backup_mysql.php','error');
+    $messageStack->add_session('WARNING: "mysql" binary not found. Restores may not work.<br>Please set full path to MYSQL binary in langauges/backup_mysql.php','error');
     $mysql_exe =     ((@file_exists($mysql_exe) ? $mysql_exe : 'mysql' ) );
   }
   if ($mysql_exe == 'unknown') {
@@ -88,10 +88,10 @@
 
   $mysql_exe = '"'.$mysql_exe.'"';
   $mysqldump_exe = '"'.$mysqldump_exe.'"';
-  if ($debug=='ON') $messageStack->add_session('<br />','caution');
+  if ($debug=='ON') $messageStack->add_session('<br>','caution');
   if ($debug=='ON') $messageStack->add_session('COMMAND FILES SELECTED:','caution');
-  if ($debug=='ON') $messageStack->add_session('mysqlexe='.$mysql_exe.'<br />','caution');
-  if ($debug=='ON') $messageStack->add_session('mysqldumpexe='.$mysqldump_exe.'<br /><br />','caution');
+  if ($debug=='ON') $messageStack->add_session('mysqlexe='.$mysql_exe.'<br>','caution');
+  if ($debug=='ON') $messageStack->add_session('mysqldumpexe='.$mysqldump_exe.'<br><br>','caution');
 
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
 
@@ -137,7 +137,7 @@
 
         $resultcodes = @exec(OS_DELIM . $toolfilename . $dump_params . OS_DELIM, $output, $dump_results );
         @exec("exit(0)");
-        if ($dump_results == -1) $messageStack->add_session(FAILURE_BACKUP_FAILED_CHECK_PERMISSIONS . '<br />The command being run is: ' . $toolfilename . str_replace('--password='.DB_SERVER_PASSWORD,'--password=*****', str_replace('2>&1','',$dump_params)), 'error');
+        if ($dump_results == -1) $messageStack->add_session(FAILURE_BACKUP_FAILED_CHECK_PERMISSIONS . '<br>The command being run is: ' . $toolfilename . str_replace('--password='.DB_SERVER_PASSWORD,'--password=*****', str_replace('2>&1','',$dump_params)), 'error');
         if ($debug=='ON' || (zen_not_null($dump_results) && $dump_results!='0')) $messageStack->add_session('Result code: '.$dump_results, 'caution');
 
         #parse the value that comes back from the script
@@ -146,7 +146,7 @@
         if ($debug=='ON') $messageStack->add_session("valueB: " . $strB,'error');
 
         //$output contains response strings from execution. This displays if needed.
-        foreach($output as $key=>$value) {$messageStack->add_session("$key => $value<br />",'caution'); }
+        foreach($output as $key=>$value) {$messageStack->add_session("$key => $value<br>",'caution'); }
 
         if (file_exists(DIR_FS_BACKUP . $backup_file) && ($dump_results == '0' || $dump_results=='')) { // display success message noting that MYSQLDUMP was used
           $messageStack->add_session('<a href="' . ((ENABLE_SSL_ADMIN == 'true') ? DIR_WS_HTTPS_ADMIN : DIR_WS_ADMIN) . 'backups/' . $backup_file . '">' . SUCCESS_DATABASE_SAVED . '</a>', 'success');
@@ -468,36 +468,36 @@
       $contents = array('form' => zen_draw_form('backup', FILENAME_BACKUP_MYSQL, 'action=backupnow'.(($debug=='ON')?'&debug=ON':''). (($tables_to_export!='')?'&tables='.str_replace(' ',',',$tables_to_export):'')));
       $contents[] = array('text' => TEXT_INFO_NEW_BACKUP);
 
-      $contents[] = array('text' => '<br />' . zen_draw_radio_field('compress', 'no', (!@file_exists(LOCAL_EXE_GZIP) && !$compress_override ? true : false)) . ' ' . TEXT_INFO_USE_NO_COMPRESSION);
-      if (@file_exists(LOCAL_EXE_GZIP) || $compress_override) $contents[] = array('text' => '<br />' . zen_draw_radio_field('compress', 'gzip', true) . ' ' . TEXT_INFO_USE_GZIP);
+      $contents[] = array('text' => '<br>' . zen_draw_radio_field('compress', 'no', (!@file_exists(LOCAL_EXE_GZIP) && !$compress_override ? true : false)) . ' ' . TEXT_INFO_USE_NO_COMPRESSION);
+      if (@file_exists(LOCAL_EXE_GZIP) || $compress_override) $contents[] = array('text' => '<br>' . zen_draw_radio_field('compress', 'gzip', true) . ' ' . TEXT_INFO_USE_GZIP);
       if (@file_exists(LOCAL_EXE_ZIP)) $contents[] = array('text' => zen_draw_radio_field('compress', 'zip',(!@file_exists(LOCAL_EXE_GZIP) ? true : false)) . ' ' . TEXT_INFO_USE_ZIP);
-      $contents[] = array('text' => '<br />' . zen_draw_radio_field('skiplocks', 'yes', false) . ' ' . TEXT_INFO_SKIP_LOCKS);
+      $contents[] = array('text' => '<br>' . zen_draw_radio_field('skiplocks', 'yes', false) . ' ' . TEXT_INFO_SKIP_LOCKS);
 
 
       // Download to file --- Should only be done if SSL is active, otherwise database is exposed as clear text
       if ($dir_ok == true) {
-        $contents[] = array('text' => '<br />' . zen_draw_checkbox_field('download', 'yes') . ' ' . TEXT_INFO_DOWNLOAD_ONLY . '*<br /><span class="errorText">*' . TEXT_INFO_BEST_THROUGH_HTTPS . '</span>');
+        $contents[] = array('text' => '<br>' . zen_draw_checkbox_field('download', 'yes') . ' ' . TEXT_INFO_DOWNLOAD_ONLY . '*<br><span class="errorText">*' . TEXT_INFO_BEST_THROUGH_HTTPS . '</span>');
       } else {
-        $contents[] = array('text' => '<br />' . zen_draw_radio_field('download', 'yes', true) . ' ' . TEXT_INFO_DOWNLOAD_ONLY . '*<br /><span class="errorText">*' . TEXT_INFO_BEST_THROUGH_HTTPS . '</span>');
+        $contents[] = array('text' => '<br>' . zen_draw_radio_field('download', 'yes', true) . ' ' . TEXT_INFO_DOWNLOAD_ONLY . '*<br><span class="errorText">*' . TEXT_INFO_BEST_THROUGH_HTTPS . '</span>');
       }
 
       // display backup button
-      $contents[] = array('align' => 'center', 'text' => '<br />' . zen_image_submit('button_backup.gif', IMAGE_BACKUP) . '&nbsp;<a href="' . zen_href_link(FILENAME_BACKUP_MYSQL,(($debug=='ON')?'debug=ON':'')) . (($tables_to_export!='')?'&tables='.str_replace(' ',',',$tables_to_export):''). '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');
+      $contents[] = array('align' => 'center', 'text' => '<br>' . zen_image_submit('button_backup.gif', IMAGE_BACKUP) . '&nbsp;<a href="' . zen_href_link(FILENAME_BACKUP_MYSQL,(($debug=='ON')?'debug=ON':'')) . (($tables_to_export!='')?'&tables='.str_replace(' ',',',$tables_to_export):''). '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');
       break;
     case 'restore':
       $heading[] = array('text' => '<strong>' . $buInfo->date . '</strong>');
 
       $contents[] = array('text' => zen_break_string(sprintf(TEXT_INFO_RESTORE, DIR_FS_BACKUP . (($buInfo->compression != TEXT_NO_EXTENSION) ? substr($buInfo->file, 0, strrpos($buInfo->file, '.')) : $buInfo->file), ($buInfo->compression != TEXT_NO_EXTENSION) ? TEXT_INFO_UNPACK : ''), 35, ' '));
-      $contents[] = array('align' => 'center', 'text' => '<br /><a href="' . zen_href_link(FILENAME_BACKUP_MYSQL, 'file=' . $buInfo->file . '&action=restorenow'.(($debug=='ON')?'&debug=ON':'')) . '">' . zen_image_button('button_restore.gif', IMAGE_RESTORE) . '</a>&nbsp;<a href="' . zen_href_link(FILENAME_BACKUP_MYSQL, 'file=' . $buInfo->file.(($debug=='ON')?'&debug=ON':'')) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');
+      $contents[] = array('align' => 'center', 'text' => '<br><a href="' . zen_href_link(FILENAME_BACKUP_MYSQL, 'file=' . $buInfo->file . '&action=restorenow'.(($debug=='ON')?'&debug=ON':'')) . '">' . zen_image_button('button_restore.gif', IMAGE_RESTORE) . '</a>&nbsp;<a href="' . zen_href_link(FILENAME_BACKUP_MYSQL, 'file=' . $buInfo->file.(($debug=='ON')?'&debug=ON':'')) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');
       break;
     case 'restorelocal':
       $heading[] = array('text' => '<strong>' . TEXT_INFO_HEADING_RESTORE_LOCAL . '</strong>');
 
       $contents = array('form' => zen_draw_form('restore', FILENAME_BACKUP_MYSQL, 'action=restorelocalnow'.(($debug=='ON')?'&debug=ON':''), 'post', 'enctype="multipart/form-data"'));
-      $contents[] = array('text' => TEXT_INFO_RESTORE_LOCAL . '<br /><br />' . TEXT_INFO_BEST_THROUGH_HTTPS);
-      $contents[] = array('text' => '<br />' . zen_draw_file_field('sql_file'));
+      $contents[] = array('text' => TEXT_INFO_RESTORE_LOCAL . '<br><br>' . TEXT_INFO_BEST_THROUGH_HTTPS);
+      $contents[] = array('text' => '<br>' . zen_draw_file_field('sql_file'));
       $contents[] = array('text' => TEXT_INFO_RESTORE_LOCAL_RAW_FILE);
-      $contents[] = array('align' => 'center', 'text' => '<br />' . zen_image_submit('button_restore.gif', IMAGE_RESTORE) . '&nbsp;<a href="' . zen_href_link(FILENAME_BACKUP_MYSQL,(($debug=='ON')?'debug=ON':'')) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');
+      $contents[] = array('align' => 'center', 'text' => '<br>' . zen_image_submit('button_restore.gif', IMAGE_RESTORE) . '&nbsp;<a href="' . zen_href_link(FILENAME_BACKUP_MYSQL,(($debug=='ON')?'debug=ON':'')) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');
       break;
     case 'delete':
       if ($dir_ok == false) break;       
@@ -505,8 +505,8 @@
 
       $contents = array('form' => zen_draw_form('delete', FILENAME_BACKUP_MYSQL, 'file=' . $buInfo->file . '&action=deleteconfirm'));
       $contents[] = array('text' => TEXT_DELETE_INTRO);
-      $contents[] = array('text' => '<br /><strong>' . $buInfo->file . '</strong>');
-      $contents[] = array('align' => 'center', 'text' => '<br />' . zen_image_submit('button_delete.gif', IMAGE_DELETE) . ' <a href="' . zen_href_link(FILENAME_BACKUP_MYSQL, 'file=' . $buInfo->file) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');
+      $contents[] = array('text' => '<br><strong>' . $buInfo->file . '</strong>');
+      $contents[] = array('align' => 'center', 'text' => '<br>' . zen_image_submit('button_delete.gif', IMAGE_DELETE) . ' <a href="' . zen_href_link(FILENAME_BACKUP_MYSQL, 'file=' . $buInfo->file) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');
       break;
     default:
       if (isset($buInfo) && is_object($buInfo)) {
@@ -517,9 +517,9 @@
                                                     zen_image_button('button_restore.gif', IMAGE_RESTORE) . '</a> ' .
                                       (($dir_ok==true && $exec_disabled==false) ? '<a href="' . zen_href_link(FILENAME_BACKUP_MYSQL, 'file=' . $buInfo->file . '&action=delete') . '">' .
                                                     zen_image_button('button_delete.gif', IMAGE_DELETE) . '</a>' : '' ) );
-        $contents[] = array('text' => '<br />' . TEXT_INFO_DATE . ' ' . $buInfo->date);
+        $contents[] = array('text' => '<br>' . TEXT_INFO_DATE . ' ' . $buInfo->date);
         $contents[] = array('text' => TEXT_INFO_SIZE . ' ' . $buInfo->size);
-        $contents[] = array('text' => '<br />' . TEXT_INFO_COMPRESSION . ' ' . $buInfo->compression);
+        $contents[] = array('text' => '<br>' . TEXT_INFO_COMPRESSION . ' ' . $buInfo->compression);
       }
       break;
   }
@@ -545,7 +545,7 @@
 <!-- footer //-->
 <?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
 <!-- footer_eof //-->
-<br />
+<br>
 </body>
 </html>
 <?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>

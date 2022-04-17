@@ -3,7 +3,7 @@
  * Zen Cart German Specific
  * Common Template
  *
- * outputs the html header. i,e, everything that comes before the \</head\> tag <br />
+ * outputs the html header. i,e, everything that comes before the \</head\> tag
  * 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at

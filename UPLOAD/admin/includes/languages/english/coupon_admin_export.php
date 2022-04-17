@@ -1,6 +1,5 @@
 <?php
-/**
- 
+/** 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
@@ -19,7 +18,7 @@ define('TEXT_PROCESSED', ' Processed.');
 define('SUCCESS_EXPORT_DISCOUNT_COUPON_LOG', 'Export complete. ');
 define('FAILURE_EXPORT_DISCOUNT_COUPON_LOG', 'ALERT: Export failed. Could not successfully write to file ');
 
-define('TEXT_INSTRUCTIONS','<u>INSTRUCTIONS</u><br />You can use this page to export your Discount Coupons to a CSV file.<br />
+define('TEXT_INSTRUCTIONS','<u>INSTRUCTIONS</u><br>You can use this page to export your Discount Coupons to a CSV file.<br>
 <ol><li>Choose whether to display or export to a file.<li>Enter a filename. (must end in one of: .csv .txt .htm .html .xml)<li>Click Save to proceed.<li>Choose whether to save or open the file, depending on what your browser offers.</ol>');
 
 

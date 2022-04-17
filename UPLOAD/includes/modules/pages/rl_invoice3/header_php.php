@@ -35,7 +35,7 @@ require_once(DIR_WS_INCLUDES . 'classes/class.rl_invoice3.php');
 $pdfT = new rl_invoice3($_GET['order'], $paper['orientation'], $paper['unit'], $paper['format']);
 $pdfName = $pdfT->getPDFFileName();
 
-if (!file_exists($pdfName)) die('Sorry. File not found. Please contact the webmaster to report this error.<br />c/f: ' . $downloads->fields['orders_products_filename']);
+if (!file_exists($pdfName)) die('Sorry. File not found. Please contact the webmaster to report this error.<br>c/f: ' . $downloads->fields['orders_products_filename']);
 
 function zen_random_name()
 {

@@ -29,7 +29,7 @@ function getProdTypeLangArr($fields){
 function rldp($call, $cname = 'NIX', $show = true)
 {
      if($show){
-         echo '<br />' . $cname . ":<pre>";
+         echo '<br>' . $cname . ":<pre>";
          if (!is_array($call)){
              $call = htmlspecialchars($call);
              }

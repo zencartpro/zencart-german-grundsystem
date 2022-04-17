@@ -15,11 +15,11 @@
   define('ERROR_CONFIGURATION_KEY_NOT_FOUND', '<strong>Error:</strong> No matching Configuration Keys were found ...');
   define('ERROR_CONFIGURATION_KEY_NOT_ENTERED', '<strong>Error:</strong> No Configuration Key or Text was entered to search for ... Search was terminated');
 
-  define('TEXT_INFO_PRODUCTS_PRICE_SORTER_UPDATE', '<strong>Update ALL Products Price Sorter</strong><br />to be able to sort by displayed prices: ');
+  define('TEXT_INFO_PRODUCTS_PRICE_SORTER_UPDATE', '<strong>Update ALL Products Price Sorter</strong><br>to be able to sort by displayed prices: ');
 
   define('TEXT_CONFIGURATION_CONSTANT', '<strong>Look-up CONSTANT or Language File defines</strong>');
   define('TEXT_CONFIGURATION_KEY', 'Key or Name:');
-  define('TEXT_INFO_CONFIGURATION_UPDATE', '<strong>NOTE:</strong> CONSTANTS are written in uppercase.<br />Language file, functions, classes, etc. lookups are performed when nothing has been found in the database tables, if selected in dropdown');
+  define('TEXT_INFO_CONFIGURATION_UPDATE', '<strong>NOTE:</strong> CONSTANTS are written in uppercase.<br>Language file, functions, classes, etc. lookups are performed when nothing has been found in the database tables, if selected in dropdown');
 
   define('TABLE_TITLE_KEY', '<strong>Key:</strong>');
   define('TABLE_TITLE_TITLE', '<strong>Title:</strong>');

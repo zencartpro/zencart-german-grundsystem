@@ -1,18 +1,17 @@
 <?php
-/**
- 
+/** 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: product_types.php 2021-11-30 20:49:16Z webchills $
+ * @version $Id: product_types.php 2022-04-17 16:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Product Types');
 define('HEADING_TITLE_LAYOUT', 'Product Type Info Page Layout options :: ');
 
 define('TABLE_HEADING_PRODUCT_TYPES', 'Product Types');
-define('TABLE_HEADING_PRODUCT_TYPES_ALLOW_ADD_TO_CART', 'Add<br />to Cart');
+define('TABLE_HEADING_PRODUCT_TYPES_ALLOW_ADD_TO_CART', 'Add<br>to Cart');
 define('TABLE_HEADING_ACTION', 'Action');
 define('TABLE_HEADING_CONFIGURATION_TITLE', 'Title');
 define('TABLE_HEADING_CONFIGURATION_VALUE', 'Value');

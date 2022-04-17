@@ -2,7 +2,7 @@
 /**
  * Page Template
  * Zen Cart German Specific
- * Loaded automatically by index.php?main_page=checkout_confirmation.<br />
+ * Loaded automatically by index.php?main_page=checkout_confirmation.
  * Displays final checkout details, cart, payment and shipping info details.
  * 
  * @copyright Copyright 2003-2022 Zen Cart Development Team

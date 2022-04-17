@@ -564,7 +564,7 @@ class sales_report
                     $recorded_order_total = $order_info->fields['order_total'];
             
                     if (zen_round($order_total, 2) != $recorded_order_total) {
-                        $order_total_validation = "DON'T MATCH!<br />$order_total : $recorded_order_total";
+                        $order_total_validation = "DON'T MATCH!<br>$order_total : $recorded_order_total";
                     } else {
                         $order_total_validation = 'VALID';
                     }

@@ -1,11 +1,10 @@
 <?php
-/**
- 
+/** 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: currencies.php 2021-12-01 09:05:14Z webchills $
+ * @version $Id: currencies.php 2022-04-17 16:05:14Z webchills $
  */
 
 define('HEADING_TITLE','Währungen');
@@ -25,7 +24,7 @@ define('TEXT_INFO_CURRENCY_THOUSANDS_POINT','1000er Trennzeichen');
 define('TEXT_INFO_CURRENCY_DECIMAL_PLACES','Dezimalstellen:');
 define('TEXT_INFO_CURRENCY_LAST_UPDATED','Letzte Aktualisierung:');
 
-define('TEXT_INFO_CURRENCY_VALUE','Wert:<br /><br><strong>Achtung, wenn hier ein anderer Wert als 1 eingetragen ist, dann wird der jeweilige Artikelpreis mit diesem Wert multipliziert (siehe auch unter Beispielausgabe)!</strong><br /><br />');
+define('TEXT_INFO_CURRENCY_VALUE','Wert:<br><br><strong>Achtung, wenn hier ein anderer Wert als 1 eingetragen ist, dann wird der jeweilige Artikelpreis mit diesem Wert multipliziert (siehe auch unter Beispielausgabe)!</strong><br><br>');
 define('TEXT_INFO_CURRENCY_EXAMPLE','Beispielausgabe:');
 define('TEXT_INFO_INSERT_INTRO','Bitte tragen Sie die neue Währung mit den relevanten Daten ein');
 define('TEXT_INFO_DELETE_INTRO','Wollen Sie diese Währung wirklich löschen?');

@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart Gwerman Specific
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: media_manager.php 2022-02-27 19:44:42Z webchills $
+ * @version $Id: media_manager.php 2022-04-17 16:44:42Z webchills $
  */
 
   require('includes/application_top.php');
@@ -291,12 +291,12 @@
         $heading[] = array('text' => '<strong>' . $mInfo->media_name . '</strong>');
 
         $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_MEDIA_MANAGER, 'page=' . $_GET['page'] . '&mID=' . $mInfo->media_id . '&action=edit') . '" class="btn btn-primary" role="button">' . IMAGE_EDIT . '</a> <a href="' . zen_href_link(FILENAME_MEDIA_MANAGER, 'page=' . $_GET['page'] . '&mID=' . $mInfo->media_id . '&action=delete') . '" class="btn btn-danger" role="button">' . IMAGE_DELETE . '</a> ' . '<a href="' . zen_href_link(FILENAME_MEDIA_MANAGER, 'page=' . $_GET['page'] . '&mID=' . $mInfo->media_id . '&action=products') . '" class="btn btn-primary" role="button">' . IMAGE_PRODUCTS . '</a>');
-        $contents[] = array('text' => '<br />' . TEXT_DATE_ADDED . ' ' . zen_date_short($mInfo->date_added));
+        $contents[] = array('text' => '<br>' . TEXT_DATE_ADDED . ' ' . zen_date_short($mInfo->date_added));
         if (zen_not_null($mInfo->last_modified)) $contents[] = array('text' => TEXT_LAST_MODIFIED . ' ' . zen_date_short($mInfo->last_modified));
         $products_linked_query = "SELECT product_id FROM " . TABLE_MEDIA_TO_PRODUCTS . "
                                 WHERE media_id = '" . $mInfo->media_id . "'";
         $products_linked = $db->Execute($products_linked_query);
-        $contents[] = array('text' => '<br />' . TEXT_PRODUCTS . ' ' . $products_linked->RecordCount());
+        $contents[] = array('text' => '<br>' . TEXT_PRODUCTS . ' ' . $products_linked->RecordCount());
         $clip_query = "SELECT clip_id FROM " . TABLE_MEDIA_CLIPS . " WHERE media_id = '" . $mInfo->media_id . "'";
         $clips = $db->Execute($clip_query);
         $contents[] = array('text' =>  TEXT_CLIPS . ' ' . $clips->RecordCount());

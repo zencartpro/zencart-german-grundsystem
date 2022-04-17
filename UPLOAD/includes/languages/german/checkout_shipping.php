@@ -23,7 +23,7 @@ define('TEXT_CHOOSE_SHIPPING_METHOD','Bitte wählen Sie die Versandart für Ihre
 define('TITLE_PLEASE_SELECT','Bitte wählen Sie');
 define('TEXT_ENTER_SHIPPING_INFORMATION','Dies ist zur Zeit die einzige Versandart.');
 define('TITLE_NO_SHIPPING_AVAILABLE', 'Zur Zeit nicht verfügbar');
-define('TEXT_NO_SHIPPING_AVAILABLE','<span class="alert">Entschuldigung, aber wir können nicht in Ihre Region versenden .</span><br />Bitte setzen Sie sich mit uns in Verbindung, um Alternativen zu suchen.');
+define('TEXT_NO_SHIPPING_AVAILABLE','<span class="alert">Entschuldigung, aber wir können nicht in Ihre Region versenden .</span><br>Bitte setzen Sie sich mit uns in Verbindung, um Alternativen zu suchen.');
 
 define('TABLE_HEADING_COMMENTS','Anmerkungen oder Hinweise');
 

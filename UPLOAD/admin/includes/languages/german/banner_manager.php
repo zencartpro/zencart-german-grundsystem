@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: banner_manager.php 2022-03-02 19:41:14Z webchills $
+ * @version $Id: banner_manager.php 2022-04-17 16:41:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Banner Manager');
@@ -17,7 +17,7 @@ define('TABLE_HEADING_STATUS', 'Status');
 define('TABLE_HEADING_BANNER_OPEN_NEW_WINDOWS', 'Neues Fenster');
 define('TABLE_HEADING_BANNER_ON_SSL', 'Auf SSL Seiten anzeigen');
 define('TABLE_HEADING_ACTION', 'Aktion');
-define('TABLE_HEADING_BANNER_SORT_ORDER', 'Sortier<br />folge');
+define('TABLE_HEADING_BANNER_SORT_ORDER', 'Sortier<br>folge');
 
 define('TEXT_BANNERS_TITLE', 'Name des Banner:');
 define('TEXT_BANNERS_URL', 'Banner URL:');

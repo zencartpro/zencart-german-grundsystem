@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: gv_send.php 2022-01-14 16:49:16Z webchills $
+ * @version $Id: gv_send.php 2022-04-17 09:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Send ' . TEXT_GV_NAME);
@@ -21,8 +21,8 @@ define('ENTRY_AMOUNT', 'Amount to Send:');
 define('ERROR_ENTRY_TO_NAME_CHECK', 'We did not get the Recipient\'s Name. Please fill it in below. ');
 define('ERROR_ENTRY_AMOUNT_CHECK', 'The ' . TEXT_GV_NAME . ' amount does not appear to be correct. Please try again.');
 define('ERROR_ENTRY_EMAIL_ADDRESS_CHECK', 'Is the email address correct? Please try again.');
-define('MAIN_MESSAGE', 'You are sending a ' . TEXT_GV_NAME . ' worth %s to %s,  whose email address is %s. If these details are not correct, you may edit your message by clicking the <strong>edit</strong> button.<br /><br />The message you are sending is:<br /><br />');
-define('SECONDARY_MESSAGE', 'Dear %s,<br /><br />' . 'You have been sent a ' . TEXT_GV_NAME . ' worth %s by %s');
+define('MAIN_MESSAGE', 'You are sending a ' . TEXT_GV_NAME . ' worth %s to %s,  whose email address is %s. If these details are not correct, you may edit your message by clicking the <strong>edit</strong> button.<br><br>The message you are sending is:<br><br>');
+define('SECONDARY_MESSAGE', 'Dear %s,<br><br>' . 'You have been sent a ' . TEXT_GV_NAME . ' worth %s by %s');
 define('PERSONAL_MESSAGE', '%s says:');
 define('TEXT_SUCCESS', 'Congratulations, your ' . TEXT_GV_NAME . ' has been sent.');
 define('TEXT_SEND_ANOTHER', 'Would you like to send another ' . TEXT_GV_NAME . '?');

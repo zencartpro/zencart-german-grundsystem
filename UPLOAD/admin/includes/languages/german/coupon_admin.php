@@ -1,11 +1,10 @@
 <?php
-/**
- 
+/** 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: coupon_admin.php 2022-03-02 19:44:08Z webchills $
+ * @version $Id: coupon_admin.php 2022-04-17 16:15:08Z webchills $
  */
 
 
@@ -60,13 +59,13 @@ define('COUPON_STARTDATE','Gültig ab');
 define('COUPON_FINISHDATE','Gültig bis');
 define('COUPON_RESTRICTIONS', 'Einschränkungen');
 define('COUPON_FREE_SHIP','Versandkostenfrei');
-define('COUPON_DESC','Aktionskupon Beschreibung<br />Diese wird dem Kunden angezeigt.');
+define('COUPON_DESC','Aktionskupon Beschreibung<br>Diese wird dem Kunden angezeigt.');
 define('COUPON_MIN_ORDER','Mindestbestellwert für diesen Aktionskupon');
 define('COUPON_TOTAL', 'Kupon Minimum berechnet von: ');
 define('TEXT_COUPON_TOTAL_PRODUCTS', 'erlaubte Artikel');
-define('TEXT_COUPON_TOTAL_PRODUCTS_BASED', '<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(basiert auf dem Gesamtwert der erlaubten Artikel gemäß der Einschränkungsregeln)');
+define('TEXT_COUPON_TOTAL_PRODUCTS_BASED', '<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(basiert auf dem Gesamtwert der erlaubten Artikel gemäß der Einschränkungsregeln)');
 define('TEXT_COUPON_TOTAL_ORDER', 'Alle Artikel');
-define('TEXT_COUPON_TOTAL_ORDER_BASED', '<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(basiert auf dem Gesamtwert aller Artikel, unabhängig von geltenden Einschränkungsregeln)');
+define('TEXT_COUPON_TOTAL_ORDER_BASED', '<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(basiert auf dem Gesamtwert aller Artikel, unabhängig von geltenden Einschränkungsregeln)');
 define('COUPON_USES_COUPON','Benutzung pro Aktionskupon');
 define('COUPON_USES_USER','Benutzung pro Kunde');
 define('COUPON_PRODUCTS','Gültige Artikelliste');
@@ -110,20 +109,20 @@ define('COUPON_BUTTON_CONFIRM', 'Bestätigen');
 define('COUPON_ACTIVE', 'Status');
 define('COUPON_START_DATE', 'Startdatum');
 define('COUPON_EXPIRE_DATE', 'Ablaufdatum');
-define('TEXT_INFO_DUPLICATE_MANAGEMENT', '<strong>Aktionskupon Mehrfach Management</strong><br /><br />Clicken Sie auf den Rabatt Coupon für den Sie Aktionen durchführen wollen<br />oder verwenden Sie den ausgewählten Coupon: <strong>%s</strong>');
-define('ERROR_DISCOUNT_COUPON_WELCOME', 'Aktionskupon kann nicht deaktiviert werden, da es sich um den Aktionskupon "Willkommensgeschenk" handelt<br /><br />Verwenden Sie einen anderen Aktionskupon als Willkommensgeschenk, damit dieser gelöscht werden kann.');
+define('TEXT_INFO_DUPLICATE_MANAGEMENT', '<strong>Aktionskupon Mehrfach Management</strong><br><br>Clicken Sie auf den Rabatt Coupon für den Sie Aktionen durchführen wollen<br>oder verwenden Sie den ausgewählten Coupon: <strong>%s</strong>');
+define('ERROR_DISCOUNT_COUPON_WELCOME', 'Aktionskupon kann nicht deaktiviert werden, da es sich um den Aktionskupon "Willkommensgeschenk" handelt<br><br>Verwenden Sie einen anderen Aktionskupon als Willkommensgeschenk, damit dieser gelöscht werden kann.');
 define('SUCCESS_COUPON_DISABLED', 'Erfolgreich! Der Aktionskupon wurde deaktiviert ...');
 define('TEXT_COUPON_NEW', 'Verwenden Sie folgenden Aktionskuponnummer:');
 define('ERROR_DISCOUNT_COUPON_DUPLICATE', 'ACHTUNG! Doppelter Aktionskupon existiert ... Kopiervorgang abgebrochen für: ');
 define('TEXT_CONFIRM_COPY', 'Wollen Sie diesen Aktionskupon kopieren?');
-define('SUCCESS_COUPON_DUPLICATE', 'Aktionskupon erfolgreich kopiert ...<br /><br />Bitte Name und Datum überprüfen ...');
+define('SUCCESS_COUPON_DUPLICATE', 'Aktionskupon erfolgreich kopiert ...<br><br>Bitte Name und Datum überprüfen ...');
 define('WARNING_COUPON_DUPLICATE', 'Warnung! Keine Aktionskupons angelegt! Die Anzahl der anzulegenden Kupons wurde nicht festgelegt ... ');
 
 define('TEXT_COUPON_COPY_INFO', 'Duplikate erstellen');
 define('TEXT_COUPON_COPY_DUPLICATE', 'Mehrfache Coupons erstellen auf Basis von: ');
 define('TEXT_COUPON_COPY_DUPLICATE_CNT', 'Wieviele Duplikate möchten Sie erstellen? ');
 
-define('TEXT_CONFIRM_DELETE_DUPLICATE', 'Alle zum Basis Coupon passenden Rabatt Coupons löschen<br />Beispiel: <strong>%s</strong> würde alle Aktionskupons löschen, die beginnen mit: <strong>%s</strong>');
+define('TEXT_CONFIRM_DELETE_DUPLICATE', 'Alle zum Basis Coupon passenden Rabatt Coupons löschen<br>Beispiel: <strong>%s</strong> würde alle Aktionskupons löschen, die beginnen mit: <strong>%s</strong>');
 define('TEXT_COUPON_DELETE_DUPLICATE', 'Alle Coupons löschen, die zu diesem Code passen: ');
 
 define('TEXT_DISCOUNT_COUPON_EMAIL', 'Email Aktionskupon');
@@ -142,7 +141,7 @@ define('TEXT_DISCOUNT_COUPON_REPORT_MULTIPLE', 'Mehrere Aktionskupons Report');
 define('TEXT_DISCOUNT_COUPON_DOWNLOAD', 'Download/Export mehrerer Aktionskupons');
 define('REDEEM_ORDER_ID', 'Bestellnummer');
 define('SUCCESS_COUPON_REACTIVATE', 'Reaktivierung erfolgreich');
-define('TEXT_CONFIRM_REACTIVATE', 'Wollen Sie diesen Aktionskupon wirklich wiederherstellen?<br />HINWEIS: Eine Wiederherstellung betrifft nicht das Start/Ablauf Datum.<br />Eien Wiederherstellung betrifft nicht Einschränkungen für die Zahl der Verwendungen per Kupon oder Kunde, falls der Kupon bereits eingelöst wurde.');
+define('TEXT_CONFIRM_REACTIVATE', 'Wollen Sie diesen Aktionskupon wirklich wiederherstellen?<br>HINWEIS: Eine Wiederherstellung betrifft nicht das Start/Ablauf Datum.<br>Eien Wiederherstellung betrifft nicht Einschränkungen für die Zahl der Verwendungen per Kupon oder Kunde, falls der Kupon bereits eingelöst wurde.');
 
 define('SUCCESS_COUPON_FOUND', 'Aktionskupon gefunden!');
 define('ERROR_COUPON_NOT_FOUND', 'Aktionskupon nicht gefunden!');

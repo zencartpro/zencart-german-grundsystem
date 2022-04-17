@@ -1,6 +1,5 @@
 <?php
-/**
- 
+/** 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
@@ -24,7 +23,7 @@ define('SUCCESS_PAGE_REMOVED', 'Success: The page has been removed.');
 define('SUCCESS_PAGE_STATUS_UPDATED', 'Success: The status of the page has been updated.');
 define('ERROR_PAGE_TITLE_REQUIRED', 'Error: Page title required.');
 define('ERROR_UNKNOWN_STATUS_FLAG', 'Error: Unknown status flag.');
-define('ERROR_MULTIPLE_HTML_URL', 'Error: you have defined multiple settings when only one may be defined per Link ...<br />Only define either: HTML Content -or- Internal Link URL -or- External Link URL');
+define('ERROR_MULTIPLE_HTML_URL', 'Error: you have defined multiple settings when only one may be defined per Link ...<br>Only define either: HTML Content -or- Internal Link URL -or- External Link URL');
 
 define('TABLE_HEADING_ID', 'ID');
 define('TABLE_HEADING_STATUS_HEADER', 'Header:');
@@ -50,7 +49,7 @@ define('TEXT_SIDEBOX_SORT_ORDER', 'Order:');
 define('TEXT_FOOTER_SORT_ORDER', 'Order:');
 define('TEXT_TOC_SORT_ORDER', 'Order:');
 define('TEXT_CHAPTER', 'Prev/Next Chapter:');
-define('TABLE_HEADING_CHAPTER_PREV_NEXT', 'Chapter:&nbsp;<br />');
+define('TABLE_HEADING_CHAPTER_PREV_NEXT', 'Chapter:&nbsp;<br>');
 
 define('TEXT_HEADER_SORT_ORDER_EXPLAIN', 'Header Sort Order used while generating pages in single row for the header; Sort order should be greater than zero to enable this page in the row type listing');
 define('TEXT_SIDEBOX_ORDER_EXPLAIN', 'Sidebox Sort order is used when pages are listed in vertical links; Sort order should be greater than zero to enable it in vertical listing, else it will be considered as HTML text for special purposes');
@@ -59,10 +58,10 @@ define('TEXT_TOC_SORT_ORDER_EXPLAIN', 'TOC (Table of Contents) Sort Order used w
 define('TEXT_CHAPTER_EXPLAIN', 'Chapters are used with TOC (Table of Contents) Sort Order for the display on Previous/Next. Links in the TOC will consist of pages matching this chapter number, and will be displayed in the TOC Sort Order');
 
 define('TEXT_ALT_URL', 'Internal Link URL:');
-define('TEXT_ALT_URL_EXPLAIN', 'If specified, the page content will be ignored and this INTERNAL alternate URL will be used to make the link<br />Example to Reviews: index.php?main_page=reviews<br />Example to My Account: index.php?main_page=account and mark as SSL');
+define('TEXT_ALT_URL_EXPLAIN', 'If specified, the page content will be ignored and this INTERNAL alternate URL will be used to make the link<br>Example to Reviews: index.php?main_page=reviews<br>Example to My Account: index.php?main_page=account and mark as SSL');
 
 define('TEXT_ALT_URL_EXTERNAL', 'External Link URL:');
-define('TEXT_ALT_URL_EXTERNAL_EXPLAIN', 'If specified, the page content will be ignored and this EXTERNAL alternate URL will be used to make the link<br />Example to external link: http://www.sashbox.net');
+define('TEXT_ALT_URL_EXTERNAL_EXPLAIN', 'If specified, the page content will be ignored and this EXTERNAL alternate URL will be used to make the link<br>Example to external link: http://www.sashbox.net');
 
 define('TEXT_SORT_CHAPTER_TOC_TITLE_INFO', 'Display Order: ');
 define('TEXT_SORT_CHAPTER_TOC_TITLE', 'Chapter/TOC');

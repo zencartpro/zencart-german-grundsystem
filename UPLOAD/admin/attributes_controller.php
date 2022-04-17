@@ -4,7 +4,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: attributes_controller.php 2021-11-29 20:02:16Z webchills $
+ * @version $Id: attributes_controller.php 2022-04-17 17:02:16Z webchills $
  */
 require('includes/application_top.php');
 
@@ -801,7 +801,7 @@ function zen_js_option_values_list($selectedName, $fieldName)
           <?php echo zen_draw_form('delete_all', FILENAME_ATTRIBUTES_CONTROLLER, 'action=delete_all_attributes'); ?>
           <?php echo zen_draw_hidden_field('products_filter', $_GET['products_filter']); ?>
           <?php echo zen_draw_hidden_field('current_category_id', $_GET['current_category_id']); ?>
-          <div class="col-xs-6 col-sm-4 text-danger"><strong><?php echo TEXT_DELETE_ALL_ATTRIBUTES . $products_filter . '<br />' . zen_get_products_name($products_filter); ?></strong></div>
+          <div class="col-xs-6 col-sm-4 text-danger"><strong><?php echo TEXT_DELETE_ALL_ATTRIBUTES . $products_filter . '<br>' . zen_get_products_name($products_filter); ?></strong></div>
           <div class="col-xs-6 col-sm-8">
             <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> <?php echo IMAGE_DELETE; ?></button>
             <?php echo '<a href="' . zen_href_link(FILENAME_ATTRIBUTES_CONTROLLER, 'products_filter=' . $products_filter . '&current_category_id=' . $current_category_id . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')) . '" class="btn btn-default" role="button">' . IMAGE_CANCEL . '</a>'; ?>
@@ -822,7 +822,7 @@ function zen_js_option_values_list($selectedName, $fieldName)
           <?php echo zen_draw_hidden_field('products_options_id_all', $_GET['products_options_id_all']); ?>
           <div class="row alert text-danger"><strong><?php echo TEXT_DELETE_ATTRIBUTES_OPTION_NAME_VALUES; ?></strong></div>
           <div class="row">
-            <div class="col-sm-4"><?php echo TEXT_INFO_PRODUCT_NAME . zen_get_products_name($products_filter) . '<br />' . TEXT_INFO_PRODUCTS_OPTION_ID . $_GET['products_options_id_all'] . '&nbsp;' . TEXT_INFO_PRODUCTS_OPTION_NAME . '&nbsp;' . zen_options_name($_GET['products_options_id_all']); ?></div>
+            <div class="col-sm-4"><?php echo TEXT_INFO_PRODUCT_NAME . zen_get_products_name($products_filter) . '<br>' . TEXT_INFO_PRODUCTS_OPTION_ID . $_GET['products_options_id_all'] . '&nbsp;' . TEXT_INFO_PRODUCTS_OPTION_NAME . '&nbsp;' . zen_options_name($_GET['products_options_id_all']); ?></div>
             <div class="col-sm-8">
               <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> <?php echo IMAGE_DELETE; ?></button>
               <?php echo '<a href="' . zen_href_link(FILENAME_ATTRIBUTES_CONTROLLER, 'products_filter=' . $products_filter . '&current_category_id=' . $current_category_id . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')) . '" class="btn btn-default" role="button">' . IMAGE_CANCEL . '</a>'; ?>
@@ -848,7 +848,7 @@ function zen_js_option_values_list($selectedName, $fieldName)
           <?php echo zen_draw_hidden_field('products_update_id', $_GET['products_update_id']); ?>
           <?php echo zen_draw_hidden_field('copy_attributes', $_GET['copy_attributes']); ?>
           <div class="form-group">
-            <div class="col-sm-6 text-center"><?php echo TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO_PRODUCT . $products_filter . '<br />' . zen_get_products_name($products_filter); ?></div>
+            <div class="col-sm-6 text-center"><?php echo TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO_PRODUCT . $products_filter . '<br>' . zen_get_products_name($products_filter); ?></div>
             <div class="col-sm-6">
               <?php echo TEXT_COPY_ATTRIBUTES_CONDITIONS; ?>
               <div class="radio">
@@ -864,7 +864,7 @@ function zen_js_option_values_list($selectedName, $fieldName)
           </div>
           <div class="form-group">
             <div class="col-sm-6 text-center">
-              <span class="text-danger"><strong><?php echo TEXT_INFO_ATTRIBUTES_FEATURE_COPY_TO; ?></strong></span><br />
+              <span class="text-danger"><strong><?php echo TEXT_INFO_ATTRIBUTES_FEATURE_COPY_TO; ?></strong></span><br>
               <?php echo zen_draw_products_pull_down('products_update_id', 'size="15" class="form-control"', $products_exclude_array, true, '', true); ?></div>
             <div class="col-sm-6 text-center">
               <button type="submit" class="btn btn-primary"><i class="fa fa-copy" aria-hidden="true"></i> <?php echo IMAGE_COPY; ?></button>
@@ -882,9 +882,9 @@ function zen_js_option_values_list($selectedName, $fieldName)
           <?php echo zen_draw_hidden_field('copy_attributes', $_GET['copy_attributes']); ?>
           <?php echo zen_draw_hidden_field('current_category_id', $_GET['current_category_id']); ?>
           <div class="form-group">
-            <div class="col-sm-6 text-center"><?php echo TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO_CATEGORY . $products_filter . '<br />' . zen_get_products_name($products_filter); ?></div>
+            <div class="col-sm-6 text-center"><?php echo TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO_CATEGORY . $products_filter . '<br>' . zen_get_products_name($products_filter); ?></div>
             <div class="col-sm-6">
-              <?php echo TEXT_COPY_ATTRIBUTES_CONDITIONS; ?><br />
+              <?php echo TEXT_COPY_ATTRIBUTES_CONDITIONS; ?><br>
               <div class="radio">
                 <label><?php echo zen_draw_radio_field('copy_attributes', 'copy_attributes_delete', true) . TEXT_COPY_ATTRIBUTES_DELETE; ?></label>
               </div>
@@ -898,7 +898,7 @@ function zen_js_option_values_list($selectedName, $fieldName)
           </div>
           <div class="form-group">
             <div class="col-sm-6 text-center">
-              <span class="text-danger"><strong><?php echo TEXT_INFO_ATTRIBUTES_FEATURE_CATEGORIES_COPY_TO; ?></strong></span><br />
+              <span class="text-danger"><strong><?php echo TEXT_INFO_ATTRIBUTES_FEATURE_CATEGORIES_COPY_TO; ?></strong></span><br>
               <?php echo zen_draw_products_pull_down_categories('categories_update_id', 'size="5" class="form-control"', '', true, true); ?></div>
             <div class="col-sm-6 text-center">
               <button type="submit" class="btn btn-primary"><i class="fa fa-copy" aria-hidden="true"></i> <?php echo IMAGE_COPY; ?></button>
@@ -931,8 +931,8 @@ function zen_js_option_values_list($selectedName, $fieldName)
                 <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 text-center">
                   <?php
                   $display_priced_by_attributes = zen_get_products_price_is_priced_by_attributes($_GET['products_filter']);
-                  echo ($display_priced_by_attributes ? '<span class="text-warning"><strong>' . TEXT_PRICED_BY_ATTRIBUTES . '</strong></span>' . '<br />' : '');
-                  echo zen_get_products_display_price($_GET['products_filter']) . '<br /><br />';
+                  echo ($display_priced_by_attributes ? '<span class="text-warning"><strong>' . TEXT_PRICED_BY_ATTRIBUTES . '</strong></span>' . '<br>' : '');
+                  echo zen_get_products_display_price($_GET['products_filter']) . '<br><br>';
                   echo zen_get_products_quantity_min_units_display($_GET['products_filter'], $include_break = true);
                   ?>
                 </div>

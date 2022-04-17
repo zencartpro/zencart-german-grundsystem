@@ -777,5 +777,5 @@ define('ARIA_PAGINATION_','');
   include(zen_get_file_directory(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/', FILENAME_OTHER_IMAGES_NAMES));
 
 // Additional Localisation - Languages - Phone Country Code
-define('TEXT_INFO_LANGUAGE_ID', 'Enter telephone country access code without leading 0<br />(english must be 1, german must be 43):');
-define('TEXT_INFO_LANGUAGE_CODE', 'Code:<br />(en = englisch, de = german)');
+define('TEXT_INFO_LANGUAGE_ID', 'Enter telephone country access code without leading 0<br>(english must be 1, german must be 43):');
+define('TEXT_INFO_LANGUAGE_CODE', 'Code:<br>(en = englisch, de = german)');

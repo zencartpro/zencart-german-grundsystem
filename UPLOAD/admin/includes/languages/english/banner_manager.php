@@ -17,7 +17,7 @@ define('TABLE_HEADING_STATUS', 'Status');
 define('TABLE_HEADING_BANNER_OPEN_NEW_WINDOWS','New Window');
 define('TABLE_HEADING_BANNER_ON_SSL', 'Show SSL');
 define('TABLE_HEADING_ACTION', 'Action');
-define('TABLE_HEADING_BANNER_SORT_ORDER', 'Sort<br />Order');
+define('TABLE_HEADING_BANNER_SORT_ORDER', 'Sort<br>Order');
 
 define('TEXT_BANNERS_TITLE', 'Banner Title:');
 define('TEXT_BANNERS_URL', 'Banner URL:');

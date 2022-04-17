@@ -2,7 +2,7 @@
 /**
  * Page Template
  * Zen Cart German Specific
- * Loaded automatically by index.php?main_page=privacy.<br />
+ * Loaded automatically by index.php?main_page=privacy.
  * Displays privacy page.
  *
  * @package templateSystem

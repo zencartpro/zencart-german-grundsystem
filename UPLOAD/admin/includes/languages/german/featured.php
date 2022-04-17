@@ -4,7 +4,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: featured.php 2022-01-12 10:19:04Z webchills $
+ * @version $Id: featured.php 2022-04-17 16:19:04Z webchills $
  */
 
 define('HEADING_TITLE', 'Empfohlene Artikel');
@@ -41,5 +41,5 @@ define('WARNING_FEATURED_PRE_ADD_PID_EMPTY', 'Warnung: Artikel ID wurde nicht an
 define('WARNING_FEATURED_PRE_ADD_PID_DUPLICATE', 'Warnung: Artikel ID#%u ist bereits ein empfohlener Artikel.');
 define('WARNING_FEATURED_PRE_ADD_PID_NO_EXIST', 'Warnung: Artikel ID#%u existiert nicht.');
 define('TEXT_INFO_HEADING_PRE_ADD_FEATURED', 'Neue Artikel manuell hinzufügen per Artikel ID');
-define('TEXT_INFO_PRE_ADD_INTRO', 'Bei großen Datenbanken kann man Artikel manuell per Angabe der Artikel ID hinzufügen.<br /><br />Dies wird dann angewandt, wenn die Seite zu lang zum übertragen braucht und der Versuch, ein Produkt per Dropdownfeld zu wählen wegen zu vielen Produkten zu schwierig wird.');
+define('TEXT_INFO_PRE_ADD_INTRO', 'Bei großen Datenbanken kann man Artikel manuell per Angabe der Artikel ID hinzufügen.<br><br>Dies wird dann angewandt, wenn die Seite zu lang zum übertragen braucht und der Versuch, ein Produkt per Dropdownfeld zu wählen wegen zu vielen Produkten zu schwierig wird.');
 define('TEXT_PRE_ADD_PRODUCTS_ID', 'Bitte geben Sie die Artikel ID ein: ');

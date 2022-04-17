@@ -64,7 +64,7 @@ TXT;
 
 echo RL_INVOICE3_HEADING_TITLE . '<span id="loading"></span></h1>';
 
-echo 'Version: ' . RL_INVOICE3_MODUL_VERSION . '<br /><br>' . RL_INVOICE3_INFOTEXT . '';
+echo 'Version: ' . RL_INVOICE3_MODUL_VERSION . '<br><br>' . RL_INVOICE3_INFOTEXT . '';
 
 
 ?>

@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: FualSlimboxObserver.php 2019-04-12 22:13:51Z webchills $
+ * @version $Id: FualSlimboxObserver.php 2022-04-17 08:53:51Z webchills $
  */
 // An observer-class to enable the "Fual Slimbox" plugin to operate with the notification updates in the
 // main_product_image and additional_images processing, provided by "Image Handler" v5.0.0 and later.
@@ -61,7 +61,7 @@ class FualSlimboxObserver extends base
                     }
                     
                     $image_link = zen_lightbox($products_image_large, $products_name, LARGE_IMAGE_WIDTH, LARGE_IMAGE_HEIGHT);
-                    $large_image_link = '<a href="' . $image_link . '" rel="' . $rel . '" title="' . $products_name . '">' . $thumb_slashes . '<br />' . TEXT_CLICK_TO_ENLARGE . '</a>';
+                    $large_image_link = '<a href="' . $image_link . '" rel="' . $rel . '" title="' . $products_name . '">' . $thumb_slashes . '<br>' . TEXT_CLICK_TO_ENLARGE . '</a>';
                 }
                 $p2 = '<script type="text/javascript"><!--' . "\n" . 'document.write(\'' . $large_image_link . '\');' . "\n" . '//--></script>';
                 break;

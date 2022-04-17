@@ -4,7 +4,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: mail.php 2021-10-24 18:04:51Z webchills $
+ * @version $Id: mail.php 2022-04-17 16:04:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -225,7 +225,7 @@ if ($action == 'preview') {
           <div class="col-sm-12"><hr></div>
           <div class="col-sm-3 text-right"><b><?php echo strip_tags(TEXT_MESSAGE_HTML); ?></b></div>
           <div class="col-sm-9">
-              <?php if (EMAIL_USE_HTML != 'true') echo TEXT_WARNING_HTML_DISABLED . '<br />'; ?>
+              <?php if (EMAIL_USE_HTML != 'true') echo TEXT_WARNING_HTML_DISABLED . '<br>'; ?>
               <?php
               $html_preview = zen_output_string(isset($_POST['message_html']) ? $_POST['message_html'] : '');
               echo (false !== stripos($html_preview, '<br') ? $html_preview : nl2br($html_preview));
@@ -237,7 +237,7 @@ if ($action == 'preview') {
               <?php
               $message_preview = empty($_POST['message']) ? $_POST['message_html'] : $_POST['message'];
               $message_preview = (false !== stripos($message_preview, '<br') ? $message_preview : nl2br($message_preview));
-              $message_preview = str_replace(array('<br>', '<br />'), "<br />\n", $message_preview);
+              $message_preview = str_replace(array('<br>', '<br>'), "<br>\n", $message_preview);
               $message_preview = str_replace('</p>', "</p>\n", $message_preview);
               echo '<tt>' . nl2br(htmlspecialchars(stripslashes(strip_tags($message_preview)), ENT_COMPAT, CHARSET, TRUE)) . '</tt>';
               ?>

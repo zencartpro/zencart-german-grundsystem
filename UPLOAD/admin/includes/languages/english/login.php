@@ -1,6 +1,5 @@
 <?php
-/**
- 
+/** 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
@@ -25,7 +24,7 @@ define('TEXT_PASSWORD_FORGOTTEN', 'Forgot Password?');
 
 define('LOGIN_EXPIRY_NOTICE', '');
 define('ERROR_PASSWORD_EXPIRED', 'NOTE: Your password has expired. Please select a new password. Your password <strong>must contain both NUMBERS and LETTERS and minimum 7 characters.</strong>');
-define('TEXT_TEMPORARY_PASSWORD_MUST_BE_CHANGED', 'For security reasons, your temporary password needs to be changed. Please select a new password.<br />Your password <strong>must contain both NUMBERS and LETTERS and minimum 7 characters.</strong>');
+define('TEXT_TEMPORARY_PASSWORD_MUST_BE_CHANGED', 'For security reasons, your temporary password needs to be changed. Please select a new password.<br>Your password <strong>must contain both NUMBERS and LETTERS and minimum 7 characters.</strong>');
 define('SUCCESS_PASSWORD_UPDATED', 'Password updated');
 
 define('TEXT_EMAIL_SUBJECT_LOGIN_FAILURES', 'Admin login failure notice');

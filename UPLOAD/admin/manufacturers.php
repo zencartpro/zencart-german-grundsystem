@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: manufacturers.php 2022-02-10 18:42:51Z webchills $
+ * @version $Id: manufacturers.php 2022-04-17 16:42:51Z webchills $
  */
 require 'includes/application_top.php';
 
@@ -294,26 +294,26 @@ if (!empty($action)) {
 
       $manufacturer_inputs_string_metatags_title = '';
       for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {    
-        $manufacturer_inputs_string_metatags_title .= '<br />' . zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;' . zen_draw_input_field('metatags_title[' . $languages[$i]['id'] . ']', zen_get_manufacturer_metatags_title($manufacturers_id , $languages[$i]['id']), zen_set_field_length(TABLE_MANUFACTURERS_META, 'metatags_title'));
+        $manufacturer_inputs_string_metatags_title .= '<br>' . zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;' . zen_draw_input_field('metatags_title[' . $languages[$i]['id'] . ']', zen_get_manufacturer_metatags_title($manufacturers_id , $languages[$i]['id']), zen_set_field_length(TABLE_MANUFACTURERS_META, 'metatags_title'));
         
       }
-      $contents[] = array('text' => '<br />' . TEXT_EDIT_MANUFACTURER_META_TAGS_TITLE . $manufacturer_inputs_string_metatags_title);
+      $contents[] = array('text' => '<br>' . TEXT_EDIT_MANUFACTURER_META_TAGS_TITLE . $manufacturer_inputs_string_metatags_title);
 
       $manufacturer_inputs_string_metatags_keywords = '';
       for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
-        $manufacturer_inputs_string_metatags_keywords .= '<br />' . zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;';
+        $manufacturer_inputs_string_metatags_keywords .= '<br>' . zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;';
         $manufacturer_inputs_string_metatags_keywords .= zen_draw_textarea_field('metatags_keywords[' . $languages[$i]['id'] . ']', 'soft', '100%', '20', zen_get_manufacturer_metatags_keywords($manufacturers_id , $languages[$i]['id']));
       }
-      $contents[] = array('text' => '<br />' . TEXT_EDIT_MANUFACTURER_META_TAGS_KEYWORDS . $manufacturer_inputs_string_metatags_keywords);
+      $contents[] = array('text' => '<br>' . TEXT_EDIT_MANUFACTURER_META_TAGS_KEYWORDS . $manufacturer_inputs_string_metatags_keywords);
 
       $manufacturer_inputs_string_metatags_description = '';
       for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
-        $manufacturer_inputs_string_metatags_description .= '<br />' . zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;' ;
+        $manufacturer_inputs_string_metatags_description .= '<br>' . zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;' ;
         $manufacturer_inputs_string_metatags_description .= zen_draw_textarea_field('metatags_description[' . $languages[$i]['id'] . ']', 'soft', '100%', '20', zen_get_manufacturer_metatags_description($manufacturers_id , $languages[$i]['id']));
       }
-      $contents[] = array('text' => '<br />' . TEXT_EDIT_MANUFACTURERS_META_TAGS_DESCRIPTION.$manufacturer_inputs_string_metatags_description);
+      $contents[] = array('text' => '<br>' . TEXT_EDIT_MANUFACTURERS_META_TAGS_DESCRIPTION.$manufacturer_inputs_string_metatags_description);
 
-      $contents[] = array('align' => 'center', 'text' => '<br />' . zen_image_submit('button_save.gif', IMAGE_SAVE) . ' <a href="' . zen_href_link(FILENAME_MANUFACTURERS, '&mID=' . $manufacturers_id ) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');
+      $contents[] = array('align' => 'center', 'text' => '<br>' . zen_image_submit('button_save.gif', IMAGE_SAVE) . ' <a href="' . zen_href_link(FILENAME_MANUFACTURERS, '&mID=' . $manufacturers_id ) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');
       break;
     }
 

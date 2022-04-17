@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: stats_products_lowstock.php 2022-03-03 10:26:51Z webchills $
+ * @version $Id: stats_products_lowstock.php 2022-04-17 08:26:51Z webchills $
  */
 
 require('includes/application_top.php');
@@ -147,7 +147,7 @@ if ($csv == '1') {
                             <td><a href="./stats_products_lowstock.php?page=all&sort=<?php echo $sort; ?>&dir=<?php echo $dir; ?>&cat=<?php echo $cat; ?>"><?php echo INVENTORY_SHOW_ALL; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="./stats_products_lowstock.php?sort=<?php echo $sort; ?>&dir=<?php echo $dir; ?>&cat=<?php echo $cat; ?>"><?php echo INVENTORY_SHOW_PAGINATED; ?></a></td>
                             <td align="right">
                                 <form method="get" action="<?php echo zen_href_link(FILENAME_STATS_PRODUCTS_LOWSTOCK, 'page='.$get_page.'&dir='.$replace_dir.'&sort=replace_sort', 'SSL'); ?>"><?php echo zen_draw_pull_down_menu('cat', zen_get_category_tree(), $cat, 'onChange="this.form.submit();"'); ?></form>
-                                <br/>
+                                <br>
                                 <?php
                                 echo '<a href="'.zen_href_link(FILENAME_STATS_PRODUCTS_LOWSTOCK, zen_get_all_get_params('page').'&csv=1', 'SSL').'">'.INVENTORY_REPORT_TEXT_CSV.'</a>';
                                 ?>

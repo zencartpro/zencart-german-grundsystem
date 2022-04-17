@@ -171,12 +171,12 @@ if (!empty($action)) {
               $heading[] = array('text' => '<h4>' . TEXT_INFO_HEADING_EDIT_PRODUCTS_DOWNLOAD . '</h4>');
 
               $contents = array('form' => zen_draw_form('products_downloads_edit', FILENAME_DOWNLOADS_MANAGER, zen_get_all_get_params(array('padID', 'action')) . 'padID=' . $padInfo->products_attributes_id . '&action=save' . '&page=' . $_GET['page'], 'post', 'class="form-horizontal"'));
-              $contents[] = array('text' => '<b>' . TEXT_PRODUCTS_NAME . $padInfo->products_name . '<br />' . TEXT_PRODUCTS_MODEL . $padInfo->products_model . '</b>');
-              $contents[] = array('text' => '<br />' . TEXT_INFO_EDIT_INTRO);
-              $contents[] = array('text' => '<br />' . zen_draw_label(TEXT_INFO_FILENAME, 'products_attributes_filename', 'class="control-label"') . zen_draw_input_field('products_attributes_filename', $padInfo->products_attributes_filename, 'class="form-control"'));
-              $contents[] = array('text' => '<br />' . zen_draw_label(TEXT_INFO_MAX_DAYS, 'products_attributes_maxdays', 'class="control-label"') . zen_draw_input_field('products_attributes_maxdays', $padInfo->products_attributes_maxdays, 'class="form-control"'));
-              $contents[] = array('text' => '<br />' . zen_draw_label(TEXT_INFO_MAX_COUNT, 'products_attributes_maxcount', 'class="control-label"') . zen_draw_input_field('products_attributes_maxcount', $padInfo->products_attributes_maxcount, 'class="form-control"'));
-              $contents[] = array('align' => 'text-center', 'text' => '<br /><button type="submit" class="btn btn-primary">' . IMAGE_UPDATE . '</button>&nbsp;<a href="' . zen_href_link(FILENAME_DOWNLOADS_MANAGER, 'padID=' . $padInfo->products_attributes_id) . '&page=' . $_GET['page'] . '" class="btn btn-default" role="button">' . IMAGE_CANCEL . '</a>');
+              $contents[] = array('text' => '<b>' . TEXT_PRODUCTS_NAME . $padInfo->products_name . '<br>' . TEXT_PRODUCTS_MODEL . $padInfo->products_model . '</b>');
+              $contents[] = array('text' => '<br>' . TEXT_INFO_EDIT_INTRO);
+              $contents[] = array('text' => '<br>' . zen_draw_label(TEXT_INFO_FILENAME, 'products_attributes_filename', 'class="control-label"') . zen_draw_input_field('products_attributes_filename', $padInfo->products_attributes_filename, 'class="form-control"'));
+              $contents[] = array('text' => '<br>' . zen_draw_label(TEXT_INFO_MAX_DAYS, 'products_attributes_maxdays', 'class="control-label"') . zen_draw_input_field('products_attributes_maxdays', $padInfo->products_attributes_maxdays, 'class="form-control"'));
+              $contents[] = array('text' => '<br>' . zen_draw_label(TEXT_INFO_MAX_COUNT, 'products_attributes_maxcount', 'class="control-label"') . zen_draw_input_field('products_attributes_maxcount', $padInfo->products_attributes_maxcount, 'class="form-control"'));
+              $contents[] = array('align' => 'text-center', 'text' => '<br><button type="submit" class="btn btn-primary">' . IMAGE_UPDATE . '</button>&nbsp;<a href="' . zen_href_link(FILENAME_DOWNLOADS_MANAGER, 'padID=' . $padInfo->products_attributes_id) . '&page=' . $_GET['page'] . '" class="btn btn-default" role="button">' . IMAGE_CANCEL . '</a>');
               break;
             default:
               if (isset($padInfo) && is_object($padInfo)) {
@@ -186,7 +186,7 @@ if (!empty($action)) {
                   '<a href="' . zen_href_link(FILENAME_DOWNLOADS_MANAGER, zen_get_all_get_params(array('padID', 'action')) . 'padID=' . $padInfo->products_attributes_id . '&page=' . $_GET['page'] . '&action=edit') . '" class="btn btn-primary" role="button">' . IMAGE_EDIT . '</a>' .
                   '&nbsp;<a href="' . zen_href_link(FILENAME_ATTRIBUTES_CONTROLLER, 'products_filter=' . $padInfo->products_id . '&current_categories_id=' . $padInfo->master_categories_id) . '" class="btn btn-primary" role="button">' . IMAGE_EDIT_ATTRIBUTES . '</a>'
                 );
-                $contents[] = array('text' => '<br />' . TEXT_PRODUCTS_NAME . $padInfo->products_name);
+                $contents[] = array('text' => '<br>' . TEXT_PRODUCTS_NAME . $padInfo->products_name);
                 $contents[] = array('text' => TEXT_PRODUCTS_MODEL . $padInfo->products_model);
                 $contents[] = array('text' => TEXT_INFO_FILENAME . $padInfo->products_attributes_filename);
                 $contents[] = array('text' => TEXT_INFO_MAX_DAYS . $padInfo->products_attributes_maxdays);

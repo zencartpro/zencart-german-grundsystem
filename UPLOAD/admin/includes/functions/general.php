@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: general.php 2022-04-13 18:45:33Z webchills $
+ * @version $Id: general.php 2022-04-17 16:45:33Z webchills $
  */
 
 ////
@@ -2553,10 +2553,10 @@ function zen_draw_products_pull_down_categories_attributes($name, $parameters = 
         $valid_downloads = '';
         while (!$download_display->EOF) {
           if (!zen_orders_products_downloads($download_display->fields['products_attributes_filename'])) {
-            $valid_downloads .= '<br />&nbsp;&nbsp;' . zen_image(DIR_WS_IMAGES . 'icon_status_red.gif') . ' Invalid: ' . $download_display->fields['products_attributes_filename'];
+            $valid_downloads .= '<br>&nbsp;&nbsp;' . zen_image(DIR_WS_IMAGES . 'icon_status_red.gif') . ' Invalid: ' . $download_display->fields['products_attributes_filename'];
             // break;
           } else {
-            $valid_downloads .= '<br />&nbsp;&nbsp;' . zen_image(DIR_WS_IMAGES . 'icon_status_green.gif') . ' Valid&nbsp;&nbsp;: ' . $download_display->fields['products_attributes_filename'];
+            $valid_downloads .= '<br>&nbsp;&nbsp;' . zen_image(DIR_WS_IMAGES . 'icon_status_green.gif') . ' Valid&nbsp;&nbsp;: ' . $download_display->fields['products_attributes_filename'];
           }
           $download_display->MoveNext();
         }

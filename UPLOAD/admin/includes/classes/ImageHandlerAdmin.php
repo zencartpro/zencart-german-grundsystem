@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ImageHandlerAdmin.php 2018-06-15 16:13:51Z webchills $
+ * @version $Id: ImageHandlerAdmin.php 2022-04-17 16:13:51Z webchills $
  */
 if (!defined('IH_DEBUG_ADMIN')) {
     define('IH_DEBUG_ADMIN', 'true'); //-Either 'true' or 'false'
@@ -32,7 +32,7 @@ class ImageHandlerAdmin
         $image_fs_size = filesize($filename);
 
         $str = $image_size[0] . "x" . $image_size[1];
-        $str .= "<br /><strong>" . round($image_fs_size/1024, 2) . "Kb</strong>";
+        $str .= "<br><strong>" . round($image_fs_size/1024, 2) . "Kb</strong>";
 
         return $str;
     }

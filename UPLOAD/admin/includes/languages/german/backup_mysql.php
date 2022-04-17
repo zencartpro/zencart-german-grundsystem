@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: backup_mysql.php 2022-02-10 17:01:16Z webchills $
+ * @version $Id: backup_mysql.php 2022-04-17 16:01:16Z webchills $
  */
 
 // define the locations of the mysql utilities.  Typical location is in '/usr/bin/' ... but not on Windows servers.
@@ -49,7 +49,7 @@ define('ICON_FILE_DOWNLOAD', 'Datei herunterladen');
 define('ERROR_BACKUP_DIRECTORY_DOES_NOT_EXIST', 'FEHLER: das Verzeichnis für die Sicherung existiert nicht. Bitte beheben Sie den FEHLER in Ihrer configure.php.');
 define('ERROR_BACKUP_DIRECTORY_NOT_WRITEABLE', 'FEHLER: In das Verzeichnis für die Sicherung kann nicht geschrieben werden.');
 define('ERROR_DOWNLOAD_LINK_NOT_ACCEPTABLE', 'FEHLER: Der Download Link ist nicht korrekt.');
-define('ERROR_CANT_BACKUP_IN_SAFE_MODE','FEHLER: Dieses Tool funktioniert nicht, wenn der safe_mode aktiv ist oder eine open_basedir restriction.<br />Falls Sie während des Backups keine FEHLERmeldung bekommen, überprüfen Sie die Dateigröße der Sicherung. Ist diese unter 200 KB, ist die Datei vermutlich nicht brauchbar!');
+define('ERROR_CANT_BACKUP_IN_SAFE_MODE','FEHLER: Dieses Tool funktioniert nicht, wenn der safe_mode aktiv ist oder eine open_basedir restriction.<br>Falls Sie während des Backups keine FEHLERmeldung bekommen, überprüfen Sie die Dateigröße der Sicherung. Ist diese unter 200 KB, ist die Datei vermutlich nicht brauchbar!');
 define('ERROR_EXEC_DISABLED','FEHLER: Auf Ihrem Server ist "exec()" deaktiviert. Dieses Tool kann so nicht verwendet werden. Wenden Sie sich an Ihren Provider für eine Aktivierung von PHP exec().');
 
 define('SUCCESS_LAST_RESTORE_CLEARED', 'ERFOLGREICH: Das letzte Wiederherstellungsdatum wurde gelöscht.');
@@ -61,5 +61,5 @@ define('FAILURE_DATABASE_NOT_SAVED_UTIL_NOT_FOUND', 'FEHLER: Das MYSQLDUMP Siche
 define('FAILURE_DATABASE_NOT_RESTORED', 'FEHLER: Die Datenbank wurde eventuell NICHT richtig wiederhergestellt. Bitte überprüfen Sie die Wiederherstellung.');
 define('FAILURE_DATABASE_NOT_RESTORED_FILE_NOT_FOUND', 'FEHLER: Die Datenbank wurde NICHT wiederhergestellt.  FEHLER: DIE DATEI %s KONNTE NICHT GEFUNDEN WERDEN');
 define('FAILURE_DATABASE_NOT_RESTORED_UTIL_NOT_FOUND', 'FEHLER: das MYSQL Wiederherstellungsutility konnte nicht lokalisiert werden. WIEDERHERSTELLUNG GESCHEITERT.');
-define('FAILURE_BACKUP_FAILED_CHECK_PERMISSIONS','Die Sicherung ist fehlgeschlagen, da das Backup Tool nicht gestartet werden konnte (mysqldump oder mysqldump.exe).<br />Auf einem WindowsServer müssen Sie die Berechtigungen der cmd.exe so setzen, dass der Internet Guest Account lesen und schreiben darf.<br />Auf einem Linux Server wednen Sie sich bitte an Ihren Provider um zu klären, warum exec() Befehle fehlschlagen.');
+define('FAILURE_BACKUP_FAILED_CHECK_PERMISSIONS','Die Sicherung ist fehlgeschlagen, da das Backup Tool nicht gestartet werden konnte (mysqldump oder mysqldump.exe).<br>Auf einem WindowsServer müssen Sie die Berechtigungen der cmd.exe so setzen, dass der Internet Guest Account lesen und schreiben darf.<br>Auf einem Linux Server wednen Sie sich bitte an Ihren Provider um zu klären, warum exec() Befehle fehlschlagen.');
 

@@ -1,11 +1,10 @@
 <?php
-/**
- 
+/** 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: admin_activity.php 2020-03-01 13:00:16Z webchills $
+ * @version $Id: admin_activity.php 2022-04-17 16:00:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Admin Aktivitäten Log Manager');
@@ -19,9 +18,9 @@ define('TEXT_PROCESSED', ' Verarbeitet.');
 define('SUCCESS_EXPORT_ADMIN_ACTIVITY_LOG', 'Export abgeschlossen. ');
 define('FAILURE_EXPORT_ADMIN_ACTIVITY_LOG', 'ACHTUNG: Export fehlgeschlagen. Es konnte nicht gespeichert werden in der Datei ');
 
-define('TEXT_INSTRUCTIONS','<u>ANLEITUNG</u><br />
-Auf dieser Seite können Sie Ihre Zen Cart Admin User Aktivitäten Logs zur Archivierung in eine CSV-Datei exportieren.<br />
-Sie sollten diese Daten für die Verwendung bei Betrugsermittlungen speichern, falls Ihre Website kompromittiert wird. Dies ist eine Voraussetzung für die PCI-Compliance.<br />
+define('TEXT_INSTRUCTIONS','<u>ANLEITUNG</u><br>
+Auf dieser Seite können Sie Ihre Zen Cart Admin User Aktivitäten Logs zur Archivierung in eine CSV-Datei exportieren.<br>
+Sie sollten diese Daten für die Verwendung bei Betrugsermittlungen speichern, falls Ihre Website kompromittiert wird. Dies ist eine Voraussetzung für die PCI-Compliance.<br>
 <ol>
 <li>Wählen Sie aus, ob Sie die Daten anzeigen oder in eine Datei exportieren möchten.</li>
 <li>Geben Sie einen Dateinamen ein. (muss mit einer der folgenden Endungen enden: .csv .txt .htm .html .xml)</li>
@@ -29,8 +28,8 @@ Sie sollten diese Daten für die Verwendung bei Betrugsermittlungen speichern, f
 <li>Wählen Sie, ob die Datei gespeichert oder geöffnet werden soll, je nachdem, was Ihr Browser anbietet.</li></ol>
 ');
 
-define('TEXT_INFO_ADMIN_ACTIVITY_LOG', '<strong>Admin Aktivität Log Tabelle in der Datenbank leeren<br />WARNUNG: Erstellen Sie ein Datenbankbackup bevor Sie die Tabelle leeren!</strong><br />Das Admin Aktivität Log zeichnet alle Aktivitäten in Ihrem Adminbereich auf, um diese bei Bedarf nachverfolgen zu können. <br />Aufgrund dessen kann die Tabelle sehr schnell sehr groß werden und sollte daher von Zeit zu Zeit geleert werden.<br />Eine Warnung über eine zu große Tabelle wird automatisch angezeigt, wenn die Tabelle über 50.000 Einträge enthält oder Einträge enthält die älter sind als 60 Tage, je nachdem was zuerst erreicht wird.<br /><span class="alert">HINWEIS: PCI Compliance setzt zwingend voraus, dass Sie die Admin Aktivitäts Logs für 12 Monate aufbewahren.<br />Daher ist es am Besten Ihre Logs zu archivieren, indem Sie oben EXPORT TO CSV auswählen und auf GO klicken, BEVOR Sie die Logeinträge löschen.</span>');
-define('TEXT_ADMIN_LOG_PLEASE_CONFIRM_ERASE', '<strong><span class="alert">WARNUNG!: Sie sind dabei *wichtige* Log Aufzeichnungen aus Ihrer Datenbank zu löschen.</span></strong><br />Sie sollten sich VORHER versichern, dass Sie ein Backup Ihrer Datenbank haben, bevor Sie fortfahren.<br />Mit der Fortsetzung (Löschung der Daten) bestätigen Sie, dass Sie die Wichtigkeit der Daten und Ihre rechtliche Verantwortung für diese Daten verstanden haben.<br /><br />Ich bin mir meiner Verantwortung bezüglich der Daten bewußt und will diese bewußt löschen:<br />');
+define('TEXT_INFO_ADMIN_ACTIVITY_LOG', '<strong>Admin Aktivität Log Tabelle in der Datenbank leeren<br>WARNUNG: Erstellen Sie ein Datenbankbackup bevor Sie die Tabelle leeren!</strong><br>Das Admin Aktivität Log zeichnet alle Aktivitäten in Ihrem Adminbereich auf, um diese bei Bedarf nachverfolgen zu können. <br>Aufgrund dessen kann die Tabelle sehr schnell sehr groß werden und sollte daher von Zeit zu Zeit geleert werden.<br>Eine Warnung über eine zu große Tabelle wird automatisch angezeigt, wenn die Tabelle über 50.000 Einträge enthält oder Einträge enthält die älter sind als 60 Tage, je nachdem was zuerst erreicht wird.<br><span class="alert">HINWEIS: PCI Compliance setzt zwingend voraus, dass Sie die Admin Aktivitäts Logs für 12 Monate aufbewahren.<br>Daher ist es am Besten Ihre Logs zu archivieren, indem Sie oben EXPORT TO CSV auswählen und auf GO klicken, BEVOR Sie die Logeinträge löschen.</span>');
+define('TEXT_ADMIN_LOG_PLEASE_CONFIRM_ERASE', '<strong><span class="alert">WARNUNG!: Sie sind dabei *wichtige* Log Aufzeichnungen aus Ihrer Datenbank zu löschen.</span></strong><br>Sie sollten sich VORHER versichern, dass Sie ein Backup Ihrer Datenbank haben, bevor Sie fortfahren.<br>Mit der Fortsetzung (Löschung der Daten) bestätigen Sie, dass Sie die Wichtigkeit der Daten und Ihre rechtliche Verantwortung für diese Daten verstanden haben.<br><br>Ich bin mir meiner Verantwortung bezüglich der Daten bewußt und will diese bewußt löschen:<br>');
 define('SUCCESS_CLEAN_ADMIN_ACTIVITY_LOG', '<strong>Vollständige</strong> Leerung des Admin Aktivitäts Logs erfolgreich abgeschlossen');
 define('TEXT_NO_RECORDS_FOUND', 'keine Einträge gemäß der gewählten Filtereinstellungen gefunden.');
 

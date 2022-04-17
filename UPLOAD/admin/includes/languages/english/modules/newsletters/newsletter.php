@@ -1,6 +1,5 @@
 <?php
-/**
- 
+/** 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
@@ -20,8 +19,8 @@ define('TABLE_HEADING_ACTION', 'Action');
 
 define('TEXT_NEWSLETTER_MODULE', 'Module:');
 define('TEXT_NEWSLETTER_TITLE', 'Subject:');
-define('TEXT_NEWSLETTER_CONTENT', 'Text-Only <br />Content:');
-define('TEXT_NEWSLETTER_CONTENT_HTML', 'Rich Text <br />Content:');
+define('TEXT_NEWSLETTER_CONTENT', 'Text-Only <br>Content:');
+define('TEXT_NEWSLETTER_CONTENT_HTML', 'Rich Text <br>Content:');
 
 define('TEXT_NEWSLETTER_DATE_ADDED', 'Date Added:');
 define('TEXT_NEWSLETTER_DATE_SENT', 'Date Sent:');
@@ -29,7 +28,7 @@ define('TEXT_NEWSLETTER_DATE_SENT', 'Date Sent:');
 define('TEXT_INFO_DELETE_INTRO', 'Are you sure you want to delete this newsletter?');
 
 define('TEXT_PLEASE_SELECT_AUDIENCE','Please select the audience for this newsletter mailing: ');
-define('TEXT_PLEASE_WAIT', 'Please wait .. sending emails ..<br /><br />Please do not interrupt this process!');
+define('TEXT_PLEASE_WAIT', 'Please wait .. sending emails ..<br><br>Please do not interrupt this process!');
 define('TEXT_FINISHED_SENDING_EMAILS', 'Finished sending e-mails!');
 
 define('ERROR_NEWSLETTER_TITLE', 'Error: Newsletter title required');

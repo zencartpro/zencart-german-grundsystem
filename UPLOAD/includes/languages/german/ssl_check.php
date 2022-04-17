@@ -18,4 +18,4 @@ define('TEXT_INFORMATION_4','Wir haben diese Sicherheitsmaßnahme zu Ihren Vorte
 define('TEXT_INFORMATION_5','Wenn Sie Fragen haben, kontaktieren Sie bitte den Shopbetreiber.');
 
 define('BOX_INFORMATION_HEADING','Datenschutz und Sicherheit');
-define('BOX_INFORMATION','Das System verifiziert die von Ihrem Browser bei jeder Anfrage an den Server automatisch generierten Sicherheits-IDs.<br /><br />Diese Verifizierung prüft, ob alle Anfragen auch wirklich von Ihrem Browser stammen und nicht missbräuchlich verwendet werden.');
+define('BOX_INFORMATION','Das System verifiziert die von Ihrem Browser bei jeder Anfrage an den Server automatisch generierten Sicherheits-IDs.<br><br>Diese Verifizierung prüft, ob alle Anfragen auch wirklich von Ihrem Browser stammen und nicht missbräuchlich verwendet werden.');

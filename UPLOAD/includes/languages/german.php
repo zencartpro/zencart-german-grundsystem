@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2022-02-26 08:19:57Z webchills $
+ * @version $Id: german.php 2022-04-17 17:19:57Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -320,11 +320,11 @@ define('BOX_INFORMATION_GV', TEXT_GV_NAME . ' FAQ');
 define('VOUCHER_BALANCE', TEXT_GV_NAME . ' Konto: ');
 define('BOX_HEADING_GIFT_VOUCHER', TEXT_GV_NAME . ' Konto');
 define('GV_FAQ', TEXT_GV_NAME . ' FAQ');
-define('ERROR_REDEEMED_AMOUNT', 'Herzlichen Glückwunsch!<br />Sie haben Ihren Gutschein erfolgreich eingelöst.<br />Betrag: ');
+define('ERROR_REDEEMED_AMOUNT', 'Herzlichen Glückwunsch!<br>Sie haben Ihren Gutschein erfolgreich eingelöst.<br>Betrag: ');
 define('ERROR_NO_REDEEM_CODE', 'Sie haben keine ' . TEXT_GV_REDEEM . ' eingegeben.');
 define('ERROR_NO_INVALID_REDEEM_GV', 'Ungültiger ' . TEXT_GV_NAME . ' oder ' . TEXT_GV_REDEEM);
 define('TABLE_HEADING_CREDIT', 'Guthaben verfügbar');
-define('TEXT_SEND_OR_SPEND','Sie haben Guthaben auf Ihrem ' . TEXT_GV_NAME . 'konto. Wenn Sie möchten <br />können Sie dieses Guthaben durch Klick auf untenstehende Schaltfläche an eine andere Person senden.');
+define('TEXT_SEND_OR_SPEND','Sie haben Guthaben auf Ihrem ' . TEXT_GV_NAME . 'konto. Wenn Sie möchten <br>können Sie dieses Guthaben durch Klick auf untenstehende Schaltfläche an eine andere Person senden.');
 define('TEXT_BALANCE_IS', 'Ihr Guthaben beträgt: ');
 define('TEXT_AVAILABLE_BALANCE', 'Ihr ' . TEXT_GV_NAME . ' Konto');
 
@@ -426,7 +426,7 @@ define('SUCCESS_FILE_SAVED_SUCCESSFULLY', 'Die Datei wurde erfolgreich gespeiche
 define('ERROR_FILE_NOT_SAVED', 'FEHLER: Datei nicht gespeichert.');
 define('ERROR_DESTINATION_NOT_WRITEABLE', 'FEHLER: Auf das Ziel konnte nicht geschrieben werden.');
 define('ERROR_DESTINATION_DOES_NOT_EXIST', 'FEHLER: Das Ziel existiert nicht.');
-define('ERROR_FILE_TOO_BIG', 'WARNUNG: Die Datei ist zu groß für den Upload!<br />Der Auftrag kann erteilt werden, nehmen Sie bitte mit uns Kontakt auf um den Upload erfolgreich abzuschließen.');
+define('ERROR_FILE_TOO_BIG', 'WARNUNG: Die Datei ist zu groß für den Upload!<br>Der Auftrag kann erteilt werden, nehmen Sie bitte mit uns Kontakt auf um den Upload erfolgreich abzuschließen.');
 // End iii added
 
 define('TEXT_BEFORE_DOWN_FOR_MAINTENANCE', 'HINWEIS: Unser Shop ist wegen Wartungsarbeiten geschlossen bis (dd/mm/yy) (hh-hh): ');
@@ -438,7 +438,7 @@ define('TEXT_CALL_FOR_PRICE', 'Für Preis anfragen');
 
 define('TEXT_INVALID_SELECTION',' haben Sie eine ungültige Auswahl getroffen: ');
 define('TEXT_ERROR_OPTION_FOR', 'Bei der Option für ');
-define('TEXT_INVALID_USER_INPUT', 'Benutzereingabe benötigt<br />');
+define('TEXT_INVALID_USER_INPUT', 'Benutzereingabe benötigt<br>');
 
 // product_listing
 define('PRODUCTS_QUANTITY_MIN_TEXT_LISTING', 'Minimum:');
@@ -454,8 +454,8 @@ define('TEXT_PRODUCTS_MIX_ON', '*gemischt: EIN');
 define('TEXT_PRODUCTS_MIX_ON_SHOPPING_CART', '*gemischte Attributmerkmale: EIN');
 define('ERROR_MAXIMUM_QTY', 'Stückzahl angepasst - maximale Stückzahl wurde in den Warenkorb gelegt ');
 
-define('ERROR_CORRECTIONS_HEADING', 'Bitte korrigieren Sie folgendes: <br />');
-define('ERROR_QUANTITY_ADJUSTED', 'Fehler in der gewählten Menge<br />');
+define('ERROR_CORRECTIONS_HEADING', 'Bitte korrigieren Sie folgendes: <br>');
+define('ERROR_QUANTITY_ADJUSTED', 'Fehler in der gewählten Menge<br>');
 define('ERROR_QUANTITY_CHANGED_FROM', ', wurde geändert von: ');
 define('ERROR_QUANTITY_CHANGED_TO', ' in ');
 
@@ -468,9 +468,9 @@ define('TEXT_FILESIZE_UNKNOWN', 'Unbekannt');
 
 // shopping cart errors
 define('ERROR_PRODUCT', '<br>Der Artikel: ');
-define('ERROR_PRODUCT_STATUS_SHOPPING_CART','<br />Leider ist dieses Produkt derzeit nicht in unserem Warenbestand.<br />Das Produkt wurde aus dem Warenkorb entfernt.');
-define('ERROR_PRODUCT_ATTRIBUTES','<br />Der Artikel: ');
-define('ERROR_PRODUCT_STATUS_SHOPPING_CART_ATTRIBUTES','<br />Es tut uns leid, aber die gewählten Optionen für diesen Artikel haben sich geändert und stehen derzeit in unserem Sortiment nicht mehr zur Verfügung.<br />Dieser Artikel wurde aus Ihrem Warenkorb entfernt.');
+define('ERROR_PRODUCT_STATUS_SHOPPING_CART','<br>Leider ist dieses Produkt derzeit nicht in unserem Warenbestand.<br>Das Produkt wurde aus dem Warenkorb entfernt.');
+define('ERROR_PRODUCT_ATTRIBUTES','<br>Der Artikel: ');
+define('ERROR_PRODUCT_STATUS_SHOPPING_CART_ATTRIBUTES','<br>Es tut uns leid, aber die gewählten Optionen für diesen Artikel haben sich geändert und stehen derzeit in unserem Sortiment nicht mehr zur Verfügung.<br>Dieser Artikel wurde aus Ihrem Warenkorb entfernt.');
 define('ERROR_PRODUCT_QUANTITY_MIN', '... minimale Stückzahl unterschritten -');
 define('ERROR_PRODUCT_QUANTITY_UNITS', '... ungültige Stückzahl -');
 define('ERROR_PRODUCT_OPTION_SELECTION', '<br>... ungültige Attributmerkmale gewählt ');
@@ -481,8 +481,8 @@ define('ERROR_PRODUCT_QUANTITY_UNITS_SHOPPING_CART', '... ungültige Stückzahl 
 define('ERROR_PRODUCT_QUANTITY_MAX_SHOPPING_CART', '... maximale Stückzahl überschritten -');
 define('WARNING_SHOPPING_CART_COMBINED', 'HINWEIS: Ihr aktueller Warenkorb wurde mit dem Warenkorb Ihres letzten Besuchs zusammengelegt. Bitte überprüfen Sie den Inhalt Ihres Warenkorbs, bevor Sie ihre Bestellung abschließen.');
 define('WARNING_PRODUCT_QUANTITY_ADJUSTED', 'Die Menge wurde automatisch auf den verfügbaren Lagerbestand angepasst. ');
-define('OUT_OF_STOCK_CANT_CHECKOUT', 'Mit ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' gekennzeichnete Artikel sind derzeit nicht in ausreichender Menge lagernd.<br />Bitte ändern Sie die Menge bei den mit (' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ') gekennzeichneten Artikeln. Danke.');
-define('OUT_OF_STOCK_CAN_CHECKOUT', 'Mit ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' gekennzeichnete Artikel sind nicht lagernd.<br />Diese Artikel werden nachgeliefert.');
+define('OUT_OF_STOCK_CANT_CHECKOUT', 'Mit ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' gekennzeichnete Artikel sind derzeit nicht in ausreichender Menge lagernd.<br>Bitte ändern Sie die Menge bei den mit (' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ') gekennzeichneten Artikeln. Danke.');
+define('OUT_OF_STOCK_CAN_CHECKOUT', 'Mit ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' gekennzeichnete Artikel sind nicht lagernd.<br>Diese Artikel werden nachgeliefert.');
 
 // error on checkout when $_SESSION['customers_id' does not exist in customers table
 define('ERROR_CUSTOMERS_ID_INVALID', 'Die Kundeninformation konnte nicht verifiziert werden!<br>Bitte melden Sie sich an oder erstellen Sie Ihr Kundenkonto erneut ...');
@@ -517,10 +517,10 @@ define('TEXT_AUTHORIZATION_PENDING_CHECKOUT', 'Checkout nicht möglich - Ihr Kun
 
 // text pricing
 define('TEXT_CHARGES_WORD', 'Kalkulierte Gebühr:');
-define('TEXT_PER_WORD', '<br />Preis pro Wort: ');
+define('TEXT_PER_WORD', '<br>Preis pro Wort: ');
 define('TEXT_WORDS_FREE', ' Wort(e) frei ');
 define('TEXT_CHARGES_LETTERS', 'Kalkulierte Gebühr:');
-define('TEXT_PER_LETTER', '<br />Preis pro Buchstabe: ');
+define('TEXT_PER_LETTER', '<br>Preis pro Buchstabe: ');
 define('TEXT_LETTERS_FREE', ' Buchstabe(n) frei ');
 define('TEXT_ONETIME_CHARGES', '*einmalige Gebühr = ');
 define('TEXT_ONETIME_CHARGES_EMAIL', "\t" . '*einmalige Gebühr = ');

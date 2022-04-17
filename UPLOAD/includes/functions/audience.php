@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: audience.php 2021-11-28 20:37:16Z webchills $
+ * @version $Id: audience.php 2022-04-17 08:57:16Z webchills $
  */
 
 //
@@ -86,7 +86,7 @@
       if ($selected_entry == $query_list['query_name']) {
       $query_name   = $query_list['query_name'];
         $query_string = parsed_query_string($query_list['query_string']);
-//echo 'GET_AUD_EM_ADDR_QRY:<br />query_name='.$query_name.'<br />query_string='.$query_string;
+
       }
   }
   //if no match found against queries listed in database, then $selected_entry must be an email address

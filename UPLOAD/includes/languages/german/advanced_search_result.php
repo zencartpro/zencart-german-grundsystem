@@ -31,7 +31,7 @@ define('TEXT_ALL_CATEGORIES', 'Alle Kategorien');
 define('TEXT_ALL_MANUFACTURERS', 'Alle Hersteller');
 
 define('HEADING_SEARCH_HELP', 'Hilfe zur Suche');
-define('TEXT_SEARCH_HELP', 'Suchbegriffe können mit Hilfe von UND oder ODER benutzt werden.<br /><br />Beispiel: mit Microsoft UND Maus werden Begriffe mit beiden Wörtern gefunden. Wohingegen mit Microsoft ODER Maus Begriffe gefunden werden, die entweder Microsoft oder Maus beinhalten.');
+define('TEXT_SEARCH_HELP', 'Suchbegriffe können mit Hilfe von UND oder ODER benutzt werden.<br><br>Beispiel: mit Microsoft UND Maus werden Begriffe mit beiden Wörtern gefunden. Wohingegen mit Microsoft ODER Maus Begriffe gefunden werden, die entweder Microsoft oder Maus beinhalten.');
 define('TEXT_CLOSE_WINDOW', 'Fenster schließen [x]');
 
 define('TABLE_HEADING_IMAGE', 'Artikelbild');

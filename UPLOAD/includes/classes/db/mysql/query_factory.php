@@ -3,14 +3,13 @@
  * Zen Cart German Specific
  * MySQL query_factory Class.
  * Class used for database abstraction to MySQL via mysqli
- *
- 
+ * 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions adapted from http://www.data-diggers.com/
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: query_factory.php 2021-11-29 15:47:16Z webchills $
+ * @version $Id: query_factory.php 2022-04-17 08:47:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -158,7 +157,7 @@ class queryFactory extends base {
     if (defined('STRICT_ERROR_REPORTING') && STRICT_ERROR_REPORTING == true)
     {
       echo $this->error_number . ' ' . $this->error_text;
-      echo '<br />in:<br />[' . (strstr($this->zf_sql, 'db_cache') ? 'db_cache table' : $this->zf_sql) . ']<br />';
+      echo '<br>in:<br>[' . (strstr($this->zf_sql, 'db_cache') ? 'db_cache table' : $this->zf_sql) . ']<br>';
     } else {
       echo '<span style="color:red;font-size:13px;font-family:Arial,Verdana,sans-serif;">FEHLER:<br>Datenbankabfragen oder Datenbankeinträge schlagen fehl.</span>';
     }

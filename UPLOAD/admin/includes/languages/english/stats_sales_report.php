@@ -83,7 +83,7 @@ define('NUM_DECIMAL_PLACES', 2);
 // TIMEFRAME DATE DISPLAY
 // Note:  Other constants moved to the main processing file for v3.2.1.
 //
-define('DATE_SPACER', ' to<br />&nbsp;&nbsp;&nbsp;');
+define('DATE_SPACER', ' to<br>&nbsp;&nbsp;&nbsp;');
 
 //////////////////////////////////////////////////////////
 // EXCLUDE SPECIFIED PRODUCTS

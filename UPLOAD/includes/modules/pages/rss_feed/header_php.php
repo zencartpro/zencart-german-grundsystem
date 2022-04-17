@@ -359,7 +359,7 @@ if(!$rss->rss_feed_cache($_SERVER['QUERY_STRING'], RSS_CACHE_TIME*60)) {
         $buynow_button = preg_replace('@onmouseout="[^"]*"@i', '', $buynow_button);
         $buynow_button = str_replace(' >', '>', $buynow_button);
 
-        $buynow_link = '<br /><br />' . '<a href="' . zen_href_link(FILENAME_SHOPPING_CART, 'products_id=' . $products->fields['products_id'] . '&action=buy_now' . $additionalURL, 'SSL', false) . '" target="_blank">' . $buynow_button . '</a>' . "\n";
+        $buynow_link = '<br><br>' . '<a href="' . zen_href_link(FILENAME_SHOPPING_CART, 'products_id=' . $products->fields['products_id'] . '&action=buy_now' . $additionalURL, 'SSL', false) . '" target="_blank">' . $buynow_button . '</a>' . "\n";
         if(RSS_STRIP_TAGS == 'true') {
           $products_description .= "\n" . '<![CDATA[' . $buynow_link . ']]>';
         } else {

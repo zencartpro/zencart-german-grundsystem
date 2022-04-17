@@ -1,11 +1,10 @@
 <?php
-/**
- 
+/** 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: customers_without_order.php 2022-01-02 08:10:14Z webchills $
+ * @version $Id: customers_without_order.php 2022-04-17 16:10:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Kunden, die nie etwas bestellt haben');
@@ -35,7 +34,7 @@ define('TEXT_INFO_NUMBER_OF_ORDERS', 'Anzahl der Bestellungen:');
 define('TEXT_INFO_LIFETIME_VALUE', 'Gesamtbestellwert:');
 define('TEXT_INFO_LAST_ORDER', 'Letzte Bestellung:');
 define('TEXT_INFO_ORDERS_TOTAL', 'Summe:');
-define('CUSTOMERS_REFERRAL', 'Kundenverweis (Referal)<br />Erster Aktionskupon');
+define('CUSTOMERS_REFERRAL', 'Kundenverweis (Referal)<br>Erster Aktionskupon');
 define('TEXT_INFO_GV_AMOUNT', 'Gutschein Guthaben');
 define('ENTRY_NONE', 'Kein');
 define('TABLE_HEADING_COMPANY', 'Firma');

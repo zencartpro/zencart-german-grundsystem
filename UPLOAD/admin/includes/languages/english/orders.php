@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: orders.php 2022-01-29 16:49:16Z webchills $
+ * @version $Id: orders.php 2022-04-17 16:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Orders');
@@ -16,7 +16,7 @@ define('HEADING_TITLE_SEARCH_DETAIL_ORDERS_PRODUCTS', 'Product Name or ID:XX or 
 define('HEADING_TITLE_SEARCH_ALL','Search: ');
 define('HEADING_TITLE_SEARCH_PRODUCTS','Product search: ');
 define('TEXT_RESET_FILTER', 'Remove search filter');
-define('TABLE_HEADING_PAYMENT_METHOD', 'Payment<br />Shipping');
+define('TABLE_HEADING_PAYMENT_METHOD', 'Payment<br>Shipping');
 define('TABLE_HEADING_ORDERS_ID','ID');
 
 define('TEXT_BILLING_SHIPPING_MISMATCH','Billing and Shipping does not match ');
@@ -117,10 +117,10 @@ define('TEXT_DELETE_CVV_FROM_DATABASE','Delete CVV from database');
 define('TEXT_DELETE_CVV_REPLACEMENT','Deleted');
 define('TEXT_MASK_CC_NUMBER','Mask this number');
 
-define('TEXT_INFO_EXPIRED_DATE', 'Expired Date:<br />');
-define('TEXT_INFO_EXPIRED_COUNT', 'Expired Count:<br />');
+define('TEXT_INFO_EXPIRED_DATE', 'Expired Date:<br>');
+define('TEXT_INFO_EXPIRED_COUNT', 'Expired Count:<br>');
 
-define('TABLE_HEADING_CUSTOMER_COMMENTS', 'Customer<br />Comments');
+define('TABLE_HEADING_CUSTOMER_COMMENTS', 'Customer<br>Comments');
 define('TEXT_COMMENTS_YES', 'Customer Comments - YES');
 define('TEXT_COMMENTS_NO', 'Customer Comments - NO');
 

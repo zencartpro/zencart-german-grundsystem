@@ -4,7 +4,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_to_categories.php 2022-03-02 20:09:14Z webchills $
+ * @version $Id: products_to_categories.php 2022-04-17 08:44:14Z webchills $
  */
 
 define('HEADING_TITLE','Artikel in mehrere Kategorien verlinken');
@@ -83,7 +83,7 @@ define('SUCCESS_REMOVED_PRODUCT', 'Artikel: %1$s wurde entfernt aus Kategorie ID
 define('SUCCESS_REMOVE_LINKED_PRODUCTS', '%u lverlinkte Artikel entfernt');
 define('WARNING_REMOVE_FROM_IN_TO_LINKED', 'WARNUNG: Nichts zu tun! Keine Artikel in Ziel Kategorie ID#%1$u sind verlinkt von Referenz Kategorie ID#%2$u');
 define('WARNING_PRODUCT_MASTER_CATEGORY_IN_TARGET','Artikel: ID#%1$u "%2$s" (%3$s)<br>hat dieselbe Master Kategorie ID wie die Ziel Kategorie ID#%4$u<br>');
-define('WARNING_REMOVE_LINKED_PRODUCTS_MASTER_CATEGORIES_ID_CONFLICT', '<strong>WARNUNG: MASTER KATEGORIE ID KONFLIKT!</strong><br>Referenzkategorie-ID#%1$u für die Entfernung von verknüpften Artikel in der Zielkategorie-ID#%2$u.<br>Sie haben die Entfernung einiger verknüpfter Artikel aus einer Zielkategorie beantragt. Einer oder mehrere dieser Artikel haben die gleiche Stammkategorie-ID wie die Zielkategorie. Das bedeutet, dass der Artikel nicht mit der Zielkategorie "verlinkt" ist, sondern in dieser Kategorie "wohnt" und daher nicht im Rahmen dieser Anfrage zum Entfernen von <i>verlinkten</i> Artikel entfernt werden kann.<br>Wenn Sie <i>den Artikel behalten</i> möchten, müssen Sie seine Hauptkategorie-ID in eine andere Kategorie ändern (d.h. es "verschieben"), bevor Sie diesen Vorgang erneut durchführen. Dies kann auf dieser Seite oder über die Aktion "Verschieben" auf einer Kategorie-Artikel-Liste-Seite geschehen. Der erste Artikel mit einer widersprüchlichen Hauptkategorie-ID wurde bereits zur Bearbeitung ausgewählt.<br/>Wenn Sie diesen Artikel <i>löschen</i> möchten, müssen Sie die Aktion "Löschen" auf der Kategorie-Artikel-Liste Seite verwenden.');
+define('WARNING_REMOVE_LINKED_PRODUCTS_MASTER_CATEGORIES_ID_CONFLICT', '<strong>WARNUNG: MASTER KATEGORIE ID KONFLIKT!</strong><br>Referenzkategorie-ID#%1$u für die Entfernung von verknüpften Artikel in der Zielkategorie-ID#%2$u.<br>Sie haben die Entfernung einiger verknüpfter Artikel aus einer Zielkategorie beantragt. Einer oder mehrere dieser Artikel haben die gleiche Stammkategorie-ID wie die Zielkategorie. Das bedeutet, dass der Artikel nicht mit der Zielkategorie "verlinkt" ist, sondern in dieser Kategorie "wohnt" und daher nicht im Rahmen dieser Anfrage zum Entfernen von <i>verlinkten</i> Artikel entfernt werden kann.<br>Wenn Sie <i>den Artikel behalten</i> möchten, müssen Sie seine Hauptkategorie-ID in eine andere Kategorie ändern (d.h. es "verschieben"), bevor Sie diesen Vorgang erneut durchführen. Dies kann auf dieser Seite oder über die Aktion "Verschieben" auf einer Kategorie-Artikel-Liste-Seite geschehen. Der erste Artikel mit einer widersprüchlichen Hauptkategorie-ID wurde bereits zur Bearbeitung ausgewählt.<br>Wenn Sie diesen Artikel <i>löschen</i> möchten, müssen Sie die Aktion "Löschen" auf der Kategorie-Artikel-Liste Seite verwenden.');
 
 // Reset Master Categories ID for all products in a category
 define('TEXT_HEADING_RESET_ALL_PRODUCTS_TO_CATEGORY_MASTER', 'Zurücksetzen der Master Kategorie ID für ALLE Artikel in einer Kategorie');

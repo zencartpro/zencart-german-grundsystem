@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: it_recht_kanzlei.php 2019-07-26 16:22:51Z webchills $
+ * @version $Id: it_recht_kanzlei.php 2022-04-17 16:22:51Z webchills $
  */
 
 require('includes/application_top.php');
@@ -112,12 +112,12 @@ if (!is_null($_GET['token']) && $_GET['token'] == 'new') {
                    
                  
                     <br>
-                    <font size="3"><b>AGB-Service für Zen Cart der IT-Recht Kanzlei für mtl. 9,90 Euro - monatlich kündbar</b></font><br />
-                    <br />
+                    <font size="3"><b>AGB-Service für Zen Cart der IT-Recht Kanzlei für mtl. 9,90 Euro - monatlich kündbar</b></font><br>
+                    <br>
                     Abmahnsichere Rechtstexte für Zen Cart der IT-Recht Kanzlei<br>
 Individuell angepasst & schnell verfügbar<br>
 Automatische Überwachung & Aktualisierung durch die AGB-Schnittstelle
-                    <br /><br>
+                    <br><br>
                     
                     „Die IT-Recht Kanzlei hat bereits weit über 40.000 gewerbliche Online-Präsenzen abgesichert“
                     
@@ -145,11 +145,11 @@ Sie können diesen AGB-Service genau so lange nutzen, wie Sie ihn brauchen und b
                         <li style="list-style-type: circle !important;">Jederzeit monatlich kündbar</li>
                         <li style="list-style-type: circle !important;">Auf Wunsch inklusive anwaltlicher Tiefenprüfung Ihrer Zen Cart Präsenz auf rechtliche Fallstricke (z.B. im Bestellablauf & -prozess) im Rahmen unseres Unlimited-Pakets: <a href="http://www.it-recht-kanzlei.de/agb-paket-unlimited.php" target="_blank">http://www.it-recht-kanzlei.de/agb-paket-unlimited.php</a></li>
                     </ul>
-                    <br />
+                    <br>
                    <b>Selbstverständlich: Anwaltliche Haftung</b>
                    <br><br>
                    Wie andere Rechtsanwaltskanzleien haften auch wir im Rahmen der gesetzlichen Bestimmungen für die Abmahnsicherheit der Rechtstexte.
-                    <br /><br />
+                    <br><br>
                  <font size="3"><b>So geht´s</b></font>
 <br><br>
 <a href="http://www.it-recht-kanzlei.de/agb-starterpaket.php?partner_id=229" target="_blank"><font size="3" color="#EF7D00"><u><strong>Jetzt das Starter-Paket der IT-Recht Kanzlei buchen -></strong></u></font></a> 

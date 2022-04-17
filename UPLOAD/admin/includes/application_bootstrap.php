@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: application_bootstrap.php 2021-12-25 08:41:36Z webchills $
+ * @version $Id: application_bootstrap.php 2022-04-17 16:41:36Z webchills $
  */
 use Zencart\FileSystem\FileSystem;
 use Zencart\PluginManager\PluginManager;
@@ -45,9 +45,9 @@ if (!defined('DIR_FS_ADMIN')) define('DIR_FS_ADMIN', preg_replace('#/includes/$#
 /**
  * set the level of error reporting
  *
- * Note STRICT_ERROR_REPORTING should never be set to true on a production site. <br />
- * It is mainly there to show php warnings during testing/bug fixing phases.<br />
- * note for strict error reporting we also turn on show_errors as this may be disabled<br />
+ * Note STRICT_ERROR_REPORTING should never be set to true on a production site. <br>
+ * It is mainly there to show php warnings during testing/bug fixing phases.<br>
+ * note for strict error reporting we also turn on show_errors as this may be disabled<br>
  * in php.ini. Otherwise we respect the php.ini setting
  *
  */
@@ -125,9 +125,9 @@ if (file_exists($file) && $lines = @file($file)) {
     if (!defined('DIR_WS_ADMIN') || $zc_pagepath != $zc_adminpage ) {
       echo ('ERROR: The admin/includes/configure.php file has invalid configuration. Please rebuild, or verify specified paths.');
       if (file_exists('../zc_install/index.php')) {
-        echo '<br /><a href="../zc_install/index.php">Click here for installation</a>';
+        echo '<br><a href="../zc_install/index.php">Click here for installation</a>';
       }
-      echo '<br /><br /><br /><br />['.$zc_pagepath.']&nbsp;&nbsp;&nbsp;&laquo;&raquo;&nbsp;&nbsp;&nbsp;[' .$zc_adminpage.']<br />';
+      echo '<br><br><br><br>['.$zc_pagepath.']&nbsp;&nbsp;&nbsp;&laquo;&raquo;&nbsp;&nbsp;&nbsp;[' .$zc_adminpage.']<br>';
     }
   }
 */

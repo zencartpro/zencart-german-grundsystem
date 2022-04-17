@@ -1,11 +1,10 @@
 <?php
-/**
- 
+/** 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: login.php 2021-12-02 16:50:14Z webchills $
+ * @version $Id: login.php 2022-04-17 16:50:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Admin Login');
@@ -23,7 +22,7 @@ define('TEXT_PASSWORD_FORGOTTEN', 'Passwort vergessen?');
 
 define('LOGIN_EXPIRY_NOTICE', '');
 define('ERROR_PASSWORD_EXPIRED', 'HINWEIS: Die Gültigkeit Ihres Passworts ist abgelaufen. Bitte wählen Sie ein neues Passwort. Ihr Passwort <strong>muss Zahlen und Buchstaben enthalten und mindestens 7 Zeichen lang sein.</strong>');
-define('TEXT_TEMPORARY_PASSWORD_MUST_BE_CHANGED', 'Aus Sicherheitsgründen muss Ihr temporäres Passwort geändert werden. Bitte wählen Sie ein neues Passwort.<br />Ihr Passwort <strong>muss Zahlen und Buchstaben enthalten und mindestens 7 Zeichen lang sein.</strong>');
+define('TEXT_TEMPORARY_PASSWORD_MUST_BE_CHANGED', 'Aus Sicherheitsgründen muss Ihr temporäres Passwort geändert werden. Bitte wählen Sie ein neues Passwort.<br>Ihr Passwort <strong>muss Zahlen und Buchstaben enthalten und mindestens 7 Zeichen lang sein.</strong>');
 define('SUCCESS_PASSWORD_UPDATED', 'Passwort aktualisiert');
 
 define('TEXT_EMAIL_SUBJECT_LOGIN_FAILURES', 'Benachrichtigung über mehrere fehlgeschlagene Admin Anmeldeversuche');

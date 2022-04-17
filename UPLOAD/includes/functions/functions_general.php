@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_general.php 2022-01-12 07:55:50Z webchills $
+ * @version $Id: functions_general.php 2022-04-17 08:55:50Z webchills $
  */
 /**
  * Stop execution completely
@@ -879,7 +879,7 @@ function zen_set_field_length($tbl, $fld, $max = 70)
       break;
     }
     if ($return_button != $link and $additional_link != false) {
-      return $additional_link . '<br />' . $return_button;
+      return $additional_link . '<br>' . $return_button;
     } else {
       return $return_button;
     }

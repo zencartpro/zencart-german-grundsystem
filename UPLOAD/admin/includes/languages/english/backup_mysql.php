@@ -48,7 +48,7 @@ define('ICON_FILE_DOWNLOAD', 'Download file');
 define('ERROR_BACKUP_DIRECTORY_DOES_NOT_EXIST', 'Error: Backup directory does not exist. Please set this in configure.php.');
 define('ERROR_BACKUP_DIRECTORY_NOT_WRITEABLE', 'Error: Backup directory is not writeable.');
 define('ERROR_DOWNLOAD_LINK_NOT_ACCEPTABLE', 'Error: Download link not acceptable.');
-define('ERROR_CANT_BACKUP_IN_SAFE_MODE','ERROR: This backup script seldom works when safe_mode is enabled or open_basedir restrictions are in effect.<br />If you get no errors doing a backup, check to see whether the file is less than 200kb. If so, then the backup is likely unreliable.');
+define('ERROR_CANT_BACKUP_IN_SAFE_MODE','ERROR: This backup script seldom works when safe_mode is enabled or open_basedir restrictions are in effect.<br>If you get no errors doing a backup, check to see whether the file is less than 200kb. If so, then the backup is likely unreliable.');
 define('ERROR_EXEC_DISABLED','ERROR: Your server\'s "exec()" command has been disabled. This script cannot run. Ask your host if they are willing to re-enable PHP exec().');
 
 define('SUCCESS_LAST_RESTORE_CLEARED', 'Success: The last restoration date has been cleared.');
@@ -60,4 +60,4 @@ define('FAILURE_DATABASE_NOT_SAVED_UTIL_NOT_FOUND', 'ERROR: Could not locate the
 define('FAILURE_DATABASE_NOT_RESTORED', 'Failure: The database may NOT have been restored properly. Please check it carefully.');
 define('FAILURE_DATABASE_NOT_RESTORED_FILE_NOT_FOUND', 'Failure: The database was NOT restored.  ERROR: FILE NOT FOUND: %s');
 define('FAILURE_DATABASE_NOT_RESTORED_UTIL_NOT_FOUND', 'ERROR: Could not locate the MYSQL restore utility. RESTORE FAILED.');
-define('FAILURE_BACKUP_FAILED_CHECK_PERMISSIONS','The backup failed because there was an error starting the backup program (mysqldump or mysqldump.exe).<br />If running on Windows Server, you may need to alter permissions on cmd.exe to allow Special Access to the Internet Guest Account to read/execute.<br />You should talk to your webhost about why exec() commands are failing when attempting to run the mysqldump binary/program.');
+define('FAILURE_BACKUP_FAILED_CHECK_PERMISSIONS','The backup failed because there was an error starting the backup program (mysqldump or mysqldump.exe).<br>If running on Windows Server, you may need to alter permissions on cmd.exe to allow Special Access to the Internet Guest Account to read/execute.<br>You should talk to your webhost about why exec() commands are failing when attempting to run the mysqldump binary/program.');

@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: shopvote.php 2019-07-26 16:13:51Z webchills $
+ * @version $Id: shopvote.php 2022-04-27 16:13:51Z webchills $
  */
 
 require('includes/application_top.php');
@@ -109,8 +109,8 @@ Für Kunden der <a href="it_recht_kanzlei.php">IT Recht Kanzlei</a> sind alle Sh
                    
                  
                     <br>
-                    <font size="3"><b>Was ist Shopvote</b></font><br />
-                    <br />
+                    <font size="3"><b>Was ist Shopvote</b></font><br>
+                    <br>
                     
 Seit über 10 Jahren vertrauen Verbraucher und Unternehmen auf Shopvote als Experten für Online-Bewertungen.<br>
 Kostenlos. Unabhängig. Zuverlässig.

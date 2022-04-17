@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: checkout_payment.php 2022-01-14 16:49:16Z webchills $
+ * @version $Id: checkout_payment.php 2022-04-17 08:49:16Z webchills $
  */
 
 define('NAVBAR_TITLE_1', 'Checkout - Step 2');
@@ -22,7 +22,7 @@ define('TEXT_SELECT_PAYMENT_METHOD', 'Please select a payment method for this or
 define('TITLE_PLEASE_SELECT', 'Please Select');
 define('TABLE_HEADING_COMMENTS', 'Special Instructions or Order Comments');
 
-define('TEXT_NO_PAYMENT_OPTIONS_AVAILABLE','<span class="alert">Sorry, we are not accepting payments from your region at this time.</span><br />Please contact us for alternate arrangements.');
+define('TEXT_NO_PAYMENT_OPTIONS_AVAILABLE','<span class="alert">Sorry, we are not accepting payments from your region at this time.</span><br>Please contact us for alternate arrangements.');
 
 define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', '<strong>Continue to Step 3</strong>');
 define('TEXT_CONTINUE_CHECKOUT_PROCEDURE', '- to confirm your order.');

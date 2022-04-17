@@ -1,11 +1,10 @@
 <?php
-/**
- 
+/** 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_html_editor.php 2021-10-25 17:55:16Z webchills $
+ * @version $Id: init_html_editor.php 2022-04-17 16:55:16Z webchills $
  */
 if (!defined('DIR_WS_EDITORS')) define('DIR_WS_EDITORS', 'editors/');
 if (!defined('IS_ADMIN_FLAG')) {
@@ -71,12 +70,12 @@ if (!defined('IS_ADMIN_FLAG')) {
  * Debug code:
  */
 if (false) {
-  echo '<br /><pre>'; print_r($_GET); echo '</pre>';
-  echo '<br />new_editor_choice = ' . $new_editor_choice;
-  echo '<br />current_editor_key = ' . $current_editor_key;
-  echo '<br />$_SESSION[html_editor_preference_status] = ' . $_SESSION['html_editor_preference_status'];
-  echo '<br />editor_handler = ' . $editor_handler;
-  echo '<br /><pre>'; print_r($editors_list); echo '</pre>';
-  echo '<br /><pre>'; print_r($editors_pulldown); echo '</pre>';
+  echo '<br><pre>'; print_r($_GET); echo '</pre>';
+  echo '<br>new_editor_choice = ' . $new_editor_choice;
+  echo '<br>current_editor_key = ' . $current_editor_key;
+  echo '<br>$_SESSION[html_editor_preference_status] = ' . $_SESSION['html_editor_preference_status'];
+  echo '<br>editor_handler = ' . $editor_handler;
+  echo '<br><pre>'; print_r($editors_list); echo '</pre>';
+  echo '<br><pre>'; print_r($editors_pulldown); echo '</pre>';
   //die('debug end');
 }

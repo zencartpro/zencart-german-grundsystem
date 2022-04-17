@@ -93,7 +93,7 @@ define('NUM_DECIMAL_PLACES', 2);
 //
 // Note:  Other constants moved to the main processing file for v3.2.1.
 //
-define('DATE_SPACER', ' bis<br />&nbsp;&nbsp;&nbsp;');
+define('DATE_SPACER', ' bis<br>&nbsp;&nbsp;&nbsp;');
 
 
 //////////////////////////////////////////////////////////

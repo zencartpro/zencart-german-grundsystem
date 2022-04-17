@@ -5,14 +5,14 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: product_types.php 2021-12-03 15:39:16Z webchills $
+ * @version $Id: product_types.php 2022-04-17 16:39:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Artikeltypen');
 define('HEADING_TITLE_LAYOUT', 'Layout der Infoseite für Artikeltypen : ');
 
 define('TABLE_HEADING_PRODUCT_TYPES', 'Artikeltypen');
-define('TABLE_HEADING_PRODUCT_TYPES_ALLOW_ADD_TO_CART', 'In den<br />Warenkorb');
+define('TABLE_HEADING_PRODUCT_TYPES_ALLOW_ADD_TO_CART', 'In den<br>Warenkorb');
 define('TABLE_HEADING_ACTION', 'Aktion');
 define('TABLE_HEADING_CONFIGURATION_TITLE', 'Titel');
 define('TABLE_HEADING_CONFIGURATION_VALUE', 'Wert');

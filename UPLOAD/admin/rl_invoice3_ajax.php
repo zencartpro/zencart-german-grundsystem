@@ -98,7 +98,7 @@ class rl_invoice3_ajax {
                 $sqlVal = substr($sqlVal, 0, -1);
                 $sql = "UPDATE " . TABLE_CONFIGURATION . " SET configuration_value = '" . $sqlVal . "' WHERE configuration_key = '$key'";
                 $t = str_replace('UPDATE configuration SET configuration_value =', '', $sql);
-                $ret .= str_replace('WHERE configuration_key =', '=', $t) . '<br />';
+                $ret .= str_replace('WHERE configuration_key =', '=', $t) . '<br>';
                
                 $this->db->Execute($sql);
             }

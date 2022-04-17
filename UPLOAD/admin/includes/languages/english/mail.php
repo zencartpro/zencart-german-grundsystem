@@ -1,6 +1,5 @@
 <?php
-/**
- 
+/** 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
@@ -8,16 +7,15 @@
  * @version $Id: mail.php 2021-10-25 19:49:16Z webchills $
  */
 
-
 define('HEADING_TITLE', 'Send Email To Customers');
 
 define('TEXT_SUBJECT', 'Subject:');
 define('TEXT_FROM', 'From:');
-define('TEXT_MESSAGE', 'Text-Only <br />Message:');
-define('TEXT_MESSAGE_HTML','Rich Text <br />Message:');
+define('TEXT_MESSAGE', 'Text-Only <br>Message:');
+define('TEXT_MESSAGE_HTML','Rich Text <br>Message:');
 define('TEXT_ATTACHMENTS_LIST','Selected Attachment: ');
-define('TEXT_SELECT_ATTACHMENT','Attachment<br />on server: ');
-define('TEXT_SELECT_ATTACHMENT_TO_UPLOAD','Attachment<br />to upload<br />&amp; attach: ');
+define('TEXT_SELECT_ATTACHMENT','Attachment<br>on server: ');
+define('TEXT_SELECT_ATTACHMENT_TO_UPLOAD','Attachment<br>to upload<br>&amp; attach: ');
 define('TEXT_ATTACHMENTS_DIR','Folder for upload: ');
 
 define('NOTICE_EMAIL_SENT_TO', 'Notice: Email sent to: %s');

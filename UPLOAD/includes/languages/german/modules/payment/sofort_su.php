@@ -1,6 +1,6 @@
 <?php
 define('MODULE_PAYMENT_SOFORT_SU_TEXT_TITLE', 'Sofort.');
-define('MODULE_PAYMENT_SOFORT_SU_TEXT_LOGO', '<br /> <img src="https://cdn.klarna.com/1.0/shared/image/generic/badge/de_de/pay_now/descriptive/pink.svg" height="30px" alt="Sofort."/>');
+define('MODULE_PAYMENT_SOFORT_SU_TEXT_LOGO', '<br> <img src="https://cdn.klarna.com/1.0/shared/image/generic/badge/de_de/pay_now/descriptive/pink.svg" height="30px" alt="Sofort."/>');
 
 define('MODULE_PAYMENT_SOFORT_SU_DESCRIPTION', 'Einfach und direkt bezahlen mit Sofort Überweisung<br><br><img src="images/klarna_sofort.png" alt="Sofort."/><br><br><a href="https://www.sofort.com/payment/users/register?SOFUEB" target="_blank"><u>Registrieren Sie sich bei Sofort</u></a>, um diese Zahlungsart anbieten zu können.<br><br>Bereits registriert? <a href="https://www.sofort.com/payment/users/login" target="_blank"><u>Klarna Händler Login</u></a>');
 
@@ -17,12 +17,12 @@ define('MODULE_PAYMENT_SOFORT_SU_REASON_ONE_TITLE', 'Verwendungszweck 1');
 define('MODULE_PAYMENT_SOFORT_SU_REASON_ONE_DESC', 'Im Verwendungszweck 1 können folgende Optionen ausgewählt werden');
 
 define('MODULE_PAYMENT_SOFORT_SU_REASON_TWO_TITLE', 'Verwendungszweck 2');
-define('MODULE_PAYMENT_SOFORT_SU_REASON_TWO_DESC', 'Im Verwendungszweck (maximal 27 Zeichen) werden folgende Platzhalter ersetzt:<br /> {{order_id}}<br />{{order_date}}<br />{{customer_id}}<br />{{customer_name}}<br />{{customer_company}}<br />{{customer_email}} <br />Bitte beachten Sie: Wenn die Bestellung nach Weiterleitung erstellt wird, kann der Platzhalter {{order_id}} nicht verwendet werden!');
+define('MODULE_PAYMENT_SOFORT_SU_REASON_TWO_DESC', 'Im Verwendungszweck (maximal 27 Zeichen) werden folgende Platzhalter ersetzt:<br> {{order_id}}<br>{{order_date}}<br>{{customer_id}}<br>{{customer_name}}<br>{{customer_company}}<br>{{customer_email}} <br>Bitte beachten Sie: Wenn die Bestellung nach Weiterleitung erstellt wird, kann der Platzhalter {{order_id}} nicht verwendet werden!');
 
 define('MODULE_PAYMENT_SOFORT_SU_ZONE_TITLE', 'Zahlungszone');
 define('MODULE_PAYMENT_SOFORT_SU_ZONE_DESC', 'Wenn eine Zone ausgewählt ist, gilt die Zahlungsmethode nur für diese Zone.<br>Voreinstellung: kein<br><br>Lassen Sie diese Einstellung auf kein und stellen Sie weiter unten die Länder dezidiert ein, für die Sie Sofort anbieten wollen.');
 
-define('MODULE_PAYMENT_SOFORT_PROF_SETTINGS_TITLE', '<span style="font-weight:bold; text-decoration:underline; font-size:1.4em;"><br />Profieinstellungen</span> ');
+define('MODULE_PAYMENT_SOFORT_PROF_SETTINGS_TITLE', '<span style="font-weight:bold; text-decoration:underline; font-size:1.4em;"><br>Profieinstellungen</span> ');
 define('MODULE_PAYMENT_SOFORT_PROF_SETTINGS_DESC', 'Folgende Einstellungen bedürfen normalerweise keiner Anpassung und sollten bereits mit den korrekten Werten vorbelegt sein.');
 
 define('MODULE_PAYMENT_SOFORT_SU_ORDER_STATUS_ID_TITLE', 'Temporärer Bestellstatus');
@@ -32,7 +32,7 @@ define('MODULE_PAYMENT_SOFORT_SU_ABORTED_STATUS_ID_TITLE', 'Bestellstatus bei ab
 define('MODULE_PAYMENT_SOFORT_SU_ABORTED_STATUS_ID_DESC', 'Bestellstatus bei Bestellungen, die während des Bezahlvorgangs abgebrochen wurden.'); 
 
 define('MODULE_PAYMENT_SOFORT_SU_PEN_NOT_CRE_YET_STATUS_ID_TITLE', 'Bestätigter Bestellstatus');
-define('MODULE_PAYMENT_SOFORT_SU_PEN_NOT_CRE_YET_STATUS_ID_DESC', 'Bestätigter Bestellstatus<br />Bestellstatus nach abgeschlossener Transaktion.'); 
+define('MODULE_PAYMENT_SOFORT_SU_PEN_NOT_CRE_YET_STATUS_ID_DESC', 'Bestätigter Bestellstatus<br>Bestellstatus nach abgeschlossener Transaktion.'); 
 
 define('MODULE_PAYMENT_SOFORT_SU_LOS_NOT_CRE_STATUS_ID_TITLE', 'Bestellstatus, wenn kein Geld angekommen ist');
 define('MODULE_PAYMENT_SOFORT_SU_LOS_NOT_CRE_STATUS_ID_DESC', 'Status der Bestellung falls kein Geld auf Ihrem Konto eingegangen ist. (Voraussetzung: Konto bei der Deutsche Handelsbank).'); 

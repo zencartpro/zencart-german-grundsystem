@@ -2,15 +2,15 @@
 /**
  * initialise template system variables
  * see  {@link  https://docs.zen-cart.com/dev/code/init_system/} for more details.
- * Determines current template name for current language, from database<br />
- * Then loads template-specific language file, followed by master/default language file<br />
+ * Determines current template name for current language, from database
+ * Then loads template-specific language file, followed by master/default language file
  * ie: includes/languages/classic/german.php followed by includes/languages/german.php
  * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_templates.php 2019-06-15 17:49:16Z webchills $
+ * @version $Id: init_templates.php 2022-04-17 08:49:16Z webchills $
  */
   if (!defined('IS_ADMIN_FLAG')) {
    die('Illegal Access');

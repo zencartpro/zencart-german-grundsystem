@@ -756,36 +756,36 @@ function check_form(form_name) {
                 <td><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
               </tr>
               <tr>
-                <td class="smallText"><b><?php echo TEXT_CUSTOMER; ?></b><br /><?php echo $mail_sent_to; ?></td>
+                <td class="smallText"><b><?php echo TEXT_CUSTOMER; ?></b><br><?php echo $mail_sent_to; ?></td>
               </tr>
               <tr>
                 <td><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
               </tr>
               <tr>
-                <td class="smallText"><b><?php echo TEXT_COUPON; ?></b><br /><?php echo $coupon_name->fields['coupon_name']; ?></td>
+                <td class="smallText"><b><?php echo TEXT_COUPON; ?></b><br><?php echo $coupon_name->fields['coupon_name']; ?></td>
               </tr>
               <tr>
                 <td><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
               </tr>
               <tr>
-                <td class="smallText"><b><?php echo TEXT_FROM; ?></b><br /><?php echo htmlspecialchars(stripslashes($_POST['from']), ENT_COMPAT, CHARSET, TRUE); ?></td>
+                <td class="smallText"><b><?php echo TEXT_FROM; ?></b><br><?php echo htmlspecialchars(stripslashes($_POST['from']), ENT_COMPAT, CHARSET, TRUE); ?></td>
               </tr>
               <tr>
                 <td><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
               </tr>
               <tr>
-                <td class="smallText"><b><?php echo TEXT_SUBJECT; ?></b><br /><?php echo htmlspecialchars(stripslashes($_POST['subject']), ENT_COMPAT, CHARSET, TRUE); ?></td>
+                <td class="smallText"><b><?php echo TEXT_SUBJECT; ?></b><br><?php echo htmlspecialchars(stripslashes($_POST['subject']), ENT_COMPAT, CHARSET, TRUE); ?></td>
               </tr>
               <tr>
                 <td><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
               </tr>
 <?php if (EMAIL_USE_HTML == 'true') { ?>
               <tr>
-                <td><hr><b><?php echo TEXT_RICH_TEXT_MESSAGE; ?></b><br /><?php echo stripslashes($_POST['message_html']); ?></td>
+                <td><hr><b><?php echo TEXT_RICH_TEXT_MESSAGE; ?></b><br><?php echo stripslashes($_POST['message_html']); ?></td>
               </tr>
 <?php } ?>
               <tr>
-                <td ><hr><b><?php echo TEXT_MESSAGE; ?></b><br /><tt><?php echo nl2br(htmlspecialchars(stripslashes($_POST['message']), ENT_COMPAT, CHARSET, TRUE)); ?></tt><hr></td>
+                <td ><hr><b><?php echo TEXT_MESSAGE; ?></b><br><tt><?php echo nl2br(htmlspecialchars(stripslashes($_POST['message']), ENT_COMPAT, CHARSET, TRUE)); ?></tt><hr></td>
               </tr>
               <tr>
                 <td><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
@@ -1165,8 +1165,8 @@ function check_form(form_name) {
       <tr>
         <td align="left" valign="top" class="main"><?php echo COUPON_TOTAL; ?></td>
         <td align="left" valign="top">
-          <?php echo zen_draw_radio_field('coupon_calc_base', '0', (empty($_POST['coupon_calc_base']))) . '&nbsp;' . TEXT_COUPON_TOTAL_PRODUCTS . TEXT_COUPON_TOTAL_PRODUCTS_BASED; ?><br />
-          <?php echo zen_draw_radio_field('coupon_calc_base', '1', (!empty($_POST['coupon_calc_base']))) . '&nbsp;' . TEXT_COUPON_TOTAL_ORDER . TEXT_COUPON_TOTAL_ORDER_BASED; ?><br />
+          <?php echo zen_draw_radio_field('coupon_calc_base', '0', (empty($_POST['coupon_calc_base']))) . '&nbsp;' . TEXT_COUPON_TOTAL_PRODUCTS . TEXT_COUPON_TOTAL_PRODUCTS_BASED; ?><br>
+          <?php echo zen_draw_radio_field('coupon_calc_base', '1', (!empty($_POST['coupon_calc_base']))) . '&nbsp;' . TEXT_COUPON_TOTAL_ORDER . TEXT_COUPON_TOTAL_ORDER_BASED; ?><br>
         </td>
         <td align="left" valign="top" class="main"><?php echo COUPON_TOTAL_HELP; ?></td>
       </tr>
@@ -1179,8 +1179,8 @@ function check_form(form_name) {
       <tr>
         <td align="left" valign="top" class="main"><?php echo COUPON_IS_VALID_FOR_SALES; ?></td>
         <td align="left" valign="top">
-          <?php echo zen_draw_radio_field('coupon_is_valid_for_sales', '1', (!empty($_POST['coupon_is_valid_for_sales']))) . '&nbsp;' . TEXT_COUPON_IS_VALID_FOR_SALES; ?><br />
-          <?php echo zen_draw_radio_field('coupon_is_valid_for_sales', '0', (empty($_POST['coupon_is_valid_for_sales']))) . '&nbsp;' . TEXT_NO_COUPON_IS_VALID_FOR_SALES; ?><br />
+          <?php echo zen_draw_radio_field('coupon_is_valid_for_sales', '1', (!empty($_POST['coupon_is_valid_for_sales']))) . '&nbsp;' . TEXT_COUPON_IS_VALID_FOR_SALES; ?><br>
+          <?php echo zen_draw_radio_field('coupon_is_valid_for_sales', '0', (empty($_POST['coupon_is_valid_for_sales']))) . '&nbsp;' . TEXT_NO_COUPON_IS_VALID_FOR_SALES; ?><br>
         </td>
         <td align="left" valign="top" class="main"><?php echo COUPON_SALE_HELP; ?></td>
       </tr>
@@ -1346,10 +1346,10 @@ function check_form(form_name) {
           echo $currencies->format($cc_list->fields['coupon_amount']);
           break;
         case ('E'): // percentage off and free shipping
-          echo $cc_list->fields['coupon_amount'] . '%' . '<br />' . TEXT_FREE_SHIPPING;
+          echo $cc_list->fields['coupon_amount'] . '%' . '<br>' . TEXT_FREE_SHIPPING;
           break;
         case ('O'): // amount off and free shipping
-          echo $currencies->format($cc_list->fields['coupon_amount']) . '<br />' . TEXT_FREE_SHIPPING;
+          echo $currencies->format($cc_list->fields['coupon_amount']) . '<br>' . TEXT_FREE_SHIPPING;
           break;
         default:
           echo '***';
@@ -1402,10 +1402,10 @@ function check_form(form_name) {
     case 'new':
       $heading[] = array('text' => '<b>' . TEXT_HEADING_NEW_COUPON . '</b>');
       $contents[] = array('text' => TEXT_NEW_INTRO);
-      $contents[] = array('text' => '<br />' . COUPON_NAME . '<br />' . zen_draw_input_field('name'));
-      $contents[] = array('text' => '<br />' . COUPON_AMOUNT . '<br />' . zen_draw_input_field('voucher_amount'));
-      $contents[] = array('text' => '<br />' . COUPON_CODE . '<br />' . zen_draw_input_field('voucher_code'));
-      $contents[] = array('text' => '<br />' . COUPON_USES_COUPON . '<br />' . zen_draw_input_field('voucher_number_of'));
+      $contents[] = array('text' => '<br>' . COUPON_NAME . '<br>' . zen_draw_input_field('name'));
+      $contents[] = array('text' => '<br>' . COUPON_AMOUNT . '<br>' . zen_draw_input_field('voucher_amount'));
+      $contents[] = array('text' => '<br>' . COUPON_CODE . '<br>' . zen_draw_input_field('voucher_code'));
+      $contents[] = array('text' => '<br>' . COUPON_USES_COUPON . '<br>' . zen_draw_input_field('voucher_number_of'));
       break;
     default:
       if ($cc_list->RecordCount() > 0) {
@@ -1496,32 +1496,32 @@ $category_query = $db->Execute("SELECT * FROM " . TABLE_COUPON_RESTRICT . " WHER
         $coupon_is_valid_for_sales = $cInfo->coupon_is_valid_for_sales;
         if ($uses_coupon == 0 || $uses_coupon == '') $uses_coupon = TEXT_UNLIMITED;
         if ($uses_user == 0 || $uses_user == '') $uses_user = TEXT_UNLIMITED;
-        if ($cInfo->coupon_id != '') $contents[] = array('text'=>COUPON_NAME . '&nbsp;::&nbsp; ' . $coupon_name->fields['coupon_name'] . '<br />' .
-                     COUPON_AMOUNT . '&nbsp;::&nbsp; ' . $amount . ' ' . ($cInfo->coupon_product_count == 0 ? TEXT_COUPON_PRODUCT_COUNT_PER_ORDER : TEXT_COUPON_PRODUCT_COUNT_PER_PRODUCT) . '<br />' .
-                     ($coupon_name->fields['coupon_type'] == 'E' || $coupon_name->fields['coupon_type'] == '0' ? TEXT_FREE_SHIPPING . '<br />' : '') .
-                     COUPON_STARTDATE . '&nbsp;::&nbsp; ' . zen_date_short($cInfo->coupon_start_date) . '<br />' .
-                     COUPON_FINISHDATE . '&nbsp;::&nbsp; ' . zen_date_short($cInfo->coupon_expire_date) . '<br />' .
-                     COUPON_USES_COUPON . '&nbsp;::&nbsp; ' . $uses_coupon . '<br />' .
-                     COUPON_USES_USER . '&nbsp;::&nbsp; ' . $uses_user . '<br />' .
-                     COUPON_PRODUCTS . '&nbsp;::&nbsp; ' . $prod_details . '<br />' .
-                     COUPON_CATEGORIES . '&nbsp;::&nbsp; ' . $cat_details . '<br />' .
-                     COUPON_MIN_ORDER . '&nbsp;::&nbsp; ' . $currencies->format($cInfo->coupon_minimum_order) . '<br />' .
-                     COUPON_TOTAL . '&nbsp;::&nbsp; ' . ($cInfo->coupon_calc_base == 0 ? TEXT_COUPON_TOTAL_PRODUCTS : TEXT_COUPON_TOTAL_ORDER) . '<br />' .
-                     DATE_CREATED . '&nbsp;::&nbsp; ' . zen_date_short($cInfo->date_created) . '<br />' .
-                     DATE_MODIFIED . '&nbsp;::&nbsp; ' . zen_date_short($cInfo->date_modified) . '<br /><br />' .
-                     COUPON_ZONE_RESTRICTION . '&nbsp;::&nbsp; ' . zen_get_geo_zone_name($cInfo->coupon_zone_restriction) . '<br /><br />' .
-                     COUPON_ORDER_LIMIT . '&nbsp;::&nbsp; ' . ($coupon_order_limit > 0 ? $coupon_order_limit : TEXT_UNLIMITED) . '<br /><br />' .
-                     COUPON_IS_VALID_FOR_SALES . '&nbsp;::&nbsp; ' . ($coupon_is_valid_for_sales == 1 ? TEXT_COUPON_IS_VALID_FOR_SALES : TEXT_NO_COUPON_IS_VALID_FOR_SALES) . '<br /><br />' .
+        if ($cInfo->coupon_id != '') $contents[] = array('text'=>COUPON_NAME . '&nbsp;::&nbsp; ' . $coupon_name->fields['coupon_name'] . '<br>' .
+                     COUPON_AMOUNT . '&nbsp;::&nbsp; ' . $amount . ' ' . ($cInfo->coupon_product_count == 0 ? TEXT_COUPON_PRODUCT_COUNT_PER_ORDER : TEXT_COUPON_PRODUCT_COUNT_PER_PRODUCT) . '<br>' .
+                     ($coupon_name->fields['coupon_type'] == 'E' || $coupon_name->fields['coupon_type'] == '0' ? TEXT_FREE_SHIPPING . '<br>' : '') .
+                     COUPON_STARTDATE . '&nbsp;::&nbsp; ' . zen_date_short($cInfo->coupon_start_date) . '<br>' .
+                     COUPON_FINISHDATE . '&nbsp;::&nbsp; ' . zen_date_short($cInfo->coupon_expire_date) . '<br>' .
+                     COUPON_USES_COUPON . '&nbsp;::&nbsp; ' . $uses_coupon . '<br>' .
+                     COUPON_USES_USER . '&nbsp;::&nbsp; ' . $uses_user . '<br>' .
+                     COUPON_PRODUCTS . '&nbsp;::&nbsp; ' . $prod_details . '<br>' .
+                     COUPON_CATEGORIES . '&nbsp;::&nbsp; ' . $cat_details . '<br>' .
+                     COUPON_MIN_ORDER . '&nbsp;::&nbsp; ' . $currencies->format($cInfo->coupon_minimum_order) . '<br>' .
+                     COUPON_TOTAL . '&nbsp;::&nbsp; ' . ($cInfo->coupon_calc_base == 0 ? TEXT_COUPON_TOTAL_PRODUCTS : TEXT_COUPON_TOTAL_ORDER) . '<br>' .
+                     DATE_CREATED . '&nbsp;::&nbsp; ' . zen_date_short($cInfo->date_created) . '<br>' .
+                     DATE_MODIFIED . '&nbsp;::&nbsp; ' . zen_date_short($cInfo->date_modified) . '<br><br>' .
+                     COUPON_ZONE_RESTRICTION . '&nbsp;::&nbsp; ' . zen_get_geo_zone_name($cInfo->coupon_zone_restriction) . '<br><br>' .
+                     COUPON_ORDER_LIMIT . '&nbsp;::&nbsp; ' . ($coupon_order_limit > 0 ? $coupon_order_limit : TEXT_UNLIMITED) . '<br><br>' .
+                     COUPON_IS_VALID_FOR_SALES . '&nbsp;::&nbsp; ' . ($coupon_is_valid_for_sales == 1 ? TEXT_COUPON_IS_VALID_FOR_SALES : TEXT_NO_COUPON_IS_VALID_FOR_SALES) . '<br><br>' .
                      '<center>' .($cInfo->coupon_active != 'N' ? '<a href="'.zen_href_link(FILENAME_COUPON_ADMIN,'action=email&cid='.$cInfo->coupon_id).'">'.zen_image_button('button_email.gif', TEXT_DISCOUNT_COUPON_EMAIL).'</a>' : '') .
                      '<a href="'.zen_href_link(FILENAME_COUPON_ADMIN,'action=voucheredit&cid='.$cInfo->coupon_id . (isset($_GET['status']) ? '&status=' . $_GET['status'] : '') . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')).'">'.zen_image_button('button_edit.gif', TEXT_DISCOUNT_COUPON_EDIT) .'</a>' .
                      ($cInfo->coupon_active != 'N' ? '<a href="'.zen_href_link(FILENAME_COUPON_ADMIN,'action=voucherdelete&cid='.$cInfo->coupon_id . (isset($_GET['status']) ? '&status=' . $_GET['status'] : '') . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')).'">'.zen_image_button('button_delete.gif', TEXT_DISCOUNT_COUPON_DELETE).'</a>' : '<a href="'.zen_href_link(FILENAME_COUPON_ADMIN,'action=voucherreactivate&cid='.$cInfo->coupon_id . (isset($_GET['status']) ? '&status=' . $_GET['status'] : '') . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')).'">'.zen_image_button('button_restore.gif', TEXT_DISCOUNT_COUPON_RESTORE).'</a>') .
-                     '<br /><a href="'.zen_href_link(FILENAME_COUPON_RESTRICT,'cid='.$cInfo->coupon_id  . (isset($_GET['status']) ? '&status=' . $_GET['status'] : '') . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')).'">'.zen_image_button('button_restrict.gif', TEXT_DISCOUNT_COUPON_RESTRICT).'</a>' .
+                     '<br><a href="'.zen_href_link(FILENAME_COUPON_RESTRICT,'cid='.$cInfo->coupon_id  . (isset($_GET['status']) ? '&status=' . $_GET['status'] : '') . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')).'">'.zen_image_button('button_restrict.gif', TEXT_DISCOUNT_COUPON_RESTRICT).'</a>' .
                      '<a href="'.zen_href_link(FILENAME_COUPON_ADMIN,'action=voucherreport&cid='.$cInfo->coupon_id . (isset($_GET['status']) ? '&status=' . $_GET['status'] : '') . (!empty($_GET['page']) ? '&page=' . $_GET['page'] : '')).'">'.zen_image_button('button_report.gif', TEXT_DISCOUNT_COUPON_REPORT) . '</a>' .
                      '<a href="'.zen_href_link(FILENAME_COUPON_ADMIN,'action=vouchercopy&cid='.$cInfo->coupon_id).'">'.zen_image_button('button_copy.gif', TEXT_DISCOUNT_COUPON_COPY) . '</a>' .
-                   '<br /><br />' . zen_draw_separator('pixel_black.gif', '100%', '2') . '<br><br>' . sprintf(TEXT_INFO_DUPLICATE_MANAGEMENT, $cInfo->coupon_code) . '<br>' .
+                   '<br><br>' . zen_draw_separator('pixel_black.gif', '100%', '2') . '<br><br>' . sprintf(TEXT_INFO_DUPLICATE_MANAGEMENT, $cInfo->coupon_code) . '<br>' .
                      ($cInfo->coupon_active != 'N' ? '<br><a href="'.zen_href_link(FILENAME_COUPON_ADMIN,'action=voucherduplicate&cid='.$cInfo->coupon_id . (isset($_GET['status']) ? '&status=' . $_GET['status'] : '') . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')).'">'.zen_image_button('button_copy_to.gif', TEXT_DISCOUNT_COUPON_COPY_MULTIPLE) . '</a>' : '') .
                      ($cInfo->coupon_active != 'N' ? '&nbsp;&nbsp;<a href="'.zen_href_link(FILENAME_COUPON_ADMIN,'action=voucherduplicatedelete&cid='.$cInfo->coupon_id . (isset($_GET['status']) ? '&status=' . $_GET['status'] : '') . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')).'">'.zen_image_button('button_remove.gif', TEXT_DISCOUNT_COUPON_DELETE_MULTIPLE) . '</a>' : '').
-                     '<br /><a href="'.zen_href_link(FILENAME_COUPON_ADMIN,'action=voucherreportduplicates&cid='.$cInfo->coupon_id . '&codebase=' . $cInfo->coupon_code . (isset($_GET['status']) ? '&status=' . $_GET['status'] : '') . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')).'">'.zen_image_button('button_report.gif', TEXT_DISCOUNT_COUPON_REPORT_MULTIPLE) . '</a>' .
+                     '<br><a href="'.zen_href_link(FILENAME_COUPON_ADMIN,'action=voucherreportduplicates&cid='.$cInfo->coupon_id . '&codebase=' . $cInfo->coupon_code . (isset($_GET['status']) ? '&status=' . $_GET['status'] : '') . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')).'">'.zen_image_button('button_report.gif', TEXT_DISCOUNT_COUPON_REPORT_MULTIPLE) . '</a>' .
                      '&nbsp;&nbsp;<a href="'.zen_href_link(FILENAME_COUPON_ADMIN_EXPORT, 'cid=' . $cInfo->coupon_id . '&codebase=' . $cInfo->coupon_code . (isset($_GET['status']) ? '&status=' . $_GET['status'] : '') . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')) .'">'.zen_image_button('button_download_now.gif', TEXT_DISCOUNT_COUPON_DOWNLOAD) . '</a>' .
                      '</center>'
                      );

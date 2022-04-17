@@ -1,13 +1,12 @@
 <?php
 /**
  * breadcrumb Class.
- *
- 
+ * 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: breadcrumb.php 2021-10-26 10:55:16Z webchills $
+ * @version $Id: breadcrumb.php 2022-04-17 08:55:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -47,7 +46,7 @@ class breadcrumb extends base
         $trail_string = '';
 
         for ($i = 0, $n = count($this->_trail); $i < $n; $i++) {
-//    echo 'breadcrumb ' . $i . ' of ' . $n . ': ' . $this->_trail[$i]['title'] . '<br />';
+//    echo 'breadcrumb ' . $i . ' of ' . $n . ': ' . $this->_trail[$i]['title'] . '<br>';
             $skip_link = false;
             if ($i == ($n - 1) && DISABLE_BREADCRUMB_LINKS_ON_LAST_ITEM == 'true') {
                 $skip_link = true;

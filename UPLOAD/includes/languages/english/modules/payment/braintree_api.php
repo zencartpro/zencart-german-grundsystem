@@ -2,7 +2,7 @@
 define('MODULE_PAYMENT_BRAINTREE_TEXT_ADMIN_TITLE', 'Braintree');
 
 if (IS_ADMIN_FLAG === true) {
-define('MODULE_PAYMENT_BRAINTREE_TEXT_ADMIN_DESCRIPTION', 'Credit Card Payments via Braintree<br/><br /><img src="images/braintree-logo.png" alt="Braintree"/><br><br><a href="https://www.braintreepayments.com/" target="_blank">Braintree Info</a><br><br><a href="https://sandbox.braintreegateway.com/login" target="_blank">Braintree Sandbox Login</a><br><br><a href="https://www.braintreegateway.com/login" target="_blank">Braintree Live Login</a>');
+define('MODULE_PAYMENT_BRAINTREE_TEXT_ADMIN_DESCRIPTION', 'Credit Card Payments via Braintree<br><br><img src="images/braintree-logo.png" alt="Braintree"/><br><br><a href="https://www.braintreepayments.com/" target="_blank">Braintree Info</a><br><br><a href="https://sandbox.braintreegateway.com/login" target="_blank">Braintree Sandbox Login</a><br><br><a href="https://www.braintreegateway.com/login" target="_blank">Braintree Live Login</a>');
 }
 
 define('MODULE_PAYMENT_BRAINTREE_TEXT_DESCRIPTION', 'Credit Card');
@@ -16,10 +16,10 @@ define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_LASTNAME', 'Cardholder Last Na
 define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_OWNER', 'Cardholder Name:');
 define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_TYPE', 'Card Type:');
 define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_NUMBER', 'Card Number:');
-define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_EXPIRES', 'Card Expiration Date:<br/>(Month / Year)');
+define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_EXPIRES', 'Card Expiration Date:<br>(Month / Year)');
 define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_ISSUE', 'Card Issue Date:');
 define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_MAESTRO_ISSUENUMBER', 'Maestro Issue No.:');
-define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_CHECKNUMBER', '<br/>CVV Number:<br/>(on back of card)');
+define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_CHECKNUMBER', '<br>CVV Number:<br>(on back of card)');
 define('MODULE_PAYMENT_BRAINTREE_TEXT_TRANSACTION_FOR', 'Transaction for');
 define('MODULE_PAYMENT_BRAINTREE_TEXT_DECLINED', 'Your credit card was declined. Please try another card or contact your bank for more information.');
 define('MODULE_PAYMENT_BRAINTREE_CANNOT_BE_COMPLETED', 'We were not able to process your order. Please select an alternate payment method, or contact the store owner for assistance.');
@@ -105,10 +105,10 @@ define('MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_TITLE', '<strong>Order Refunds</st
 define('MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_FULL', 'If you wish to refund this order in its entirety, click here:');
 define('MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_BUTTON_TEXT_FULL', 'Do Full Refund');
 define('MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_BUTTON_TEXT_PARTIAL', 'Do Partial Refund');
-define('MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_TEXT_FULL_OR', '<br />... or enter the partial ');
+define('MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_TEXT_FULL_OR', '<br>... or enter the partial ');
 define('MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_PAYFLOW_TEXT', '');
 define('MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_PARTIAL_TEXT', 'refund amount here and click on Partial Refund');
-define('MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_SUFFIX', '*A Full refund may not be issued after a Partial refund has been applied.<br />*Multiple Partial refunds are permitted up to the remaining unrefunded balance.');
+define('MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_SUFFIX', '*A Full refund may not be issued after a Partial refund has been applied.<br>*Multiple Partial refunds are permitted up to the remaining unrefunded balance.');
 define('MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_TEXT_COMMENTS', '<strong>Note to display to customer:</strong>');
 define('MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_DEFAULT_MESSAGE', 'Refunded by store administrator.');
 define('MODULE_PAYMENT_BRAINTREE_TEXT_REFUND_FULL_CONFIRM_CHECK','Confirm: ');
@@ -120,7 +120,7 @@ define('MODULE_PAYMENT_BRAINTREE_ENTRY_AUTH_BUTTON_TEXT_PARTIAL', 'Do Authorizat
 define('MODULE_PAYMENT_BRAINTREE_ENTRY_AUTH_SUFFIX', '');
 
 define('MODULE_PAYMENT_BRAINTREE_ENTRY_CAPTURE_TITLE', '<strong>Capturing Authorizations</strong>');
-define('MODULE_PAYMENT_BRAINTREE_ENTRY_CAPTURE_FULL', 'If you wish to capture all or part of the outstanding authorized amounts for this order, enter the Capture Amount and select whether this is the final capture for this order.  Check the confirm box before submitting your Capture request.<br />');
+define('MODULE_PAYMENT_BRAINTREE_ENTRY_CAPTURE_FULL', 'If you wish to capture all or part of the outstanding authorized amounts for this order, enter the Capture Amount and select whether this is the final capture for this order.  Check the confirm box before submitting your Capture request.<br>');
 define('MODULE_PAYMENT_BRAINTREE_ENTRY_CAPTURE_BUTTON_TEXT_FULL', 'Do Capture');
 define('MODULE_PAYMENT_BRAINTREE_ENTRY_CAPTURE_AMOUNT_TEXT', 'Amount to Capture:');
 define('MODULE_PAYMENT_BRAINTREE_ENTRY_CAPTURE_FINAL_TEXT', 'Is this the final capture?');

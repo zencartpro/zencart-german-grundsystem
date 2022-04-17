@@ -4,30 +4,30 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: sqlpatch.php 2022-03-02 20:04:16Z webchills $
+ * @version $Id: sqlpatch.php 2022-04-17 16:04:16Z webchills $
  */
 
 define('HEADING_TITLE', 'SQL Patches installieren');
 define('HEADING_WARNING', 'Stellen Sie sicher, dass Sie VOR DEM AUSFÜHREN DIESES SCRIPTS eine VOLLSTÄNDIGE SICHERUNG IHRER DATENBANK erstellt haben!');
-define('HEADING_WARNING2', 'Wenn Sie 3rd-Party Kontributionen installieren, bedenken Sie bitte, dass Sie dies auf eigenen Gefahr machen.<br />Zen Cart gibt keine Garantie für die Sicherheit oder Funktion von 3rd-Party Kontributionen. Testen Sie die Kontributionen, bevor Sie diese auf eimen Live-System einsetzen!');
-define('HEADING_WARNING_INSTALLSCRIPTS', 'HINWEIS: Zen Cart Datenbank-Upgrade Scripts sollen NICHT über diese Seite ausgeführt werden.<br />Bitte laden Sie den neuen <strong>zc_install</strong> Ordner hoch und führen das Update dort durch um ein besseres Ergebnis zu erzielen.');
+define('HEADING_WARNING2', 'Wenn Sie 3rd-Party Kontributionen installieren, bedenken Sie bitte, dass Sie dies auf eigenen Gefahr machen.<br>Zen Cart gibt keine Garantie für die Sicherheit oder Funktion von 3rd-Party Kontributionen. Testen Sie die Kontributionen, bevor Sie diese auf eimen Live-System einsetzen!');
+define('HEADING_WARNING_INSTALLSCRIPTS', 'HINWEIS: Zen Cart Datenbank-Upgrade Scripts sollen NICHT über diese Seite ausgeführt werden.<br>Bitte laden Sie den neuen <strong>zc_install</strong> Ordner hoch und führen das Update dort durch um ein besseres Ergebnis zu erzielen.');
 define('TEXT_QUERY_RESULTS', 'Abfrageergebnisse:');
-define('TEXT_ENTER_QUERY_STRING', 'SQL-Befehl(e) ausführen:&nbsp;&nbsp;<br />(Abschliessen<br />mit ;)');
-define('TEXT_QUERY_FILENAME', '<br />oder Datei:');
+define('TEXT_ENTER_QUERY_STRING', 'SQL-Befehl(e) ausführen:&nbsp;&nbsp;<br>(Abschliessen<br>mit ;)');
+define('TEXT_QUERY_FILENAME', '<br>oder Datei:');
 define('ERROR_NOTHING_TO_DO', 'FEHLER: Kein SQL-Befehl bzw. keine Datei gewählt.');
-define('TEXT_CLOSE_WINDOW', '<br />[ Fenster schliessen ]');
+define('TEXT_CLOSE_WINDOW', '<br>[ Fenster schliessen ]');
 define('SQLPATCH_HELP_TEXT', 'Das Tool "SQLPATCH" gibt Ihnen die Möglichkeit, SQL Codes direkt in das Textfeld einzugeben, ' .
-     'oder eigene (.SQL) - Dateien hochzuladen.<br />' .
+     'oder eigene (.SQL) - Dateien hochzuladen.<br>' .
      'SQL Skripts für dieses Tool <strong>dürfen kein</strong> Tabellen Präfix enthalten z.B. "zen_", da das Präfix automatisch ' .
      'für die verwendete Datenbank hinzugefügt wird, basierend auf den Einstellungen in der Datei ' .
-     'admin/includes/configure.php (DB_PREFIX Definition).<br /><br />' .
+     'admin/includes/configure.php (DB_PREFIX Definition).<br><br>' .
      'Es werden nur die folgenden SQL Befehle unterstützt (Bitte Großbuchstaben verwenden):' .
-     '<br /><ul><li>DROP TABLE IF EXISTS</li><li>CREATE TABLE</li><li>INSERT INTO</li><li>ALTER TABLE</li>' .
+     '<br><ul><li>DROP TABLE IF EXISTS</li><li>CREATE TABLE</li><li>INSERT INTO</li><li>ALTER TABLE</li>' .
      '<li>UPDATE (just a single table)</li><li>DELETE FROM</li><li>DROP INDEX</li><li>CREATE INDEX</li>' .
-     '<br /><li>SELECT </li></ul>' .
-    '<h2>Erweiterte Funktionen</h2>Damit einzelne SQL Befehle in einem Block von MySQL ausgeführt werden, muss folgende Zeile am Beginn eines Blockes stehen "<code>#NEXT_X_ROWS_AS_ONE_COMMAND:xxx</code>".  Der Parser wird daraufhin die nächsten X Zeilen als einen Befehl interpretieren.<br />
-Wird dieses Skript in phpMyAdmin od. anderen Programmen ausgeführt, so wird die Zeile "#NEXT..." ignoriert.<br />
-<br /><strong>Anmerkung: </strong>SELECT.... FROM... und LEFT JOIN Befehle setzen voraus, dass "FROM" oder "LEFT JOIN" in einer eigenen Zeile stehen.<br /><br />
+     '<br><li>SELECT </li></ul>' .
+    '<h2>Erweiterte Funktionen</h2>Damit einzelne SQL Befehle in einem Block von MySQL ausgeführt werden, muss folgende Zeile am Beginn eines Blockes stehen "<code>#NEXT_X_ROWS_AS_ONE_COMMAND:xxx</code>".  Der Parser wird daraufhin die nächsten X Zeilen als einen Befehl interpretieren.<br>
+Wird dieses Skript in phpMyAdmin od. anderen Programmen ausgeführt, so wird die Zeile "#NEXT..." ignoriert.<br>
+<br><strong>Anmerkung: </strong>SELECT.... FROM... und LEFT JOIN Befehle setzen voraus, dass "FROM" oder "LEFT JOIN" in einer eigenen Zeile stehen.<br><br>
 <em><strong>Beispiele:</strong></em>
 <ul><li><code>#NEXT_X_ROWS_AS_ONE_COMMAND:4<br>
 SET @t1=0;<br>

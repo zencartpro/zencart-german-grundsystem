@@ -1,12 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific
- * @package admin
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2022-04-16 10:56:04Z webchills $
+ * @version $Id: german.php 2022-04-17 16:18:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -299,7 +298,7 @@ define('ENTRY_NEWSLETTER_NO', 'nicht abonniert');
 
 
 define('ERROR_PASSWORDS_NOT_MATCHING', 'Das Passwort und die Passwortbestätigung müssen identisch sein');
-define('ENTRY_PASSWORD_CHANGE_ERROR', '<strong>Entschuldigung, Ihr neues Passwort wurde abgelehnt.</strong><br />');
+define('ENTRY_PASSWORD_CHANGE_ERROR', '<strong>Entschuldigung, Ihr neues Passwort wurde abgelehnt.</strong><br>');
 define('ERROR_PASSWORD_RULES', 'Passwörter müssen sowohl Buchstaben als auch Zahlen enthalten und mindestens %s Zeichen lang sein. Außerdem darf Ihr neues Passwort nicht mit einem der letzten 4 benutzten Passwörter identisch sein. Passwörter verlieren alle 90 Tage ihre Gültigkeit. Danach werden Sie automatisch aufgefordert Ihr Passwort zu ändern.');
 define('ERROR_TOKEN_EXPIRED_PLEASE_RESUBMIT', 'FEHLER: Entschuldigung, es trat ein Fehler während der Verarbeitung Ihrer Daten auf. Bitte übermitteln Sie Ihre Daten erneut.');
 
@@ -460,10 +459,10 @@ define('ERROR_FILE_TOO_BIG', 'Warnung: Die Datei ist größer als die zulässige
 define('SUCCESS_FILE_SAVED_SUCCESSFULLY', 'Erfolgreich: Dateiupload %s wurde gespeichert');
 define('WARNING_NO_FILE_UPLOADED', 'WARNUNG: Keine Datei hochgeladen.');
 define('WARNING_FILE_UPLOADS_DISABLED', 'WARNUNG: Die Option "Dateiupload" ist in der php.ini deaktiviert.');
-define('ERROR_ADMIN_SECURITY_WARNING', 'WARNUNG: Ihr Admin Login ist nicht sicher ... entweder noch Standard-Login-Einstellungen: Admin admin oder nicht entfernt: demo demoonly<br />Login(s) sollten zur Sicherheit so schnell als möglich geändert werden.');
+define('ERROR_ADMIN_SECURITY_WARNING', 'WARNUNG: Ihr Admin Login ist nicht sicher ... entweder noch Standard-Login-Einstellungen: Admin admin oder nicht entfernt: demo demoonly<br>Login(s) sollten zur Sicherheit so schnell als möglich geändert werden.');
 define('WARNING_DATABASE_VERSION_OUT_OF_DATE', 'Ihre Datenbank scheint einen Patch zu benötigen. Siehe auch Tools->Server Information um die Patchlevels zu betrachten.');
 define('WARN_DATABASE_VERSION_PROBLEM','true'); //set to false to turn off warnings about database version mismatches
-define('WARNING_ADMIN_DOWN_FOR_MAINTENANCE', '<strong>WARNUNG:</strong> Der Shop ist z.Zt. wegen Wartung geschlossen ...<br />ANMERKUNG: Sie können die meisten Zahlungs- und Versand-Module im Wartungszustand nicht prüfen');
+define('WARNING_ADMIN_DOWN_FOR_MAINTENANCE', '<strong>WARNUNG:</strong> Der Shop ist z.Zt. wegen Wartung geschlossen ...<br>ANMERKUNG: Sie können die meisten Zahlungs- und Versand-Module im Wartungszustand nicht prüfen');
 
 define('WARNING_INSTALL_DIRECTORY_EXISTS', 'WARNUNG: Das Installationsverzeichnis besteht noch: ' . DIR_FS_CATALOG . 'zc_install. Dieses Verzeichnis aus Sicherheitsgründen bitte entfernen.');
 define('WARNING_CONFIG_FILE_WRITEABLE', 'WARNUNG: Ihre Konfigurationsdatei: %s ist beschreibbar. Dies ist ein potentielles Sicherheitsrisiko - ändern Sie bitte die Zugriffsrechte für diese Datei mit Ihrem FTP Programm auf read-only (CHMOD 644 oder 444).');
@@ -508,7 +507,7 @@ define('NOT_INSTALLED_TEXT', 'Nicht installiert');
 define('BOX_CATALOG_PRODUCT_OPTIONS_VALUES', 'Sortierung von Attributmerkmalen');
 
 define('TEXT_UPDATE_SORT_ORDERS_OPTIONS', '<strong>Attribut - Sortierung der "Standard Attributmerkmale" aktualisieren</strong>');
-define('TEXT_INFO_ATTRIBUTES_FEATURES_UPDATES', '<strong>Sortierung der "Artikelattribute" aktualisieren</strong><br />und mit den "Standard Attributmerkmalen" abgleichen');
+define('TEXT_INFO_ATTRIBUTES_FEATURES_UPDATES', '<strong>Sortierung der "Artikelattribute" aktualisieren</strong><br>und mit den "Standard Attributmerkmalen" abgleichen');
 
 // Product Options Name Sort Order - option_values.php
 define('BOX_CATALOG_PRODUCT_OPTIONS_NAME', 'Sortierung der Attributnamen');
@@ -584,7 +583,7 @@ define('TEXT_LEGEND', 'LEGENDE: ');
 define('TEXT_LEGEND_STATUS_OFF', 'Status AUS ');
 define('TEXT_LEGEND_STATUS_ON', 'Status AN ');
 
-define('TEXT_INFO_MASTER_CATEGORIES_ID', '<strong>HINWEIS: Die Hauptkategorie wird für die Bepreisung verwendet, wo<br />Artikelkategorien Preise bei verlinkten Artikel beeinflussen, z.B. bei Abverkäufen</strong>');
+define('TEXT_INFO_MASTER_CATEGORIES_ID', '<strong>HINWEIS: Die Hauptkategorie wird für die Bepreisung verwendet, wo<br>Artikelkategorien Preise bei verlinkten Artikel beeinflussen, z.B. bei Abverkäufen</strong>');
 define('TEXT_YES', 'Ja');
 define('TEXT_NO', 'Nein');
 define('TEXT_CANCEL', 'Abbrechen');
@@ -595,17 +594,17 @@ define('ICON_CHANGE_PRICE', 'Nettopreis ändern');
 define('ERROR_SHIPPING_CONFIGURATION', '<strong>Fehler in der Versandkonfiguration!</strong>');
 define('ERROR_SHIPPING_ORIGIN_ZIP', '<strong>Warnung:</strong> Die Postleitzahl des Webshops ist nicht definiert. (Einstellungen in Konfiguration -> Versandoptionen)');
 define('ERROR_ORDER_WEIGHT_ZERO_STATUS', '<strong>Warnung:</strong> 0kg Gewicht ist für kostenfreien Versand konfiguriert und das Modul <strong>versandkostenfrei</strong> ist deaktiviert');
-define('ERROR_USPS_STATUS', '<strong>Warnung:</strong> Bei USPS fehlt entweder der Benutzername und/oder das Passwort, oder ... ist auf TEST gesetzt und arbeitet nicht im PRODUKTIONSMODUS<br />Wenn Sie weiterhin keine Werte erhalten, kontaktieren Sie bitte USPS und aktivieren dort Ihren Account');
+define('ERROR_USPS_STATUS', '<strong>Warnung:</strong> Bei USPS fehlt entweder der Benutzername und/oder das Passwort, oder ... ist auf TEST gesetzt und arbeitet nicht im PRODUKTIONSMODUS<br>Wenn Sie weiterhin keine Werte erhalten, kontaktieren Sie bitte USPS und aktivieren dort Ihren Account');
 
 define('ERROR_SHIPPING_MODULES_NOT_DEFINED', 'ANMERKUNG: Sie haben keine Versandmodule aktiviert. Bitte ändern Sie das bei Module->Versandarten.');
 define('ERROR_PAYMENT_MODULES_NOT_DEFINED', 'ANMERKUNG: Sie haben keine Zahlungsmodule aktiviert. Bitte ändern Sie das in Module->Zahlungsarten.');
 
 // text pricing
 define('TEXT_CHARGES_WORD', 'Berechnete Gebühren:');
-define('TEXT_PER_WORD', '<br />Preis pro Wort: ');
+define('TEXT_PER_WORD', '<br>Preis pro Wort: ');
 define('TEXT_WORDS_FREE', ' Wort(e) frei ');
 define('TEXT_CHARGES_LETTERS', 'Berechnete Gebühren:');
-define('TEXT_PER_LETTER', '<br />Preis pro Buchstabe: ');
+define('TEXT_PER_LETTER', '<br>Preis pro Buchstabe: ');
 define('TEXT_LETTERS_FREE', ' Buchstabe(n) frei ');
 
 define('TABLE_ATTRIBUTES_QTY_PRICE_QTY', 'Stk.');
@@ -665,7 +664,7 @@ define('TEXT_SORT_CATEGORIES_NAME', 'Kategoriename');
 
 define('TABLE_HEADING_YES', 'Ja');
 define('TABLE_HEADING_NO', 'Nein');
-define('TEXT_PRODUCTS_IMAGE_MANUAL', '<br /><strong>Oder wählen Sie ein bestehendes Bild vom Server, Dateiname:</strong>');
+define('TEXT_PRODUCTS_IMAGE_MANUAL', '<br><strong>Oder wählen Sie ein bestehendes Bild vom Server, Dateiname:</strong>');
 define('TEXT_IMAGES_OVERWRITE', 'Bestehendes Bild überschreiben? Verwenden Sie "Nein" bei manuell eingegebenem Namen');
 define('TEXT_IMAGE_OVERWRITE_WARNING', 'WARNUNG: DATEINAME wurde aktualisiert aber nicht überschrieben ');
 define('TEXT_IMAGES_DELETE', '<strong>Bild entfernen?</strong>  Hinweis: Entfernt die Verknüpfung Bild/Artikel (Bilddatei wird dabei NICHT vom Server entfernt)');
@@ -695,7 +694,7 @@ define('ERROR_CATALOG_IMAGE_DIRECTORY_NOT_WRITEABLE', 'FEHLER: Bilderverzeichnis
 define('ERROR_CATALOG_IMAGE_DIRECTORY_DOES_NOT_EXIST', 'Error: Bilderverzeichnis existiert nicht: ' . DIR_FS_CATALOG_IMAGES);
 define('ERROR_CANNOT_MOVE_CATEGORY_TO_PARENT', 'FEHLER: Kategorie kann nicht in eine Unterkategorie verschoben werden.');
 define('ERROR_CANNOT_MOVE_PRODUCT_TO_CATEGORY_SELF', 'FEHLER: Produkt existiert bereits in dieser Kategorie.');
-define('ERROR_CATEGORY_HAS_PRODUCTS', 'FEHLER: Kategorie enthält Produkte!<br /><br />Diese Aktion ist temporär zulässig während Sie Kategorien neu anordnen. Dennoch gilt der Grundsatz: Eine Kategorie kann entweder andere Kategorien oder Produkte enthalten aber <strong>niemals</strong>beides!');
+define('ERROR_CATEGORY_HAS_PRODUCTS', 'FEHLER: Kategorie enthält Produkte!<br><br>Diese Aktion ist temporär zulässig während Sie Kategorien neu anordnen. Dennoch gilt der Grundsatz: Eine Kategorie kann entweder andere Kategorien oder Produkte enthalten aber <strong>niemals</strong>beides!');
 define('SUCCESS_CATEGORY_MOVED', 'Erfolgreich! Kategorie erfolgreich verschoben ...');
 define('ERROR_CANNOT_MOVE_CATEGORY_TO_CATEGORY_SELF', 'FEHLER: Kategorie kann nicht in sich selbst verschoben werden! ID#');
 
@@ -713,10 +712,10 @@ define('TEXT_EZPAGES_STATUS_SIDEBOX_ADMIN', 'Achtung: EZ-PAGES SIDEBOX - Nur fü
 
 // moved from product types
 // warnings on Virtual and Always Free Shipping
-define('TEXT_VIRTUAL_PREVIEW','Achtung: Virtueller Artikel - Versandkostenfrei &amp; keine Versandadresse notwendig!<br />Eine versandkostenfreie Lieferung erfolgt nur, wenn alle Artikel im Warenkorb Virtuelle Artikel sind.');
-define('TEXT_VIRTUAL_EDIT','Achtung: Virtueller Artikel - Versandkostenfrei &amp; keine Versandadresse notwendig!<br />Eine versandkostenfreie Lieferung erfolgt nur, wenn alle Artikel im Warenkorb Virtuelle Artikel sind.');
-define('TEXT_FREE_SHIPPING_PREVIEW','Achtung: Virtueller Artikel - Versandkostenfrei &amp; keine Versandadresse notwendig!<br />Das Versandarten Modul "Immer versandkostenfrei" muss installiert sein wenn alle Artikel einer Bestellung versandkostenfrei sind');
-define('TEXT_FREE_SHIPPING_EDIT','Achtung: Virtueller Artikel - Versandkostenfrei &amp; keine Versandadresse notwendig!<br />Das Versandarten Modul "Immer versandkostenfrei" muss installiert sein wenn alle Artikel einer Bestellung versandkostenfrei sind');
+define('TEXT_VIRTUAL_PREVIEW','Achtung: Virtueller Artikel - Versandkostenfrei &amp; keine Versandadresse notwendig!<br>Eine versandkostenfreie Lieferung erfolgt nur, wenn alle Artikel im Warenkorb Virtuelle Artikel sind.');
+define('TEXT_VIRTUAL_EDIT','Achtung: Virtueller Artikel - Versandkostenfrei &amp; keine Versandadresse notwendig!<br>Eine versandkostenfreie Lieferung erfolgt nur, wenn alle Artikel im Warenkorb Virtuelle Artikel sind.');
+define('TEXT_FREE_SHIPPING_PREVIEW','Achtung: Virtueller Artikel - Versandkostenfrei &amp; keine Versandadresse notwendig!<br>Das Versandarten Modul "Immer versandkostenfrei" muss installiert sein wenn alle Artikel einer Bestellung versandkostenfrei sind');
+define('TEXT_FREE_SHIPPING_EDIT','Achtung: Virtueller Artikel - Versandkostenfrei &amp; keine Versandadresse notwendig!<br>Das Versandarten Modul "Immer versandkostenfrei" muss installiert sein wenn alle Artikel einer Bestellung versandkostenfrei sind');
 
 // admin activity log warnings
 define('WARNING_ADMIN_ACTIVITY_LOG_DATE', 'Achtung: Die Admin Protokolltabelle hat Einträge die älter sind als 2 Monate und sollte deshalb archiviert werden ... ');
@@ -729,7 +728,7 @@ define('TEXT_ERROR_ATTEMPTED_ADMIN_LOGIN_WITHOUT_CSRF_TOKEN', 'Es wurde versucht
 define('TEXT_ERROR_ATTEMPTED_ADMIN_LOGIN_WITHOUT_USERNAME', 'Es wurde versucht ohne Username einzuloggen.');
 define('TEXT_ERROR_INCORRECT_PASSWORD_DURING_RESET_FOR_USER', 'Falsches Passwort beim Versuch ein neues Passwort zu setzen für: ');
 
-define('CATEGORY_HAS_SUBCATEGORIES', 'Achtung: Kategorie besitzt Unterkategorien<br />Artikel können nicht hinzugefügt werden');
+define('CATEGORY_HAS_SUBCATEGORIES', 'Achtung: Kategorie besitzt Unterkategorien<br>Artikel können nicht hinzugefügt werden');
 
 define('WARNING_WELCOME_DISCOUNT_COUPON_EXPIRES_IN', 'Warnung! Der Aktionskupon "Willkommensgeschenk" läuft in %s Tagen ab.');
 
@@ -771,8 +770,8 @@ define('ARIA_PAGINATION_','');
   include(zen_get_file_directory(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/', FILENAME_OTHER_IMAGES_NAMES));
 
 // Additional Localisation - Languages - Phone Country Code
-define('TEXT_INFO_LANGUAGE_ID', 'Geben Sie den Telefon Ländercode OHNE 0 ein<br />(english MUSS 1 sein, deutsch MUSS 43 sein):');
-define('TEXT_INFO_LANGUAGE_CODE', 'Code:<br />(en = englisch, de = deutsch)');
+define('TEXT_INFO_LANGUAGE_ID', 'Geben Sie den Telefon Ländercode OHNE 0 ein<br>(english MUSS 1 sein, deutsch MUSS 43 sein):');
+define('TEXT_INFO_LANGUAGE_CODE', 'Code:<br>(en = englisch, de = deutsch)');
 
 // Keepalive Module
 define('TEXT_TIMEOUT_WARNING', '**WARNUNG**');

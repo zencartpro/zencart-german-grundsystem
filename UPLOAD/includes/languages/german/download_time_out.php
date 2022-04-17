@@ -11,9 +11,9 @@
 define('NAVBAR_TITLE', 'Ihr Download ...');
 define('HEADING_TITLE', 'Ihr Download ...');
 
-define('TEXT_INFORMATION', 'Leider ist Ihr Download abgelaufen.<br /><br />
+define('TEXT_INFORMATION', 'Leider ist Ihr Download abgelaufen.<br><br>
   Falls Sie weitere Downloads haben und Sie fortsetzen wollen,
-  gehen Sie bitte auf Ihre <a href="' . zen_href_link(FILENAME_ACCOUNT, '', 'SSL') . '">Mein Konto</a>-Seite.<br /><br />
-  Falls Probleme bei Ihrem Download auftreten, bitte <a href="' . zen_href_link(FILENAME_CONTACT_US, '', 'SSL') . '">kontaktieren Sie uns</a> <br /><br />
+  gehen Sie bitte auf Ihre <a href="' . zen_href_link(FILENAME_ACCOUNT, '', 'SSL') . '">Mein Konto</a>-Seite.<br><br>
+  Falls Probleme bei Ihrem Download auftreten, bitte <a href="' . zen_href_link(FILENAME_CONTACT_US, '', 'SSL') . '">kontaktieren Sie uns</a> <br><br>
   Vielen Dank!
   ');

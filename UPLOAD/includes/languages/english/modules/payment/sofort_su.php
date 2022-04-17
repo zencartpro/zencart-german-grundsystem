@@ -1,7 +1,7 @@
 <?php
 
 define('MODULE_PAYMENT_SOFORT_SU_TEXT_TITLE', 'Online Bank Transfer.');
-define('MODULE_PAYMENT_SOFORT_SU_TEXT_LOGO', '<br /><img src="https://cdn.klarna.com/1.0/shared/image/generic/badge/de_de/pay_now/descriptive/pink.svg" height="30px" alt="Sofort."/>');
+define('MODULE_PAYMENT_SOFORT_SU_TEXT_LOGO', '<br><img src="https://cdn.klarna.com/1.0/shared/image/generic/badge/de_de/pay_now/descriptive/pink.svg" height="30px" alt="Sofort."/>');
 
 define('MODULE_PAYMENT_SOFORT_SU_DESCRIPTION', 'Simple and secure');
 
@@ -18,12 +18,12 @@ define('MODULE_PAYMENT_SOFORT_SU_REASON_ONE_TITLE', 'Reason 1');
 define('MODULE_PAYMENT_SOFORT_SU_REASON_ONE_DESC', 'For purpose 1 the following options can be selected');
 
 define('MODULE_PAYMENT_SOFORT_SU_REASON_TWO_TITLE', 'Reason 2');
-define('MODULE_PAYMENT_SOFORT_SU_REASON_TWO_DESC', 'For purpose (maximum 27 characters) the following placeholders are replaced:<br /> {{order_id}}<br />{{order_date}}<br />{{customer_id}}<br />{{customer_name}}<br />{{customer_company}}<br />{{customer_email}}');
+define('MODULE_PAYMENT_SOFORT_SU_REASON_TWO_DESC', 'For purpose (maximum 27 characters) the following placeholders are replaced:<br> {{order_id}}<br>{{order_date}}<br>{{customer_id}}<br>{{customer_name}}<br>{{customer_company}}<br>{{customer_email}}');
 
 define('MODULE_PAYMENT_SOFORT_SU_ZONE_TITLE', 'Payment zone');
 define('MODULE_PAYMENT_SOFORT_SU_ZONE_DESC', 'When a zone is selected, the payment method applies only to this zone.');
 
-define('MODULE_PAYMENT_SOFORT_PROF_SETTINGS_TITLE', '<span style="font-weight:bold; text-decoration:underline; font-size:1.4em;"><br />Professional settings</span> ');
+define('MODULE_PAYMENT_SOFORT_PROF_SETTINGS_TITLE', '<span style="font-weight:bold; text-decoration:underline; font-size:1.4em;"><br>Professional settings</span> ');
 define('MODULE_PAYMENT_SOFORT_PROF_SETTINGS_DESC', 'The following settings usually require no adjustment and should be already filled with the correct values.');
 
 define('MODULE_PAYMENT_SOFORT_SU_ORDER_STATUS_ID_TITLE', 'Temporary order status');
@@ -33,7 +33,7 @@ define('MODULE_PAYMENT_SOFORT_SU_ABORTED_STATUS_ID_TITLE', 'Order state at abort
 define('MODULE_PAYMENT_SOFORT_SU_ABORTED_STATUS_ID_DESC', 'Order status for orders that were cancelled during the checkout process.'); //Bestellstatus bei Bestellungen, die whrend des Bestellvorgangs oder im Wizard abgebrochen wurden.
 
 define('MODULE_PAYMENT_SOFORT_SU_PEN_NOT_CRE_YET_STATUS_ID_TITLE', 'Confirmed order status');
-define('MODULE_PAYMENT_SOFORT_SU_PEN_NOT_CRE_YET_STATUS_ID_DESC', 'Confirmed order status<br />Order status after successfully completing a transaction.'); // (pending-not_credited_yet)
+define('MODULE_PAYMENT_SOFORT_SU_PEN_NOT_CRE_YET_STATUS_ID_DESC', 'Confirmed order status<br>Order status after successfully completing a transaction.'); // (pending-not_credited_yet)
 
 define('MODULE_PAYMENT_SOFORT_SU_LOS_NOT_CRE_STATUS_ID_TITLE', 'Order status, when money is not received');
 define('MODULE_PAYMENT_SOFORT_SU_LOS_NOT_CRE_STATUS_ID_DESC', 'Status of the order if no money is credited on your account. (Prerequisite: account with Deutsche Handelsbank).'); // (loss-not_credited)

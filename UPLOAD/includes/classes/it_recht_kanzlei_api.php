@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: it_recht_kanzlei_api.php 2022-02-18 18:38:51Z webchills $
+ * @version $Id: it_recht_kanzlei_api.php 2022-04-17 08:52:51Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -205,17 +205,17 @@ class it_recht_kanzlei {
       if ($xml->rechtstext_type == 'agb') {
         $page_key = IT_RECHT_KANZLEI_PAGE_KEY_AGB;
         if ($pdf_file_stored === true) {
-          $pdf_file_text = '<br /><br /><a href="'.DIR_WS_CATALOG.$local_dir_for_pdf_storage.$file_pdf_targetfilename.'" target="_blank">AGB - PDF download!</a>';
+          $pdf_file_text = '<br><br><a href="'.DIR_WS_CATALOG.$local_dir_for_pdf_storage.$file_pdf_targetfilename.'" target="_blank">AGB - PDF download!</a>';
         }
       } elseif ($xml->rechtstext_type == 'datenschutz') {
         $page_key = IT_RECHT_KANZLEI_PAGE_KEY_DATENSCHUTZ;
         if ($pdf_file_stored === true) {
-          $pdf_file_text = '<br /><br /><a href="'.DIR_WS_CATALOG.$local_dir_for_pdf_storage.$file_pdf_targetfilename.'" target="_blank">Datenschutz - PDF download!</a>';
+          $pdf_file_text = '<br><br><a href="'.DIR_WS_CATALOG.$local_dir_for_pdf_storage.$file_pdf_targetfilename.'" target="_blank">Datenschutz - PDF download!</a>';
         }
       } elseif ($xml->rechtstext_type == 'widerruf') {
         $page_key = IT_RECHT_KANZLEI_PAGE_KEY_WIDERRUF;
         if ($pdf_file_stored === true) {
-          $pdf_file_text = '<br /><br /><a href="'.DIR_WS_CATALOG.$local_dir_for_pdf_storage.$file_pdf_targetfilename.'" target="_blank">Widerruf - PDF download!</a>';
+          $pdf_file_text = '<br><br><a href="'.DIR_WS_CATALOG.$local_dir_for_pdf_storage.$file_pdf_targetfilename.'" target="_blank">Widerruf - PDF download!</a>';
         }
       } elseif ($xml->rechtstext_type == 'impressum') {
         $page_key = IT_RECHT_KANZLEI_PAGE_KEY_IMPRESSUM;

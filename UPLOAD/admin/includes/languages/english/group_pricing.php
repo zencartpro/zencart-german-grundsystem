@@ -1,6 +1,5 @@
 <?php
-/**
- 
+/** 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
@@ -32,4 +31,4 @@ define('TEXT_LAST_MODIFIED', 'Date Modified:');
 define('TEXT_CUSTOMERS', 'Customers in Group:');
 
 define('ERROR_GROUP_PRICING_CUSTOMERS_EXIST','ERROR: Customers exist in that group. Please confirm that you wish to remove all members from the group and delete it.');
-define('ERROR_MODULE_NOT_CONFIGURED','NOTE: You have group pricing definitions, but you have not enabled the group-pricing Order Total module.<br />Please go to Admin->Modules->Order Total->Membership Discount (ot_group_pricing) and install/configure the module.');
+define('ERROR_MODULE_NOT_CONFIGURED','NOTE: You have group pricing definitions, but you have not enabled the group-pricing Order Total module.<br>Please go to Admin->Modules->Order Total->Membership Discount (ot_group_pricing) and install/configure the module.');

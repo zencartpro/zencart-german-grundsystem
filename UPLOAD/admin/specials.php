@@ -4,7 +4,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: specials.php 2022-01-17 15:59:16Z webchills $
+ * @version $Id: specials.php 2022-04-17 08:46:16Z webchills $
  * structurally identical to featured.php, modifications should be replicated
  */
 require 'includes/application_top.php';
@@ -361,7 +361,7 @@ if (!empty($action)) {
                 <a class="btn btn-default" role="button" href="<?php echo $cancel_link; ?>"><?php echo IMAGE_CANCEL; ?></a>
             </div>
             <?php echo '</form>'; ?>
-            <hr/>
+            <hr>
             <?php echo TEXT_SPECIALS_PRICE_NOTES; ?>
         </div>
     <?php
@@ -371,7 +371,7 @@ if (!empty($action)) {
             <a href="<?php echo zen_href_link(FILENAME_SPECIALS, (!empty($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'action=new'); ?>" class="btn btn-primary" role="button"><?php echo TEXT_ADD_SPECIAL_SELECT; ?></a>
             <a href="<?php echo zen_href_link(FILENAME_SPECIALS, 'action=pre_add' . (!empty($_GET['page']) ? '&page=' . $_GET['page'] : '') . (isset($_GET['search']) ? '&search=' . $_GET['search'] : '')); ?>" class="btn btn-primary" role="button" title="<?php echo TEXT_INFO_PRE_ADD_INTRO; ?>"><?php echo TEXT_ADD_SPECIAL_PID; ?></a>
         </div>
-    <hr/>
+    <hr>
         <div class="row">
             <div style="margin-bottom: 5px">
                 <?php echo zen_draw_form('search', FILENAME_SPECIALS, '', 'get');

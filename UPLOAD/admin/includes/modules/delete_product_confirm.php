@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: delete_product_confirm.php 2019-04-15 16:49:16Z webchills $
+ * @version $Id: delete_product_confirm.php 2022-04-17 15:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -13,7 +13,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 // NOTE: Debug code left in to help with creating additional product type delete-scripts
 
 $do_delete_flag = false;
-//echo 'products_id=' . $_POST['products_id'] . '<br />';
+//echo 'products_id=' . $_POST['products_id'] . '<br>';
 if (isset($_POST['products_id']) && isset($_POST['product_categories']) && is_array($_POST['product_categories'])) {
   $product_id = zen_db_prepare_input($_POST['products_id']);
   $product_categories = $_POST['product_categories'];
@@ -44,7 +44,7 @@ if ($do_delete_flag) {
   $count_categories = $db->Execute("SELECT COUNT(categories_id) AS total
                                     FROM " . TABLE_PRODUCTS_TO_CATEGORIES . "
                                     WHERE products_id = " . (int)$product_id);
-  // echo 'count of category links for this product=' . $count_categories->fields['total'] . '<br />';
+  // echo 'count of category links for this product=' . $count_categories->fields['total'] . '<br>';
   // if not linked to any categories, do delete:
   if ($count_categories->fields['total'] == '0') {
     zen_remove_product($product_id, $delete_linked);

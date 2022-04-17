@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: split_page_results.php 2021-11-28 20:15:16Z webchills $
+ * @version $Id: split_page_results.php 2022-04-17 08:56:16Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -33,11 +33,11 @@ class splitPageResults extends base {
     $this->page_name = $page_holder;
 
     if ($debug) {
-      echo '<br /><br />';
-      echo 'original_query=' . $query . '<br /><br />';
-      echo 'original_count_query=' . $countQuery . '<br /><br />';
-      echo 'sql_query=' . $this->sql_query . '<br /><br />';
-      echo 'count_query=' . $this->countQuery . '<br /><br />';
+      echo '<br><br>';
+      echo 'original_query=' . $query . '<br><br>';
+      echo 'original_count_query=' . $countQuery . '<br><br>';
+      echo 'sql_query=' . $this->sql_query . '<br><br>';
+      echo 'count_query=' . $this->countQuery . '<br><br>';
     }
     if (isset($_GET[$page_holder])) {
       $page = $_GET[$page_holder];
@@ -73,7 +73,7 @@ class splitPageResults extends base {
     }
     $count_query = "select count(" . $count_string . ") as total " . substr($this->countQuery, $pos_from, ($pos_to - $pos_from));
     if ($debug) {
-      echo 'count_query=' . $count_query . '<br /><br />';
+      echo 'count_query=' . $count_query . '<br><br>';
     }
     $count = $db->Execute($count_query);
 

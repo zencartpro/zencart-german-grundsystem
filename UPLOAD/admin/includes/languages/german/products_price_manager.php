@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at2
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_price_manager.php 2021-12-03 15:19:04Z webchills $
+ * @version $Id: products_price_manager.php 2022-04-17 16:19:04Z webchills $
  */
 
 
@@ -30,19 +30,19 @@ define('TEXT_PRODUCT_AVAILABLE', 'Aktiv');
 define('TEXT_PRODUCT_NOT_AVAILABLE', 'Nicht aktiv');
 define('TEXT_PRODUCT_INFO_NONE', 'Bitte wählen Sie einen Artikel ...');
 define('TEXT_PRODUCT_IS_FREE','Artikel ist kostenlos:');
-define('TEXT_PRODUCTS_IS_FREE_EDIT','<br />*Artikel markiert als KOSTENLOS');
+define('TEXT_PRODUCTS_IS_FREE_EDIT','<br>*Artikel markiert als KOSTENLOS');
 define('TEXT_PRODUCT_IS_CALL','Preis bitte anfragen:');
-define('TEXT_PRODUCTS_IS_CALL_EDIT','<br />*Artikel ist als "Preis bitte anfragen" markiert');
+define('TEXT_PRODUCTS_IS_CALL_EDIT','<br>*Artikel ist als "Preis bitte anfragen" markiert');
 define('TEXT_PRODUCTS_PRICED_BY_ATTRIBUTES','Preis durch Attribute festgelegt:');
 define('TEXT_PRODUCT_IS_PRICED_BY_ATTRIBUTE','Ja');
 define('TEXT_PRODUCT_NOT_PRICED_BY_ATTRIBUTE','Nein');
-define('TEXT_PRODUCTS_PRICED_BY_ATTRIBUTES_EDIT','<br />*Der angezeigte Preis enthält den niedrigsten Gruppenattributspreis plus dem Grundpreis');
+define('TEXT_PRODUCTS_PRICED_BY_ATTRIBUTES_EDIT','<br>*Der angezeigte Preis enthält den niedrigsten Gruppenattributspreis plus dem Grundpreis');
 define('TEXT_PRODUCTS_MIXED','Artikel Mindestabnahme/Anzahl Mix:');
 define('TEXT_PRODUCTS_MIXED_DISCOUNT_QUANTITY', 'Stückzahlermäßigung gilt für gemischte Attribute');
 define('TEXT_PRODUCTS_QUANTITY_MIN_RETAIL','Artikel Mindestabnahme:');
 define('TEXT_PRODUCTS_QUANTITY_UNITS_RETAIL','Artikelbestandseinheit:');
 define('TEXT_PRODUCTS_QUANTITY_MAX_RETAIL','Artikel Maximalabnahme:');
-define('TEXT_PRODUCTS_QUANTITY_MAX_RETAIL_EDIT','0= Unlimitiert<br />1= Keine Box für Stückzahlen/Maximalwerte');
+define('TEXT_PRODUCTS_QUANTITY_MAX_RETAIL_EDIT','0= Unlimitiert<br>1= Keine Box für Stückzahlen/Maximalwerte');
 define('TEXT_FEATURED_PRODUCT_INFO', 'Empfohlene Artikel Info:');
 define('TEXT_FEATURED_PRODUCT', 'Artikel:');
 define('TEXT_FEATURED_EXPIRES_DATE', 'Ablaufdatum:');
@@ -88,8 +88,8 @@ define('TEXT_PRODUCTS_DISCOUNT_PRICE','Ermäßigungswert');
 
 define('TEXT_PRODUCTS_DISCOUNT_PRICE_EACH','Kalkulationspreis:');
 define('TEXT_PRODUCTS_DISCOUNT_PRICE_EXTENDED','Erweiterter Preis:');
-define('TEXT_PRODUCTS_DISCOUNT_PRICE_EACH_TAX','Kalkuliere<br />Preis: &nbsp; versteuert:');
-define('TEXT_PRODUCTS_DISCOUNT_PRICE_EXTENDED_TAX','Erweiterter<br />Preis: &nbsp; versteuert:');
+define('TEXT_PRODUCTS_DISCOUNT_PRICE_EACH_TAX','Kalkuliere<br>Preis: &nbsp; versteuert:');
+define('TEXT_PRODUCTS_DISCOUNT_PRICE_EXTENDED_TAX','Erweiterter<br>Preis: &nbsp; versteuert:');
 
 define('TEXT_DISCOUNT_TYPE_INFO', 'Artikelermäßigung Info');
 define('TEXT_DISCOUNT_TYPE','Ermäßigungstyp:');

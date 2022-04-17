@@ -14,7 +14,7 @@ define('NAVBAR_TITLE_2','Artikelbenachrichtigungen');
 
 define('HEADING_TITLE','Artikelbenachrichtigungen');
 
-define('MY_NOTIFICATIONS_DESCRIPTION','Die Artikelbenachrichtigungen halten Sie über interessierte Artikel auf dem Laufenden.<br /><br />Damit Sie über alle Neuerungen, Aktualisierungen, etc. immer auf dem neuesten Stand sind, wählen Sie <strong>Allgemeine Artikelbenachrichtigungen</strong> aus.');
+define('MY_NOTIFICATIONS_DESCRIPTION','Die Artikelbenachrichtigungen halten Sie über interessierte Artikel auf dem Laufenden.<br><br>Damit Sie über alle Neuerungen, Aktualisierungen, etc. immer auf dem neuesten Stand sind, wählen Sie <strong>Allgemeine Artikelbenachrichtigungen</strong> aus.');
 
 define('GLOBAL_NOTIFICATIONS_TITLE','Globale Artikelbenachrichtigungen');
 define('GLOBAL_NOTIFICATIONS_DESCRIPTION','Benachrichtigungen von allen verfügbaren Artikeln erhalten.');

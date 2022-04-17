@@ -1,11 +1,10 @@
 <?php
-/**
- 
+/** 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: group_pricing.php 2015-12-22 16:39:16Z webchills $
+ * @version $Id: group_pricing.php 2022-04-17 16:39:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Gruppenpreise');
@@ -27,4 +26,4 @@ define('TEXT_DATE_ADDED', 'Erstellt am:');
 define('TEXT_LAST_MODIFIED', 'Letzte Änderung:');
 define('TEXT_CUSTOMERS', 'Kunden in der Gruppe:');
 define('ERROR_GROUP_PRICING_CUSTOMERS_EXIST', 'FEHLER: In dieser Gruppe sind noch Kunden.  Bestätigen Sie bitte, daß Sie alle Mitglieder von der Gruppe entfernen und sie löschen möchten.');
-define('ERROR_MODULE_NOT_CONFIGURED', 'HINWEIS: Sie verwenden Gruppenpreise, haben jedoch nicht das Gruppenermäßigunsmodul aktiviert.<br />Gehen Sie zu Admin->Module->Zusammenfassung->Gruppenermäßigung (ot_group_pricing) und installieren/konfigurieren das Modul.');
+define('ERROR_MODULE_NOT_CONFIGURED', 'HINWEIS: Sie verwenden Gruppenpreise, haben jedoch nicht das Gruppenermäßigunsmodul aktiviert.<br>Gehen Sie zu Admin->Module->Zusammenfassung->Gruppenermäßigung (ot_group_pricing) und installieren/konfigurieren das Modul.');

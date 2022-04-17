@@ -2,7 +2,7 @@
 define('MODULE_PAYMENT_BRAINTREE_TEXT_ADMIN_TITLE', 'Braintree');
 
 if (IS_ADMIN_FLAG === true) {
-define('MODULE_PAYMENT_BRAINTREE_TEXT_ADMIN_DESCRIPTION', 'Kreditkartenzahlung via Braintree<br><br><img src="images/braintree-logo.png" alt="Braintree"/><br><br>Dieses Modul unterstützt die SCA (Strong Customer Authentication)<br/>Stellen Sie sicher, dass in Ihrem Braintree Account 3D Secure aktiviert ist.<br><br><a href="https://www.braintreepayments.com/" target="_blank">Braintree Info</a><br><br><a href="https://sandbox.braintreegateway.com/login" target="_blank">Braintree Sandbox Login</a><br><br><a href="https://www.braintreegateway.com/login" target="_blank">Braintree Live Login</a>');
+define('MODULE_PAYMENT_BRAINTREE_TEXT_ADMIN_DESCRIPTION', 'Kreditkartenzahlung via Braintree<br><br><img src="images/braintree-logo.png" alt="Braintree"/><br><br>Dieses Modul unterstützt die SCA (Strong Customer Authentication)<br>Stellen Sie sicher, dass in Ihrem Braintree Account 3D Secure aktiviert ist.<br><br><a href="https://www.braintreepayments.com/" target="_blank">Braintree Info</a><br><br><a href="https://sandbox.braintreegateway.com/login" target="_blank">Braintree Sandbox Login</a><br><br><a href="https://www.braintreegateway.com/login" target="_blank">Braintree Live Login</a>');
 }
 
 define('MODULE_PAYMENT_BRAINTREE_TEXT_DESCRIPTION', 'Kreditkarte');
@@ -16,10 +16,10 @@ define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_LASTNAME', 'Inhaber Nachname:'
 define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_OWNER', 'Kreditkarteninhaber:');
 define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_TYPE', 'Kreditkarte Typ:');
 define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_NUMBER', 'Kreditkarte Nummer:');
-define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_EXPIRES', 'Kartenablaufdatum:<br/>(Monat / Jahr)');
+define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_EXPIRES', 'Kartenablaufdatum:<br>(Monat / Jahr)');
 define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_ISSUE', 'Kartenausstellungsdatum:');
 define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_MAESTRO_ISSUENUMBER', 'Maestro Issue No.:');
-define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_CHECKNUMBER', 'CVV Nummer:<br/>(auf der Rückseite)');
+define('MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_CHECKNUMBER', 'CVV Nummer:<br>(auf der Rückseite)');
 define('MODULE_PAYMENT_BRAINTREE_TEXT_TRANSACTION_FOR', 'Transaktion für');
 define('MODULE_PAYMENT_BRAINTREE_TEXT_DECLINED', 'Ihre Kreditkarte wurde abgelehnt. Bitte versuchen Sie eine andere Karte oder kontaktieren Sie Ihre Bank für weitere Informationen.');
 define('MODULE_PAYMENT_BRAINTREE_CANNOT_BE_COMPLETED', 'Wir konnten Ihre Bestellung nicht durchführen. Bitte wählen Sie eine andere Zahlungsart oder wenden Sie sich an den Shopinhaber, um Hilfe zu erhalten.');
@@ -105,7 +105,7 @@ define('MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_TITLE', '<strong>Rückerstattungen
 define('MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_FULL', 'Wenn Sie diese Bestellung vollständig rückerstatten wollen, klicken Sie hier:');
 define('MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_BUTTON_TEXT_FULL', 'Volle Rückerstattung');
 define('MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_BUTTON_TEXT_PARTIAL', 'Teilweise Rückerstattung');
-define('MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_TEXT_FULL_OR', '<br />... oder geben Sie  ');
+define('MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_TEXT_FULL_OR', '<br>... oder geben Sie  ');
 define('MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_PAYFLOW_TEXT', '');
 define('MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_PARTIAL_TEXT', 'den Teilbetrag hier ein und klicken Sie auf Teilweise Rückerstattung');
 define('MODULE_PAYMENT_BRAINTREE_ENTRY_REFUND_SUFFIX', '*Eine vollständige Rückerstattung kann nicht erfolgen, nachdem eine Teilrückerstattung beantragt wurde..<br />*Mehrere Teilrückerstattungen sind bis zum verbleibenden nicht rückerstatteten Saldo zulässig.');

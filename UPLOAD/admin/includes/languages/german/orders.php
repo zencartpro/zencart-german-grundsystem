@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: orders.php 2022-02-04 18:57:14Z webchills $
+ * @version $Id: orders.php 2022-04-17 16:06:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Bestellungen');
@@ -17,7 +17,7 @@ define('HEADING_TITLE_SEARCH_ALL','Suche: ');
 define('HEADING_TITLE_SEARCH_PRODUCTS','Artikelsuche: ');
 define('TEXT_RESET_FILTER', 'Suchfilter entfernen');
 
-define('TABLE_HEADING_PAYMENT_METHOD', 'Zahlungsart<br />Versandart');
+define('TABLE_HEADING_PAYMENT_METHOD', 'Zahlungsart<br>Versandart');
 define('TABLE_HEADING_ORDERS_ID', 'ID');
 
 define('TEXT_BILLING_SHIPPING_MISMATCH', 'Rechnungs- und Versandadresse stimmen nicht überein ');
@@ -89,7 +89,7 @@ define('EMAIL_TEXT_DATE_ORDERED', 'Datum der Bestellung:');
 define('EMAIL_TEXT_COMMENTS_UPDATE', '<strong>Anmerkung:</strong> ' . "\n\n");
 define('EMAIL_TEXT_STATUS_UPDATED', 'Ihr Bestellstatus wurde aktualisiert.' . "\n\n");
 define('EMAIL_TEXT_STATUS_LABEL', '<strong>Neuer Status:</strong> %s' . "\n\n");
-define('EMAIL_TEXT_STATUS_PLEASE_REPLY', 'Wenn Sie noch Fragen haben, wenden Sie sich bitte an diese E-Mail Adresse <a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS . '">' . STORE_OWNER_EMAIL_ADDRESS . '</a>.<br />' . "\n");
+define('EMAIL_TEXT_STATUS_PLEASE_REPLY', 'Wenn Sie noch Fragen haben, wenden Sie sich bitte an diese E-Mail Adresse <a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS . '">' . STORE_OWNER_EMAIL_ADDRESS . '</a>.<br>' . "\n");
 
 define('ERROR_ORDER_DOES_NOT_EXIST', 'FEHLER: Die Bestellung existiert nicht.');
 define('SUCCESS_ORDER_UPDATED', 'Die Bestellung wurde aktualisiert.');
@@ -124,10 +124,10 @@ define('TEXT_DELETE_CVV_FROM_DATABASE', 'Lösche Kreditkartenprüfziffer aus der
 define('TEXT_DELETE_CVV_REPLACEMENT', 'Gelöscht');
 define('TEXT_MASK_CC_NUMBER','Diese Zahl verdecken');
 
-define('TEXT_INFO_EXPIRED_DATE', 'Ablaufdatum:<br />');
-define('TEXT_INFO_EXPIRED_COUNT', 'Ablaufzähler:<br />');
+define('TEXT_INFO_EXPIRED_DATE', 'Ablaufdatum:<br>');
+define('TEXT_INFO_EXPIRED_COUNT', 'Ablaufzähler:<br>');
 
-define('TABLE_HEADING_CUSTOMER_COMMENTS', 'Kunden<br />Kommentare');
+define('TABLE_HEADING_CUSTOMER_COMMENTS', 'Kunden<br>Kommentare');
 define('TEXT_COMMENTS_YES', 'Kundenkommentare - JA');
 define('TEXT_COMMENTS_NO', 'Kundenkommentare - NEIN');
 define('TEXT_CUSTOMER_LOOKUP', '<i class="fa fa-search"></i> Kunden ansehen');

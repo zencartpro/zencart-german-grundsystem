@@ -1,11 +1,10 @@
 <?php
 /**
-
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: display_logs.php 2021-12-26 11:49:16Z webchills $
+ * @version $Id: display_logs.php 2022-04-17 16:49:16Z webchills $
  */
 define('HEADING_TITLE', 'Logfiles anzeigen');
 define('TABLE_HEADING_FILENAME', 'Dateiname');
@@ -41,7 +40,7 @@ define('TEXT_LARGEST', 'largest');
 // %6$s ... The "excluded" prefixes for the log-files displayed.
 //
 $imageName = zen_image(DIR_WS_IMAGES . 'icon_info.gif', ICON_INFO_VIEW);
-define('TEXT_INSTRUCTIONS', '<br /><br />Die Dateien können entweder in aufsteigender oder absteigender Reihenfolge nach dem letzten Änderungsdatum sortiert werden, indem Sie auf den <em>' . TABLE_HEADING_MODIFIED . '</em> Link klicken. Klicken Sie auf das ' . $imageName . ' Infosymbol, um den Inhalt der jeweiligen Datei anzuzeigen.  Es werden nur die ersten %u bytes der Datei ausgelesen; falls das Logfilesehr gross ist, wird seine Dateigröße <span class="bigfile">rot</span> hervorgehoben.<br /><br />Anklicken des Buttons <strong>Alle löschen</strong> löscht alle Logfiles der aktuellen Ansicht. Anklicken des Buttons <strong>Ausgewählte löschen</strong> löscht nur die angekreuzten Logfiles.<br /><br />Einstellungen zur Logfileanzeige auf dieser Seite können Sie unter Konfiguration > Protokollierung vornehmen.<br><br>Derzeitige Ansicht: %s %u von %u Logfiles.<br />');
+define('TEXT_INSTRUCTIONS', '<br><br>Die Dateien können entweder in aufsteigender oder absteigender Reihenfolge nach dem letzten Änderungsdatum sortiert werden, indem Sie auf den <em>' . TABLE_HEADING_MODIFIED . '</em> Link klicken. Klicken Sie auf das ' . $imageName . ' Infosymbol, um den Inhalt der jeweiligen Datei anzuzeigen.  Es werden nur die ersten %u bytes der Datei ausgelesen; falls das Logfilesehr gross ist, wird seine Dateigröße <span class="bigfile">rot</span> hervorgehoben.<br><br>Anklicken des Buttons <strong>Alle löschen</strong> löscht alle Logfiles der aktuellen Ansicht. Anklicken des Buttons <strong>Ausgewählte löschen</strong> löscht nur die angekreuzten Logfiles.<br><br>Einstellungen zur Logfileanzeige auf dieser Seite können Sie unter Konfiguration > Protokollierung vornehmen.<br><br>Derzeitige Ansicht: %s %u von %u Logfiles.<br>');
 define('JS_MESSAGE_DELETE_ALL_CONFIRM', 'Wollen Sie diese \'+n+\' Dateien wirklich löschen?');
 define('JS_MESSAGE_DELETE_SELECTED_CONFIRM', 'Wollen Sie die ausgewählten Dateien wirklich löschen?');
 define('WARNING_NOT_SECURE','<span class="errorText">HINWEIS: Sie haben SSL nicht aktiviert. Der Inhalt der Logfiles, die Sie über diese Seite anzeigen wird nicht verschlüsselt übertragen, das stellt ein Sicherheitsrisiko dar!</span>');

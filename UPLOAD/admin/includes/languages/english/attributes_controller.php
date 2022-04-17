@@ -1,6 +1,5 @@
 <?php
 /**
-
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
@@ -85,12 +84,12 @@ define('TABLE_TEXT_MAX_COUNT_SHORT', 'Max:');
   define('TEXT_ATTRIBUTES_IMAGE_DIR','Attributes Image Directory:');
 
   define('TEXT_ATTRIBUTES_FLAGS','Attribute Flags:');
-  define('TEXT_ATTRIBUTES_DISPLAY_ONLY', 'Used For<br />Display Purposes Only:');
-  define('TEXT_ATTRIBUTES_IS_FREE', 'Attribute is Free<br />When Product is Free:');
-  define('TEXT_ATTRIBUTES_DEFAULT', 'Default Attribute<br />to be Marked Selected:');
-  define('TEXT_ATTRIBUTE_IS_DISCOUNTED', 'Apply Discounts Used<br />by Product Special/Sale:');
-  define('TEXT_ATTRIBUTE_PRICE_BASE_INCLUDED','Include in Base Price<br />When Priced by Attributes');
-  define('TEXT_ATTRIBUTES_REQUIRED','Attribute Required<br />for Text<br />or File:');
+  define('TEXT_ATTRIBUTES_DISPLAY_ONLY', 'Used For<br>Display Purposes Only:');
+  define('TEXT_ATTRIBUTES_IS_FREE', 'Attribute is Free<br>When Product is Free:');
+  define('TEXT_ATTRIBUTES_DEFAULT', 'Default Attribute<br>to be Marked Selected:');
+  define('TEXT_ATTRIBUTE_IS_DISCOUNTED', 'Apply Discounts Used<br>by Product Special/Sale:');
+  define('TEXT_ATTRIBUTE_PRICE_BASE_INCLUDED','Include in Base Price<br>When Priced by Attributes');
+  define('TEXT_ATTRIBUTES_REQUIRED','Attribute Required<br>for Text<br>or File:');
 
   define('LEGEND_BOX','Legend:');
   define('LEGEND_KEYS','OFF/ON');
@@ -101,7 +100,7 @@ define('TABLE_TEXT_MAX_COUNT_SHORT', 'Max:');
   define('LEGEND_ATTRIBUTE_PRICE_BASE_INCLUDED','Base Price');
   define('LEGEND_ATTRIBUTES_REQUIRED','Required');
   define('LEGEND_ATTRIBUTES_IMAGES','Images');
-  define('LEGEND_ATTRIBUTES_DOWNLOAD','Valid/Invalid<br />filename');
+  define('LEGEND_ATTRIBUTES_DOWNLOAD','Valid/Invalid<br>filename');
 
   
   define('TEXT_NO_PRODUCTS_SELECTED','No Product Selected');
@@ -111,8 +110,8 @@ define('TABLE_TEXT_MAX_COUNT_SHORT', 'Max:');
   
 
   define('TEXT_INFO_HEADING_ATTRIBUTE_FEATURES','Attributes Changes for Products ID# ');
-  define('TEXT_INFO_ATTRIBUTES_FEATURES_DELETE','Delete <strong>ALL</strong> Product Attributes for:<br />');
-  define('TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO','Copy Attributes to another Product or to an entire Category from:<br />');
+  define('TEXT_INFO_ATTRIBUTES_FEATURES_DELETE','Delete <strong>ALL</strong> Product Attributes for:<br>');
+  define('TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO','Copy Attributes to another Product or to an entire Category from:<br>');
 
   
   define('TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO_PRODUCT','Copy Attributes to another <strong>Product</strong> from ID#');

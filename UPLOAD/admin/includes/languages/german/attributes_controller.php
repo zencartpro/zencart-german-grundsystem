@@ -1,11 +1,10 @@
 <?php
-/**
- 
+/** 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: attributes_controller.php 2022-02-09 09:48:14Z webchills $
+ * @version $Id: attributes_controller.php 2022-04-17 16:48:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Attribut Manager: ');
@@ -84,13 +83,13 @@ define('TEXT_OPTION_VALUE_MAX','Maximale Länge:');
 define('TEXT_ATTRIBUTES_IMAGE','Muster des Attributsbildes:');
 define('TEXT_ATTRIBUTES_IMAGE_DIR','Verzeichnis des Attributsbildes:');
 
-define('TEXT_ATTRIBUTES_FLAGS','Attributs-<br />kennzeichen:');
-define('TEXT_ATTRIBUTES_DISPLAY_ONLY','Nur zur<br />Darstellung benötigt:');
-define('TEXT_ATTRIBUTES_IS_FREE','Attribut ist kostenlos<br />wenn der Artikel kostenlos ist:');
-define('TEXT_ATTRIBUTES_DEFAULT','Attribut, welches standardmäßig<br />markiert werden soll:');
-define('TEXT_ATTRIBUTE_IS_DISCOUNTED','Rabatte verwenden die vom<br />Artikel verwendet werden:');
-define('TEXT_ATTRIBUTE_PRICE_BASE_INCLUDED','Basispreis inkludieren<br />bei "Preis per Attribut":');
-define('TEXT_ATTRIBUTES_REQUIRED', 'Attribute benötigt<br />für Text:');
+define('TEXT_ATTRIBUTES_FLAGS','Attributs-<br>kennzeichen:');
+define('TEXT_ATTRIBUTES_DISPLAY_ONLY','Nur zur<br>Darstellung benötigt:');
+define('TEXT_ATTRIBUTES_IS_FREE','Attribut ist kostenlos<br>wenn der Artikel kostenlos ist:');
+define('TEXT_ATTRIBUTES_DEFAULT','Attribut, welches standardmäßig<br>markiert werden soll:');
+define('TEXT_ATTRIBUTE_IS_DISCOUNTED','Rabatte verwenden die vom<br>Artikel verwendet werden:');
+define('TEXT_ATTRIBUTE_PRICE_BASE_INCLUDED','Basispreis inkludieren<br>bei "Preis per Attribut":');
+define('TEXT_ATTRIBUTES_REQUIRED', 'Attribute benötigt<br>für Text:');
 
 define('LEGEND_BOX', 'Legende:');
 define('LEGEND_KEYS', 'AUS/AN');
@@ -101,7 +100,7 @@ define('LEGEND_ATTRIBUTE_IS_DISCOUNTED', 'Ermäßigt');
 define('LEGEND_ATTRIBUTE_PRICE_BASE_INCLUDED', 'Basispreis');
 define('LEGEND_ATTRIBUTES_REQUIRED', 'Benötigt');
 define('LEGEND_ATTRIBUTES_IMAGES', 'Bilder');
-define('LEGEND_ATTRIBUTES_DOWNLOAD', 'Gültiger/Ungültiger<br />Dateiname');
+define('LEGEND_ATTRIBUTES_DOWNLOAD', 'Gültiger/Ungültiger<br>Dateiname');
 
 
 define('TEXT_NO_PRODUCTS_SELECTED','Kein Artikel ausgewählt');
@@ -111,8 +110,8 @@ define('TEXT_PRODUCTS_ID','Artikel ID#');
 
 
 define('TEXT_INFO_HEADING_ATTRIBUTE_FEATURES','Attribut für Artikel ID# geändert');
-define('TEXT_INFO_ATTRIBUTES_FEATURES_DELETE','<strong>ALLE</strong> Artikelattribute für diesen Artikel löschen:<br />');
-define('TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO','Attribute von einem anderen Artikel oder von einer ganzen Kategorie kopieren:<br />');
+define('TEXT_INFO_ATTRIBUTES_FEATURES_DELETE','<strong>ALLE</strong> Artikelattribute für diesen Artikel löschen:<br>');
+define('TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO','Attribute von einem anderen Artikel oder von einer ganzen Kategorie kopieren:<br>');
 
 
 define('TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO_PRODUCT','Kopiere Attribute zu einem anderen<strong>Artikel</strong> von ID#');

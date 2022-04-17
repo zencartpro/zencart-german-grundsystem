@@ -1,11 +1,10 @@
 <?php
-/**
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
- * Zen Cart German Version - www.zen-cart-pro.at
- * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_price_manager.php 734 2021-10-25 19:49:16Z webchills $
- */
+/** 
+* @copyright Copyright 2003-2022 Zen Cart Development Team
+* Zen Cart German Version - www.zen-cart-pro.at
+* @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
+* @version $Id: products_price_manager.php 2022-04-17 16:49:16Z webchills $
+*/
 
 define('HEADING_TITLE', 'Products Price Manager');
 define('HEADING_TITLE_PRODUCT_SELECT','Please select a Category with Products to display the Pricing Information of ...');
@@ -31,21 +30,21 @@ define('TEXT_PRODUCT_AVAILABLE', 'Enabled');
 define('TEXT_PRODUCT_NOT_AVAILABLE', 'Disabled');
 
 define('TEXT_PRODUCT_INFO_NONE', 'Please select a Product from above ...');
-  define('TEXT_PRODUCT_IS_FREE','Product is Free:');
-  define('TEXT_PRODUCTS_IS_FREE_EDIT','<br />*Product marked FREE');
-  define('TEXT_PRODUCT_IS_CALL','Call for Price:');
-  define('TEXT_PRODUCTS_IS_CALL_EDIT','<br />*Product marked CALL FOR PRICE');
-  define('TEXT_PRODUCTS_PRICED_BY_ATTRIBUTES','Priced by Attributes:');
-  define('TEXT_PRODUCT_IS_PRICED_BY_ATTRIBUTE','Yes');
-  define('TEXT_PRODUCT_NOT_PRICED_BY_ATTRIBUTE','No');
-  define('TEXT_PRODUCTS_PRICED_BY_ATTRIBUTES_EDIT','<br />*Display price will include lowest group attributes prices plus price');
-  define('TEXT_PRODUCTS_MIXED','Qty Min/Unit Mix:');
-  define('TEXT_PRODUCTS_MIXED_DISCOUNT_QUANTITY', 'Discount Qty Applies<br />to Mixed Attributes');
+define('TEXT_PRODUCT_IS_FREE','Product is Free:');
+define('TEXT_PRODUCTS_IS_FREE_EDIT','<br>*Product marked FREE');
+define('TEXT_PRODUCT_IS_CALL','Call for Price:');
+define('TEXT_PRODUCTS_IS_CALL_EDIT','<br>*Product marked CALL FOR PRICE');
+define('TEXT_PRODUCTS_PRICED_BY_ATTRIBUTES','Priced by Attributes:');
+define('TEXT_PRODUCT_IS_PRICED_BY_ATTRIBUTE','Yes');
+define('TEXT_PRODUCT_NOT_PRICED_BY_ATTRIBUTE','No');
+define('TEXT_PRODUCTS_PRICED_BY_ATTRIBUTES_EDIT','<br>*Display price will include lowest group attributes prices plus price');
+define('TEXT_PRODUCTS_MIXED','Qty Min/Unit Mix:');
+define('TEXT_PRODUCTS_MIXED_DISCOUNT_QUANTITY', 'Discount Qty Applies<br>to Mixed Attributes');
 
-  define('TEXT_PRODUCTS_QUANTITY_MIN_RETAIL','Qty Min:');
-  define('TEXT_PRODUCTS_QUANTITY_UNITS_RETAIL','Qty Units:');
-  define('TEXT_PRODUCTS_QUANTITY_MAX_RETAIL','Qty Max:');
-  define('TEXT_PRODUCTS_QUANTITY_MAX_RETAIL_EDIT','0= Unlimited<br />1= No Qty Box/Max Value');
+define('TEXT_PRODUCTS_QUANTITY_MIN_RETAIL','Qty Min:');
+define('TEXT_PRODUCTS_QUANTITY_UNITS_RETAIL','Qty Units:');
+define('TEXT_PRODUCTS_QUANTITY_MAX_RETAIL','Qty Max:');
+define('TEXT_PRODUCTS_QUANTITY_MAX_RETAIL_EDIT','0= Unlimited<br>1= No Qty Box/Max Value');
 
 define('TEXT_FEATURED_PRODUCT_INFO', 'Featured Product Info:');
 define('TEXT_FEATURED_PRODUCT', 'Product:');
@@ -81,10 +80,10 @@ define('TEXT_INFO_STATUS_CHANGE', 'Status Change:');
 define('TEXT_INFO_HEADING_DELETE_FEATURED', 'Delete Featured');
 define('TEXT_INFO_DELETE_INTRO', 'Are you sure you want to delete the featured product?');
 
-  define('TEXT_ATTRIBUTES_INSERT_INFO', '<strong>Define the Attribute Settings then press Insert to apply</strong>');
-  define('TEXT_PRODUCTS_PRICE', 'Products Price: ');
-  define('TEXT_FREE', 'FREE');
-  define('TEXT_CALL_FOR_PRICE', 'Call for Price');
+define('TEXT_ATTRIBUTES_INSERT_INFO', '<strong>Define the Attribute Settings then press Insert to apply</strong>');
+define('TEXT_PRODUCTS_PRICE', 'Products Price: ');
+define('TEXT_FREE', 'FREE');
+define('TEXT_CALL_FOR_PRICE', 'Call for Price');
 
 define('TEXT_ADD_ADDITIONAL_DISCOUNT', 'Add ' . DISCOUNT_QTY_ADD . ' Blank Qty Discounts:');
 define('TEXT_BLANKS_INFO','All 0 Quantity Discounts will be removed when Updated');
@@ -96,8 +95,8 @@ define('TEXT_PRODUCTS_DISCOUNT_PRICE','Discount Value');
 
 define('TEXT_PRODUCTS_DISCOUNT_PRICE_EACH','Calculate Price:');
 define('TEXT_PRODUCTS_DISCOUNT_PRICE_EXTENDED','Extended Price:');
-define('TEXT_PRODUCTS_DISCOUNT_PRICE_EACH_TAX','Calculate<br />Price: &nbsp; Taxed:');
-define('TEXT_PRODUCTS_DISCOUNT_PRICE_EXTENDED_TAX','Extended<br />Price: &nbsp; Taxed:');
+define('TEXT_PRODUCTS_DISCOUNT_PRICE_EACH_TAX','Calculate<br>Price: &nbsp; Taxed:');
+define('TEXT_PRODUCTS_DISCOUNT_PRICE_EXTENDED_TAX','Extended<br>Price: &nbsp; Taxed:');
 
 define('TEXT_DISCOUNT_TYPE_INFO', 'Product Discount Info:');
 define('TEXT_DISCOUNT_TYPE','Discount Type:');
