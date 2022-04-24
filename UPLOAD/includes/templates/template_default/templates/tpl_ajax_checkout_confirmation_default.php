@@ -10,13 +10,23 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_ajax_checkout_confirmation_default.php 2022-04-09 08:31:16Z webchills $
+ * @version $Id: tpl_ajax_checkout_confirmation_default.php 2022-04-24 14:56:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="checkoutConfirmDefault">
 
 <h1 id="checkoutConfirmDefaultHeading"><?php echo HEADING_TITLE; ?></h1>
-<div id="conditionslaststep"><?php echo TEXT_ZUSATZ_SCHRITT3; ?><br><?php echo TEXT_CONDITIONS_ACCEPTED_IN_LAST_STEP; ?></div>
+<div id="conditionslaststep">
+<?php
+    if (defined('MODULE_PAYMENT_BRAINTREE_STATUS') && MODULE_PAYMENT_BRAINTREE_STATUS == 'True') {
+?>
+<?php echo BRAINTREE_MESSAGE_PLEASE_CONFIRM_ORDER;?>
+<br><br>
+<?php
+    }
+?>
+<?php echo TEXT_ZUSATZ_SCHRITT3; ?><br><?php echo TEXT_CONDITIONS_ACCEPTED_IN_LAST_STEP; ?>
+</div>
 
 <?php if ($messageStack->size('redemptions') > 0) echo $messageStack->output('redemptions'); ?>
 <?php if ($messageStack->size('checkout_confirmation') > 0) echo $messageStack->output('checkout_confirmation'); ?>
