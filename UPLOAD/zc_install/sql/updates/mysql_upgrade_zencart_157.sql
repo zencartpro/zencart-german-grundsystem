@@ -9,7 +9,7 @@
 # * Zen Cart German Version - www.zen-cart-pro.at
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_upgrade_zencart_157.sql 2022-04-04 18:27:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_157.sql 2022-05-10 20:27:59Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -847,13 +847,12 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('Dieses Modul ist installiert', 'MODULE_ORDER_TOTAL_TOTAL_STATUS', 43, '', now(), now()),
 ('Sortierung', 'MODULE_ORDER_TOTAL_TOTAL_SORT_ORDER', 43, 'Sortierung der Anzeige', now(), now()),
 
-('Steuerklasse für das Einlösen von Aktionskupons', 'MODULE_ORDER_TOTAL_COUPON_TAX_CLASS', 43, 'Diese Steuerklasse beim Einlösen von Aktionskupons verwenden', now(), now()),
-('Inklusive Steuern', 'MODULE_ORDER_TOTAL_COUPON_INC_TAX', 43, 'Steuern in die Berechnung inkludieren', now(), now()),
-('Sortierung', 'MODULE_ORDER_TOTAL_COUPON_SORT_ORDER', 43, 'Sortierung der Anzeige', now(), now()),
-('Inklusive Versandkosten', 'MODULE_ORDER_TOTAL_COUPON_INC_SHIPPING', 43, 'Versandkosten in die Berechnung inkludieren', now(), now()),
+('Steuerklasse für das Einlösen von Aktionskupons', 'MODULE_ORDER_TOTAL_COUPON_TAX_CLASS', 43, 'Diese Steuerklasse beim Einlösen von Aktionskupons verwenden<br>empfohlene Voreinstellung: Normalsteuersatz<br>Nur wenn Sie hier einen Steuersatz auswählen, wird die Steuer korrekt berechnet und es kann bei Aktionskuponwerten mit Bruttopreisen gearbeitet werden.', now(), now()),
+('Inklusive Steuern', 'MODULE_ORDER_TOTAL_COUPON_INC_TAX', 43, 'Steuern in die Berechnung inkludieren<br>empfohlene Voreinstellung: false', now(), now()),
+('Sortierung', 'MODULE_ORDER_TOTAL_COUPON_SORT_ORDER', 43, 'Sortierreihenfolge<br>empfohlene Voreinstellung: 201', now(), now()),
+('Inklusive Versandkosten', 'MODULE_ORDER_TOTAL_COUPON_INC_SHIPPING', 43, 'Versandkosten in die Berechnung inkludieren<br>empfohlene Voreinstellung: false', now(), now()),
 ('Dieses Modul ist installiert', 'MODULE_ORDER_TOTAL_COUPON_STATUS', 43, '', now(), now()),
-('Steuern neu berechnen', 'MODULE_ORDER_TOTAL_COUPON_CALC_TAX', 43, 'Steuern neu berechnen', now(), now()),
-('Admin Demostatus', 'ADMIN_DEMO', 43, 'Soll die Admin Demofunktion aktiviert werden?<br />0= nein 1= ja', now(), now()),
+('Steuern neu berechnen', 'MODULE_ORDER_TOTAL_COUPON_CALC_TAX', 43, 'Steuern neu berechnen<br/>empfohlene Voreinstellung: Standard<br>Credit Note bedeutet, dass sämtliche Steuerausweisung bei Aktionskupons entfernt wird.', now(), now()),
 
 ('Artikeloptionstyp: Auswahltyp', 'PRODUCTS_OPTIONS_TYPE_SELECT', 43, 'Die Zahl repräsentiert den Auswahltyp der Artikeloptionen', now(), now()),
 ('Artikeloptionstyp: Text', 'PRODUCTS_OPTIONS_TYPE_TEXT', 43, 'Numerischer Wert des Textes des Artikeloptionstyps', now(), now()),
@@ -1262,7 +1261,7 @@ INSERT INTO product_type_layout_language (configuration_title, configuration_key
 #############
 
 REPLACE INTO product_type_layout_language (configuration_title , configuration_key , languages_id, configuration_description, last_modified, date_added) VALUES 
-('20220404', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Uebersetzungen', now(), now());
+('20220510', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Uebersetzungen', now(), now());
 
 #############
 
