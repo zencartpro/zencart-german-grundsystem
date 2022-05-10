@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: general.php 2022-04-17 16:45:33Z webchills $
+ * @version $Id: general.php 2022-05-10 21:52:33Z webchills $
  */
 
 ////
@@ -1594,7 +1594,7 @@ while (!$chk_sale_categories_all->EOF) {
  * Calculates Tax rounding the result
  */
   function zen_calculate_tax($price, $tax) {
-    return $price * $tax / 100;
+    return (float)$price * (float)$tax / 100;
   }
 
 /**
