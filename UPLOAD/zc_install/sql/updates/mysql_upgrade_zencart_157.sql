@@ -3,13 +3,11 @@
 # *
 # * @access private
 # * Zen Cart German Specific
-# * @package Installer
-# * @access private
 # * @copyright Copyright 2003-2022 Zen Cart Development Team
 # * Zen Cart German Version - www.zen-cart-pro.at
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_upgrade_zencart_157.sql 2022-05-10 20:27:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_157.sql 2022-05-12 08:56:59Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -33,6 +31,9 @@
 # * g. When done, you will be taken to the Finished page.
 #
 #####################################################
+
+# Set store to Down-For-Maintenance mode.  Must reset manually via admin after upgrade is done.
+UPDATE configuration set configuration_value = 'true' where configuration_key = 'DOWN_FOR_MAINTENANCE';
 
 # Fix greater than sign in query_builder 
 UPDATE query_builder SET query_name = 'Customers Dormant for 3+ months (Subscribers)' WHERE query_id = 3; 
@@ -285,7 +286,7 @@ INSERT IGNORE INTO configuration (configuration_title, configuration_key, config
 INSERT IGNORE INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Disabled Product Status for Search Engines', 'DISABLED_PRODUCTS_TRIGGER_HTTP200', 'false', 'When a product is marked Disabled (status=0) but is not deleted from the database, should Search Engines still show it as Available?<br>eg:<br>True = Return HTTP 200 response<br>False = Return HTTP 410<br>(Deleting it will return HTTP 404)<br><b>Default: false</b>', '9', '10', 'zen_cfg_select_option(array(\'true\', \'false\'),', now());
 
 
-### remove google analytics settings and configuration_group and admin page and table
+### remove google analytics settings and configuration_group and admin page
 
 DELETE FROM admin_pages WHERE page_key='configProdGoogleAnalytics';
 DELETE FROM admin_pages WHERE page_key='configGoogleAnalytics';
@@ -319,8 +320,6 @@ DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_ANALYTICS_D
 DELETE FROM configuration_language WHERE configuration_key = 'GOOGLE_ANALYTICS_CONVERSION_LABEL';
 
 DELETE FROM configuration_group WHERE configuration_group_title = 'Google Analytics';
-
-DROP TABLE IF EXISTS google_analytics_languages;
 
 ### New configuration_group spam protection since 157 
 
