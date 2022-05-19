@@ -1,5 +1,9 @@
 Zen Cart 1.5.7 deutsch 
 
+Version vom 20.05.2022
+
+#####################################################################################################################################
+
 Systemvoraussetzungen:
 
 Linux Server mit Apache 2.2 oder Apache 2.4 oder Nginx
@@ -16,41 +20,28 @@ MySQL höchstens: 8.0.x
 MariaDB mindestens 10.1
 MariaDB höchstens 10.5
 
-
 Empfohlen:
 Apache 2.4
 PHP 8.0.x
 MySQL 8.0.x
 
+#####################################################################################################################################
+
+Neuheiten in 1.5.7:
+* https://www.zen-cart-pro.at/knowledgebase/was-ist-neu-in-1-5-7/
+
+#####################################################################################################################################
+
+Neuinstallation:
 
 Aufruf des Installers immer mit der kompletten Adresse inklusive zc_install:
+z.B.
 https://www.meinshop.de/zc_install
 
-
 Detaillierte Installationsanleitung:
-https://installationsanleitung.zen-cart-pro.at
+* https://installationsanleitung.zen-cart-pro.at
 
-Vor der Installation Zugriffsrechte folgender Verzeichnisse/Dateien ändern:
-
-chmod 777
-/shop/cache
-/shop/cache/images
-/shop/cache/minify
-/shop/cache/rss
-/shop/images
-/shop/includes/languages/german/html_includes
-/shop/includes/languages/english/html_includes
-/shop/logs
-/shop/media
-/shop/pub
-/shop/admin/backups
-/shop/admin/images/graphs
-/zc_install/includes/nginx_conf
-
-chmod 666
-/zc_install/includes/nginx_conf/zencart_ngx_http.conf
-
-Wenn Mailbeez installiert werden soll, ist es nötig vor der Mailbeez Installation unter Tools > Mailbeez dem gesamten Unterordner mailhive und allen darin befindlichen Unterordnern und Dateien chmod 777 zu geben!
+#####################################################################################################################################
 
 Hinweise zu Error Logs unter PHP 8:
 Aufgrund des Override Systems für Sprachdateien in Zen Cart 1.5.x ist es unvermeidlich, dass es "doppelte" Sprachdefinitionen gibt.
@@ -58,3 +49,44 @@ PHP 8 wird doppelte Sprachdefinitionen mit einem Logfile quittieren und darauf h
 Unter Konfiguration > Protokollierung/Logfiles ist daher beim Logfiles Level für Adminbereich und Frontend "IgnoreDups" voreingestellt. 
 Das sollte auch so bleiben, die Einstellung Yes führt zu unzähligen, völlig unnötigen Warning Logs
 
+#####################################################################################################################################
+
+Hilfe zur Konfiguration:
+* https://www.zen-cart-pro.at
+
+#####################################################################################################################################
+
+Updates von älteren Versionen:
+
+Detaillierte Updateanleitung:
+* https://updateanleitung.zen-cart-pro.at
+
+#####################################################################################################################################
+
+Erweiterungen
+
+Gut dokumentierte und gut getestete Zusatzmodule für die deutsche Zen Cart Version auf:
+* https://downloads.zen-cart-pro.at
+
+#####################################################################################################################################
+
+Newsletter
+
+Immer informiert über neue Versionen, Sicherheitspatches und neue Module:
+* https://newsletter.zen-cart-pro.at
+
+#####################################################################################################################################
+
+Unterstützen
+
+Die deutsche Zen Cart Version steht Ihnen kostenfrei im Rahmen der GNU General Public License zur Verfügung.
+Sie können diese Software kostenfrei benutzen, Änderungen vornehmen, etc.
+
+Da wir Ihnen diese Software kostenfrei zur Verfügung stellen, freuen wir uns über Spenden.
+Diese Spenden helfen uns, die Kosten für die Wartung, Updates und die stetige Weiterentwicklung dieser Software für Ihren Online-Shop zu decken.
+
+Spende für die Weiterentwicklung der deutschen Zen Cart Version:
+* https://spenden.zen-cart-pro.at
+
+Du bist Entwickler und möchtest helfen, die deutsche Zen Cart Version noch besser zu machen?
+Beteilige Dich auf Github.

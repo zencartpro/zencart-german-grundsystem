@@ -1,6 +1,7 @@
 ## Zen Cart deutsch
 
 Open Source Onlineshop System
+the art of e-commerce
 übersetzt, angepasst und erweitert zur Verwendung im deutschsprachigen Raum
 
 ## Hinweis
@@ -8,7 +9,7 @@ Open Source Onlineshop System
 Freigegebene getestete Versionen für den Einsatz in Livesystemen ausschließlich unter Releases herunterladen:
 * https://github.com/zencartpro/zencart-german-grundsystem/releases
 
-## Was ist Zen Cart
+## Was ist Zen Cart?
 
 Zen Cart ist eine kostenlose unter der GPL-Lizenz veröffentlichte Open-Source Shopsoftware. Das System wird in den USA entwickelt, die amerikanische Website dazu ist www.zen-cart.com.
 Die amerikanische Zen Cart Version berücksichtigt viele rechtliche Erfordernisse nicht, denen ein Onlineshop im deutschsprachigen Raum unterworfen ist. 
@@ -24,12 +25,34 @@ Die deutsche Zen Cart Version ist eine Modifikation der amerikanischen Zen Cart 
 * Die amerikanische Version enthält keinerlei HTML Editor mehr, in der deutschen Version ist der CKEditor bereits integriert. Alternativ ist auch der Tiny MCE Editor integriert.
 * Weitere Bugfixes und Verbesserungen, die von den Amerikanern nicht übernommen wurden
 * Die amerikanische Version ist extrem abgespeckt und stellt weiterführende Funktionalitäten durch zusätzliche Module bereit, die erst mühsam manuell installiert werden müssen. Zahlreiche häufig genutze Erweiterungen und eigene Entwicklungen sind in der deutschen Zen Cart Version bereits vorinstalliert.
-* Weitere für die deutsche Zen Cart Version angepasste Erweiterungen stehen hier auf Github und in unserem Downloadbereich zur Verfügung.
+* Weitere für die deutsche Zen Cart Version angepasste Erweiterungen stehen hier auf Github zur Verfügung.
 
-## Systemvoraussetzungen / Installationsanleitung / Konfiguration
+## Systemvoraussetzungen / Installationsanleitung / Updateanleitung / Konfiguration
 
-Umfangreiche Onlinedokumentation dazu auf:
+Umfangreiche Onlinedokumentation und Knowledgebase auf:
 * https://www.zen-cart-pro.at
+
+Installationsanleitung:
+* https://installationsanleitung.zen-cart-pro.at
+
+Updateanleitung:
+* https://updateanleitung.zen-cart-pro.at
+
+Sicherheitsempfehlungen:
+* https://sicherheit.zen-cart-pro.at
+
+Neuheiten in Version 1.5.7:
+* https://www.zen-cart-pro.at/knowledgebase/was-ist-neu-in-1-5-7/
+
+## Erweiterungen
+
+Gut dokumentierte und gut getestete Zusatzmodule für die deutsche Zen Cart Version auf:
+* https://downloads.zen-cart-pro.at
+
+## Newsletter
+
+Immer informiert über neue Versionen, Sicherheitspatches und neue Module:
+* https://newsletter.zen-cart-pro.at
 
 ## Unterstützen
 
@@ -37,7 +60,7 @@ Die deutsche Zen Cart Version steht Ihnen kostenfrei im Rahmen der GNU General P
 Sie können diese Software kostenfrei benutzen, Änderungen vornehmen, etc.
 
 Da wir Ihnen diese Software kostenfrei zur Verfügung stellen, freuen wir uns über Spenden.
-Diese Spenden helfen uns, die Kosten für die Wartung, Upgrades, Updates und die stetige Weiterentwicklung dieser Software für Ihren Online-Shop zu decken.
+Diese Spenden helfen uns, die Kosten für die Wartung, Updates und die stetige Weiterentwicklung dieser Software für Ihren Online-Shop zu decken.
 
 Spende für die Weiterentwicklung der deutschen Zen Cart Version:
 * https://spenden.zen-cart-pro.at
