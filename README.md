@@ -1,8 +1,8 @@
 ## Zen Cart deutsch
 
-Open Source Onlineshop System
-the art of e-commerce
-übersetzt, angepasst und erweitert zur Verwendung im deutschsprachigen Raum
+* Open Source Onlineshop System
+* the art of e-commerce
+* übersetzt, angepasst und erweitert zur Verwendung im deutschsprachigen Raum
 
 ## Hinweis
 
@@ -27,7 +27,7 @@ Die deutsche Zen Cart Version ist eine Modifikation der amerikanischen Zen Cart 
 * Die amerikanische Version ist extrem abgespeckt und stellt weiterführende Funktionalitäten durch zusätzliche Module bereit, die erst mühsam manuell installiert werden müssen. Zahlreiche häufig genutze Erweiterungen und eigene Entwicklungen sind in der deutschen Zen Cart Version bereits vorinstalliert.
 * Weitere für die deutsche Zen Cart Version angepasste Erweiterungen stehen hier auf Github zur Verfügung.
 
-## Systemvoraussetzungen / Installationsanleitung / Updateanleitung / Konfiguration
+## Installationsanleitung / Updateanleitung / Konfiguration
 
 Umfangreiche Onlinedokumentation und Knowledgebase auf:
 * https://www.zen-cart-pro.at
