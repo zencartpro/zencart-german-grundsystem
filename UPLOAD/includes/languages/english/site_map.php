@@ -1,11 +1,11 @@
 <?php
 /**
- * @package languageDefines
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
- * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: site_map.php 2011-08-09 15:49:16Z hugo13 $
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0 
+ * @version $Id: site_map.php 2022-05-19 17:48:14Z webchills $
  */
 
 define('NAVBAR_TITLE', 'Site Map');
@@ -23,3 +23,5 @@ define('PAGE_ADVANCED_SEARCH', 'Advanced Search');
 define('PAGE_PRODUCTS_NEW', 'New Products');
 define('PAGE_SPECIALS', 'Specials');
 define('PAGE_REVIEWS', 'Reviews');
+define('PAGE_PRODUCTS_ALL', 'All Products');
+define('PAGE_FEATURED', 'Featured Products');
