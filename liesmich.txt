@@ -1,8 +1,4 @@
-Zen Cart 1.5.7 deutsch BETA
-
-Diese BETA ist rein zum TESTEN einer Neuinstallation oder eines Updates gedacht.
-NICHT FÜR PRODUKTIVSYSTEME GEEIGNET
-NICHT FÜR IHREN LIVESHOP GEEIGNET
+Zen Cart 1.5.7 deutsch 
 
 Systemvoraussetzungen:
 
@@ -11,7 +7,7 @@ Bei Nginx müssen die bei Apache durch .htaccess Unterstützung gewährleisteten
 Windows Server/IIS werden nicht unterstützt
 
 PHP
-mindestens: PHP 7.4.x
+mindestens: PHP 7.3.x
 höchstens: PHP 8.0.x
 
 MySQL oder MariaDB
@@ -27,8 +23,12 @@ PHP 8.0.x
 MySQL 8.0.x
 
 
-Installation grundsätzlich so wie in der 1.5.6 Dokumentation beschrieben:
-https://www.zen-cart-pro.at/documentation.html#section-2
+Aufruf des Installers immer mit der kompletten Adresse inklusive zc_install:
+https://www.meinshop.de/zc_install
+
+
+Detaillierte Installationsanleitung:
+https://installationsanleitung.zen-cart-pro.at
 
 Vor der Installation Zugriffsrechte folgender Verzeichnisse/Dateien ändern:
 
@@ -52,27 +52,9 @@ chmod 666
 
 Wenn Mailbeez installiert werden soll, ist es nötig vor der Mailbeez Installation unter Tools > Mailbeez dem gesamten Unterordner mailhive und allen darin befindlichen Unterordnern und Dateien chmod 777 zu geben!
 
-Diese BETA ist rein zum TESTEN einer Neuinstallation oder eines Updates gedacht.
-NICHT FÜR PRODUKTIVSYSTEME GEEIGNET
-NICHT FÜR IHREN LIVESHOP GEEIGNET
-
-Am besten mit den Demodaten unter PHP 8.0.x installieren
-Shopfunktionen und Adminfunktionen testen
-Achten auf:
-- falsche/fehlende Übersetzungen
-- weiße Seiten
-- Error Logs
-- Funktionsfehler
-
 Hinweise zu Error Logs unter PHP 8:
 Aufgrund des Override Systems für Sprachdateien in Zen Cart 1.5.x ist es unvermeidlich, dass es "doppelte" Sprachdefinitionen gibt.
 PHP 8 wird doppelte Sprachdefinitionen mit einem Logfile quittieren und darauf hinweisen.
 Unter Konfiguration > Protokollierung/Logfiles ist daher beim Logfiles Level für Adminbereich und Frontend "IgnoreDups" voreingestellt. 
 Das sollte auch so bleiben, die Einstellung Yes führt zu unzähligen, völlig unnötigen Warning Logs
-
-Fehler bitte - falls Github Account vorhanden - als Issues auf Github posten:
-https://github.com/zencartpro/zencart-german-grundsystem/issues
-Ansonsten bitte im Beta Test Thread im Forum posten.
-
-Danke fürs Testen!
 

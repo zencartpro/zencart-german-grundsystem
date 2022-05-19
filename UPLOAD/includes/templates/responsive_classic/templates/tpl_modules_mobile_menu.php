@@ -2,18 +2,36 @@
 /**
  * Zen Cart German Specific
  * Module Template for responsive mobile support
- *
- 
+ * 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_mobile_menu.php 2022-04-08 21:33:58Z webchills $
+ * @version $Id: tpl_modules_mobile_menu.php 2022-05-19 07:33:58Z webchills $
  */
 ?>
 
 <nav id="menu">
-  <ul>
+   <ul>                  
+  <?php $show_language_selection = $db->Execute("SELECT * FROM " . TABLE_LAYOUT_BOXES . " WHERE `layout_template` = 'responsive_classic' AND `layout_box_name` = 'languages.php' AND `layout_box_status` = 1 ");
+  if ($show_language_selection->RecordCount() > 0) { 
+  $show_languages= false;
+  if (substr($current_page, 0, 8) != 'checkout') {
+    $show_languages= true;
+  }
+  if ($show_languages == true) {
+    if (!isset($lng) || (isset($lng) && !is_object($lng))) {
+      $lng = new language;
+  } ?>  
+  <li>   
+   <div id="mobilelanguages">
+  <?php foreach($lng->catalog_languages as $key => $value) {?>
+    <a href="<?php echo zen_href_link($_GET['main_page'], zen_get_all_get_params(array('language', 'currency')) . 'language=' . $key, $request_type);?>"><?php echo zen_image(DIR_WS_LANGUAGES .  $value['directory'] . '/images/' . $value['image'], $value['name']); ?></a>
+    <?php  } ?>
+   </div>
+  <?php  } ?> 
+  </li>  
+  <?php  } ?>   
     <li><?php echo '<a href="' . HTTP_SERVER . DIR_WS_CATALOG . '">'; ?><?php echo HEADER_TITLE_CATALOG; ?></a></li>
 <?php  if (DEFINE_CONTACT_US_STATUS <= 1) { ?>
     <li><a href="<?php echo zen_href_link(FILENAME_CONTACT_US, '', 'SSL'); ?>"><?php echo BOX_INFORMATION_CONTACT; ?></a></li>

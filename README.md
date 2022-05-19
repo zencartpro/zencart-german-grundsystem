@@ -26,10 +26,10 @@ Die deutsche Zen Cart Version ist eine Modifikation der amerikanischen Zen Cart 
 * Die amerikanische Version ist extrem abgespeckt und stellt weiterführende Funktionalitäten durch zusätzliche Module bereit, die erst mühsam manuell installiert werden müssen. Zahlreiche häufig genutze Erweiterungen und eigene Entwicklungen sind in der deutschen Zen Cart Version bereits vorinstalliert.
 * Weitere für die deutsche Zen Cart Version angepasste Erweiterungen stehen hier auf Github und in unserem Downloadbereich zur Verfügung.
 
-## Systemvoraussetzungen /Installationsanleitung / Konfiguration
+## Systemvoraussetzungen / Installationsanleitung / Konfiguration
 
 Umfangreiche Onlinedokumentation dazu auf:
-* https://www.zen-cart-pro.at/documentation.html
+* https://www.zen-cart-pro.at
 
 ## Unterstützen
 
@@ -37,16 +37,10 @@ Die deutsche Zen Cart Version steht Ihnen kostenfrei im Rahmen der GNU General P
 Sie können diese Software kostenfrei benutzen, Änderungen vornehmen, etc.
 
 Da wir Ihnen diese Software kostenfrei zur Verfügung stellen, freuen wir uns über Spenden.
-Diese Spenden helfen uns, die Kosten für die Wartung, Upgrades, Updates, den kostenlosen Support und die stetige Weiterentwicklung dieser Software für Ihren Online-Shop zu decken.
+Diese Spenden helfen uns, die Kosten für die Wartung, Upgrades, Updates und die stetige Weiterentwicklung dieser Software für Ihren Online-Shop zu decken.
 
 Spende für die Weiterentwicklung der deutschen Zen Cart Version:
-* https://donorbox.org/spende-fur-die-weiterentwicklung-der-deutschen-zen-cart-version
+* https://spenden.zen-cart-pro.at
 
 Du bist Entwickler und möchtest helfen, die deutsche Zen Cart Version noch besser zu machen?
 Beteilige Dich auf Github.
-
-## Aktuelles
-
-Aktuelle Release ist Zen Cart 1.5.6f deutsch vom 20.06.2021
-Die neue Version 1.5.7 mit PHP 8 Unterstützung ist derzeit im Betatest:
-* https://www.zen-cart-pro.at/forum/threads/14498-BETATEST-Zen-Cart-1-5-7-deutsch
