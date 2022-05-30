@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: customers.php 2022-04-09 16:43:51Z webchills $
+ * @version $Id: customers.php 2022-05-30 16:11:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -468,7 +468,7 @@ if (zen_not_null($action)) {
             var customers_telephone = document.customers.customers_telephone.value;
 
   <?php if (ACCOUNT_GENDER == 'true') { ?>
-              if (document.customers.customers_gender[0].checked || document.customers.customers_gender[1].checked) {
+              if (document.customers.customers_gender[0].checked || document.customers.customers_gender[1].checked || document.customers.customers_gender[2].checked) {
               } else {
                   error_message = error_message + '<?php echo JS_GENDER; ?>';
                   error = 1;
