@@ -169,7 +169,7 @@ define("CENTINEL_ERROR_CODE_4243", "4243");
 define("CENTINEL_ERROR_CODE_4243_DESC", "Account Konfigurationsproblem mit Cardinal Centinel. Bitte wenden Sie sich umgehend an Ihren Cardinalvertreter unter implement@cardinalcommerce.com und teilen Sie ihm mit, dass Sie die Fehlernummer 4243 erhalten, wenn Sie versuchen, 3D Secure mit Ihrer Zen Cart-Site und Ihrem Braintree-Account zu verwenden, und dass Sie das Prozessormodul in Ihrem Account aktiviert haben müssen. Ihre Transaktionen werden erst dann durch eine Rückbuchungspflicht geschützt, wenn dieses Problem behoben ist.");
 
 // BRAINTREE ERROR CODES
-define('BRAINTREE_ERROR_CODE_2000', 'Do Not Honor');
+define('BRAINTREE_ERROR_CODE_2000', 'Ihre Bank ist nicht bereit, die Transaktion anzunehmen. Es hat keine Zahlung stattgefunden. Bitte wenden Sie sich an Ihre Bank.');
 define('BRAINTREE_ERROR_CODE_2001', 'Unzureichendes Guthaben');
 define('BRAINTREE_ERROR_CODE_2002', 'Limit überschritten');
 define('BRAINTREE_ERROR_CODE_2003', 'Aktivitätslimit des Karteninhabers überschritten');
