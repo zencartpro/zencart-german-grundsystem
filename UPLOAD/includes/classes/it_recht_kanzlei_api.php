@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: it_recht_kanzlei_api.php 2022-04-17 08:52:51Z webchills $
+ * @version $Id: it_recht_kanzlei_api.php 2022-08-21 10:12:51Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -30,7 +30,10 @@ class it_recht_kanzlei {
     // Catch errors - no data sent
     (string)$post_xml = $post_xml;
     
-    
+    // read POST-XML and remove form slashes
+    if(get_magic_quotes_gpc()){
+      $post_xml = stripslashes($post_xml);
+    }
     // Post XML from other system
     if(trim($post_xml) == ''){
       $this->return_error('12');
@@ -337,17 +340,34 @@ class it_recht_kanzlei {
   }
 
   function charset_decode_utf_8($string) {
+    // remove problem sign
+    $string = str_replace('&thinsp;', ' ', $string);
     if (!preg_match("/[\200-\237]/", $string) && !preg_match("/[\241-\377]/", $string)) {
       return $string;
     }
 
     // decode three byte unicode characters
-    $string = preg_replace("/([\340-\357])([\200-\277])([\200-\277])/e", "'&#'.((ord('\\1')-224)*4096 + (ord('\\2')-128)*64 + (ord('\\3')-128)).';'", $string);
+    $string = preg_replace_callback(
+      "/([\340-\357])([\200-\277])([\200-\277])/",
+      function ($m) {
+        return '&#'.((ord($m[1])-224)*4096 + (ord($m[2])-128)*64 + (ord($m[3])-128)).';';
+      },
+      $string
+    );
 
     // decode two byte unicode characters
-    $string = preg_replace("/([\300-\337])([\200-\277])/e", "'&#'.((ord('\\1')-192)*64+(ord('\\2')-128)).';'", $string);
-
-    return html_entity_decode($string, ENT_COMPAT, 'ISO-8859-15');
+    $string = preg_replace_callback(
+      "/([\300-\337])([\200-\277])/",
+      function ($m) {
+        return '&#'.((ord($m[1])-192)*64+(ord($m[2])-128)).';';
+      },
+      $string
+    );
+    
+    // remove problem sign
+    $string = str_replace('&thinsp;', ' ', $string);
+    
+    return html_entity_decode($string, ENT_COMPAT, ((DB_SERVER_CHARSET == 'utf8') ? 'UTF-8' : ''));
   }
     
   // return error and end script
