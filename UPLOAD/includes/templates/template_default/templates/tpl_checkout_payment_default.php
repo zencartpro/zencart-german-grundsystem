@@ -9,7 +9,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_checkout_payment_default.php 2022-04-09 08:57:42Z webchills $
+ * @version $Id: tpl_checkout_payment_default.php 2022-08-28 14:09:42Z webchills $
  */
 ?>
 <?php echo $payment_modules->javascript_validation(); ?>
@@ -201,7 +201,13 @@
 <fieldset>
 <legend><?php echo TABLE_HEADING_CONDITIONS; ?></legend>
 <div><?php echo TEXT_CONDITIONS_DESCRIPTION;?></div>
+<?php if (!$payment_modules->in_special_checkout()) { ?>
 <?php echo  zen_draw_checkbox_field('conditions', '1', false, 'id="conditions"');?>
+<?php	} else { ?>
+<?php echo  zen_draw_checkbox_field('conditions', '1', true, 'id="conditions"');?>
+<?php
+}
+?>
 <label class="checkboxLabel" for="conditions"><?php echo TEXT_CONDITIONS_CONFIRM; ?></label>
 </fieldset>
 <?php
