@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypalwpp.php 2022-02-05 08:38:14Z webchills $
+ * @version $Id: paypalwpp.php 2022-08-28 17:52:14Z webchills $
  */
 /**
  * load the communications layer code
@@ -94,12 +94,6 @@ class paypalwpp extends base {
    */
   var $fmfResponse = '';
   var $fmfErrors = array();
-  /**
-   * Flag to enable the modern in-context checkout.
-   * https://developer.paypal.com/docs/classic/express-checkout/in-context/integration/
-   * @var boolean
-   */
-  var $use_incontext_checkout = true;
   /**
    * class constructor
    */
@@ -407,6 +401,8 @@ if (false) { // disabled until clarification is received about coupons in PayPal
 
       $this->notify('NOTIFY_PAYPALWPP_BEFORE_DOEXPRESSCHECKOUT');
 
+      // in case of funding error, set the redirect URL which is used by the _errorHandler
+      $this->ec_redirect_url = $this->getPayPalLoginServer() . "?cmd=_express-checkout&token=" . $_SESSION['paypal_ec_token'] . "&useraction=continue";
       $response = $doPayPal->DoExpressCheckoutPayment($_SESSION['paypal_ec_token'],
                                                       $_SESSION['paypal_ec_payer_id'],
                                                       $options);
@@ -511,7 +507,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
                           'mc_gross' => (float)$this->amt,
                           'mc_fee' => (float)urldecode($this->feeamt),
                           'mc_currency' => $this->responsedata['PAYMENTINFO_0_CURRENCYCODE'],
-                          'settle_amount' => (float)(isset($this->responsedata['PAYMENTINFO_0_SETTLEAMT']) ? urldecode($this->responsedata['PAYMENTINFO_0_SETTLEAMT']) : $this->amt),
+			  'settle_amount' => (float)(isset($this->responsedata['PAYMENTINFO_0_SETTLEAMT'])) ? $this->urldecode($this->responsedata['PAYMENTINFO_0_SETTLEAMT']) : (float)$this->amt,                          
                           'settle_currency' => $this->responsedata['PAYMENTINFO_0_CURRENCYCODE'],
                           'exchange_rate' => (isset($this->responsedata['PAYMENTINFO_0_EXCHANGERATE']) && urldecode($this->responsedata['PAYMENTINFO_0_EXCHANGERATE']) > 0) ? urldecode($this->responsedata['PAYMENTINFO_0_EXCHANGERATE']) : 1.0,
                           'notify_version' => '0',
