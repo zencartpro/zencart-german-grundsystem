@@ -201,10 +201,10 @@
 <fieldset>
 <legend><?php echo TABLE_HEADING_CONDITIONS; ?></legend>
 <div><?php echo TEXT_CONDITIONS_DESCRIPTION;?></div>
-<?php if (!$payment_modules->in_special_checkout()) { ?>
-<?php echo  zen_draw_checkbox_field('conditions', '1', false, 'id="conditions"');?>
-<?php	} else { ?>
+<?php if (($payment_modules->in_special_checkout()) && ($_SESSION['paypal_ec_markflow'] == 1)) {?>
 <?php echo  zen_draw_checkbox_field('conditions', '1', true, 'id="conditions"');?>
+<?php	} else { ?>
+<?php echo  zen_draw_checkbox_field('conditions', '1', false, 'id="conditions"');?>
 <?php
 }
 ?>
