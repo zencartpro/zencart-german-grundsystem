@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: shopping_cart.php 2022-04-17 08:54:29Z webchills $
+ * @version $Id: shopping_cart.php 2022-08-29 16:48:29Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -1079,10 +1079,7 @@ class shoppingCart extends base {
           // calculate additional one time charges
           //// one time charges
           // attributes_price_onetime
-          if ($attribute_price->fields['attributes_price_onetime'] > 0) {
-            if ((int)$products_id != $products_id) {
-              die('I DO NOT MATCH ' . $products_id);
-            }
+          if ($attribute_price->fields['attributes_price_onetime'] > 0) {            
             $attributes_price_onetime += $attribute_price->fields['attributes_price_onetime'];
           }
           // attributes_price_factor_onetime
