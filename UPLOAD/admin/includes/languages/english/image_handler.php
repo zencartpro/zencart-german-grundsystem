@@ -1,7 +1,7 @@
 <?php
 define('IH_VERSION_VERSION', 'Version');
 define('IH_VERSION_NOT_FOUND', 'No Image Handler information found.');
-define('IH_REMOVE', 'Uninstall Image Handler.  (Please backup your site and database first)');
+
 define('IH_VIEW_CONFIGURATION', 'View Image Handler Configuration');
 define('IH_CLEAR_CACHE', 'Clear image cache');
 define('IH_CACHE_CLEARED', 'Image cache cleared.');
@@ -29,11 +29,12 @@ define('TABLE_HEADING_ACTION', 'Action');
 define('TABLE_HEADING_FILETYPE', 'File Type');
 
 define('TEXT_PRODUCT_INFO', 'Product');
+define('TEXT_PRODUCTS_MODEL', 'Model');
 define('TEXT_PRICE', 'Price');
 define('TEXT_IMAGE_BASE_DIR', 'Image Directory');
 define('TEXT_NO_PRODUCT_IMAGES', 'There are no images for this product');
 define('TEXT_CLICK_TO_ENLARGE', 'Click to enlarge');
- 
+
 define('TEXT_INFO_IMAGE_INFO', 'Image information');
 define('TEXT_INFO_NAME', 'Name');
 define('TEXT_INFO_FILE_TYPE', 'File type');
@@ -71,9 +72,9 @@ define('TEXT_MSG_AUTO_REPLACE',  'Automatically replacing bad characters in base
 define('TEXT_MSG_INVALID_SUFFIX', 'Invalid image suffix.');
 define('TEXT_MSG_IMAGE_TYPES_NOT_SAME_ERROR', 'Image types are not the same; image <b>not</b> uploaded.');
 define('TEXT_MSG_DEFAULT_REQUIRED_FOR_RESIZE', 'A default image is required for automatic resizing.');
-define('TEXT_MSG_NO_DEFAULT', 'No default image has been specified.');
-define('TEXT_MSG_NO_DEFAULT_ON_NAME_CHANGE', 'You must supply a "base" image when updating the main image and changing its name.');
-define('TEXT_MSG_INVALID_EXTENSION', 'The uploaded "%1$s" image file\'s extension (%2$s) is not supported.  The extension must be one of (%3$s).');
+define('TEXT_MSG_NO_DEFAULT', 'No <b>base image file</b> was uploaded.  Please try again.');
+define('TEXT_MSG_NO_DEFAULT_ON_NAME_CHANGE', 'You must supply a &quot;base&quot; image when updating the main image and changing its name.');
+define('TEXT_MSG_INVALID_EXTENSION', 'The uploaded &quot;%1$s&quot; image file\'s extension (%2$s) is not supported.  The extension must be one of (%3$s).');
 define('TEXT_BASE', 'base');
 define('TEXT_MEDIUM', 'medium');
 define('TEXT_LARGE', 'large');
@@ -85,7 +86,7 @@ define('TEXT_MSG_NOCREATE_LARGE_IMAGE_DIR', 'Unable to create large image direct
 define('TEXT_MSG_NOPERMS_IMAGE_DIR', 'Unable to set the permissions of the image directory.');
 define('TEXT_MSG_NOPERMS_MEDIUM_IMAGE_DIR', 'Unable to set the permissions of the medium image directory.');
 define('TEXT_MSG_NOPERMS_LARGE_IMAGE_DIR', 'Unable to set the permissions of the large image directory.');
-define('TEXT_MSG_NAME_TOO_LONG_ERROR', 'The image file "%1$s" is too long to be saved in the database.  Choose a name that is %2$u characters or fewer.');
+define('TEXT_MSG_NAME_TOO_LONG_ERROR', 'The image file &quot;%1$s&quot; is too long to be saved in the database.  Choose a name that is %2$u characters or fewer.');
 define('TEXT_MSG_NO_SUFFIXES_FOUND', 'Could not find an unused additional-image suffix in the range _01 to _99.');
 define('TEXT_MSG_NO_FILE_UPLOADED', 'No <b>Base image file</b> was selected; please try again.');
 
@@ -124,3 +125,9 @@ define('IH_MENU_MANAGER', 'Image Manager');
 define('IH_MENU_ADMIN', 'Admin Tools');
 define('IH_MENU_ABOUT', 'Help');
 define('IH_MENU_PREVIEW', 'Preview');
+define('IH_RESIZE_INSTRUCTIONS_HEADING', 'Image Handler<sup>5</sup> is%s currently resizing images.');
+define('IH_RESIZE_NOT', ' not');    //- Replaces %s above if IH Resizing is disabled; empty string, otherwise.
+define('IH_RESIZE_INSTRUCTIONS', 'To %s image-resizing, click the button below.');
+define('IH_RESIZE_DISABLE', 'disable');
+define('IH_RESIZE_ENABLE', 'enable');
+define('IH_BUTTON_RESIZE_TOGGLE', 'Toggle Setting');

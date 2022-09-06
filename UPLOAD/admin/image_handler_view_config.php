@@ -1,13 +1,13 @@
 <?php
 /**
- * @package Image Handler 5.2.0
+ * @package Image Handler 5.3.0
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
  * @copyright Copyright 2018-2022 lat 9 - Vinos de Frutas Tropicales
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: image_handler_view_config.php 2021-11-28 17:13:51Z webchills $
+ * @version $Id: image_handler_view_config.php 2022-09-06 08:59:51Z webchills $
  */
 require 'includes/application_top.php';
 
@@ -23,35 +23,9 @@ $ih_admin = new ImageHandlerAdmin();
 <!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
 <head>
-<meta charset="<?php echo CHARSET; ?>">
-<title><?php echo TITLE; ?></title>
-<link rel="stylesheet" href="includes/stylesheet.css">
-<link rel="stylesheet" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-<style>
-th, td { padding: 0.5em; }
-#ih-main { float: left; }
-#ih-conf::after { clear: both; }
-#ih-main tr:nth-child(even), #ih-conf tr:nth-child(even) {background: #ebebeb; }
-.ih-group { background-color: #ccc; font-weight: bold; text-align: center; }
-.ih-sub { text-align: right; }
-tr.ih-error td:last-child { color: red; font-weight: bold; }
-tr span { font-size: smaller; }
-</style>
-<script src="includes/menu.js"></script>
-<script src="includes/general.js"></script>
-<script>
-function init()
-{
-    cssjsmenu('navbar');
-    if (document.getElementById) {
-        var kill = document.getElementById('hoverJS');
-        kill.disabled = true;
-    }
-}
-</script>
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
 </head>
-<body onload="init();">
-<!-- header //-->
+<body>
 <?php
 require DIR_WS_INCLUDES . 'header.php';
 
@@ -100,6 +74,7 @@ $config_values = [
         'trans_threshold' => ['check' => CHECK_NONE],
         'im_convert' => ['check' => CHECK_NONE],
         'gdlib' => ['check' => CHECK_INTEGER],
+        'resize' => ['check' => CHECK_BOOLEAN],
         'default' => [
             'check' => CHECK_ARRAY,
             'fields' => [
@@ -107,7 +82,6 @@ $config_values = [
                 'quality' => ['check' => CHECK_QUALITY],
             ],
         ],
-        'resize' => ['check' => CHECK_BOOLEAN],
         'dir' => [
             'check' => CHECK_ARRAY,
             'fields' => [
@@ -162,14 +136,14 @@ $config_values = [
     ]
 ];
 ?>
-<!-- header_eof //-->
-<!-- body //-->
-<h1><?php echo HEADING_TITLE; ?></h1>
-<p><?php echo sprintf(INSTRUCTIONS, DIR_FS_CATALOG . 'includes/extra_configures/bmx_image_handler_conf.php', DIR_FS_CATALOG . 'includes/functions/extra_functions/functions_bmz_image_handler.php'); ?></p>
-<table id="ih-main">
-    <tr>
-        <td colspan="3" class="ih-group"><?php echo sprintf(CONFIG_HEADING, zen_href_link(FILENAME_CONFIGURATION, 'gID=4')); ?></td>
-    </tr>
+    <div class="container-fluid">
+        <h1><?php echo HEADING_TITLE; ?></h1>
+        <p><?php echo sprintf(INSTRUCTIONS, DIR_FS_CATALOG . 'includes/extra_configures/bmx_image_handler_conf.php', DIR_FS_CATALOG . 'includes/functions/extra_functions/functions_bmz_image_handler.php'); ?></p>
+        <div class="col-md-6">
+            <table class="table table-striped">
+                <tr>
+                    <th colspan="3" class="text-center"><?php echo sprintf(CONFIG_HEADING, zen_href_link(FILENAME_CONFIGURATION, 'gID=4')); ?></th>
+                </tr>
 <?php
 foreach ($config_values['configuration'] as $config_name => $config_options) {
     $entry_error = false;
@@ -191,7 +165,7 @@ foreach ($config_values['configuration'] as $config_name => $config_options) {
             $config_link = $config_name;
         } else {
             $entry_title = $info->fields['configuration_title'];
-            $config_link = '<a href="' . zen_href_link(FILENAME_CONFIGURATION, 'gID=4&amp;cID=' . $info->fields['configuration_id'] . '&amp;action=edit') . '">' . $config_name . '</a>';
+            $config_link = '<a href="' . zen_href_link(FILENAME_CONFIGURATION, 'gID=4&cID=' . $info->fields['configuration_id'] . '&action=edit') . '">' . $config_name . '</a>';
         }
         $entry_message = '&nbsp;';
         switch ($config_options['check']) {
@@ -227,19 +201,21 @@ foreach ($config_values['configuration'] as $config_name => $config_options) {
         }
     }
 ?>
-    <tr<?php echo ($entry_error) ? ' class="ih-error"' : ''; ?>>
-        <td><?php echo $config_link; ?></td>
-        <td><?php echo $entry_title; ?></td>
-        <td><?php echo $entry_value; ?> <span><?php echo $entry_message; ?></span></td>
-    </tr>
+                <tr<?php echo ($entry_error) ? ' class="danger"' : ''; ?>>
+                    <td><?php echo $config_link; ?></td>
+                    <td><?php echo $entry_title; ?></td>
+                    <td><?php echo $entry_value; ?> <span><?php echo $entry_message; ?></span></td>
+                </tr>
 <?php
 }
 ?>
-</table>
-<table id="ih-conf">
-    <tr>
-        <td colspan="2" class="ih-group">Values from the $ihConf array</td>
-    </tr>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <table class="table table-striped">
+                <tr>
+                    <th colspan="2" class="text-center">Values from the $ihConf array</th>
+                </tr>
 <?php
 foreach ($config_values['ihConf'] as $key => $values) {
     $entry_error = false;
@@ -289,11 +265,10 @@ foreach ($config_values['ihConf'] as $key => $values) {
                 if (!is_array($entry_value)) {
                     $entry_error = true;
                     $entry_message = ERROR_NOT_ARRAY;
-                    $entry_value = json_encode($entry_value);
                 } else {
-                    $single_entry = false;
-                    $entry_value = (isset($values['fields'])) ? '&nbsp;' : json_encode($entry_value);
+                    $single_entry = !isset($values['fields']);
                 }
+                $entry_value = json_encode($entry_value);
                 break;
             default:
                 break;
@@ -305,11 +280,16 @@ foreach ($config_values['ihConf'] as $key => $values) {
         $entry_message = "($entry_message)";
     }
 ?>
-    <tr<?php echo ($entry_error) ? ' class="ih-error"' : ''; ?>>
-        <td><?php echo '$ihConf[' . $key . ']'; ?></td>
-        <td><?php echo $entry_value; ?> <span><?php echo $entry_message; ?></span></td>
-    </tr>
+                <tr<?php echo ($entry_error) ? ' class="danger"' : ''; ?>>
+                    <td<?php echo ($single_entry === true) ? '' : ' colspan="2" class="text-center info"'?>><?php echo '$ihConf[' . $key . ']'; ?></td>
 <?php
+    if ($single_entry === true) {
+?>
+                    <td><?php echo $entry_value; ?> <span><?php echo $entry_message; ?></span></td>
+                </tr>
+<?php
+    }
+
     if (!$single_entry && isset($values['fields'])) {
         foreach ($values['fields'] as $subkey => $subvalues) {
             $subkey_value = $ihConf[$key][$subkey];
@@ -355,22 +335,19 @@ foreach ($config_values['ihConf'] as $key => $values) {
                 $entry_message = "($entry_message)";
             }
 ?>
-    <tr<?php echo ($entry_error) ? ' class="ih-error"' : ''; ?>>
-        <td class="ih-sub"><?php echo $subkey; ?></td>
-        <td><?php echo ($subkey_value === true) ? 'true' : (($subkey_value === false) ? 'false' : $subkey_value); ?> <span><?php echo $entry_message; ?></span></td>
-    </tr>
+                <tr<?php echo ($entry_error) ? ' class="danger"' : ''; ?>>
+                    <td><?php echo $subkey; ?></td>
+                    <td><?php echo ($subkey_value === true) ? 'true' : (($subkey_value === false) ? 'false' : $subkey_value); ?> <span><?php echo $entry_message; ?></span></td>
+                </tr>
 <?php
         }
     }
 }
 ?>
-</table>
-<!-- body_eof //-->
-<!-- footer //-->
-<?php
-require DIR_WS_INCLUDES . 'footer.php';
-?>
-<!-- footer_eof //-->
+            </table>
+        </div>
+    </div>
+    <?php require DIR_WS_INCLUDES . 'footer.php'; ?>
 </body>
 </html>
 <?php

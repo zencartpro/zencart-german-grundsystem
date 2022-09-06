@@ -1,41 +1,41 @@
 <?php
 /**
- * @package Image Handler 5.2.0
+ * @package Image Handler 5.3.0
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
  * @copyright Copyright 2018-2022 lat 9 - Vinos de Frutas Tropicales
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ImageHandlerObserver.php 2021-11-28 17:13:51Z webchills $
+ * @version $Id: ImageHandlerObserver.php 2022-09-06 08:49:51Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
 }
 
-class ImageHandlerObserver extends base 
+class ImageHandlerObserver extends base
 {
-    public function __construct() 
+    public function __construct()
     {
         if (defined('IH_RESIZE') && IH_RESIZE == 'yes') {
             $this->attach(
                 $this,
-                array(
+                [
                     //- From /includes/modules/main_product_image.php
                     'NOTIFY_MODULES_MAIN_PRODUCT_IMAGE_FILENAME',
-                    
+
                     //- From /includes/modules/additional_images.php
                     'NOTIFY_MODULES_ADDITIONAL_IMAGES_GET_LARGE',
                     'NOTIFY_MODULES_ADDITIONAL_IMAGES_THUMB_SLASHES',
-                    
+
                     //- From /includes/pages/popup_image/header_php.php
                     'NOTIFY_HEADER_END_POPUP_IMAGES',
-                )
+                ]
             );
         }
     }
-  
-    public function update(&$class, $eventID, $p1, &$p2, &$p3, &$p4, &$p5, &$p6) 
+
+    public function update(&$class, $eventID, $p1, &$p2, &$p3, &$p4, &$p5, &$p6)
     {
         switch ($eventID) {
             // -----
@@ -58,10 +58,10 @@ class ImageHandlerObserver extends base
                 $p4 = $products_image_base = preg_replace('/' . $products_image_extension . '$/', '', $products_image);
                 $p5 = DIR_WS_IMAGES . 'medium/' . $products_image_base . IMAGE_SUFFIX_MEDIUM . $products_image_extension;
                 $p6  = DIR_WS_IMAGES . 'large/' . $products_image_base . IMAGE_SUFFIX_LARGE .  $products_image_extension;
-                
+
                 $p2 = true;  //-Indicate that the image has been "handled".
                 break;
-                
+
             // -----
             // This notifier lets any image-handler know the current image being processed, providing the following parameters:
             //
@@ -71,13 +71,13 @@ class ImageHandlerObserver extends base
             case 'NOTIFY_MODULES_ADDITIONAL_IMAGES_GET_LARGE':
                 $products_name = $p1;
                 $products_image_large = $p2;
-            	if (function_exists('handle_image')) {
+                if (function_exists('handle_image')) {
                     $newimg = handle_image($products_image_large, addslashes($products_name), LARGE_IMAGE_MAX_WIDTH, LARGE_IMAGE_MAX_HEIGHT, '');
                     list($src, $alt, $width, $height, $parameters) = $newimg;
                     $p2 = zen_output_string($src);
                 } 
                 break;
-                
+
             // -----
             // This notifier lets any image-handler "massage" the name of the current thumbnail image name with appropriate
             // slashes for javascript/jQuery display:
@@ -90,7 +90,7 @@ class ImageHandlerObserver extends base
                 $thumb_slashes = $p2;
                 $p2 = preg_replace("/([^\\\\])'/", '$1\\\'', $thumb_slashes);
                 break;
-            
+
             // -----
             // Update the (globally-available) image names for any rendering of the popup_image page.
             //
@@ -100,13 +100,13 @@ class ImageHandlerObserver extends base
                        $products_image_base,
                        $products_image_medium,
                        $products_image_large;
-                
+
                 $products_image_base = preg_replace('/' . $products_image_extension . '$/', '', $products_image);
-                
+
                 $products_image_medium = DIR_WS_IMAGES . 'medium/' . $products_image_base . IMAGE_SUFFIX_MEDIUM . $products_image_extension;
                 $products_image_large = DIR_WS_IMAGES . 'large/' . $products_image_base . IMAGE_SUFFIX_LARGE . $products_image_extension;
                 break;
-                
+
             default:
                 break;
         }

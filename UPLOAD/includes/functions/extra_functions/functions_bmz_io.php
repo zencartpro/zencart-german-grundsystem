@@ -1,13 +1,13 @@
 <?php
 /**
- * @package Image Handler 5.2.0
+ * @package Image Handler 5.3.0
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
  * @copyright Copyright 2018-2022 lat 9 - Vinos de Frutas Tropicales
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_bmz_io.php 2021-11-28 17:13:51Z webchills $
+ * @version $Id: functions_bmz_io.php 2022-09-06 08:13:51Z webchills $
  */
 
 /**
@@ -16,7 +16,7 @@
  * Locking uses directories inside $bmzConf['lockdir']
  *
  * It waits maximal 3 seconds for the lock, after this time
- * the lock is assumed to be stale and the function goes on 
+ * the lock is assumed to be stale and the function goes on
  *
  * @author Andreas Gohr <andi@splitbrain.org>
  * @author Tim Kroeger <tim@breakmyzencart.com>
@@ -58,7 +58,6 @@ function io_unlock($file)
 
 //-bof-IH5.0.1-lat9-getCacheName function moved to bmz_image_handler_class.php
 
-
 /**
  * Create the directory needed for the given file
  *
@@ -75,7 +74,7 @@ function io_makeFileDir($file)
     if (!is_dir($dir)){
         io_mkdir_p($dir) || $messageStack->add("Creating directory $dir failed", "error");
     }
-    umask($bmzConf['umask']); 
+    umask($bmzConf['umask']);
 }
 
 /**
@@ -98,4 +97,4 @@ function io_mkdir_p($target)
     }
     return 0;
 }
- 
+
