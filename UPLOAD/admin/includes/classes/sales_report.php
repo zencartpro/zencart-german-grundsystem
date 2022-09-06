@@ -1,6 +1,6 @@
 <?php
 /**
- * SALES REPORT 3.5.1
+ * SALES REPORT 3.5.1a
  *
  * The class file acts as the engine in the sales report.  All the data displayed is gathered and
  * calculated in here. The logic tree provides a brief summary of the main functions at work every
@@ -650,7 +650,7 @@ class sales_report
     function build_li_products($product) 
     {
         $id = $this->timeframe_id;
-        $pID = $product['id'];
+        $pID = $product['uprid'];
 
         // initialize the array for this products_id if it doesn't exist yet
         if (!isset($this->timeframe[$id]['products'][$pID]) ) {
