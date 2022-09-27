@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_prices.php 2022-04-17 16:09:16Z webchills $
+ * @version $Id: functions_prices.php 2022-09-27 10:45:16Z webchills $
  */
 ////
 //get specials price or sale price
@@ -1122,6 +1122,7 @@ possible return values in numerical order:
   function zen_get_attributes_price_final_onetime($attribute, $qty= 1, $pre_selected_onetime = null) {
     global $db;
 
+    $attributes_price_final_onetime = 0.0;
 
     if (empty($pre_selected_onetime) || $attribute != $pre_selected_onetime->fields["products_attributes_id"]) {
       $pre_selected_onetime = $db->Execute("select pa.* from " . TABLE_PRODUCTS_ATTRIBUTES . " pa where pa.products_attributes_id= '" . (int)$attribute . "'");
@@ -1131,7 +1132,7 @@ possible return values in numerical order:
 
 // one time charges
     // onetime charge
-      $attributes_price_final_onetime = $pre_selected_onetime->fields["attributes_price_onetime"];
+      $attributes_price_final_onetime += $pre_selected_onetime->fields["attributes_price_onetime"];
 
     // price factor
     $display_normal_price = zen_get_products_actual_price($pre_selected_onetime->fields["products_id"]);
@@ -1222,11 +1223,6 @@ possible return values in numerical order:
 // compute discount based on qty
   function zen_get_products_discount_price_qty($product_id, $check_qty, $check_amount=0) {
     global $db;
-      $new_qty = $_SESSION['cart']->in_cart_mixed_discount_quantity($product_id);
-      // check for discount qty mix
-      if ($new_qty > $check_qty) {
-        $check_qty = $new_qty;
-      }
       $product_id = (int)$product_id;
       $products_query = $db->Execute("select products_discount_type, products_discount_type_from, products_priced_by_attribute from " . TABLE_PRODUCTS . " where products_id='" . (int)$product_id . "'");
       $products_discounts_query = $db->Execute("select * from " . TABLE_PRODUCTS_DISCOUNT_QUANTITY . " where products_id='" . (int)$product_id . "' and discount_qty <='" . (float)$check_qty . "' order by discount_qty desc");
