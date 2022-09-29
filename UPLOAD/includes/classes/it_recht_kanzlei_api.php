@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: it_recht_kanzlei_api.php 2022-08-21 10:12:51Z webchills $
+ * @version $Id: it_recht_kanzlei_api.php 2022-09-29 15:39:51Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -14,7 +14,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 
 class it_recht_kanzlei {
   
-  var $modulversion = IT_RECHT_KANZLEI_MODUL_VERSION;
+  public $modulversion = IT_RECHT_KANZLEI_MODUL_VERSION;
   var $api_action_flag, 
       $api_version_flag, 
       $api_username_flag, 
@@ -30,14 +30,14 @@ class it_recht_kanzlei {
     // Catch errors - no data sent
     (string)$post_xml = $post_xml;
     
-    // read POST-XML and remove form slashes
-    if(get_magic_quotes_gpc()){
-      $post_xml = stripslashes($post_xml);
-    }
     // Post XML from other system
     if(trim($post_xml) == ''){
       $this->return_error('12');
     }
+    if ($this->isXMLContentValid($post_xml) === false) {
+      $this->return_error('12');
+    }
+    
     // create xml object
     $xml = simplexml_load_string($post_xml, null, LIBXML_NOCDATA);
     
@@ -55,8 +55,22 @@ class it_recht_kanzlei {
     $this->return_error('99');
     exit();
   }
-  
-  
+
+  function isXMLContentValid($xmlContent, $version = '1.0', $encoding = 'utf-8') {
+    if (trim($xmlContent) == '') {
+      return false;
+    }
+
+    libxml_use_internal_errors(true);
+
+    $doc = new DOMDocument($version, $encoding);
+    $doc->loadXML($xmlContent);
+
+    $errors = libxml_get_errors();
+    libxml_clear_errors();
+
+    return empty($errors);
+  }
   
   function check_api_action($api_action) {
     if ($api_action == '') {
@@ -190,6 +204,7 @@ class it_recht_kanzlei {
           } else {
             @unlink($file_pdf_target);
             @copy($file_pdf_target_temp, $file_pdf_target);
+            @unlink($file_pdf_target_temp);
             if (!is_file($file_pdf_target)) {
               $this->return_error('7');
             }
@@ -284,7 +299,7 @@ class it_recht_kanzlei {
           }
         }
       } else {
-        $this->return_error('99');
+        $this->return_error('81');
       }  
           
       $this->return_success();
@@ -368,7 +383,8 @@ class it_recht_kanzlei {
     $string = str_replace('&thinsp;', ' ', $string);
     
     return html_entity_decode($string, ENT_COMPAT, ((DB_SERVER_CHARSET == 'utf8') ? 'UTF-8' : ''));
-  }
+  } 
+  
     
   // return error and end script
   function return_error($errorcode) {
