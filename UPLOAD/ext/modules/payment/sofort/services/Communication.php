@@ -268,7 +268,7 @@ class Communication
 
             if (!empty($payment->$property)) {
 
-                $query = $db->Execute("SELECT * FROM `". DB_PREFIX . "pi_sofort_transaction` WHERE transaction_id = '" . $statusData['transaction_id'] . "'");
+                $query = $db->Execute("SELECT * FROM `". DB_PREFIX . "pi_sofort_transaction` WHERE transaction_id = '" . $statusData['transaction_id'] . "' LIMIT 1");
                 $query = $db->Execute("SELECT * FROM `" . TABLE_ORDERS . "` WHERE orders_id = " . (int) $query->fields['order_id']);
 
                

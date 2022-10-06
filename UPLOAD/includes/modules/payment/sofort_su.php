@@ -5,7 +5,7 @@
 * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* $Id: sofort_su.php 2022-02-04 19:53:20Z webchills $
+* $Id: sofort_su.php 2022-10-06 09:41:20Z webchills $
 */
 
 require_once(dirname(__FILE__) . '/../../../ext/modules/payment/sofort/helper/Util.php');
@@ -181,7 +181,7 @@ class sofort_su
         $this->received_credited = defined('MODULE_PAYMENT_SOFORT_SU_REC_CRE_STATUS_ID') ? MODULE_PAYMENT_SOFORT_SU_REC_CRE_STATUS_ID : null;
         $this->refunded_compensation = defined('MODULE_PAYMENT_SOFORT_SU_REF_COM_STATUS_ID') ? MODULE_PAYMENT_SOFORT_SU_REF_COM_STATUS_ID : null;
         $this->refunded_refunded = defined('MODULE_PAYMENT_SOFORT_SU_REF_REF_STATUS_ID') ? MODULE_PAYMENT_SOFORT_SU_REF_REF_STATUS_ID : null;        
-        $this->create_order = (defined('MODULE_PAYMENT_SOFORT_SU_CREATE_ORDER') && MODULE_PAYMENT_SOFORT_SU_CREATE_ORDER == 'True'); 
+        $this->create_order = (defined('MODULE_PAYMENT_SOFORT_SU_CREATE_ORDER') && MODULE_PAYMENT_SOFORT_SU_CREATE_ORDER == 'False'); 
         $this->logo = (defined('MODULE_PAYMENT_SOFORT_SU_LOGO') && MODULE_PAYMENT_SOFORT_SU_LOGO == 'Text'); 
         $this->customer_protection = (defined('MODULE_PAYMENT_SOFORT_SU_CUSTOMER_PROTECTION') && MODULE_PAYMENT_SOFORT_SU_CUSTOMER_PROTECTION == 'True'); 
         $this->reason_one = defined('MODULE_PAYMENT_SOFORT_SU_REASON_ONE') ? MODULE_PAYMENT_SOFORT_SU_REASON_ONE : null;
@@ -548,7 +548,8 @@ class sofort_su
             }
         }
 
-        $order_object_total = $order->info['total'];
+        
+        $order_object_total = zen_round($order->info['total'], 2);        
 
         //use the higher one
         $shop_total = 0;
@@ -560,7 +561,8 @@ class sofort_su
         }
 
         //if payment is not EUR: calculate with exchange rate
-        $shop_total = $shop_total * $order->info['currency_value'];
+        
+        $shop_total = zen_round($order->info['total'], 2); 
 
         return number_format($shop_total, 2, '.','');
     }
