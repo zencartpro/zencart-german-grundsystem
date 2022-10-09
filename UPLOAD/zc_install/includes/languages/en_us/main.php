@@ -4,12 +4,11 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main.php 2021-12-28 17:56:29Z webchills $
+ * @version $Id: main.php 2022-10-07 16:09:29Z webchills $
  */
 
-
 return [
-'META_TAG_TITLE' => 'Zen Cart&reg; Installer',
+'META_TAG_TITLE' => 'Zen Cart 1.5.7e German - Installer',
 'HTML_PARAMS' => 'dir="ltr" lang="en"',
 'ZC_VERSION_STRING' => '%s v%s',
 'TEXT_PAGE_HEADING_INDEX' => 'System Inspection',
