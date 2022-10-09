@@ -1,0 +1,18 @@
+Hilfsprogramme im Ordner extras:
+
+check_server_locales.php
+Herausfinden, welche Sprachumgebungen (locales) auf dem Server verfügbar sind
+
+curltester.php
+Prüfen der CURL Funktionalität auf dem Server
+
+ipncheck.php
+Prüfen ob der Server auf eine eingehende IPN Benachrichtigung von PayPal antworten kann
+
+Verwendung:
+Gewünschtes Script hochladen ins Shopverzeichnis in den Ordner extras
+Im Browser aufrufen
+Nach abgeschlossenem Test das Script sofort wieder löschen!
+
+htaccess_for_page_not_found_redirects.htaccess
+Beispieldatei für eine .htaccess zur Umleitung von nicht gefundenen Seiten zu einer speziellen 404 Error Seite
