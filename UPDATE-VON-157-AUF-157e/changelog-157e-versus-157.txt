@@ -1,0 +1,55 @@
+Changelog Zen Cart 1.5.7e deutsch gegenüber 1.5.7 deutsch
+2022-10-10
+
+
+NEUE DATEIEN
+---------------------------------------------------------------------------------------------
+TOOLS\extras\check_server_locales.php
+TOOLS\liesmich.txt
+UPLOAD\admin\includes\css\image_handler.css
+UPLOAD\admin\includes\installers\it_recht_kanzlei\1_1_0.php
+UPLOAD\extras\fontawesome\6.2.0 (gesamter Ordner)
+
+---------------------------------------------------------------------------------------------
+
+
+GEÄNDERTE DATEIEN
+---------------------------------------------------------------------------------------------
+UPLOAD\admin\includes\classes\ImageHandlerAdmin.php
+UPLOAD\admin\includes\classes\sales_report.php
+UPLOAD\admin\includes\extra_datafiles\backup_mysql.php
+UPLOAD\admin\includes\functions\extra_functions\functions_bmz_image_handler.php
+UPLOAD\admin\includes\functions\functions_prices.php
+UPLOAD\admin\includes\languages\english\extra_definitions\image_handler_extra_definitions.php
+UPLOAD\admin\includes\languages\english\backup_mysql.php
+UPLOAD\admin\includes\languages\english\image_handler.php
+UPLOAD\admin\includes\languages\english\image_handler_about.php
+UPLOAD\admin\includes\languages\german\backup_mysql.php
+UPLOAD\admin\includes\languages\german\image_handler.php
+UPLOAD\admin\includes\languages\german\image_handler_about.php
+UPLOAD\admin\includes\languages\german\password_forgotten.php
+UPLOAD\admin\includes\ih_manager.php
+UPLOAD\admin\backup_mysql.php
+UPLOAD\admin\customers.php
+UPLOAD\admin\customers_without_order.php
+UPLOAD\admin\german_help.php
+UPLOAD\admin\image_handler.php
+UPLOAD\admin\image_handler_view_config.php
+UPLOAD\admin\it_recht_kanzlei.php
+UPLOAD\ext\modules\payment\sofort\services\Communication.php
+UPLOAD\includes\auto_loaders\config.image_handler.php
+UPLOAD\includes\classes\observers\ImageHandlerObserver.php
+UPLOAD\includes\classes\bmz_image_handler.class.php
+UPLOAD\includes\classes\it_recht_kanzlei_api.php
+UPLOAD\includes\classes\it_recht_kanzlei_get_external_content.php
+UPLOAD\includes\classes\shopping_cart.php
+UPLOAD\includes\functions\extra_functions\functions_bmz_image_handler.php
+UPLOAD\includes\functions\extra_functions\functions_bmz_io.php
+UPLOAD\includes\languages\english\modules\payment\braintree_api.php
+UPLOAD\includes\languages\german\modules\payment\braintree_api.php
+UPLOAD\includes\modules\payment\braintree_api.php
+UPLOAD\includes\modules\payment\paypalwpp.php
+UPLOAD\includes\modules\payment\sofort_su.php
+UPLOAD\includes\templates\template_default\templates\tpl_checkout_payment_default.php
+UPLOAD\includes\version.php
+UPLOAD\itrk-api.php
