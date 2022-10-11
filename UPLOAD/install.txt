@@ -4,6 +4,30 @@ Version vom 12.10.2022
 
 #####################################################################################################################################
 
+1.5.7e deutsch ist ein Service Pack für 1.5.7 deutsch, behebt seit Release von 1.5.7 deutsch gefundene Bugs und bringt die integrierten Module und 3rd Party Komponenten auf den Stand von Oktober 2022.
+
+Bugfixes:
+- Fix für verweigerte Speicherung des dritten Geschlechts in admin/customers.php und admin/customers_without_orders.php
+- IT Recht Kanzlei Schnittstelle: Fixes für PHP8 und verbessertes Error Handling
+- PayPal Express: AGB müssen nach Rückleitung von PayPal zur Versandadressenprüfung nicht nochmals bestätigt werden. Verbesserte Rückleitung bei von PayPal abgelehnten Transaktionen.
+- Fix für Fehlermeldung im Warenkorb bei Einmalkostenattributen unter PHP8
+- Verkaufsbericht: Fix für falsche Berechnung
+- Sofortüberweisung: Fix für Doppelbestellungen in seltenen Szenarien
+- Datenbanksicherung: Integriertes Tool aktualisiert mit besserer Erkennung und Handling verschiedener Serverkonfigurationen
+
+Aktualisierte Komponenten:
+- Update Braintree Zahlungsmodul auf braintree_php 6.91 und braintree_web 3.88.1
+- Update Image Handler auf 5.3.0
+- Update PHPMailer auf 6.6.5
+- Update TinyMCE auf 6.2.0
+- Update CKEditor auf 4.20.0
+- Fontawesome 6.2.0 integriert
+
+Wer bereits 1.5.7 verwendet kann mit dem speziellen Updatepaket in UPDATE-VON-157-AUF-157e sehr einfach auf 1.5.7e aktualisieren.
+Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157-AUF-157e
+
+#####################################################################################################################################
+
 Systemvoraussetzungen:
 
 Linux Server mit Apache 2.2 oder Apache 2.4 oder Nginx
