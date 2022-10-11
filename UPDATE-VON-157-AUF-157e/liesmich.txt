@@ -10,7 +10,7 @@ Um Ihren bestehenden 1.5.7 deutsch Shop auf 1.5.7e deutsch zu aktualisieren gehe
 
 !!! BEVOR SIE BEGINNEN MACHEN SIE EINE KOMPLETTE SICHERUNG IHRER SHOPDATEIEN UND IHRER DATENBANK !!!
 
-Schalten Sie Ihren Shop unter Konfiguration > Shopwartung in den Wartungsmodus und gehen dann in folgenden 4 Schritten vor:
+Schalten Sie Ihren Shop unter Konfiguration > Shopwartung in den Wartungsmodus und gehen dann in folgenden 3 Schritten vor:
 
 1)
 
@@ -18,7 +18,7 @@ Im Ordner 1 - GEAENDERTE DATEIEN finden Sie alle Dateien, die in 1.5.7e gegenüb
 Benennen Sie den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses um.
 Vergleichen Sie nun mit BeyondCompare oder WinMerge alle Dateien in diesem Ordner mit denen Ihrer Shopinstallation am Server.
 Wichtig:
-Möglicherweise nutzen Sie die includes includes\templates\template_default\templates\tpl_checkout_payment_default.php in Ihrem Shop das Override System und haben diese Datei auch in includes/templates/DEINTEMPLATE/templates (DEINTEMPLATE steht für den Namen des in Ihrem Shop aktiven Templates).
+Möglicherweise nutzen Sie für die includes includes\templates\template_default\templates\tpl_checkout_payment_default.php in Ihrem Shop das Override System und haben diese Datei auch in includes/templates/DEINTEMPLATE/templates (DEINTEMPLATE steht für den Namen des in Ihrem Shop aktiven Templates).
 Sollte sich die Datei dort befinden, dann vergleichen Sie die geänderte Datei in includes\templates\template_default\templates\tpl_checkout_payment_default.php natürlich mit der im entsprechenden Override Verzeichnis includes\templates\DEINTEMPLATE\templates\tpl_checkout_payment_default.php! 
 Übernehmen Sie alle Änderungen und laden dann die Ordner/Dateien in der vorgegebenen Struktur in Ihr Shopverzeichnis hoch.
 
@@ -27,7 +27,8 @@ Sollte sich die Datei dort befinden, dann vergleichen Sie die geänderte Datei i
 Im Ordner 2 - NEUE DATEIEN befinden sich die kompletten neuen Versionen der CKEditor und TinyMCE Editoren, der Braintree PHP Komponente, des PHP Mailers und eine zusätzliche neue Font Awesome Version.
 Benennen Sie den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses um.
 Statt hier mühsame Dateivergleiche durchzuführen, können Sie die bestehenden Pakete einfach komplett mit den neuen ersetzen.
-Löschen Sie den kompletten Ordner editors vom Server
+Löschen Sie den kompletten Ordner editors/ckeditor vom Server
+Löschen Sie den kompletten Ordner editors/tiny_mce vom Server
 Löschen Sie den kompletten Ordner includes/classes/vendors/PHPMailer vom Server
 Löschen Sie den kompletten Ordner includes/modules/payment/braintree vom Server
 Laden Sie dann den Inhalt des Ordners 2 - NEUEDATEIEN in der vorgegebenen Struktur ins Shopverzeichnis hoch.
