@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: order.php 2022-04-17 08:57:25Z webchills $
+ * @version $Id: order.php 2022-10-13 15:12:25Z webchills $
  */
 /**
  * order class
@@ -444,7 +444,9 @@ class order extends base {
                                       'price' => $products[$i]['price'],
                                       'tax' => null, // calculated later
                                       'tax_groups' => null, // calculated later
-                                      'final_price' => zen_round($products[$i]['price'] + $_SESSION['cart']->attributes_price($products[$i]['id']), $decimals),
+                                      // Falls Sie Rundungsabweichungen bei der Zwischensumme feststellen kommentieren Sie Zeile 448 mit // aus und entkommentieren Sie Zeile 449
+                                      'final_price' => $products[$i]['price'] + $_SESSION['cart']->attributes_price($products[$i]['id']),
+                                      //'final_price' => zen_round($products[$i]['price'] + $_SESSION['cart']->attributes_price($products[$i]['id']), $decimals),
                                       'onetime_charges' => $_SESSION['cart']->attributes_price_onetime_charges($products[$i]['id'], $products[$i]['quantity']),
                                       'weight' => $products[$i]['weight'],
                                       'products_priced_by_attribute' => $products[$i]['products_priced_by_attribute'],
