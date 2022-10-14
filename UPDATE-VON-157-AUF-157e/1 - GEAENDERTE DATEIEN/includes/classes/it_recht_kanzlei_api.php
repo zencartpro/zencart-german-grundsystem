@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: it_recht_kanzlei_api.php 2022-09-29 15:39:51Z webchills $
+ * @version $Id: it_recht_kanzlei_api.php 2022-10-14 17:04:51Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -382,7 +382,7 @@ class it_recht_kanzlei {
     // remove problem sign
     $string = str_replace('&thinsp;', ' ', $string);
     
-    return html_entity_decode($string, ENT_COMPAT, ((DB_SERVER_CHARSET == 'utf8') ? 'UTF-8' : ''));
+    return html_entity_decode($string, ENT_COMPAT, UTF-8);
   } 
   
     
