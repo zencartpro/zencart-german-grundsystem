@@ -4,7 +4,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: invoice.php 2019-06-24 20:19:14 webchills $
+ * @version $Id: invoice.php 2022-10-20 20:10:14 webchills $
 */
 
   class invoice {
@@ -52,7 +52,7 @@
           $this->enabled = false;
         }
       }
-	  
+	  if (IS_ADMIN_FLAG === false) {
 	  $customer_id = $_SESSION['customer_id']; 
 	  
 	  $test_query = $db->Execute("select count(*) as total from " . TABLE_ORDERS . " where customers_id='" . $customer_id . "' AND orders_status=3");
@@ -60,6 +60,7 @@
 
 	  if (($total+1) < MODULE_PAYMENT_INVOICE_FROM_ORDER) {
 		$this->enabled = false;
+	  }
 	  }
 	  
     }
