@@ -5,7 +5,7 @@
 * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: german_help.php 2022-10-07 11:41:16Z webchills $
+* @version $Id: german_help.php 2022-11-04 09:12:16Z webchills $
 */
 require('includes/application_top.php');
 ?>
@@ -92,10 +92,6 @@ Hier finden Sie eine Übersicht hilfreicher Seiten zu Bedienung, Konfiguration, 
 <td class="dataTableContent"><a href="https://newsletter.zen-cart-pro.at" target="_blank">Newsletter</a></td>
 <td class="dataTableContent">Wir informieren Sie gerne über Neuigkeiten rund um die deutsche Zen Cart Version.<br>
 Sie werden nicht zugespammt, wir versenden ausschließlich bei Bedarf Informationen zu neuen Versionen, Sicherheitslücken oder neuen Funktionalitäten.</td>
-</tr>
-<tr class="dataTableRow" >
-<td class="dataTableContent"><a href="https://twitter.com/zencartpro" target="_blank">Follow us on Twitter</a></td>
-<td class="dataTableContent">Folgen Sie uns auf Twitter und bleiben Sie über neue Github Aktivitäten und neue Versionen informiert.</td>
 </tr>
 <tr class="dataTableRow" >
 <td class="dataTableContent"><a href="https://spenden.zen-cart-pro.at" target="_blank">Unterstützen</a><br><a href="https://spenden.zen-cart-pro.at" target="_blank"><img src="images/zencartpro-donation-white.png" alt="Jede Spende hilft!" title="Jede Spende hilft!"></a></td>
