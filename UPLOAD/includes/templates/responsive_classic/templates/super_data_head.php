@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: super_data_head.php 2022-11-09 19:44:41Z webchills $
+ * @version $Id: super_data_head.php 2022-11-09 20:00:41Z webchills $
  */
 if (FACEBOOK_OPEN_GRAPH_STATUS == 'true') { ?>
 <script type="application/ld+json">
@@ -121,7 +121,7 @@ $products_image_large  = DIR_WS_IMAGES . 'large/' . $products_image_base . IMAGE
 $manufacturers_name= zen_get_products_manufacturers_name((int)$_GET['products_id']);
 $products_name = isset ($product_info->fields['products_name']) ? $product_info->fields['products_name']:'' ;
 $products_model = isset ($product_info->fields['products_model']) ? $product_info->fields['products_model']:'' ;
-$products_id = $product_info->fields['products_id'];
+$products_id = isset ($product_info->fields['products_id']) ? $product_info->fields['products_id']:'' ;
 $products_quantity = isset ($product_info->fields['products_quantity']) ? $product_info->fields['products_quantity']:'' ;
  ?>
 <?php
