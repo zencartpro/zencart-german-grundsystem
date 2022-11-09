@@ -1,14 +1,13 @@
 <?php
 /**
  * ot_cod_fee order-total module
- *
- * @package orderTotal
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright (c) 2002 Thomas Plänkers http://www.oscommerce.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_cod_fee.php 2019-04-12 11:49:16Z webchills $
+ * @version $Id: ot_cod_fee.php 2022-11-09 21:41:16Z webchills $
  */
 /**
  * COD-FEE Order Totals Module
@@ -38,7 +37,7 @@
 
         //check if payment method is cod. If yes, check if cod is possible.
 
-        if ($_SESSION['payment'] == 'cod') {
+        if (isset($_SESSION['payment']) && $_SESSION['payment'] == 'cod') {
           //process installed shipping modules
           if (substr_count($_SESSION['shipping']['id'], 'flat') !=0) $cod_zones = preg_split("/[:,]/", str_replace(' ', '', MODULE_ORDER_TOTAL_COD_FEE_FLAT));
           if (substr_count($_SESSION['shipping']['id'], 'free') !=0) $cod_zones = preg_split("/[:,]/", str_replace(' ', '', MODULE_ORDER_TOTAL_COD_FEE_FREE));
