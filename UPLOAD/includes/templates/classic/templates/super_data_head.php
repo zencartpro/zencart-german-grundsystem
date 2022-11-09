@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: super_data_head.php 2022-01-17 15:18:41Z webchills $
+ * @version $Id: super_data_head.php 2022-11-09 19:12:41Z webchills $
  */
 if (FACEBOOK_OPEN_GRAPH_STATUS == 'true') { ?>
 <script type="application/ld+json">
@@ -47,11 +47,6 @@ if (FACEBOOK_OPEN_GRAPH_STATUS == 'true') { ?>
   	$facebook_image = $db->Execute("select p.products_image from " . TABLE_PRODUCTS . " p where products_id='" . (int)$_GET['products_id'] . "'");
     $fb_image = HTTP_SERVER . DIR_WS_CATALOG . DIR_WS_IMAGES . $facebook_image->fields['products_image'];
     $products_image_extension = substr($fb_image, strrpos($fb_image, '.'));
-//Begin Image Handler changes 1 of 2
-//the next three lines are commented out for Image Handler 4
-//$products_image_base = str_replace($products_image_extension, '', $products_image);
-//$products_image_medium = $products_image_base . IMAGE_SUFFIX_MEDIUM . $products_image_extension;
-//$products_image_large = $products_image_base . IMAGE_SUFFIX_LARGE . $products_image_extension;
 $products_image_base = preg_replace('/'.$products_image_extension . '$/', '', $fb_image);
 $products_image_medium = DIR_WS_IMAGES . 'medium/' . $products_image_base . IMAGE_SUFFIX_MEDIUM . $products_image_extension;
 $products_image_large  = DIR_WS_IMAGES . 'large/' . $products_image_base . IMAGE_SUFFIX_LARGE .  $products_image_extension;
@@ -129,6 +124,9 @@ $products_model = $product_info->fields['products_model'];
 $products_id = $product_info->fields['products_id'];
 $products_quantity = $product_info->fields['products_quantity'];
  ?>
+<?php
+$categoriesname = isset ($categories->fields['categories_name']) ? $categories->fields['categories_name']:'' ;
+ ?>
 <script type="application/ld+json">
 {
   "@context": "http://schema.org",
@@ -141,7 +139,7 @@ $products_quantity = $product_info->fields['products_quantity'];
     "brand": "<?php echo $manufacturers_name; ?>",
     "productID": "<?php echo $products_id; ?>",
     "url": "<?php echo $canonicalLink; ?>",
-    "category" : "<?php echo $categories->fields['categories_name']; ?>",
+    "category" : "<?php echo $categoriesname; ?>",
 <?php 
     if ($current_page_base == 'product_info' && isset($_GET['products_id'])) {
         $reviewQuery = "SELECT r.reviews_id, r.customers_name, r.reviews_rating, r.date_added, r.status, rd.reviews_text
@@ -209,7 +207,7 @@ $products_quantity = $product_info->fields['products_quantity'];
     "itemCondition" : "http://schema.org/<?php if (FACEBOOK_OPEN_GRAPH_COND != '') { ?><?php echo FACEBOOK_OPEN_GRAPH_COND; ?><?php }?>",
     "inventoryLevel" : "<?php echo $products_quantity; ?>",    
     "deliveryLeadTime" : "<?php if (FACEBOOK_OPEN_GRAPH_DTS != '') { ?><?php echo FACEBOOK_OPEN_GRAPH_DTS; ?><?php }?>",
-    "category" : "<?php echo $categories->fields['categories_name']; ?>",
+    "category" : "<?php echo $categoriesname; ?>",
     "itemOffered" : "<?php echo $products_name; ?>",
     "eligibleRegion" : "<?php if (FACEBOOK_OPEN_GRAPH_ELER != '') { ?><?php echo FACEBOOK_OPEN_GRAPH_ELER; ?><?php }?>",
     "acceptedPaymentMethod" : [ "http://purl.org/goodrelations/v1#<?php echo FACEBOOK_OPEN_GRAPH_PAY1; ?>,http://purl.org/goodrelations/v1#<?php echo FACEBOOK_OPEN_GRAPH_PAY2; ?>,http://purl.org/goodrelations/v1#<?php echo FACEBOOK_OPEN_GRAPH_PAY3; ?>,http://purl.org/goodrelations/v1#<?php echo FACEBOOK_OPEN_GRAPH_PAY4; ?>,http://purl.org/goodrelations/v1#<?php echo FACEBOOK_OPEN_GRAPH_PAY5; ?>,http://purl.org/goodrelations/v1#<?php echo FACEBOOK_OPEN_GRAPH_PAY6; ?>" ]    
@@ -220,7 +218,7 @@ $products_quantity = $product_info->fields['products_quantity'];
 <?php if (FACEBOOK_OPEN_GRAPH_COND != '') { ?><meta property="og:condition" content="<?php echo FACEBOOK_OPEN_GRAPH_COND; ?>" /><?php }?>
 <?php if (FACEBOOK_OPEN_GRAPH_CUR != '') { ?><meta property="product:price:currency" content="<?php echo FACEBOOK_OPEN_GRAPH_CUR; ?>"/><?php }?>
 <meta property="product:retailer_part_no" content="<?php echo $products_model; ?>"/>
-<meta property="og:category" content="<?php echo $categories->fields['categories_name']; ?>" />
+<meta property="og:category" content="<?php echo $categoriesname; ?>" />
 <meta property="og:price:amount" content="<?php echo $specials_new_products_price = (round(zen_get_products_actual_price($product_info_metatags->fields['products_id']),2)); ?>" />
 <meta property="og:availability" content="<?php if ($products_quantity > 0) { ?>InStock<?php } ?><?php if ($products_quantity == 0) { ?>OutOfStock<?php }?>" />
 <meta property="og:brand" content="<?php echo $manufacturers_name; ?>" />
