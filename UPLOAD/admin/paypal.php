@@ -5,7 +5,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright (c) 2004 DevosC.com    
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypal.php 2021-10-24 18:20:16Z webchills $
+ * @version $Id: paypal.php 2022-11-10 19:41:16Z webchills $
  */
 
   require('includes/application_top.php');
@@ -52,7 +52,7 @@ $paypal_ipn_sort_order_array = [
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
   $selected_status = (isset($_GET['payment_status']) ? $_GET['payment_status'] : '');
 
-  require(DIR_FS_CATALOG_MODULES . 'payment/paypal.php');
+  require(DIR_FS_CATALOG_MODULES . 'payment/paypalwpp.php');
 
   $payment_statuses = [];
   $payment_status_trans = $db->Execute("SELECT payment_status_name AS payment_status FROM " . TABLE_PAYPAL_PAYMENT_STATUS );
