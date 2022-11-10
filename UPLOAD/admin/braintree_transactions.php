@@ -4,7 +4,7 @@
  * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @version $Id: braintree_transactions.php 2022-04-16 09:26:14 webchills $
+ * @version $Id: braintree_transactions.php 2022-11-10 20:05:14 webchills $
 */
 
   require('includes/application_top.php');
@@ -54,11 +54,8 @@
 <!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
 <head>
-<meta charset="<?php echo CHARSET; ?>">
-<title><?php echo TITLE; ?></title>
-<link rel="stylesheet" href="includes/stylesheet.css">
-<link rel="stylesheet" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-<style>
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
+    <style>
 .supportinfo {
 font-size: 13px;
 margin: 0 0 20px 0;
@@ -81,17 +78,7 @@ float:right;
 margin:-50px 5px 0px 10px;
 } 
 </style>
-<script src="includes/menu.js"></script>
-<script src="includes/general.js"></script>
-<script>
-function init() {
-cssjsmenu('navbar');
-if (document.getElementById) {
-var kill = document.getElementById('hoverJS');
-kill.disabled = true;
-}
-}
-</script>
+
 </head>
 <body>
     <!-- header //-->
@@ -182,7 +169,7 @@ kill.disabled = true;
 ?>
               <tr>
                     <td colspan="3" class="smallText"><?php echo $bt_split->display_count($bt_query_numrows, MAX_DISPLAY_SEARCH_RESULTS_BRAINTREE_IPN, $_GET['page'], "Zeige <strong>%d</strong> bis <strong>%d</strong> (von <strong>%d</strong> Transaktionen)"); ?></td>
-                    <td colspan="3" class="smallText"><?php echo $bt_split->display_links($bt_query_numrows, MAX_DISPLAY_SEARCH_RESULTS_BRAINTREE_IPN, MAX_DISPLAY_PAGE_LINKS, $_GET['page'], (zen_not_null($selected_status) ? '&payment_status=' . $selected_status : '') . (zen_not_null($braintree_sort_order) ? '&braintree_sort_order=' . $braintree_sort_order : '')); ?></td>
+                    <td colspan="3" class="smallText"><?php echo $bt_split->display_links($bt_query_numrows, MAX_DISPLAY_SEARCH_RESULTS_BRAINTREE_IPN, MAX_DISPLAY_PAGE_LINKS, isset($_GET['page']) ? (int)$_GET['page'] : 1, zen_get_all_get_params(['page'])); ?></td>
                   </tr>
                 </table>
            </div>
