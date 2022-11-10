@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
   * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: admin_html_head.php 2021-12-25 08:08:16Z webchills $
+ * @version $Id: admin_html_head.php 2022-11-10 15:44:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -28,7 +28,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 <?php if (file_exists($value = 'includes/css/jquery-ui.css')) { ?>
     <link rel="stylesheet" href="<?php echo $value; ?>">
 <?php } else { ?>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <?php } ?>
     <link rel="stylesheet" href="includes/css/jAlert.css">
     <link rel="stylesheet" href="includes/css/menu.css">
