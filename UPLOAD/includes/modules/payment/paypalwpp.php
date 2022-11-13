@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypalwpp.php 2022-08-28 17:52:14Z webchills $
+ * @version $Id: paypalwpp.php 2022-11-13 14:50:14Z webchills $
  */
 /**
  * load the communications layer code
@@ -230,11 +230,11 @@ class paypalwpp extends base {
       $this->enabled = false;
       $this->zcLog('update_status', 'Module disabled because purchase price (' . $order->info['total'] . ') exceeds PayPal-imposed maximum limit of 1000000 JPY.');
     }
-    // module cannot be used for purchase > $10,000 USD equiv
-    $order_amount = $this->calc_order_amount($order->info['total'], 'USD', false);
+    // module cannot be used for purchase > $10,000 EUR equiv
+    $order_amount = $this->calc_order_amount($order->info['total'], 'EUR', false);
     if ($order_amount > 10000) {
       $this->enabled = false;
-      $this->zcLog('update_status', 'Module disabled because purchase price (' . $order_amount . ') exceeds PayPal-imposed maximum limit of 10,000 USD or equivalent.');
+      $this->zcLog('update_status', 'Module disabled because purchase price (' . $order_amount . ') exceeds PayPal-imposed maximum limit of 10,000 EUR or equivalent.');
     }
     if ($order->info['total'] == 0) {
       $this->enabled = false;
@@ -2886,7 +2886,16 @@ if (false) { // disabled until clarification is received about coupons in PayPal
     //echo '<br>basicError='.$basicError.'<br>' . urldecode(print_r($response,true)); die('halted');
     $errorInfo = '';
     if (IS_ADMIN_FLAG === false) {
-        $errorInfo = 'Problem occurred while customer ' . zen_output_string_protected($_SESSION['customer_id'] . ' ' . $_SESSION['customer_first_name'] . ' ' . $_SESSION['customer_last_name']) . ' was attempting checkout with PayPal Express Checkout.' . "\n\n";
+        if (zen_is_logged_in()) {
+            if (zen_in_guest_checkout()) {
+                $customer_info = 'Guest checkout';
+            } else {
+                $customer_info = $_SESSION['customer_id'] . ' ' . $_SESSION['customer_first_name'] . ' ' . $_SESSION['customer_last_name'];
+            }
+        } else {
+            $customer_info = 'Not logged in';
+        }
+        $errorInfo = 'Problem occurred while customer ' . zen_output_string_protected($customer_info) . ' was attempting checkout with PayPal Express Checkout.' . "\n\n";
     }
 
     $this->notify('NOTIFY_PAYPALWPP_ERROR_HANDLER', $response, $operation, $basicError, $ignoreList, $errorInfo);
