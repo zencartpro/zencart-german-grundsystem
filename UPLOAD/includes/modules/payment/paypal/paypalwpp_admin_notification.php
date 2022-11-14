@@ -8,7 +8,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright 2004 DevosC.com
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypalwpp_admin_notification.php 2022-02-05 19:14:16Z webchills $
+ * @version $Id: paypalwpp_admin_notification.php 2022-11-14 15:56:16Z webchills $
  */
 if (!defined('TEXT_MAXIMUM_CHARACTERS_ALLOWED')) {
     define('TEXT_MAXIMUM_CHARACTERS_ALLOWED', ' chars allowed');
@@ -21,9 +21,10 @@ $outputCapt = '';
 $outputVoid = '';
 $outputRefund = '';
 
-// strip slashes in case they were added to handle apostrophes:
+// strip slashes in case they were added to handle apostrophes, noting that some of the fields
+// from the "paypal" table might be NULL:
 foreach ($ipn->fields as $key => $value) {
-    $ipn->fields[$key] = stripslashes($value);
+    $ipn->fields[$key] = ($value === null ? '' : stripslashes($value));
 }
 
 if (!empty($response['RESPMSG'])) {

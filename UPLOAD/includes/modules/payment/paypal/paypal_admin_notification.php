@@ -2,18 +2,19 @@
 /**
  * admin subtemplate for Paypal Website Payments Standard payment method
  *
- 
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright 2004 DevosC.com
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypal_admin_notification.php 2022-01-11 16:38:28Z webchills $
+ * @version $Id: paypal_admin_notification.php 2022-11-14 15:55:28Z webchills $
  */
 
-// strip slashes in case they were added to handle apostrophes:
-  foreach ($ipn->fields as $key=>$value){
-    $ipn->fields[$key] = stripslashes($value);
+// strip slashes in case they were added to handle apostrophes, noting that some of the fields
+// from the "paypal" table might be NULL:
+foreach ($ipn->fields as $key => $value) {
+    $ipn->fields[$key] = stripslashes($value ?? '');
   }
 
 // display all paypal status fields (in admin Orders page):
