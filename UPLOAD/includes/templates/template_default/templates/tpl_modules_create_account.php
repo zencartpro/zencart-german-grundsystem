@@ -10,7 +10,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_create_account.php 2022-04-09 08:52:58Z webchills $
+ * @version $Id: tpl_modules_create_account.php 2022-11-14 17:28:58Z webchills $
  */
 ?>
 
@@ -55,15 +55,15 @@
 ?>
 
 <label class="inputLabel" for="firstname"><?php echo ENTRY_FIRST_NAME; ?></label>
-<?php echo zen_draw_input_field('firstname', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_firstname', '40') . ' id="firstname" placeholder="' . ENTRY_FIRST_NAME_TEXT . '"' . ((int)ENTRY_FIRST_NAME_MIN_LENGTH > 0 ? ' required' : '')); ?>
+<?php echo zen_draw_input_field('firstname', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_firstname', '40') . ' id="firstname" autocomplete="off" placeholder="' . ENTRY_FIRST_NAME_TEXT . '"' . ((int)ENTRY_FIRST_NAME_MIN_LENGTH > 0 ? ' required' : '')); ?>
 <br class="clearBoth">
 
 <label class="inputLabel" for="lastname"><?php echo ENTRY_LAST_NAME; ?></label>
-<?php echo zen_draw_input_field('lastname', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_lastname', '40') . ' id="lastname" placeholder="' . ENTRY_LAST_NAME_TEXT . '"'. ((int)ENTRY_LAST_NAME_MIN_LENGTH > 0 ? ' required' : '')); ?>
+<?php echo zen_draw_input_field('lastname', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_lastname', '40') . ' id="lastname" autocomplete="off" placeholder="' . ENTRY_LAST_NAME_TEXT . '"'. ((int)ENTRY_LAST_NAME_MIN_LENGTH > 0 ? ' required' : '')); ?>
 <br class="clearBoth">
 
 <label class="inputLabel" for="street-address"><?php echo ENTRY_STREET_ADDRESS; ?></label>
-  <?php echo zen_draw_input_field('street_address', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_street_address', '40') . ' id="street-address" placeholder="' . ENTRY_STREET_ADDRESS_TEXT . '"'. ((int)ENTRY_STREET_ADDRESS_MIN_LENGTH > 0 ? ' required' : '')); ?>
+  <?php echo zen_draw_input_field('street_address', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_street_address', '40') . ' id="street-address" autocomplete="off" placeholder="' . ENTRY_STREET_ADDRESS_TEXT . '"'. ((int)ENTRY_STREET_ADDRESS_MIN_LENGTH > 0 ? ' required' : '')); ?>
 <br class="clearBoth">
 
 <?php
@@ -76,13 +76,13 @@
   }
 ?>
 <label class="inputLabel" for="postcode"><?php echo ENTRY_POST_CODE; ?></label>
-<?php echo zen_draw_input_field('postcode', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_postcode', '40') . ' id="postcode" placeholder="' . ENTRY_POST_CODE_TEXT . '"' . ((int)ENTRY_POSTCODE_MIN_LENGTH > 0 ? ' required' : '')
+<?php echo zen_draw_input_field('postcode', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_postcode', '40') . ' id="postcode" autocomplete="off" placeholder="' . ENTRY_POST_CODE_TEXT . '"' . ((int)ENTRY_POSTCODE_MIN_LENGTH > 0 ? ' required' : '')
 ); ?>
 <br class="clearBoth">
 
 
 <label class="inputLabel" for="city"><?php echo ENTRY_CITY; ?></label>
-<?php echo zen_draw_input_field('city', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_city', '40') . ' id="city" placeholder="' . ENTRY_CITY_TEXT . '"'. ((int)ENTRY_CITY_MIN_LENGTH > 0 ? ' required' : '')); ?>
+<?php echo zen_draw_input_field('city', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_city', '40') . ' id="city" autocomplete="off" placeholder="' . ENTRY_CITY_TEXT . '"'. ((int)ENTRY_CITY_MIN_LENGTH > 0 ? ' required' : '')); ?>
 <br class="clearBoth">
 
 <?php
@@ -121,14 +121,14 @@
 <fieldset>
 <legend><?php echo TABLE_HEADING_PHONE_FAX_DETAILS; ?></legend>
 <label class="inputLabel" for="telephone"><?php echo ENTRY_TELEPHONE_NUMBER; ?></label>
-<?php echo zen_draw_input_field('telephone', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_telephone', '40') . ' id="telephone" placeholder="' . ENTRY_TELEPHONE_NUMBER_TEXT . '"' . ((int)ENTRY_TELEPHONE_MIN_LENGTH > 0 ? ' required' : ''), 'tel'); ?>
+<?php echo zen_draw_input_field('telephone', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_telephone', '40') . ' id="telephone" autocomplete="off" placeholder="' . ENTRY_TELEPHONE_NUMBER_TEXT . '"' . ((int)ENTRY_TELEPHONE_MIN_LENGTH > 0 ? ' required' : ''), 'tel'); ?>
 
 <?php
   if (ACCOUNT_FAX_NUMBER == 'true') {
 ?>
 <br class="clearBoth">
 <label class="inputLabel" for="fax"><?php echo ENTRY_FAX_NUMBER; ?></label>
-<?php echo zen_draw_input_field('fax', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_fax', '32') . ' id="fax" placeholder="' . ENTRY_FAX_NUMBER_TEXT . '"', 'tel'); ?>
+<?php echo zen_draw_input_field('fax', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_fax', '32') . ' id="fax" autocomplete="off" placeholder="' . ENTRY_FAX_NUMBER_TEXT . '"', 'tel'); ?>
 <?php
   }
 ?>
@@ -140,7 +140,7 @@
 <fieldset>
 <legend><?php echo TABLE_HEADING_DATE_OF_BIRTH; ?></legend>
 <label class="inputLabel" for="dob"><?php echo ENTRY_DATE_OF_BIRTH; ?></label>
-<?php echo zen_draw_input_field('dob','', zen_set_field_length(TABLE_CUSTOMERS, 'customers_dob', '20') . ' id="dob" placeholder="' . ENTRY_DATE_OF_BIRTH_TEXT . '"' . (ACCOUNT_DOB == 'true' && (int)ENTRY_DOB_MIN_LENGTH != 0 ? ' required' : '')); ?>
+<?php echo zen_draw_input_field('dob','', zen_set_field_length(TABLE_CUSTOMERS, 'customers_dob', '20') . ' id="dob" autocomplete="off" placeholder="' . ENTRY_DATE_OF_BIRTH_TEXT . '"' . (ACCOUNT_DOB == 'true' && (int)ENTRY_DOB_MIN_LENGTH != 0 ? ' required' : '')); ?>
 <br class="clearBoth">
 </fieldset>
 <?php
@@ -150,16 +150,16 @@
 <fieldset>
 <legend><?php echo TABLE_HEADING_LOGIN_DETAILS; ?></legend>
 <label class="inputLabel" for="email-address"><?php echo ENTRY_EMAIL_ADDRESS; ?></label>
-<?php echo zen_draw_input_field('email_address', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_email_address', '40') . ' id="email-address" autocomplete="username" placeholder="' . ENTRY_EMAIL_ADDRESS_TEXT . '"' . ((int)ENTRY_EMAIL_ADDRESS_MIN_LENGTH > 0 ? ' required' : ''), 'email'); ?>
+<?php echo zen_draw_input_field('email_address', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_email_address', '40') . ' id="email-address" autocomplete="off" placeholder="' . ENTRY_EMAIL_ADDRESS_TEXT . '"' . ((int)ENTRY_EMAIL_ADDRESS_MIN_LENGTH > 0 ? ' required' : ''), 'email'); ?>
 <br class="clearBoth">
 <label class="inputLabel" for="email-address-confirm"><?php echo ENTRY_EMAIL_ADDRESS_CONFIRM; ?></label>
-<?php echo zen_draw_input_field('email_address_confirm', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_email_address', '40') . ' id="email-address-confirm" placeholder="' . ENTRY_EMAIL_ADDRESS_TEXT . '"' . ((int)ENTRY_EMAIL_ADDRESS_MIN_LENGTH > 0 ? ' required' : ''), 'email'); ?>
+<?php echo zen_draw_input_field('email_address_confirm', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_email_address', '40') . ' id="email-address-confirm" autocomplete="off" placeholder="' . ENTRY_EMAIL_ADDRESS_TEXT . '"' . ((int)ENTRY_EMAIL_ADDRESS_MIN_LENGTH > 0 ? ' required' : ''), 'email'); ?>
 <br class="clearBoth">
 <?php
   if ($display_nick_field == true) {
 ?>
 <label class="inputLabel" for="nickname"><?php echo ENTRY_NICK; ?></label>
-<?php echo zen_draw_input_field('nick','', zen_set_field_length(TABLE_CUSTOMERS, 'customers_nick', '32') . ' id="nickname" placeholder="' . ENTRY_NICK_TEXT . '"'); ?>
+<?php echo zen_draw_input_field('nick','', zen_set_field_length(TABLE_CUSTOMERS, 'customers_nick', '32') . ' id="nickname" autocomplete="off" placeholder="' . ENTRY_NICK_TEXT . '"'); ?>
 <br class="clearBoth">
 <?php
   }
