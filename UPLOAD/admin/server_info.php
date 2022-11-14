@@ -1,12 +1,12 @@
 <?php
 /**
- * Zen Cart German Specific
- 
+ * Zen Cart German Specific 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * additional database info by lat9
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: server_info.php 2022-02-27 20:03:16Z webchills $
+ * @version $Id: server_info.php 2022-11-14 09:52:16Z webchills $
  */
 
   require('includes/application_top.php');
@@ -89,6 +89,14 @@ pre {margin: 0; font-family: monospace;}
 .v i {color: #999;}
 .phpinfo img {float: right; border: 0;}
 .phpinfo-is-disabled {color: red; font-weight: bold; text-align: center; padding-top: 1em; border: 1px solid red; height: 4em; width: 75%;}
+#db-h2 { text-align: center; font-size: 20px; }
+#database-info { width: 768px!important; margin: 0 auto; border: 1px solid #737ca1; border-collapse: collapse; }
+.db-row { }
+.db-row:nth-child(odd) .db-info { background-color: #e5e4e2; }
+.db-info { width: 50%; padding: 5px; border: 1px solid #737ca1; }
+.db-name { text-align: right; font-weight: bold; height: inherit; }
+.db-value { text-align: left; word-wrap: break-word; max-width: 50%; word-break: break-all; }
+.db-head { font-weight: bold; color: #737ca1; }
 </style>
 </head>
 <body onLoad="init()" class="sysinfoBody">
@@ -110,7 +118,7 @@ pre {margin: 0; font-family: monospace;}
       <div class="infocell"><strong><?php echo TITLE_PHP_UPLOAD_MAX;?></strong> <?php echo $system['php_uploadmaxsize'];?></div>
       <?php echo ($system['php_memlimit'] != '' ? '<div class="infocell"><strong>' . TITLE_PHP_MEMORY_LIMIT . '</strong> ' . $system['php_memlimit'] . '</div>' : ''); ?>
       <div class="infocell"><strong><?php echo TITLE_PHP_POST_MAX_SIZE; ?></strong> <?php echo $system['php_postmaxsize']; ?></div>
-      <div class="infocell"><strong><?php echo TITLE_DATABASE_ENGINE; ?></strong> <?php echo $system['db_version'] . ($system['mysql_strict_mode'] == true ? '<em> ' . TITLE_MYSQL_STRICT_MODE . '</em>' : ''); ?></div>
+      <div class="infocell"><strong><?php echo TITLE_DATABASE_ENGINE; ?></strong> <?php echo $system['db_version'] . ($system['mysql_strict_mode'] == true ? '<em> ' . TITLE_MYSQL_STRICT_MODE . '</em>' : ''); ?><br><?php echo TEXT_DATABASE_QUICKLINK; ?></div>
       <div class="infocell"><strong><?php echo TITLE_DATABASE_HOST; ?></strong> <?php echo $system['db_server'] . ' (' . $system['db_ip'] . ')'; ?></div>
       <div class="infocell"><strong><?php echo TITLE_DATABASE_DATE; ?></strong> <?php echo $system['db_date']; ?></div>
       <div class="infocell"><strong><?php echo TITLE_DATABASE_DATA_SIZE; ?></strong> <?php echo number_format(($system['database_size']/1024),0); ?> kB</div>
@@ -141,6 +149,27 @@ if (strpos($disabled_functions,"phpinfo") === false) {
   }
 ?>
 </div>
+
+<h2 id="db-h2"><?php echo TITLE_DATABASE_VARIABLES . $system['db_version'] . ($system['mysql_strict_mode'] == true ? '<em> ' . TITLE_MYSQL_STRICT_MODE . '</em>' : ''); ?></h2>
+<table class="table" id="database-info">
+    <tr class="db-row">
+        <th class="db-name db-head db-info"><?php echo HEADING_DATABASE_VARIABLE; ?></th>
+        <th class="db-value db-head db-info"><?php echo HEADING_DATABASE_VALUE; ?></th>
+     </tr>
+<?php
+$show_variables = $db->Execute ("SHOW VARIABLES");
+while (!$show_variables->EOF) {
+?>
+    <tr class="db-row">
+        <td class="db-info db-name"><?php echo $show_variables->fields['Variable_name']; ?></td>
+        <td class="db-info db-value"><?php echo zen_not_null ($show_variables->fields['Value']) ? $show_variables->fields['Value'] : '&nbsp;'; ?></td>
+    </tr>
+<?php
+    $show_variables->MoveNext ();
+}
+?>
+</table>
+
 <?php } else { ?>
 <div class="phpinfo phpinfo-is-disabled"><?php echo ERROR_UNABLE_TO_DISPLAY_SERVER_INFORMATION; ?></div>
 <?php } ?>
