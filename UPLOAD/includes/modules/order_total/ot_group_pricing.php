@@ -1,17 +1,75 @@
 <?php
 /**
  * ot_group_pricing order-total module
- *
- * @package orderTotal
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_group_pricing.php 2019-04-12 11:49:16Z webchills $
+ * @version $Id: ot_group_pricing.php 2022-11-14 19:24:16Z webchills $
  */
 
 class ot_group_pricing {
-  var $title, $output;
+    /**
+     * $_check is used to check the configuration key set up
+     * @var int
+     */
+    protected $_check;
+    /**
+     * $code determines the internal 'code' name used to designate "this" order total module
+     * @var string
+     */
+    public $code;
+    /**
+     * $calculate_tax determines how tax should be applied to coupon Standard, Credit Note, None
+     * @var string
+     */
+    public $calculate_tax;
+    /**
+     * $credit_class flag to indicate order totals method is a credit class
+     * @var boolean
+     */
+    public $credit_class;
+    /**
+     * $deduction amount of deduction calculated/afforded while being applied to an order
+     * @var float|null
+     */
+    protected $deduction;
+    /**
+     * $description is a soft name for this order total method
+     * @var string 
+     */
+    public $description;
+    /**
+     * $include_shipping allow shipping costs to be discounted by coupon if 'true'
+     * @var string
+     */
+    public $include_shipping;
+    /**
+     * $include_tax allow tax to be discounted by coupon if 'true'
+     * @var string
+     */
+    public $include_tax;
+    /**
+     * $sort_order is the order priority of this order total module when displayed
+     * @var int
+     */
+    public $sort_order;
+    /**
+     * $tax_class is the Tax class to be applied to the coupon cost
+     * @var
+     */
+    public $tax_class;
+    /**
+     * $title is the displayed name for this order total method
+     * @var string
+     */
+    public $title;
+    /**
+     * $output is an array of the display elements used on checkout pages
+     * @var array
+     */
+    public $output = [];
 
   function __construct() {
     $this->code = 'ot_group_pricing';
@@ -36,7 +94,7 @@ class ot_group_pricing {
     if (isset($od_amount['total']) && $od_amount['total'] > 0) {
       $tax = 0;
       foreach($order->info['tax_groups'] as $key => $value) {
-        if ($od_amount['tax_groups'][$key]) {
+        if (isset($od_amount['tax_groups'][$key])) {
           $order->info['tax_groups'][$key] -= $od_amount['tax_groups'][$key];
           $tax += $od_amount['tax_groups'][$key];
         }
@@ -82,7 +140,9 @@ class ot_group_pricing {
   function calculate_deductions($order_total) {
     global $db, $order;
     $od_amount = array();
-    if ($order_total == 0) return $od_amount;
+    if ($order_total == 0 || !zen_is_logged_in() || zen_in_guest_checkout()) {
+        return $od_amount;
+    }
     $orderTotal = $this->get_order_total();
     $orderTotalTax = $orderTotal['tax'];
     $taxGroups = $orderTotal['taxGroups'];

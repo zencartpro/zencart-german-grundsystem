@@ -2,21 +2,45 @@
 /**
  * ot_shipping order-total module
  *
- 
+ * Zen Cart German Specific
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_shipping.php 2021-11-28 21:29:16Z webchills $
+ * @version $Id: ot_shipping.php 2022-11-14 19:21:16Z webchills $
  */
 class ot_shipping extends base
 {
-    public    $code,
-              $title,
-              $description,
-              $sort_order,
-              $output;
+    /**
+     * $_check is used to check the configuration key set up
+     * @var int
+     */
     protected $_check;
+    /**
+     * $code determines the internal 'code' name used to designate "this" order total module
+     * @var string
+     */
+    public $code;
+    /**
+     * $description is a soft name for this order total method
+     * @var string 
+     */
+    public $description;
+    /**
+     * $sort_order is the order priority of this order total module when displayed
+     * @var int
+     */
+    public $sort_order;
+    /**
+     * $title is the displayed name for this order total method
+     * @var string
+     */
+    public $title;
+    /**
+     * $output is an array of the display elements used on checkout pages
+     * @var array
+     */
+    public $output = [];
 
     public function __construct() 
     {
@@ -80,7 +104,7 @@ class ot_shipping extends base
                 $shipping_tax_description
             );
 
-            if ($external_shipping_tax_handler === true || ($module !== 'free' && $GLOBALS[$module]->tax_class > 0)) {
+            if ($external_shipping_tax_handler === true || (!empty($module) && $module !== 'free' && isset($GLOBALS[$module]->tax_class) && $GLOBALS[$module]->tax_class > 0)) {
                 if ($external_shipping_tax_handler !== true) {
                     if (!isset($GLOBALS[$module]->tax_basis)) {
                         $shipping_tax_basis = STORE_SHIPPING_TAX_BASIS;
