@@ -1,13 +1,12 @@
 <?php
 /**
  * Login Page
- *
- 
+ * Zen Cart German Specific 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2022-04-09 11:05:16Z webchills $
+ * @version $Id: header_php.php 2022-11-15 22:25:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_LOGIN');
@@ -29,9 +28,10 @@ include(DIR_WS_MODULES . zen_get_module_directory(FILENAME_CREATE_ACCOUNT));
 // -----
 // Gather any posted email_address prior to the processing loop, in case this is a 'Place Order'
 // request coming from the admin.
+// Also get the empty value of the hidden empadminlogin field to fill it with allowed if the place order button in admin is used
 //
 $email_address = zen_db_prepare_input(isset($_POST['email_address']) ? trim($_POST['email_address']) : '');
-
+$empadminlogin = zen_db_prepare_input(isset($_POST['empadminlogin']) ? trim($_POST['empadminlogin']) : '');
 $error = false;
 if (isset($_GET['action']) && $_GET['action'] == 'process') {
     $loginAuthorized = false;
@@ -87,7 +87,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'process') {
                   $newPassword = zcPassword::getInstance(PHP_VERSION)->updateNotLoggedInCustomerPassword(
                       $password, $email_address);
               }
-          } else {
+           // login with admin password for place order is only possible when started from admin for security reasons
+          } else if (!empty($_POST['empadminlogin'])){
               $loginAuthorized = zen_validate_storefront_admin_login($password, $email_address);
           }
       }
