@@ -2,13 +2,13 @@
 /** 
  * httpClient Class.
  *
- * @package classes
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2001 Leo West <west_leo@yahoo-REMOVE-.com> Net_HTTP_Client v0.6
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: http_client.php 2019-04-12 10:49:16Z webchills $
+ * @version $Id: http_client.php 2022-11-16 11:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -18,7 +18,6 @@ if (!defined('IS_ADMIN_FLAG')) {
  * This class is used mainly by payment modules to simulate a browser session
  * when communicating back to another server to collect information
  *
- * @package classes
  */
   class httpClient extends base {
     var $url; // array containing server URL, similar to parseurl() returned array
@@ -37,7 +36,7 @@ if (!defined('IS_ADMIN_FLAG')) {
  * Note: when host and port are defined, the connection is immediate
  **/
     function __construct($host = '', $port = '') {
-      if (zen_not_null($host)) {
+      if (!empty($host)) {
         $this->connect($host, $port);
       }
     }
@@ -121,7 +120,7 @@ if (!defined('IS_ADMIN_FLAG')) {
     function Connect($host, $port = '') {
       $this->url['scheme'] = 'http';
       $this->url['host'] = $host;
-      if (zen_not_null($port)) $this->url['port'] = $port;
+      if (!empty($port)) $this->url['port'] = $port;
 
       return true;
     }
@@ -301,13 +300,13 @@ if (!defined('IS_ADMIN_FLAG')) {
           $port = $this->url['port'];
         }
 
-        if (!zen_not_null($port)) $port = 80;
+        if (!!empty($port)) $port = 80;
 
         if (!$this->socket = @fsockopen($host, $port, $this->reply, $this->replyString, $this->timeout)) {
           return false;
         }
 
-        if (zen_not_null($this->requestBody)) {
+        if (!empty($this->requestBody)) {
           $this->addHeader('Content-Length', strlen($this->requestBody));
         }
 
@@ -319,7 +318,7 @@ if (!defined('IS_ADMIN_FLAG')) {
           }
         }
 
-        if (zen_not_null($this->requestBody)) {
+        if (!empty($this->requestBody)) {
           $cmd .= "\r\n" . $this->requestBody;
         }
 

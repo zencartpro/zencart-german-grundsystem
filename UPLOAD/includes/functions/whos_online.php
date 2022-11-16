@@ -1,13 +1,13 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157)
  * whos_online functions
  *
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: whos_online.php 2022-01-12 08:03:16Z webchills $
+ * @version $Id: whos_online.php 2022-11-16 11:25:16Z webchills $
  */
 function zen_update_whos_online()
 {
@@ -46,7 +46,7 @@ function zen_update_whos_online()
         }
     }
     if (substr($uri, -1) == '?') $uri = substr($uri, 0, strlen($uri) - 1);
-    $wo_last_page_url = (zen_not_null($uri) ? substr($uri, 0, 254) : 'Unknown');
+    $wo_last_page_url = (!empty($uri) ? substr($uri, 0, 254) : 'Unknown');
   // MailBeez
   // avoid /mailhive.php?cron_simple=1 in who is online table
   if (preg_match("/mailhive.php/", $wo_last_page_url)) {
@@ -90,7 +90,7 @@ function zen_update_whos_online()
         $sql = "INSERT INTO " . TABLE_WHOS_ONLINE . "
                 (customer_id, full_name, session_id, ip_address, time_entry,
                  time_last_click, last_page_url, host_address, user_agent)
-                VALUES ('" . (int)$wo_customer_id . "', '" . zen_db_input($wo_full_name) . "', 
+                VALUES ('" . (int)$wo_customer_id . "', '" . zen_db_input($wo_full_name) . "',
                 '" . zen_db_input($wo_session_id) . "', '" . zen_db_input($wo_ip_address) . "',
                 '" . zen_db_input($current_time) . "', '" . zen_db_input($current_time) . "',
                 '" . zen_db_input($wo_last_page_url) . "',
@@ -105,7 +105,7 @@ function whos_online_session_recreate($old_session, $new_session)
     global $db;
 
     $sql = "UPDATE " . TABLE_WHOS_ONLINE . "
-            SET session_id = :newSessionID 
+            SET session_id = :newSessionID
             WHERE session_id = :oldSessionID";
     $sql = $db->bindVars($sql, ':newSessionID', $new_session, 'string');
     $sql = $db->bindVars($sql, ':oldSessionID', $old_session, 'string');

@@ -1,48 +1,71 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157)
  
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: perweightunit.php 2022-01-12 09:51:16Z webchills $
+ * @version $Id: perweightunit.php 2022-11-16 11:49:16Z webchills $
  */
 /**
  * "Per Weight Unit" shipping module, allowing you to offer per-unit-rate shipping options
  *
  */
 class perweightunit extends base {
-  /**
-   * $code determines the internal 'code' name used to designate "this" payment module
-   *
-   * @var string
-   */
-  var $code;
-  /**
-   * $title is the displayed name for this payment method
-   *
-   * @var string
-   */
-  var $title;
-  /**
-   * $description is a soft name for this payment method
-   *
-   * @var string
-   */
-  var $description;
-  /**
-   * module's icon
-   *
-   * @var string
-   */
-  var $icon;
-  /**
-   * $enabled determines whether this module shows or not... during checkout.
-   *
-   * @var boolean
-   */
-  var $enabled;
+
+    /**
+     * $_check is used to check the configuration key set up
+     * @var int
+     */
+    protected $_check;
+    /**
+     * $code determines the internal 'code' name used to designate "this" shipping module
+     *
+     * @var string
+     */
+    public $code;
+    /**
+     * $description is a soft name for this shipping method
+     * @var string 
+     */
+    public $description;
+    /**
+     * $enabled determines whether this module shows or not... during checkout.
+     * @var boolean
+     */
+    public $enabled;
+    /**
+     * $icon is the file name containing the Shipping method icon
+     * @var string
+     */
+    public $icon;
+    /** 
+     * $quotes is an array containing all the quote information for this shipping module
+     * @var array
+     */
+    public $quotes;
+    /**
+     * $sort_order is the order priority of this shipping module when displayed
+     * @var int
+     */
+    public $sort_order;
+    /**
+     * $tax_basis is used to indicate if tax is based on shipping, billing or store address.
+     * @var string
+     */
+    public $tax_basis;
+    /**
+     * $tax_class is the  Tax class to be applied to the shipping cost
+     * @var string
+     */
+    public $tax_class;
+    /**
+     * $title is the displayed name for this shipping method
+     * @var string
+     */
+    public $title;
+    
   /**
      * Constructor
    *
@@ -129,7 +152,7 @@ class perweightunit extends base {
       $this->quotes['tax'] = zen_get_tax_rate($this->tax_class, $order->delivery['country']['id'], $order->delivery['zone_id']);
     }
 
-    if (zen_not_null($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title);
+    if (!empty($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title);
 
     return $this->quotes;
   }

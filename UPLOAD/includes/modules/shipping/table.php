@@ -1,50 +1,73 @@
 <?php
 /**
- * Zen Cart German Specific 
+ * Zen Cart German Specific (158 code in 157)
  
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: table.php 2022-01-11 16:08:16Z webchills $
+ * @version $Id: table.php 2022-11-16 12:5:16Z webchills $
  */
 /**
  * Enter description here...
  *
  */
 class table extends base {
+
+    /**
+     * $_check is used to check the configuration key set up
+     * @var int
+     */
+    protected $_check;
+    /**
+     * $code determines the internal 'code' name used to designate "this" shipping module
+     *
+     * @var string
+     */
+    public $code;
+    /**
+     * $description is a soft name for this shipping method
+     * @var string 
+     */
+    public $description;
+    /**
+     * $enabled determines whether this module shows or not... during checkout.
+     * @var boolean
+     */
+    public $enabled;
+    /**
+     * $icon is the file name containing the Shipping method icon
+     * @var string
+     */
+    public $icon;
+    /** 
+     * $quotes is an array containing all the quote information for this shipping module
+     * @var array
+     */
+    public $quotes;
+    /**
+     * $sort_order is the order priority of this shipping module when displayed
+     * @var int
+     */
+    public $sort_order;
+    /**
+     * $tax_basis is used to indicate if tax is based on shipping, billing or store address.
+     * @var string
+     */
+    public $tax_basis;
+    /**
+     * $tax_class is the  Tax class to be applied to the shipping cost
+     * @var string
+     */
+    public $tax_class;
+    /**
+     * $title is the displayed name for this shipping method
+     * @var string
+     */
+    public $title;
+    
   /**
-   * Enter description here...
-   *
-   * @var string
-   */
-  var $code;
-  /**
-   * Enter description here...
-   *
-   * @var string
-   */
-  var $title;
-  /**
-   * Enter description here...
-   *
-   * @var string
-   */
-  var $description;
-  /**
-   * Enter description here...
-   *
-   * @var string
-   */
-  var $icon;
-  /**
-   * Enter description here...
-   *
-   * @var boolean
-   */
-  var $enabled;
-  /**
-   * Enter description here...
+   * constructor
    *
    * @return table
    */
@@ -107,9 +130,9 @@ class table extends base {
     }
   }
   /**
-   * Enter description here...
+   *  Obtain quote from shipping system/calculations
    *
-   * @param unknown_type $method
+   * @param string $method
    * @return unknown
    */
   function quote($method = '') {
@@ -172,12 +195,12 @@ class table extends base {
       $this->quotes['tax'] = zen_get_tax_rate($this->tax_class, $order->delivery['country']['id'], $order->delivery['zone_id']);
     }
 
-    if (zen_not_null($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title);
+    if (!empty($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title);
 
     return $this->quotes;
   }
   /**
-   * Enter description here...
+   * Check to see whether module is installed
    *
    * @return unknown
    */
@@ -190,14 +213,14 @@ class table extends base {
     return $this->_check;
   }
   /**
-   * Enter description here...
+   * Install the shipping module and its configuration settings
    *
    */
   function install() {
     global $db;
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable Table Method', 'MODULE_SHIPPING_TABLE_STATUS', 'True', 'Do you want to offer table rate shipping?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Shipping Table', 'MODULE_SHIPPING_TABLE_COST', '25:8.50,50:5.50,10000:0.00', 'The shipping cost is based on the total cost or weight of items or count of the items. Example: 25:8.50,50:5.50,etc.. Up to 25 charge 8.50, from there to 50 charge 5.50, etc<br>You can also use percentage amounts, such 25:8.50,35:5%,40:9.50,10000:7% to charge a percentage value of the Order Total', '6', '0', 'zen_cfg_textarea(', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Table Method', 'MODULE_SHIPPING_TABLE_MODE', 'weight', 'The shipping cost is based on the order total or the total weight of the items ordered or the total number of items orderd.', '6', '0', 'zen_cfg_select_option(array(\'weight\', \'price\', \'item\'), ', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Table Method', 'MODULE_SHIPPING_TABLE_MODE', 'weight', 'The shipping cost may be calculated based on the total weight of the items ordered, the total price of the items ordered, or the total number of items ordered.', '6', '0', 'zen_cfg_select_option(array(\'weight\', \'price\', \'item\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Handling Fee', 'MODULE_SHIPPING_TABLE_HANDLING', '0', 'Handling fee for this shipping method.', '6', '0', now())");
 
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Handling Per Order or Per Box', 'MODULE_SHIPPING_TABLE_HANDLING_METHOD', 'Order', 'Do you want to charge Handling Fee Per Order or Per Box?', '6', '0', 'zen_cfg_select_option(array(\'Order\', \'Box\'), ', now())");
@@ -218,7 +241,7 @@ class table extends base {
     $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Sortierreihenfolge', 'MODULE_SHIPPING_TABLE_SORT_ORDER', '43', 'Anzeigereigenfolge für dieses Modul. Der niedrigste Wert wird zuerst angezeigt.', now())");
   }
   /**
-   * Enter description here...
+   * Remove the module and all its settings
    *
    */
     function remove() {
@@ -230,7 +253,7 @@ class table extends base {
     }
 
   /**
-   * Enter description here...
+   * Internal list of configuration keys used for configuration of the module
    *
    * @return unknown
    */

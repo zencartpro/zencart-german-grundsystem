@@ -1,12 +1,12 @@
 <?php
 /**
  * currencies class
- *
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: currencies.php 2021-11-28 20:02:16Z webchills $
+ * @version $Id: currencies.php 2022-11-16 11:05:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -18,7 +18,7 @@ if (!defined('IS_ADMIN_FLAG')) {
  */
 class currencies extends base
 {
-    var $currencies;
+    public $currencies = [];
 
     function __construct()
     {
@@ -130,7 +130,7 @@ class currencies extends base
 
     function is_set($code)
     {
-        return isset($this->currencies[$code]) && zen_not_null($this->currencies[$code]);
+        return !empty($this->currencies[$code]);
     }
 
     /**

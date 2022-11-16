@@ -3,13 +3,13 @@
  * Module Template
  * Zen Cart German Specific
  * Displays address-book details/selection
- *
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_address_book_details.php 2022-04-09 08:46:16Z webchills $
+ * @version $Id: tpl_modules_address_book_details.php 2022-11-16 16:17:16Z webchills $
  */
 ?>
 <fieldset>
@@ -29,7 +29,7 @@
       $divers = ($entry->fields['entry_gender'] == 'd') ? true : false;
     }    
 ?>
-<?php echo zen_draw_radio_field('gender', 'm', $male, 'id="gender-male"') . '<label class="radioButtonLabel" for="gender-male">' . MALE . '</label>' . zen_draw_radio_field('gender', 'f', $female, 'id="gender-female"') . '<label class="radioButtonLabel" for="gender-female">' . FEMALE . '</label>' . zen_draw_radio_field('gender', 'd', $divers, 'id="gender-divers"') . '<label class="radioButtonLabel" for="gender-divers">' . DIVERS . '</label>'  . (zen_not_null(ENTRY_GENDER_TEXT) ? '<span class="alert">' . ENTRY_GENDER_TEXT . '</span>': ''); ?>
+<?php echo zen_draw_radio_field('gender', 'm', $male, 'id="gender-male"') . '<label class="radioButtonLabel" for="gender-male">' . MALE . '</label>' . zen_draw_radio_field('gender', 'f', $female, 'id="gender-female"') . '<label class="radioButtonLabel" for="gender-female">' . FEMALE . '</label>' . zen_draw_radio_field('gender', 'd', $divers, 'id="gender-divers"') . '<label class="radioButtonLabel" for="gender-divers">' . DIVERS . '</label>'  . (!empty(ENTRY_GENDER_TEXT) ? '<span class="alert">' . ENTRY_GENDER_TEXT . '</span>': ''); ?>
 <br class="clearBoth">
 
 <?php
@@ -77,7 +77,7 @@
 <label class="inputLabel" for="stateZone" id="zoneLabel"><?php echo ENTRY_STATE; ?></label>
 <?php
       echo zen_draw_pull_down_menu('zone_id', zen_prepare_country_zones_pull_down($selected_country), $zone_id, 'id="stateZone"');
-      if (zen_not_null(ENTRY_STATE_TEXT)) echo '&nbsp;<span class="alert">' . ENTRY_STATE_TEXT . '</span>';
+      if (!empty(ENTRY_STATE_TEXT)) echo '&nbsp;<span class="alert">' . ENTRY_STATE_TEXT . '</span>';
     }
 ?>
 
@@ -102,7 +102,7 @@
 <br class="clearBoth">
 
 <label class="inputLabel" for="country"><?php echo ENTRY_COUNTRY; ?></label>
-<?php echo zen_get_country_list('zone_country_id', $entry->fields['entry_country_id'], 'id="country" placeholder="' . ENTRY_COUNTRY_TEXT . '"' . ($flag_show_pulldown_states == true ? ' onchange="update_zone(this.form);"' : '')); ?>
+<?php echo zen_get_country_list('zone_country_id', $entry->fields['entry_country_id'], 'id="country"' . ($flag_show_pulldown_states == true ? ' onchange="update_zone(this.form);"' : '')); ?>
 <br class="clearBoth">
 
 <?php

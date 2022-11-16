@@ -1,12 +1,12 @@
 <?php
 /**
- * Zen Cart German Specific
- * @package shippingMethod
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
+
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: zones.php 2019-06-25 08:49:16Z webchills $
+ * @version $Id: zones.php 2022-11-16 12:37:16Z webchills $
  */
 /*
 
@@ -95,9 +95,63 @@
 */
 
   class zones {
-    var $code, $title, $description, $enabled, $num_zones;
+    /**
+     * $_check is used to check the configuration key set up
+     * @var int
+     */
+    protected $_check;
+    /**
+     * $code determines the internal 'code' name used to designate "this" shipping module
+     *
+     * @var string
+     */
+    public $code;
+    /**
+     * $description is a soft name for this shipping method
+     * @var string 
+     */
+    public $description;
+    /**
+     * $enabled determines whether this module shows or not... during checkout.
+     * @var boolean
+     */
+    public $enabled;
+    /**
+     * $icon is the file name containing the Shipping method icon
+     * @var string
+     */
+    public $icon;
+    /**
+     * $num_zones is the number of zones to process
+     * @var integer
+     */
+    protected $num_zones;
+    /** 
+     * $quotes is an array containing all the quote information for this shipping module
+     * @var array
+     */
+    public $quotes;
+    /**
+     * $sort_order is the order priority of this shipping module when displayed
+     * @var int
+     */
+    public $sort_order;
+    /**
+     * $tax_basis is used to indicate if tax is based on shipping, billing or store address.
+     * @var string
+     */
+    public $tax_basis;
+    /**
+     * $tax_class is the  Tax class to be applied to the shipping cost
+     * @var string
+     */
+    public $tax_class;
+    /**
+     * $title is the displayed name for this shipping method
+     * @var string
+     */
+    public $title;
 
-// class constructor
     function __construct() {
       $this->code = 'zones';
       $this->title = MODULE_SHIPPING_ZONES_TEXT_TITLE;
@@ -144,7 +198,6 @@
       }
     }
 
-// class methods
     function quote($method = '') {
       global $order, $shipping_weight, $shipping_num_boxes, $total_count;
       $dest_country = $order->delivery['country']['iso_code_2'];
@@ -199,7 +252,6 @@
                   break;
                 }
 
-//                $shipping_method = MODULE_SHIPPING_ZONES_TEXT_WAY . ' ' . $dest_country . (SHIPPING_BOX_WEIGHT_DISPLAY >= 2 ? ' : ' . $shipping_weight . ' ' . MODULE_SHIPPING_ZONES_TEXT_UNITS : '');
                 $shipping_method = MODULE_SHIPPING_ZONES_TEXT_WAY . ' ' . $dest_country . $show_box_weight;
                 $done = true;
         if (strstr($zones_table[$i+1], '%')) {
@@ -279,9 +331,9 @@
         $this->quotes['tax'] = zen_get_tax_rate($this->tax_class, $order->delivery['country']['id'], $order->delivery['zone_id']);
       }
 
-      if (zen_not_null($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title);
+      if (!empty($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title);
 
-      if (strstr(MODULE_SHIPPING_ZONES_SKIPPED, $dest_country)) {
+      if (strpos(MODULE_SHIPPING_ZONES_SKIPPED, $dest_country) !== false) {
         // don't show anything for this country
         $this->quotes = array();
       } else {

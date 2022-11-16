@@ -2,12 +2,12 @@
 /**
  * language Class.
  *
- * @package classes
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: language.php 2015-12-21 20:49:16Z webchills $
+ * @version $Id: language.php 2022-11-16 11:07:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -16,12 +16,15 @@ if (!defined('IS_ADMIN_FLAG')) {
  * language Class.
  * Class to handle language settings for customer viewing
  *
- * @package classes
  */
 class language extends base {
-  var $languages, $catalog_languages, $browser_languages, $language;
 
-  function __construct($lng = '') {
+    protected $browser_languages;
+    public $catalog_languages = [];
+    public $language = [];
+    protected $languages;
+
+    function __construct($lng = '') {
     global $db;
 
     $this->catalog_languages = array();
@@ -48,7 +51,7 @@ class language extends base {
   }
 
   function set_language($language) {
-    if ( (zen_not_null($language)) && (isset($this->catalog_languages[$language])) ) {
+    if (!empty($language) && isset($this->catalog_languages[$language])) {
       $this->language = $this->catalog_languages[$language];
     } else {
       $this->language = $this->catalog_languages[DEFAULT_LANGUAGE];

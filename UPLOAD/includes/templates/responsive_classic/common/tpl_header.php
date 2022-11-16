@@ -10,12 +10,12 @@
  * 
  * $flag_disable_header = true;
  *
- 
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_header.php 2022-03-11 16:33:58Z webchills $
+ * @version $Id: tpl_header.php 2022-11-16 12:47:58Z webchills $
  */
 ?>
 
@@ -24,36 +24,37 @@
   if ($messageStack->size('header') > 0) {
     echo $messageStack->output('header');
   }
-  if (isset($_GET['error_message']) && zen_not_null($_GET['error_message'])) {
+  if (!empty($_GET['error_message'])) {
     echo zen_output_string_protected(urldecode($_GET['error_message']));
   }
-  if (isset($_GET['info_message']) && zen_not_null($_GET['info_message'])) {
+  if (!empty($_GET['info_message'])) {
    echo zen_output_string_protected($_GET['info_message']);
+}
+// check whether to only display errors/alerts, or to also display the rest of the header
+if (isset($flag_disable_header) && $flag_disable_header === true) {
+  // do early-return from this template since $flag_disable_header is true
+  return;
 }
 ?>
 
-
 <!--bof-header logo and navigation display-->
-<?php
-if (!isset($flag_disable_header) || !$flag_disable_header) {
-?>
 
 <div id="headerWrapper">
 
 <!--bof navigation display-->
 <div id="navMainWrapper" class="group onerow-fluid">
-<?php 
+<?php
  if ( $detect->isMobile() && !$detect->isTablet() || $_SESSION['layoutType'] == 'mobile' ) {
 echo '<div class="header Fixed"><a href="#menu" title="Menu"><i class="fa fa-bars"></i></a></div>';
  } else if ( $detect->isTablet() || $_SESSION['layoutType'] == 'tablet' ){
 echo '<div class="header Fixed"><a href="#menu" title="Menu"><i class="fa fa-bars"></i></a></div>';
-} else { 
+} else {
 //
 }
 ?>
 
 <?php if ( $detect->isMobile() && !$detect->isTablet() || $_SESSION['layoutType'] == 'mobile' ) { ?>
-  
+
 <div id="navMain">
   <ul>
     <li><?php echo '<a href="' . HTTP_SERVER . DIR_WS_CATALOG . '">'; ?><i class="fa fa-home" title="Home"></i></a></li>
@@ -76,9 +77,9 @@ echo '<div class="header Fixed"><a href="#menu" title="Menu"><i class="fa fa-bar
 <?php } else { ?>
     <li class="last"><a href="<?php echo zen_href_link(FILENAME_LOGIN, '', 'SSL'); ?>"><i class="fa fa-sign-in" title="Log In"></i></a></li>
 <?php } ?>
-<?php 
-  } 
-} 
+<?php
+  }
+}
 ?>
 
 <?php if ($_SESSION['cart']->count_contents() != 0) { ?>
@@ -94,7 +95,7 @@ echo '<div class="header Fixed"><a href="#menu" title="Menu"><i class="fa fa-bar
 
 <!--eof navigation display-->
 
-<?php  } else if ( $detect->isTablet() || $_SESSION['layoutType'] == 'tablet' ){ ?> 
+<?php  } else if ( $detect->isTablet() || $_SESSION['layoutType'] == 'tablet' ){ ?>
 
 <div id="navMain">
     <ul>
@@ -108,7 +109,7 @@ echo '<div class="header Fixed"><a href="#menu" title="Menu"><i class="fa fa-bar
 <li><a href="<?php echo zen_href_link(FILENAME_ACCOUNT, '', 'SSL'); ?>"><?php echo HEADER_TITLE_MY_ACCOUNT; ?></a></li>
 	    <?php } else { ?>
 <li class="last"><a href="<?php echo zen_href_link(FILENAME_ACCOUNT, '', 'SSL'); ?>"><?php echo HEADER_TITLE_MY_ACCOUNT; ?></a></li>
-      
+
       <?php } ?>
 <?php
       } else {
@@ -126,7 +127,7 @@ echo '<div class="header Fixed"><a href="#menu" title="Menu"><i class="fa fa-bar
     <li><a class="navCartContentsIndicator" href="<?php echo zen_href_link(FILENAME_SHOPPING_CART, '', 'NONSSL'); ?>"><i class="fa fa-shopping-cart" title="Shopping Cart"></i> 
      <?php 
      echo $_SESSION['cart']->count_contents().' '. HEADER_TITLE_CART_CONTENTS_PRODUCTS . ''. $currencies->format($_SESSION['cart']->show_total());
-        // Wenn Sie statt Artikelanzahl und Warenkorbwert ein fach nur das Wort Warenkorb anzeigen lassen wollen, kommentieren Sie die obere Zeile aus und entkommentieren die folgende.
+        // Wenn Sie statt Artikelanzahl und Warenkorbwert einfach nur das Wort Warenkorb anzeigen lassen wollen, kommentieren Sie die obere Zeile aus und entkommentieren die folgende.
         // echo HEADER_TITLE_CART_CONTENTS;
      ?>
    </a>
@@ -244,5 +245,3 @@ echo '<div class="header Fixed"><a href="#menu" title="Menu"><i class="fa fa-bar
 <?php } ?>
 <!--eof header ezpage links-->
 </div>
-
-<?php } ?>

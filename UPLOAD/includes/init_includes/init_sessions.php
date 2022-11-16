@@ -3,10 +3,11 @@
  * session handling
  * see  {@link  https://docs.zen-cart.com/dev/code/init_system/} for more details.
  * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_sessions.php 2021-11-28 21:49:16Z webchills $
+ * @version $Id: init_sessions.php 2022-11-16 11:29:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -43,19 +44,14 @@ $secureFlag = ((ENABLE_SSL == 'true' && substr(HTTP_SERVER, 0, 6) == 'https:' &&
 $samesite = (defined('COOKIE_SAMESITE')) ? COOKIE_SAMESITE : 'lax';
 if (!in_array($samesite, ['lax', 'strict', 'none'])) $samesite = 'lax';
 
-
-if (PHP_VERSION_ID >= 70300) {
-  session_set_cookie_params([
+session_set_cookie_params([
     'lifetime' => 0,
     'path' => $path,
-    'domain' => (zen_not_null($cookieDomain) ? $domainPrefix . $cookieDomain : ''),
+    'domain' => (!empty($cookieDomain) ? $domainPrefix . $cookieDomain : ''),
     'secure' => $secureFlag,
     'httponly' => true,
     'samesite' => $samesite,
-  ]);
-} else {
-  session_set_cookie_params(0, $path .'; samesite='.$samesite, (zen_not_null($cookieDomain) ? $domainPrefix . $cookieDomain : ''), $secureFlag, true);
-}
+]);
 
 /**
  * set the session ID if it exists
@@ -76,7 +72,7 @@ $_SERVER['REMOTE_ADDR'] = $ipAddress;
  */
 $session_started = false;
 if (SESSION_FORCE_COOKIE_USE == 'True') {
-  setcookie('cookie_test', 'please_accept_for_session', time()+60*60*24*30, $path, (zen_not_null($cookieDomain) ? $domainPrefix . $cookieDomain : ''), $secureFlag);
+  setcookie('cookie_test', 'please_accept_for_session', time()+60*60*24*30, $path, (!empty($cookieDomain) ? $domainPrefix . $cookieDomain : ''), $secureFlag);
 
   if (isset($_COOKIE['cookie_test'])) {
     zen_session_start();
@@ -88,10 +84,10 @@ if (SESSION_FORCE_COOKIE_USE == 'True') {
     $user_agent = strtolower($_SERVER['HTTP_USER_AGENT']);
   }
   $spider_flag = false;
-  if (zen_not_null($user_agent)) {
+  if (!empty($user_agent)) {
     $spiders = file(DIR_WS_INCLUDES . 'spiders.txt');
     for ($i=0, $n=sizeof($spiders); $i<$n; $i++) {
-      if (zen_not_null($spiders[$i]) && substr($spiders[$i], 0, 4) != '$Id:') {
+      if (!empty($spiders[$i]) && substr($spiders[$i], 0, 4) != '$Id:') {
         if (is_integer(strpos($user_agent, trim($spiders[$i])))) {
           $spider_flag = true;
           break;

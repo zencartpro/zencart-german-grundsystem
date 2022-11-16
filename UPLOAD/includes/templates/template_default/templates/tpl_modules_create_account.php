@@ -1,7 +1,7 @@
 <?php
 /**
  * Page Template
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  * Loaded automatically by index.php?main_page=create_account.
  * Displays Create Account form.
  *
@@ -10,7 +10,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_create_account.php 2022-11-14 17:28:58Z webchills $
+ * @version $Id: tpl_modules_create_account.php 2022-11-16 16:28:58Z webchills $
  */
 ?>
 
@@ -92,7 +92,7 @@
 <label class="inputLabel" for="stateZone" id="zoneLabel"><?php echo ENTRY_STATE; ?></label>
 <?php
       echo zen_draw_pull_down_menu('zone_id', zen_prepare_country_zones_pull_down($selected_country), $zone_id, 'id="stateZone"');
-      if (zen_not_null(ENTRY_STATE_TEXT)) echo '&nbsp;<span class="alert">' . ENTRY_STATE_TEXT . '</span>';
+      if (!empty(ENTRY_STATE_TEXT)) echo '&nbsp;<span class="alert">' . ENTRY_STATE_TEXT . '</span>';
     }
 ?>
 
@@ -179,7 +179,7 @@
 <?php
   if (ACCOUNT_NEWSLETTER_STATUS != 0) {
 ?>
-<?php echo zen_draw_checkbox_field('newsletter', '1', $newsletter, 'id="newsletter-checkbox"') . '<label class="checkboxLabel" for="newsletter-checkbox">' . ENTRY_NEWSLETTER . '</label>' . (zen_not_null(ENTRY_NEWSLETTER_TEXT) ? '<span class="alert">' . ENTRY_NEWSLETTER_TEXT . '</span>': ''); ?>
+<?php echo zen_draw_checkbox_field('newsletter', '1', $newsletter, 'id="newsletter-checkbox"') . '<label class="checkboxLabel" for="newsletter-checkbox">' . ENTRY_NEWSLETTER . '</label>' . (!empty(ENTRY_NEWSLETTER_TEXT) ? '<span class="alert">' . ENTRY_NEWSLETTER_TEXT . '</span>': ''); ?>
 <br class="clearBoth">
 <?php } ?>
 

@@ -1,13 +1,12 @@
 <?php
 /**
  * boxes (tableBox) Class.
- *
- * @package classes
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: boxes.php 2015-12-21 19:49:16Z webchills $
+ * @version $Id: boxes.php 2022-11-16 11:02:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -15,7 +14,6 @@ if (!defined('IS_ADMIN_FLAG')) {
 /**
  * Deprecated Class
  *
- * @package classes
  */
 class tableBox extends base {
   var $table_border = '0';
@@ -33,7 +31,7 @@ class tableBox extends base {
     $tableBox_string .= '>' . "\n";
 
     for ($i=0, $n=sizeof($contents); $i<$n; $i++) {
-      if (isset($contents[$i]['form']) && zen_not_null($contents[$i]['form'])) $tableBox_string .= $contents[$i]['form'] . "\n";
+      if (!empty($contents[$i]['form'])) $tableBox_string .= $contents[$i]['form'] . "\n";
       $tableBox_string .= '  <tr';
       if (zen_not_null($this->table_row_parameters)) $tableBox_string .= ' ' . $this->table_row_parameters;
       if (isset($contents[$i]['params']) && zen_not_null($contents[$i]['params'])) $tableBox_string .= ' ' . $contents[$i]['params'];
@@ -43,23 +41,23 @@ class tableBox extends base {
         for ($x=0, $n2=sizeof($contents[$i]); $x<$n2; $x++) {
           if (isset($contents[$i][$x]['text']) && zen_not_null($contents[$i][$x]['text'])) {
             $tableBox_string .= '    <td';
-            if (isset($contents[$i][$x]['align']) && zen_not_null($contents[$i][$x]['align'])) $tableBox_string .= ' align="' . zen_output_string($contents[$i][$x]['align']) . '"';
-            if (isset($contents[$i][$x]['params']) && zen_not_null($contents[$i][$x]['params'])) {
+            if (!empty($contents[$i][$x]['align'])) $tableBox_string .= ' align="' . zen_output_string($contents[$i][$x]['align']) . '"';
+            if (!empty($contents[$i][$x]['params'])) {
               $tableBox_string .= ' ' . $contents[$i][$x]['params'];
             } elseif (zen_not_null($this->table_data_parameters)) {
               $tableBox_string .= ' ' . $this->table_data_parameters;
             }
             $tableBox_string .= '>';
-            if (isset($contents[$i][$x]['form']) && zen_not_null($contents[$i][$x]['form'])) $tableBox_string .= $contents[$i][$x]['form'];
+            if (!empty($contents[$i][$x]['form'])) $tableBox_string .= $contents[$i][$x]['form'];
             $tableBox_string .= $contents[$i][$x]['text'];
-            if (isset($contents[$i][$x]['form']) && zen_not_null($contents[$i][$x]['form'])) $tableBox_string .= '</form>';
+            if (!empty($contents[$i][$x]['form'])) $tableBox_string .= '</form>';
             $tableBox_string .= '</td>' . "\n";
           }
         }
       } else {
         $tableBox_string .= '    <td';
-        if (isset($contents[$i]['align']) && zen_not_null($contents[$i]['align'])) $tableBox_string .= ' align="' . zen_output_string($contents[$i]['align']) . '"';
-        if (isset($contents[$i]['params']) && zen_not_null($contents[$i]['params'])) {
+        if (!empty($contents[$i]['align'])) $tableBox_string .= ' align="' . zen_output_string($contents[$i]['align']) . '"';
+        if (!empty($contents[$i]['params'])) {
           $tableBox_string .= ' ' . $contents[$i]['params'];
         } elseif (zen_not_null($this->table_data_parameters)) {
           $tableBox_string .= ' ' . $this->table_data_parameters;
@@ -68,7 +66,7 @@ class tableBox extends base {
       }
 
       $tableBox_string .= '  </tr>' . "\n";
-      if (isset($contents[$i]['form']) && zen_not_null($contents[$i]['form'])) $tableBox_string .= '</form>' . "\n";
+      if (!empty($contents[$i]['form'])) $tableBox_string .= '</form>' . "\n";
     }
 
     $tableBox_string .= '</table>' . "\n";

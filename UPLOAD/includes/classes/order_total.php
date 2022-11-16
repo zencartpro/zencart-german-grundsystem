@@ -2,19 +2,18 @@
 /**
  * File contains the order-totals-processing class ("order-total")
  *
- * @package classes
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: order_total.php 2019-04-14 17:49:16Z webchills $
+ * @version $Id: order_total.php 2022-11-16 11:09:16Z webchills $
  */
 /**
  * order-total class
  *
  * Handles all order-total processing functions
  *
- * @package classes
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -129,7 +128,7 @@ class order_total extends base {
   }
 
 
-  // update_credit_account is called in checkout process on a per product basis. It's purpose
+  // update_credit_account is called in checkout process on a per product basis. Its purpose
   // is to decide whether each product in the cart should add something to a credit account.
   // e.g. for the Gift Voucher it checks whether the product is a Gift voucher and then adds the amount
   // to the Gift Voucher account.
@@ -148,7 +147,7 @@ class order_total extends base {
 
 
   // This function is called in checkout confirmation.
-  // It's main use is for credit classes that use the credit_selection() method. This is usually for
+  // Its main use is for credit classes that use the credit_selection() method. This is usually for
   // entering redeem codes(Gift Vouchers/Discount Coupons). This function is used to validate these codes.
   // If they are valid then the necessary actions are taken, if not valid we are returned to checkout payment
   // with an error
@@ -165,7 +164,7 @@ class order_total extends base {
       }
     }
   }
-  // pre_confirmation_check is called on checkout confirmation. It's function is to decide whether the
+  // pre_confirmation_check is called on checkout confirmation. Its function is to decide whether the
   // credits available are greater than the order total. If they are then a variable (credit_covers) is set to
   // true. This is used to bypass the payment method. In other words if the Gift Voucher is more than the order
   // total, we don't want to go to paypal etc.
@@ -180,7 +179,7 @@ class order_total extends base {
         $GLOBALS[$class]->output = array();
       }
       $reCalculatedOrderTotal = $order->info['total'];
-      if ($reCalculatedOrderTotal <= 0.009 && $_SESSION['payment'] != 'freecharger') {
+      if ($reCalculatedOrderTotal <= 0.009 && !(isset($_SESSION['payment']) && $_SESSION['payment'] === 'freecharger')) {
         $credit_covers = true;
       }
       $order->info = $orderInfoSaved;

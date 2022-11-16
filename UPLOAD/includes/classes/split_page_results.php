@@ -1,12 +1,12 @@
 <?php
 /**
  * split_page_results Class.
- *
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: split_page_results.php 2022-04-17 08:56:16Z webchills $
+ * @version $Id: split_page_results.php 2022-11-16 11:56:16Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -20,7 +20,35 @@ if (!defined('IS_ADMIN_FLAG')) {
  *
  */
 class splitPageResults extends base {
-  var $sql_query, $number_of_rows, $current_page_number, $number_of_pages, $number_of_rows_per_page, $page_name;
+    
+    /**
+     * Database field used to define unique item to count. Becomes the sql query.
+     */
+    private $countQuery;
+    /**
+     * Current page number
+     */
+    public $current_page_number;
+    /**
+     * Total number of pages;
+     */
+    public $number_of_pages;
+    /**
+     * Total Number of unique rows from $countQuery
+     */
+    public $number_of_rows;
+    /**
+     * maximum number of rows to display on a page
+     */
+    private $number_of_rows_per_page;
+    /**
+     *  The form name of field that holds the current page number
+     */
+    private $page_name;
+    /**
+     * Query used to select items for page
+     */
+    public $sql_query;
 
   /* class constructor */
   function __construct($query, $max_rows, $count_key = '*', $page_holder = 'page', $debug = false, $countQuery = "") {
@@ -108,7 +136,7 @@ class splitPageResults extends base {
 
     $class = '';
 
-    if (zen_not_null($parameters) && (substr($parameters, -1) != '&') && ($this->current_page_number > 1)) $parameters .= '&';
+    if (!empty($parameters) && (substr($parameters, -1) != '&') && ($this->current_page_number > 1)) $parameters .= '&';
 
     // previous button - not displayed on first page
     $link = '<a href="' . zen_href_link($_GET['main_page'], $parameters . ($this->current_page_number > 2 ? $this->page_name . '=' . ($this->current_page_number - 1) : ''), $request_type) . '" title="' . PREVNEXT_TITLE_PREVIOUS_PAGE . '">' . PREVNEXT_BUTTON_PREV . '</a>';
