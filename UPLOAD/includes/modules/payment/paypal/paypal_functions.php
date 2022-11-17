@@ -2,13 +2,13 @@
 /**
  * functions used by payment module class for Paypal IPN payment method
  *
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright 2004 DevosC.com
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypal_functions.php 2022-11-14 15:47:16Z webchills $
+ * @version $Id: paypal_functions.php 2022-11-17 08:40:16Z webchills $
  */
 
 // Functions for paypal processing
@@ -348,9 +348,9 @@ function ipn_create_order_history_array($insert_id)
 {
     $sql_data_array = [
         'paypal_ipn_id' => (int)$insert_id,
-                             'txn_id' => $_POST['txn_id'],
-                             'parent_txn_id' => $_POST['parent_txn_id'],
-                             'payment_status' => $_POST['payment_status'],
+        'txn_id' => $_POST['txn_id'],
+        'parent_txn_id' => $_POST['parent_txn_id'],
+        'payment_status' => $_POST['payment_status'],
         'pending_reason' => $_POST['pending_reason'] ?? '',
         'date_added' => 'now()',
     ];
@@ -623,7 +623,7 @@ function ipn_create_order_history_array($insert_id)
 
     if ($errors != '') {
       ipn_debug_email('CURL errors: ' . $errors, print_r($commInfo, true));
-    }    
+    }
 
     if (($response == '' || $errors != '') && ($url['scheme'] != 'http')) {
       $url['scheme'] = 'http';
@@ -668,9 +668,9 @@ function ipn_create_order_history_array($insert_id)
  */
   function ipn_update_orders_status_and_history($ordersID, $new_status = 1, $txn_type = '') {
     global $db;
-    
+
     ipn_debug_email('IPN NOTICE :: Updating order #' . (int)$ordersID . ' to status: ' . (int)$new_status . ' (txn_type: ' . $txn_type . ')');
-    
+
     $comments = 'PayPal status: ' . $_POST['payment_status'] . ' ' . ' @ ' . $_POST['payment_date'] . (($_POST['parent_txn_id'] !='') ? "\n" . ' Parent Trans ID:' . $_POST['parent_txn_id'] : '') . "\n" . ' Trans ID:' . $_POST['txn_id'] . "\n" . ' Amount: ' . $_POST['mc_gross'] . ' ' . $_POST['mc_currency'];
     zen_update_orders_history($ordersID, $comments, null, $new_status, 0);
 
@@ -680,10 +680,10 @@ function ipn_create_order_history_array($insert_id)
  * Activate any downloads associated with an order which has now been cleared
  */
     if ($txn_type=='echeck-cleared' || $txn_type == 'express-checkout-cleared' || substr($txn_type,0,8) == 'cleared-') {
-      $check_status = $db->Execute("select date_purchased from " . TABLE_ORDERS . " where orders_id = '" . (int)$ordersID . "'");
+      $check_status = $db->Execute("SELECT date_purchased FROM " . TABLE_ORDERS . " WHERE orders_id = '" . (int)$ordersID . "'");
       $zc_max_days = zen_date_diff($check_status->fields['date_purchased'], date('Y-m-d H:i:s', time())) + (int)DOWNLOAD_MAX_DAYS;
       ipn_debug_email('IPN NOTICE :: Updating order #' . (int)$ordersID . ' downloads (if any).  New max days: ' . (int)$zc_max_days . ', New count: ' . (int)DOWNLOAD_MAX_COUNT);
-      $update_downloads_query = "update " . TABLE_ORDERS_PRODUCTS_DOWNLOAD . " set download_maxdays='" . (int)$zc_max_days . "', download_count='" . (int)DOWNLOAD_MAX_COUNT . "' where orders_id='" . (int)$ordersID . "'";
+      $update_downloads_query = "UPDATE " . TABLE_ORDERS_PRODUCTS_DOWNLOAD . " SET download_maxdays='" . (int)$zc_max_days . "', download_count='" . (int)DOWNLOAD_MAX_COUNT . "' WHERE orders_id='" . (int)$ordersID . "'";
       $db->Execute($update_downloads_query);
     }
   }

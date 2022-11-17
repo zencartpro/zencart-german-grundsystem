@@ -1,12 +1,12 @@
 <?php
 /**
  * paypal EC button display template
- * Zen Cart German Specific
+ * Zen Cart German Specific (zencartpro adaptations)
 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_ec_button.php 2022-11-08 10:28:20Z webchills $
+ * @version $Id: tpl_ec_button.php 2022-11-17 08:41:20Z webchills $
  */
 
 $paypalec_enabled = (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATUS == 'True');
