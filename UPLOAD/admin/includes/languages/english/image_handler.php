@@ -32,7 +32,9 @@ define('TEXT_PRODUCT_INFO', 'Product');
 define('TEXT_PRODUCTS_MODEL', 'Model');
 define('TEXT_PRICE', 'Price');
 define('TEXT_IMAGE_BASE_DIR', 'Image Directory');
-define('TEXT_NO_PRODUCT_IMAGES', 'There are no images for this product');
+define('TEXT_NO_IMAGE_DEFINED', 'This product\'s image is not currently defined.'); //- When the product's configured image is an empty string.
+define('TEXT_NO_PRODUCT_IMAGES', 'No matches were found for this product\'s image (%s).');  //- %s is filled in with the product's non-empty image name.
+define('TEXT_PRODUCT_IMAGE_NOT_SUPPORTED', 'The product\'s image (%s) extension is not supported by Image Handler.');   //- %s is filled in with the product's non-empty image name.
 define('TEXT_CLICK_TO_ENLARGE', 'Click to enlarge');
 
 define('TEXT_INFO_IMAGE_INFO', 'Image information');
@@ -54,8 +56,9 @@ define('TEXT_INFO_IMAGE_SUFFIX', 'Image suffix (optional)');
 define('TEXT_INFO_USE_AUTO_SUFFIX','Enter a specific suffix or leave empty for automatic suffix generation.');
 define('TEXT_INFO_DEFAULT_IMAGE', 'Base image file');
 define('TEXT_INFO_DEFAULT_IMAGE_HELP', 'A base image is required. That image is assumed to be the smallest when <em>different</em> medium- or large-images are uploaded.');
-define('TEXT_INFO_CLICK_TO_ADD_MAIN', 'Click the <code>new file</code> button to add a new <em>main</em> image for this product');
-define('TEXT_INFO_CLICK_TO_ADD_ADDL', 'Click the <code>new file</code> button to add a new <em>additional</em> image for this product');
+define('TEXT_INFO_IMAGE_NOT_SUPPORTED', 'This product\'s image type is not supported by Image Handler.  No additional actions can be performed.');
+define('TEXT_INFO_CLICK_TO_ADD_MAIN', 'Click the &quot;add image&quot; button to add a new <em>main</em> image for this product');
+define('TEXT_INFO_CLICK_TO_ADD_ADDL', 'Click the &quot;add image&quot; button to add a new <em>additional</em> image for this product');
 define('TEXT_INFO_CONFIRM_DELETE', 'Confirm <em>%s</em> image delete');
 define('TEXT_MAIN', 'main');
 define('TEXT_ADDITIONAL', 'additional');

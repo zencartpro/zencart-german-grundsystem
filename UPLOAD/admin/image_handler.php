@@ -1,6 +1,6 @@
 <?php
 /**
- * @package Image Handler 5.3.0
+ * @package Image Handler 5.3.1
  * Zen Cart German Specific
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
  * @copyright Copyright 2018-2022 lat 9 - Vinos de Frutas Tropicales
@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: image_handler.php 2022-09-06 08:54:51Z webchills $
+ * @version $Id: image_handler.php 2022-11-21 15:54:51Z webchills $
  */
 require 'includes/application_top.php';
 
@@ -318,12 +318,28 @@ if ($ih_page === 'admin') {
 <?php
         $count = count($products_image_match_array);
         $no_images = ($count === 0);
+        $image_is_supported = true;
         if ($no_images === true) {
+            if ($pInfo->products_image === '') {
 ?>
                     <tr>
-                         <td colspan="7" class="dataTableContent text-center"><?php echo TEXT_NO_PRODUCT_IMAGES; ?></td>
+                         <td colspan="7" class="dataTableContent text-center"><?php echo TEXT_NO_IMAGE_DEFINED; ?></td>
                     </tr>
 <?php
+            } elseif (ih_image_supported($pInfo->products_image) === false) {
+                $image_is_supported = false;
+?>
+                    <tr>
+                         <td colspan="7" class="dataTableContent text-center"><?php echo sprintf(TEXT_PRODUCT_IMAGE_NOT_SUPPORTED, $pInfo->products_image); ?></td>
+                    </tr>
+<?php
+            } else {
+?>
+                    <tr>
+                         <td colspan="7" class="dataTableContent text-center"><?php echo sprintf(TEXT_NO_PRODUCT_IMAGES, $pInfo->products_image); ?></td>
+                    </tr>
+<?php
+            }
         } elseif ($action === '') {
             $action = 'layout_info';
         }
@@ -468,11 +484,19 @@ if ($ih_page === 'admin') {
 
         } // for each photo loop
 
+        // -----
+        // Offer to add a new image for the current product, so long as the defined image is one supported
+        // by Image Handler.
+        //
+        if ($image_is_supported === true) {
         $new_link = $ih_admin->imageHandlerHrefLink('', $products_filter, 'layout_new');
 ?>
                     <tr class="dataTableRow">
                         <td colspan="7" class="text-right"><a href="<?php echo $new_link; ?>" class="btn btn-info"><?php echo IH_IMAGE_NEW_FILE; ?></a></td>
                     </tr>
+<?php
+        }
+?>
                 </table>
             </div>
 
@@ -708,9 +732,15 @@ if ($ih_page === 'admin') {
                 $heading[] = [
                     'text' => '<strong>' . TEXT_INFO_SELECT_ACTION . '</strong>'
                 ];
-                $contents[] = [
-                    'text' => '<br>' . (($no_images === true) ? TEXT_INFO_CLICK_TO_ADD_MAIN : TEXT_INFO_CLICK_TO_ADD_ADDL)
-                ];
+                if ($image_is_supported === false) {
+                    $contents[] = [
+                        'text' => '<br>' . TEXT_INFO_IMAGE_NOT_SUPPORTED,
+                    ];
+                } else {
+                    $contents[] = [
+                        'text' => '<br>' . (($no_images === true) ? TEXT_INFO_CLICK_TO_ADD_MAIN : TEXT_INFO_CLICK_TO_ADD_ADDL),
+                    ];
+                }
                 break;
         }
 

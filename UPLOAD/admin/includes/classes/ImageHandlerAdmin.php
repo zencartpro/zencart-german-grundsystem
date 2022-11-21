@@ -1,19 +1,24 @@
 <?php
 /**
- * @package Image Handler 5.3.0
+ * @package Image Handler 5.3.1
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
  * @copyright Copyright 2018-2022 lat 9 - Vinos de Frutas Tropicales
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ImageHandlerAdmin.php 2022-09-06 09:13:51Z webchills $
+ * @version $Id: ImageHandlerAdmin.php 2022-11-21 15:20:51Z webchills $
  */
 if (!defined('IH_DEBUG_ADMIN')) {
     define('IH_DEBUG_ADMIN', 'true'); //-Either 'true' or 'false'
 }
 class ImageHandlerAdmin
 {
+    public
+        $debug,
+        $debugLogfile,
+        $validFiletypes,
+        $validFileExtensions;
     public function __construct()
     {
         $this->debug = (IH_DEBUG_ADMIN === 'true');

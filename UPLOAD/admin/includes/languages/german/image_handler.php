@@ -26,7 +26,9 @@ define('TEXT_PRODUCT_INFO', 'Artikel');
 define('TEXT_PRODUCTS_MODEL', 'Artikelnummer');
 define('TEXT_PRICE', 'Preis');
 define('TEXT_IMAGE_BASE_DIR', 'Bildverzeichnis');
-define('TEXT_NO_PRODUCT_IMAGES', 'Es existieren keine Bilder zu diesem Artikel');
+define('TEXT_NO_IMAGE_DEFINED', 'Das Bild dieses Artikels ist derzeit nicht definiert.'); //- When the product's configured image is an empty string.
+define('TEXT_NO_PRODUCT_IMAGES', 'Nichts Passendes gefunden für dieses Artikelbild (%s).');  //- %s is filled in with the product's non-empty image name.
+define('TEXT_PRODUCT_IMAGE_NOT_SUPPORTED', 'Die Dateierweiterung (%s) dieses Artikelbildes wird von Image Handler nicht unterstützt.');   //- %s is filled in with the product's non-empty image name.
 define('TEXT_CLICK_TO_ENLARGE', 'Vergrößern'); 
 define('TEXT_INFO_IMAGE_INFO', 'Bildinformationen');
 define('TEXT_INFO_NAME', 'Name');
@@ -47,6 +49,7 @@ define('TEXT_INFO_IMAGE_SUFFIX', 'Bildsuffix (optional)');
 define('TEXT_INFO_USE_AUTO_SUFFIX','Geben Sie das gewünschte Suffix an oder lassen Sie das Feld leer, um die automatische Suffix-Generierung zu nutzen.');
 define('TEXT_INFO_DEFAULT_IMAGE', 'Hauptbild');
 define('TEXT_INFO_DEFAULT_IMAGE_HELP', 'Ein Hauptbild muss definiert sein. Das Hauptbild wird als kleinstes genommen, wenn mittlere und große Bilder angegeben werden.');
+define('TEXT_INFO_IMAGE_NOT_SUPPORTED', 'Die Dateierweiterung dieses Artikelbildes wird von Image Handler nicht unterstützt. Keine zusätzlichen Aktionen möglich.');
 define('TEXT_INFO_CLICK_TO_ADD_MAIN', 'Clicken Sie hier, um ein neues <em>Hauptbild</em> für diesen Artikel hinzuzufügen.');
 define('TEXT_INFO_CLICK_TO_ADD_ADDL', 'Clicken Sie hier, um ein neues <em>zusätzliches Artikelbild</em> für diesen Artikel hinzuzufügen');
 define('TEXT_INFO_CONFIRM_DELETE', 'Löschen von <em>%s</em> bestätigen');
@@ -57,8 +60,8 @@ define('TEXT_INFO_SELECT_ACTION', 'Wählen Sie eine Aktion');
 define('TEXT_NOT_NEEDED', 'nicht erforderlich');    //-Displayed for the 'Medium'-sized additional images
 define('TEXT_TABLE_CAPTION_INSTRUCTIONS', '<b>Hinweis:</b> Die zusätzlichen Bilder eines Artikels werden <em>automatisch</em> nur in den Größen klein und groß erstellt und zeigen <em>nicht erforderlich</em> für ihr <b>mittleres Bild</b>.<br>Wenn Ihr Frontend andere Bildgrößen für diese Bilder (oder die Hauptbilder des Artikels) verwendet, werden diese Bilder "on-demand" erstellt (und zwischengespeichert).');
 define('TEXT_MSG_FILE_NOT_FOUND', 'Diese Datei existiert nicht.');
-define('TEXT_MSG_ERROR_RETRIEVING_IMAGESIZE', 'Bilgröße konnte nicht ermittelt werden');
-define('TEXT_MSG_AUTO_BASE_ERROR', 'Fehler: Sie haben die automatische Bildbenamung ausgewählt, es existiert aber kein Hauptbild.');
+define('TEXT_MSG_ERROR_RETRIEVING_IMAGESIZE', 'Bildgröße konnte nicht ermittelt werden');
+define('TEXT_MSG_AUTO_BASE_ERROR', 'Fehler: Sie haben die automatische Bildbenennung ausgewählt, es existiert aber kein Hauptbild.');
 define('TEXT_MSG_INVALID_BASE_ERROR', 'Fehler: Ungültige Bildbenennung, oder es konnte kein Hauptbild gefunden werden.');
 define('TEXT_MSG_AUTO_REPLACE',  'Störende Zeichen wurden automatisch im Bildnamen ausgetauscht, neuer Name: ');
 define('TEXT_MSG_INVALID_SUFFIX', 'Fehler: Ungültiges Bildsuffix.');
@@ -80,6 +83,7 @@ define('TEXT_MSG_NOPERMS_MEDIUM_IMAGE_DIR', 'Fehler: Die Berechtigungen des Bild
 define('TEXT_MSG_NOPERMS_LARGE_IMAGE_DIR', 'Fehler: Die Berechtigungen des Bildverzeichnisses für große Bilder konnten nicht gesetzt werden.');
 define('TEXT_MSG_NAME_TOO_LONG_ERROR', 'Der Dateiname "%1$s" ist zu lang und kann so nicht in der Datenbank gespeichert werden.  Ändern Sie auf einen Dateinamen mit %2$u Zeichen oder weniger.');
 define('TEXT_MSG_NO_SUFFIXES_FOUND', 'Konnte kein ungenutztes Suffix für das zusätzliche Artikelbild im Bereich von _01 bis _99 finden.');
+define('TEXT_MSG_NO_FILE_UPLOADED', 'Keine <b>Grund Bilddatei</b> augewählt; bitte nochmal versuchen.');
 define('TEXT_MSG_NOUPLOAD_DEFAULT', 'Das Hauptbild konnte nicht hochgeladen werden!');
 define('TEXT_MSG_NORESIZE', 'Die Größe des Bildes konnte nicht verändert werden!');
 define('TEXT_MSG_NOCOPY_LARGE', 'Das große Bild konnte nicht kopiert werden!');

@@ -1,13 +1,13 @@
 <?php
 /**
- * @package Image Handler 5.3.0
+ * @package Image Handler 5.3.1
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
  * @copyright Copyright 2018-2022 lat 9 - Vinos de Frutas Tropicales
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ImageHandlerObserver.php 2022-09-06 08:49:51Z webchills $
+ * @version $Id: ImageHandlerObserver.php 2022-11-21 15:49:51Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -37,6 +37,11 @@ class ImageHandlerObserver extends base
 
     public function update(&$class, $eventID, $p1, &$p2, &$p3, &$p4, &$p5, &$p6)
     {
+        // -----
+        // Note: For each of these notifications, an additional check (via ih_image_supported) is made to see
+        // that the image currently being processed is supported by Image Handler.  If not, e.g. a .webp extension,
+        // each notification's processing results in a quick return.
+        //
         switch ($eventID) {
             // -----
             // This notifier lets an image-handling observer know that it's time to determine the image information,
@@ -54,6 +59,9 @@ class ImageHandlerObserver extends base
             //
             case 'NOTIFY_MODULES_MAIN_PRODUCT_IMAGE_FILENAME':
                 $products_image = $p1;
+                if (ih_image_supported($products_image) === false) {
+                    return;
+                }
                 $products_image_extension = $p3;
                 $p4 = $products_image_base = preg_replace('/' . $products_image_extension . '$/', '', $products_image);
                 $p5 = DIR_WS_IMAGES . 'medium/' . $products_image_base . IMAGE_SUFFIX_MEDIUM . $products_image_extension;
@@ -71,6 +79,9 @@ class ImageHandlerObserver extends base
             case 'NOTIFY_MODULES_ADDITIONAL_IMAGES_GET_LARGE':
                 $products_name = $p1;
                 $products_image_large = $p2;
+                if (ih_image_supported($products_image_large) === false) {
+                    return;
+                }
                 if (function_exists('handle_image')) {
                     $newimg = handle_image($products_image_large, addslashes($products_name), LARGE_IMAGE_MAX_WIDTH, LARGE_IMAGE_MAX_HEIGHT, '');
                     list($src, $alt, $width, $height, $parameters) = $newimg;
@@ -88,6 +99,9 @@ class ImageHandlerObserver extends base
             case 'NOTIFY_MODULES_ADDITIONAL_IMAGES_THUMB_SLASHES':
                 //  remove additional single quotes from image attributes (important!)
                 $thumb_slashes = $p2;
+                if (ih_image_supported($thumb_slashes) === false) {
+                    return;
+                }
                 $p2 = preg_replace("/([^\\\\])'/", '$1\\\'', $thumb_slashes);
                 break;
 
@@ -101,6 +115,9 @@ class ImageHandlerObserver extends base
                        $products_image_medium,
                        $products_image_large;
 
+                if (ih_image_supported($products_image) === false) {
+                    return;
+                }
                 $products_image_base = preg_replace('/' . $products_image_extension . '$/', '', $products_image);
 
                 $products_image_medium = DIR_WS_IMAGES . 'medium/' . $products_image_base . IMAGE_SUFFIX_MEDIUM . $products_image_extension;

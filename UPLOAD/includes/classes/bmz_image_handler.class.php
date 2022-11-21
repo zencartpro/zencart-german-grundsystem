@@ -1,6 +1,6 @@
 <?php
 /**
- * @package Image Handler 5.3.0
+ * @package Image Handler 5.3.1
  * Zen Cart German Specific
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
  * @copyright Copyright 2018-2022 lat 9 - Vinos de Frutas Tropicales
@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: bmz_image_handler.class.php 2022-09-06 08:46:51Z webchills $
+ * @version $Id: bmz_image_handler.class.php 2022-11-21 15:46:51Z webchills $
  */
  
 if (!defined('IH_DEBUG_ADMIN')) {
@@ -30,6 +30,7 @@ class ih_image
         $debugLogFile,
         $extension,
         $file_exists,
+        $file_is_supported, // Added IH 3.5.1 to quickly disclude unsupported file types, e.g. webp.
         $filename,
         $first_access,
         $force_canvas,
@@ -45,7 +46,7 @@ class ih_image
      * ih_image class constructor
      * @author Tim Kroeger (tim@breakmyzencart.com)
      * @author Cindy Merkin (lat9)
-     * @version 5.3.0
+     * @version 5.3.1
      * @param string $src Image source (e.g. - images/productimage.jpg)
      * @param string $width The image's width
      * @param string $height The image's height
@@ -81,6 +82,19 @@ class ih_image
         } else {
             $this->debug = (IH_DEBUG_STOREFRONT === 'true');
             $this->debugLogFile = DIR_FS_LOGS . "/ih_debug-$logfile_suffix.log";
+        }
+
+        // -----
+        // PHP provides resizing support for .jpg/.jpeg, .gif and .png files.  If the submitted
+        // image's extension isn't one of those supported, there's no sense in checking any of the
+        // file-related attributes!
+        //
+        // If that case if found, set a processing flag (used by the 'handle_image' function) to indicate
+        // as such and perform a quick return.
+        //
+        $this->file_is_supported = ih_image_supported($src);
+        if ($this->file_is_supported === false) {
+            return;
         }
 
         $this->determine_image_sizetype();
@@ -242,11 +256,17 @@ class ih_image
      */
     public function get_local()
     {
-        if ($this->local) {
+        if ($this->local !== null) {
             return $this->local;
         }
-        // check if image handler is available and if we should resize at all
-        if ($this->resizing_allowed()) {
+
+        // -----
+        // Check to see if the current source file is supported and whether IH is
+        // currently enabled to perform image resizing.  If so, determine (and
+        // create if it's not already in the bmz_cache) the resized image to be
+        // used.  Otherwise, simply use the current source file.
+        //
+        if ($this->file_is_supported === true && $this->resizing_allowed()) {
             $this->local = $this->get_resized_image($this->width, $this->height);
         } else {
             $this->local = $this->src;
@@ -477,7 +497,7 @@ class ih_image
                 $image_info = getimagesize($this->filename);
             }
             list($width, $height) = $image_info;
-            $this->ihLog("calculate_size($pref_width, $pref_height), getimagesize returned $width x $height.");
+            $this->ihLog("calculate_size: file " . $this->filename . " ($pref_width, $pref_height), getimagesize returned $width x $height.");
         } else {
             $this->ihLog('calculate_size: file "' . $this->filename . '" does NOT exist.');
             $height = 0;
