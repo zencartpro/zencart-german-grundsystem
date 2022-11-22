@@ -1,12 +1,12 @@
 <?php
 /**
  * checkout_new_address.php
- * Zen Cart German Specific
+ * Zen Cart German Specific (zencartpro adaptations)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: checkout_new_address.php 2022-11-14 14:53:16Z webchills $
+ * @version $Id: checkout_new_address.php 2022-11-22 21:46:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_MODULE_START_CHECKOUT_NEW_ADDRESS');
@@ -28,9 +28,9 @@ if (!defined('IS_ADMIN_FLAG')) {
 if (isset($_POST['action']) && ($_POST['action'] == 'submit')) {
   // process a new address
   if (!empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['street_address'])) {
-    $process = true;
-    if (ACCOUNT_GENDER == 'true') $gender = zen_db_prepare_input($_POST['gender']);
-    if (ACCOUNT_COMPANY == 'true') $company = zen_db_prepare_input($_POST['company']);
+    $process = true;    
+    if (ACCOUNT_GENDER == 'true') $gender = (isset($_POST['gender'])) ? zen_db_prepare_input($_POST['gender']) : '';
+    if (ACCOUNT_COMPANY == 'true') $company = (isset($_POST['company'])) ? zen_db_prepare_input($_POST['company']) : '';
     $firstname = zen_db_prepare_input($_POST['firstname']);
     $lastname = zen_db_prepare_input($_POST['lastname']);
     $street_address = zen_db_prepare_input($_POST['street_address']);

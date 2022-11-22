@@ -1,7 +1,7 @@
 <?php
 /**
  * Module Template
- * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
+ * Zen Cart German Specific (zancartpro adaptations)
  * Allows entry of new addresses during checkout stages
  *
  
@@ -9,7 +9,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_checkout_new_address.php 2022-11-16 16:47:16Z webchills $
+ * @version $Id: tpl_modules_checkout_new_address.php 2022-11-22 21:37:16Z webchills $
  */
 ?>
 <div class="centerColumnModule" id="checkoutNewAddress">
