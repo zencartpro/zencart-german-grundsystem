@@ -1,10 +1,11 @@
 <?php
 /**
 * @copyright Copyright 2003-2022 Zen Cart Development Team
- * Zen Cart German Version - www.zen-cart-pro.at
+* Zen Cart German Version - www.zen-cart-pro.at
+* Zen Cart German Specific (zencartpro standalone)
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* $Id: bar.php 2019-06-25 11:06:20Z webchills $
+* $Id: bar.php 2022-11-22 19:47:20Z webchills $
 */
 
   class bar {
@@ -35,8 +36,8 @@
       global $order, $db;
       
  
- // Bar bei Abholung nur bei Versandart Selbstaholung
-    if ($this->enabled) {
+ // Bar bei Abholung nur bei Versandart Selbstabholung
+    if (($this->enabled) && (IS_ADMIN_FLAG === false)) {
       $this->enabled = (bool)preg_match('#(storepickup)#i', $_SESSION['shipping']['id']);
       }   
       
