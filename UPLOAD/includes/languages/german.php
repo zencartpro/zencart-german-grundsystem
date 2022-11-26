@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2022-04-17 17:19:57Z webchills $
+ * @version $Id: german.php 2022-11-26 08:20:57Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -294,6 +294,7 @@ define('ARIA_PAGINATION_','');
 define('TEXT_BASE_PRICE', 'ab ');
 
 define('TEXT_CLICK_TO_ENLARGE', 'größeres Bild');
+define('TEXT_CLOSE_WINDOW_IMAGE', 'Bild zum Schließen anclicken');
 
 define('TEXT_SORT_PRODUCTS', 'Artikel sortieren ');
 define('TEXT_DESCENDINGLY', 'aufsteigend');
