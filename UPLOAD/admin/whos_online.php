@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: whos_online.php 2022-01-15 17:51:16Z webchills $
+ * @version $Id: whos_online.php 2022-12-02 19:51:16Z webchills $
  */
 // Default refresh interval (0=off).  NOTE: Using automated refresh may put you in breach of PCI Compliance
 $defaultRefreshInterval = 0;
@@ -53,6 +53,7 @@ if (!empty($_GET['inspect'])) {
 }
 $whos_online = $wo->retrieve($selectedView, (empty($_GET['inspect']) ? '' : $_GET['inspect']), $_SESSION['wo_exclude_spiders'], $_SESSION['wo_exclude_admins']);
 
+if (!defined('WHOIS_SHOW_HOST')) define('WHOIS_SHOW_HOST', '1');
 $optURL = FILENAME_WHOS_ONLINE . '.php?' . zen_get_all_get_params(['t', 'na', 'ns']);
 $listingURL = FILENAME_WHOS_ONLINE . '.php?' . zen_get_all_get_params(['q', 't', 'na', 'ns']);
 ?>
@@ -330,7 +331,8 @@ $listingURL = FILENAME_WHOS_ONLINE . '.php?' . zen_get_all_get_params(['q', 't',
             $cart = isset($whos_online[$selectedSession]['cart']) ? $whos_online[$selectedSession]['cart'] : null;
 
             if ($cart !== null) {
-                $contents[] = ['text' => $whos_online[$selectedSession]['full_name'] . ' - ' . $cart['customer_ip'] . ' (' . $cart['language_code']  . ')<br>' . $selectedSession];
+                $contents[] = ['text' => $whos_online[$selectedSession]['full_name'] . ' - ' . ($cart['customer_ip'] ?? $cart['customer_hostname']) . ' (' . $cart['language_code']  . ')<br>' .
+                    $selectedSession];
 
                 foreach ($cart['products'] as $product) {
                   $contents[] = ['text' => $product['quantity'] . ' x ' . '<a href="' . zen_href_link(FILENAME_PRODUCT, 'cPath=' . zen_get_product_path($product['id']) . '&pID=' . $product['id']) . '">' . $product['name'] . '</a>'];
