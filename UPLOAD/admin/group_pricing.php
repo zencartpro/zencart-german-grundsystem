@@ -1,17 +1,17 @@
 <?php
 /**
- 
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: group_pricing.php 2021-10-24 17:13:51Z webchills $
+ * @version $Id: group_pricing.php 2022-12-03 17:13:51Z webchills $
  */
 require('includes/application_top.php');
 
 $action = (isset($_GET['action']) ? $_GET['action'] : '');
 
-if (zen_not_null($action)) {
+if (!empty($action)) {
   switch ($action) {
     case 'insert':
     case 'save':
@@ -72,23 +72,9 @@ if ($query->fields['count'] > 0 && (!defined('MODULE_ORDER_TOTAL_GROUP_PRICING_S
 <!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
   <head>
-    <meta charset="<?php echo CHARSET; ?>">
-    <title><?php echo TITLE; ?></title>
-    <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-    <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-    <script src="includes/menu.js"></script>
-    <script src="includes/general.js"></script>
-    <script>
-      function init() {
-          cssjsmenu('navbar');
-          if (document.getElementById) {
-              var kill = document.getElementById('hoverJS');
-              kill.disabled = true;
-          }
-      }
-    </script>
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
   </head>
-  <body onload="init()">
+  <body>
     <!-- header //-->
     <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
     <!-- header_eof //-->
@@ -116,7 +102,7 @@ if ($query->fields['count'] > 0 && (!defined('MODULE_ORDER_TOTAL_GROUP_PRICING_S
 // reset page when page is unknown
                 if ((empty($_GET['page']) || $_GET['page'] == '1') && !empty($_GET['gID'])) {
                   $check_page = $db->Execute($groups_query_raw);
-                  $check_count = 1;
+                  $check_count = 0;
                   if ($check_page->RecordCount() > MAX_DISPLAY_SEARCH_RESULTS) {
                     foreach ($check_page as $item) {
                       if ($item['group_id'] == $_GET['gID']) {
@@ -182,7 +168,7 @@ if ($query->fields['count'] > 0 && (!defined('MODULE_ORDER_TOTAL_GROUP_PRICING_S
                 $contents[] = array('text' => TEXT_NEW_INTRO);
                 $contents[] = array('text' => '<br>' . zen_draw_label(TEXT_GROUP_PRICING_NAME, 'group_name', 'class="control-label"') . zen_draw_input_field('group_name', '', zen_set_field_length(TABLE_GROUP_PRICING, 'group_name') . ' class="form-control"'));
                 $contents[] = array('text' => '<br>' . zen_draw_label(TEXT_GROUP_PRICING_AMOUNT, 'group_percentage', 'class="control-label"') . zen_draw_input_field('group_percentage', '', 'class="form-control"'));
-                $contents[] = array('align' => 'text-center', 'text' => '<br><button type="submit" class="btn btn-primary">' . IMAGE_SAVE . '</button> <a href="' . zen_href_link(FILENAME_GROUP_PRICING, 'page=' . $_GET['page'] . '&gID=' . $_GET['gID']) . '" class="btn btn-default" role="button">' . IMAGE_CANCEL . '</a>');
+                $contents[] = array('align' => 'text-center', 'text' => '<br><button type="submit" class="btn btn-primary">' . IMAGE_SAVE . '</button> <a href="' . zen_href_link(FILENAME_GROUP_PRICING, 'page=' . $_GET['page'] . (isset($_GET['gID']) ? '&gID=' . $_GET['gID'] : '')) . '" class="btn btn-default" role="button">' . IMAGE_CANCEL . '</a>');
                 break;
               case 'edit':
                 $heading[] = array('text' => '<h4>' . TEXT_HEADING_EDIT_PRICING_GROUP . '</h4>');
@@ -213,14 +199,14 @@ if ($query->fields['count'] > 0 && (!defined('MODULE_ORDER_TOTAL_GROUP_PRICING_S
 
                   $contents[] = array('align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_GROUP_PRICING, 'page=' . $_GET['page'] . '&gID=' . $gInfo->group_id . '&action=edit') . '"class="btn btn-primary" role="button">' . IMAGE_EDIT . '</a> <a href="' . zen_href_link(FILENAME_GROUP_PRICING, 'page=' . $_GET['page'] . '&gID=' . $gInfo->group_id . '&action=delete') . '" class="btn btn-warning" role="button">' . IMAGE_DELETE . '</a>');
                   $contents[] = array('text' => '<br>' . TEXT_DATE_ADDED . ' ' . zen_date_short($gInfo->date_added));
-                  if (zen_not_null($gInfo->last_modified))
+                  if (!empty($gInfo->last_modified))
                     $contents[] = array('text' => TEXT_LAST_MODIFIED . ' ' . zen_date_short($gInfo->last_modified));
                   $contents[] = array('text' => '<br>' . TEXT_CUSTOMERS . ' ' . $gInfo->customer_count);
                 }
                 break;
             }
 
-            if ((zen_not_null($heading)) && (zen_not_null($contents))) {
+            if (!empty($heading) && !empty($contents)) {
               $box = new box;
               echo $box->infoBox($heading, $contents);
             }
@@ -240,7 +226,7 @@ if ($query->fields['count'] > 0 && (!defined('MODULE_ORDER_TOTAL_GROUP_PRICING_S
       if (empty($action)) {
         ?>
         <div class="text-right">
-          <a href="<?php echo zen_href_link(FILENAME_GROUP_PRICING, 'page=' . $_GET['page'] . '&gID=' . $gInfo->group_id . '&action=new'); ?>" class="btn btn-primary" role="button"><?php echo IMAGE_INSERT; ?></a>
+          <a href="<?php echo zen_href_link(FILENAME_GROUP_PRICING, 'page=' . $_GET['page'] . (isset($gInfo)? '&gID=' . $gInfo->group_id : '') . '&action=new'); ?>" class="btn btn-primary" role="button"><?php echo IMAGE_INSERT; ?></a>
         </div>
         <?php
       }
