@@ -1,9 +1,12 @@
 <?php
 /**
- * @author      Serban Ghita <serbanghita@gmail.com>
- * @license     MIT License https://github.com/serbanghita/Mobile-Detect/blob/master/LICENSE.txt
- *
- * @author ZCAdditions.com, ZCA Responsive Template Default
+ * Zen Cart German Specific (zencartpro adaptations)
+ * Note: Since MobileDetect 3.74 the namespace is $detect = new \Detection\MobileDetect;
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
+ * @version $Id: zca_responsive_functions.php 2022-12-04 18:14:39Z webchills $
  */
 
 function layoutTypes()
@@ -14,9 +17,9 @@ function layoutTypes()
 function initLayoutType()
 {
     // Safety check.
-    if (!class_exists('Mobile_Detect')) { return 'default'; }
+    if (!class_exists('MobileDetect')) { return 'default'; }
 
-    $detect = new Mobile_Detect;
+    $detect = new \Detection\MobileDetect;
     $isMobile = $detect->isMobile();
     $isTablet = $detect->isTablet();
 

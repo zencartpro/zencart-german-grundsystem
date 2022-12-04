@@ -9,7 +9,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: html_header.php 2022-11-10 09:26:39Z webchills $
+ * @version $Id: html_header.php 2022-12-04 18:42:39Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -28,10 +28,10 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
 ?>
 <?php
 
-if (!class_exists('Mobile_Detect')) {
-  include_once(DIR_WS_CLASSES . 'Mobile_Detect.php');
+if (!class_exists('MobileDetect')) {
+  include_once(DIR_WS_CLASSES . 'vendors/MobileDetect/MobileDetect.php');
 }
-  $detect = new Mobile_Detect;
+  $detect = new \Detection\MobileDetect;
   $isMobile = $detect->isMobile();
   $isTablet = $detect->isTablet();
   if (!isset($layoutType)) $layoutType = ($isMobile ? ($isTablet ? 'tablet' : 'mobile') : 'default');

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (zencartpro adaptations)
  * Common Template main_template_vars handler
  *
  * Normally a page will automatically load its own template based on the page name.
@@ -15,7 +15,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main_template_vars 2021-12-27 19:32:58Z webchills $
+ * @version $Id: main_template_vars 2022-12-04 18:18:58Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -37,10 +37,10 @@ if (!defined('IS_ADMIN_FLAG')) {
     $flag_disable_right = false;
   }
 
-  if (!class_exists('Mobile_Detect')) {
-    include_once(DIR_WS_CLASSES . 'Mobile_Detect.php');
+  if (!class_exists('MobileDetect')) {
+    include_once(DIR_WS_CLASSES . 'vendors/MobileDetect/MobileDetect.php');
   }
-  if (!isset($detect)) $detect = new Mobile_Detect;
+  if (!isset($detect)) $detect = new \Detection\MobileDetect;
   if (!isset($_SESSION['layoutType'])) $_SESSION['layoutType'] = 'legacy';
 
   $display_as_mobile = ($detect->isMobile() || $detect->isTablet() || $_SESSION['layoutType'] == 'mobile' || $_SESSION['layoutType'] == 'tablet');

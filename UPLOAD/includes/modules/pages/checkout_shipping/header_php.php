@@ -1,14 +1,13 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (zencartpro adaptations)
  * Checkout Shipping Page
  *
-
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2022-04-09 10:52:16Z webchills $
+ * @version $Id: header_php.php 2022-12-04 18:52:16Z webchills $
  */
 // This should be first line of the script:
   $zco_notifier->notify('NOTIFY_HEADER_START_CHECKOUT_SHIPPING');
@@ -16,11 +15,11 @@
   
 // check if is mobile or tablet visitor to allow order report mobile, tablet or desktop
   
-if (!class_exists('Mobile_Detect')) {
-  include_once(DIR_WS_CLASSES . 'Mobile_Detect.php');
+if (!class_exists('MobileDetect')) {
+  include_once(DIR_WS_CLASSES . 'vendors/MobileDetect/MobileDetect.php');
 }
 
-$detect = new Mobile_Detect;
+$detect = new \Detection\MobileDetect;
 $isMobile = $detect->isMobile();
 $isTablet = $detect->isTablet();
 
