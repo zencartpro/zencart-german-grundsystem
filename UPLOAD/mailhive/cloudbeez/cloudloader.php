@@ -5,7 +5,7 @@ class mailbeez_installer_dummy
 {
     function __construct()
     {
-        $this->version = 4.21; // float value
+        $this->version = 4.6; // float value
         
     }
 }

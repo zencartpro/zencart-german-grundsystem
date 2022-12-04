@@ -68,8 +68,8 @@ class Cloudloader extends CloudloaderBase
         $this->unzipDirectory = PATH_INSTALL . '/cloudloader/work';
         $this->backupDirectory = PATH_INSTALL . '/backup';
         $this->glob_pattern = '*/catalog/mailhive';
-        $this->exclude_overwrite = array('');
-        $this->exclude_overwrite_package = array('');
+        $this->exclude_overwrite = array();
+        $this->exclude_overwrite_package = array();
 
 
         $this->logFile = PATH_INSTALL . '/cloudloader/install.log';
@@ -433,7 +433,7 @@ class Cloudloader extends CloudloaderBase
                     $this->debug_output("ERROR package hash file not found\n");
                 }
 
-
+                $this->deleteSessionVar('mailbeez_package_installer_workpath');
                 $this->deleteSessionVar('mailbeez_installer_workpath');
                 $this->deleteSessionVar('mailbeez_installer_backup_location');
                 $this->deleteSessionVar('mailbeez_installer_backup_location_dir');
@@ -545,8 +545,15 @@ class Cloudloader extends CloudloaderBase
         $args = func_get_args();
         $message = array_shift($args);
 
-        if (is_array($message))
+
+        if (is_array($message)) {
+            unset($message['changelog']);
             $message = implode(PHP_EOL, $message);
+        }
+
+        if (count($args) === 0) {
+            $message = str_replace('%', '%%', $message);
+        }
 
         $filename = $this->logFile;
         $stream = fopen($filename, 'a');

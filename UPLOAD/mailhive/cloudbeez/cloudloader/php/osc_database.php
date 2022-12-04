@@ -13,16 +13,34 @@
 
   mailbeez.com: modified for compatibility in zencart - just in case someone already did include these functions
  */
+
+
+///////////////////////////////////////////////////////////////////////////////
+///																																					 //
+///                 MailBeez Core file - do not edit                         //
+///                                                                          //
+///////////////////////////////////////////////////////////////////////////////
+///
 global $db;
 
-$db_link = $db->link;
+global $mh_db;
+
+$mh_db = new stdClass();
+
+if (get_class($db) == 'queryFactory') {
+    mh_define('MH_DBTYPE', 'MYSQLI');
+} else {
+    $mh_db = $db;
+
+    $mh_db_link = $mh_db->link;
 
 // detect type of db connection
-if (is_resource($db_link) && get_resource_type($db_link) == 'mysql link') {
-    define('MH_DBTYPE', 'MYSQL');
-} else {
-    if (is_object($db_link) && get_class($db_link) == 'mysqli') {
-        define('MH_DBTYPE', 'MYSQLI');
+    if (is_resource($mh_db_link) && get_resource_type($mh_db_link) == 'mysql link') {
+        mh_define('MH_DBTYPE', 'MYSQL');
+    } else {
+        if (is_object($mh_db_link) && get_class($mh_db_link) == 'mysqli') {
+            mh_define('MH_DBTYPE', 'MYSQLI');
+        }
     }
 }
 
@@ -34,21 +52,21 @@ if (!function_exists('tep_db_connect')) {
 
     function tep_db_connect($server = DB_SERVER, $username = DB_SERVER_USERNAME, $password = DB_SERVER_PASSWORD, $database = DB_DATABASE, $link = 'db_link')
     {
-        global $$link;
+        global $mh_db;
 
 
         switch (MH_DBTYPE) {
             case 'MYSQL':
                 if (USE_PCONNECT == 'true') {
-                    $$link = mysql_pconnect($server, $username, $password);
+                    $mh_db->link = mysql_pconnect($server, $username, $password);
                 } else {
-                    $$link = mysql_connect($server, $username, $password);
+                    $mh_db->link = mysql_connect($server, $username, $password);
                 }
 
-                if ($$link)
+                if ($mh_db->link)
                     mysql_select_db($database);
 
-                return $$link;
+                return $mh_db->link;
 
                 break;
             case 'MYSQLI':
@@ -56,11 +74,11 @@ if (!function_exists('tep_db_connect')) {
                     $server = 'p:' . $server;
                 }
 
-                $$link = mysqli_connect($server, $username, $password, $database);
-                return $$link;
+                $mh_db->link = mysqli_connect($server, $username, $password, $database);
+                return $mh_db->link;
                 break;
             default:
-                echo 'DB Type not supported';
+//                echo 'DB Type not supported';
         }
     }
 
@@ -71,17 +89,17 @@ if (!function_exists('tep_db_close')) {
 
     function tep_db_close($link = 'db_link')
     {
-        global $$link;
+        global $mh_db;
 
         switch (MH_DBTYPE) {
             case 'MYSQL':
-                return mysql_close($$link);
+                return mysql_close($mh_db->link);
                 break;
             case 'MYSQLI':
-                return mysqli_close($$link);
+                return mysqli_close($mh_db->link);
                 break;
             default:
-                echo 'DB Type not supported';
+//                echo 'DB Type not supported';
         }
     }
 }
@@ -90,7 +108,10 @@ if (!function_exists('tep_db_error')) {
 
     function tep_db_error($query, $errno, $error)
     {
-        die('<font color="#000000"><strong>' . $errno . ' - ' . $error . '<br /><br />' . $query . '<br /><br /><small><font color="#ff0000">[TEP STOP]</font></small><br /><br /></strong></font>');
+
+        $debug = debug_backtrace(0, 3);
+
+        die('<font color="#000000"><strong>' . $errno . ' - ' . $error . '<br />' . print_r($debug, true) . '<br />' . $query . '<br /><br /><small><font color="#ff0000">[TEP STOP]</font></small><br /><br /></strong></font>');
     }
 
 }
@@ -99,7 +120,7 @@ if (!function_exists('tep_db_query')) {
 
     function tep_db_query($query, $link = 'db_link')
     {
-        global $$link;
+        global $mh_db;
 
         if (defined('STORE_DB_TRANSACTIONS') && (STORE_DB_TRANSACTIONS == 'true')) {
             error_log('QUERY ' . $query . "\n", 3, STORE_PAGE_PARSE_TIME_LOG);
@@ -108,7 +129,7 @@ if (!function_exists('tep_db_query')) {
 
         switch (MH_DBTYPE) {
             case 'MYSQL':
-                $result = mysql_query($query, $$link) or tep_db_error($query, mysql_errno(), mysql_error());
+                $result = mysql_query($query, $mh_db->link) or tep_db_error($query, mysql_errno(), mysql_error());
 
                 if (defined('STORE_DB_TRANSACTIONS') && (STORE_DB_TRANSACTIONS == 'true')) {
                     $result_error = mysql_error();
@@ -117,16 +138,16 @@ if (!function_exists('tep_db_query')) {
                 return $result;
                 break;
             case 'MYSQLI':
-                $result = mysqli_query($$link, $query) or tep_db_error($query, mysqli_errno($$link), mysqli_error($$link));
+                $result = mysqli_query($mh_db->link, $query) or tep_db_error($query, mysqli_errno($mh_db->link), mysqli_error($mh_db->link));
 
                 if (defined('STORE_DB_TRANSACTIONS') && (STORE_DB_TRANSACTIONS == 'true')) {
-                    $result_error = mysqli_error($$link);
+                    $result_error = mysqli_error($mh_db->link);
                     error_log('RESULT ' . $result . ' ' . $result_error . "\n", 3, STORE_PAGE_PARSE_TIME_LOG);
                 }
                 return $result;
                 break;
             default:
-                echo 'DB Type not supported';
+//                echo 'DB Type not supported';
         }
 
     }
@@ -187,14 +208,14 @@ if (!function_exists('tep_db_perform')) {
 
 if (!function_exists('tep_db_fetch_array')) {
 
-    function tep_db_fetch_array($db_query)
+    function tep_db_fetch_array($mh_db_query)
     {
         switch (MH_DBTYPE) {
             case 'MYSQL':
-                return mysql_fetch_array($db_query, MYSQL_ASSOC);
+                return mysql_fetch_array($mh_db_query, MYSQL_ASSOC);
                 break;
             case 'MYSQLI':
-                return mysqli_fetch_array($db_query, MYSQLI_ASSOC);
+                return mysqli_fetch_array($mh_db_query, MYSQLI_ASSOC);
                 break;
             default:
                 echo 'DB Type not supported';
@@ -205,14 +226,14 @@ if (!function_exists('tep_db_fetch_array')) {
 
 if (!function_exists('tep_db_num_rows')) {
 
-    function tep_db_num_rows($db_query)
+    function tep_db_num_rows($mh_db_query)
     {
         switch (MH_DBTYPE) {
             case 'MYSQL':
-                return mysql_num_rows($db_query);
+                return mysql_num_rows($mh_db_query);
                 break;
             case 'MYSQLI':
-                return mysqli_num_rows($db_query);
+                return mysqli_num_rows($mh_db_query);
                 break;
             default:
                 echo 'DB Type not supported';
@@ -224,14 +245,14 @@ if (!function_exists('tep_db_num_rows')) {
 
 if (!function_exists('tep_db_data_seek')) {
 
-    function tep_db_data_seek($db_query, $row_number)
+    function tep_db_data_seek($mh_db_query, $row_number)
     {
         switch (MH_DBTYPE) {
             case 'MYSQL':
-                return mysql_data_seek($db_query, $row_number);
+                return mysql_data_seek($mh_db_query, $row_number);
                 break;
             case 'MYSQLI':
-                return mysqli_data_seek($db_query, $row_number);
+                return mysqli_data_seek($mh_db_query, $row_number);
                 break;
             default:
                 echo 'DB Type not supported';
@@ -244,14 +265,14 @@ if (!function_exists('tep_db_insert_id')) {
 
     function tep_db_insert_id($link = 'db_link')
     {
-        global $$link;
+        global $mh_db;
 
         switch (MH_DBTYPE) {
             case 'MYSQL':
-                return mysql_insert_id($$link);
+                return mysql_insert_id($mh_db->link);
                 break;
             case 'MYSQLI':
-                return mysqli_insert_id($$link);
+                return mysqli_insert_id($mh_db->link);
                 break;
             default:
                 echo 'DB Type not supported';
@@ -262,14 +283,14 @@ if (!function_exists('tep_db_insert_id')) {
 
 if (!function_exists('tep_db_free_result')) {
 
-    function tep_db_free_result($db_query)
+    function tep_db_free_result($mh_db_query)
     {
         switch (MH_DBTYPE) {
             case 'MYSQL':
-                return mysql_free_result($db_query);
+                return mysql_free_result($mh_db_query);
                 break;
             case 'MYSQLI':
-                return mysqli_free_result($db_query);
+                return mysqli_free_result($mh_db_query);
                 break;
             default:
                 echo 'DB Type not supported';
@@ -282,14 +303,14 @@ if (!function_exists('tep_db_free_result')) {
 
 if (!function_exists('tep_db_fetch_fields')) {
 
-    function tep_db_fetch_fields($db_query)
+    function tep_db_fetch_fields($mh_db_query)
     {
         switch (MH_DBTYPE) {
             case 'MYSQL':
-                return mysql_fetch_field($db_query);
+                return mysql_fetch_field($mh_db_query);
                 break;
             case 'MYSQLI':
-                return mysqli_fetch_field($db_query);
+                return mysqli_fetch_field($mh_db_query);
                 break;
             default:
                 echo 'DB Type not supported';
@@ -311,18 +332,18 @@ if (!function_exists('tep_db_input')) {
 
     function tep_db_input($string, $link = 'db_link')
     {
-        global $$link;
+        global $mh_db;
 
         switch (MH_DBTYPE) {
             case 'MYSQL':
                 if (function_exists('mysql_real_escape_string')) {
-                    return mysql_real_escape_string($string, $$link);
+                    return mysql_real_escape_string($string, $mh_db->link);
                 } elseif (function_exists('mysql_escape_string')) {
                     return mysql_escape_string($string);
                 }
                 break;
             case 'MYSQLI':
-                return mysqli_real_escape_string($$link, $string);
+                return mysqli_real_escape_string($mh_db->link, $string);
                 break;
             default:
                 echo 'DB Type not supported';
@@ -441,4 +462,8 @@ if (!function_exists('mysqli_connect')) {
     {
         return mysql_get_server_info($link);
     }
+}
+
+if (get_class($db) == 'queryFactory') {
+    tep_db_connect();
 }

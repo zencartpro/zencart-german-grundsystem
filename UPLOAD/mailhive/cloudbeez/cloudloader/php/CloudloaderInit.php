@@ -21,7 +21,7 @@ if (file_exists($cloudloader->deployDirectory . 'common/images/default_emailhead
     // updating
     $cloudloader->exclude_overwrite = array('catalog/mailhive/common/images/default_emailheader.gif');
 }
-$cloudloader->exclude_overwrite_package = array('');
+$cloudloader->exclude_overwrite_package = array(); // PHP8.1 - if array('') all files are excluded? see \CloudloaderBase::check_in_array
 
 $cloudloader->run();
 

@@ -17,7 +17,7 @@
 
 $install_lang = $_SESSION['language'];
 
-if (file_exists('cloudloader/languages/' . $install_lang . '.php')) {
+if (stream_resolve_include_path('cloudloader/languages/' . $install_lang . '.php')) {
     include('cloudloader/languages/' . $install_lang . '.php');
 } else {
     $install_lang = 'english';
@@ -112,7 +112,7 @@ if ($_GET['cloudloader_mode'] == 'update_core' || $_GET['cloudloader_mode'] == '
     <script type="text/template" data-partial="<?php echo (is_numeric($step)) ? $file : $step; ?>">
         <?php
 
-        if (file_exists('cloudloader/languages/' . $install_lang . '/partials/' . $file . '.htm')) {
+        if (stream_resolve_include_path('cloudloader/languages/' . $install_lang . '/partials/' . $file . '.htm')) {
             include('cloudloader/languages/' . $install_lang . '/partials/' . $file . '.htm');
         } else {
             include('cloudloader/languages/english/partials/' . $file . '.htm');
@@ -133,7 +133,7 @@ if ($_GET['cloudloader_mode'] == 'update_core' || $_GET['cloudloader_mode'] == '
     ?>
     window.session_name = '<?php echo xtc_session_name(); ?>';
     window.session_value = '<?php echo xtc_session_id(); ?>';
-    <?php } 
+    <?php }
     ?>
 
 </script>
@@ -179,7 +179,13 @@ if ($_GET['cloudloader_mode'] == 'update_core' || $_GET['cloudloader_mode'] == '
     Installer.Pages.installProgress.steps = [
         {code: 'getMetaDataPackage', label: '<?php echo MAILBEEZ_INSTALL_INSTALL_STEP1; ?>'},
         {code: 'downloadPackage', label: '<?php echo MAILBEEZ_INSTALL_INSTALL_STEP2; ?>'},
+        <?php
+        if ($cloudloader_mode != 'install_package') {
+        ?>
         {code: 'backupZip', label: '<?php echo MAILBEEZ_INSTALL_INSTALL_STEP3; ?>'},
+        <?php
+        }
+        ?>
         {code: 'checkFilePermissionPackage', label: '<?php echo MAILBEEZ_INSTALL_INSTALL_STEP4; ?>'},
         {code: 'extractPackage', label: '<?php echo MAILBEEZ_INSTALL_INSTALL_STEP5; ?>'},
         {

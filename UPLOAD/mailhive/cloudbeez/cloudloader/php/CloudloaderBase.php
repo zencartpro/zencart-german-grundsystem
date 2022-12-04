@@ -121,7 +121,7 @@ class CloudloaderBase
                 } else {
                     $result = copy($source, $__dest);
                     //chmod($__dest, $options['filePermission']);
-                    @chmod($__dest, fileperms($source));
+                    chmod($__dest, fileperms($source));
                 }
             } else {
                 $result = true;
@@ -207,8 +207,10 @@ class CloudloaderBase
     function check_in_array($input, $check_array)
     {
         foreach ($check_array as $check_element) {
-            if (stripos($input, $check_element) !== false) {
-                return true;
+            if ($check_element != '') {
+                if (stripos($input, $check_element) !== false) {
+                    return true;
+                }
             }
         }
         return false;
@@ -328,6 +330,7 @@ class CloudloaderBase
                         continue;
                     }
                     $source_path = $source_directory . '/' . $filename;
+                    $source_path = str_replace('//', '/', $source_path);
 
                     $this->debug_output("trying to copy $source_path -> $target_path$filename\n");
 
@@ -361,7 +364,7 @@ class CloudloaderBase
             }
 
 
-            if (sizeof($this->write_test_failed_file) > 0) {
+            if (is_array($this->write_test_failed_file) && sizeof($this->write_test_failed_file) > 0) {
                 throw new Exception(sprintf(MAILBEEZ_INSTALL_ERROR_FILE_NOT_WRITEABLE, sizeof($this->write_test_failed_file), implode('<li>', array_slice($this->write_test_failed_file, 0, 10))));
                 return false;
             }
@@ -410,7 +413,7 @@ class CloudloaderBase
 
     function Zip($source, $destination, $exclude_files_array = array(), $exclude_dir_array = array())
     {
-        global $GLOBALS;
+//        global $GLOBALS;
         //    $this->debug_output( "$source, $destination";
         $GLOBALS['exclude_files_array'] = $exclude_files_array;
         $GLOBALS['exclude_dir_array'] = $exclude_dir_array;
@@ -472,7 +475,9 @@ class CloudloaderBase
         $dir = opendir($cache_dir);
 
         if (!$dir) {
-            closedir($dir);
+            if (!is_bool($dir)) {
+                closedir($dir);
+            }
             return false;
         }
 
@@ -518,7 +523,7 @@ class CloudloaderBase
 
 function ZipPreAddCallBack($p_event, &$p_header)
 {
-    global $GLOBALS;
+//    global $GLOBALS;
 
 //    print_r($p_header);
 //    print_r($GLOBALS['exclude_dir_array'] );
