@@ -1,13 +1,12 @@
 <?php
 /**
  * Page Template
- * Zen Cart German Specific
- 
+ * Zen Cart German Specific 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_product_reviews_write_default.php 2022-04-08 22:05:58Z webchills $
+ * @version $Id: tpl_product_reviews_write_default.php 2022-12-08 20:05:58Z webchills $
  */
 ?>
 <div class="centerColumn" id="reviewsWrite">
@@ -77,7 +76,7 @@
 
 <div class="email-pot">
 <p><?php echo HUMAN_TEXT_NOT_DISPLAYED; ?></p>
-<?php echo zen_draw_radio_field(SPAM_TEST_USER, 'H1', '', 'id="user-1"') . '<span class="input-group-addon"><i class="fa fa-male fa-2x"></i></span>' . zen_draw_radio_field(SPAM_TEST_USER, 'C2', '', 'id="user-2"') . '<span class="input-group-addon"><i class="fa fa-laptop fa-2x"></i></span>'; ?>
+<?php echo zen_draw_radio_field(SPAM_TEST_USER, 'H1', '', 'id="user-1"') . '<span class="input-group-addon"><i class="fa-solid fa-male fa-2x"></i></span>' . zen_draw_radio_field(SPAM_TEST_USER, 'C2', '', 'id="user-2"') . '<span class="input-group-addon"><i class="fa-solid fa-laptop fa-2x"></i></span>'; ?>
 </div>
 
 <div class="buttonRow forward"><?php echo zen_image_submit(BUTTON_IMAGE_SUBMIT, BUTTON_SUBMIT_ALT); ?></div>

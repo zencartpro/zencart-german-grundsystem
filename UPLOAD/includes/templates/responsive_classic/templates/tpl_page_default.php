@@ -9,7 +9,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_page_default.php 2016-04-06 11:33:58Z webchills $
+ * @version $Id: tpl_page_default.php 2022-12-08 20:46:58Z webchills $
  */
 ?>
 <div class="centerColumn" id="ezPageDefault">
@@ -19,9 +19,9 @@
 
 <?php if ( $_SESSION['layoutType'] == 'mobile' ) { ?>
 <div id="navEZPageNextPrev">
-   <a href="<?php echo $prev_link; ?>"><i class="fa fa-chevron-circle-left" title="<?php echo BUTTON_PREVIOUS_ALT; ?>"></i></a>
-   <?php echo zen_back_link(); ?><i class="fa fa-list" title="<?php echo BUTTON_VIEW_ALL_ALT; ?>"></i></a>
-   <a href="<?php echo $next_link; ?>"><i class="fa fa-chevron-circle-right" title="<?php echo BUTTON_NEXT_ALT; ?>"></i></a>
+   <a href="<?php echo $prev_link; ?>"><i class="fa-solid fa-circle-chevron-left" title="<?php echo BUTTON_PREVIOUS_ALT; ?>"></i></a>
+   <?php echo zen_back_link(); ?><i class="fa-solid fa-list" title="<?php echo BUTTON_VIEW_ALL_ALT; ?>"></i></a>
+   <a href="<?php echo $next_link; ?>"><i class="fa-solid fa-circle-chevron-right" title="<?php echo BUTTON_NEXT_ALT; ?>"></i></a>
 </div>
 
 <?php } else { ?>
