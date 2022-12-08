@@ -9,7 +9,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_product_free_shipping_info_display.php 2022-04-09 09:33:58Z webchills $
+ * @version $Id: tpl_product_free_shipping_info_display.php 2022-12-08 21:33:58Z webchills $
  */
 ?>
 <div class="centerColumn" id="productFreeShipdisplay">
@@ -88,10 +88,11 @@ if ($flag_show_ask_a_question) {
 ?>
 <!-- bof Ask a Question --> 
 <br>
-<span id="productQuestions" class="biggerText">
-<b><?php echo '<a href="' . zen_href_link(FILENAME_ASK_A_QUESTION, 'pid=' . $_GET['products_id'], 'SSL') . '">' . ASK_A_QUESTION . '</a>'; ?></b>
+<span id="productQuestions" class="">
+<?php echo '<a href="' . zen_href_link(FILENAME_ASK_A_QUESTION, 'pid=' . $_GET['products_id'], 'SSL') . '">' . zen_image_button(BUTTON_IMAGE_ASK_A_QUESTION, BUTTON_ASK_A_QUESTION_ALT, ' id="askAQuestionButton"') . '</a>'; ?>
 </span>
 <br class="clearBoth">
+<br>
 <!-- eof Ask a Question -->
 <?php
 }

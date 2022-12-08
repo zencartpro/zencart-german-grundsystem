@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2022-11-26 08:20:57Z webchills $
+ * @version $Id: german.php 2022-12-08 20:55:57Z webchills $
  */
 
 // FOLLOWING WERE moved to meta_tags.php
@@ -15,11 +15,11 @@
 //define('CUSTOM_KEYWORDS', 'ecommerce, open source, shop, online shopping');
 // END: moved to meta_tags.php
 
-  define('FOOTER_TEXT_BODY', 'Copyright &copy; ' . date('Y') . ' <a href="' . zen_href_link(FILENAME_DEFAULT) . '">' . STORE_NAME . '</a>. Powered by <a href="https://www.zen-cart-pro.at" rel="noopener noreferrer" target="_blank">Zen Cart</a>');
+define('FOOTER_TEXT_BODY', 'Copyright &copy; ' . date('Y') . ' <a href="' . zen_href_link(FILENAME_DEFAULT) . '">' . STORE_NAME . '</a>. Powered by <a href="https://www.zen-cart-pro.at" rel="noopener noreferrer" target="_blank">Zen Cart</a>');
 
 // look in your $PATH_LOCALE/locale directory for available locales..
- $locales = ['de_DE.UTF-8', 'de_AT.UTF-8', 'de_CH.UTF-8', 'de_DE.ISO_8859-1','de_DE@euro', 'de_DE', 'de', 'ge', 'deu.deu'];
-  @setlocale(LC_TIME, $locales);
+$locales = ['de_DE.UTF-8', 'de_AT.UTF-8', 'de_CH.UTF-8', 'de_DE.ISO_8859-1','de_DE@euro', 'de_DE', 'de', 'ge', 'deu.deu'];
+@setlocale(LC_TIME, $locales);
 
 define('DATE_FORMAT_LONG', '%A, %d. %B %Y'); // this is used for strftime()
 define('DATE_FORMAT', 'd.m.Y'); // this is used for date()
@@ -499,7 +499,7 @@ define('CAPTION_UPCOMING_PRODUCTS','Diese Artikel sind in Kürze lieferbar');
 
 // meta tags special defines
 define('META_TAG_PRODUCTS_PRICE_IS_FREE_TEXT','Kostenlos!');
-  define('ASK_A_QUESTION', 'Ask a question about this item');
+define('ASK_A_QUESTION', 'Frage zum Artikel stellen');
 
 // customer login
 define('TEXT_SHOWCASE_ONLY', 'Kontakt');
