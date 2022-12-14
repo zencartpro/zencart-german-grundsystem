@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (zencartpro adaptations)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: application_top.php 2021-12-28 19:43:53Z webchills $
+ * @version $Id: application_top.php 2022-12-14 10:43:53Z webchills $
  */
 
 @ini_set("arg_separator.output", "&");
@@ -13,35 +13,36 @@
 
 // define the project version
 require DIR_FS_INSTALL . 'includes/version.php';
+
 if (file_exists(DIR_FS_INSTALL . 'includes/localConfig.php')) {
-  require DIR_FS_INSTALL . 'includes/localConfig.php';
+    require DIR_FS_INSTALL . 'includes/localConfig.php';
 }
 
 $val = getenv('HABITAT');
 $habitat = ($val == 'zencart' || (isset($_SERVER['USER']) && $_SERVER['USER'] == 'vagrant'));
 if ($habitat && !defined('DEVELOPER_MODE')) {
-  define('DEVELOPER_MODE', true);
+    define('DEVELOPER_MODE', true);
 }
 
 $controller = 'main';
 /* detect CLI params */
 if (isset($argc) && $argc > 0) {
-  for ($i=1;$i<$argc;$i++) {
-    $it = preg_split("/=/",$argv[$i]);
-    $_GET[$it[0]] = (isset($it[1])) ? $it[1] : $it[0];
-    // parse_str($argv[$i],$tmp);
-    // $_REQUEST = array_merge($_REQUEST, $tmp);
-    if ($it[0] == 'cli') $controller = 'cli';
-    if ($it[0] == 'v' || $it[0] == 'verbose') $debug_logging = 'screen';
-  }
+    for ($i = 1; $i < $argc; $i++) {
+        $it = preg_split("/=/", $argv[$i]);
+        $_GET[$it[0]] = (isset($it[1])) ? $it[1] : $it[0];
+        // parse_str($argv[$i],$tmp);
+        // $_REQUEST = array_merge($_REQUEST, $tmp);
+        if ($it[0] == 'cli') $controller = 'cli';
+        if ($it[0] == 'v' || $it[0] == 'verbose') $debug_logging = 'screen';
+    }
 }
 if (!isset($_GET) && isset($_SERVER["argc"]) && $_SERVER["argc"] > 1) {
-  for($i=1;$i<$_SERVER["argc"];$i++) {
-    list($key, $val) = explode('=', $_SERVER["argv"][$i]);
-    $_GET[$key] = $_REQUEST[$key] = $val;
-    if ($key == 'cli') $controller = 'cli';
-    if ($key == 'v' || $key == 'verbose') $debug_logging = 'screen';
-  }
+    for ($i = 1; $i < $_SERVER["argc"]; $i++) {
+        list($key, $val) = explode('=', $_SERVER["argv"][$i]);
+        $_GET[$key] = $_REQUEST[$key] = $val;
+        if ($key == 'cli') $controller = 'cli';
+        if ($key == 'v' || $key == 'verbose') $debug_logging = 'screen';
+    }
 }
 
 /**
@@ -62,22 +63,22 @@ if (file_exists($configFileLocal)) $configFile = $configFileLocal;
 $configReader = new zcConfigureFileReader($configFile);
 
 if (!defined('DIR_FS_LOGS')) {
-  // Use the systemChecker to see if one is defined in the store configure.php
-  $logDir = $configReader->getDefine('DIR_FS_LOGS');
-  if (!isset($logDir)) $logDir = DIR_FS_ROOT . 'logs';
-  define('DIR_FS_LOGS', $logDir);
+    // Use the systemChecker to see if one is defined in the store configure.php
+    $logDir = $configReader->getDefine('DIR_FS_LOGS');
+    if (!isset($logDir)) $logDir = DIR_FS_ROOT . 'logs';
+    define('DIR_FS_LOGS', $logDir);
 }
 if (!defined('DIR_FS_SQL_CACHE')) {
-  // Use the systemChecker to see if one is defined in the store configure.php
-  $logDir = $configReader->getDefine('DIR_FS_SQL_CACHE');
-  if (!isset($logDir)) $logDir = DIR_FS_ROOT . 'cache';
-  define('DIR_FS_SQL_CACHE', $logDir);
+    // Use the systemChecker to see if one is defined in the store configure.php
+    $logDir = $configReader->getDefine('DIR_FS_SQL_CACHE');
+    if (!isset($logDir)) $logDir = DIR_FS_ROOT . 'cache';
+    define('DIR_FS_SQL_CACHE', $logDir);
 }
 if (!defined('DIR_FS_DOWNLOAD_PUBLIC')) {
-  // Use the systemChecker to see if one is defined in the store configure.php
-  $logDir = $configReader->getDefine('DIR_FS_DOWNLOAD_PUBLIC');
-  if (!isset($logDir)) $logDir = DIR_FS_ROOT . 'pub';
-  define('DIR_FS_DOWNLOAD_PUBLIC', $logDir);
+    // Use the systemChecker to see if one is defined in the store configure.php
+    $logDir = $configReader->getDefine('DIR_FS_DOWNLOAD_PUBLIC');
+    if (!isset($logDir)) $logDir = DIR_FS_ROOT . 'pub';
+    define('DIR_FS_DOWNLOAD_PUBLIC', $logDir);
 }
 
 /**
@@ -111,27 +112,27 @@ if (ini_get('date.timezone') == '' && @date_default_timezone_get() == '') {
  * Bypass PHP file caching systems if active, since it interferes with files changed by zc_install (such as progress.json and configure.php)
  */
 if (!isset($_GET['cacheignore'])) {
-  //APC
-  if (function_exists('apc_clear_cache')) @apc_clear_cache();
-  //XCACHE
-  if (function_exists('xcache_clear_cache')) {
-    @ini_set('xcache.cacher', 'OFF');
-  }
-  //EA
-  if (@ini_get('eaccelerator.enable') == 1) {
-    @ini_set('eaccelerator.enable', 0);
-  }
+    //APC
+    if (function_exists('apc_clear_cache')) @apc_clear_cache();
+    //XCACHE
+    if (function_exists('xcache_clear_cache')) {
+        @ini_set('xcache.cacher', 'OFF');
+    }
+    //EA
+    if (@ini_get('eaccelerator.enable') == 1) {
+        @ini_set('eaccelerator.enable', 0);
+    }
 }
 
 /**
  * include the list of extra configure files
  */
 if ($za_dir = @dir(DIR_FS_INSTALL . 'includes/extra_configures')) {
-  while ($zv_file = $za_dir->read()) {
-    if (preg_match('~^[^\._].*\.php$~i', $zv_file) > 0) {
-      /**
-       * load any user/contribution specific configuration files.
-       */
+    while ($zv_file = $za_dir->read()) {
+        if (preg_match('~^[^\._].*\.php$~i', $zv_file) > 0) {
+            /**
+             * load any user/contribution specific configuration files.
+             */
             include DIR_FS_INSTALL . 'includes/extra_configures/' . $zv_file;
         }
     }
@@ -145,18 +146,19 @@ require DIR_FS_INSTALL . 'includes/functions/password_funcs.php';
 
 require DIR_FS_INSTALL . 'includes/classes/LanguageManager.php';
 $languageManager = new LanguageManager();
+
 zen_sanitize_request();
 /**
  * set the type of request (secure or not)
  */
 $request_type = ((isset($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) == 'on' || $_SERVER['HTTPS'] == '1')) ||
-                 (isset($_SERVER['HTTP_X_FORWARDED_BY']) && stripos($_SERVER['HTTP_X_FORWARDED_BY'], 'SSL') !== false) ||
-                 (isset($_SERVER['HTTP_X_FORWARDED_HOST']) && (stripos($_SERVER['HTTP_X_FORWARDED_HOST'], 'SSL') !== false || stripos($_SERVER['HTTP_X_FORWARDED_HOST'], str_replace('https://', '', HTTPS_SERVER)) !== false)) ||
-                 (isset($_SERVER['SCRIPT_URI']) && stripos($_SERVER['SCRIPT_URI'], 'https:') === 0) ||
-                 (isset($_SERVER['HTTP_X_FORWARDED_SSL']) && ($_SERVER['HTTP_X_FORWARDED_SSL'] == '1' || strtolower($_SERVER['HTTP_X_FORWARDED_SSL']) == 'on')) ||
-                 (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && (strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) == 'ssl' || strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) == 'https')) ||
-                 (isset($_SERVER['HTTP_SSLSESSIONID']) && $_SERVER['HTTP_SSLSESSIONID'] != '') ||
-                 (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == '443')) ? 'SSL' : 'NONSSL';
+    (isset($_SERVER['HTTP_X_FORWARDED_BY']) && stripos($_SERVER['HTTP_X_FORWARDED_BY'], 'SSL') !== false) ||
+    (isset($_SERVER['HTTP_X_FORWARDED_HOST']) && (stripos($_SERVER['HTTP_X_FORWARDED_HOST'], 'SSL') !== false || stripos($_SERVER['HTTP_X_FORWARDED_HOST'], str_replace('https://', '', HTTPS_SERVER)) !== false)) ||
+    (isset($_SERVER['SCRIPT_URI']) && stripos($_SERVER['SCRIPT_URI'], 'https:') === 0) ||
+    (isset($_SERVER['HTTP_X_FORWARDED_SSL']) && ($_SERVER['HTTP_X_FORWARDED_SSL'] == '1' || strtolower($_SERVER['HTTP_X_FORWARDED_SSL']) == 'on')) ||
+    (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && (strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) == 'ssl' || strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) == 'https')) ||
+    (isset($_SERVER['HTTP_SSLSESSIONID']) && $_SERVER['HTTP_SSLSESSIONID'] != '') ||
+    (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == '443')) ? 'SSL' : 'NONSSL';
 
 /*
  * debug params

@@ -1,29 +1,27 @@
 <?php
 /**
- * ajaxValidateAdminCredentials.php
- * @package Installer
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ajaxValidateAdminCredentials.php 2019-04-12 13:59:53Z webchills $
+ * @version $Id: ajaxValidateAdminCredentials.php 2022-12-14 10:59:53Z webchills $
  */
 define('IS_ADMIN_FLAG', false);
 define('DIR_FS_INSTALL', __DIR__ . '/');
 define('DIR_FS_ROOT', realpath(__DIR__ . '/../') . '/');
 
-require(DIR_FS_INSTALL . 'includes/application_top.php');
+require DIR_FS_INSTALL . 'includes/application_top.php';
 
-$error          = FALSE;
-$postParams     = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-$systemChecker  = new systemChecker();
+$error = false;
+$systemChecker = new systemChecker();
 $adminCandidate = $systemChecker->validateAdminCredentials(
-  trim($postParams['admin_user']),
-  trim($postParams['admin_password'])
+    trim(stripslashes($_POST['admin_user'])),
+    trim(stripslashes($_POST['admin_password']))
 );
 
 if (!is_int($adminCandidate)) {
-  $error = !$adminCandidate;
-  $adminCandidate = '';
+    $error = !$adminCandidate;
+    $adminCandidate = '';
 }
 
 echo json_encode(compact('error', 'adminCandidate'));

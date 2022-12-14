@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: localConfig.php 2021-11-28 17:57:53Z webchills $
+ * @version $Id: localConfig.php 2022-12-14 10:57:53Z webchills $
  *
  */
 
@@ -32,15 +32,20 @@ $dev_db_default_name = 'zencart' . PROJECT_VERSION_MAJOR . preg_replace('/\D/', 
 define('DEVELOPER_DBNAME_DEFAULT', $dev_db_default_name);
 define('DEVELOPER_DBUSER_DEFAULT', 'root');
 define('DEVELOPER_DBPASSWORD_DEFAULT', '');
+define('DEVELOPER_DBHOST_DEFAULT', 'localhost');
 define('DEVELOPER_INSTALL_DEMO_DATA', true);
 
 // optional configuration table keys to override on new installs when DEVELOPER_MODE===true
-if (PHP_MAJOR_VERSION > 5) {
-    define('DEVELOPER_CONFIGS', [
-        'EMAIL_SMTPAUTH_MAILBOX' => 'Zen Cart',
-        'EMAIL_SMTPAUTH_PASSWORD' => '',
-        'EMAIL_SMTPAUTH_MAIL_SERVER' => 'localhost',
-        'EMAIL_SMTPAUTH_MAIL_SERVER_PORT' => '2525',
-        'EMAIL_TRANSPORT' => 'smtpauth',
-    ]);
-}
+define('DEVELOPER_CONFIGS', [
+    'EMAIL_SMTPAUTH_MAILBOX' => 'Zen Cart',
+    'EMAIL_SMTPAUTH_PASSWORD' => '',
+    'EMAIL_SMTPAUTH_MAIL_SERVER' => 'localhost',
+    'EMAIL_SMTPAUTH_MAIL_SERVER_PORT' => '2525',
+    'EMAIL_TRANSPORT' => 'smtpauth',
+    'REPORT_ALL_ERRORS_ADMIN' => 'IgnoreDups',
+    'REPORT_ALL_ERRORS_STORE' => 'IgnoreDups',
+    'REPORT_ALL_ERRORS_NOTICE_BACKTRACE' => 'Yes',
+    'SESSION_TIMEOUT_ADMIN' => '14400',
+    'PADSS_ADMIN_SESSION_TIMEOUT_ENFORCED' => '0',
+    'ADMIN_CONFIGURATION_KEY_ON' => '1',
+]);

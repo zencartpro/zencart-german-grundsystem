@@ -1,15 +1,25 @@
 <?php
 /** 
- * Zen Casrt German Specific
+ * Zen Cart German Specific (zencartpro adaptations / 158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: LanguageManager.php 2022-02-12 18:06:51Z webchills $
+ * @version $Id: LanguageManager.php 2022-12-14 10:52:51Z webchills $
  */
 
 class LanguageManager
 {
+    /**
+     * $langPath is the directory path to languages files
+     * @var type string
+     */
+    protected $langPath;
+    /**
+     * $languagesInstalled is an array of the languages installed
+     * @var array
+     */
+    protected $languagesInstalled = [];
     public function __construct($langPath = 'includes/languages/')
     {
         $this->langPath = $langPath;

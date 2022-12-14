@@ -1,16 +1,16 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: admin_setup_default.php 2021-11-28 17:59:53Z webchills $
+ * @version $Id: admin_setup_default.php 2022-12-14 17:59:53Z webchills $
  */
 ?>
 
 <?php require(DIR_FS_INSTALL . DIR_WS_INSTALL_TEMPLATE . 'partials/partial_modal_help.php'); ?>
 
-<?php if (count($errors)) { ?>
+<?php if (!empty($errors)) { ?>
     <div class="alert-box alert">
 <?php
       foreach ($errors as $errormessage) {
@@ -22,11 +22,11 @@
 <?php } ?>
 
 <form id="admin_setup" name="admin_setup" method="post" action="index.php?main_page=completion" data-abide>
-  <input type="hidden" name="action" value="process" >
-  <input type="hidden" name="lng" value="<?php echo $installer_lng; ?>" >
+  <input type="hidden" name="action" value="process">
+  <input type="hidden" name="lng" value="<?php echo $installer_lng; ?>">
   <?php foreach ($_POST as $key=>$value) {  ?>
     <?php if ($key != 'action') { ?>
-    <input type="hidden" name="<?php echo $key; ?>" value="<?php echo $value; ?>" >
+    <input type="hidden" name="<?php echo $key; ?>" value="<?php echo $value; ?>">
     <?php }?>
   <?php }?>
   <fieldset>
@@ -102,7 +102,7 @@ $(function()
         var textId = $(this).attr('id');
         $.ajax({
           type: "POST",
-           timeout: 100000,
+          timeout: 100000,
           dataType: "json",
           data: 'id='+textId + '&lng=<?php echo $installer_lng; ?>',
           url: '<?php echo "ajaxGetHelpText.php"; ?>',

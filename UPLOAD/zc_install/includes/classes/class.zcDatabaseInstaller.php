@@ -2,15 +2,39 @@
 /**
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
+ * Zen Cart German Specific (158 code in 157)
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: class.zcDatabaseInstaller.php 2021-11-28 17:43:53Z webchills $
+ * @version $Id: class.zcDatabaseInstaller.php 2022-12-14 10:43:53Z webchills $
  *
  */
 
 class zcDatabaseInstaller
 {
-    public $ignoreLine;
-    var $jsonProgressLoggingCount = 0;
+    protected $ignoreLine;
+    protected $jsonProgressLoggingCount = 0;
+    protected $basicParseStrings = [];
+    protected $collateSuffix;
+    protected $completeLine;
+    protected $db;
+    protected $dbCharset;
+    protected $dbHost;
+    protected $dbName;
+    protected $dbPassword;
+    protected $dbPrefix;
+    protected $dbType;
+    protected $dbUser;
+    protected $dieOnErrors;
+    protected $errors = [];
+    protected $extendedOptions;
+    protected $fileName;
+    protected $func;
+    protected $jsonProgressLoggingTotal;
+    protected $keepTogetherCount;
+    protected $keepTogetherLines;
+    protected $line;
+    protected $lineSplit = [];
+    protected $newLine;
+    protected $upgradeExceptions;
 
     public function __construct($options)
     {
@@ -457,7 +481,7 @@ class zcDatabaseInstaller
     {
         if (!defined('DB_DATABASE')) define('DB_DATABASE', $this->dbName);
         $check = $this->db->Execute(
-            'SHOW COLUMNS FROM `' . DB_DATABASE . '`.`' . $this->db->prepare_input($table) . '` ' .
+            'SHOW COLUMNS FROM `' . DB_DATABASE . '`.`' . $this->dbPrefix . $this->db->prepare_input($table) . '` ' .
             'WHERE `Field` = \'' . $this->db->prepare_input($column) . '\''
         );
         return !$check->EOF;
@@ -467,7 +491,7 @@ class zcDatabaseInstaller
     {
         if (!defined('DB_DATABASE')) define('DB_DATABASE', $this->dbName);
         $check = $this->db->Execute(
-            'SHOW INDEX FROM `' . DB_DATABASE . '`.`' . $this->db->prepare_input($table) . '` ' .
+            'SHOW INDEX FROM `' . DB_DATABASE . '`.`' . $this->dbPrefix . $this->db->prepare_input($table) . '` ' .
             'WHERE `Key_name` = \'' . $this->db->prepare_input($index) . '\''
         );
         return !$check->EOF;

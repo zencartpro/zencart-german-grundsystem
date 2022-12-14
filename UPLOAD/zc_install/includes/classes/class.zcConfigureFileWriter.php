@@ -2,16 +2,19 @@
 /**
  * file contains zcConfigureFileWriter class
  * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: class.zcConfigureFileWriter.php 2020-01-17 16:59:53Z webchills $
+ * @version $Id: class.zcConfigureFileWriter.php 2022-12-14 10:59:53Z webchills $
  */
 /**
  * zcConfigureFileWriter class
  */
 class zcConfigureFileWriter
 {
-  public $errors = array();
+  public $errors = [];
+  protected $inputs = [];
+  protected $replaceVars;
 
   public function __construct($inputs)
   {
