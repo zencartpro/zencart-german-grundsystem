@@ -21,6 +21,8 @@ Aktualisierte Komponenten:
 - Update Image Handler auf 5.3.1
 - Update Mailbeez Installer auf 4.6
 - Update Font Awesome auf 6.2.1
+- Update CKEditor auf 4.20.1
+- Update TinyMCE auf 6.3.1
 
 Wer bereits 1.5.7e verwendet kann mit dem speziellen Updatepaket in UPDATE-VON-157e-AUF-157f sehr einfach auf 1.5.7f aktualisieren.
 Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157e-AUF-157f
