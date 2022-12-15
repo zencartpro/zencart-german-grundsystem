@@ -553,7 +553,7 @@ class sales_report
 
             // add up stored values for order grand total
             // (goods + tax + shipping + gc_sold) - (discount + gc_used)
-            // line 557 may produce wrong totals for most European store configurations so we better use the line 558 below - if 537 works better for you than 538 change it
+            // line 557 may produce wrong totals for most European store configurations so we better use the line 558 below - if 557 works better for you than 558 change it
             // $order_total = ($order_goods + $order_recorded_tax + $order_shipping + $order_gc_sold) - ($order_discount + $order_gc_used);
             $order_total = ($order_goods + $order_goods_tax + $order_shipping + $order_gc_sold) - ($order_discount + $order_gc_used);
 
