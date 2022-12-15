@@ -1,12 +1,12 @@
 <?php
 /**
  * Payment Class.
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: payment.php 2022-02-04 20:09:16Z webchills $
+ * @version $Id: payment.php 2022-12-15 22:37:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -101,6 +101,17 @@ class payment extends base {
       }
   }
 
+  public function checkCreditCovered()
+  {
+      global $credit_covers;
+      $credit_is_covered = false;
+      if (isset($credit_covers) && $credit_covers === true) {
+          $credit_is_covered = true;
+          $this->modules = '';
+          $this->selected_method = '';
+      }
+      return $credit_is_covered;
+  }
   /**
   The update_status() method is needed in the checkout_confirmation.php page
   due to a chicken and egg problem with the payment class and order class.

@@ -75,6 +75,7 @@ includes\classes\it_recht_kanzlei_api.php
 includes\classes\language.php
 includes\classes\order.php
 includes\classes\order_total.php
+includes\classes\payment.php
 includes\classes\QueryBuilder.php
 includes\classes\shopping_cart.php
 includes\classes\sniffer.php
