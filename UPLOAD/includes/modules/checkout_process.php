@@ -2,12 +2,12 @@
 /**
  * module to process a completed checkout
  *
- 
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: checkout_process.php 2022-01-11 15:23:16Z webchills $
+ * @version $Id: checkout_process.php 2022-12-15 22:54:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -74,12 +74,17 @@ if (isset($_SESSION['cart']->cartID) && $_SESSION['cartID']) {
 }
 
 $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_BEFORE_ORDER_TOTALS_PRE_CONFIRMATION_CHECK');
-if (strpos($GLOBALS[$_SESSION['payment']]->code, 'paypal') !== 0) {
+if (empty($_SESSION['payment']) || strpos($GLOBALS[$_SESSION['payment']]->code, 'paypal') !== 0) {
   $order_totals = $order_total_modules->pre_confirmation_check();
 }
-if ($credit_covers === TRUE)
-{
-	$order->info['payment_method'] = $order->info['payment_module_code'] = '';
+// -----
+// The order-totals::pre_confirmation_check method could have set the indication that
+// either a Gift Certificate or coupon has 'covered' the payment.  Let the payment
+// class perform any updates needed for its proper follow-on operation.
+//
+$payment_modules->checkCreditCovered();
+if ($credit_covers === true) {
+    $order->info['payment_method'] = $order->info['payment_module_code'] = '';
 }
 $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_BEFORE_ORDER_TOTALS_PROCESS');
 $order_totals = $order_total_modules->process();

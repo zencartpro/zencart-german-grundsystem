@@ -135,6 +135,7 @@ includes\modules\sideboxes\product_notifications.php
 includes\modules\sideboxes\record_companies.php
 includes\modules\additional_images.php
 includes\modules\checkout_new_address.php
+includes\modules\checkout_process.php
 includes\modules\meta_tags.php
 includes\modules\shipping_estimator.php
 includes\templates\classic\jscript\jquery.min.js
