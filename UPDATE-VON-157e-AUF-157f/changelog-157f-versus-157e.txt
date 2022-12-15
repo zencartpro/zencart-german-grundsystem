@@ -102,6 +102,7 @@ includes\modules\order_total\ot_shipping.php
 includes\modules\order_total\ot_subtotal.php
 includes\modules\order_total\ot_total.php
 includes\modules\pages\account_notifications\header_php.php
+includes\modules\pages\checkout_confirmation\header_php.php
 includes\modules\pages\checkout_shipping\header_php.php
 includes\modules\pages\checkout_success\header_php.php
 includes\modules\pages\contact_us\header_php.php
@@ -147,6 +148,7 @@ includes\templates\responsive_classic\jscript\jquery.min.js
 includes\templates\responsive_classic\jscript\jquery.min.map
 includes\templates\responsive_classic\sideboxes\tpl_order_history.php
 includes\templates\responsive_classic\templates\super_data_head.php
+includes\templates\responsive_classic\templates\tpl_checkout_confirmation_default.php
 includes\templates\responsive_classic\templates\tpl_document_general_info_display.php
 includes\templates\responsive_classic\templates\tpl_document_product_info_display.php
 includes\templates\responsive_classic\templates\tpl_modules_products_new_listing.php
@@ -162,6 +164,7 @@ includes\templates\template_default\popup_image\tpl_main_page.php
 includes\templates\template_default\popup_image_additional\tpl_main_page.php
 includes\templates\template_default\sideboxes\tpl_manufacturer_info.php
 includes\templates\template_default\templates\super_data_head.php
+includes\templates\template_default\templates\tpl_checkout_confirmation_default.php
 includes\templates\template_default\templates\tpl_checkout_payment_default.php
 includes\templates\template_default\templates\tpl_checkout_shipping_default.php
 includes\templates\template_default\templates\tpl_login_default.php

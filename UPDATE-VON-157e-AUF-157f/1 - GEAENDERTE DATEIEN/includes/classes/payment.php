@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: payment.php 2022-12-15 22:37:16Z webchills $
+ * @version $Id: payment.php 2022-12-15 23:22:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -17,7 +17,32 @@ if (!defined('IS_ADMIN_FLAG')) {
  *
  */
 class payment extends base {
-  var $modules, $selected_module, $doesCollectsCardDataOnsite;
+
+   /**
+    * $doesCollectsCardDataOnsite is a flag to indicate if card details are collected on site
+    * @var boolean
+    */
+   public $doesCollectsCardDataOnsite;
+   /**
+    * $form_action_url is the URL to process the payment or not set for local processing
+    * @var string
+    */
+   public $form_action_url;
+    /**
+     * $modules array of payment module names
+     * @var array 
+     */
+   public $modules;
+   /**
+    * $paymentClass is a payment class
+    * @var class
+    */
+   public $paymentClass;
+   /**
+    * $selected_module is the selected payment module
+    * @var string
+    */
+   public $selected_module;
 
   function __construct($module = '') {
       global $PHP_SELF, $language, $credit_covers, $messageStack;
@@ -132,7 +157,7 @@ class payment extends base {
 
   function javascript_validation() {
     if (!is_array($this->modules) || empty($this->selection())) return '';
-      $js = '<script type="text/javascript">' . "\n" .
+      $js = '<script>' . "\n" .
       'function check_form() {' . "\n" .
       '  var error = 0;' . "\n" .
       '  var error_message = "' . JS_ERROR . '";' . "\n" .
@@ -311,7 +336,9 @@ class payment extends base {
 
   function clear_payment()
   {
-    if (!is_array($this->modules)) return;
+    if (empty($this->selected_module) || !is_array($this->modules)) {
+        return;
+    }
     if (!is_object($GLOBALS[$this->selected_module])) return;
     if (!$GLOBALS[$this->selected_module]->enabled) return;
     $function = __FUNCTION__;

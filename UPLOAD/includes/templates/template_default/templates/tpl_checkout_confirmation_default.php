@@ -1,7 +1,7 @@
 <?php
 /**
  * Page Template
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157)
  * Loaded automatically by index.php?main_page=checkout_confirmation.
  * Displays final checkout details, cart, payment and shipping info details.
  *
@@ -9,7 +9,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_checkout_confirmation_default.php 2022-04-09 08:50:16Z webchills $
+ * @version $Id: tpl_checkout_confirmation_default.php 2022-12-15 23:18:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="checkoutConfirmDefault">
@@ -29,15 +29,12 @@
 
 <address><?php echo zen_address_format($order->billing['format_id'], $order->billing, 1, ' ', '<br>'); ?></address>
 
-<?php
-  $class =& $_SESSION['payment'];
-?>
 
 <h3 id="checkoutConfirmDefaultPayment"><?php echo HEADING_PAYMENT_METHOD; ?></h3>
-<h4 id="checkoutConfirmDefaultPaymentTitle"><?php echo $GLOBALS[$class]->title; ?></h4>
+<h4 id="checkoutConfirmDefaultPaymentTitle"><?php $payment_title; ?></h4>
 
 <?php
-  if (is_array($payment_modules->modules)) {
+  if ($credit_covers === false && is_array($payment_modules->modules)) {
     if ($confirmation = $payment_modules->confirmation()) {
 ?>
 <div class="important"><?php echo $confirmation['title']; ?></div>
@@ -193,7 +190,7 @@
 <?php
   echo zen_draw_form('checkout_confirmation', $form_action_url, 'post', 'id="checkout_confirmation" onsubmit="submitonce();"');
 
-  if (is_array($payment_modules->modules)) {
+  if ($credit_covers === false && is_array($payment_modules->modules)) {
     echo $payment_modules->process_button();
   }
 ?>
