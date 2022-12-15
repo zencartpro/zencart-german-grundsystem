@@ -10,7 +10,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_products_new_listing.php 2022-04-08 21:33:58Z webchills $
+ * @version $Id: tpl_modules_products_new_listing.php 2022-12-15 10:33:58Z webchills $
 
  */
 ?>
@@ -75,7 +75,7 @@
 
       if ((PRODUCT_NEW_LIST_PRICE != '0' and zen_get_products_allow_add_to_cart($products_new->fields['products_id']) == 'Y') and zen_check_show_prices() == true) {
         $products_price = zen_get_products_display_price($products_new->fields['products_id']);
-        $display_products_price = '<b>' . TEXT_PRICE . '</b> ' . $products_price . str_repeat('<br>', substr(PRODUCT_NEW_LIST_PRICE, 3, 1)) . ($flag_show_free_shipping_image ? (zen_get_product_is_always_free_shipping($products_new->fields['products_id']) ? TEXT_PRODUCT_FREE_SHIPPING_ICON . '<br>' : '') : '');
+        $display_products_price = '<b>' . TEXT_PRICE . '</b> ' . $products_price . str_repeat('<br />', substr(PRODUCT_NEW_LIST_PRICE, 3, 1)) . (zen_get_show_product_switch($products_new->fields['products_id'], 'ALWAYS_FREE_SHIPPING_IMAGE_SWITCH') ? (zen_get_product_is_always_free_shipping($products_new->fields['products_id']) ? TEXT_PRODUCT_FREE_SHIPPING_ICON . '<br>' : '') : '');
       } else {
         $display_products_price = '';
       }

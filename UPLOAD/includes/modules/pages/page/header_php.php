@@ -2,12 +2,12 @@
 /**
  * ez_pages ("page") header_php.php
  *
- 
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2020-01-17 10:50:16Z webchills $
+ * @version $Id: header_php.php 2022-12-14 22:50:16Z webchills $
  */
 /*
  * This "page" page is the display component of the ez-pages module
@@ -20,8 +20,8 @@
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_EZPAGE');
 
-$ezpage_id = (int)$_GET['id'];
-if ($ezpage_id == 0) {
+$ezpage_id = (int)($_GET['id'] ?? '0');
+if ($ezpage_id === 0) {
   zen_redirect(zen_href_link(FILENAME_DEFAULT));
 }
 

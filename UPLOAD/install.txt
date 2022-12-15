@@ -11,7 +11,8 @@ Security Fixes:
 - veraltete Javascripts aktualisiert
 
 Bugfixes:
-- Mit PHP 8.0.x ist es mit der aktuellen Codebasis nicht möglich, alle etwaigen Warning und Notices in den Debug Logfiles zu vermeiden. 1.5.7f reduziert die Anzahl aber ganz erheblich.
+- Fix für falsche Summen im Verkaufsbericht
+- Mit PHP 8.0.x ist es mit der aktuellen Codebasis nicht zu 100% möglich, alle etwaigen Warning und Notices in den Debug Logfiles zu vermeiden. 1.5.7f reduziert die Anzahl aber ganz erheblich.
 
 Aktualisierte Komponenten:
 - Update Braintree Zahlungsmodul auf braintree_php 6.10.0 und braintree_web 3.88.5

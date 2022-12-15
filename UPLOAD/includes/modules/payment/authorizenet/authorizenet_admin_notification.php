@@ -2,11 +2,10 @@
 /**
  * authorizenet_admin_notification.php admin display component
  *
- * @package paymentMethod
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: authorizenet_admin_notification.php 2019-04-12 12:24:19Z webchills $
+ * @version $Id: authorizenet_admin_notification.php 2022-12-14 12:24:19Z webchills $
  */
 
   $outputStartBlock = '';
@@ -60,7 +59,7 @@
     $outputCapt .= '<br>' . MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_CAPTURE_TEXT_COMMENTS . '<br>' . zen_draw_textarea_field('captnote', 'soft', '50', '2', MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_CAPTURE_DEFAULT_MESSAGE);
     //message text
     $outputCapt .= '<br>' . MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_CAPTURE_SUFFIX;
-    $outputCapt .= '<br><input type="submit" name="btndocapture" value="' . MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_CAPTURE_BUTTON_TEXT . '" title="' . MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_CAPTURE_BUTTON_TEXT . '" />';
+    $outputCapt .= '<br><input type="submit" name="btndocapture" value="' . MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_CAPTURE_BUTTON_TEXT . '" title="' . MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_CAPTURE_BUTTON_TEXT . '">';
     $outputCapt .= '</form>';
     $outputCapt .='</td></tr></table></td>'."\n";
   }
@@ -77,7 +76,7 @@
     //message text
     $outputVoid .= '<br>' . MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_VOID_SUFFIX;
     // confirm checkbox
-    $outputVoid .= '<br><input type="submit" name="ordervoid" value="' . MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_VOID_BUTTON_TEXT . '" title="' . MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_VOID_BUTTON_TEXT . '" />';
+    $outputVoid .= '<br><input type="submit" name="ordervoid" value="' . MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_VOID_BUTTON_TEXT . '" title="' . MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_VOID_BUTTON_TEXT . '">';
     $outputVoid .= '</form>';
     $outputVoid .='</td></tr></table></td>'."\n";
   }

@@ -2,11 +2,11 @@
 /**
  * Sniffer Class.
  *
- * @package classes
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: sniffer.php 2022-04-17 08:49:16Z webchills $
+ * @version $Id: sniffer.php 2022-12-14 21:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -16,9 +16,14 @@ if (!defined('IS_ADMIN_FLAG')) {
  * This class is used to collect information on the system that Zen Cart is running on
  * and to return error reports
  *
- * @package classes
  */
 class sniffer extends base {
+
+    private
+        $browser,
+        $database,
+        $php,
+        $server;
 
   function __construct() {
     $this->browser = Array();

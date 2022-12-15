@@ -2,12 +2,12 @@
 /**
  * Header code file for the Account Notifications page
  *
- 
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2021-11-28 21:49:16Z webchills $
+ * @version $Id: header_php.php 2022-12-14 22:49:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ACCOUNT_NOTIFICATION');
@@ -35,7 +35,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process')) {
     $product_global = '0';
   }
 
-  (array)$products = $_POST['notify'];
+  (array)$products = $_POST['notify'] ?? '';
 
   if ($product_global != $global->fields['global_product_notifications']) {
     $product_global = (($global->fields['global_product_notifications'] == '1') ? '0' : '1');

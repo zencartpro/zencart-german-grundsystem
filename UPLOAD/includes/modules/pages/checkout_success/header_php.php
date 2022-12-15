@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2022-04-09 10:23:42Z webchills $
+ * @version $Id: header_php.php 2022-12-14 22:23:42Z webchills $
  */
 
 // This should be first line of the script:
@@ -131,7 +131,7 @@ $define_page = zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] .
 
 } else {
   echo '<html><head>';
-  echo '<script type="text/javascript">
+  echo '<script>
 theTimer = 0;
 timeOut = 12;
 

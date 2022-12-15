@@ -1,13 +1,13 @@
 <?php
 /**
  * ot_cod_fee order-total module
- * Zen Cart German Specific
+ 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright (c) 2002 Thomas Plänkers http://www.oscommerce.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_cod_fee.php 2022-11-09 21:41:16Z webchills $
+ * @version $Id: ot_cod_fee.php 2022-12-14 22:13:16Z webchills $
  */
 /**
  * COD-FEE Order Totals Module
@@ -54,6 +54,7 @@
           if (substr_count($_SESSION['shipping']['id'], 'dp') !=0) $cod_zones = preg_split("/[:,]/", str_replace(' ', '', MODULE_ORDER_TOTAL_COD_FEE_DP));
 
           //satt inn av Pompel
+	 
           if (substr_count($_SESSION['shipping']['id'], 'servicepakke') !=0) $cod_zones = preg_split("/[:,]/", str_replace(' ', '', MODULE_ORDER_TOTAL_COD_FEE_SERVICEPAKKE));
 
             for ($i = 0, $n=count($cod_zones); $i < $n; $i++) {

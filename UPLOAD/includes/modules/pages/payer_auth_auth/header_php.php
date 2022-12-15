@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2005 CardinalCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2020-01-17 10:49:16Z webchills $
+ * @version $Id: header_php.php 2022-12-14 22:49:16Z webchills $
  */
   if (!zen_is_logged_in()) {
     die(WARNING_SESSION_TIMEOUT);
@@ -31,7 +31,7 @@ header("Cache-Control: max-age=1");  // stores for only 1 second, which prevents
 ?>
 <html>
 <head>
-<script type="text/javascript">
+<script>
 	function onLoadHandler(){
     document.frmLaunchACS.submit();
   }

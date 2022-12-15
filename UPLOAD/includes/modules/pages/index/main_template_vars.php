@@ -2,12 +2,12 @@
 /**
  * index main_template_vars.php
  *
- * @package page
+ * Zen Cart Gwerman Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main_template_vars.php 2019-04-12 11:49:16Z webchills $
+ * @version $Id: main_template_vars.php 2022-12-14 22:49:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -15,9 +15,9 @@ $zco_notifier->notify('NOTIFY_HEADER_START_INDEX_MAIN_TEMPLATE_VARS');
 
 // release manufacturers_id when nothing is there so a blank filter is not setup.
 // this will result in the home page, if used
-if (isset($_GET['manufacturers_id']) && $_GET['manufacturers_id'] <= 0) {
-  unset($_GET['manufacturers_id']);
-  unset($manufacturers_id);
+if (isset($_GET['manufacturers_id']) && (int)$_GET['manufacturers_id'] <= 0) {
+    unset($_GET['manufacturers_id']);
+    $manufacturers_id = '';
 }
 
 // release music_genre_id when nothing is there so a blank filter is not setup.

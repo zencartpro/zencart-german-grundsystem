@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: class.products_viewed_counter.php 2021-10-26 10:13:51Z webchills $ 
+ * @version $Id: class.products_viewed_counter.php 2022-12-14 21:13:51Z webchills $ 
  */
 
 class products_viewed_counter extends base
@@ -32,8 +32,9 @@ class products_viewed_counter extends base
 
     protected function should_be_excluded()
     {
+        global $spider_flag;
         // exclude search-engine spiders
-        if ($this->exclude_spiders && $GLOBALS['spider_flag'] === true) {
+        if ($this->exclude_spiders && $spider_flag === true) {
             return true;
         }
 

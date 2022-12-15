@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: table.php 2022-11-16 12:5:16Z webchills $
+ * @version $Id: table.php 2022-12-15 08:20:16Z webchills $
  */
 /**
  * Enter description here...
@@ -155,6 +155,7 @@ class table extends base {
 
     $table_cost = preg_split("/[:,]/" , MODULE_SHIPPING_TABLE_COST);
     $size = sizeof($table_cost);
+    $shipping = 0; 
     for ($i=0, $n=$size; $i<$n; $i+=2) {
       if (round($order_total,9) <= $table_cost[$i]) {
         if (strstr($table_cost[$i+1], '%')) {
@@ -166,6 +167,7 @@ class table extends base {
       }
     }
 
+    $show_box_weight = ''; 
     if (MODULE_SHIPPING_TABLE_MODE == 'weight') {
       $shipping = $shipping * $shipping_num_boxes;
       // show boxes if weight

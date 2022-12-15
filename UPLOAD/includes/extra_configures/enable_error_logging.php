@@ -7,11 +7,11 @@
  * Using this method, the debug details are stored at: /logs/myDEBUG-yyyymmdd-hhiiss-xxxxx.log (see below for details).
  * Credits to @lat9 for adding backtrace functionality
  *
- 
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: enable_error_logging.php 2021-11-28 20:30:29Z webchills $
+ * @version $Id: enable_error_logging.php 2022-12-14 21:30:29Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     exit('Invalid Access');
@@ -83,7 +83,8 @@ function zen_debug_error_handler($errno, $errstr, $errfile, $errline)
     if (!empty($backtrace)) {
         $backtrace = PHP_EOL . rtrim($backtrace);
     }
-    $message = date('[d-M-Y H:i:s e]') . ' Request URI: ' . $_SERVER['REQUEST_URI'] . ', IP address: ' . (isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'not set')  . $backtrace;
+    $language_info = ', Language id ' . $_SESSION['languages_id']; 
+    $message = date('[d-M-Y H:i:s e]') . ' Request URI: ' . $_SERVER['REQUEST_URI'] . ', IP address: ' . (isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'not set')  . $language_info . $backtrace;
 
     $message .= PHP_EOL . "--> PHP $error_type: $errstr in $errfile on line $errline.";
     

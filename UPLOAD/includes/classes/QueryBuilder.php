@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: QueryBuilder.php 2022-01-11 20:43:16Z webchills $
+ * @version $Id: QueryBuilder.php 2022-12-14 21:43:16Z webchills $
  */
 
 /**
@@ -100,7 +100,7 @@ class QueryBuilder extends \base
             $this->query['countSql'] = "SELECT COUNT(" . (issetorArray($listingQuery, 'isDistinct', false) ? "DISTINCT " : '') .
                 $this->parts ['mainTableName'] . "." . $this->parts ['countField'] . ")
                                  AS total " . $this->query ['table'] . $this->query ['joins'] .
-                $this->query ['where'];;
+                $this->query ['where'];
         }
         $this->notify('NOTIFY_QUERYBUILDER_SETFINALQUERY_END');
     }

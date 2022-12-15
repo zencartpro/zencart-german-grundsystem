@@ -2,7 +2,6 @@
 /** 
  * File contains just the notifier class
  *
- * @package classes
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
@@ -14,7 +13,6 @@
  * it can be used in procedural (non OOP) code to set up an observer
  * see the observer/notifier tutorial for more details.
  *
- * @package classes
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');

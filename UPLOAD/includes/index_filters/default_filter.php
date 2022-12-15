@@ -6,13 +6,13 @@
  * index filter for the default product type
  * show the products of a specified manufacturer
  *
- 
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @todo Need to add/fine-tune ability to override or insert entry-points on a per-product-type basis
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: default_filter.php 2019-07-20 09:17:16Z webchills $
+ * @version $Id: default_filter.php 2022-12-14 22:17:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -71,8 +71,10 @@ if (!isset($_GET['sort']) and PRODUCT_LISTING_DEFAULT_SORT_ORDER != '') {
 }
 
 if (isset($column_list)) {
-  if ((!isset($_GET['sort'])) || (isset($_GET['sort']) && !preg_match('/[1-8][ad]/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > sizeof($column_list))) {
-    for ($i = 0, $n = sizeof($column_list); $i < $n; $i++) {
+  if (!isset($_GET['sort'])
+      || !preg_match('/[1-8][ad]/', $_GET['sort'])
+      || (substr($_GET['sort'], 0, 1) > count($column_list))) {
+    for ($i = 0, $n = count($column_list); $i < $n; $i++) {
       if (isset($column_list[$i]) && $column_list[$i] == 'PRODUCT_LIST_NAME') {
         $_GET['sort'] = $i + 1 . 'a';
         $listing_sql .= " ORDER BY p.products_sort_order, pd.products_name";
@@ -147,21 +149,25 @@ if (PRODUCT_LIST_FILTER > 0) {
     if (isset($_GET['manufacturers_id'])) {
       $getoption_set = true;
       $get_option_variable = 'manufacturers_id';
-      $options = array(array(
+      $options = [
+          [
           'id' => '',
           'text' => TEXT_ALL_CATEGORIES
-      ));
+          ]
+      ];
     } else {
-      $options = array(array(
+      $options = [
+          [
           'id' => '',
           'text' => TEXT_ALL_MANUFACTURERS
-      ));
+          ]
+      ];
     }
     foreach ($filterlist as $item) {
-      $options[] = array(
+      $options[] = [
         'id' => $item['id'],
         'text' => $item['name']
-      );
+      ];
     }
   }
 }

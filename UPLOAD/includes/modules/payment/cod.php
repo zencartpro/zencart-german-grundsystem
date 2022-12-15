@@ -1,17 +1,51 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157)
  * COD Payment Module
  *
- * @package paymentMethod
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: cod.php 2019-04-12 12:49:16Z webchills $
+ * @version $Id: cod.php 2022-12-14 22:38:16Z webchills $
  */
-  class cod {
-    var $code, $title, $description, $enabled;
+  class cod { 
+
+    /**
+     * $_check is used to check the configuration key set up
+     * @var int
+     */
+    protected $_check;
+    /**
+     * $code determines the internal 'code' name used to designate "this" payment module
+     * @var string
+     */
+    public $code;
+    /**
+     * $description is a soft name for this payment method
+     * @var string 
+     */
+    public $description;
+    /**
+     * $enabled determines whether this module shows or not... during checkout.
+     * @var boolean
+     */
+    public $enabled;
+    /**
+     * $order_status is the order status to set after processing the payment
+     * @var int
+     */
+    public $order_status;
+    /**
+     * $title is the displayed name for this order total method
+     * @var string
+     */
+    public $title;
+    /**
+     * $sort_order is the order priority of this payment module when displayed
+     * @var int
+     */
+    public $sort_order;
 
 // class constructor
     function __construct() {
@@ -22,7 +56,7 @@
       $this->description = MODULE_PAYMENT_COD_TEXT_DESCRIPTION;
       $this->sort_order = defined('MODULE_PAYMENT_COD_SORT_ORDER') ? MODULE_PAYMENT_COD_SORT_ORDER : null;
       $this->enabled = (defined('MODULE_PAYMENT_COD_STATUS') && MODULE_PAYMENT_COD_STATUS == 'True');
-
+      if (null === $this->sort_order) return false;
       if (defined('MODULE_PAYMENT_COD_ORDER_STATUS_ID') && (int)MODULE_PAYMENT_COD_ORDER_STATUS_ID > 0) {
         $this->order_status = MODULE_PAYMENT_COD_ORDER_STATUS_ID;
       }
