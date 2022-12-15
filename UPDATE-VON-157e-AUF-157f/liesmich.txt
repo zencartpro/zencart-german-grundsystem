@@ -1,0 +1,67 @@
+Updatepaket für Zen Cart 1.5.7e deutsch auf 1.5.7f deutsch
+
+Dieses Paket enthält alle geänderten und neuen Dateien um eine bestehende 1.5.7e Installation einfach auf 1.5.7f aktualisieren zu können.
+Nur geeignet, wenn Sie bereits 1.5.7e deutsch verwenden!
+
+Für das Update einer älteren deutschen Zen Cart Version als 1.5.7, führen Sie bitte ein normales Update mit dem kompletten 1.5.7f Paket durch!
+
+
+Um Ihren bestehenden 1.5.7e deutsch Shop auf 1.5.7f deutsch zu aktualisieren gehen Sie folgendermaßen vor:
+
+!!! BEVOR SIE BEGINNEN MACHEN SIE EINE KOMPLETTE SICHERUNG IHRER SHOPDATEIEN UND IHRER DATENBANK !!!
+
+Schalten Sie Ihren Shop unter Konfiguration > Shopwartung in den Wartungsmodus und gehen dann in folgenden 3 Schritten vor:
+
+1)
+
+Im Ordner 1 - GEAENDERTE DATEIEN finden Sie alle Dateien, die in 1.5.7f gegenüber 1.5.7e geändert wurden.
+Benennen Sie den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses um.
+Vergleichen Sie nun mit BeyondCompare oder WinMerge alle Dateien in diesem Ordner mit denen Ihrer Shopinstallation am Server.
+Sehr viele dieser Dateien werden Sie wahrscheinlich noch nie geändert haben, es ist aber trotzdem unbedingt empfohlen, die geänderten Dateien nicht einfach hochzuladen, sondern sie vorher mit BeyondCompare oder WinMerge zu prüfen, damit nicht von Modulen darin bereits vorgenommene Änderungen verloren gehen.
+Ausgenommen davon sin geänderte Javascripts, die müssen Sie nicht vergleichen, es handelt sich hier um neue Versionen, die die alten ersetzen.
+Übernehmen Sie alle Änderungen und laden dann die Ordner/Dateien in der vorgegebenen Struktur in Ihr Shopverzeichnis hoch.
+
+2)
+
+Im Ordner 2 - NEUE DATEIEN befinden sich die kompletten neuen Versionen der CKEditor und TinyMCE Editoren, der Braintree PHP Komponente, des PHP Mailers und eine zusätzliche neue Font Awesome Version.
+Benennen Sie den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses um.
+Statt hier mühsame Dateivergleiche durchzuführen, können Sie die bestehenden Pakete einfach komplett mit den neuen ersetzen.
+Löschen Sie den kompletten Ordner editors/ckeditor vom Server
+Löschen Sie den kompletten Ordner editors/tiny_mce vom Server
+Löschen Sie den kompletten Ordner includes/classes/vendors/PHPMailer vom Server
+Löschen Sie den kompletten Ordner includes/modules/payment/braintree vom Server
+Laden Sie dann den Inhalt des Ordners 2 - NEUEDATEIEN in der vorgegebenen Struktur ins Shopverzeichnis hoch.
+
+
+3)
+
+In einem letzten Schritt müssen nun noch ein paar kleinere Änderungen in der Datenbank vorgenommen werden.
+
+Um diese Änderungen vorzunehmen gehen Sie nun in den Ordner 3 - DATENBANKAKTUALISIERUNG
+
+Benennen Sie den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses um.
+
+Laden Sie die Dateien in der vorgebenen Srruktur ins Shopverzeichnis hoch.
+
+Loggen Sie sich in Ihre Zen Cart Administration ein.
+
+Sie sehen oben verschiedene grüne Erfolgsmeldungen und zum Schluss: 
+Aktualisierung auf 1.5.7f deutsch erfolgreich
+
+Bevor Sie nun irgendetwas anclicken oder tun, löschen Sie erst sofort die beiden hochgeladenen Dateien wieder vom Server:
+DEINADMIN/includes/auto_loaders/config.157f_update.php
+DEINADMIN/includes/init_includes/init_157f_update.php
+
+Nun schalten Sie den Wartungsmodus unter Konfiguration > Shopwartung wieder aus.
+
+
+4)
+
+Falls Sie in Ihrem Template die alten Font Awesome Versionen nicht eingebunden haben, können Sie nun noch folgende Ordner vom Server löschen:
+extras/fontawesome/4.7.0
+extras/fontawesome/5.15.4
+extras/fontawesome/6.1.1
+extras/fontawesome/6.2.0
+
+Und folgendes veraltete Javascript kann gelöscht werden:
+admin\includes\javascript\jquery-ui-i18n.min.js
