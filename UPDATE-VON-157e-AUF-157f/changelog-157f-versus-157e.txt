@@ -110,6 +110,7 @@ includes\modules\pages\login\header_php.php
 includes\modules\pages\page\header_php.php
 includes\modules\pages\payer_auth_auth\header_php.php
 includes\modules\pages\payer_auth_verifier\header_php.php
+includes\modules\pages\rss_feed\header_php.php
 includes\modules\pages\shopping_cart\header_php.php
 includes\modules\payment\authorizenet\authorizenet_admin_notification.php
 includes\modules\payment\paypal\paypal_admin_notification.php

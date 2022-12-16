@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: braintree_api.php 2022-12-14 09:32:14 webchills $
+ * @version $Id: braintree_api.php 2022-12-16 09:01:14 webchills $
 */
 use Braintree\Gateway;
 use Braintree\Transaction;
@@ -806,17 +806,31 @@ class braintree_api extends base {
      */
     function process_button() {
         global $order;
-
+        $process_button_string ='';
+        if(isset($_POST['braintree_cc_type']) && !empty($_POST['braintree_cc_type'])){ 
         $process_button_string = "\n" . zen_draw_hidden_field('bt_cc_type', $_POST['braintree_cc_type']);
+        }
         $process_button_string .= "\n" . zen_draw_hidden_field('bt_cc_expdate_month', $_POST['braintree_cc_expires_month']);
         $process_button_string .= "\n" . zen_draw_hidden_field('bt_cc_expdate_year', $_POST['braintree_cc_expires_year']);
+        if(isset($_POST['braintree_cc_issue_month']) && !empty($_POST['braintree_cc_issue_month'])){ 
         $process_button_string .= "\n" . zen_draw_hidden_field('bt_cc_issuedate_month', $_POST['braintree_cc_issue_month']);
+        }
+        if(isset($_POST['braintree_cc_issuedate_year']) && !empty($_POST['braintree_cc_issuedate_year'])){ 
         $process_button_string .= "\n" . zen_draw_hidden_field('bt_cc_issuedate_year', $_POST['braintree_cc_issue_year']);
+        }
+        if(isset($_POST['braintree_cc_issuenumber']) && !empty($_POST['braintree_cc_issuenumber'])){ 
         $process_button_string .= "\n" . zen_draw_hidden_field('bt_cc_issuenumber', $_POST['braintree_cc_issuenumber']);
+        }
         $process_button_string .= "\n" . zen_draw_hidden_field('bt_cc_number', $_POST['braintree_cc_number']);
+        if(isset($_POST['braintree_cc_checkcode']) && !empty($_POST['braintree_cc_checkcode'])){ 
         $process_button_string .= "\n" . zen_draw_hidden_field('bt_cc_checkcode', $_POST['braintree_cc_checkcode']);
+        }
+        if(isset($_POST['braintree_cc_firstname']) && !empty($_POST['braintree_cc_firstname'])){ 
         $process_button_string .= "\n" . zen_draw_hidden_field('bt_payer_firstname', $_POST['braintree_cc_firstname']);
-        $process_button_string .= "\n" . zen_draw_hidden_field('bt_payer_lastname', $_POST['braintree_cc_lastname']);        
+        }
+        if(isset($_POST['braintree_cc_lastname']) && !empty($_POST['braintree_cc_lastname'])){
+        $process_button_string .= "\n" . zen_draw_hidden_field('bt_payer_lastname', $_POST['braintree_cc_lastname']);  
+        }      
         $process_button_string .= "\n" . zen_draw_hidden_field('bt_nonce', $_POST['braintree_nonce']);
         $process_button_string .= "\n" . zen_draw_hidden_field('bt_liability_shift_possible', $_POST['braintree_liability_shift_possible']);
         $process_button_string .= "\n" . zen_draw_hidden_field('bt_liability_shifted', $_POST['braintree_liability_shifted']);

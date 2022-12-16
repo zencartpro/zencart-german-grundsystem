@@ -6,10 +6,8 @@
  * @copyright Portions Copyright 2003-2022 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2022-01-16 18:57:04 webchills $
+ * @version $Id: header_php.php 2022-12-16 08:59:04 webchills $
  */
-//  @ini_set('display_errors', '1');
-//  error_reporting(E_ALL);
 
 @define('RSS_UTM_ACTIVE', 'true');
 @define('RSS_UTM_SOURCE', 'rss');
@@ -25,7 +23,7 @@
 @define('DIR_FS_RSSFEED_CACHE', DIR_FS_SQL_CACHE . '/rss');
 @define('RSS_ERROR_CACHE_DIR', 'Cache directory not found "' . DIR_FS_RSSFEED_CACHE . '"');
 
-
+$id_parent = isset($id_parent) ? $id_parent : '';
 require_once(DIR_WS_CLASSES . 'rss_feed.php');
 
 $rss = new rss_feed();
