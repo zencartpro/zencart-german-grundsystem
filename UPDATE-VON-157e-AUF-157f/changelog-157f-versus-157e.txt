@@ -65,7 +65,6 @@ includes\classes\observers\class.products_viewed_counter.php
 includes\classes\observers\ImageHandlerObserver.php
 includes\classes\bmz_image_handler.class.php
 includes\classes\boxes.php
-includes\classes\breadcrumb.php
 includes\classes\cc_validation.php
 includes\classes\class.notifier.php
 includes\classes\class.zcPassword.php
