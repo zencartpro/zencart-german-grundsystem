@@ -61,6 +61,7 @@ admin\image_handler.php
 admin\paypal.php
 admin\server_info.php
 admin\whos_online.php
+includes\classes\ajax\zcAjaxPayment.php
 includes\classes\observers\class.products_viewed_counter.php
 includes\classes\observers\ImageHandlerObserver.php
 includes\classes\bmz_image_handler.class.php
