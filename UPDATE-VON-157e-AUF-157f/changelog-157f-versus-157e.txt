@@ -54,6 +54,7 @@ admin\includes\css\admin_access.css
 admin\includes\css\banner_tools.css
 admin\includes\css\bootstrap.min.css.map
 admin\includes\css\stylesheet.css
+admin\includes\functions\general.php
 admin\includes\javascript\jquery.min.js
 admin\includes\javascript\jquery.min.map
 admin\includes\languages\english\image_handler.php
