@@ -1,12 +1,12 @@
 <?php
 /**
- * Zen Cart German Specific 
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * additional database info by lat9
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: server_info.php 2022-11-14 09:52:16Z webchills $
+ * @version $Id: server_info.php 2022-12-17 21:12:16Z webchills $
  */
 
   require('includes/application_top.php');
@@ -43,63 +43,12 @@
    
   $sinfo .= '</div></div>';
 ?>
-<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>">
-<title><?php echo TITLE; ?></title>
-<link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-<link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-<script type="text/javascript" src="includes/menu.js"></script>
-<script type="text/javascript">
-  function init()
-  {
-    cssjsmenu('navbar');
-    if (document.getElementById)
-    {
-      var kill = document.getElementById('hoverJS');
-      kill.disabled = true;
-    }
-  }
-</script>
-<style type="text/css">
-.pageHeading {font-size: 2em;}
-.serverInfo{max-width: 800px; margin-left: auto; margin-right: auto; font-size: 1.1em;}
-.infocell {float:left; width: 380px;margin-right:10px;}
-.sysinfo {max-width:700px; margin: auto;border: 2px solid black;padding:1.5em;margin-top:2em;}
-.clearBoth{clear:both}
-
-.phpinfo table{border:none;padding:0;margin:0; border-spacing:0;border-collapse:collapse;}
-.phpinfo table {width: 768px !important;}
-.phpinfo {margin:auto;}
-.phpinfo hr {display: none;}
-.phpinfo DIV {background-color: #fff; color: #222; font-family: sans-serif;}
-pre {margin: 0; font-family: monospace;}
-.phpinfo table {border-collapse: collapse; border: 0; width: 934px; box-shadow: 1px 2px 3px #ccc;}
-.center {text-align: center;}
-.center table {margin: 1em auto; text-align: left;}
-.center th {text-align: center !important;}
-
-.phpinfo h1, .phpinfo h1 a {font-size: 150%;}
-.phpinfo h2, .phpinfo h2 a {font-size: 125%;}
-.p {text-align: left;}
-.e {background-color: #ccf; width: 300px; font-weight: bold;}
-.h {background-color: #99c; font-weight: bold;}
-.v {background-color: #ddd; max-width: 300px; overflow-x: auto; word-wrap: break-word;}
-.v i {color: #999;}
-.phpinfo img {float: right; border: 0;}
-.phpinfo-is-disabled {color: red; font-weight: bold; text-align: center; padding-top: 1em; border: 1px solid red; height: 4em; width: 75%;}
-#db-h2 { text-align: center; font-size: 20px; }
-#database-info { width: 768px!important; margin: 0 auto; border: 1px solid #737ca1; border-collapse: collapse; }
-.db-row { }
-.db-row:nth-child(odd) .db-info { background-color: #e5e4e2; }
-.db-info { width: 50%; padding: 5px; border: 1px solid #737ca1; }
-.db-name { text-align: right; font-weight: bold; height: inherit; }
-.db-value { text-align: left; word-wrap: break-word; max-width: 50%; word-break: break-all; }
-.db-head { font-weight: bold; color: #737ca1; }
-</style>
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
 </head>
-<body onLoad="init()" class="sysinfoBody">
+<body class="sysinfoBody">
 <!-- header //-->
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
 <!-- header_eof //-->
@@ -109,6 +58,7 @@ pre {margin: 0; font-family: monospace;}
 <div class="serverInfo">
       <div class="infocell"><strong><?php echo TITLE_SERVER_HOST; ?></strong> <?php echo $system['host'] . ' (' . $system['ip'] . ')'; ?></div>
       <div class="infocell"><strong><?php echo TITLE_DATABASE; ?></strong> <?php echo zen_output_string_protected(DB_DATABASE); ?></div>
+      <div class="infocell"><strong><?php echo STORE_HOME; ?></strong> <?php echo zen_output_string_protected(DIR_FS_CATALOG); ?></div>
       <div class="infocell"><strong><?php echo TITLE_SERVER_OS; ?></strong> <?php echo $system['system'] . ' ' . $system['kernel']; ?> </div>
       <div class="infocell"><strong><?php echo TITLE_SERVER_DATE; ?></strong> <?php echo $system['date']; ?> &nbsp;</div>
       <div class="infocell"><strong><?php echo TITLE_SERVER_UP_TIME; ?></strong> <?php echo $system['uptime']; ?></div>
@@ -118,7 +68,7 @@ pre {margin: 0; font-family: monospace;}
       <div class="infocell"><strong><?php echo TITLE_PHP_UPLOAD_MAX;?></strong> <?php echo $system['php_uploadmaxsize'];?></div>
       <?php echo ($system['php_memlimit'] != '' ? '<div class="infocell"><strong>' . TITLE_PHP_MEMORY_LIMIT . '</strong> ' . $system['php_memlimit'] . '</div>' : ''); ?>
       <div class="infocell"><strong><?php echo TITLE_PHP_POST_MAX_SIZE; ?></strong> <?php echo $system['php_postmaxsize']; ?></div>
-      <div class="infocell"><strong><?php echo TITLE_DATABASE_ENGINE; ?></strong> <?php echo $system['db_version'] . ($system['mysql_strict_mode'] == true ? '<em> ' . TITLE_MYSQL_STRICT_MODE . '</em>' : ''); ?><br><?php echo TEXT_DATABASE_QUICKLINK; ?></div>
+      <div class="infocell"><strong><?php echo TITLE_DATABASE_ENGINE; ?></strong> <?php echo $system['db_version'] . ($system['mysql_strict_mode'] == true ? '<em> ' . TITLE_MYSQL_STRICT_MODE . '</em>' : ''); ?></div>
       <div class="infocell"><strong><?php echo TITLE_DATABASE_HOST; ?></strong> <?php echo $system['db_server'] . ' (' . $system['db_ip'] . ')'; ?></div>
       <div class="infocell"><strong><?php echo TITLE_DATABASE_DATE; ?></strong> <?php echo $system['db_date']; ?></div>
       <div class="infocell"><strong><?php echo TITLE_DATABASE_DATA_SIZE; ?></strong> <?php echo number_format(($system['database_size']/1024),0); ?> kB</div>
@@ -126,6 +76,7 @@ pre {margin: 0; font-family: monospace;}
       <div class="infocell"><strong><?php echo TITLE_DATABASE_MYSQL_SLOW_LOG_STATUS; ?></strong> <?php echo $system['mysql_slow_query_log_status'] == '1' ? 'On' : 'Off'; ?></div>
       <div class="infocell"><strong><?php echo TITLE_DATABASE_MYSQL_SLOW_LOG_FILE; ?></strong> <?php echo zen_output_string_protected($system['mysql_slow_query_log_file']); ?></div>
       <div class="infocell"><strong><?php echo TITLE_DATABASE_MYSQL_MODE; ?></strong> <?php echo $system['mysql_mode'] == '' ? '(None set)' : zen_output_string_protected(str_replace(',', ', ', $system['mysql_mode'])); ?></div>
+      <div class="infocell"><strong><?php echo TEXT_DATABASE_VARIABLES_LINK; ?></strong></div>
 </div>
 <br class="clearBoth">
 <?php echo $sinfo; ?>
@@ -143,36 +94,36 @@ if (strpos($disabled_functions,"phpinfo") === false) {
     ob_end_clean();
     $regs = '';
     preg_match('/<body>(.*)<\/body>/msi', $phpinfo, $regs);
-    echo $regs[1];
+    // clean up html to html 5
+    // replace font with span, replace name with id in <a> tag, remove border="0" from <img> tag, add colspan for missing td element
+    $phpinfo = preg_replace(['/<(\/)?font/','/<a name=/','/<img border="0"/','/<tr><td class="e">Features <\/td><\/tr>/'],['<$1span','<a id=','<img ','<tr><td class="e" colspan=2>Features </td></tr>'],$regs[1]);
+    echo $phpinfo;
   } else {
     phpinfo();
   }
 ?>
 </div>
-
-<h2 id="db-h2"><?php echo TITLE_DATABASE_VARIABLES . $system['db_version'] . ($system['mysql_strict_mode'] == true ? '<em> ' . TITLE_MYSQL_STRICT_MODE . '</em>' : ''); ?></h2>
+<?php } else { ?>
+<div class="phpinfo phpinfo-is-disabled"><?php echo ERROR_UNABLE_TO_DISPLAY_SERVER_INFORMATION; ?></div>
+<?php } ?>
+<h2 id="db-h2"><?php echo TITLE_DATABASE_VARIABLES . $system['db_version'] . ($system['mysql_strict_mode'] === true ? '<em> ' . TITLE_MYSQL_STRICT_MODE . '</em>' : ''); ?></h2>
 <table class="table" id="database-info">
     <tr class="db-row">
         <th class="db-name db-head db-info"><?php echo HEADING_DATABASE_VARIABLE; ?></th>
         <th class="db-value db-head db-info"><?php echo HEADING_DATABASE_VALUE; ?></th>
-     </tr>
-<?php
-$show_variables = $db->Execute ("SHOW VARIABLES");
-while (!$show_variables->EOF) {
-?>
-    <tr class="db-row">
-        <td class="db-info db-name"><?php echo $show_variables->fields['Variable_name']; ?></td>
-        <td class="db-info db-value"><?php echo zen_not_null ($show_variables->fields['Value']) ? $show_variables->fields['Value'] : '&nbsp;'; ?></td>
     </tr>
-<?php
-    $show_variables->MoveNext ();
-}
-?>
+    <?php
+    $show_variables = $db->Execute("SHOW VARIABLES");
+    foreach ($show_variables as $variable) {
+        ?>
+        <tr class="db-row">
+            <td class="db-info db-name"><?php echo $variable['Variable_name']; ?></td>
+            <td class="db-info db-value"><?php echo empty($variable['Value']) ? '$nbsp;' : htmlspecialchars($variable['Value']); ?></td>
+        </tr>
+        <?php
+    }
+    ?>
 </table>
-
-<?php } else { ?>
-<div class="phpinfo phpinfo-is-disabled"><?php echo ERROR_UNABLE_TO_DISPLAY_SERVER_INFORMATION; ?></div>
-<?php } ?>
 <!-- body_text_eof //-->
 
 <!-- body_eof //-->

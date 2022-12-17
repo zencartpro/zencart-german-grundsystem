@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: server_info.php 2022-11-14 09:55:14Z webchills $
+ * @version $Id: server_info.php 2022-12-17 21:15:14Z webchills $
  */
 
 define('HEADING_TITLE','Serverinformationen');
@@ -31,7 +31,8 @@ define('TITLE_MYSQL_STRICT_MODE', '(in Strict Mode)');
 define('TITLE_DATABASE_MYSQL_MODE', 'MySQL Modus:');
 define('TITLE_DATABASE_MYSQL_SLOW_LOG_STATUS', 'MySQL Slow Query Log Status:');
 define('TITLE_DATABASE_MYSQL_SLOW_LOG_FILE', 'MySQL Slow Query Log File:');
-define('TEXT_DATABASE_QUICKLINK', 'Clicken Sie <a href="#db-h2"><u>hier</u></a> um erweiterte Infos zur Datenbank Konfiguration anzuzeigen.');
+define('TEXT_DATABASE_VARIABLES_LINK', '<a href="#db-h2">Erweiterte Infos zur Datenbank Konfiguration</a>');
 define('TITLE_DATABASE_VARIABLES', 'Datenbank Variablen: ');
 define('HEADING_DATABASE_VARIABLE', 'Variable Name');
 define('HEADING_DATABASE_VALUE', 'Wert');
+define('STORE_HOME', 'Home Verzeichnis:');

@@ -3,15 +3,23 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: login.css 2021-12-28 17:56:29Z webchills $
+ * @version $Id: login.css 2022-12-17 21:24:29Z webchills $
  */
 
 body {
   background-color: #feffef;
+  padding : 0;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
 }
 
 h2 {
   border-bottom: 1px solid #e3e3e3;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 30px;
 }
 
 a {
@@ -41,6 +49,10 @@ a:hover {
   color: #333;
 }
 
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
 @media screen and (max-width: 63.999rem) {
   .login-main-div {
     padding: 25px 35px 35px 35px;

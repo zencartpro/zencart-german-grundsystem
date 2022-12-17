@@ -35,6 +35,11 @@ Changelog Zen Cart 1.5.7f deutsch gegenüber 1.5.7e deutsch
 NEUE DATEIEN
 ---------------------------------------------------------------------------------------------
 admin\includes\css\jquery-ui.css
+admin\includes\css\attributes_controller.css
+admin\includes\css\options_values_manager.css
+admin\includes\css\product_to_categories.css
+admin\includes\css\server_info.css
+admin\includes\css\whos_online.css
 admin\includes\javascript\datepicker-de.js
 extras\fontawesome\6.2.1 (gesamter Ordner)
 includes\classes\vendors\MobileDetect\MobileDetect.php
@@ -45,6 +50,10 @@ GEÄNDERTE DATEIEN
 ---------------------------------------------------------------------------------------------
 admin\includes\classes\ImageHandlerAdmin.php
 admin\includes\classes\sales_report.php
+admin\includes\css\admin_access.css
+admin\includes\css\banner_tools.css
+admin\includes\css\bootstrap.min.css.map
+admin\includes\css\stylesheet.css
 admin\includes\javascript\jquery.min.js
 admin\includes\javascript\jquery.min.map
 admin\includes\languages\english\image_handler.php
