@@ -178,10 +178,14 @@ includes\templates\template_default\templates\super_data_head.php
 includes\templates\template_default\templates\tpl_checkout_confirmation_default.php
 includes\templates\template_default\templates\tpl_checkout_payment_default.php
 includes\templates\template_default\templates\tpl_checkout_shipping_default.php
+includes\templates\template_default\templates\tpl_document_product_info_display.php
+includes\templates\template_default\templates\tpl_document_general_info_display.php
 includes\templates\template_default\templates\tpl_login_default.php
 includes\templates\template_default\templates\tpl_modules_address_book_details.php
 includes\templates\template_default\templates\tpl_modules_checkout_new_address.php
 includes\templates\template_default\templates\tpl_modules_create_account.php
+includes\templates\template_default\templates\tpl_product_music_info_display.php
+includes\templates\template_default\templates\tpl_product_free_shipping_info_display.php
 includes\version.php
 ipn_main_handler.php
 mailhive\cloudbeez\cloudloader\languages\english\partials\check.htm
