@@ -18,7 +18,25 @@ Im Ordner 1 - GEAENDERTE DATEIEN finden Sie alle Dateien, die in 1.5.7f gegenüb
 Benennen Sie den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses um.
 Vergleichen Sie nun mit BeyondCompare oder WinMerge alle Dateien in diesem Ordner mit denen Ihrer Shopinstallation am Server.
 Sehr viele dieser Dateien werden Sie wahrscheinlich noch nie geändert haben, es ist aber trotzdem unbedingt empfohlen, die geänderten Dateien nicht einfach hochzuladen, sondern sie vorher mit BeyondCompare oder WinMerge zu prüfen, damit nicht von Modulen darin bereits vorgenommene Änderungen verloren gehen.
-Ausgenommen davon sin geänderte Javascripts, die müssen Sie nicht vergleichen, es handelt sich hier um neue Versionen, die die alten ersetzen.
+Ausgenommen davon sind geänderte Javascripts, die müssen Sie nicht vergleichen, es handelt sich hier um neue Versionen, die die alten ersetzen.
+
+Achten Sie insbesondere auf Änderungen in den Templates. Wenn Sie ein eigenes Template verwenden, vergleichen Sie die geänderten Dateien dieses Updatepakets mit den Dateien Ihrer Override Ordner für Ihr eigenes Template (includes/templates/DEINTEMPLATE, includes/modules/DEINTEMPLATE, ...).
+Die Mobile Detect Funktionalität wurde auf Version 3.74 aktualisiert und im Zuge dessen verlagert nach:
+includes/classes/vendors/MobileDetect/MobileDetect.php
+Früher wurde die Datei includes/classes/Mobile_Detect.php verwendet.
+Die Aufrufe von Mobile Detect wurden also angepasst von früher:
+if (!class_exists('Mobile_Detect')) {
+  include_once(DIR_WS_CLASSES . 'Mobile_Detect.php');
+}
+auf nun:
+if (!class_exists('MobileDetect')) {
+  include_once(DIR_WS_CLASSES . 'vendors/MobileDetect/MobileDetect.php');
+}
+Mit Mobile Detect 3.74 hat sich auch der Namespace geändert von früher:
+$detect = new Mobile_Detect;
+auf nun:
+$detect = new \Detection\MobileDetect;
+
 Übernehmen Sie alle Änderungen und laden dann die Ordner/Dateien in der vorgegebenen Struktur in Ihr Shopverzeichnis hoch.
 
 2)
@@ -65,3 +83,6 @@ extras/fontawesome/6.2.0
 
 Und folgendes veraltete Javascript kann gelöscht werden:
 admin\includes\javascript\jquery-ui-i18n.min.js
+
+Ebenso gelöscht werden kann die alte Mobile Detect Klasse:
+includes/classes/Mobile_Detect.php

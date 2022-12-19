@@ -217,3 +217,6 @@ extras/fontawesome/6.2.0
 
 Und folgendes veraltete Javascript kann gelöscht werden:
 admin\includes\javascript\jquery-ui-i18n.min.js
+
+Ebenso gelöscht werden kann die alte Mobile Detect Klasse:
+includes/classes/Mobile_Detect.php
