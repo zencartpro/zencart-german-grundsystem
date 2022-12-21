@@ -5,12 +5,12 @@
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: index.php 2022-02-12 17:55:41Z webchills $
+ * @version $Id: index.php 2022-12-21 08:24:41Z webchills $
  */
   // Actual version check is more strict; this is just to start the program
   // For true minimum, see includes/systemChecks.yml under checkPhpVersionMin
-  if (PHP_VERSION_ID < 70401) {
-    die('Sorry, Mindestvoraussetzung ist PHP 7.4');
+  if (PHP_VERSION_ID < 70301) {
+    die('Sorry, Mindestvoraussetzung ist PHP 7.3');
   }
   define('IS_ADMIN_FLAG',false);
 
