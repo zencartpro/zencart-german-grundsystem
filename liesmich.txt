@@ -20,7 +20,7 @@ Verbesserung:
 
 Aktualisierte Komponenten:
 - Update Braintree Zahlungsmodul auf braintree_php 6.10.0 und braintree_web 3.88.5
-- Update jQuery auf 3.6.2
+- Update jQuery auf 3.6.3
 - Update PHPMailer auf 6.7.1
 - Update MobileDetect auf 3.74.0
 - Update Image Handler auf 5.3.1
