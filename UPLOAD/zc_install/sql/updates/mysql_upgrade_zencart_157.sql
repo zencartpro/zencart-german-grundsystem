@@ -3,11 +3,11 @@
 # *
 # * @access private
 # * Zen Cart German Specific
-# * @copyright Copyright 2003-2022 Zen Cart Development Team
+# * @copyright Copyright 2003-2023 Zen Cart Development Team
 # * Zen Cart German Version - www.zen-cart-pro.at
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_upgrade_zencart_157.sql 2022-12-21 15:47:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_157.sql 2023-03-11 09:33:59Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -378,8 +378,8 @@ DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_LIKE_BUTT
 DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_LIKE_BUTTON_SEND';
 
 
-# update Image Handler Version to 5.3.1
-UPDATE configuration SET configuration_value = '5.3.1' WHERE configuration_key = 'IH_VERSION';
+# update Image Handler Version to 5.3.2
+UPDATE configuration SET configuration_value = '5.3.2' WHERE configuration_key = 'IH_VERSION';
 
 # update display logs version to 3.0.0
 UPDATE configuration SET configuration_value = '3.0.0' WHERE configuration_key = 'DISPLAY_LOGS_VERSION';

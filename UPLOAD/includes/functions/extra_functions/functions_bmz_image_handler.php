@@ -1,13 +1,13 @@
 <?php
 /**
- * @package Image Handler 5.3.1
+ * @package Image Handler 5.3.2
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
- * @copyright Copyright 2018-2022 lat 9 - Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2018-2023 lat 9 - Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_bmz_image_handler.php 2022-11-21 15:29:51Z webchills $
+ * @version $Id: functions_bmz_image_handler.php 2023-03-11 09:29:51Z webchills $
  */
 require_once DIR_FS_CATALOG . DIR_WS_CLASSES . 'bmz_image_handler.class.php';
 
@@ -106,7 +106,7 @@ function ihValidateBackground($which_background)
  */
 function ih_image_supported($src)
 {
-    return in_array(strtolower(pathinfo($src, PATHINFO_EXTENSION)), ['jpg', 'jpeg', 'gif', 'png']);
+    return in_array(strtolower(pathinfo($src, PATHINFO_EXTENSION)), ['jpg', 'jpeg', 'gif', 'png', 'webp']);
 }
 // -----
 // Main Image Handler function ...

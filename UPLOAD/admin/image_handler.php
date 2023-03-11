@@ -1,14 +1,14 @@
 <?php
 /**
- * @package Image Handler 5.3.1
+ * @package Image Handler 5.3.2
  * Zen Cart German Specific
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
- * @copyright Copyright 2018-2022 lat 9 - Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2018-2023 lat 9 - Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: image_handler.php 2022-11-21 15:54:51Z webchills $
+ * @version $Id: image_handler.php 2023-03-11 09:29:51Z webchills $
  */
 require 'includes/application_top.php';
 
@@ -624,7 +624,7 @@ if ($ih_page === 'admin') {
                 // currently has an image defined.
                 //
                 if ($no_images === true) {
-                    $accept = 'image/jpeg,image/jpg,image/gif,image/png';
+                    $accept = 'image/jpeg,image/jpg,image/gif,image/png,image/webp';
                 } else {
                     switch (strtolower($products_image_extension)) {
                         case '.gif':
@@ -637,8 +637,11 @@ if ($ih_page === 'admin') {
                         case '.jpeg':       //- Fall through from above
                             $accept = 'image/jpeg,image/jpg';
                             break;
+                        case '.webp':
+                             $accept = 'image/webp';
+                            break;
                         default:
-                            $accept = 'image/jpeg,/image/jpg,image/gif,image/png';
+                            $accept = 'image/jpeg,/image/jpg,image/gif,image/png,image/webp';
                             break;
                     }
                 }
@@ -776,6 +779,11 @@ if ($ih_page === 'admin') {
       $images['gifsmall'] = $gifimage->get_resized_image($ihConf['small']['width'], $ihConf['small']['height'], 'small');
       $images['gifmedium'] = $gifimage->get_resized_image($ihConf['medium']['width'], $ihConf['medium']['height'], 'medium');
       $images['giflarge'] = $gifimage->get_resized_image($ihConf['large']['width'], $ihConf['large']['height'], 'large');
+      $webpimage = new ih_image(basename($ihConf['dir']['admin']) . "/" . 'images/ih-test.webp', (int)$ihConf['small']['width'], (int)$ihConf['small']['height']);
+      $images['webpsource'] = $webpimage->get_resized_image((int)$ihConf['small']['width'], (int)$ihConf['small']['height'], 'orig');
+      $images['webpsmall'] = $webpimage->get_resized_image($ihConf['small']['width'], $ihConf['small']['height'], 'small');
+      $images['webpmedium'] = $webpimage->get_resized_image($ihConf['medium']['width'], $ihConf['medium']['height'], 'medium');
+      $images['webplarge'] = $webpimage->get_resized_image($ihConf['large']['width'], $ihConf['large']['height'], 'large');
 ?>
         <table class="table">
             <tr>
@@ -804,6 +812,12 @@ if ($ih_page === 'admin') {
                 <td><img src="<?php echo HTTP_SERVER . DIR_WS_CATALOG . $images['gifsource']?>" alt="gif source" title="gif source" /></td>
                 <td><img src="<?php echo HTTP_SERVER . DIR_WS_CATALOG . $images['gifsmall']?>" alt="gif small" title="gif small" /></td>
                 <td><img src="<?php echo HTTP_SERVER . DIR_WS_CATALOG . $images['gifmedium']?>" alt="gif medium" title="gif medium" /></td>
+            </tr>
+            <tr>
+                <td><strong>webp</strong></td>
+                <td><img src="<?php echo HTTP_SERVER . DIR_WS_CATALOG . $images['webpsource']?>" alt="webp source" title="webp source" /></td>
+                <td><img src="<?php echo HTTP_SERVER . DIR_WS_CATALOG . $images['webpsmall']?>" alt="webp small" title="webp small" /></td>
+                <td><img src="<?php echo HTTP_SERVER . DIR_WS_CATALOG . $images['webpmedium']?>" alt="webp medium" title="webp medium" /></td>
             </tr>
         </table>
 <?php

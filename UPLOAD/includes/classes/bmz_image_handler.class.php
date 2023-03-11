@@ -1,14 +1,14 @@
 <?php
 /**
- * @package Image Handler 5.3.1
+ * @package Image Handler 5.3.2
  * Zen Cart German Specific
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
- * @copyright Copyright 2018-2022 lat 9 - Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2018-2023 lat 9 - Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: bmz_image_handler.class.php 2022-11-21 15:46:51Z webchills $
+ * @version $Id: bmz_image_handler.class.php 2023-03-11 09:25:51Z webchills $
  */
  
 if (!defined('IH_DEBUG_ADMIN')) {
@@ -35,6 +35,7 @@ class ih_image
         $first_access,
         $force_canvas,
         $height,
+        $image_type,    // the actual type of the image supplied
         $local = null,  // cached image reference
         $orig,          // original image source passed to the constructor
         $sizetype,
@@ -46,7 +47,7 @@ class ih_image
      * ih_image class constructor
      * @author Tim Kroeger (tim@breakmyzencart.com)
      * @author Cindy Merkin (lat9)
-     * @version 5.3.1
+     * @version 5.3.2
      * @param string $src Image source (e.g. - images/productimage.jpg)
      * @param string $width The image's width
      * @param string $height The image's height
@@ -235,19 +236,19 @@ class ih_image
                 $this->watermark['file'] = (!empty($ihConf['medium']['watermark'])) ? $image_base_path . 'medium/watermark' . $ihConf['medium']['suffix'] . '.png': '';
                 break;
             case 'small':
-                $this->watermark['file'] = ($ihConf['small']['watermark']) ? $image_base_path . 'watermark.png' : '';
+                $this->watermark['file'] = (!empty($ihConf['small']['watermark'])) ? $image_base_path . 'watermark.png' : '';
                 break;
             default:
                 $this->watermark['file'] = '';
                 break;
         }
 
-        if ($this->watermark['file'] !== '' && is_file($this->watermark['file'])) {
-            // set watermark parameters
-            list($this->watermark['width'], $this->watermark['height']) = getimagesize($this->watermark['file']);
-            list($this->watermark['startx'], $this->watermark['starty']) = $this->calculate_gravity($this->canvas['width'], $this->canvas['height'], $this->watermark['width'], $this->watermark['height'], $ihConf['watermark']['gravity']);
-        } else {
+        if ($this->watermark['file'] === '' || is_file($this->watermark['file']) === false) {
             $this->watermark['file'] = '';
+        } else {
+            // set watermark parameters
+            list($this->watermark['width'], $this->watermark['height'], $this->watermark['image_type']) = getimagesize($this->watermark['file']);
+            list($this->watermark['startx'], $this->watermark['starty']) = $this->calculate_gravity($this->canvas['width'], $this->canvas['height'], $this->watermark['width'], $this->watermark['height'], $ihConf['watermark']['gravity']);
         }
     }
 
@@ -293,8 +294,8 @@ class ih_image
         // $ihConf['dir']['docroot']!
         //
         $allowed = false;
-        if ($ihConf['resize'] && !empty($ihConf['noresize_key']) && strpos($this->src, $ihConf['noresize_key']) === false &&
-             (strpos($this->src, $ihConf['dir']['images']) === 0 || strpos(DIR_FS_CATALOG . $this->src, $bmzConf['cachedir']) === 0)) {
+        $src_in_images_or_cachedir = (strpos($this->src, $ihConf['dir']['images']) === 0 || strpos(DIR_FS_CATALOG . $this->src, $bmzConf['cachedir']) === 0);
+        if ($ihConf['resize'] && !empty($ihConf['noresize_key']) && strpos($this->src, $ihConf['noresize_key']) === false && $src_in_images_or_cachedir === true) {
             $allowed = true;
             foreach ($ihConf['noresize_dirs'] as $noresize_dir) {
                 if (strpos($this->src, $ihConf['dir']['images'] . $noresize_dir . '/') === 0) {
@@ -359,6 +360,12 @@ class ih_image
 
         // Do we need to resize, watermark or convert to another filetype?
         if ($this->file_exists && ($resize || $this->watermark['file'] !== '' || $file_extension !== $this->extension)) {
+            // -----
+            // Distinguish, for the 'Mirrored' and 'Readable' cache-naming conventions, a watermarked image
+            // from its unwatermarked equivalent.  The cache-file's name will look like {something}.image.watermarked.{something}.{ext}
+            // instead of {something}.image.{something}.{ext}.
+            //
+            $watermark_extra = ($this->watermark['file'] !== '') ? 'watermark.' : '';
             switch (IH_CACHE_NAMING) {
                 case 'Hashed':
                     $local = $this->getCacheName($this->src . $this->watermark['file'] . $quality . $background . $ihConf['watermark']['gravity'], '.image.' . $newwidth . 'x' . $newheight . $file_extension);
@@ -376,7 +383,7 @@ class ih_image
                         $image_dir = substr($image_path['dirname'],strlen(DIR_WS_IMAGES)) . '/';
                     }
                     // and now do the magic and create cached image name with the above parameters
-                    $local = $this->getCacheName(strtolower($image_dir . $image_basename), '.image.' . $newwidth . 'x' . $newheight . $file_extension);
+                    $local = $this->getCacheName(strtolower($image_dir . $image_basename), '.image.' . $watermark_extra . $newwidth . 'x' . $newheight . $file_extension);
                     break;
                 case 'Readable':
                 default:
@@ -397,11 +404,10 @@ class ih_image
                     }
 
                     // and now do the magic and create cached image name with the above parameters
-                    $local = $this->getCacheName(strtolower($image_dir . $image_basename), '.image.' . $newwidth . 'x' . $newheight . $file_extension);
+                    $local = $this->getCacheName(strtolower($image_dir . $image_basename), '.image.' . $watermark_extra . $newwidth . 'x' . $newheight . $file_extension);
                     break;
             }
 
-            //echo $local . '<br>';
             $local_mtime = $this->fileModifiedTime($local); // 0 if not exists
             $file_mtime = $this->fileModifiedTime($this->filename);
             $watermark_mtime = $this->fileModifiedTime($this->watermark['file']);
@@ -496,8 +502,8 @@ class ih_image
                 $this->filename = DIR_WS_IMAGES . PRODUCTS_IMAGE_NO_IMAGE;
                 $image_info = getimagesize($this->filename);
             }
-            list($width, $height) = $image_info;
-            $this->ihLog("calculate_size: file " . $this->filename . " ($pref_width, $pref_height), getimagesize returned $width x $height.");
+            list($width, $height, $this->image_type) = $image_info;
+            $this->ihLog("calculate_size: file " . $this->filename . " ($pref_width, $pref_height), getimagesize returned $width x $height -type $this->image_type");
         } else {
             $this->ihLog('calculate_size: file "' . $this->filename . '" does NOT exist.');
             $height = 0;
@@ -505,8 +511,8 @@ class ih_image
             $this->file_exists = false;
         }
         // default: nothing happens (preferred dimension = actual dimension)
-        $newwidth = $width;
-        $newheight = $height;
+        $newwidth = (int)$width;
+        $newheight = (int)$height;
         if ($width > 0 && $height > 0) {
             if (strpos($pref_width . $pref_height, '%') !== false) {
                 // possible scaling to % of original size
@@ -527,7 +533,7 @@ class ih_image
                 // failsafe for old zen-cart configuration one image dimension set to 0
                 $pref_width = (int)$pref_width;
                 $pref_height = (int)$pref_height;
-                if (!$this->force_canvas && $pref_width != 0 && $pref_height != 0) {
+                if (!$this->force_canvas && $pref_width !== 0 && $pref_height !== 0) {
                     // if no '!' is appended to dimensions we don't force the canvas size to
                     // match the preferred size. the image will not have the exact specified size.
                     // (we're in fact forcing the old 0-dimension zen-magic trick)
@@ -541,10 +547,10 @@ class ih_image
                 }
 
                 // now deal with the calculated preferred sizes
-                if ($pref_width == 0 && $pref_height > 0) {
+                if ($pref_width === 0 && $pref_height > 0) {
                     // image dimensions are calculated to fit the preferred height
                     $pref_width = (int)floor($width * ($pref_height / $height));
-                } elseif ($pref_width > 0 && $pref_height == 0) {
+                } elseif ($pref_width > 0 && $pref_height === 0) {
                     // image dimensions are calculated to fit the preferred width
                     $pref_height = (int)floor($height * ($pref_width / $width));
                 }
@@ -729,8 +735,8 @@ class ih_image
         }
 
         $file_ext = strtolower($file_ext);
-        $srcimage = $this->load_imageGD($this->filename);
-        if (!$srcimage) {
+        $srcimage = $this->load_imageGD($this->filename, $this->image_type);
+        if ($srcimage === false) {
             return false; // couldn't load image
         }
 
@@ -809,20 +815,21 @@ class ih_image
         }
         // we need to watermark our images
         if ($this->watermark['file'] !== '') {
-            $this->watermark['image'] = $this->load_imageGD($this->watermark['file']);
-            imagecopy($tmpimg, $this->watermark['image'], $this->watermark['startx'], $this->watermark['starty'], 0, 0, $this->watermark['width'], $this->watermark['height']);
-            //$tmpimg = $this->imagemergealpha($tmpimg, $this->watermark['image'], $this->watermark['startx'], $this->watermark['starty'], $this->watermark['width'], $this->watermark['height']);
-            imagedestroy($this->watermark['image']);
+            $this->watermark['image'] = $this->load_imageGD($this->watermark['file'], $this->watermark['image_type']);
+            if ($this->watermark['image'] !== false) {
+                imagecopy($tmpimg, $this->watermark['image'], $this->watermark['startx'], $this->watermark['starty'], 0, 0, $this->watermark['width'], $this->watermark['height']);
+                imagedestroy($this->watermark['image']);
+            }
         }
 
         // initialize REAL background image (filled canvas)
         if ($ihConf['gdlib'] > 1 && function_exists("imagecreatetruecolor")){
             $newimg = imagecreatetruecolor($this->canvas['width'], $this->canvas['height']);
         }
-        if (!$newimg) {
+        if ($newimg === false) {
             $newimg = imagecreate($this->canvas['width'], $this->canvas['height']);
         }
-        if (!$newimg) {
+        if ($newimg === false) {
             $this->ihLog('resize_imageGD: failed to create new image with background.');
             return false;
         }
@@ -856,19 +863,18 @@ class ih_image
         }
 
         if ($file_ext === '.gif') {
-            if ($transparent) {
+            if ($transparent === true) {
                 $newimg = $this->imagemergealpha($newimg, $tmpimg, 0, 0, $this->canvas['width'], $this->canvas['height'], $ihConf['trans_threshold'], $background_color);
                 imagecolortransparent($newimg, $background_color);
             } else {
                 imagecopy($newimg, $tmpimg, 0, 0, 0, 0, $this->canvas['width'], $this->canvas['height']);
             }
+        } elseif ($transparent === true) {
+            $newimg = $this->imagemergealpha($newimg, $tmpimg, 0, 0, $this->canvas['width'], $this->canvas['height']);
         } else {
-            if ($transparent) {
-                $newimg = $this->imagemergealpha($newimg, $tmpimg, 0, 0, $this->canvas['width'], $this->canvas['height']);
-            } else {
-                imagecopy($newimg, $tmpimg, 0, 0, 0, 0, $this->canvas['width'], $this->canvas['height']);
-            }
+            imagecopy($newimg, $tmpimg, 0, 0, 0, 0, $this->canvas['width'], $this->canvas['height']);
         }
+
         imagedestroy($tmpimg);
 
         if ($ihConf['gdlib']>1 && function_exists('imagesavealpha')) {
@@ -918,29 +924,33 @@ class ih_image
      *
      * @return false|GdImage|mixed|resource
      */
-    protected function load_imageGD($src_name)
+    protected function load_imageGD($src_name, $image_type)
     {
         // create an image of the given filetype
-        $file_ext = '.' . pathinfo($src_name, PATHINFO_EXTENSION);
-        switch (strtolower($file_ext)) {
-            case '.gif':
+        switch ($image_type) {
+            case IMAGETYPE_GIF:
                 if (!function_exists('imagecreatefromgif')) {
                     return false;
                 }
                 $image = imagecreatefromgif($src_name);
                 break;
-            case '.png':
+            case IMAGETYPE_PNG:
                 if (!function_exists('imagecreatefrompng')) {
                     return false;
                 }
                 $image = imagecreatefrompng($src_name);
                 break;
-            case '.jpg':
-            case '.jpeg':
+            case IMAGETYPE_JPEG:
                 if (!function_exists('imagecreatefromjpeg')) {
                     return false;
                 }
                 $image = imagecreatefromjpeg($src_name);
+                break;
+            case IMAGETYPE_WEBP:
+                if (!function_exists('imagecreatefromwebp')) {
+                    return false;
+                }
+                $image = imagecreatefromwebp($src_name);
                 break;
             default:
                 $image = false;
@@ -1003,6 +1013,13 @@ class ih_image
                     return false;
                 }
                 $ok = imagejpeg($image, $dest_name, $quality);
+                break;
+            case '.webp':
+                if (!function_exists('imagewebp')) {
+                    $this->ihLog("save_imageGD, imagewebp function does not exist");
+                    return false;
+                }
+                $ok = imagewebp($image, $dest_name, $quality);
                 break;
             default:
                 $ok = false;

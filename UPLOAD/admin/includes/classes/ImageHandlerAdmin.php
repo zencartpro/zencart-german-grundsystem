@@ -1,13 +1,13 @@
 <?php
 /**
- * @package Image Handler 5.3.1
+ * @package Image Handler 5.3.2
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
- * @copyright Copyright 2018-2022 lat 9 - Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2018-2023 lat 9 - Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ImageHandlerAdmin.php 2022-11-21 15:20:51Z webchills $
+ * @version $Id: ImageHandlerAdmin.php 2023-03-11 09:30:51Z webchills $
  */
 if (!defined('IH_DEBUG_ADMIN')) {
     define('IH_DEBUG_ADMIN', 'true'); //-Either 'true' or 'false'
@@ -23,8 +23,8 @@ class ImageHandlerAdmin
     {
         $this->debug = (IH_DEBUG_ADMIN === 'true');
         $this->debugLogfile = DIR_FS_LOGS . '/ih_debug_admin.log';
-        $this->validFiletypes = ['gif', 'jpg', 'png', 'no_change'];
-        $this->validFileExtensions = ['.gif', '.jpg', '.jpeg', '.png'];
+        $this->validFiletypes = ['gif', 'jpg', 'png', 'webp', 'no_change'];
+        $this->validFileExtensions = ['.gif', '.jpg', '.jpeg', '.png', '.webp'];
     }
 
     public function getImageDetailsString($filename)
@@ -89,7 +89,7 @@ class ImageHandlerAdmin
             // might be present in the image's base name, e.g. any intervening '.'s will be
             // converted to '\.'.
             //
-            $filename_match = quotemeta($base) . $image_match . '\.(jpg|jpeg|png|gif)';
+            $filename_match = quotemeta($base) . $image_match . '\.(jpg|jpeg|png|gif|webp)';
 
             // -----
             // Now, do a regex search of the specified directory, looking for matches on the
