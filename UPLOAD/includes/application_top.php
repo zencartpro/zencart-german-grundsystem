@@ -1,6 +1,6 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157)
  * application_top.php Common actions carried out at the start of each page invocation.
  *
  * Initializes common classes & methods. Controlled by an array which describes
@@ -8,11 +8,11 @@
  * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
  
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: application_top.php 2022-04-17 08:30:24Z webchills $
+ * @version $Id: application_top.php 2023-04-30 19:30:24Z webchills $
  */
 use Zencart\FileSystem\FileSystem;
 use Zencart\InitSystem\InitSystem;
@@ -141,6 +141,7 @@ if (file_exists('includes/defined_paths.php')) {
     exit;
 }
 require DIR_FS_CATALOG . DIR_WS_FUNCTIONS . 'php_polyfills.php';
+require DIR_FS_CATALOG . DIR_WS_FUNCTIONS . 'zen_define_default.php';
 /**
  * include the list of extra configure files
  */

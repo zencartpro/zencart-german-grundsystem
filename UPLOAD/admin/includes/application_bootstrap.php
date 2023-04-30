@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: application_bootstrap.php 2022-04-17 16:41:36Z webchills $
+ * @version $Id: application_bootstrap.php 2023-04-30 19:41:36Z webchills $
  */
 use Zencart\FileSystem\FileSystem;
 use Zencart\PluginManager\PluginManager;
@@ -100,6 +100,7 @@ if (file_exists('includes/defined_paths.php')) {
     exit;
 }
 require DIR_FS_CATALOG . DIR_WS_FUNCTIONS . 'php_polyfills.php';
+require DIR_FS_CATALOG . DIR_WS_FUNCTIONS . 'zen_define_default.php';
 /**
  * ignore version-check if INI file setting has been set
  */
@@ -149,7 +150,7 @@ if ($za_dir = @dir(DIR_WS_INCLUDES . 'extra_configures')) {
  * init some vars
  */
 $template_dir = '';
-define('DIR_WS_TEMPLATES', DIR_WS_INCLUDES . 'templates/');
+zen_define_default('DIR_WS_TEMPLATES', DIR_WS_INCLUDES . 'templates/');
 /**
  * psr-4 autoloading
  */

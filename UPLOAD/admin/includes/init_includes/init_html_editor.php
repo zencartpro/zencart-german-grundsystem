@@ -1,12 +1,13 @@
 <?php
 /** 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_html_editor.php 2022-04-17 16:55:16Z webchills $
+ * @version $Id: init_html_editor.php 2023-04-30 19:26:16Z webchills $
  */
-if (!defined('DIR_WS_EDITORS')) define('DIR_WS_EDITORS', 'editors/');
+zen_define_default('DIR_WS_EDITORS', 'editors/');
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
