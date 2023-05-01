@@ -1,13 +1,13 @@
 <?php
 /**
  * meta_tags module
- * Zen Cart German Specific (158 code in 157)
+ * Zen Cart German Specific (158 code in 157, zencartpro adaptations)
 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: meta_tags.php 2022-11-16 11:41:16Z webchills $
+ * @version $Id: meta_tags.php 2023-05-01 08:27:16Z webchills $
  */
 $meta_tags_over_ride = false;
 $metatag_page_name = $current_page_base;
@@ -25,7 +25,7 @@ if (strlen(SITE_TAGLINE) > 1) {
 }
 $review_on = "";
 $keywords_string_metatags = "";
-if (!defined('METATAGS_DIVIDER')) define('METATAGS_DIVIDER', ', ');
+zen_define_default('METATAGS_DIVIDER', ', ');
 
 // Get all top category names for use with web site keywords
 $sql = "SELECT cd.categories_name FROM " . TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd WHERE c.parent_id = 0 AND c.categories_id = cd.categories_id AND cd.language_id='" . (int)$_SESSION['languages_id'] . "' AND c.categories_status=1";
@@ -47,6 +47,7 @@ if ($metatag_page_name != 'index') {
 // Get different meta tag values depending on main_page values
 switch ($metatag_page_name) {
   case 'advanced_search':
+  case 'search':
   case 'account_edit':
   case 'account_history':
   case 'account_history_info':
@@ -60,11 +61,18 @@ switch ($metatag_page_name) {
   break;
 
   case 'address_book_process':
-  define('META_TAG_TITLE', NAVBAR_TITLE_ADD_ENTRY . PRIMARY_SECTION . TITLE . TAGLINE);
+  if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
+    define('META_TAG_TITLE', NAVBAR_TITLE_MODIFY_ENTRY . PRIMARY_SECTION . TITLE . TAGLINE);
+  } elseif (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
+    define('META_TAG_TITLE', NAVBAR_TITLE_DELETE_ENTRY . PRIMARY_SECTION . TITLE . TAGLINE);
+  } else {
+    define('META_TAG_TITLE', NAVBAR_TITLE_ADD_ENTRY . PRIMARY_SECTION . TITLE . TAGLINE);
+  }
   define('META_TAG_DESCRIPTION', TITLE . PRIMARY_SECTION . NAVBAR_TITLE_ADD_ENTRY . SECONDARY_SECTION . KEYWORDS);
   define('META_TAG_KEYWORDS', KEYWORDS . METATAGS_DIVIDER . NAVBAR_TITLE_ADD_ENTRY);
   break;
 
+  case 'search_result':
   case 'advanced_search_result':
   define('META_TAG_TITLE', NAVBAR_TITLE_2 . ' -> ' . zen_output_string_protected($keywords) . ' ' . PRIMARY_SECTION . TITLE . TAGLINE);
   define('META_TAG_DESCRIPTION', '');
@@ -147,15 +155,15 @@ switch ($metatag_page_name) {
 
         $manufacturer_metatag = $db->Execute("SELECT * FROM " . TABLE_MANUFACTURERS_META . " WHERE manufacturers_id = " . (int)$_GET['manufacturers_id'] . " AND language_id = " . (int)$_SESSION['languages_id'] . " LIMIT 1");
         if (!$manufacturer_metatag->EOF) {
-          if (zen_not_null (zen_clean_html ($manufacturer_metatag->fields['metatags_title']))) {
+          if (!empty (zen_clean_html ($manufacturer_metatag->fields['metatags_title']))) {
             define('META_TAG_TITLE', str_replace('"','', zen_clean_html ($manufacturer_metatag->fields['metatags_title'])));
             
           }
-          if (zen_not_null (zen_clean_html ($manufacturer_metatag->fields['metatags_description']))) {
+          if (!empty (zen_clean_html ($manufacturer_metatag->fields['metatags_description']))) {
             define('META_TAG_DESCRIPTION', str_replace('"','', zen_clean_html ($manufacturer_metatag->fields['metatags_description'])));
             
           }
-          if (zen_not_null (zen_clean_html ($manufacturer_metatag->fields['metatags_keywords']))) {
+          if (!empty (zen_clean_html ($manufacturer_metatag->fields['metatags_keywords']))) {
             define('META_TAG_KEYWORDS', str_replace('"','', zen_clean_html ($manufacturer_metatag->fields['metatags_keywords'])));
             
           }
@@ -163,13 +171,13 @@ switch ($metatag_page_name) {
         $sql = "SELECT manufacturers_name FROM " . TABLE_MANUFACTURERS . " WHERE manufacturers_id = '" . (int)$_GET['manufacturers_id'] . "'";
         $manufacturer_metatags = $db->Execute($sql);
         if ($manufacturer_metatags->EOF) {
-          if (!defined ('META_TAG_TITLE')) define('META_TAG_TITLE', TITLE . TAGLINE);
-          if (!defined ('META_TAG_DESCRIPTION')) define('META_TAG_DESCRIPTION', TITLE . PRIMARY_SECTION . str_replace(array("'",'"'),'',strip_tags(HEADING_TITLE)) . SECONDARY_SECTION . KEYWORDS);
-          if (!defined ('META_TAG_KEYWORDS')) define('META_TAG_KEYWORDS', KEYWORDS . METATAGS_DIVIDER . str_replace(array("'",'"'),'',strip_tags(HEADING_TITLE)));
+          define('META_TAG_TITLE', TITLE . TAGLINE);
+          define('META_TAG_DESCRIPTION', TITLE . PRIMARY_SECTION . str_replace(array("'",'"'),'',strip_tags(HEADING_TITLE)) . SECONDARY_SECTION . KEYWORDS);
+          define('META_TAG_KEYWORDS', KEYWORDS . METATAGS_DIVIDER . str_replace(array("'",'"'),'',strip_tags(HEADING_TITLE)));
         } else {
-          if (!defined ('META_TAG_TITLE')) define('META_TAG_TITLE', str_replace('"','', $manufacturer_metatags->fields['manufacturers_name'] . PRIMARY_SECTION . TITLE . TAGLINE));
-          if (!defined ('META_TAG_DESCRIPTION')) define('META_TAG_DESCRIPTION', str_replace('"','',TITLE . PRIMARY_SECTION . $manufacturer_metatags->fields['manufacturers_name'] . SECONDARY_SECTION . KEYWORDS));
-          if (!defined ('META_TAG_KEYWORDS')) define('META_TAG_KEYWORDS', str_replace('"','', $manufacturer_metatags->fields['manufacturers_name'] . METATAGS_DIVIDER . KEYWORDS));
+          define('META_TAG_TITLE', str_replace('"','', $manufacturer_metatags->fields['manufacturers_name'] . PRIMARY_SECTION . TITLE . TAGLINE));
+          define('META_TAG_DESCRIPTION', str_replace('"','',TITLE . PRIMARY_SECTION . $manufacturer_metatags->fields['manufacturers_name'] . SECONDARY_SECTION . KEYWORDS));
+          define('META_TAG_KEYWORDS', str_replace('"','', $manufacturer_metatags->fields['manufacturers_name'] . METATAGS_DIVIDER . KEYWORDS));
         }
       } else {
         // nothing custom main page
@@ -270,6 +278,8 @@ switch ($metatag_page_name) {
       define('META_TAG_KEYWORDS', str_replace('"','',zen_clean_html($metatags_keywords)));  // KEYWORDS and CUSTOM_KEYWORDS are added above
 
     } else {
+      $meta_products_price = '';
+
       // build un-customized meta tag
       if (META_TAG_INCLUDE_PRICE == '1' and !strstr($_GET['main_page'], 'document_general')) {
         if ($product_info_metatags->fields['product_is_free'] != '1') {
@@ -281,8 +291,6 @@ switch ($metatag_page_name) {
         } else {
           $meta_products_price = SECONDARY_SECTION . META_TAG_PRODUCTS_PRICE_IS_FREE_TEXT;
         }
-      } else {
-        $meta_products_price = '';
       }
 
       if (META_TAG_INCLUDE_MODEL == '1' && !empty($product_info_metatags->fields['products_model'])) {
@@ -350,9 +358,9 @@ switch ($metatag_page_name) {
     $metatags_keywords = KEYWORDS . METATAGS_DIVIDER . (defined('NAVBAR_TITLE') ? NAVBAR_TITLE : '');
     $zco_notifier->notify('NOTIFY_MODULE_META_TAGS_UNSPECIFIEDPAGE', $current_page_base, $metatag_page_name, $meta_tags_over_ride, $metatags_title, $metatags_description, $metatags_keywords);
     if (false===$meta_tags_over_ride) {
-      define('META_TAG_TITLE', (defined('NAVBAR_TITLE') ? NAVBAR_TITLE . PRIMARY_SECTION : '') . TITLE . TAGLINE);
-      define('META_TAG_DESCRIPTION', TITLE . PRIMARY_SECTION . (defined('NAVBAR_TITLE') ? NAVBAR_TITLE : '' ) . SECONDARY_SECTION . KEYWORDS);
-      define('META_TAG_KEYWORDS', KEYWORDS . METATAGS_DIVIDER . (defined('NAVBAR_TITLE') ? NAVBAR_TITLE : '' ) );
+      zen_define_default('META_TAG_TITLE', (defined('NAVBAR_TITLE') ? NAVBAR_TITLE . PRIMARY_SECTION : '') . TITLE . TAGLINE);
+      zen_define_default('META_TAG_DESCRIPTION', TITLE . PRIMARY_SECTION . (defined('NAVBAR_TITLE') ? NAVBAR_TITLE : '' ) . SECONDARY_SECTION . KEYWORDS);
+      zen_define_default('META_TAG_KEYWORDS', KEYWORDS . METATAGS_DIVIDER . (defined('NAVBAR_TITLE') ? NAVBAR_TITLE : '' ) );
     }
 }
 
