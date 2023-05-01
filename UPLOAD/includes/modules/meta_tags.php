@@ -2,12 +2,11 @@
 /**
  * meta_tags module
  * Zen Cart German Specific (158 code in 157, zencartpro adaptations)
-
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: meta_tags.php 2023-05-01 08:27:16Z webchills $
+ * @version $Id: meta_tags.php 2023-05-01 10:56:16Z webchills $
  */
 $meta_tags_over_ride = false;
 $metatag_page_name = $current_page_base;
@@ -72,7 +71,6 @@ switch ($metatag_page_name) {
   define('META_TAG_KEYWORDS', KEYWORDS . METATAGS_DIVIDER . NAVBAR_TITLE_ADD_ENTRY);
   break;
 
-  case 'search_result':
   case 'advanced_search_result':
   define('META_TAG_TITLE', NAVBAR_TITLE_2 . ' -> ' . zen_output_string_protected($keywords) . ' ' . PRIMARY_SECTION . TITLE . TAGLINE);
   define('META_TAG_DESCRIPTION', '');
