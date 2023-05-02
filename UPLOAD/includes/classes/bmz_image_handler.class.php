@@ -1,6 +1,6 @@
 <?php
 /**
- * @package Image Handler 5.3.2
+ * @package Image Handler 5.3.3
  * Zen Cart German Specific
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
  * @copyright Copyright 2018-2023 lat 9 - Vinos de Frutas Tropicales
@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: bmz_image_handler.class.php 2023-03-11 09:25:51Z webchills $
+ * @version $Id: bmz_image_handler.class.php 2023-05-02 20:33:51Z webchills $
  */
  
 if (!defined('IH_DEBUG_ADMIN')) {
@@ -47,7 +47,7 @@ class ih_image
      * ih_image class constructor
      * @author Tim Kroeger (tim@breakmyzencart.com)
      * @author Cindy Merkin (lat9)
-     * @version 5.3.2
+     * @version 5.3.3
      * @param string $src Image source (e.g. - images/productimage.jpg)
      * @param string $width The image's width
      * @param string $height The image's height
@@ -754,8 +754,8 @@ class ih_image
             $newwidth = $this->canvas['width'];
             $newheight = $this->canvas['height'];
         }
-        $startwidth = (int)($this->canvas['width'] - $newwidth) / 2;
-        $startheight = (int)($this->canvas['height'] - $newheight) / 2;
+        $startwidth = (int)(($this->canvas['width'] - $newwidth) / 2);
+        $startheight = (int)(($this->canvas['height'] - $newheight) / 2);
 
         if ($ihConf['gdlib'] > 1 && function_exists("imagecreatetruecolor")) {
             $tmpimg = imagecreatetruecolor($newwidth, $newheight);
