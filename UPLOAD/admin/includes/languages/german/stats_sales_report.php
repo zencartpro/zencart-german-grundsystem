@@ -1,7 +1,7 @@
 <?php
 
 /**
- * SALES REPORT 3.5.1
+ * SALES REPORT 4.0.0
  *
  * The language file contains all the text that appears on the report. The first set of
  * configuration defines actually impact the report's output and behavior.
@@ -10,31 +10,31 @@
  * @author     Conor Kerr <conor.kerr_zen-cart@dev.ceon.net>
  * @updated by stellarweb to work with version 1.5.0 02-29-12 
  * @updated by lat9 for continued operation under zc155/zc156, 20190622
- * @copyright  Portions Copyright 2003-2022 Zen Cart Development Team
+ * @copyright  Portions Copyright 2003-2023 Zen Cart Development Team
  * @copyright  Portions Copyright 2003 osCommerce
  * @license    http://www.gnu.org/copyleft/gpl.html   GNU Public License V2.0
- * @translation by webchills 2022-04-05
+ * @translation by webchills 2023-05-02
  */
 
 //////////////////////////////////////////////////////////
 // DISPLAY EMPTY TIMEFRAME LINES
-// Setting this define to true will disable displaying
+// Setting this define to false will disable displaying
 // a timeframe line if that timeframe is empty.  By
 // default, an empty timeframe displays the value of the
 // define TEXT_NO_DATA.
 
 //////////////////////////////////////////////////////////
 // Zeige leere Zeiträume an
-// Wenn Sie diese Einstellunge auf true setzen,
+// Wenn Sie diese Einstellunge auf false setzen,
 // dann werden keine leeren Zeiträume mehr angezeigt
 //
-// Standardeinstellung ist false
+// Standardeinstellung ist true
 //
 // Bedenken Sie, sollte der von Ihnen angegebene Zeitraum
 // keinerlei Daten enthalten, dann erscheint es, als ob keine
 // Suche durchgeführt worden sei
 //
-define('DISPLAY_EMPTY_TIMEFRAMES', false);
+define('DISPLAY_EMPTY_TIMEFRAMES', true);
 
 //////////////////////////////////////////////////////////
 // REPORTING A SUBSET OF CUSTOMERS / PRODUCTS
@@ -113,9 +113,9 @@ define('DATE_SPACER', ' bis<br>&nbsp;&nbsp;&nbsp;');
 // keine Versandkosten, Rabatte, Steuern oder Gutscheine hat,
 // dann erscheint dieser nicht im Verkaufsbericht.
 //
-// Beispiel: define('EXCLUDE_PRODUCTS', serialize(array(25, 14, 43)) );
+// Beispiel: define('EXCLUDE_PRODUCTS', serialize([25, 14, 43]));
 //
-define('EXCLUDE_PRODUCTS', serialize(array( )));
+define('EXCLUDE_PRODUCTS', serialize([]));
 
 
 
@@ -140,6 +140,7 @@ define('SEARCH_DATE_YESTERDAY', 'Gestern (%s)');
 define('SEARCH_DATE_LAST_MONTH', 'Letzter Monat (%s)');
 define('SEARCH_DATE_THIS_MONTH', 'Aktueller Monat (%s)');
 define('SEARCH_DATE_LAST_YEAR', 'Letztes Jahr (%s)');
+define('SEARCH_DATE_LAST_12_MONTHS', 'Letzte 12 Monate');
 define('SEARCH_DATE_YTD', 'Aktuelles Jahr (%s)');
 define('SEARCH_START_DATE', 'Startdatum');
 define('SEARCH_END_DATE', 'Enddatum (inklusive)');
@@ -188,6 +189,7 @@ define('CHECKBOX_AUTO_PRINT', 'Bericht automatisch ausdrucken');
 define('CHECKBOX_CSV_HEADER', 'Spaltenüberschriften in die erste Zeile');
 define('CHECKBOX_NEW_WINDOW', 'Öffne den Bericht in einem neuen Fenster');
 define('CHECKBOX_VALIDATE_TOTALS', ' Spalte für die Prüfung der Gesamtsummen ausgeben');
+define('CHECKBOX_DISPLAY_EMAIL_ADDRESS', ' Emailadresse des Kunden zeigen?');
 
 // Report Column Headings
 // Timeframe
@@ -208,6 +210,7 @@ define('TABLE_FOOTER_TIMEFRAMES', ' Zeiträume');
 // Order Line Items
 define('TABLE_HEADING_ORDERS_ID', 'Bestellnummer');
 define('TABLE_HEADING_CUSTOMER', 'Kunde');
+define('TABLE_HEADING_EMAIL_ADDRESS', 'Emailaddresse');
 define('TABLE_HEADING_COUNTRY', 'Land');
 define('TABLE_HEADING_STATE', 'Bundesland');
 define('TABLE_HEADING_ORDER_TOTAL', 'Bestellwert');

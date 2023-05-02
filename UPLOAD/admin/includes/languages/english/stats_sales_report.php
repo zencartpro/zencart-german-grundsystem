@@ -1,7 +1,7 @@
 <?php
 
 /**
- * SALES REPORT 3.5.1
+ * SALES REPORT 4.0.0
  *
  * The language file contains all the text that appears on the report. The first set of
  * configuration defines actually impact the report's output and behavior.
@@ -10,23 +10,26 @@
  * @author     Conor Kerr <conor.kerr_zen-cart@dev.ceon.net>
  * @updated by stellarweb to work with version 1.5.0 02-29-12 
  * @updated by lat9 for continued operation under zc155/zc156, 20190622
- * @copyright  Portions Copyright 2003-2022 Zen Cart Development Team
+ * @copyright  Portions Copyright 2003-2023 Zen Cart Development Team
  * @copyright  Portions Copyright 2003 osCommerce
  * @license    http://www.gnu.org/copyleft/gpl.html   GNU Public License V2.0
  */
 
 //////////////////////////////////////////////////////////
 // DISPLAY EMPTY TIMEFRAME LINES
-// Setting this define to true will disable displaying
-// a timeframe line if that timeframe is empty.  By
-// default, an empty timeframe displays the value of the
-// define TEXT_NO_DATA.
-//
-// Be aware, if this is enabled and your search yields
-// no results at all, the screen will look as if no search
-// was performed (which is why this is disabled by default)
-//
-define('DISPLAY_EMPTY_TIMEFRAMES', false);
+    // Setting this define to false will disable displaying
+    // a timeframe line if that timeframe is empty.  By
+    // default, an empty timeframe displays the value of the
+    // define TEXT_NO_DATA.
+    //
+    // Be aware, if this is enabled and your search yields
+    // no results at all, the screen will look as if no search
+    // was performed (which is why this is enabled by default).
+    //
+    // Note: This is a change from previous versions where false enabled
+    // the display and true disabled the display!
+    //
+define('DISPLAY_EMPTY_TIMEFRAMES', true);
 
 //////////////////////////////////////////////////////////
 // REPORTING A SUBSET OF CUSTOMERS / PRODUCTS
@@ -105,9 +108,9 @@ define('DATE_SPACER', ' to<br>&nbsp;&nbsp;&nbsp;');
 // certificates, it will have a total of 0.  In this
 // situation, the order will not be displayed in the results.
 //
-// EXAMPLE: define('EXCLUDE_PRODUCTS', serialize(array(25, 14, 43)) );
+// EXAMPLE: define('EXCLUDE_PRODUCTS', serialize([25, 14, 43]) );
 //
-define('EXCLUDE_PRODUCTS', serialize(array( )));
+define('EXCLUDE_PRODUCTS', serialize([]));
 
 
 
@@ -132,6 +135,7 @@ define('SEARCH_DATE_YESTERDAY', 'Yesterday (%s)');
 define('SEARCH_DATE_LAST_MONTH', 'Last Month (%s)');
 define('SEARCH_DATE_THIS_MONTH', 'This Month (%s)');
 define('SEARCH_DATE_LAST_YEAR', 'Last Year (%s)');
+define('SEARCH_DATE_LAST_12_MONTHS', 'Last 12 Months');
 define('SEARCH_DATE_YTD', 'YTD (%s)');
 define('SEARCH_START_DATE', 'Start Date');
 define('SEARCH_END_DATE', 'End Date (inclusive)');
@@ -180,6 +184,7 @@ define('CHECKBOX_AUTO_PRINT', 'Print report automatically');
 define('CHECKBOX_CSV_HEADER', 'Column titles in first row');
 define('CHECKBOX_NEW_WINDOW', 'Open results in new window');
 define('CHECKBOX_VALIDATE_TOTALS', ' Output Order Total Validation Column');
+define('CHECKBOX_DISPLAY_EMAIL_ADDRESS', ' Display customer\'s email address?');
 
 // Report Column Headings
 // Timeframe
@@ -200,6 +205,7 @@ define('TABLE_FOOTER_TIMEFRAMES', ' Timeframes');
 // Order Line Items
 define('TABLE_HEADING_ORDERS_ID', 'Order ID');
 define('TABLE_HEADING_CUSTOMER', 'Customer');
+define('TABLE_HEADING_EMAIL_ADDRESS', 'Email Address');
 define('TABLE_HEADING_COUNTRY', 'Country');
 define('TABLE_HEADING_STATE', 'State');
 define('TABLE_HEADING_ORDER_TOTAL', 'Order Total');
