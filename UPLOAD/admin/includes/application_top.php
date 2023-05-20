@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: application_top.php 2021-12-25 08:52:36Z webchills $
+ * @version $Id: application_top.php 2023-05-20 08:52:36Z webchills $
  */
 /**
  * File contains just application_top code
@@ -29,7 +29,7 @@ if (isset($loaderPrefix)) {
   $loaderPrefix = 'config';
 }
 $loader_file = $loaderPrefix . '.core.php';
-$initSystem = new InitSystem('admin', $loaderPrefix, FileSystem::getInstance());
+$initSystem = new InitSystem('admin', $loaderPrefix, FileSystem::getInstance(), $pluginManager, $installedPlugins);
 
 if (defined('DEBUG_AUTOLOAD') && DEBUG_AUTOLOAD == true) $initSystem->setDebug(true);
 

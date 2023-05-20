@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
   * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: admin_html_head.php 2022-11-10 15:44:16Z webchills $
+ * @version $Id: admin_html_head.php 2023-05-20 15:44:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -36,6 +36,27 @@ if (!defined('IS_ADMIN_FLAG')) {
 <?php if (file_exists($value = 'includes/css/' . basename($PHP_SELF, '.php') . '.css')) { ?>
     <link rel="stylesheet" href="<?php echo $value; ?>">
 <?php
+}
+foreach ($installedPlugins as $plugin) {
+    $relativeDir = $fs->getPluginRelativeDirectory($plugin['unique_key']);
+    $absoluteDir = $fs->getPluginAbsoluteDirectory($plugin['unique_key']);
+    $directory_array = $template->get_template_part($absoluteDir . 'admin/includes/css/', '/^global_stylesheet/', '.css');
+    foreach ($directory_array as $key => $value) {
+        ?>
+        <link rel="stylesheet" href="<?php echo $relativeDir . 'admin/includes/css/' . $value; ?>">
+        <?php
+    }
+    if (file_exists($absoluteDir . 'admin/includes/css/' . basename($PHP_SELF, '.php') . '.css')) {
+?>
+        <link rel="stylesheet" href="<?php echo $relativeDir . 'admin/includes/css/' . basename($PHP_SELF, '.php') . '.css'; ?>">
+<?php
+    }
+    $directory_array = $template->get_template_part($absoluteDir . 'admin/includes/css/', '/^' . basename($PHP_SELF, '.php') . '_/', '.css');
+    foreach ($directory_array as $key => $value) {
+        ?>
+        <link rel="stylesheet" href="<?php echo $relativeDir . 'admin/includes/css/' . $value; ?>">
+        <?php
+    }
 }
 $directory_array = $template->get_template_part('includes/css/', '/^' . basename($PHP_SELF, '.php') . '_/', '.css');
 foreach ($directory_array as $key => $value) {

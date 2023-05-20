@@ -1,11 +1,11 @@
 <?php
 /**
-* Zen Cart German Specific
-* @copyright Copyright 2003-2022 Zen Cart Development Team
+
+* @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: InitSystem.php 2021-12-25 08:50:27Z webchills $
+* @version $Id: InitSystem.php 2023-05-20 08:50:27Z webchills $
 */
 
 namespace Zencart\InitSystem;
@@ -16,12 +16,15 @@ class InitSystem
     protected $context;
     protected $loaderPrefix;
     protected $fileSystem;    
+    protected $pluginManager;
 
-    public function __construct($context, $loaderPrefix, $fileSystem)
+    public function __construct($context, $loaderPrefix, $fileSystem, $pluginManager, $installedPlugins)
     {
         $this->context = $context;
         $this->loaderPrefix = $loaderPrefix;
         $this->fileSystem = $fileSystem;        
+        $this->pluginManager = $pluginManager;
+        $this->installedPlugins = $installedPlugins;
         $this->debug = false;
         $this->debugList = [];
         $this->actionList = [];
@@ -29,8 +32,9 @@ class InitSystem
 
     public function loadAutoLoaders()
     {
-        $mainLoaderList = $this->loadAutoLoadersFromSystem('core', DIR_WS_INCLUDES . 'auto_loaders');
-       
+        $coreLoaderList = $this->loadAutoLoadersFromSystem('core', DIR_WS_INCLUDES . 'auto_loaders');
+        $pluginLoaderList = $this->loadPluginAutoLoaders('plugin');
+        $mainLoaderList = $this->mergeAutoLoaders($coreLoaderList, $pluginLoaderList);
         return $mainLoaderList;
     }
 
@@ -76,6 +80,9 @@ class InitSystem
         if (isset($entry['classPath'])) {
             $filePath = $entry['classPath'];
         }        
+        if ($entry['loaderType'] == 'plugin') {
+            $filePath = $this->findPluginDirectory($filePath, $entry['pluginInfo']['unique_key']);
+        }
         $this->debugList[] = 'processing class - ' . $filePath  . $entry['loadFile'];
         $result = 'FAILED';
         if (file_exists($filePath . $entry['loadFile'])) {
@@ -118,7 +125,9 @@ class InitSystem
     {
         $filePath = $entry['loadFile'];
         $this->debugList[] = 'processing require - ' . $entry['loadFile'];
-        
+        if ($entry['loaderType'] == 'plugin') {
+
+        }
         $result = 'FAILED';
         if (file_exists($filePath)) {
             $result = 'SUCCESS';
@@ -132,7 +141,9 @@ class InitSystem
     {
         $filePath = $entry['loadFile'];
         $this->debugList[] = 'processing include - ' . $entry['loadFile'];
-        
+        if ($entry['loaderType'] == 'plugin') {
+
+        }
         $result = 'FAILED';
         if (file_exists($filePath)) {
             $result = 'SUCCESS';
@@ -144,7 +155,9 @@ class InitSystem
     protected function processAutoTypeInit_script($entry)
     {
         $actualDir = DIR_WS_INCLUDES . 'init_includes/';
-       
+        if ($entry['loaderType'] == 'plugin') {
+            $actualDir = $this->findPluginDirectory($actualDir, $entry['pluginInfo']['unique_key']);
+        }
         if (file_exists($actualDir . 'overrides/' . $entry['loadFile'])) {
             $actualDir = $actualDir . 'overrides/';
         }
@@ -153,15 +166,26 @@ class InitSystem
 
     }
 
-    protected function loadAutoLoadersFromSystem($loaderType, $rootDir)
+    protected function loadAutoLoadersFromSystem($loaderType, $rootDir, $plugin = [])
     {
         $fileList = $this->fileSystem->listFilesFromDirectory($rootDir, '~^[^\._].*\.php$~i');
         $fileList = $this->processForOverrides($fileList, $rootDir);
         $loaderList = $this->getLoadersFromFileList($fileList);
-        $loaderList = $this->processLoaderListForType($loaderType, $loaderList);
+        $loaderList = $this->processLoaderListForType($loaderType, $loaderList, $plugin);
         return $loaderList;
     }
-    
+
+    protected function loadPluginAutoLoaders($loaderType)
+    {
+        $pluginLoaderList = [];
+        foreach ($this->installedPlugins as $plugin) {
+            $baseDir = $this->pluginManager->getPluginVersionDirectory($plugin['unique_key'], $this->installedPlugins);
+            $rootDir = $baseDir . $this->context . '/includes/auto_loaders';
+            $loaderList = $this->loadAutoLoadersFromSystem($loaderType, $rootDir, $plugin);
+            $pluginLoaderList = $this->mergeAutoLoaders($pluginLoaderList, $loaderList);
+        }
+        return $pluginLoaderList;
+    }
 
     protected function processForOverrides($fileList, $rootDir)
     {
@@ -199,19 +223,48 @@ class InitSystem
         return $autoLoadConfig;
     }
 
-    protected function processLoaderListForType($type, $loaderList)
+    protected function processLoaderListForType($type, $loaderList, $plugin = [])
     {
         $newList = [];
         if (!is_array($loaderList)) return [];
         foreach ($loaderList as $breakPoint => $loaders) {
             foreach ($loaders as $key => $loader) {
                 $loader['loaderType'] = $type;
-                
+                $loader['pluginInfo'] = $plugin;
                 $newList[$breakPoint][$key] = $loader;
             }
         }
 
         return $newList;
     }   
+
+    protected function mergeAutoLoaders($coreLoaders, $pluginLoaders)
+    {
+        foreach ($pluginLoaders as $breakpoint => $pluginLoaderForBreakpoint) {
+            if (array_key_exists($breakpoint, $coreLoaders)) {
+                $coreLoaders = $this->addPluginLoaderToBreakPoint($breakpoint, $coreLoaders,
+                                                                  $pluginLoaderForBreakpoint);
+            } else {
+                $coreLoaders[$breakpoint] = $pluginLoaderForBreakpoint;
+            }
+        }
+        return $coreLoaders;
+    }
+
+    protected function addPluginLoaderToBreakPoint($breakpoint, $coreLoaders, $pluginLoaderForBreakpoint)
+    {
+        foreach ($pluginLoaderForBreakpoint as $pluginLoader) {
+            $coreLoaders[$breakpoint][] = $pluginLoader;
+        }
+        return $coreLoaders;
+    }
+
+    protected function findPluginDirectory($filePath, $pluginName)
+    {
+        $relDir = $this->fileSystem->getRelativeDir($filePath);
+        $pluginDir = $this->pluginManager->getPluginVersionDirectory($pluginName, $this->installedPlugins);
+        $actualDir = $pluginDir . $this->context . '/' . $relDir;
+        return $actualDir;
+    }
 
 }

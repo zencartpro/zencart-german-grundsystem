@@ -6,7 +6,7 @@
 # * Zen Cart German Version - www.zen-cart-pro.at
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_zencart.sql 2023-05-02 20:35:16Z webchills $
+# * @version $Id: mysql_zencart.sql 2023-05-20 08:21:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -1532,6 +1532,70 @@ CREATE TABLE paypal_testing (
 # --------------------------------------------------------
 
 #
+# Table structure for table 'plugin_control'
+# new since 1.5.7g
+
+DROP TABLE IF EXISTS plugin_control;
+CREATE TABLE plugin_control (
+  unique_key varchar(40) NOT NULL,
+  name varchar(64) NOT NULL default '',
+  description text,
+  type varchar(11) NOT NULL default 'free',
+  managed tinyint(1) NOT NULL default 0,
+  status tinyint(1) NOT NULL default 0,
+  author varchar(64) NOT NULL,
+  version varchar(10),
+  zc_versions text NOT NULL,
+  zc_contrib_id int(11),
+  infs tinyint(1) NOT NULL default 0,
+  PRIMARY KEY  (unique_key)
+) ENGINE=MyISAM;
+
+# --------------------------------------------------------
+
+#
+# Table structure for table 'plugin_control_versions'
+# new since 1.5.7g
+
+DROP TABLE IF EXISTS plugin_control_versions;
+CREATE TABLE plugin_control_versions (
+  unique_key varchar(40) NOT NULL,
+  version varchar(10),
+  author varchar(64) NOT NULL,
+  zc_versions text NOT NULL,
+  infs tinyint(1) NOT NULL default 0,
+  PRIMARY KEY  (unique_key, version)
+) ENGINE=MyISAM;
+
+# --------------------------------------------------------
+
+#
+# Table structure for table 'plugin_groups'
+# new since 1.5.7g
+
+DROP TABLE IF EXISTS plugin_groups;
+CREATE TABLE plugin_groups (
+  unique_key varchar(20) NOT NULL,
+  PRIMARY KEY  (unique_key)
+) ENGINE=MyISAM;
+
+# --------------------------------------------------------
+
+#
+# Table structure for table 'plugin_groups_description'
+# new since 1.5.7g
+
+DROP TABLE IF EXISTS plugin_groups_description;
+CREATE TABLE plugin_groups_description (
+  plugin_group_unique_key varchar(20) NOT NULL,
+  language_id int(11) NOT NULL default 1,
+  name varchar(64) NOT NULL default '',
+  PRIMARY KEY  (plugin_group_unique_key,language_id)
+) ENGINE=MyISAM;
+
+# --------------------------------------------------------
+
+#
 # Table structure for table 'product_music_extra'
 #
 
@@ -2320,6 +2384,7 @@ VALUES ('configMyStore', 'BOX_CONFIGURATION_MY_STORE', 'FILENAME_CONFIGURATION',
        ('productsToCategories', 'BOX_CATALOG_PRODUCTS_TO_CATEGORIES', 'FILENAME_PRODUCTS_TO_CATEGORIES', '', 'catalog', 'Y', 17),
        ('payment', 'BOX_MODULES_PAYMENT', 'FILENAME_MODULES', 'set=payment', 'modules', 'Y', 1),
        ('shipping', 'BOX_MODULES_SHIPPING', 'FILENAME_MODULES', 'set=shipping', 'modules', 'Y', 2),      
+       ('plugins', 'BOX_MODULES_PLUGINS', 'FILENAME_PLUGIN_MANAGER', '', 'modules', 'Y', 4),
        ('orderTotal', 'BOX_MODULES_ORDER_TOTAL', 'FILENAME_MODULES', 'set=ordertotal', 'modules', 'Y', 3),
        ('customers', 'BOX_CUSTOMERS_CUSTOMERS', 'FILENAME_CUSTOMERS', '', 'customers', 'Y', 1),
        ('orders', 'BOX_CUSTOMERS_ORDERS', 'FILENAME_ORDERS', '', 'customers', 'Y', 2),
@@ -5178,5 +5243,5 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 
 
 REPLACE INTO product_type_layout_language (configuration_title , configuration_key , languages_id, configuration_description, last_modified, date_added)
-VALUES ('20221221', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Übersetzungen', now(), now());
+VALUES ('20230520', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Übersetzungen', now(), now());
 ##### End of SQL setup for Zen Cart German.

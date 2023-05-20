@@ -1,12 +1,12 @@
 <?php
 /**
- * Zen Cart German Specific
  
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: PageLoader.php 2021-12-25 08:14:24Z webchills $
+ * @version $Id: PageLoader.php 2023-05-20 08:14:24Z webchills $
  */
 
 namespace Zencart\PageLoader;
@@ -39,7 +39,12 @@ class PageLoader
         $directoryArray = $this->getTemplatePartFromDirectory($directoryArray, $pageDirectory, $templatePart,
                                                               $fileExtension);
 
-        
+        foreach ($this->installedPlugins as $plugin) {
+            $checkDir = 'zc_plugins/' . $plugin['unique_key'] . '/' . $plugin['version'] . '/catalog/';
+            $checkDir .= $pageDirectory;
+            $directoryArray = $this->getTemplatePartFromDirectory($directoryArray, $checkDir, $templatePart,
+                                                                  $fileExtension);
+        }
         sort($directoryArray);
         return $directoryArray;
     }
@@ -80,7 +85,12 @@ class PageLoader
 
     public function getTemplatePluginDir($templateCode)
     {
-      
+        foreach ($this->installedPlugins as $plugin) {
+            $checkDir = 'zc_plugins/' . $plugin['unique_key'] . '/' . $plugin['version'] . '/catalog/includes/template/templates/';
+            if (file_exists($checkDir . $templateCode )) {
+                return $checkDir;
+            }
+        }
         return false;
     }
 

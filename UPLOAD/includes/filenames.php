@@ -1,14 +1,14 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (zencartpro adaptations)
  * filenames.php
  * Defines the filenames used in the project
  * 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: filenames.php 2022-01-28 20:24:24Z webchills $
+ * @version $Id: filenames.php 2023-05-20 08:24:24Z webchills $
  */
 /**
  * define project filenames
@@ -127,6 +127,7 @@ define('FILENAME_PAGE_2', 'page_2');
 define('FILENAME_PAGE_3', 'page_3');
 define('FILENAME_PAGE_4', 'page_4');
 define('FILENAME_PASSWORD_FORGOTTEN', 'password_forgotten');
+define('FILENAME_PLUGIN_MANAGER', 'plugin_manager');
 define('FILENAME_POPUP_COUPON_HELP', 'popup_coupon_help');
 define('FILENAME_POPUP_IMAGE', 'popup_image');
 define('FILENAME_POPUP_IMAGE_ADDITIONAL', 'popup_image_additional');

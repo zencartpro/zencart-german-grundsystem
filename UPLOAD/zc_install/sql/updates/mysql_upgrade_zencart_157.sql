@@ -7,7 +7,7 @@
 # * Zen Cart German Version - www.zen-cart-pro.at
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_upgrade_zencart_157.sql 2023-05-02 20:36:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_157.sql 2023-05-20 08:36:59Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -263,6 +263,74 @@ ALTER TABLE admin_activity_log ADD logmessage mediumtext NOT NULL;
 ALTER TABLE admin_activity_log ADD severity varchar(9) NOT NULL DEFAULT 'info';
 
 
+# New Plugin tables
+# New since 157g
+
+# --------------------------------------------------------
+
+#
+# Table structure for table 'plugin_control'
+#
+
+DROP TABLE IF EXISTS plugin_control;
+CREATE TABLE plugin_control (
+  unique_key varchar(40) NOT NULL,
+  name varchar(64) NOT NULL default '',
+  description text,
+  type varchar(11) NOT NULL default 'free',
+  managed tinyint(1) NOT NULL default 0,
+  status tinyint(1) NOT NULL default 0,
+  author varchar(64) NOT NULL,
+  version varchar(10),
+  zc_versions text NOT NULL,
+  zc_contrib_id int(11),
+  infs tinyint(1) NOT NULL default 0,
+  PRIMARY KEY  (unique_key)
+) ENGINE=MyISAM;
+
+# --------------------------------------------------------
+
+#
+# Table structure for table 'plugin_control_versions'
+#
+
+DROP TABLE IF EXISTS plugin_control_versions;
+CREATE TABLE plugin_control_versions (
+  unique_key varchar(40) NOT NULL,
+  version varchar(10),
+  author varchar(64) NOT NULL,
+  zc_versions text NOT NULL,
+  infs tinyint(1) NOT NULL default 0,
+  PRIMARY KEY  (unique_key, version)
+) ENGINE=MyISAM;
+
+# --------------------------------------------------------
+
+#
+# Table structure for table 'plugin_groups'
+#
+
+DROP TABLE IF EXISTS plugin_groups;
+CREATE TABLE plugin_groups (
+  unique_key varchar(20) NOT NULL,
+  PRIMARY KEY  (unique_key)
+) ENGINE=MyISAM;
+
+# --------------------------------------------------------
+
+#
+# Table structure for table 'plugin_groups_description'
+#
+
+DROP TABLE IF EXISTS plugin_groups_description;
+CREATE TABLE plugin_groups_description (
+  plugin_group_unique_key varchar(20) NOT NULL,
+  language_id int(11) NOT NULL default 1,
+  name varchar(64) NOT NULL default '',
+  PRIMARY KEY  (plugin_group_unique_key,language_id)
+) ENGINE=MyISAM;
+
+INSERT IGNORE INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order) VALUES  ('plugins', 'BOX_MODULES_PLUGINS', 'FILENAME_PLUGIN_MANAGER', '', 'modules', 'Y', 4);
 ######
 # Carry forward from v1.5.6 for early-adopters
 UPDATE configuration SET date_added='0001-01-01' where date_added < '0001-01-01';
@@ -1260,7 +1328,7 @@ INSERT INTO product_type_layout_language (configuration_title, configuration_key
 #############
 
 REPLACE INTO product_type_layout_language (configuration_title , configuration_key , languages_id, configuration_description, last_modified, date_added) VALUES 
-('20221221', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Uebersetzungen', now(), now());
+('20230520', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Uebersetzungen', now(), now());
 
 #############
 

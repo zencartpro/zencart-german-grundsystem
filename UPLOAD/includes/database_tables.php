@@ -1,15 +1,15 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (zencartpro adaptations)
  * database_tables.php
  * Defines the database table names used in the project
  *
  
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: database_tables.php 2022-01-19 20:13:51Z webchills $
+ * @version $Id: database_tables.php 2023-05-20 20:13:51Z webchills $
  * @private
  */
 
@@ -77,6 +77,10 @@ define('TABLE_PAYPAL', DB_PREFIX . 'paypal');
 define('TABLE_PAYPAL_SESSION', DB_PREFIX . 'paypal_session');
 define('TABLE_PAYPAL_PAYMENT_STATUS', DB_PREFIX . 'paypal_payment_status');
 define('TABLE_PAYPAL_PAYMENT_STATUS_HISTORY', DB_PREFIX . 'paypal_payment_status_history');
+define('TABLE_PLUGIN_CONTROL', DB_PREFIX . 'plugin_control');
+define('TABLE_PLUGIN_CONTROL_VERSIONS', DB_PREFIX . 'plugin_control_versions');
+define('TABLE_PLUGIN_GROUPS', DB_PREFIX . 'plugin_groups');
+define('TABLE_PLUGIN_GROUPS_DESCRIPTION', DB_PREFIX . 'plugin_groups_description');
 define('TABLE_PRODUCTS', DB_PREFIX . 'products');
 define('TABLE_PRODUCT_TYPES', DB_PREFIX . 'product_types');
 define('TABLE_PRODUCT_TYPE_LAYOUT', DB_PREFIX . 'product_type_layout');

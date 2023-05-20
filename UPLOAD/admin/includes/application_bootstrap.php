@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: application_bootstrap.php 2023-04-30 19:41:36Z webchills $
+ * @version $Id: application_bootstrap.php 2023-05-20 19:41:36Z webchills $
  */
 use Zencart\FileSystem\FileSystem;
 use Zencart\PluginManager\PluginManager;
@@ -163,3 +163,21 @@ require('includes/psr4Autoload.php');
 require 'includes/classes/AdminRequestSanitizer.php';
 require 'includes/init_includes/init_file_db_names.php';
 require 'includes/init_includes/init_database.php';
+$pluginManager = new PluginManager($db);
+
+$installedPlugins = $pluginManager->getInstalledPlugins();
+
+$fs = FileSystem::getInstance();
+$fs->setInstalledPlugins($installedPlugins);
+$fs->loadFilesFromPluginsDirectory($installedPlugins, 'admin/includes/extra_configures', '~^[^\._].*\.php$~i');
+$fs->loadFilesFromPluginsDirectory($installedPlugins, 'admin/includes/extra_datafiles', '~^[^\._].*\.php$~i');
+
+foreach ($installedPlugins as $plugin) {
+    $namespaceAdmin = 'Zencart\\Plugins\\Admin\\' . ucfirst($plugin['unique_key']);
+    $namespaceCatalog = 'Zencart\\Plugins\\Catalog\\' . ucfirst($plugin['unique_key']);
+    $filePath = DIR_FS_CATALOG . 'zc_plugins/' . $plugin['unique_key'] . '/' . $plugin['version'] . '/';
+    $filePathAdmin = $filePath . 'classes/admin';
+    $filePathCatalog = $filePath . 'classes/';
+    $psr4Autoloader->addPrefix($namespaceAdmin, $filePathAdmin);
+    $psr4Autoloader->addPrefix($namespaceCatalog, $filePathCatalog);
+}

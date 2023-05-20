@@ -1,24 +1,26 @@
 <?php
 /**
  * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: VersionServer.php 2022-01-16 09:14:16Z webchills $
+ * @version $Id: VersionServer.php 2023-05-20 09:14:16Z webchills $
  */
 
 class VersionServer
 {
     protected $projectVersionServer = 'https://www.zen-cart-pro.at';
-    
+    protected $pluginVersionServer = 'https://ping.zen-cart.com/plugincheck';
 
     public function __construct()
     {
         if (defined('PROJECT_VERSIONSERVER_URL')) {
             $this->projectVersionServer = PROJECT_VERSIONSERVER_URL;
         }
-        
+        if (defined('PLUGIN_VERSIONSERVER_URL')) {
+            $this->pluginVersionServer = PLUGIN_VERSIONSERVER_URL;
+        }
     }
 
     public function getZcVersioninfo()
@@ -49,7 +51,38 @@ class VersionServer
 
     }
 
-   
+    /**
+     * @param int|string $ids An integer or a comma-separated string of integers denoting the plugin ID from the ZC plugin library
+     * @return bool|false|string json string
+     */
+    public function getPluginVersion($ids)
+    {
+        $keylist = implode(',', array_map(function($value) {return (int)trim($value);}, explode(',', $ids)));
+        $type = '[' . (int)$ids . ']';
+        if (strpos($ids, ',') > 0) {
+            $type = '[Batch]';
+        }
+
+        $currentInfo = $this->getZcVersioninfo();
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $this->pluginVersionServer . '/' . $keylist);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($currentInfo));
+        curl_setopt($ch, CURLOPT_VERBOSE, 0);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 9);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 9);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Plugin Version Check ' . $type . ' ' . HTTP_SERVER);
+        $response = curl_exec($ch);
+        $error = curl_error($ch);
+        $errno = curl_errno($ch);
+        if ($errno > 0) {
+            return $this->formatCurlError($errno, $error);
+        }
+        return $response;
+
+    }
 
     public function isProjectCurrent($newVersionInfo)
     {

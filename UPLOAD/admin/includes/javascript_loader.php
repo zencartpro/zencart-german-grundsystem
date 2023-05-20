@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: javascript_loader.php 2023-05-15 16:27:32Z webchills $
+ * @version $Id: javascript_loader.php 2023-05-20 16:27:32Z webchills $
  */
 ?>
 <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
@@ -52,6 +52,42 @@ foreach ($directory_array as $key => $value) {
     require 'includes/javascript/' . $value;
 }
 
+foreach ($installedPlugins as $plugin) {
+    $relativeDir = $fs->getPluginRelativeDirectory($plugin['unique_key']);
+    $absoluteDir = $fs->getPluginAbsoluteDirectory($plugin['unique_key']);
+    $directory_array = $template->get_template_part($absoluteDir . 'admin/includes/javascript/', '/^global_jscript/', '.php');
+    foreach ($directory_array as $key => $value) {
+        require $absoluteDir . 'admin/includes/javascript/' . $value;
+    }
+    $directory_array = $template->get_template_part($absoluteDir . 'admin/includes/javascript/', '/^global_jscript/', '.js');
+    foreach ($directory_array as $key => $value) {
+        echo "\n";
+        ?>
+        <script src="<?php echo $relativeDir; ?>admin/includes/javascript/<?php echo $value; ?>"></script>
+        <?php
+    }
+    if (file_exists($absoluteDir . 'admin/includes/javascript/' . basename($PHP_SELF, '.php') . '.php')) {
+        echo "\n";
+        require $absoluteDir . 'admin/includes/javascript/' . basename($PHP_SELF, '.php') . '.php';
+    }
+    if (file_exists($absoluteDir . 'admin/includes/javascript/' . basename($PHP_SELF, '.php') . '.js')) {
+        echo "\n";
+?>
+        <script src="<?php echo $relativeDir ?>admin/includes/javascript/<?php echo basename($PHP_SELF, '.php') . '.js'; ?>"></script>
+<?php 
+    }
+    $directory_array = $template->get_template_part($absoluteDir . 'admin/includes/javascript/', '/^' . basename($PHP_SELF, '.php') . '_/', '.js');
+    foreach ($directory_array as $key => $value) {
+        echo "\n";
+        ?>
+        <script src="<?php echo $relativeDir; ?>admin/includes/javascript/<?php echo $value; ?>"></script>
+        <?php
+    }
+    $directory_array = $template->get_template_part($absoluteDir . 'admin/includes/javascript/', '/^' . basename($PHP_SELF, '.php') . '_/', '.php');
+    foreach ($directory_array as $key => $value) {
+        echo "\n";
+        require $absoluteDir . 'admin/includes/javascript/' . $value;
+    }}
 if (file_exists(DIR_WS_INCLUDES . 'keepalive_module.php')) {
     echo "\n";
     require(DIR_WS_INCLUDES . 'keepalive_module.php');

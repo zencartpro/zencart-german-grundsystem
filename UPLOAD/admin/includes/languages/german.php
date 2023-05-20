@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2022-04-17 16:18:04Z webchills $
+ * @version $Id: german.php 2023-05-20 16:18:04Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -139,6 +139,7 @@ define('BOX_HEADING_MODULES', 'Module');
 define('BOX_MODULES_PAYMENT', 'Zahlungsarten');
 define('BOX_MODULES_SHIPPING', 'Versandarten');
 define('BOX_MODULES_ORDER_TOTAL', 'Zusammenfassung');
+define('BOX_MODULES_PLUGINS', 'Plugin Manager');
 
 // categories box text
 define('BOX_HEADING_CATALOG', 'Webshop');
@@ -752,6 +753,8 @@ define('ERROR_CURRENCY_INVALID', 'Fehler: Der Wechselkurs für %s (%s) wurde nic
 define('WARNING_PRIMARY_SERVER_FAILED', 'Warnung: Der primäre Wechselkursserver (%s) ist für %s (%s) fehlgeschlagen - versuche sekundären Wechselkursserver.');
 // Set to empty string if alpha sorting not desired
 define('MENU_CATEGORIES_TO_SORT_BY_NAME','reports,tools'); 
+// Plugins
+define('PLUGIN_INSTALL_SQL_FAILURE', 'ein oder mehrere Datenbankfehler aufgetreten');
 // ARIA Stuff
 define('ARIA_PAGINATION_ROLE_LABEL_GENERAL','Seitenumbruch');
 define('ARIA_PAGINATION_ROLE_LABEL_FOR','%s Seitenumbruch'); // eg: "Search results Pagination"

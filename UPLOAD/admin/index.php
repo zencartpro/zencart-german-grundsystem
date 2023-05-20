@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: index.php 2021-12-25 08:46:12Z webchills $
+ * @version $Id: index.php 2023-05-20 08:46:12Z webchills $
  */
 use Zencart\FileSystem\FileSystem;
 
@@ -19,6 +19,7 @@ if (file_exists(basename($cmd . '.php'))) {
     exit();
 }
 
+$adminPage = FileSystem::getInstance()->findPluginAdminPage($installedPlugins, $cmd);
 if (!isset($adminPage)) {
     require 'includes/application_top.php';
     zen_redirect(zen_href_link(FILENAME_DEFAULT));
