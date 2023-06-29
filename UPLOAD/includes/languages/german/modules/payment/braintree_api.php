@@ -233,3 +233,4 @@ define('BRAINTREE_ERROR_CODE_2061', 'Ungültige Transakationsdaten');
 define('BRAINTREE_ERROR_CODE_2062', 'Ungültiger Steuer Betrag');
 define('TEXT_CCVAL_ERROR_INVALID_MONTH_EXPIRY','Ungültiges Kreditkartenablaufdatum Monat: %s');
 define('TEXT_CCVAL_ERROR_INVALID_YEAR_EXPIRY','Ungültiges Kreditkartenablaufdatum Jahr: %s');
+define('TEXT_PAYMENT_MESSAGE_BRAINTREE_API', 'Zahlungsart: Kreditkarte<br>Wir haben Ihre Zahlug dankend erhalten. Wir bearbeiten Ihre Bestellung umgehend.');

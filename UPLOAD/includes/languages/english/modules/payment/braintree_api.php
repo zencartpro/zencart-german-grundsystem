@@ -234,3 +234,4 @@ define('BRAINTREE_ERROR_CODE_2061', 'Invalid Transaction Data');
 define('BRAINTREE_ERROR_CODE_2062', 'Invalid Tax Amount');
 define('TEXT_CCVAL_ERROR_INVALID_MONTH_EXPIRY','Invalid Credit Card Expiry Month: %s');
 define('TEXT_CCVAL_ERROR_INVALID_YEAR_EXPIRY','Invalid Credit Card Expiry Year: %s');
+define('TEXT_PAYMENT_MESSAGE_BRAINTREE_API', 'Payment method: Credit card<br/>We have received your payment. We will process your order immediately.');
