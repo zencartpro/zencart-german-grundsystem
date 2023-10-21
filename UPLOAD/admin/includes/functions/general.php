@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: general.php 2022-12-17 22:09:33Z webchills $
+ * @version $Id: general.php 2023-10-21 19:09:33Z webchills $
  */
 
 ////
@@ -138,7 +138,14 @@ function zen_get_all_get_params($exclude_array = array())
     return $fields;
   }
 
-  function zen_date_long($raw_date) {
+/**
+ * Output a raw date string in the selected locale date format
+ *
+ * @param string $raw_date needs to be in this format: YYYY-MM-DD HH:MM:SS
+ * @return bool|false|string
+ */
+function zen_date_long($raw_date)
+{
     if (empty($raw_date) || $raw_date <= '0001-01-01 00:00:00') return false;
 
     $year = (int)substr($raw_date, 0, 4);
@@ -148,10 +155,9 @@ function zen_get_all_get_params($exclude_array = array())
     $minute = (int)substr($raw_date, 14, 2);
     $second = (int)substr($raw_date, 17, 2);
 
-    $retVal = strftime(DATE_FORMAT_LONG, mktime($hour, $minute, $second, $month, $day, $year));
-    if (stristr(PHP_OS, 'win')) return utf8_encode($retVal);
-    return $retVal;
-  }
+    global $zcDate;
+    return $zcDate->output(DATE_FORMAT_LONG, mktime($hour, $minute, $second, $month, $day, $year));
+}
 
 
 ////
@@ -178,7 +184,8 @@ function zen_get_all_get_params($exclude_array = array())
   }
 
 
-  function zen_datetime_short($raw_datetime) {
+function zen_datetime_short($raw_datetime)
+{
     if (empty($raw_datetime) || $raw_datetime <= '0001-01-01 00:00:00') return false;
 
     $year = (int)substr($raw_datetime, 0, 4);
@@ -188,8 +195,9 @@ function zen_get_all_get_params($exclude_array = array())
     $minute = (int)substr($raw_datetime, 14, 2);
     $second = (int)substr($raw_datetime, 17, 2);
 
-    return strftime(DATE_TIME_FORMAT, mktime($hour, $minute, $second, $month, $day, $year));
-  }
+    global $zcDate;
+    return $zcDate->output(DATE_TIME_FORMAT, mktime($hour, $minute, $second, $month, $day, $year));
+}
 
 
   function zen_get_category_tree($parent_id = '0', $spacing = '', $exclude = '', $category_tree_array = array(), $include_itself = false, $category_has_products = false, $limit = false) {
@@ -1873,51 +1881,6 @@ while (!$chk_sale_categories_all->EOF) {
     } else {
       $db->Execute("insert into " . TABLE_COUPON_GV_CUSTOMER . " (customer_id, amount) values (" . (int)$customer_id . ", '" . $coupon_gv->fields['coupon_amount'] . "')");
     }
-  }
-
-/**
- * Output a day/month/year dropdown selector
- */
-  function zen_draw_date_selector($prefix, $date='') {
-    $month_array = array();
-    $month_array[1] =_JANUARY;
-    $month_array[2] =_FEBRUARY;
-    $month_array[3] =_MARCH;
-    $month_array[4] =_APRIL;
-    $month_array[5] =_MAY;
-    $month_array[6] =_JUNE;
-    $month_array[7] =_JULY;
-    $month_array[8] =_AUGUST;
-    $month_array[9] =_SEPTEMBER;
-    $month_array[10] =_OCTOBER;
-    $month_array[11] =_NOVEMBER;
-    $month_array[12] =_DECEMBER;
-    $usedate = getdate($date);
-    $day = $usedate['mday'];
-    $month = $usedate['mon'];
-    $year = $usedate['year'];
-    $date_selector = '<select name="'. $prefix .'_day">';
-    for ($i=1;$i<32;$i++){
-      $date_selector .= '<option value="' . $i . '"';
-      if ($i==$day) $date_selector .= ' selected';
-      $date_selector .= '>' . $i . '</option>';
-    }
-    $date_selector .= '</select>';
-    $date_selector .= '<select name="'. $prefix .'_month">';
-    for ($i=1;$i<13;$i++){
-      $date_selector .= '<option value="' . $i . '"';
-      if ($i==$month) $date_selector .= ' selected';
-      $date_selector .= '>' . $month_array[$i] . '</option>';
-    }
-    $date_selector .= '</select>';
-    $date_selector .= '<select name="'. $prefix .'_year">';
-    for ($i = date('Y') - 5, $j = date('Y') + 11; $i < $j; $i++) {
-      $date_selector .= '<option value="' . $i . '"';
-      if ($i==$year) $date_selector .= ' selected';
-      $date_selector .= '>' . $i . '</option>';
-    }
-    $date_selector .= '</select>';
-    return $date_selector;
   }
 
 /**
@@ -3751,45 +3714,48 @@ function zen_sort_array($data, $columnName1 = '', $order1 = SORT_ASC, $columnNam
  * If $maxToList == 'count' then it returns the total number of files found
  * If an integer is passed, then an array of files is returned, including paths, filenames, and datetime details
  *
- * @param $maxToList mixed (integer or 'count')
- * @return array or integer
+ * @param string|int $maxToList (integer or 'count')
+ * @return array|int
  *
  * inspired by log checking suggestion from Steve Sherratt (torvista)
  */
-function get_logs_data($maxToList = 'count') {
-  if (!defined('DIR_FS_LOGS')) define('DIR_FS_LOGS', DIR_FS_CATALOG . 'logs');
-  if (!defined('DIR_FS_SQL_CACHE')) define('DIR_FS_SQL_CACHE', DIR_FS_CATALOG . 'cache');
-  $logs = array();
-  $file = array();
-  $i = 0;
-  foreach(array(DIR_FS_LOGS, DIR_FS_SQL_CACHE) as $purgeFolder) {
-    $purgeFolder = rtrim($purgeFolder, '/');
-    if (!file_exists($purgeFolder) || !is_dir($purgeFolder)) continue;
+function get_logs_data($maxToList = 'count')
+{
+    global $zcDate;
 
-    $dir = dir($purgeFolder);
-    while ($logfile = $dir->read()) {
-      if (substr($logfile, 0, 1) == '.') continue;
-      if (!preg_match('/.*(\.log|\.xml)$/', $logfile)) continue; // xml allows for usps debug
+    if (!defined('DIR_FS_LOGS')) define('DIR_FS_LOGS', DIR_FS_CATALOG . 'logs');
+    if (!defined('DIR_FS_SQL_CACHE')) define('DIR_FS_SQL_CACHE', DIR_FS_CATALOG . 'cache');
+    $logs = array();
+    $file = array();
+    $i = 0;
+    foreach (array(DIR_FS_LOGS, DIR_FS_SQL_CACHE) as $purgeFolder) {
+        $purgeFolder = rtrim($purgeFolder, '/');
+        if (!file_exists($purgeFolder) || !is_dir($purgeFolder)) continue;
 
-      if ($maxToList != 'count') {
-        $filename = $purgeFolder . '/' . $logfile;
-        $logs[$i]['path'] = $purgeFolder . "/";
-        $logs[$i]['filename'] = $logfile;
-        $logs[$i]['filesize'] = @filesize($filename);
-        $logs[$i]['unixtime'] = @filemtime($filename);
-        $logs[$i]['datetime'] = strftime(DATE_TIME_FORMAT, $logs[$i]['unixtime']);
-      }
-      $i++;
-      if ($maxToList != 'count' && $i >= $maxToList) break;
+        $dir = dir($purgeFolder);
+        while ($logfile = $dir->read()) {
+            if (substr($logfile, 0, 1) == '.') continue;
+            if (!preg_match('/.*(\.log|\.xml)$/', $logfile)) continue; // xml allows for usps debug
+
+            if ($maxToList != 'count') {
+                $filename = $purgeFolder . '/' . $logfile;
+                $logs[$i]['path'] = $purgeFolder . "/";
+                $logs[$i]['filename'] = $logfile;
+                $logs[$i]['filesize'] = @filesize($filename);
+                $logs[$i]['unixtime'] = @filemtime($filename);
+                $logs[$i]['datetime'] = $zcDate->output(DATE_TIME_FORMAT, $logs[$i]['unixtime']);
+            }
+            $i++;
+            if ($maxToList != 'count' && $i >= $maxToList) break;
+        }
+        $dir->close();
+        unset($dir);
     }
-    $dir->close();
-    unset($dir);
-  }
 
-  if ($maxToList == 'count') return $i;
+    if ($maxToList == 'count') return $i;
 
-  $logs = zen_sort_array($logs, 'unixtime', SORT_DESC);
-  return $logs;
+    $logs = zen_sort_array($logs, 'unixtime', SORT_DESC);
+    return $logs;
 }
 
 /**

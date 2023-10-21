@@ -1,11 +1,11 @@
 <?php
 /**
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: html_output.php 2021-10-25 17:37:42Z webchills $
+ * @version $Id: html_output.php 2023-10-21 18:37:42Z webchills $
  */
 
 ////
@@ -40,11 +40,11 @@ function zen_href_link($page = '', $parameters = '', $connection = 'SSL', $add_s
     // Keep track of the separator
     $separator = '&';
 
-    if (!zen_not_null($page) || ($page == FILENAME_DEFAULT && !zen_not_null($parameters))) {
+    if (empty($page) || ($page == FILENAME_DEFAULT && empty($parameters))) {
         // If the request was for the homepage, do nothing
         $separator = '?';
     }
-    else if (zen_not_null($parameters)) {
+    else if (!empty($parameters)) {
         $link .= 'index.php?cmd='. $page . '&' . zen_output_string($parameters);
     }
     else {
@@ -132,9 +132,14 @@ function zen_catalog_base_link($connection = '')
 ////
 // The HTML image wrapper function
   function zen_image($src, $alt = '', $width = '', $height = '', $params = '') {
-      $image = '<img src="' . $src . '" alt="' . $alt . '"';
+    if ($src === DIR_WS_CATALOG_IMAGES) {
+      return '';
+    }
+    $image = '<img src="' . $src . '" alt="' . zen_output_string($alt) . '"';
+    // soft clean the alt tag
+    $alt = zen_clean_html($alt);
     if ($alt) {
-      $image .= ' title="' . $alt . '"';
+      $image .= ' title="' . zen_output_string($alt) . '"';
     }
     if ($width) {
       $image .= ' width="' . $width . '"';
@@ -150,9 +155,9 @@ function zen_catalog_base_link($connection = '')
     return $image;
   }
 
-////
-// The HTML form submit button wrapper function
-// Outputs a button in the selected language
+/**
+ * @deprecated since v1.5.7g. Use <button> markup instead
+ */
 function zen_image_submit($image, $alt = '', $parameters = '')
 {
     $image_submit = '<input type="image" src="' . zen_output_string(DIR_WS_LANGUAGES . $_SESSION['language'] . '/images/buttons/' . $image) . '" alt="' . zen_output_string($alt) . '"';
@@ -175,12 +180,19 @@ function zen_image_submit($image, $alt = '', $parameters = '')
 ////
 // Output a separator either through whitespace, or with an image
   function zen_draw_separator($image = 'pixel_black.gif', $width = '100%', $height = '1') {
-    if (substr(rtrim($width), -1) != "%") $width = $width . 'px';
-    return zen_image(DIR_WS_IMAGES . $image, '', '', $height, 'style="width:' . $width . ';"');
+	if (!empty($width)) {
+		if (substr(rtrim($width), -1) !== '%') {
+            $width = $width . 'px';
+        }
+		$param = 'style="width:' . $width . ';"';
+	} else {
+		$param = NULL;
+	}
+    return zen_image(DIR_WS_IMAGES . $image, '', '', $height, $param);
   }
-
-////
-// Output a function button in the selected language
+/**
+ * @deprecated since v1.5.7g. Use <button> markup instead
+ */
   function zen_image_button($image, $alt = '', $params = '') {
 
     return zen_image(DIR_WS_LANGUAGES . $_SESSION['language'] . '/images/buttons/' . $image, $alt, '', '', $params);
@@ -231,48 +243,69 @@ function zen_image_submit($image, $alt = '', $parameters = '')
 
 ////
 // Output a form
-  function zen_draw_form($name, $action, $parameters = '', $method = 'post', $params = '', $usessl = 'false') {
+function zen_draw_form($name, $action, $parameters = '', $method = 'post', $params = '', $usessl = 'false')
+{
     $form = '<form name="' . zen_output_string($name) . '" action="';
-    if (zen_not_null($parameters)) {
-      $form .= zen_href_link($action, $parameters, 'NONSSL');
+    if (!empty($parameters)) {
+        $form .= zen_href_link($action, $parameters, 'NONSSL');
     } else {
-      $form .= zen_href_link($action, '', 'NONSSL');
+        $form .= zen_href_link($action, '', 'NONSSL');
     }
     $form .= '" method="' . zen_output_string($method) . '"';
-    if (zen_not_null($params)) {
-      $form .= ' ' . $params;
+    if (!empty($params)) {
+        $form .= ' ' . $params;
     }
     $form .= '>';
-    if (strtolower($method) == 'post') $form .= '<input type="hidden" name="securityToken" value="' . $_SESSION['securityToken'] . '" />';
-    if (strtolower($method) == 'get') {
-      $form .= '<input type="hidden" name="cmd" value="' . (isset($_GET['cmd']) ? $_GET['cmd'] : 'home') . '">';
+    if (strtolower($method) === 'post') {
+        $form .= '<input type="hidden" name="securityToken" value="' . $_SESSION['securityToken'] . '">';
+    }
+    if (strtolower($method) === 'get') {
+        $form .= '<input type="hidden" name="cmd" value="' . str_replace('.php', '', $action) . '">';
     }
     return $form;
+}
+
+  /**
+ *
+ * Output a form input field
+ * @param string $name field name
+ * @param string $value field value
+ * @param string $parameters extra parameters like classes or id
+ * @param boolean $required field is required
+ * @param string $type filed type
+ * @param boolean $reinsert_value
+ * @return string
+ */
+function zen_draw_input_field($name, $value = '~*~*#', $parameters = '', $required = false, $type = 'text', $reinsert_value = true)
+{
+  $type = zen_output_string($type);
+  if ($type === 'price') {
+    $type = 'number" step="0.01';
+  }
+  $field = ($required ? '<div class="input-group">' . PHP_EOL : '');
+  $field .= '<input type="' . $type . '" name="' . zen_output_string($name) . '"';
+
+  if ($value == '~*~*#' && (isset($GLOBALS[$name]) && is_string($GLOBALS[$name])) && ($reinsert_value == true)) {
+    $field .= ' value="' . zen_output_string(stripslashes($GLOBALS[$name])) . '"';
+  } elseif ($value != '~*~*#' && zen_not_null($value)) {
+    $field .= ' value="' . zen_output_string($value) . '"';
   }
 
-////
-// Output a form input field
-  function zen_draw_input_field($name, $value = '~*~*#', $parameters = '', $required = false, $type = 'text', $reinsert_value = true) {
-    $type = zen_output_string($type);
-    if ($type === 'price') $type = 'number" step="0.01';
-
-    $field = '<input type="' . $type . '" name="' . zen_output_string($name) . '"';
-
-    if ( $value == '~*~*#' && (isset($GLOBALS[$name]) && is_string($GLOBALS[$name])) && ($reinsert_value == true) ) {
-      $field .= ' value="' . zen_output_string(stripslashes($GLOBALS[$name])) . '"';
-    } elseif ($value != '~*~*#' && zen_not_null($value)) {
-      $field .= ' value="' . zen_output_string($value) . '"';
-    }
-
-    if (zen_not_null($parameters)) $field .= ' ' . $parameters;
-
-    $field .= ' />';
-
-    if ($required && !empty(TEXT_FIELD_REQUIRED)) {
-      $field .= '&nbsp;<span class="alert">' . TEXT_FIELD_REQUIRED . '</span>';
-    }
-    return $field;
+  if (!empty($parameters)) {
+    $field .= ' ' . $parameters;
   }
+
+  if ($required && strpos($parameters, 'required') === false) {
+    $field .= ' required';
+  }
+
+  $field .= '>' . PHP_EOL;
+  if ($required) {
+    $field .= '<span class="input-group-addon alert-danger">' . '*' . '</span>' . PHP_EOL;
+    $field .= '</div>' . PHP_EOL;
+  }
+  return $field;
+}
 
 ////
 // Output a form password field
@@ -301,13 +334,18 @@ function zen_image_submit($image, $alt = '', $parameters = '')
 
     if (zen_not_null($value)) $selection .= ' value="' . zen_output_string($value) . '"';
 
-    if ( ($checked == true) || (isset($GLOBALS[$name]) && is_string($GLOBALS[$name]) && ($GLOBALS[$name] == 'on')) || (isset($value) && isset($GLOBALS[$name]) && is_string($GLOBALS[$name]) && (stripslashes($GLOBALS[$name]) == $value)) || (zen_not_null($value) && zen_not_null($compare) && ($value == $compare)) ) {
+    if (
+        ($checked == true)
+        || (isset($GLOBALS[$name]) && is_string($GLOBALS[$name]) && ($GLOBALS[$name] == 'on'))
+        || (isset($value) && isset($GLOBALS[$name]) && is_string($GLOBALS[$name]) && (stripslashes($GLOBALS[$name]) == $value))
+        || (zen_not_null($value) && zen_not_null($compare) && ($value == $compare))
+    ) {
       $selection .= ' checked="checked"';
     }
 
-    if (zen_not_null($parameters)) $selection .= ' ' . $parameters;
+    if (!empty($parameters)) $selection .= ' ' . $parameters;
 
-    $selection .= ' />';
+    $selection .= '>';
 
     return $selection;
   }
@@ -326,10 +364,12 @@ function zen_image_submit($image, $alt = '', $parameters = '')
 
 ////
 // Output a form textarea field
-  function zen_draw_textarea_field($name, $wrap, $width, $height, $text = '~*~*#', $parameters = '', $reinsert_value = true) {
-    $field = '<textarea name="' . zen_output_string($name) . '" wrap="' . zen_output_string($wrap) . '" cols="' . zen_output_string($width) . '" rows="' . zen_output_string($height) . '"';
+  function zen_draw_textarea_field($name, $wrap, $cols, $height, $text = '~*~*#', $parameters = '', $reinsert_value = true) {
+    $cols = (int)$cols;
+    $wrap = in_array($wrap, ['soft', 'hard', 'off'], true) ? $wrap : 'soft';
+    $field = '<textarea name="' . zen_output_string($name) . '" wrap="' . $wrap . '"' . ($cols > 0 ? ' cols="' . $cols . '"' : '') . ' rows="' . zen_output_string($height) . '"';
 
-    if (zen_not_null($parameters)) $field .= ' ' . $parameters;
+    if (!empty($parameters)) $field .= ' ' . $parameters;
 
     $field .= '>';
 
@@ -357,9 +397,9 @@ function zen_image_submit($image, $alt = '', $parameters = '')
       $field .= ' value="' . zen_output_string(stripslashes($GLOBALS[$name])) . '"';
     }
 
-    if (zen_not_null($parameters)) $field .= ' ' . $parameters;
+    if (!empty($parameters)) $field .= ' ' . $parameters;
 
-    $field .= ' />';
+    $field .= '>';
 
     return $field;
   }
@@ -373,43 +413,48 @@ function zen_image_submit($image, $alt = '', $parameters = '')
  * @param boolean $required required
  * @return string
  */
-  function zen_draw_pull_down_menu($name, $values, $default = '', $parameters = '', $required = false) {
-  //    $field = '<select name="' . zen_output_string($name) . '"';
-    $field = '<select rel="dropdown" name="' . zen_output_string($name) . '"';
+function zen_draw_pull_down_menu($name, $values, $default = '', $parameters = '', $required = false)
+{
+  $field = ($required ? '<div class="input-group">' . PHP_EOL : '');
+  $field .= '<select name="' . zen_output_string($name) . '"';
 
-    if (zen_not_null($parameters)) {
-      $field .= ' ' . $parameters;
-    }
-
-    $field .= '>' . "\n";
-
-    if (empty($default) && isset($GLOBALS[$name]) && is_string($GLOBALS[$name])) {
-      $default = stripslashes($GLOBALS[$name]);
-    }
-
-    foreach ($values as $value) {
-      $field .= '<option value="' . zen_output_string($value['id']) . '"';
-      if ($default == $value['id']) {
-        $field .= ' selected="selected"';
-      }
-
-      $field .= '>' . zen_output_string($value['text'], array('"' => '&quot;', '\'' => '&#039;', '<' => '&lt;', '>' => '&gt;')) . '</option>' . "\n";
-    }
-    $field .= '</select>' . "\n";
-
-    if ($required == true) {
-      $field .= TEXT_FIELD_REQUIRED;
-    }
-
-    return $field;
+  if (!empty($parameters)) {
+    $field .= ' ' . $parameters;
   }
+
+  if ($required && strpos($parameters, 'required') === false) {
+    $field .= ' required';
+  }
+
+  $field .= '>' . "\n";
+
+  if (empty($default) && isset($GLOBALS[$name]) && is_string($GLOBALS[$name])) {
+    $default = stripslashes($GLOBALS[$name]);
+  }
+
+  foreach ($values as $value) {
+    $field .= '<option value="' . zen_output_string($value['id']) . '"';
+    if ($default == $value['id']) {
+      $field .= ' selected="selected"';
+    }
+
+    $field .= '>' . zen_output_string($value['text'], array('"' => '&quot;', '\'' => '&#039;', '<' => '&lt;', '>' => '&gt;')) . '</option>' . "\n";
+  }
+  $field .= '</select>' . "\n";
+  if ($required) {
+    $field .= '<span class="input-group-addon alert-danger">' . '*' . '</span>' . PHP_EOL;
+    $field .= '</div>' . PHP_EOL;
+  }
+
+  return $field;
+}
 
 ////
 // Hide form elements
   function zen_hide_session_id() {
     global $session_started;
 
-    if ( ($session_started == true) && defined('SID') && zen_not_null(SID) ) {
+    if ( ($session_started == true) && defined('SID') && !empty(SID) ) {
       return zen_draw_hidden_field(zen_session_name(), zen_session_id());
     }
   }
@@ -426,3 +471,103 @@ function zen_draw_label($text, $for, $parameters = '')
     $label = '<label for="' . $for . '"' . (!empty($parameters) ? ' ' . $parameters : '') . '>' . $text . '</label>';
     return $label;
 }
+
+
+/**
+ * Output a day/month/year dropdown selector
+ * @param string $fieldname_prefix
+ * @param string $default_date
+ * @return string
+ */
+function zen_draw_date_selector($fieldname_prefix, $default_date='') {
+    $month_array = array();
+    $month_array[1] =_JANUARY;
+    $month_array[2] =_FEBRUARY;
+    $month_array[3] =_MARCH;
+    $month_array[4] =_APRIL;
+    $month_array[5] =_MAY;
+    $month_array[6] =_JUNE;
+    $month_array[7] =_JULY;
+    $month_array[8] =_AUGUST;
+    $month_array[9] =_SEPTEMBER;
+    $month_array[10] =_OCTOBER;
+    $month_array[11] =_NOVEMBER;
+    $month_array[12] =_DECEMBER;
+    $usedate = getdate($default_date);
+    $day = $usedate['mday'];
+    $month = $usedate['mon'];
+    $year = $usedate['year'];
+    $date_selector = '<select name="'. $fieldname_prefix .'_day">';
+    for ($i=1;$i<32;$i++){
+        $date_selector .= '<option value="' . $i . '"';
+        if ($i==$day) $date_selector .= ' selected';
+        $date_selector .= '>' . $i . '</option>';
+    }
+    $date_selector .= '</select>';
+    $date_selector .= '<select name="'. $fieldname_prefix .'_month">';
+    for ($i=1;$i<13;$i++){
+        $date_selector .= '<option value="' . $i . '"';
+        if ($i==$month) $date_selector .= ' selected';
+        $date_selector .= '>' . $month_array[$i] . '</option>';
+    }
+    $date_selector .= '</select>';
+    $date_selector .= '<select name="'. $fieldname_prefix .'_year">';
+    for ($i = date('Y') - 5, $j = date('Y') + 11; $i < $j; $i++) {
+        $date_selector .= '<option value="' . $i . '"';
+        if ($i==$year) $date_selector .= ' selected';
+        $date_selector .= '>' . $i . '</option>';
+    }
+    $date_selector .= '</select>';
+    return $date_selector;
+}
+
+    /**
+     * intended to add a universal search for use with any pulldown that extends the
+     * abstract pulldown class.  returns a html string.
+     * @param string $filename
+     * @param string $action
+     * @param bool $includeForm
+     * @param array $extrafieldsArray
+     * @return string
+     */
+
+    function addSearchKeywordForm(string $filename, string $action = '', bool $includeForm = true, array $extrafieldsArray = [])
+    {
+        $keywords_products = (isset($_POST['keywords']) && zen_not_null($_POST['keywords'])) ? zen_db_input(zen_db_prepare_input($_POST['keywords'])) : '';
+        $form = '';
+        $endForm = '';
+        $fullAction = '';
+        if (!empty($action)) {
+            $fullAction = 'action=' . $action;
+        }
+        if ($includeForm) {
+            $form = zen_draw_form('keywords', $filename, $fullAction, 'post', 'class="form-horizontal"');
+            $endForm = '</form>';
+        }
+        $html = '
+        <div class="row">
+            <div class="col-sm-offset-2 col-sm-4">' . $form . '
+                <div class="form-group">' .
+            zen_draw_label(HEADING_TITLE_SEARCH_DETAIL, 'keywords', 'class="control-label col-sm-3"') . '
+                         <div class="col-sm-9">' .
+            zen_draw_input_field('keywords', ($_POST['keywords'] ?? ''), 'class="form-control" id="keywords"') . '
+                         </div>
+                </div>' . zen_hide_session_id();
+        if (!empty($keywords_products)) {
+            $html .= '<div class="form-group">
+                      <div class="col-sm-3">
+                          <p class="control-label">' . TEXT_INFO_SEARCH_DETAIL_FILTER . '</p>
+                      </div>
+                      <div class="col-sm-9 text-right">' .
+                zen_output_string_protected($keywords_products) . ' <a href="' . zen_href_link($filename, $fullAction) . '" class="btn btn-default" role="button">' . IMAGE_RESET . '</a>
+                      </div>
+                  </div>';
+        }
+        foreach ($extrafieldsArray as $key => $value) {
+            $html .= zen_draw_hidden_field($key, $value) . '<br>';
+        }
+        $html .= '<br>' . $endForm . '
+            </div>
+        </div>';
+        return $html;
+    }

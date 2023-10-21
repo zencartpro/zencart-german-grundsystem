@@ -21,7 +21,7 @@ define('FOOTER_TEXT_BODY', 'Copyright &copy; ' . date('Y') . ' <a href="' . zen_
 $locales = ['en_US', 'en_US.utf8', 'en', 'English_United States.1252'];
 @setlocale(LC_TIME, $locales);
 
-define('DATE_FORMAT_LONG', '%A %d %B, %Y'); // this is used for strftime()
+define('DATE_FORMAT_LONG', '%A %d %B, %Y');
 define('DATE_FORMAT', 'm/d/Y'); // this is used for date()
 
 

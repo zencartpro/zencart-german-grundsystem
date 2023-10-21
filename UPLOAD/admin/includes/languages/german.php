@@ -26,8 +26,8 @@ define('TEXT_LAST_LOGIN_INFO', 'Letztes Login [IP]:&nbsp;');
 // look in your $PATH_LOCALE/locale directory for available locales..
 $locales = ['de_DE.UTF-8', 'de_AT.UTF-8', 'de_CH.UTF-8', 'de_DE.ISO_8859-1','de_DE@euro', 'de_DE', 'de', 'ge', 'deu.deu'];
 @setlocale(LC_TIME, $locales);
-define('DATE_FORMAT_SHORT', '%d.%m.%Y'); // this is used for strftime()
-define('DATE_FORMAT_LONG', '%A, %d. %B %Y'); // this is used for strftime()
+define('DATE_FORMAT_SHORT', '%d.%m.%Y'); 
+define('DATE_FORMAT_LONG', '%A, %d. %B %Y'); 
 define('DATE_FORMAT', 'd.m.Y'); // this is used for date()
 
 define('DATE_TIME_FORMAT', DATE_FORMAT_SHORT . ' %H:%M:%S');
@@ -35,7 +35,7 @@ define('PHP_DATE_TIME_FORMAT', 'd.m.Y H:i:s'); // this is used for date() calls 
 // for now both defines are needed until Spiffy is completely removed.
 define('DATE_FORMAT_SPIFFYCAL', 'dd.MM.yyyy'); //Use only 'dd', 'MM' and 'yyyy' here in any order
 define('DATE_FORMAT_DATE_PICKER', 'yy-mm-dd');  //Use only 'dd', 'mm' and 'yy' here in any order
-define('ADMIN_NAV_DATE_TIME_FORMAT', '%A %d %b %Y %X'); // this is used for strftime()
+define('ADMIN_NAV_DATE_TIME_FORMAT', '%A %d %b %Y %X');
 
 ////
 // Return date in raw format
