@@ -2,11 +2,11 @@
 /**
  * autoloader array for paypal
  *
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypal_ipn.core.php 2021-10-26 10:18:16Z webchills $
+ * @version $Id: paypal_ipn.core.php 2023-10-21 15:18:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
  die('Illegal Access');
@@ -37,6 +37,14 @@ if (!defined('IS_ADMIN_FLAG')) {
                                 'loadFile'=>'message_stack.php');
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                 'loadFile'=>'breadcrumb.php');
+  $autoLoadConfig[0][] = ['autoType' => 'class', 'loadFile' => 'zcDate.php'];
+/**
+ * Breakpoint 5.
+ *
+ * $zcDate = new zcDate(); ... will be re-initialized when/if the require_languages.php module is run.
+ *
+ */
+  $autoLoadConfig[5][] = ['autoType' => 'classInstantiate', 'className' => 'zcDate', 'objectName' => 'zcDate'];
 /**
  * Breakpoint 30.
  *

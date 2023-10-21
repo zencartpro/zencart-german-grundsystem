@@ -2,12 +2,12 @@
 /**
  * counter.php
  *
- * @package general
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: counter.php 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: counter.php 2023-10-21 15:49:16Z webchills $
  * @private
  */
 if (!defined('IS_ADMIN_FLAG')) {
@@ -51,4 +51,4 @@ if ($counter->RecordCount() <= 0) {
   $db->Execute($sql);
 }
 
-$counter_startdate_formatted = strftime(DATE_FORMAT_LONG, mktime(0, 0, 0, substr($counter_startdate, 4, 2), substr($counter_startdate, -2), substr($counter_startdate, 0, 4)));
+$counter_startdate_formatted = $zcDate->output(DATE_FORMAT_LONG, mktime(0, 0, 0, substr($counter_startdate, 4, 2), substr($counter_startdate, -2), substr($counter_startdate, 0, 4)));

@@ -1,11 +1,11 @@
 <?php
 /**
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: config.core.php 2021-10-25 17:11:36Z webchills $
+ * @version $Id: config.core.php 2023-10-21 15:11:36Z webchills $
  */
 if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
 /**
@@ -31,6 +31,7 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
  * require(DIR_FS_CATALOG . DIR_WS_CLASSES . 'class.zcPassword.php');
  * zcPassword = new zcPassword();
  * require(DIR_WS_CLASSES . VersionServer.php');
+ * require DIR_FS_CATALOG . DIR_WS_CLASSES . 'zcDate.php';
  */
   $autoLoadConfig[0][] = array('autoType'=>'require',
                                'loadFile'=> DIR_FS_CATALOG . DIR_WS_INCLUDES .  'version.php');
@@ -82,7 +83,25 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                'loadFile'=> 'WhosOnline.php',
                                'classPath'=>DIR_WS_CLASSES);
-
+  $autoLoadConfig[0][] = array('autoType'=>'class',
+                               'loadFile'=> 'Customer.php',
+                               'classPath'=>DIR_FS_CATALOG . DIR_WS_CLASSES);
+  $autoLoadConfig[0][] = [
+    'autoType' => 'class',
+    'loadFile' => 'zcDate.php',
+    'classPath' => DIR_FS_CATALOG . DIR_WS_CLASSES
+  ];
+/**
+ * Breakpoint 5.
+ *
+ * $zcDate = new zcDate();
+ *
+ */
+  $autoLoadConfig[5][] = [
+    'autoType' => 'classInstantiate',
+    'className' => 'zcDate',
+    'objectName' => 'zcDate'
+  ];
 /**
  * Breakpoint 10.
  *
@@ -102,6 +121,16 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
  */
   $autoLoadConfig[20][] = array('autoType'=>'init_script',
                                 'loadFile'=> 'init_db_config_read.php');
+/**
+ * Breakpoint 25.
+ *
+ * require 'includes/init_includes/init_non_db_settings_admin.php';
+ *
+ */
+  $autoLoadConfig[25][] = [
+    'autoType' => 'init_script',
+    'loadFile' => 'init_non_db_settings_admin.php'
+  ];
 /**
  * Breakpoint 30.
  *
@@ -197,14 +226,16 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
  * Breakpoint 90.
  *
  * $zc_products = new products();
- * require(DIR_WS_FUNCTIONS . 'localization.php');
+ * require(DIR_WS_FUNCTIONS . 'datepicker.php');
  *
  */
   $autoLoadConfig[90][] = array('autoType'=>'classInstantiate',
                                 'className'=>'products',
                                 'objectName'=>'zc_products');
   $autoLoadConfig[90][] = array('autoType'=>'require',
-                                 'loadFile'=> DIR_WS_FUNCTIONS . 'localization.php');
+                              'loadFile'=> DIR_WS_FUNCTIONS . 'datepicker.php');
+  $autoLoadConfig[90][] = array('autoType'=>'require',
+                                'loadFile'=> DIR_FS_CATALOG . DIR_WS_FUNCTIONS . 'functions_exchange_rates.php');
 /**
  * Breakpoint 100.
  *

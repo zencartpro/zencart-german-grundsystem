@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: banner_statistics.php 2022-01-19 22:03:51Z webchills $
+ * @version $Id: banner_statistics.php 2023-10-21 15:03:51Z webchills $
  *
  * @TODO - align .flot_chart.flot-x-axis smarter in relation to .flot_chart, and add styling, such as slightly larger font and bold, etc
  * @TODO - expand the functionality to enable hover-points and hover-text describing each point on the graphs
@@ -20,7 +20,7 @@ $months_array = array();
 for ($i = 1; $i < 13; $i++) {
   $months_array[] = array(
     'id' => $i,
-    'text' => strftime('%B', mktime(0, 0, 0, $i)));
+    'text' => $zcDate->output('%B', mktime(0, 0, 0, $i)));
 }
 $type_array = array(array(
     'id' => 'daily',
@@ -180,7 +180,7 @@ $opts = array(
           });
 
           function showTooltip(x, y, contents) {
-              $('<div id="tooltip">' + contents + '</div>').css({
+              $('<div id="tooltip">' + contents + '<\/div>').css({
                   top: y - 16,
                   left: x + 20
               }).appendTo('body').fadeIn();
@@ -207,14 +207,14 @@ $opts = array(
       </script>
 
       <!-- body_text //-->
-      <?php echo zen_draw_form('year', FILENAME_BANNER_STATISTICS, '', 'get', 'class="form-horizontal"'); ?>
+      <?php echo zen_draw_form('form_type', FILENAME_BANNER_STATISTICS, '', 'get', 'class="form-horizontal"'); ?>
       <?php echo zen_hide_session_id(); ?>
       <?php echo zen_draw_hidden_field('page', (int)$_GET['page']); ?>
       <?php echo zen_draw_hidden_field('bID', $banner_id); ?>
       <div class="form-group">
           <?php echo zen_draw_label(TITLE_TYPE, 'type', 'class="control-label col-sm-3"'); ?>
         <div class="col-sm-9 col-md-6">
-            <?php echo zen_draw_pull_down_menu('type', $type_array, (!empty($type) ? $type : 'daily'), 'onChange="this.form.submit();" class="form-control"'); ?>
+            <?php echo zen_draw_pull_down_menu('type', $type_array, (!empty($type) ? $type : 'daily'), 'onChange="this.form.submit();" class="form-control" id="type"'); ?>
           <noscript><input type="submit" value="GO"></noscript>
         </div>
       </div>
@@ -226,7 +226,7 @@ $opts = array(
           <div class="form-group">
               <?php echo zen_draw_label(TITLE_YEAR, 'year', 'class="control-label col-sm-3"'); ?>
             <div class="col-sm-9 col-md-6">
-                <?php echo zen_draw_pull_down_menu('year', $years_array, (isset($_GET['year']) ? (int)$_GET['year'] : date('Y')), 'onChange="this.form.submit();" class="form-control"'); ?>
+                <?php echo zen_draw_pull_down_menu('year', $years_array, (isset($_GET['year']) ? (int)$_GET['year'] : date('Y')), 'onChange="this.form.submit();" class="form-control" id="year"'); ?>
               <noscript><input type="submit" value="GO"></noscript>
             </div>
           </div>
@@ -238,14 +238,14 @@ $opts = array(
           <div class="form-group">
               <?php echo zen_draw_label(TITLE_MONTH, 'month','class="control-label col-sm-3"'); ?>
             <div class="col-sm-9 col-md-6">
-                  <?php echo zen_draw_pull_down_menu('month', $months_array, (isset($_GET['month']) ? (int)$_GET['month'] : date('n')), 'onChange="this.form.submit();" class="form-control"'); ?>
+                  <?php echo zen_draw_pull_down_menu('month', $months_array, (isset($_GET['month']) ? (int)$_GET['month'] : date('n')), 'onChange="this.form.submit();" class="form-control" id="month"'); ?>
               <noscript><input type="submit" value="GO"></noscript>
             </div>
           </div>
           <div class="form-group">
               <?php echo zen_draw_label(TITLE_YEAR, 'year','class="control-label col-sm-3"'); ?>
             <div class="col-sm-9 col-md-6">
-                  <?php echo zen_draw_pull_down_menu('year', $years_array, (isset($_GET['year']) ? (int)$_GET['year'] : date('Y')), 'onChange="this.form.submit();" class="form-control"'); ?>
+                  <?php echo zen_draw_pull_down_menu('year', $years_array, (isset($_GET['year']) ? (int)$_GET['year'] : date('Y')), 'onChange="this.form.submit();" class="form-control" id="year"'); ?>
               <noscript><input type="submit" value="GO"></noscript>
             </div>
           </div>
@@ -299,7 +299,11 @@ $opts = array(
 <?php
   $stats = zen_get_banner_data_daily($banner_id, (isset($_GET['year']) ? (int)$_GET['year'] : ''), (isset($_GET['month']) ? (int)$_GET['month'] : ''));
   $data = array(array('label'=>TEXT_BANNERS_BANNER_VIEWS, 'data'=>$stats[0]), array('label'=>TEXT_BANNERS_BANNER_CLICKS, 'data'=>$stats[1]));
-  $title = sprintf(TEXT_BANNERS_DAILY_STATISTICS, $banner->fields['banners_title'], strftime('%B', mktime(0,0,0,(isset($_GET['month']) ? (int)$_GET['month'] : date('n')))), (isset($_GET['year']) ? (int)$_GET['year'] : date('Y')));
+  $title = sprintf(
+      TEXT_BANNERS_DAILY_STATISTICS, $banner->fields['banners_title'],
+      $zcDate->output('%B', mktime(0,0,0,(isset($_GET['month']) ? (int)$_GET['month'] : date('n')))),
+      (isset($_GET['year']) ? (int)$_GET['year'] : date('Y'))
+  );
 ?>
 
       <div class="row">
@@ -311,25 +315,6 @@ $opts = array(
           var plot = $("#banner-daily").plot(dData, dOptions).data("plot");
         </script>
       </div>
-
-<?php if (FALSE) { ?>
-  <div class="banner-statistics-source-data">
-    <table caption="<?php echo TABLE_HEADING_SOURCE; ?>">
-      <tr class="headingRow dataTableHeadingRow">
-        <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_SOURCE; ?></th>
-        <th class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_VIEWS; ?></th>
-        <th class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_CLICKS; ?></th>
-      </tr>
-  <?php for ($i=0, $n=sizeof($stats[2]); $i<$n; $i++) { ?>
-        <tr class="dataTableRow">
-          <td class="dataTableContent"><?php echo $stats[2][$i][0]; ?></td>
-          <td class="dataTableContent" align="right"><?php echo $stats[2][$i][1]; ?></td>
-          <td class="dataTableContent" align="right"><?php echo $stats[2][$i][2]; ?></td>
-        </tr>
-  <?php } ?>
-    </table>
-  </div>
-<?php } ?>
 
   <div class="row text-right">
     <a href="<?php echo zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . (int)$_GET['page'] . '&bID=' . (int)$_GET['bID']); ?>" class="btn btn-default" role="button"><?php echo IMAGE_BACK; ?></a>

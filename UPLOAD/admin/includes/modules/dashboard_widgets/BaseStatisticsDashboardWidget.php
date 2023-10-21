@@ -1,9 +1,10 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: BaseStatisticsDashboardWidget.php 2021-12-28 17:56:29Z webchills $
+ * @version $Id: BaseStatisticsDashboardWidget.php 2023-10-21 15:56:29Z webchills $
  */
 
 // to disable this module for everyone, uncomment the following "return" statement so the rest of this file is ignored
@@ -33,7 +34,7 @@ $result = $db->Execute("SELECT startdate, counter FROM " . TABLE_COUNTER, false,
 if ($result->RecordCount()) {
     $counter_startdate = $result->fields['startdate'];
     $counter = $result->fields['counter'];
-    $counter_startdate_formatted = strftime(DATE_FORMAT_SHORT, mktime(0, 0, 0, substr($counter_startdate, 4, 2), substr($counter_startdate, -2), substr($counter_startdate, 0, 4)));
+    $counter_startdate_formatted = $zcDate->output(DATE_FORMAT_SHORT, mktime(0, 0, 0, substr($counter_startdate, 4, 2), substr($counter_startdate, -2), substr($counter_startdate, 0, 4)));
 }
 
 

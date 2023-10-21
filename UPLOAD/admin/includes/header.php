@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header.php 2022-04-17 16:37:51Z webchills $
+ * @version $Id: header.php 2023-10-21 14:37:51Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -16,28 +16,30 @@ if (defined('STRICT_ERROR_REPORTING') && STRICT_ERROR_REPORTING == true) {
 }
 /*
  * pull in any necessary JS for the page
- * Left here for lagacy pages that do not use the new admin_html_head.php file
+ * Left here for legacy pages that do not use the new admin_html_head.php file
  */
 require_once DIR_WS_INCLUDES . 'javascript_loader.php';
 
 $version_check_requested = (isset($_GET['vcheck']) && $_GET['vcheck'] != '') ? true : false;
 
 // Show Languages Dropdown for convenience only if main filename and directory exists
-if ((basename($PHP_SELF) != FILENAME_DEFINE_LANGUAGE . '.php') and (basename($PHP_SELF) != FILENAME_PRODUCTS_OPTIONS_NAME . '.php') and empty($action)) {
-    $languages_array = array();
+if (empty($action)) {
+    $languages_array = [];
     $languages = zen_get_languages();
-    if (sizeof($languages) > 1) {
+    if (count($languages) > 1) {
         //$languages_selected = $_GET['language'];
         $languages_selected = $_SESSION['language'];
         $missing_languages = '';
         $count = 0;
-        for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
+        for ($i = 0, $n = count($languages); $i < $n; $i++) {
             $test_directory = DIR_WS_LANGUAGES . $languages[$i]['directory'];
             $test_file = DIR_WS_LANGUAGES . $languages[$i]['directory'] . '.php';
-            if (file_exists($test_file) and file_exists($test_directory)) {
+            if (file_exists($test_file) && file_exists($test_directory)) {
                 $count++;
-                $languages_array[] = array('id' => $languages[$i]['code'],
-                                           'text' => $languages[$i]['name']);
+                $languages_array[] = [
+                  'id' => $languages[$i]['code'],
+                  'text' => $languages[$i]['name']
+                ];
                 if ($languages[$i]['directory'] == $_SESSION['language']) {
                     $languages_selected = $languages[$i]['code'];
                 }
@@ -47,7 +49,7 @@ if ((basename($PHP_SELF) != FILENAME_DEFINE_LANGUAGE . '.php') and (basename($PH
         }
 
 // if languages in table do not match valid languages show error message
-        if ($count != sizeof($languages)) {
+        if ($count != count($languages)) {
             $messageStack->add('MISSING LANGUAGE FILES OR DIRECTORIES ...' . $missing_languages, 'caution');
         }
         $hide_languages = false;
@@ -96,7 +98,7 @@ if ((SHOW_VERSION_UPDATE_IN_HEADER == 'true' && $version_from_ini != 'off' && ($
     $versionServer = new VersionServer();
     $newinfo = $versionServer->getProjectVersion();
     $new_version = TEXT_VERSION_CHECK_CURRENT; //set to "current" by default
-    if (isset($newinfo['error'])) {
+    if (empty($newinfo) || isset($newinfo['error'])) {
         $isCurrent = true;
         $versionCheckError = true;
     } else {
@@ -147,7 +149,7 @@ if (defined('MODULE_ORDER_TOTAL_GV_SHOW_QUEUE_IN_ADMIN') && MODULE_ORDER_TOTAL_G
     $new_gv_queue_cnt = 0;
     if ($new_gv_queue->RecordCount() > 0) {
         $new_gv_queue_cnt = $new_gv_queue->RecordCount();
-        $goto_gv = '<a href="' . zen_href_link(FILENAME_GV_QUEUE) . '">' . '<input type="button" class="btn btn-info" value="' . IMAGE_GIFT_QUEUE . '"/></a>';
+        $goto_gv = '<a href="' . zen_href_link(FILENAME_GV_QUEUE) . '">' . '<span class="btn btn-info">' . IMAGE_GIFT_QUEUE . '</span></a>';
     }
 }
 ?>
@@ -171,7 +173,7 @@ if (defined('MODULE_ORDER_TOTAL_GV_SHOW_QUEUE_IN_ADMIN') && MODULE_ORDER_TOTAL_G
     <div class="clearfix visible-xs-block"></div>
     <div class="col-xs-6 col-sm-3 col-sm-pull-3 noprint adminHeaderAlerts">
         <?php
-        if (isset($_SESSION['reset_admin_activity_log']) and ($_SESSION['reset_admin_activity_log'] == true and (basename($PHP_SELF) == FILENAME_DEFAULT . '.php'))) {
+        if (isset($_SESSION['reset_admin_activity_log']) && ($_SESSION['reset_admin_activity_log'] == true && (basename($PHP_SELF) == FILENAME_DEFAULT . '.php'))) {
         ?>
         <a class="btn btn-warning" role="button" href="<?php echo zen_href_link(FILENAME_ADMIN_ACTIVITY); ?>"><?php echo TEXT_BUTTON_RESET_ACTIVITY_LOG;?></a><p class="hidden-xs"><br><?php echo RESET_ADMIN_ACTIVITY_LOG; ?></p>
         <?php
@@ -189,7 +191,7 @@ if (defined('MODULE_ORDER_TOTAL_GV_SHOW_QUEUE_IN_ADMIN') && MODULE_ORDER_TOTAL_G
         <?php
         if (!$hide_languages) {
             echo zen_draw_form('languages', basename($PHP_SELF), '', 'get');
-            echo DEFINE_LANGUAGE . '&nbsp;&nbsp;' . (sizeof($languages) > 1 ? zen_draw_pull_down_menu('language', $languages_array, $languages_selected, 'onChange="this.form.submit();"') : '');
+            echo DEFINE_LANGUAGE . '&nbsp;&nbsp;' . (count($languages) > 1 ? zen_draw_pull_down_menu('language', $languages_array, $languages_selected, 'onChange="this.form.submit();"') : '');
             echo zen_hide_session_id();
             echo zen_post_all_get_params(array('language'));
             echo '</form>';
@@ -201,7 +203,7 @@ if (defined('MODULE_ORDER_TOTAL_GV_SHOW_QUEUE_IN_ADMIN') && MODULE_ORDER_TOTAL_G
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
         <?php
         $adminInfo = zen_read_user(zen_get_admin_name($_SESSION['admin_id']));
-        echo((strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') ? iconv('ISO-8859-1', 'UTF-8', strftime(ADMIN_NAV_DATE_TIME_FORMAT, time())) : strftime(ADMIN_NAV_DATE_TIME_FORMAT, time())); //windows does not "do" UTF-8...so a manual conversion is necessary
+        echo((strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') ? iconv('ISO-8859-1', 'UTF-8', $zcDate->output(ADMIN_NAV_DATE_TIME_FORMAT, time())) : $zcDate->output(ADMIN_NAV_DATE_TIME_FORMAT, time())); //windows does not "do" UTF-8...so a manual conversion is necessary
         echo '&nbsp;' . date("O", time()) . ' GMT';  // time zone
         echo '&nbsp;[' . $_SERVER['REMOTE_ADDR'] . ']'; // current admin user's IP address
         echo '<br>';
@@ -225,5 +227,5 @@ if (defined('MODULE_ORDER_TOTAL_GV_SHOW_QUEUE_IN_ADMIN') && MODULE_ORDER_TOTAL_G
         </ul>
     </div>
   </div>
-<?php require(DIR_WS_INCLUDES . 'header_navigation.php'); ?>
+<?php require DIR_WS_INCLUDES . 'header_navigation.php'; ?>
 

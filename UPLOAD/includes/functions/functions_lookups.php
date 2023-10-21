@@ -3,12 +3,12 @@
  * Zen Cart German Specific
  * functions_lookups.php
  * Lookup Functions for various core activities related to countries, prices, products, product types, etc
- * 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_lookups.php 2022-01-15 08:49:42Z webchills $
+ * @version $Id: functions_lookups.php 2023-10-21 15:49:42Z webchills $
  */
 
 /**
@@ -404,37 +404,6 @@
   }
 
 /*
- * Find category name from ID, in indicated language
- */
-  function zen_get_category_name($category_id, $fn_language_id) {
-    global $db;
-    $category_query = "select categories_name
-                       from " . TABLE_CATEGORIES_DESCRIPTION . "
-                       where categories_id = '" . $category_id . "'
-                       and language_id = '" . $fn_language_id . "'";
-
-    $category = $db->Execute($category_query);
-
-    return $category->fields['categories_name'];
-  }
-
-
-/*
- * Find category description, from category ID, in given language
- */
-  function zen_get_category_description($category_id, $fn_language_id) {
-    global $db;
-    $category_query = "select categories_description
-                       from " . TABLE_CATEGORIES_DESCRIPTION . "
-                       where categories_id = '" . $category_id . "'
-                       and language_id = '" . $fn_language_id . "'";
-
-    $category = $db->Execute($category_query);
-
-    return $category->fields['categories_description'];
-  }
-
-/*
  * Return a product's category
  * TABLES: products_to_categories
  */
@@ -447,36 +416,6 @@
     return $the_products_category->fields['master_categories_id'];
   }
 
-
-/*
- * Return category's image
- * TABLES: categories
- */
-  function zen_get_categories_image($what_am_i) {
-    global $db;
-
-    $the_categories_image_query= "select categories_image from " . TABLE_CATEGORIES . " where categories_id= '" . (int)$what_am_i . "'";
-    $result = $db->Execute($the_categories_image_query);
-
-    if ($result->EOF) return '';
-    
-    return $result->fields['categories_image'];
-  }
-
-/*
- *  Return category's name from ID, assuming current language
- *  TABLES: categories_description
- */
-  function zen_get_categories_name($who_am_i) {
-    global $db;
-    $the_categories_name_query= "select categories_name from " . TABLE_CATEGORIES_DESCRIPTION . " where categories_id= '" . (int)$who_am_i . "' and language_id= '" . (int)$_SESSION['languages_id'] . "'";
-
-    $the_categories_name = $db->Execute($the_categories_name_query);
-    
-    if ($the_categories_name->EOF) return '';
-
-    return $the_categories_name->fields['categories_name'];
-  }
 
 /*
  * Return a product's manufacturer's name, from ID
@@ -713,19 +652,6 @@ function zen_get_configuration_key_value($lookup)
     return $cc_check_accepted;
   }
 
-////
-// TABLES: categories_name from products_id
-  function zen_get_categories_name_from_product($product_id) {
-    global $db;
-
-//    $check_products_category= $db->Execute("select products_id, categories_id from " . TABLE_PRODUCTS_TO_CATEGORIES . " where products_id='" . $product_id . "' limit 1");
-    $check_products_category = $db->Execute("select products_id, master_categories_id from " . TABLE_PRODUCTS . " where products_id = '" . (int)$product_id . "'");
-    $the_categories_name= $db->Execute("select categories_name from " . TABLE_CATEGORIES_DESCRIPTION . " where categories_id= '" . $check_products_category->fields['master_categories_id'] . "' and language_id= '" . $_SESSION['languages_id'] . "'");
-
-    return $the_categories_name->fields['categories_name'];
-  }
-
-
 /*
  * configuration key value lookup in TABLE_PRODUCT_TYPE_LAYOUT
  * Used to determine keys/flags used on a per-product-type basis for template-use, etc
@@ -931,26 +857,6 @@ function zen_check_show_prices()
                               and pd.language_id = '" . (int)$language . "'");
 
     $return_field = $product_lookup->fields['lookup_field'];
-
-    return $return_field;
-  }
-
-/*
- * Return any field from categories or categories_description table
- * Example: zen_categories_lookup('10', 'parent_id');
- */
-  function zen_categories_lookup($categories_id, $what_field = 'categories_name', $language = '') {
-    global $db;
-
-    if (empty($language)) $language = $_SESSION['languages_id'];
-
-    $category_lookup = $db->Execute("select " . $what_field . " as lookup_field
-                              from " . TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd
-                              where c.categories_id ='" . (int)$categories_id . "'
-                              and c.categories_id = cd.categories_id
-                              and cd.language_id = '" . (int)$language . "'");
-
-    $return_field = $category_lookup->fields['lookup_field'];
 
     return $return_field;
   }

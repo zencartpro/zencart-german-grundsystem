@@ -1,16 +1,16 @@
 <?php
 /**
- * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: banner_manager.php 2022-01-19 21:35:51Z webchills $
+ * @version $Id: banner_manager.php 2023-10-21 14:35:51Z webchills $
  */
 require 'includes/application_top.php';
 require 'includes/functions/functions_banner_graphs.php';
 
-$action = (isset($_GET['action']) ? $_GET['action'] : '');
+$action = ($_GET['action'] ?? '');
 if (isset($_GET['flagbanners_on_ssl'])) {
   $_GET['flagbanners_on_ssl'] = (int)$_GET['flagbanners_on_ssl'];
 }
@@ -124,14 +124,14 @@ if (!empty($action)) {
           $banners_image = new upload('banners_image');
           $banners_image->set_extensions(['jpg', 'jpeg', 'gif', 'png', 'webp', 'flv', 'webm', 'ogg']);
           $banners_image->set_destination(DIR_FS_CATALOG_IMAGES . $banners_image_target);
-          if (($banners_image->parse() == false) || ($banners_image->save() == false)) {
+          if (!$banners_image->parse() || !$banners_image->save()) {
             $messageStack->add(ERROR_BANNER_IMAGE_REQUIRED, 'error');
             $banner_error = true;
           }
         }
       }
 
-      if ($banner_error == false) {
+      if (!$banner_error) {
         $db_image_location = (zen_not_null($banners_image_local) || !isset($banners_image)) ? $banners_image_local : $banners_image_target . $banners_image->filename;
         $db_image_location = zen_limit_image_filename($db_image_location, TABLE_BANNERS, 'banners_image');
         $banners_url = zen_limit_image_filename($banners_url, TABLE_BANNERS, 'banners_url');
@@ -144,7 +144,7 @@ if (!empty($action)) {
           'status' => $status,
           'banners_open_new_windows' => $banners_open_new_windows,
           'banners_on_ssl' => $banners_on_ssl,
-          'banners_sort_order' => (int)$banners_sort_order,
+          'banners_sort_order' => $banners_sort_order,
         ];
 
         if ($action == 'add') {
@@ -234,7 +234,7 @@ if (!empty($action)) {
     <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
     <!-- header_eof //-->
 
-    <!--[if lte IE 8]><script type="text/javascript" src="includes/javascript/flot/excanvas.min.js"></script><![endif]-->
+    <!--[if lte IE 8]><script src="includes/javascript/flot/excanvas.min.js"></script><![endif]-->
     <script src="includes/javascript/flot/jquery.flot.min.js"></script>
     <script src="includes/javascript/flot/jquery.flot.orderbars.js"></script>
 
@@ -254,20 +254,20 @@ if (!empty($action)) {
             <tr>
               <td class="text-right"></td>
               <td class="text-center">
-                <i class="fa fa-square fa-2x txt-status-on align-middle" aria-hidden="true" title="<?php echo IMAGE_ICON_STATUS_ON; ?>"></i>&nbsp;<i class="fa fa-square fa-2x txt-status-off align-middle" aria-hidden="true" title="<?php echo IMAGE_ICON_STATUS_OFF; ?>"></i>
+                <i class="fa-solid fa-square fa-2x txt-status-on align-middle" aria-hidden="true" title="<?php echo IMAGE_ICON_STATUS_ON; ?>"></i>&nbsp;<i class="fa-solid fa-square fa-2x txt-status-off align-middle" aria-hidden="true" title="<?php echo IMAGE_ICON_STATUS_OFF; ?>"></i>
               </td>
               <td class="text-center">
-                <i class="fa fa-square fa-2x txt-orange align-middle" aria-hidden="true" title="<?php echo IMAGE_ICON_BANNER_OPEN_NEW_WINDOWS_ON; ?>"></i>&nbsp;
+                <i class="fa-solid fa-square fa-2x txt-orange align-middle" aria-hidden="true" title="<?php echo IMAGE_ICON_BANNER_OPEN_NEW_WINDOWS_ON; ?>"></i>&nbsp;
                 <span class="fa-stack" title="<?php echo IMAGE_ICON_BANNER_OPEN_NEW_WINDOWS_OFF; ?>">
-                  <i class="fa fa-square fa-stack-2x opacity-25 txt-orange align-middle" aria-hidden="true"></i>
-                  <i class="fa fa-times fa-stack-1x txt-red" aria-hidden="true"></i>
+                  <i class="fa-solid fa-square fa-stack-2x opacity-25 txt-orange align-middle" aria-hidden="true"></i>
+                  <i class="fa-solid fa-xmark fa-stack-1x txt-red" aria-hidden="true"></i>
                 </span>
               </td>
               <td class="text-center">
-                <i class="fa fa-square fa-2x txt-blue align-middle" aria-hidden="true" title="<?php echo IMAGE_ICON_BANNER_ON_SSL_ON; ?>"></i>&nbsp;
+                <i class="fa-solid fa-square fa-2x txt-blue align-middle" aria-hidden="true" title="<?php echo IMAGE_ICON_BANNER_ON_SSL_ON; ?>"></i>&nbsp;
                 <span class="fa-stack" title="<?php echo IMAGE_ICON_BANNER_ON_SSL_OFF; ?>">
-                  <i class="fa fa-square fa-stack-2x opacity-25 txt-blue align-middle" aria-hidden="true"></i>
-                  <i class="fa fa-times fa-stack-1x txt-red" aria-hidden="true"></i>
+                  <i class="fa-solid fa-square fa-stack-2x opacity-25 txt-blue align-middle" aria-hidden="true"></i>
+                  <i class="fa-solid fa-xmark fa-stack-1x txt-red" aria-hidden="true"></i>
                 </span>
               </td>
             </tr>
@@ -312,7 +312,7 @@ if (!empty($action)) {
           $bInfo->updateObjectInfo($_POST);
         }
 
-        $groups_array = array();
+        $groups_array = [];
         $groups = $db->Execute("SELECT DISTINCT banners_group
                                 FROM " . TABLE_BANNERS . "
                                 ORDER BY banners_group");
@@ -363,7 +363,7 @@ if (!empty($action)) {
           <div class="form-group">
               <?php echo zen_draw_label(TEXT_BANNERS_TITLE, 'banners_title', 'class="col-sm-3 control-label"'); ?>
             <div class="col-sm-9 col-md-6">
-              <?php echo zen_draw_input_field('banners_title', htmlspecialchars($bInfo->banners_title, ENT_COMPAT, CHARSET, TRUE), zen_set_field_length(TABLE_BANNERS, 'banners_title') . ' class="form-control" id="banners_title"', true); ?>
+              <?php echo zen_draw_input_field('banners_title', htmlspecialchars($bInfo->banners_title, ENT_COMPAT, CHARSET), zen_set_field_length(TABLE_BANNERS, 'banners_title') . ' class="form-control" id="banners_title"', true); ?>
             </div>
           </div>
           <div class="form-group">
@@ -376,7 +376,7 @@ if (!empty($action)) {
             <?php echo zen_draw_label(TEXT_BANNERS_GROUP, 'banners_group', 'class="col-sm-3 control-label"'); ?>
             <div class="col-sm-9 col-md-6">
               <?php echo zen_draw_pull_down_menu('banners_group', $groups_array, $bInfo->banners_group, 'class="form-control" id="banners_group"'); ?><br>
-              <p><?php echo TEXT_BANNERS_NEW_GROUP; ?></p><?php echo zen_draw_input_field('new_banners_group', '', 'class="form-control" id="new_banners_group"', ((count($groups_array) > 0) ? false : true)); ?>
+              <p><?php echo TEXT_BANNERS_NEW_GROUP; ?></p><?php echo zen_draw_input_field('new_banners_group', '', 'class="form-control" id="new_banners_group"', count($groups_array) === 0); ?>
             </div>
           </div>
           <div class="form-group">
@@ -385,7 +385,7 @@ if (!empty($action)) {
               <?php echo zen_draw_file_field('banners_image', '', 'class="form-control" id="banners_image"'); ?>
               <p><?php echo TEXT_BANNERS_IMAGE_LOCAL; ?></p>
               <p><?php echo DIR_FS_CATALOG_IMAGES; ?></p>
-              <?php echo zen_draw_input_field('banners_image_local', (isset($bInfo->banners_image) ? $bInfo->banners_image : ''), zen_set_field_length(TABLE_BANNERS, 'banners_image') . ' class="form-control"'); ?>
+              <?php echo zen_draw_input_field('banners_image_local', ($bInfo->banners_image ?? ''), zen_set_field_length(TABLE_BANNERS, 'banners_image') . ' class="form-control"'); ?>
             </div>
           </div>
           <div class="form-group">
@@ -401,7 +401,7 @@ if (!empty($action)) {
           <div class="form-group">
               <?php echo zen_draw_label(TEXT_BANNERS_HTML_TEXT, 'banners_html_text', 'class="col-sm-3 control-label"'); ?>
             <div class="col-sm-9 col-md-6">
-              <?php echo '<p>' . TEXT_BANNERS_HTML_TEXT_INFO . '</p>' . zen_draw_textarea_field('banners_html_text', 'soft', '80', '10', htmlspecialchars($bInfo->banners_html_text, ENT_COMPAT, CHARSET, TRUE), 'class="editorHook form-control" id="banners_htm_text"'); ?>
+              <?php echo '<p>' . TEXT_BANNERS_HTML_TEXT_INFO . '</p>' . zen_draw_textarea_field('banners_html_text', 'soft', '80', '10', htmlspecialchars($bInfo->banners_html_text, ENT_COMPAT, CHARSET), 'class="editorHook form-control" id="banners_html_text"'); ?>
             </div>
           </div>
           <div class="form-group">
@@ -415,7 +415,7 @@ if (!empty($action)) {
             <div class="col-sm-9 col-md-6">
               <div class="date input-group" id="datepicker_date_scheduled">
                 <span class="input-group-addon datepicker_icon">
-                  <i class="fa fa-calendar fa-lg"></i>
+                  <i class="fa-regular fa-calendar-days fa-lg"></i>
                 </span>
                 <?php echo zen_draw_input_field('date_scheduled', $bInfo->date_scheduled, 'class="form-control" id="date_scheduled" autocomplete="off"'); ?>
               </div>
@@ -427,7 +427,7 @@ if (!empty($action)) {
             <div class="col-sm-9 col-md-6">
               <div class="date input-group" id="datepicker_expires_date">
                 <span class="input-group-addon datepicker_icon">
-                  <i class="fa fa-calendar fa-lg"></i>
+                  <i class="fa-regular fa-calendar-days fa-lg"></i>
                 </span>
                 <?php echo zen_draw_input_field('expires_date', $bInfo->expires_date, 'class="form-control" id="expires_date" autocomplete="off"'); ?>
               </div>
@@ -490,7 +490,7 @@ if (!empty($action)) {
                         }
                         $check_count++;
                       }
-                      $_GET['page'] = round((($check_count / MAX_DISPLAY_SEARCH_RESULTS) + (fmod_round($check_count, MAX_DISPLAY_SEARCH_RESULTS) != 0 ? .5 : 0)), 0);
+                    $_GET['page'] = round((($check_count / MAX_DISPLAY_SEARCH_RESULTS) + (fmod_round($check_count, MAX_DISPLAY_SEARCH_RESULTS) != 0 ? .5 : 0)));
                     } else {
                       $_GET['page'] = 1;
                     }
@@ -513,56 +513,56 @@ if (!empty($action)) {
 
                     if (isset($bInfo) && is_object($bInfo) && ($banner['banners_id'] == $bInfo->banners_id)) {
                       ?>
-                    <tr id="defaultSelected" class="dataTableRowSelected" onclick="document.location.href = '<?php echo zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $bInfo->banners_id . '&action=new'); ?>'" role="button">
+                    <tr id="defaultSelected" class="dataTableRowSelected" onclick="document.location.href = '<?php echo zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $bInfo->banners_id . '&action=new'); ?>'">
                         <?php
                       } else {
                         ?>
-                    <tr class="dataTableRow" onclick="document.location.href = '<?php echo zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $banner['banners_id']); ?>'" role="button">
+                    <tr class="dataTableRow" onclick="document.location.href = '<?php echo zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $banner['banners_id']); ?>'">
                         <?php
                       }
                       ?>
                     <td class="dataTableContent">
-                      <a href="javascript:popupImageWindow('<?php echo zen_href_link(FILENAME_POPUP_IMAGE, 'banner=' . $banner['banners_id']); ?>')" title="View Banner"><i class="fa fa-window-restore fa-lg txt-black" aria-hidden="true"></i></a>&nbsp;<?php echo $banner['banners_title']; ?></td>
+                      <a href="javascript:popupImageWindow('<?php echo zen_href_link(FILENAME_POPUP_IMAGE, 'banner=' . $banner['banners_id']); ?>')" title="View Banner"><i class="fa-regular fa-window-restore fa-lg txt-black" aria-hidden="true"></i></a>&nbsp;<?php echo $banner['banners_title']; ?></td>
                     <td class="dataTableContent text-right"><?php echo $banner['banners_group']; ?></td>
                     <td class="dataTableContent text-right"><?php echo $banners_shown . ' / ' . $banners_clicked; ?></td>
                     <td class="dataTableContent text-center">
                       <?php if ($banner['status'] == '1') { ?>
-                        <a href="<?php echo zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $banner['banners_id'] . '&action=setflag&flag=0'); ?>"><i class="fa fa-square fa-2x txt-status-on" aria-hidden="true" title="<?php echo IMAGE_ICON_STATUS_ON; ?>"></i></a>
+                        <a href="<?php echo zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $banner['banners_id'] . '&action=setflag&flag=0'); ?>"><i class="fa-solid fa-square fa-2x txt-status-on" aria-hidden="true" title="<?php echo IMAGE_ICON_STATUS_ON; ?>"></i></a>
                       <?php } else { ?>
-                        <a href="<?php echo zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $banner['banners_id'] . '&action=setflag&flag=1'); ?>"><i class="fa fa-square fa-2x txt-status-off" aria-hidden="true" title="<?php echo IMAGE_ICON_STATUS_OFF; ?>"></i></a>
+                        <a href="<?php echo zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $banner['banners_id'] . '&action=setflag&flag=1'); ?>"><i class="fa-solid fa-square fa-2x txt-status-off" aria-hidden="true" title="<?php echo IMAGE_ICON_STATUS_OFF; ?>"></i></a>
                       <?php } ?>
                     </td>
                     <td class="dataTableContent text-center">
                       <?php if ($banner['banners_open_new_windows'] == '1') { ?>
-                        <a href="<?php echo zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $banner['banners_id'] . '&action=setbanners_open_new_windows&flagbanners_open_new_windows=0'); ?>"><i class="fa fa-square fa-2x txt-orange align-middle" aria-hidden="true" title="<?php echo IMAGE_ICON_BANNER_OPEN_NEW_WINDOWS_ON; ?>"></i></a>
+                        <a href="<?php echo zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $banner['banners_id'] . '&action=setbanners_open_new_windows&flagbanners_open_new_windows=0'); ?>"><i class="fa-solid fa-square fa-2x txt-orange align-middle" aria-hidden="true" title="<?php echo IMAGE_ICON_BANNER_OPEN_NEW_WINDOWS_ON; ?>"></i></a>
                       <?php } else { ?>
                         <a href="<?php echo zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $banner['banners_id'] . '&action=setbanners_open_new_windows&flagbanners_open_new_windows=1'); ?>"><span class="fa-stack" title="<?php echo IMAGE_ICON_BANNER_OPEN_NEW_WINDOWS_OFF; ?>">
-                            <i class="fa fa-square fa-stack-2x opacity-25 txt-orange" aria-hidden="true"></i>
-                            <i class="fa fa-times fa-stack-1x txt-red" aria-hidden="true"></i>
+                            <i class="fa-solid fa-square fa-stack-2x opacity-25 txt-orange" aria-hidden="true"></i>
+                            <i class="fa-solid fa-xmark fa-stack-1x txt-red" aria-hidden="true"></i>
                           </span>
                         </a>
                       <?php } ?>
                     </td>
                     <td class="dataTableContent text-center">
                       <?php if ($banner['banners_on_ssl'] == '1') { ?>
-                        <a href="<?php echo zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $banner['banners_id'] . '&action=setbanners_on_ssl&flagbanners_on_ssl=0'); ?>"><i class="fa fa-square fa-2x txt-blue align-middle" aria-hidden="true" title="<?php echo IMAGE_ICON_BANNER_ON_SSL_ON; ?>"></i></a>
+                        <a href="<?php echo zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $banner['banners_id'] . '&action=setbanners_on_ssl&flagbanners_on_ssl=0'); ?>"><i class="fa-solid fa-square fa-2x txt-blue align-middle" aria-hidden="true" title="<?php echo IMAGE_ICON_BANNER_ON_SSL_ON; ?>"></i></a>
                       <?php } else { ?>
                         <a href="<?php echo zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $banner['banners_id'] . '&action=setbanners_on_ssl&flagbanners_on_ssl=1'); ?>">
                           <span class="fa-stack" title="<?php echo IMAGE_ICON_BANNER_ON_SSL_OFF; ?>">
-                            <i class="fa fa-square fa-stack-2x opacity-25 txt-blue" aria-hidden="true"></i>
-                            <i class="fa fa-times fa-stack-1x txt-red" aria-hidden="true"></i>
+                            <i class="fa-solid fa-square fa-stack-2x opacity-25 txt-blue" aria-hidden="true"></i>
+                            <i class="fa-solid fa-xmark fa-stack-1x txt-red" aria-hidden="true"></i>
                           </span>
                         </a>
                       <?php } ?>
                     </td>
                     <td class="dataTableContent text-right"><?php echo $banner['banners_sort_order']; ?></td>
                     <td class="dataTableContent text-right">
-                      <a href="<?php echo zen_href_link(FILENAME_BANNER_STATISTICS, 'page=' . $_GET['page'] . '&bID=' . $banner['banners_id']); ?>"><i class="fa fa-line-chart fa-lg txt-black" aria-hidden="true"></i></a>
+                      <a href="<?php echo zen_href_link(FILENAME_BANNER_STATISTICS, 'page=' . $_GET['page'] . '&bID=' . $banner['banners_id']); ?>"><i class="fa-solid fa-line-chart fa-lg txt-black" aria-hidden="true"></i></a>
                       <?php if (isset($bInfo) && is_object($bInfo) && ($banner['banners_id'] == $bInfo->banners_id)) { ?>
-                        <i class="fa fa-caret-right fa-2x fa-fw txt-navy align-middle"></i>
+                        <i class="fa-solid fa-caret-right fa-2x fa-fw txt-navy align-middle"></i>
                       <?php } else { ?>
                         <a href="<?php echo zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $banner['banners_id']); ?>">
-                          <i class="fa fa-info-circle fa-2x fa-fw txt-black align-middle"></i>
+                          <i class="fa-solid fa-circle-info fa-2x fa-fw txt-black align-middle"></i>
                         </a>
                       <?php } ?>
                     </td>
@@ -578,23 +578,23 @@ if (!empty($action)) {
               switch ($action) {
                 case 'delete': // deprecated
                 case 'del':
-                  $heading[] = array('text' => '<h4>' . $bInfo->banners_title . '</h4>');
+                $heading[] = ['text' => '<h4>' . $bInfo->banners_title . '</h4>'];
 
-                  $contents = array('form' => zen_draw_form('banners', FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&action=deleteconfirm') . zen_draw_hidden_field('bID', $bInfo->banners_id));
-                  $contents[] = array('text' => TEXT_INFO_DELETE_INTRO);
-                $contents[] = array('text' => '<b>' . $bInfo->banners_title . '</b>');
+                $contents = ['form' => zen_draw_form('banners', FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&action=deleteconfirm') . zen_draw_hidden_field('bID', $bInfo->banners_id)];
+                $contents[] = ['text' => TEXT_INFO_DELETE_INTRO];
+                $contents[] = ['text' => '<b>' . $bInfo->banners_title . '</b>'];
                 if ($bInfo->banners_image) {
-                  $contents[] = array('text' => '<div class="checkbox-inline"><label>' . zen_draw_checkbox_field('delete_image', 'on', true) . TEXT_INFO_DELETE_IMAGE . '</label></div>');
+                  $contents[] = ['text' => '<div class="checkbox-inline"><label>' . zen_draw_checkbox_field('delete_image', 'on', true) . TEXT_INFO_DELETE_IMAGE . '</label></div>'];
                 }
-                $contents[] = array('align' => 'text-center', 'text' => '<button type="submit" class="btn btn-danger">' . IMAGE_DELETE . '</button> <a href="' . zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $_GET['bID']) . '" class="btn btn-default" role="button">' . IMAGE_CANCEL . '</a>');
+                $contents[] = ['align' => 'text-center', 'text' => '<button type="submit" class="btn btn-danger">' . IMAGE_DELETE . '</button> <a href="' . zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $_GET['bID']) . '" class="btn btn-default" role="button">' . IMAGE_CANCEL . '</a>'];
                 break;
               default:
                 if (is_object($bInfo)) {
-                  $heading[] = array('text' => '<h4>' . $bInfo->banners_title . '</h4>');
+                  $heading[] = ['text' => '<h4>' . $bInfo->banners_title . '</h4>'];
 
-                  $contents[] = array('align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $bInfo->banners_id . '&action=new') . '" class="btn btn-primary" role="button">' . IMAGE_EDIT . '</a> <a href="' . zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $bInfo->banners_id . '&action=del') . '" class="btn btn-warning" role="button">' . IMAGE_DELETE . '</a>');
-                  $contents[] = array('text' => TEXT_BANNERS_DATE_ADDED . ' ' . zen_date_short($bInfo->date_added));
-                  $contents[] = array('align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $bInfo->banners_id) . '" class="btn btn-default" role="button">' . IMAGE_UPDATE . '</a>');
+                  $contents[] = ['align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $bInfo->banners_id . '&action=new') . '" class="btn btn-primary" role="button">' . IMAGE_EDIT . '</a> <a href="' . zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $bInfo->banners_id . '&action=del') . '" class="btn btn-warning" role="button">' . IMAGE_DELETE . '</a>'];
+                  $contents[] = ['text' => TEXT_BANNERS_DATE_ADDED . ' ' . zen_date_short($bInfo->date_added)];
+                  $contents[] = ['align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $bInfo->banners_id) . '" class="btn btn-default" role="button">' . IMAGE_UPDATE . '</a>'];
 
                   $banner_id = $bInfo->banners_id;
                   $days = 3;
@@ -641,7 +641,7 @@ if (!empty($action)) {
                     'text' => '<br>' .
                     '<div id="banner-infobox" style="width:200px;height:220px;"></div>' .
                     '<div class="flot-x-axis">' .
-                    '<div class="flot-tick-label">' . sprintf(TEXT_BANNERS_LAST_3_DAYS) . '</div>' .
+                    '<div class="flot-tick-label">' . TEXT_BANNERS_LAST_3_DAYS . '</div>' .
                     '</div>' .
                     '<script>' .
                     'var data = ' . json_encode($data) . ' ;' .
@@ -651,17 +651,17 @@ if (!empty($action)) {
                   ];
 
                   if ($bInfo->date_scheduled) {
-                    $contents[] = array('text' => sprintf(TEXT_BANNERS_SCHEDULED_AT_DATE, zen_date_short($bInfo->date_scheduled)));
+                    $contents[] = ['text' => sprintf(TEXT_BANNERS_SCHEDULED_AT_DATE, zen_date_short($bInfo->date_scheduled))];
                   }
 
-                    if ($bInfo->expires_date) {
-                    $contents[] = array('text' => sprintf(TEXT_BANNERS_EXPIRES_AT_DATE, zen_date_short($bInfo->expires_date)));
+                  if ($bInfo->expires_date) {
+                    $contents[] = ['text' => sprintf(TEXT_BANNERS_EXPIRES_AT_DATE, zen_date_short($bInfo->expires_date))];
                   } elseif ($bInfo->expires_impressions) {
-                    $contents[] = array('text' => sprintf(TEXT_BANNERS_EXPIRES_AT_IMPRESSIONS, $bInfo->expires_impressions));
+                    $contents[] = ['text' => sprintf(TEXT_BANNERS_EXPIRES_AT_IMPRESSIONS, $bInfo->expires_impressions)];
                   }
 
                   if ($bInfo->date_status_change) {
-                    $contents[] = array('text' => sprintf(TEXT_BANNERS_STATUS_CHANGE, zen_date_short($bInfo->date_status_change)));
+                    $contents[] = ['text' => sprintf(TEXT_BANNERS_STATUS_CHANGE, zen_date_short($bInfo->date_status_change))];
                   }
                 }
                 break;
@@ -697,8 +697,12 @@ if (!empty($action)) {
     <!-- script for datepicker -->
     <script>
       $(function () {
-        $('input[name="date_scheduled"]').datepicker();
-        $('input[name="expires_date"]').datepicker();
+        $('input[name="date_scheduled"]').datepicker({
+            minDate: 0
+        });
+        $('input[name="expires_date"]').datepicker({
+            minDate: 1
+        });
       })
     </script>
   </body>

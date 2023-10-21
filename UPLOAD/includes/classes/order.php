@@ -1,10 +1,10 @@
 <?php
 /**
  * Zen Cart German Specific (zencartpro adaptations / 158 code in 157)
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: order.php 2023-05-02 19:45:25Z webchills $
+ * @version $Id: order.php 2023-10-21 15:45:25Z webchills $
  */
 /**
  * order class
@@ -1199,12 +1199,11 @@ class order extends base
                 (!empty($this->products_ordered_attributes) ? "\n" . '<nobr>' . '<small><em>' . nl2br($this->products_ordered_attributes) . '</em></small>' . '</nobr>' : '') .
                 '</td>' . "\n" .
       '<td class="product-details-num" valign="top" align="right">' .
-      $currencies->display_price($this->products[$i]['final_price'], $this->products[$i]['tax'], $this->products[$i]['qty']) .
-      ($this->products[$i]['onetime_charges'] !=0 ?
-      '</td></tr>' . "\n" . '<tr><td class="product-details">' . nl2br(TEXT_ONETIME_CHARGES_EMAIL) . '</td>' . "\n" .
-      '<td>' . $currencies->display_price($this->products[$i]['onetime_charges'], $this->products[$i]['tax'], 1) : '') .
-      '</td></tr>' . "\n";
-    }
+                $currencies->display_price($this->products[$i]['final_price'], $this->products[$i]['tax'], $this->products[$i]['qty']) . '</td>' . "\n" . '</tr>' . "\n" .
+                ($this->products[$i]['onetime_charges'] != 0 ?
+                    '<tr>'. "\n" . '<td class="product-details" colspan="2">' . nl2br(TEXT_ONETIME_CHARGES_EMAIL) . '</td>' . "\n" .
+                    '<td valign="top" align="right">' . $currencies->display_price($this->products[$i]['onetime_charges'], $this->products[$i]['tax'], 1) . '</td>' . "\n" . '</tr>' . "\n": '');
+        }
 
     $order_total_modules->apply_credit();//ICW ADDED FOR CREDIT CLASS SYSTEM
     $this->notify('NOTIFY_ORDER_AFTER_ORDER_CREATE_ADD_PRODUCTS');
@@ -1214,8 +1213,9 @@ class order extends base
     /**
      * @param int|null $zf_insert_id OrderNumber for display - unused/deprecated since 1.5.7.
      */
-  function send_order_email($zf_insert_id = null, $zf_mode = FALSE) {
-    global $currencies, $order_totals;
+    function send_order_email($zf_insert_id = null)
+    {
+        global $currencies, $order_totals, $zcDate;
 
     if ($zf_insert_id === null) $zf_insert_id = $this->orderId;
 
@@ -1246,7 +1246,7 @@ class order extends base
     EMAIL_THANKS_FOR_SHOPPING . "\n" . EMAIL_DETAILS_FOLLOW . "\n" .
     EMAIL_SEPARATOR . "\n" .
     EMAIL_TEXT_ORDER_NUMBER . ' ' . $zf_insert_id . "\n" .
-    EMAIL_TEXT_DATE_ORDERED . ' ' . strftime(DATE_FORMAT_LONG) . "\n" .
+            EMAIL_TEXT_DATE_ORDERED . ' ' . $zcDate->output(DATE_FORMAT_LONG) . "\n" .
     EMAIL_TEXT_INVOICE_URL . ' ' . zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $zf_insert_id, 'SSL', false) . "\n\n";
 
     $html_msg['EMAIL_TEXT_HEADER']     = EMAIL_TEXT_HEADER;
@@ -1257,7 +1257,7 @@ class order extends base
     $html_msg['INTRO_ORDER_NUM_TITLE'] = EMAIL_TEXT_ORDER_NUMBER;
     $html_msg['INTRO_ORDER_NUMBER']    = $zf_insert_id;
     $html_msg['INTRO_DATE_TITLE']      = EMAIL_TEXT_DATE_ORDERED;
-    $html_msg['INTRO_DATE_ORDERED']    = strftime(DATE_FORMAT_LONG);
+    $html_msg['INTRO_DATE_ORDERED'] = $zcDate->output(DATE_FORMAT_LONG);
     $html_msg['INTRO_URL_TEXT']        = EMAIL_TEXT_INVOICE_URL_CLICK;
     $html_msg['INTRO_URL_VALUE']       = zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $zf_insert_id, 'SSL', false);
     $html_msg['EMAIL_CUSTOMER_PHONE']  = $this->customer['telephone'];

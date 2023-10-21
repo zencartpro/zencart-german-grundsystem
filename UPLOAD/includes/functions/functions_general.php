@@ -2,12 +2,12 @@
 /**
  * functions_general.php
  * General functions used throughout Zen Cart
- *
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_general.php 2022-04-17 08:55:50Z webchills $
+ * @version $Id: functions_general.php 2023-10-21 15:55:50Z webchills $
  */
 /**
  * Stop execution completely
@@ -149,11 +149,15 @@
     return $number;
   }
 
-
-// Output a raw date string in the selected locale date format
-// $raw_date needs to be in this format: YYYY-MM-DD HH:MM:SS
-  function zen_date_long($raw_date) {
-    if ($raw_date <= '0001-01-01 00:00:00' || $raw_date == '') return false;
+/**
+ * Output a raw date string in the selected locale date format
+ *
+ * @param string $raw_date needs to be in this format: YYYY-MM-DD HH:MM:SS
+ * @return bool|false|string
+ */
+function zen_date_long($raw_date)
+{
+    if (empty($raw_date) || $raw_date <= '0001-01-01 00:00:00') return false;
 
     $year = (int)substr($raw_date, 0, 4);
     $month = (int)substr($raw_date, 5, 2);
@@ -162,20 +166,23 @@
     $minute = (int)substr($raw_date, 14, 2);
     $second = (int)substr($raw_date, 17, 2);
 
-    $retVal = strftime(DATE_FORMAT_LONG, mktime($hour, $minute, $second, $month, $day, $year));
-    if (stristr(PHP_OS, 'win')) return utf8_encode($retVal);
-    return $retVal;
-  }
+    global $zcDate;
+    return $zcDate->output(DATE_FORMAT_LONG, mktime($hour, $minute, $second, $month, $day, $year));
+}
 
 
-////
-// Output a raw date string in the selected locale date format
-// $raw_date needs to be in this format: YYYY-MM-DD HH:MM:SS
-// NOTE: Includes a workaround for dates before 01/01/1970 that fail on windows servers
-  function zen_date_short($raw_date) {
-    if ($raw_date <= '0001-01-01 00:00:00' || empty($raw_date)) return false;
+/**
+ * Output a raw date string in the selected locale date format
+ * NOTE: Includes a workaround for dates before 01/01/1970 that fail on windows servers
+ *
+ * @param string $raw_date needs to be in this format: YYYY-MM-DD HH:MM:SS
+ * @return bool|false|string|string[]|null
+ */
+function zen_date_short($raw_date)
+{
+    if (empty($raw_date) || $raw_date <= '0001-01-01 00:00:00') return false;
 
-    $year = substr($raw_date, 0, 4);
+    $year = (int)substr($raw_date, 0, 4);
     $month = (int)substr($raw_date, 5, 2);
     $day = (int)substr($raw_date, 8, 2);
     $hour = (int)substr($raw_date, 11, 2);
@@ -344,20 +351,21 @@
 
 ////
 // Check date
-  function zen_checkdate($date_to_check, $format_string, &$date_array) {
+function zen_checkdate($date_to_check, $format_string, &$date_array)
+{
     $separator_idx = -1;
 
     $separators = array('-', ' ', '/', '.');
-    $month_abbr = array('jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec');
+    $month_abbr = array('jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec');
     $no_of_days = array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
 
     $format_string = strtolower($format_string);
 
     if (strlen($date_to_check) != strlen($format_string)) {
-      return false;
+        return false;
     }
 
-    $size = sizeof($separators);
+    $size = count($separators);
     for ($i=0; $i<$size; $i++) {
       $pos_separator = strpos($date_to_check, $separators[$i]);
       if ($pos_separator != false) {
@@ -380,16 +388,16 @@
 
     if ($date_separator_idx != -1) {
       $format_string_array = explode( $separators[$date_separator_idx], $format_string );
-      if (sizeof($format_string_array) != 3) {
+        if (count($format_string_array) != 3) {
         return false;
       }
 
       $date_to_check_array = explode( $separators[$date_separator_idx], $date_to_check );
-      if (sizeof($date_to_check_array) != 3) {
+        if (count($date_to_check_array) != 3) {
         return false;
       }
 
-      $size = sizeof($format_string_array);
+        $size = count($format_string_array);
       for ($i=0; $i<$size; $i++) {
         if ($format_string_array[$i] == 'mm' || $format_string_array[$i] == 'mmm') $month = $date_to_check_array[$i];
         if ($format_string_array[$i] == 'dd') $day = $date_to_check_array[$i];
@@ -400,7 +408,7 @@
         $pos_month = strpos($format_string, 'mmm');
         if ($pos_month != false) {
           $month = substr( $date_to_check, $pos_month, 3 );
-          $size = sizeof($month_abbr);
+          $size = count($month_abbr);
           for ($i=0; $i<$size; $i++) {
             if ($month == $month_abbr[$i]) {
               $month = $i;
@@ -447,18 +455,21 @@
     return true;
   }
 
-
-////
-// Check if year is a leap year
-  function zen_is_leap_year($year) {
+/**
+ * Check if year is a leap year
+ * @param int $year
+ * @return bool
+ */
+function zen_is_leap_year($year)
+{
     if ($year % 100 == 0) {
-      if ($year % 400 == 0) return true;
+        if ($year % 400 == 0) return true;
     } else {
-      if (($year % 4) == 0) return true;
+        if (($year % 4) == 0) return true;
     }
 
     return false;
-  }
+}
 
 ////
 // Return table heading with sorting capabilities
@@ -1236,9 +1247,9 @@ function zen_set_field_length($tbl, $fld, $max = 70)
  * $end2 raw_datetime, raw_date or effectively blank (if $start2 is array, the value here is replaced, otherwise this datetime is considered eternally effective)
  * $future_only boolean or string of 'past': values should be true, false, or 'past'
  * returns a boolean true/false.  In error case of array provided without proper keys true returned and warning log also generated
- **/
-
-  function zen_datetime_overlap($start1, $start2, $end1 = NULL, $end2 = NULL, $future_only = true) {
+ */
+function zen_datetime_overlap($start1, $start2, $end1 = null, $end2 = null, $future_only = true)
+{
     $cur_datetime = date("Y-m-d h:i:s", time());
 
     // BOF if variable is provided as an array, validate properly setup and if so, assign and replace the other applicable values.

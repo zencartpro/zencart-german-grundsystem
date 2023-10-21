@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: function_banner_graphs.php 2022-01-19 21:34:16Z webchills $
+ * @version $Id: function_banner_graphs.php 2023-10-21 15:34:16Z webchills $
  */
 
   function zen_get_banner_data_recent($banner_id, $days) {
@@ -53,11 +53,11 @@
   }
 
   function zen_get_banner_data_monthly($banner_id, $year = '') {
-    global $db;
+    global $db, $zcDate;
     if ((int)$year == 0) $year = date('Y');
     $set1 = $set2 = $stats = $months = array();
     for ($i=1; $i<13; $i++) {
-      $m = strftime('%b', mktime(0,0,0,$i));
+      $m = $zcDate->output('%b', mktime(0,0,0,$i));
       $months[] = array((int)$i, $m);
       $set1[] = $set2[] = $stats[] = array($i, 0);
     }
