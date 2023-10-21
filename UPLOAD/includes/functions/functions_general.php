@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_general.php 2023-10-21 15:55:50Z webchills $
+ * @version $Id: functions_general.php 2023-10-21 18:41:50Z webchills $
  */
 /**
  * Stop execution completely
@@ -568,26 +568,33 @@ function zen_is_leap_year($year)
     return false;
   }
 
-////
-// Return a random value
-  function zen_rand($min = null, $max = null) {
+/**
+ * Return a random value
+ */
+function zen_rand($min = null, $max = null)
+{
     static $seeded;
 
     if (!isset($seeded)) {
-      mt_srand((double)microtime()*1000000);
-      $seeded = true;
+        // -----
+        // By default, microtime returns a string value.  To increase the precision of the
+        // random seed, have it return a float to be multiplied and then convert the value
+        // to an integer, as required by the mt_srand function.
+        //
+        mt_srand((int)(microtime(true) * 1000000));
+        $seeded = true;
     }
 
     if (isset($min) && isset($max)) {
-      if ($min >= $max) {
-        return $min;
-      } else {
-        return mt_rand($min, $max);
-      }
+        if ($min >= $max) {
+            return $min;
+        } else {
+            return mt_rand($min, $max);
+        }
     } else {
-      return mt_rand();
+        return mt_rand();
     }
-  }
+}
 
   /**
    * Determine visitor's IP address, resolving any proxies where possible.

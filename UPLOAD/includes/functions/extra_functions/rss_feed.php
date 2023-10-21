@@ -3,10 +3,10 @@
  * Zen Cart German Specific
  * @package rss feed
  * @copyright Copyright 2004-2008 Andrew Berezin eCommerce-Service.com
- * @copyright Portions Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Portions Copyright 2003-2023 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: rss_feed.php 2022-01-16 18:56:04 webchills $
+ * @version $Id: rss_feed.php 2023-10-21 18:56:04 webchills $
  */
 
 @define('RSS_HOMEPAGE_FEED', '');
@@ -28,7 +28,7 @@
       case ($feed == 'categories'):
         $title = TEXT_RSS_CATEGORIES;
         if (isset($_GET['cPath']) && $current_category_id > 0) {
-          $title .= RSS_TITLE_DELIMITER2 . strip_tags(zen_get_categories_name((int)$current_category_id));
+          $title .= RSS_TITLE_DELIMITER2 . strip_tags(zen_get_category_name((int)$current_category_id));
         }
         break;
       case ($feed == 'specials_random'):
@@ -55,7 +55,7 @@
         if (isset($_GET['products_id'])) {
           $title = TEXT_RSS_PRODUCT . RSS_TITLE_DELIMITER2 . strip_tags(zen_get_products_name((int)$_GET['products_id']));
         } elseif (isset($_GET['cPath']) && $current_category_id > 0) {
-          $title = TEXT_RSS_PRODUCTS . RSS_TITLE_DELIMITER2 . strip_tags(zen_get_categories_name((int)$current_category_id));
+          $title = TEXT_RSS_PRODUCTS . RSS_TITLE_DELIMITER2 . strip_tags(zen_get_category_name((int)$current_category_id));
         } else {
           $title = TEXT_RSS_PRODUCTS_ALL;
         }

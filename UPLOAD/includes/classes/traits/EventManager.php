@@ -1,9 +1,10 @@
 <?php
 /**
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: EventManager.php 2021-12-28 17:56:29Z webchills $
+ * @version $Id: EventManager.php 2023-10-21 17:56:29Z webchills $
  */
 
 namespace Zencart\Traits;
@@ -20,7 +21,7 @@ trait EventManager
         $this->logNotifier($eventID, $param1, $param2, $param3, $param4, $param5, $param6, $param7, $param8, $param9);
 
         $observers = &$this->getStaticObserver();
-        if (is_null($observers)) {
+        if (empty($observers)) {
             return;
         }
         foreach ($observers as $key => $obs) {
@@ -60,7 +61,7 @@ trait EventManager
             foreach($methodsToCheck as $method) {
                 if (method_exists($obs['obs'], $method)) {
                     $obs['obs']->{$method}($this, $actualEventId, $param1, $param2, $param3, $param4, $param5, $param6, $param7, $param8, $param9);
-                    return;
+                    continue 2;
                 }
             }
             // If no update handler method exists then trigger an error so the problem is logged
@@ -81,9 +82,10 @@ trait EventManager
 
     protected function logNotifier($eventID, $param1, $param2, $param3, $param4, $param5, $param6, $param7, $param8, $param9)
     {
-        if (!defined('NOTIFIER_TRACE') || NOTIFIER_TRACE == '' || NOTIFIER_TRACE == 'false' || NOTIFIER_TRACE == 'Off') {
+        if (!defined('NOTIFIER_TRACE') || empty(NOTIFIER_TRACE) || NOTIFIER_TRACE === 'false' || NOTIFIER_TRACE === 'Off') {
             return;
         }
+        global $zcDate;
         $file = DIR_FS_LOGS . '/notifier_trace.log';
         $paramArray = (is_array($param1) && count($param1) == 0) ? array() : array('param1' => $param1);
         for ($i = 2; $i < 10; $i++) {
@@ -100,13 +102,13 @@ trait EventManager
         $output = '';
         if (count($paramArray)) {
             $output = ', ';
-            if (NOTIFIER_TRACE == 'var_export' || NOTIFIER_TRACE == 'var_dump' || NOTIFIER_TRACE == 'true') {
+            if (NOTIFIER_TRACE === 'var_export' || NOTIFIER_TRACE === 'var_dump' || NOTIFIER_TRACE === 'true') {
                 $output .= var_export($paramArray, true);
-            } elseif (NOTIFIER_TRACE == 'print_r' || NOTIFIER_TRACE == 'On' || NOTIFIER_TRACE === true) {
+            } elseif (NOTIFIER_TRACE === 'print_r' || NOTIFIER_TRACE === 'On' || NOTIFIER_TRACE === true) {
                 $output .= print_r($paramArray, true);
             }
         }
-        error_log(strftime("%Y-%m-%d %H:%M:%S") . ' [main_page=' . $main_page . '] ' . $eventID . $output . "\n", 3, $file);
+        error_log($zcDate->output("%Y-%m-%d %H:%M:%S") . ' [main_page=' . $main_page . '] ' . $eventID . $output . "\n", 3, $file);
     }
 
     private function eventIdHasAlias($eventId)

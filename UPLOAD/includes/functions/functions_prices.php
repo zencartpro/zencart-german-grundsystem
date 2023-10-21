@@ -1,13 +1,13 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  * functions_prices
  * 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_prices.php 2022-04-17 08:58:24Z webchills $
+ * @version $Id: functions_prices.php 2023-10-21 18:58:24Z webchills $
  */
 
 ////
@@ -1177,27 +1177,40 @@ If a special exist * 10
     return $display_normal_price;
   }
 
-////
-// return attributes_price_factor
-  function zen_get_attributes_price_factor($price, $special, $factor, $offset) {
-    if (defined('ATTRIBUTES_PRICE_FACTOR_FROM_SPECIAL') && ATTRIBUTES_PRICE_FACTOR_FROM_SPECIAL =='1' and $special) {
-      // calculate from specials_new_products_price
-      $calculated_price = $special * ($factor - $offset);
+/**
+ * Calculate attribute price based on specified factors
+ * @param float $price
+ * @param float $special
+ * @param float $factor
+ * @param float $offset
+ * @return float|int
+ */
+function zen_get_attributes_price_factor($price, $special, $factor, $offset)
+{
+    if (defined('ATTRIBUTES_PRICE_FACTOR_FROM_SPECIAL') && ATTRIBUTES_PRICE_FACTOR_FROM_SPECIAL == '1' && $special) {
+        // calculate from specials_new_products_price
+        $calculated_price = $special * ($factor - $offset);
     } else {
-      // calculate from products_price
-      $calculated_price = $price * ($factor - $offset);
+        // calculate from products_price
+        $calculated_price = $price * ($factor - $offset);
     }
 //    return '$price ' . $price . ' $special ' . $special . ' $factor ' . $factor . ' $offset ' . $offset;
     return $calculated_price;
-  }
+}
 
 
-////
-// return attributes_qty_prices or attributes_qty_prices_onetime based on qty
-  function zen_get_attributes_qty_prices_onetime($string, $qty) {
-    $attribute_qty = preg_split("/[:,]/" , str_replace(' ', '', $string));
+/**
+ * get attributes_qty_prices or attributes_qty_prices_onetime based on qty
+ * @param string $string
+ * @param int|float $qty
+ * @return int|mixed
+ */
+function zen_get_attributes_qty_prices_onetime($string, $qty)
+{
+    if (empty($string)) return 0; 
+    $attribute_qty = preg_split("/[:,]/", str_replace(' ', '', $string));
     $new_price = 0;
-    $size = sizeof($attribute_qty);
+    $size = count($attribute_qty);
 // if an empty string is passed then $attributes_qty will consist of a 1 element array
     if ($size > 1) {
       for ($i=0, $n=$size; $i<$n; $i+=2) {
@@ -1230,33 +1243,41 @@ If a special exist * 10
   }
 
 
-////
-// attributes final price
-  function zen_get_attributes_price_final($attribute, $qty = 1, $pre_selected = null, $include_onetime = 'false', $prod_priced_by_attr = false, $attributes_discounted = 0, $include_products_price_in = false) {
+/**
+ * determine attribute final price
+ * @param int $attribute_id
+ * @param int|float $qty
+ * @param queryFactoryResult $pre_selected
+ * @param bool $include_onetime
+ * @param bool $prod_priced_by_attr
+ * @param int $attributes_discounted
+ * @param bool $include_products_price_in
+ * @return bool|float|int|mixed|string
+ */
+function zen_get_attributes_price_final($attribute_id, $qty = 1, $pre_selected = null, $include_onetime = false, $prod_priced_by_attr = false, $attributes_discounted = 0, $include_products_price_in = false)
+{
     global $db;
 
     $attributes_price_final = 0;
 
-    if (empty($pre_selected) || $attribute != $pre_selected->fields["products_attributes_id"]) {
-      $pre_selected = $db->Execute("SELECT pa.* FROM " . TABLE_PRODUCTS_ATTRIBUTES . " pa WHERE pa.products_attributes_id = " . (int)$attribute);
-    } else {
-      // use existing select
+    if (empty($pre_selected) || $attribute_id != $pre_selected->fields['products_attributes_id']) {
+        $pre_selected = $db->Execute("SELECT pa.* FROM " . TABLE_PRODUCTS_ATTRIBUTES . " pa WHERE pa.products_attributes_id = " . (int)$attribute_id);
     }
 
     // normal attributes price discounted by sales/specials or not discounted if neither a sale nor a special
     if ($pre_selected->fields["price_prefix"] == '-') {
 //      $attributes_price_final -= $pre_selected->fields["options_values_price"];
-      $attributes_price_final -= zen_get_discount_calc($pre_selected->fields["products_id"], $pre_selected->fields["products_attributes_id"], ($prod_priced_by_attr ? $products_price = zen_products_lookup($pre_selected->fields["products_id"], 'products_price') : 0) + ($prod_priced_by_attr ? -1 : 1) * $pre_selected->fields["options_values_price"]);
+        $attributes_price_final -= zen_get_discount_calc($pre_selected->fields['products_id'], $pre_selected->fields['products_attributes_id'], ($prod_priced_by_attr ? $products_price = zen_products_lookup($pre_selected->fields['products_id'], 'products_price') : 0) + ($prod_priced_by_attr ? -1 : 1) * $pre_selected->fields['options_values_price']);
     } else {
-//      $attributes_price_final += $pre_selected->fields["options_values_price"];
-      $attributes_price_final += zen_get_discount_calc($pre_selected->fields["products_id"], $pre_selected->fields["products_attributes_id"], ($prod_priced_by_attr ? $products_price = zen_products_lookup($pre_selected->fields["products_id"], 'products_price') : 0) + $pre_selected->fields["options_values_price"]);
+//      $attributes_price_final += $pre_selected->fields['options_values_price'];
+        $attributes_price_final += zen_get_discount_calc($pre_selected->fields['products_id'], $pre_selected->fields['products_attributes_id'], ($prod_priced_by_attr ? $products_price = zen_products_lookup($pre_selected->fields['products_id'], 'products_price') : 0) + $pre_selected->fields['options_values_price']);
     }
     // qty discounts
-    $attributes_price_final += zen_get_attributes_qty_prices_onetime($pre_selected->fields["attributes_qty_prices"], $qty);
+    $attributes_price_final += zen_get_attributes_qty_prices_onetime($pre_selected->fields['attributes_qty_prices'], $qty);
 
     // price factor
     /*
-    $display_normal_price = zen_get_products_actual_price($pre_selected->fields["products_id"]);
+    $display_normal_price = zen_get_products_actual_price($pre_selected->fields['products_id']);
     */
     $display_normal_price = zen_get_discount_calc($pre_selected->fields['products_id'], $pre_selected->fields['products_attributes_id'], zen_products_lookup($pre_selected->fields['products_id'], 'products_price') + $pre_selected->fields['options_values_price']);
 
@@ -1268,19 +1289,19 @@ If a special exist * 10
         $attributes_price_final -= $display_normal_price;
       }
     }
-    $display_special_price = zen_get_products_special_price($pre_selected->fields["products_id"]);
+    $display_special_price = zen_get_products_special_price($pre_selected->fields['products_id']);
 
-    $attributes_price_final += zen_get_attributes_price_factor($display_normal_price, $display_special_price, $pre_selected->fields["attributes_price_factor"], $pre_selected->fields["attributes_price_factor_offset"]);
+    $attributes_price_final += zen_get_attributes_price_factor($display_normal_price, $display_special_price, $pre_selected->fields['attributes_price_factor'], $pre_selected->fields['attributes_price_factor_offset']);
 
     // per word and letter charges
-    if (zen_get_attributes_type($attribute) == PRODUCTS_OPTIONS_TYPE_TEXT) {
-      // calc per word or per letter
+    if (zen_get_attributes_type($attribute_id) == PRODUCTS_OPTIONS_TYPE_TEXT) {
+        // calc per word or per letter
     }
 
-// onetime charges
-    if ($include_onetime == 'true') {
-      $pre_selected_onetime = $pre_selected;
-      $attributes_price_final += zen_get_attributes_price_final_onetime($pre_selected->fields["products_attributes_id"], 1, $pre_selected_onetime);
+    // onetime charges
+    if ($include_onetime === true || $include_onetime == 'true') { // string for backward compat prior to 1.5.8
+        $pre_selected_onetime = $pre_selected;
+        $attributes_price_final += zen_get_attributes_price_final_onetime($pre_selected->fields['products_attributes_id'], 1, $pre_selected_onetime);
     }
 
     return $attributes_price_final;

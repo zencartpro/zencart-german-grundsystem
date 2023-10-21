@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: checkout_process.php 2022-12-15 22:54:16Z webchills $
+ * @version $Id: checkout_process.php 2023-10-21 18:54:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -98,7 +98,7 @@ if (!isset($_SESSION['payment']) && $credit_covers === FALSE) {
 $payment_modules->before_process();
 $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_AFTER_PAYMENT_MODULES_BEFOREPROCESS');
 // create the order record
-$insert_id = $order->create($order_totals, 2);
+$insert_id = $order->create($order_totals);
 $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_AFTER_ORDER_CREATE', $insert_id);
 $payment_modules->after_order_create($insert_id);
 $zco_notifier->notify('NOTIFY_CHECKOUT_PROCESS_AFTER_PAYMENT_MODULES_AFTER_ORDER_CREATE', $insert_id);

@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: order.php 2023-10-21 15:45:25Z webchills $
+ * @version $Id: order.php 2023-10-21 18:10:25Z webchills $
  */
 /**
  * order class
@@ -243,11 +243,12 @@ class order extends base
                             'city' => $order->fields['customers_city'],
                             'postcode' => $order->fields['customers_postcode'],
                             'state' => $order->fields['customers_state'],
-                            'country' => $order->fields['customers_country'],
+                             'country' => $this->getCountryInfo($order->fields['customers_country']),
                             'format_id' => $order->fields['customers_address_format_id'],
                             'telephone' => $order->fields['customers_telephone'],
                             'email_address' => $order->fields['customers_email_address'],
         ];
+        $this->customer['zone_id'] = $this->getCountryZoneId((int)$this->customer['country'], $this->customer['state']);
 
         $this->delivery = [
             'name' => $order->fields['delivery_name'],
@@ -257,9 +258,10 @@ class order extends base
                             'city' => $order->fields['delivery_city'],
                             'postcode' => $order->fields['delivery_postcode'],
                             'state' => $order->fields['delivery_state'],
-                            'country' => $order->fields['delivery_country'],
+                            'country' => $this->getCountryInfo($order->fields['delivery_country']),
                             'format_id' => $order->fields['delivery_address_format_id'],
         ];
+        $this->delivery['zone_id'] = $this->getCountryZoneId((int)$this->delivery['country']['id'], $this->delivery['state']);
 
     if (($order->fields['shipping_module_code'] == 'storepickup') ||
         (empty($this->delivery['name']) && empty($this->delivery['street_address']))) {
@@ -274,9 +276,10 @@ class order extends base
                            'city' => $order->fields['billing_city'],
                            'postcode' => $order->fields['billing_postcode'],
                            'state' => $order->fields['billing_state'],
-                           'country' => $order->fields['billing_country'],
+                           'country' => $this->getCountryInfo($order->fields['billing_country']),
                            'format_id' => $order->fields['billing_address_format_id'],
         ];
+        $this->billing['zone_id'] = $this->getCountryZoneId((int)$this->billing['country'], $this->billing['state']);
 
     $index = 0;
     $orders_products_query = "SELECT *
@@ -367,16 +370,94 @@ class order extends base
       $orders_products->MoveNext();
     }
 
+        $this->statuses = $this->getStatusHistory($this->orderId);
     $this->notify('NOTIFY_ORDER_AFTER_QUERY', IS_ADMIN_FLAG, $this->orderId);
 
     /**
      * @deprecated since v1.5.6; use NOTIFY_ORDER_AFTER_QUERY instead
      */
-    if (IS_ADMIN_FLAG === true) {
+        if (IS_ADMIN_FLAG === true) {
             $this->notify('ORDER_QUERY_ADMIN_COMPLETE', ['orders_id' => $this->orderId]);
+        }
     }
 
-  }
+    function getStatusHistory($order_id, $language_id = null)
+    {
+        global $db;
+
+        if (empty($language_id)) {
+// @TODO - provide lookup in language class
+//          if (!empty($this->info['language_code'])) {
+//              global $lng;
+//              $language_id = $lng->getLanguageIdFromCode($this->info['language_code']);
+//          }
+            if (empty($language_id)) {
+                $language_id = $_SESSION['languages_id'];
+            }
+        }
+
+        $sql = "SELECT os.orders_status_name, osh.*
+                FROM   " . TABLE_ORDERS_STATUS . " os
+                LEFT JOIN " . TABLE_ORDERS_STATUS_HISTORY . " osh USING (orders_status_id)
+                WHERE osh.orders_id = :ordersID
+                AND os.language_id = :languageID
+                AND osh.customer_notified >= 0
+                ORDER BY osh.date_added";
+
+        $sql = $db->bindVars($sql, ':ordersID', $order_id, 'integer');
+        $sql = $db->bindVars($sql, ':languageID', $language_id, 'integer');
+        $results = $db->Execute($sql);
+
+        $statusArray = [];
+        foreach ($results as $result) {
+            $statusArray[] = $result;
+        }
+        return $statusArray;
+    }
+
+    protected function getCountryInfo(string $country)
+    {
+        global $db;
+        $sql = "SELECT countries_id, countries_name, countries_iso_code_2, countries_iso_code_3, status
+            FROM " . TABLE_COUNTRIES . "
+            WHERE countries_name = :country";
+        $sql = $db->bindVars($sql, ':country', $country, 'string');
+        $results = $db->Execute($sql);
+        if (!$results->EOF) {
+            $result = $results->fields;
+            $return = [
+                'id' => $result['countries_id'],
+                'title' => $country,
+                'iso_code_2' => $result['countries_iso_code_2'],
+                'iso_code_3' => $result['countries_iso_code_3'],
+            ];
+        } else {
+            $return = [
+                'id' => 0,
+                'title' => $country,
+                'iso_code_2' => '',
+                'iso_code_3' => '',
+            ];
+
+        }
+        return $return;
+    }
+
+    protected function getCountryZoneId(int $countries_id, string $state)
+    {
+        global $db;
+        
+        $sql =
+            "SELECT zone_id
+               FROM " . TABLE_ZONES . "
+              WHERE zone_country_id = $countries_id
+                AND (zone_code = :state: OR zone_name = :state:)
+              LIMIT 1";
+        $sql = $db->bindVars($sql, ':state:', $state, 'string');
+        $results = $db->Execute($sql);
+
+        return ($results->EOF) ? '0' : $results->fields['zone_id'];
+    }
 
     function cart()
     {
@@ -774,24 +855,24 @@ class order extends base
       }
       $this->info['tax'] += $tax_add;
 
-      foreach ($taxRates as $taxDescription => $taxRate)
-      {
-          $taxAdd = zen_calculate_tax($this->products[$index]['final_price']*$this->products[$index]['qty'], $taxRate)
-              +  zen_calculate_tax($this->products[$index]['onetime_charges'], $taxRate);
+        foreach ($taxRates as $taxDescription => $taxRate) {
+            $taxAdd = zen_calculate_tax($this->products[$index]['final_price'] * $this->products[$index]['qty'], $taxRate)
+                    + zen_calculate_tax($this->products[$index]['onetime_charges'], $taxRate);
 
-          if (isset($this->info['tax_groups'][$taxDescription])) {
-              $this->info['tax_groups'][$taxDescription] += $taxAdd;
-          } else {
-              $this->info['tax_groups'][$taxDescription] = $taxAdd;
-          }
-      }
-  }
+            if (isset($this->info['tax_groups'][$taxDescription])) {
+                $this->info['tax_groups'][$taxDescription] += $taxAdd;
+            } else {
+                $this->info['tax_groups'][$taxDescription] = $taxAdd;
+            }
+        }
+    }
 
     /**
      * @param array $zf_ot_modules OrderTotalModules array from during checkout_process. Used to lookup OT prices to store into order
      * @return int|string
      */
-  function create($zf_ot_modules, $zf_mode = 2) {
+    function create($zf_ot_modules)
+    {
     global $db;
 
         $this->notify('NOTIFY_ORDER_CART_EXTERNAL_TAX_DURING_ORDER_CREATE', [], $zf_ot_modules);
@@ -931,16 +1012,16 @@ class order extends base
      * @param null $zf_insert_id - OrderNumber - deprecated since 1.5.7
      * @param bool $zf_mode Deprecated/unused since 1.5.0
      */
-  function create_add_products($zf_insert_id = null, $zf_mode = false) {
-    global $db, $currencies, $order_total_modules, $order_totals;
+    function create_add_products($zf_insert_id = null, $zf_mode = false)
+    {
+        global $db, $currencies, $order_total_modules, $order_totals;
 
-    if ($zf_insert_id === null) $zf_insert_id = $this->orderId;
+        if ($zf_insert_id === null) $zf_insert_id = $this->orderId;
 
-    // initialized for the email confirmation
-    $this->products_ordered = '';
-    $this->products_ordered_html = '';
-    $this->subtotal = 0;
-    $this->total_tax = 0;
+        // initialized for the email confirmation
+        $this->products_ordered = '';
+        $this->products_ordered_html = '';
+        $this->total_tax = 0;
 
     // lowstock email report
     $this->email_low_stock='';
@@ -973,27 +1054,27 @@ class order extends base
           $stock_values = $db->ExecuteNoCache("SELECT * FROM " . TABLE_PRODUCTS . " WHERE products_id = " . zen_get_prid($this->products[$i]['id']) . " LIMIT 1");
         }
 
-        $this->notify('NOTIFY_ORDER_PROCESSING_STOCK_DECREMENT_BEGIN', $i, $stock_values);
+                $this->notify('NOTIFY_ORDER_PROCESSING_STOCK_DECREMENT_BEGIN', $i, $stock_values);
 
-        if ($stock_values->RecordCount() > 0) {
-          // do not decrement quantities if products_attributes_filename exists
-          if ((DOWNLOAD_ENABLED != 'true') || $stock_values->fields['product_is_always_free_shipping'] == 2 || (!$stock_values->fields['products_attributes_filename']) ) {
-            $stock_left = $stock_values->fields['products_quantity'] - $this->products[$i]['qty'];
-            $this->products[$i]['stock_reduce'] = $this->products[$i]['qty'];
-          } else {
-            $stock_left = $stock_values->fields['products_quantity'];
-          }
+                if ($stock_values->RecordCount() > 0) {
+                    // do not decrement quantities if products_attributes_filename exists
+                    if ((DOWNLOAD_ENABLED != 'true') || $stock_values->fields['product_is_always_free_shipping'] == 2 || (!$stock_values->fields['products_attributes_filename'])) {
+                        $stock_left = $stock_values->fields['products_quantity'] - $this->products[$i]['qty'];
+                    } else {
+                        $stock_left = $stock_values->fields['products_quantity'];
+                    }
 
-          $products_status_update = ($stock_left <= 0 && SHOW_PRODUCTS_SOLD_OUT == '0') ? ', products_status = 0' : '';
+                    $products_status_update = ($stock_left <= 0 && SHOW_PRODUCTS_SOLD_OUT == '0') ? ', products_status = 0' : '';
 
-          $db->Execute("UPDATE " . TABLE_PRODUCTS . " SET products_quantity = " . $stock_left .
+                    $db->Execute("UPDATE " . TABLE_PRODUCTS . "
+                        SET products_quantity = " . $stock_left .
                         $products_status_update .
-                       " WHERE products_id = " . zen_get_prid($this->products[$i]['id']) . " LIMIT 1");
+                        " WHERE products_id = " . zen_get_prid($this->products[$i]['id']) . " LIMIT 1");
 
-          // for low stock email
-          if ( $stock_left <= STOCK_REORDER_LEVEL ) {
-            // WebMakers.com Added: add to low stock email
-            $this->email_low_stock .=  'ID# ' . zen_get_prid($this->products[$i]['id']) . "\t\t" . $this->products[$i]['model'] . "\t\t" . $this->products[$i]['name'] . "\t\t" . ' Qty Left: ' . $stock_left . "\n";
+                    // for low stock email
+                    if ($stock_left <= STOCK_REORDER_LEVEL) {
+                        // add product to low stock email content
+                        $this->email_low_stock .= ($this->products[$i]['model'] === '' ? ''  : $this->products[$i]['model'] . "\t\t") . ' "' . $this->products[$i]['name'] . '" (#' . zen_get_prid($this->products[$i]['id']) . ')'. "\t\t" . ' ' . TEXT_PRODUCTS_QUANTITY . ' ' . $stock_left . "\n";
           }
         }
       }
@@ -1220,7 +1301,7 @@ class order extends base
     if ($zf_insert_id === null) $zf_insert_id = $this->orderId;
 
         $this->notify('NOTIFY_ORDER_SEND_EMAIL_INITIALIZE', [], $zf_insert_id, $order_totals, $zf_mode);
-    if (!defined('ORDER_EMAIL_DATE_FORMAT')) define('ORDER_EMAIL_DATE_FORMAT', 'M-d-Y h:iA');
+
 
     $this->send_low_stock_emails = TRUE;
     $this->notify('NOTIFY_ORDER_SEND_LOW_STOCK_EMAILS');
@@ -1261,7 +1342,7 @@ class order extends base
     $html_msg['INTRO_URL_TEXT']        = EMAIL_TEXT_INVOICE_URL_CLICK;
     $html_msg['INTRO_URL_VALUE']       = zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $zf_insert_id, 'SSL', false);
     $html_msg['EMAIL_CUSTOMER_PHONE']  = $this->customer['telephone'];
-    $html_msg['EMAIL_ORDER_DATE']      = date(ORDER_EMAIL_DATE_FORMAT);
+   
     $html_msg['EMAIL_TEXT_TELEPHONE']  = EMAIL_TEXT_TELEPHONE;
 
     $invoiceInfo=EMAIL_TEXT_INVOICE_URL . ' ' . zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $zf_insert_id, 'SSL', false) . "\n\n";
@@ -1279,7 +1360,7 @@ class order extends base
       EMAIL_THANKS_FOR_SHOPPING . "\n" . EMAIL_DETAILS_FOLLOW . "\n" .
       EMAIL_SEPARATOR . "\n" .
       EMAIL_TEXT_ORDER_NUMBER . ' ' . $zf_insert_id . "\n" .
-      EMAIL_TEXT_DATE_ORDERED . ' ' . strftime(DATE_FORMAT_LONG) . "\n" .
+      EMAIL_TEXT_DATE_ORDERED . ' ' . $zcDate->output(DATE_FORMAT_LONG) . "\n" .
       EMAIL_TEXT_INVOICE_URL . ' ' . zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $zf_insert_id, 'SSL', false) . "\n\n";
 
     //comments area

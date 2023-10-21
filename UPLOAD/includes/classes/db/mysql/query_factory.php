@@ -9,7 +9,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions adapted from http://www.data-diggers.com/
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: query_factory.php 2023-10-21 08:47:16Z webchills $
+ * @version $Id: query_factory.php 2023-10-21 18:47:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -676,7 +676,7 @@ class queryFactory extends base
         }
 
         if (!defined('FILENAME_DATABASE_TEMPORARILY_DOWN')) {
-            define('FILENAME_DATABASE_TEMPORARILY_DOWN', DIR_FS_CATALOG . '/nddbc.html');
+            define('FILENAME_DATABASE_TEMPORARILY_DOWN', (defined('DIR_FS_CATALOG') ? DIR_FS_CATALOG : DIR_FS_ROOT) . '/nddbc.html');
         }
         if (file_exists(FILENAME_DATABASE_TEMPORARILY_DOWN)) {
             if (($this->error_number == 0 && $this->error_text == DB_ERROR_NOT_CONNECTED)

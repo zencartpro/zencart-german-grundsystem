@@ -2,12 +2,12 @@
 /**
  * category_icon_display module
  *
- * @package modules
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: category_icon_display.php 2022-04-09 15:49:16Z webchills $
+ * @version $Id: category_icon_display.php 2023-10-21 15:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -30,11 +30,11 @@ switch(true) {
   $align='right';
   break;
 }
-//$category_icon_display_name = zen_get_categories_name(zen_get_products_category_id((int)$_GET['products_id']), $_SESSION['languages_id']);
+//$category_icon_display_name = zen_get_category_name(zen_get_products_category_id((int)$_GET['products_id']), $_SESSION['languages_id']);
 //$category_icon_display_image = zen_get_categories_image(zen_get_products_category_id((int)$_GET['products_id']));
 
 
-$category_icon_display_name = zen_get_categories_name((int)$current_category_id);
+$category_icon_display_name = zen_get_category_name((int)$current_category_id);
 $category_icon_display_image = zen_get_categories_image((int)$current_category_id);
 
 switch(true) {

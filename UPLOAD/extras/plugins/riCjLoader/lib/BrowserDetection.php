@@ -728,9 +728,9 @@ class BrowserDetection
         if (!is_string($agentString) || trim($agentString) == '') {
             //https://bugs.php.net/bug.php?id=49184
             if (filter_has_var(INPUT_SERVER, 'HTTP_USER_AGENT')) {
-                $agentString = filter_input(INPUT_SERVER, 'HTTP_USER_AGENT', FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW);
+                $agentString = filter_input(INPUT_SERVER, 'HTTP_USER_AGENT', FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_FLAG_STRIP_LOW);
             } else if (array_key_exists('HTTP_USER_AGENT', $_SERVER) && is_string($_SERVER['HTTP_USER_AGENT'])) {
-                $agentString = filter_var($_SERVER['HTTP_USER_AGENT'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW);
+                $agentString = filter_var($_SERVER['HTTP_USER_AGENT'], FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_FLAG_STRIP_LOW);
             } else {
                 $agentString = '';
             }

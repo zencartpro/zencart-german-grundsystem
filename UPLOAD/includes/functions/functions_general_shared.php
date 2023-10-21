@@ -2,12 +2,12 @@
 /**
  * functions_general_shared.php
  * Functions shared throughout Zen Cart in both the storefront and the admin
- *
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_general_shared.php 2021-11-28 20:43:14Z webchills $
+ * @version $Id: functions_general_shared.php 2023-10-21 20:43:14Z webchills $
  */ 
 /**
  * Get which Zen Cart version is installed
@@ -33,22 +33,28 @@ function zen_is_whitelisted_admin_ip($ip = null)
 
 /**
  * Returns a string with conversions for security.
- * @param string The string to be parsed
- * @param string contains a string to be translated, otherwise just quote is translated
- * @param boolean Do we run htmlspecialchars over the string
-*/
-  function zen_output_string($string, $translate = false, $protected = false) {
-    if ($protected == true) {
-      $double_encode = (IS_ADMIN_FLAG ? FALSE : TRUE);
-      return htmlspecialchars($string, ENT_COMPAT, CHARSET, $double_encode);
-    } else {
-      if ($translate === false) {
-        return zen_parse_input_field_data($string, array('"' => '&quot;'));
-      } else {
-        return zen_parse_input_field_data($string, $translate);
-      }
+ * @param string $string The string to be parsed
+ * @param string|bool $translate contains a string to be translated, otherwise just quote is translated
+ * @param bool $protected Do we run htmlspecialchars over the string
+ * @return string
+ */
+function zen_output_string($string, $translate = false, $protected = false): string
+{
+    if (is_null($string) === true) {
+        return '';
     }
-  }
+
+    if ($protected === true) {
+        $double_encode = (IS_ADMIN_FLAG ? FALSE : TRUE);
+        return htmlspecialchars($string, ENT_COMPAT, CHARSET, $double_encode);
+    }
+
+    if ($translate === false) {
+        return strtr($string, ['"' => '&quot;']);
+    }
+
+    return strtr($string, $translate);
+}
 
 /**
  * Returns a string with conversions for security.
