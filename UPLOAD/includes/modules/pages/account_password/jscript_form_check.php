@@ -10,7 +10,7 @@
  * @version $Id: jscript_form_check.php 2020-01-17 10:49:16Z webchills $
  */
 ?>
-<script type="text/javascript">
+<script>
 var selected;
 
 function check_form_optional(form_name) {

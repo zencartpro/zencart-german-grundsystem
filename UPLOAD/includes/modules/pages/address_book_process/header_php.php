@@ -2,12 +2,12 @@
 /**
  * Header code file for the Address Book Process page
  *
- * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2022-04-09 10:44:16Z webchills $
+ * @version $Id: header_php.php 2023-10-26 14:44:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ADDRESS_BOOK_PROCESS');
@@ -257,9 +257,7 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
 }
 
 if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
-  $entry_query = "SELECT entry_gender, entry_company, entry_firstname, entry_lastname,
-                         entry_street_address, entry_suburb, entry_postcode, entry_city,
-                         entry_state, entry_zone_id, entry_country_id
+  $entry_query = "SELECT *
                   FROM   " . TABLE_ADDRESS_BOOK . "
                   WHERE  customers_id = :customersID
                   AND    address_book_id = :addressBookID";
@@ -333,12 +331,9 @@ if (!isset($_GET['delete'])) {
   $state_field_label = ($flag_show_pulldown_states) ? '' : ENTRY_STATE;
 }
 
-
-if (!isset($_GET['delete']) && !isset($_GET['edit'])) {
-  if (zen_count_customer_address_book_entries() >= MAX_ADDRESS_BOOK_ENTRIES) {
-    $messageStack->add_session('addressbook', ERROR_ADDRESS_BOOK_FULL);
-    zen_redirect(zen_href_link(FILENAME_ADDRESS_BOOK, '', 'SSL'));
-  }
+if (!isset($_GET['delete']) && !isset($_GET['edit']) && count(zen_get_customer_address_book_entries($_SESSION['customer_id'])) >= MAX_ADDRESS_BOOK_ENTRIES) {
+  $messageStack->add_session('addressbook', ERROR_ADDRESS_BOOK_FULL);
+  zen_redirect(zen_href_link(FILENAME_ADDRESS_BOOK, '', 'SSL'));
 }
 
 $breadcrumb->add(NAVBAR_TITLE_1, zen_href_link(FILENAME_ACCOUNT, '', 'SSL'));

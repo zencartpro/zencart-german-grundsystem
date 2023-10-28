@@ -2,12 +2,12 @@
 /**
  * Password Forgotten
  *
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2022-04-09 10:51:16Z webchills $
+ * @version $Id: header_php.php 2023-10-28 15:51:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -30,6 +30,10 @@ if (isset($_GET['action']) && ($_GET['action'] == 'process')) {
     if (! isset($_SESSION['login_attempt'])) $_SESSION['login_attempt'] = 0;
     $_SESSION['login_attempt'] ++;
   } // END SLAM PREVENTION
+  if (empty($_POST['email_address'])) { 
+    $messageStack->add_session('password_forgotten', ENTRY_EMAIL_ADDRESS_ERROR, 'error');
+    zen_redirect(zen_href_link(FILENAME_PASSWORD_FORGOTTEN, '', 'SSL'));
+  }
 
   $email_address = zen_db_prepare_input(trim($_POST['email_address']));
 

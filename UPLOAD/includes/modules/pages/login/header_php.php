@@ -1,12 +1,12 @@
 <?php
 /**
  * Login Page
- * Zen Cart German Specific 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2022-12-16 09:29:16Z webchills $
+ * @version $Id: header_php.php 2023-10-08 15:29:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_LOGIN');
@@ -42,6 +42,10 @@ if (isset($_GET['action']) && $_GET['action'] == 'process') {
         if (!zen_validate_hmac_timestamp() || !$adminId = zen_validate_hmac_admin_id($_POST['aid'])) {
             zen_redirect(zen_href_link(FILENAME_TIME_OUT));
         }
+        unset($_SESSION['billto']);
+        unset($_SESSION['sendto']);
+        unset($_SESSION['customer_default_address_id']);
+        unset($_SESSION['cart_address_id']);
         $loginAuthorized = true;
         $_SESSION['emp_admin_login'] = true;
         $_SESSION['emp_admin_id'] = $adminId;
@@ -60,26 +64,20 @@ if (isset($_GET['action']) && $_GET['action'] == 'process') {
   }
   */
 
-    // Check if email exists
-    $check_customer_query = "SELECT customers_id, customers_firstname, customers_lastname, customers_password,
-                                    customers_email_address, customers_default_address_id,
-                                    customers_authorization, customers_referral
-                           FROM " . TABLE_CUSTOMERS . "
-                           WHERE customers_email_address = :emailAddress";
 
-    $check_customer_query  =$db->bindVars($check_customer_query, ':emailAddress', $email_address, 'string');
-    $check_customer = $db->Execute($check_customer_query);
+    $customer = new Customer;
+    $login_attempt = $customer->doLoginLookupByEmail($email_address);
 
-    if (!$check_customer->RecordCount()) {
+    if ($login_attempt === false) {
       $error = true;
       $messageStack->add('login', TEXT_LOGIN_ERROR);
-    } elseif ($check_customer->fields['customers_authorization'] == '4') {
+    } elseif ($login_attempt['customers_authorization'] == '4') {
       // this account is banned
       $zco_notifier->notify('NOTIFY_LOGIN_BANNED');
       $messageStack->add('login', TEXT_LOGIN_BANNED);
     } else {
       if (!$loginAuthorized) {
-          $dbPassword = $check_customer->fields['customers_password'];
+          $dbPassword = $login_attempt['customers_password'];
           // Check whether the password is good
           if (zen_validate_password($password, $dbPassword)) {
               $loginAuthorized = true;
@@ -98,62 +96,25 @@ if (isset($_GET['action']) && $_GET['action'] == 'process') {
         $error = true;
         $messageStack->add('login', TEXT_LOGIN_ERROR);
       } else {
+
+        $zc_check_basket_before = 0;
+        // save current cart contents count if required
+        if (SHOW_SHOPPING_CART_COMBINED > 0) {
+            $zc_check_basket_before = $_SESSION['cart']->count_contents();
+        }
+
+        // login and restore cart
+        $customer->login($login_attempt['customers_id'], $restore_cart = true);
+
         if (SESSION_RECREATE == 'True') {
           zen_session_recreate();
         }
 
-        $check_country_query = "SELECT entry_country_id, entry_zone_id
-                              FROM " . TABLE_ADDRESS_BOOK . "
-                              WHERE customers_id = :customersID
-                              AND address_book_id = :addressBookID";
-
-        $check_country_query = $db->bindVars($check_country_query, ':customersID', $check_customer->fields['customers_id'], 'integer');
-        $check_country_query = $db->bindVars($check_country_query, ':addressBookID', $check_customer->fields['customers_default_address_id'], 'integer');
-        $check_country = $db->Execute($check_country_query);
-
-        $_SESSION['customer_id'] = $check_customer->fields['customers_id'];
-        $_SESSION['customers_email_address'] = $check_customer->fields['customers_email_address'];
-        $_SESSION['customer_default_address_id'] = $check_customer->fields['customers_default_address_id'];
-        $_SESSION['customers_authorization'] = $check_customer->fields['customers_authorization'];
-        $_SESSION['customer_first_name'] = $check_customer->fields['customers_firstname'];
-        $_SESSION['customer_last_name'] = $check_customer->fields['customers_lastname'];
-        $_SESSION['customer_country_id'] = $check_country->fields['entry_country_id'];
-        $_SESSION['customer_zone_id'] = $check_country->fields['entry_zone_id'];
-
-        // enforce db integrity: make sure related record exists
-        $sql = "SELECT customers_info_date_of_last_logon FROM " . TABLE_CUSTOMERS_INFO . " WHERE customers_info_id = :customersID";
-        $sql = $db->bindVars($sql, ':customersID',  $_SESSION['customer_id'], 'integer');
-        $result = $db->Execute($sql);
-        if ($result->RecordCount() == 0) {
-          $sql = "insert into " . TABLE_CUSTOMERS_INFO . " (customers_info_id) values (:customersID)";
-          $sql = $db->bindVars($sql, ':customersID',  $_SESSION['customer_id'], 'integer');
-          $db->Execute($sql);
-        }
-
-        // update login count
-        $sql = "UPDATE " . TABLE_CUSTOMERS_INFO . "
-              SET customers_info_date_of_last_logon = now(),
-                  customers_info_number_of_logons = IF(customers_info_number_of_logons, customers_info_number_of_logons+1, 1)
-              WHERE customers_info_id = :customersID";
-
-        $sql = $db->bindVars($sql, ':customersID',  $_SESSION['customer_id'], 'integer');
-        $db->Execute($sql);
         $zco_notifier->notify('NOTIFY_LOGIN_SUCCESS');
-
-        // bof: contents merge notice
-        // save current cart contents count if required
-        if (SHOW_SHOPPING_CART_COMBINED > 0) {
-          $zc_check_basket_before = $_SESSION['cart']->count_contents();
-        }
-
-        // bof: not require part of contents merge notice
-        // restore cart contents
-        $_SESSION['cart']->restore_contents();
-        // eof: not require part of contents merge notice
 
         // check current cart contents count if required
         $zc_check_basket_after = $_SESSION['cart']->count_contents();
-        if (($zc_check_basket_before != $zc_check_basket_after) && $_SESSION['cart']->count_contents() > 0 && SHOW_SHOPPING_CART_COMBINED > 0) {
+        if (SHOW_SHOPPING_CART_COMBINED > 0 && $zc_check_basket_after > 0 && $zc_check_basket_before != $zc_check_basket_after) {
           if (SHOW_SHOPPING_CART_COMBINED == 2) {
             // warning only do not send to cart
             $messageStack->add_session('header', WARNING_SHOPPING_CART_COMBINED, 'caution');
@@ -190,8 +151,9 @@ $breadcrumb->add(NAVBAR_TITLE);
 
 // Check for PayPal express checkout button suitability:
 $paypalec_enabled = (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATUS == 'True' && defined('MODULE_PAYMENT_PAYPALWPP_ECS_BUTTON') && MODULE_PAYMENT_PAYPALWPP_ECS_BUTTON == 'On');
-// Check for express checkout button suitability (must have cart contents, value > 0, and value < 10000EUR):
-$ec_button_enabled = ($paypalec_enabled && $_SESSION['cart']->count_contents() > 0 && $_SESSION['cart']->total > 0 && $currencies->value($_SESSION['cart']->total, true, 'EUR') <= 10000);
+// Check for express checkout button suitability (must have cart contents, value > 0, and value < 10000USD):
+require_once DIR_FS_CATALOG . DIR_WS_MODULES . 'payment/paypal/paypal_currency_check.php';
+$ec_button_enabled = ($paypalec_enabled && $_SESSION['cart']->count_contents() > 0 && $_SESSION['cart']->total > 0 && paypalUSDCheck($_SESSION['cart']->total) === true);
 
 
 // This should be last line of the script:

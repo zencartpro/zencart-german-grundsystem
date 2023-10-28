@@ -2,12 +2,12 @@
 /**
  *  product_music_info main_template_vars
  *
-
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main_template_vars.php 2021-11-29 15:33:36Z webchills $
+ * @version $Id: main_template_vars.php 2023-10-28 15:33:36Z webchills $
  */
 /*
  * Extracts and constructs the data to be used in the product-type template tpl_TYPEHANDLER_info_display.php
@@ -16,7 +16,7 @@
   // This should be first line of the script:
   $zco_notifier->notify('NOTIFY_MAIN_TEMPLATE_VARS_START_PRODUCT_MUSIC_INFO');
 
-  if (!isset($product_info->EOF, $product_info->fields['products_id'], $product_info->fields['products_status']) || $product_info->fields['products_id'] !== (int)$_GET['products_id']) {
+  if (!isset($product_info->EOF, $product_info->fields['products_id'], $product_info->fields['products_status']) || (int)$product_info->fields['products_id'] !== (int)$_GET['products_id']) {
     $product_info = zen_get_product_details($_GET['products_id']);
   }
 

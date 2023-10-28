@@ -9,8 +9,8 @@
  * @version $Id: jscript_main.php 2021-11-28 21:35:16Z webchills $
  */
 ?>
-<script src="includes/general.js" type="text/javascript"></script>
-<script type="text/javascript">
+<script src="includes/general.js"></script>
+<script>
 function check_form() {
   var error_message = "<?php echo JS_ERROR; ?>";
   var error_found = false;
@@ -95,6 +95,6 @@ function check_form() {
 }
 
 function popupWindow(url) {
-  window.open(url,'popupWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=450,height=280,screenX=150,screenY=150,top=150,left=150,noreferrer')
+  window.open(url,'popupWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=450,height=280,screenX=150,screenY=150,top=150,left=150')
 }
 </script>

@@ -10,7 +10,7 @@
  * @version $Id: jscript_main.php 2020-01-17 10:49:16Z webchills $
  */
 ?>
-<script type="text/javascript">
+<script>
 function checkBox(object) {
   document.account_newsletter.elements[object].checked = !document.account_newsletter.elements[object].checked;
 }

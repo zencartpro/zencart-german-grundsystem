@@ -9,7 +9,7 @@
  * @version $Id: jscript_main.php 2022-04-09 15:28:16Z webchills $
  */
 ?>
-<script type="text/javascript">
+<script>
 function session_win() {
   window.open("<?php echo zen_href_link(FILENAME_INFO_SHOPPING_CART); ?>","info_shopping_cart","height=460,width=430,toolbar=no,statusbar=no,scrollbars=yes").focus();
 }

@@ -2,12 +2,12 @@
 /**
  * products_all  header_php.php
  *
- * @package page
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2022-04-09 11:49:16Z webchills $
+ * @version $Id: header_php.php 2023-10-28 15:49:16Z webchills $
  */
 
   require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
@@ -21,7 +21,7 @@
 
   $products_all_array = array();
 
-  $products_all_query_raw = "SELECT p.products_type, p.products_id, pd.products_name, p.products_image, p.products_price, p.products_tax_class_id,
+  $products_all_query_raw = "SELECT p.products_type, p.products_id, pd.products_name, p.products_image, p.products_price, p.products_tax_class_id, p.manufacturers_id, 
                                     p.products_date_added, m.manufacturers_name, p.products_model, p.products_quantity, p.products_weight, p.product_is_call,
                                     p.product_is_always_free_shipping, p.products_qty_box_status,
                                     p.master_categories_id

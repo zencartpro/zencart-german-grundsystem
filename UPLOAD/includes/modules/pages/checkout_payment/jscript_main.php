@@ -10,7 +10,7 @@
  * @version $Id: jscript_main.php 2022-04-09 10:49:16Z webchills $
  */
 ?>
-<script type="text/javascript">
+<script>
 var selected;
 var submitter = null;
 

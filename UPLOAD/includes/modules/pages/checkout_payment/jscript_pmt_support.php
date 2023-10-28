@@ -9,7 +9,7 @@
  * @version $Id: jscript_pmt_support.php 2022-01-28 22:59:16Z webchills $
  */
 ?>
-<script type="text/javascript">
+<script>
 
 function concatExpiresFields(fields) {
     return $(":input[name=" + fields[0] + "]").val() + $(":input[name=" + fields[1] + "]").val();

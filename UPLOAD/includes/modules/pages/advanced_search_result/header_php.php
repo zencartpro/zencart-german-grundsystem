@@ -2,12 +2,12 @@
 /**
  * Header code file for the Advanced Search Results page
  *
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2020-01-31 20:05:50Z webchills $
+ * @version $Id: header_php.php 2023-10-28 14:05:50Z webchills $
  */
 
 // This should be first line of the script:
@@ -33,25 +33,26 @@ $_GET['keyword'] = isset($_GET['keyword']) ? trim($_GET['keyword']) : '';
 // that **is** provided, enabling the search to continue.
 //
 $search_additional_clause = false;
-$zco_notifier->notify('NOTIFY_ADVANCED_SEARCH_RESULTS_ADDL_CLAUSE', array(), $search_additional_clause);
+$zco_notifier->notify('NOTIFY_ADVANCED_SEARCH_RESULTS_ADDL_CLAUSE', [], $search_additional_clause);
 
 if ($search_additional_clause === false && 
 (empty($_GET['keyword']) || $_GET['keyword'] == HEADER_SEARCH_DEFAULT_TEXT || $_GET['keyword'] == KEYWORD_FORMAT_STRING) &&
 (isset($_GET['dfrom']) && (empty($_GET['dfrom']) || ($_GET['dfrom'] == DOB_FORMAT_STRING))) &&
 (isset($_GET['dto']) && (empty($_GET['dto']) || ($_GET['dto'] == DOB_FORMAT_STRING))) &&
 (isset($_GET['pfrom']) && !is_numeric($_GET['pfrom'])) &&
-(isset($_GET['pto']) && !is_numeric($_GET['pto'])) ) {
-  $error = true;
-  $missing_one_input = true;
-  $messageStack->add_session('search', ERROR_AT_LEAST_ONE_INPUT);
+    (isset($_GET['pto']) && !is_numeric($_GET['pto']))
+) {
+    $error = true;
+    $missing_one_input = true;
+    $messageStack->add_session('search', ERROR_AT_LEAST_ONE_INPUT);
 } else {
-  $dfrom = '';
-  $dto = '';
-  $pfrom = '';
-  $pto = '';
-  $keywords = '';
-  $dfrom_array = array();
-  $dto_array = array();
+    $dfrom = '';
+    $dto = '';
+    $pfrom = '';
+    $pto = '';
+    $keywords = '';
+    $dfrom_array = [];
+    $dto_array = [];
 
   if (isset($_GET['dfrom'])) {
     $dfrom = (($_GET['dfrom'] == DOB_FORMAT_STRING) ? '' : $_GET['dfrom']);
@@ -136,7 +137,7 @@ if ($search_additional_clause === false &&
   }
 }
 
-if (empty($dfrom) && empty($dto) && empty($pfrom) && empty($pto) && empty($keywords)) {
+if (empty($dfrom) && empty($dto) && empty($pfrom) && empty($pto) && empty($keywords) && $search_additional_clause === false) {
   $error = true;
   // redundant should be able to remove this
   if (!$missing_one_input) {
@@ -150,33 +151,35 @@ if ($error == true) {
 }
 
 
-$define_list = array('PRODUCT_LIST_MODEL' => PRODUCT_LIST_MODEL,
-                     'PRODUCT_LIST_NAME' => PRODUCT_LIST_NAME,
-                     'PRODUCT_LIST_MANUFACTURER' => PRODUCT_LIST_MANUFACTURER,
-                     'PRODUCT_LIST_PRICE' => PRODUCT_LIST_PRICE,
-                     'PRODUCT_LIST_QUANTITY' => PRODUCT_LIST_QUANTITY,
-                     'PRODUCT_LIST_WEIGHT' => PRODUCT_LIST_WEIGHT,
-                     'PRODUCT_LIST_IMAGE' => PRODUCT_LIST_IMAGE);
+$define_list = [
+    'PRODUCT_LIST_MODEL' => PRODUCT_LIST_MODEL,
+    'PRODUCT_LIST_NAME' => PRODUCT_LIST_NAME,
+    'PRODUCT_LIST_MANUFACTURER' => PRODUCT_LIST_MANUFACTURER,
+    'PRODUCT_LIST_PRICE' => PRODUCT_LIST_PRICE,
+    'PRODUCT_LIST_QUANTITY' => PRODUCT_LIST_QUANTITY,
+    'PRODUCT_LIST_WEIGHT' => PRODUCT_LIST_WEIGHT,
+    'PRODUCT_LIST_IMAGE' => PRODUCT_LIST_IMAGE
+];
 
 asort($define_list);
 
-$column_list = array();
-foreach($define_list as $column => $value) {
-  if ($value) $column_list[] = $column;
+$column_list = [];
+foreach ($define_list as $column => $value) {
+    if ($value) $column_list[] = $column;
 }
 
 $select_column_list = '';
 
-for ($col=0, $n=sizeof($column_list); $col<$n; $col++) {
-  if (($column_list[$col] == 'PRODUCT_LIST_NAME') || ($column_list[$col] == 'PRODUCT_LIST_PRICE')) {
-    continue;
-  }
+foreach ($column_list as $column) {
+    if (in_array($column, ['PRODUCT_LIST_NAME', 'PRODUCT_LIST_PRICE'])) {
+        continue;
+    }
 
-  if (zen_not_null($select_column_list)) {
-    $select_column_list .= ', ';
-  }
+    if (!empty($select_column_list)) {
+        $select_column_list .= ', ';
+    }
 
-  switch ($column_list[$col]) {
+    switch ($column) {
     case 'PRODUCT_LIST_MODEL':
     $select_column_list .= 'p.products_model';
     break;
@@ -210,26 +213,26 @@ if (PRODUCT_LIST_QUANTITY < 1) {
   }
 }
 
-if (zen_not_null($select_column_list)) {
-  $select_column_list .= ', ';
+if (!empty($select_column_list)) {
+    $select_column_list .= ', ';
 }
 
 // Notifier Point
-$zco_notifier->notify('NOTIFY_SEARCH_COLUMNLIST_STRING');
+$zco_notifier->notify('NOTIFY_SEARCH_COLUMNLIST_STRING', $select_column_list, $select_column_list);
 
 
 //  $select_str = "select distinct " . $select_column_list . " m.manufacturers_id, p.products_id, pd.products_name, p.products_price, p.products_tax_class_id, IF(s.status = 1, s.specials_new_products_price, NULL) as specials_new_products_price, IF(s.status = 1, s.specials_new_products_price, p.products_price) as final_price ";
 $select_str = "SELECT DISTINCT " . $select_column_list .
-              " p.products_sort_order, m.manufacturers_id, p.products_id, pd.products_name, 
-                p.products_price, p.products_tax_class_id, p.products_price_sorter, 
-                p.products_qty_box_status, p.master_categories_id, p.product_is_call ";
+    " p.products_sort_order, m.manufacturers_id, p.products_id, pd.products_name,
+      p.products_price, p.products_tax_class_id, p.products_price_sorter,
+      p.products_qty_box_status, p.master_categories_id, p.product_is_call ";
 
 if ((DISPLAY_PRICE_WITH_TAX == 'true') && ((isset($_GET['pfrom']) && zen_not_null($_GET['pfrom'])) || (isset($_GET['pto']) && zen_not_null($_GET['pto'])))) {
-  $select_str .= ", SUM(tr.tax_rate) AS tax_rate ";
+    $select_str .= ", SUM(tr.tax_rate) AS tax_rate ";
 }
 
 // Notifier Point
-$zco_notifier->notify('NOTIFY_SEARCH_SELECT_STRING');
+$zco_notifier->notify('NOTIFY_SEARCH_SELECT_STRING', $select_str, $select_str);
 
 
 //  $from_str = "from " . TABLE_PRODUCTS . " p left join " . TABLE_MANUFACTURERS . " m using(manufacturers_id), " . TABLE_PRODUCTS_DESCRIPTION . " pd left join " . TABLE_SPECIALS . " s on p.products_id = s.products_id, " . TABLE_CATEGORIES . " c, " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c";
@@ -240,8 +243,7 @@ $from_str = "FROM (" . TABLE_PRODUCTS . " p
 if (ADVANCED_SEARCH_INCLUDE_METATAGS == 'true') {
     $from_str .= 
         " LEFT JOIN " . TABLE_META_TAGS_PRODUCTS_DESCRIPTION . " mtpd
-             ON mtpd.products_id= p2c.products_id
-            AND mtpd.language_id = :languagesID";
+            ON (mtpd.products_id= p2c.products_id AND mtpd.language_id = :languagesID)";
     $from_str = $db->bindVars($from_str, ':languagesID', $_SESSION['languages_id'], 'integer');
 }
 
@@ -262,7 +264,7 @@ if ((DISPLAY_PRICE_WITH_TAX == 'true') && ((isset($_GET['pfrom']) && zen_not_nul
 }
 
 // Notifier Point
-$zco_notifier->notify('NOTIFY_SEARCH_FROM_STRING');
+$zco_notifier->notify('NOTIFY_SEARCH_FROM_STRING', $from_str, $from_str);
 
 $where_str = " WHERE (p.products_status = 1
                AND p.products_id = pd.products_id
@@ -281,86 +283,64 @@ if (!isset($_GET['search_in_description'])) {
 }
 $_GET['search_in_description'] = (int)$_GET['search_in_description'];
 
-if (isset($_GET['categories_id']) && zen_not_null($_GET['categories_id'])) {
-  if ($_GET['inc_subcat'] == '1') {
-    $subcategories_array = array();
-    zen_get_subcategories($subcategories_array, $_GET['categories_id']);
-    $where_str .= " AND p2c.products_id = p.products_id
-                    AND p2c.products_id = pd.products_id
-                    AND (p2c.categories_id = :categoriesID";
+if (!empty($_GET['categories_id'])) {
+    if ($_GET['inc_subcat'] == '1') {
+        $subcategories_array = [];
+        zen_get_subcategories($subcategories_array, $_GET['categories_id']);
+        $where_str .= " AND p2c.products_id = p.products_id
+                        AND p2c.products_id = pd.products_id
+                        AND (p2c.categories_id = :categoriesID";
 
-    $where_str = $db->bindVars($where_str, ':categoriesID', $_GET['categories_id'], 'integer');
+        $where_str = $db->bindVars($where_str, ':categoriesID', $_GET['categories_id'], 'integer');
 
-    if (sizeof($subcategories_array) > 0) {
-      $where_str .= " OR p2c.categories_id in (";
-      for ($i=0, $n=sizeof($subcategories_array); $i<$n; $i++ ) {
-        $where_str .= " :categoriesID";
-        if ($i+1 < $n) $where_str .= ",";
-        $where_str = $db->bindVars($where_str, ':categoriesID', $subcategories_array[$i], 'integer');
-      }
-      $where_str .= ")";
+        if (count($subcategories_array) > 0) {
+            $where_str .= " OR p2c.categories_id in (";
+            for ($i = 0, $n = count($subcategories_array); $i < $n; $i++) {
+                $where_str .= " :categoriesID";
+                if ($i + 1 < $n) $where_str .= ",";
+                $where_str = $db->bindVars($where_str, ':categoriesID', $subcategories_array[$i], 'integer');
+            }
+            $where_str .= ")";
+        }
+        $where_str .= ")";
+    } else {
+        $where_str .= " AND p2c.products_id = p.products_id
+                        AND p2c.products_id = pd.products_id
+                        AND pd.language_id = :languagesID
+                        AND p2c.categories_id = :categoriesID";
+
+        $where_str = $db->bindVars($where_str, ':categoriesID', $_GET['categories_id'], 'integer');
+        $where_str = $db->bindVars($where_str, ':languagesID', $_SESSION['languages_id'], 'integer');
     }
-    $where_str .= ")";
-  } else {
-    $where_str .= " AND p2c.products_id = p.products_id
-                    AND p2c.products_id = pd.products_id
-                    AND pd.language_id = :languagesID
-                    AND p2c.categories_id = :categoriesID";
-
-    $where_str = $db->bindVars($where_str, ':categoriesID', $_GET['categories_id'], 'integer');
-    $where_str = $db->bindVars($where_str, ':languagesID', $_SESSION['languages_id'], 'integer');
-  }
 }
 
-if (isset($_GET['manufacturers_id']) && zen_not_null($_GET['manufacturers_id'])) {
+if (!empty($_GET['manufacturers_id'])) {
   $where_str .= " AND m.manufacturers_id = :manufacturersID";
   $where_str = $db->bindVars($where_str, ':manufacturersID', $_GET['manufacturers_id'], 'integer');
 }
 
 if (isset($keywords) && zen_not_null($keywords)) {
-  if (zen_parse_search_string(stripslashes($_GET['keyword']), $search_keywords)) {
-    $where_str .= " AND (";
-    for ($i=0, $n=sizeof($search_keywords); $i<$n; $i++ ) {
-      switch ($search_keywords[$i]) {
-        case '(':
-        case ')':
-        case 'and':
-        case 'or':
-        $where_str .= " " . $search_keywords[$i] . " ";
-        break;
-        default:
-        $where_str .= "(pd.products_name LIKE '%:keywords%'
-                                         OR p.products_model
-                                         LIKE '%:keywords%'
-                                         OR m.manufacturers_name
-                                         LIKE '%:keywords%'";
+    $keyword_search_fields = [
+        'pd.products_name',
+        'p.products_model',
+        'm.manufacturers_name',
+    ];
 
-        $where_str = $db->bindVars($where_str, ':keywords', $search_keywords[$i], 'noquotestring');
-        
-        // conditionally include meta tags in search
-        if (ADVANCED_SEARCH_INCLUDE_METATAGS == 'true') {
-            $where_str .= " OR (mtpd.metatags_keywords != '' AND mtpd.metatags_keywords LIKE '%:keywords%')";
-            $where_str .= " OR (mtpd.metatags_description != '' AND mtpd.metatags_description LIKE '%:keywords%')";
-            $where_str = $db->bindVars($where_str, ':keywords', $search_keywords[$i], 'noquotestring');
-        }
-
-        if (isset($_GET['search_in_description']) && ($_GET['search_in_description'] == '1')) {
-          $where_str .= " OR pd.products_description
-                          LIKE '%:keywords%'";
-
-          $where_str = $db->bindVars($where_str, ':keywords', $search_keywords[$i], 'noquotestring');
-        }
-        $where_str .= ')';
-        break;
-      }
+    if (ADVANCED_SEARCH_INCLUDE_METATAGS == 'true') {
+        $keyword_search_fields[] = 'mtpd.metatags_keywords';
+        $keyword_search_fields[] = 'mtpd.metatags_description';
     }
-    $where_str .= " ))";
-  }
+
+    if (isset($_GET['search_in_description']) && ($_GET['search_in_description'] == '1')) {
+        $keyword_search_fields[] = 'pd.products_description';
+    }
+
+    $zco_notifier->notify('NOTIFY_SEARCH_MATCHING_KEYWORD_FIELDS', '', $keyword_search_fields);
+
+    $where_str .= zen_build_keyword_where_clause($keyword_search_fields, trim($keywords));
 }
-if (!isset($keywords) || $keywords == "") {
-  $where_str .= ')';
-}
-  if (isset($_GET['alpha_filter_id']) && (int)$_GET['alpha_filter_id'] > 0) {
+$where_str .= ')';
+if (isset($_GET['alpha_filter_id']) && (int)$_GET['alpha_filter_id'] > 0) {
     $alpha_sort = " and (pd.products_name LIKE '" . chr((int)$_GET['alpha_filter_id']) . "%') ";
     $where_str .= $alpha_sort;
   } else {
@@ -415,7 +395,7 @@ if (DISPLAY_PRICE_WITH_TAX == 'true') {
 $order_str = '';
 
 // Notifier Point
-$zco_notifier->notify('NOTIFY_SEARCH_WHERE_STRING');
+$zco_notifier->notify('NOTIFY_SEARCH_WHERE_STRING', $keywords, $where_str, $keyword_search_fields);
 
 
 if ((DISPLAY_PRICE_WITH_TAX == 'true') && ((isset($_GET['pfrom']) && zen_not_null($_GET['pfrom'])) || (isset($_GET['pto']) && zen_not_null($_GET['pto'])))) {
@@ -426,7 +406,7 @@ if ((DISPLAY_PRICE_WITH_TAX == 'true') && ((isset($_GET['pfrom']) && zen_not_nul
 if (!isset($_GET['sort']) and PRODUCT_LISTING_DEFAULT_SORT_ORDER != '') {
   $_GET['sort'] = PRODUCT_LISTING_DEFAULT_SORT_ORDER;
 }
-if ((!isset($_GET['sort'])) || (!preg_match('/[1-8][ad]/', $_GET['sort'])) || (substr($_GET['sort'], 0 , 1) > sizeof($column_list))) {
+if ((!isset($_GET['sort'])) || (!preg_match('/[1-8][ad]/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > count($column_list))) {
   for ($col=0, $n=sizeof($column_list); $col<$n; $col++) {
     if ($column_list[$col] == 'PRODUCT_LIST_NAME') {
       $_GET['sort'] = $col+1 . 'a';
@@ -474,16 +454,18 @@ if ((!isset($_GET['sort'])) || (!preg_match('/[1-8][ad]/', $_GET['sort'])) || (s
   }
 }
 //$_GET['keyword'] = zen_output_string_protected($_GET['keyword']);
+$zco_notifier->notify('NOTIFY_SEARCH_REAL_ORDERBY_STRING', $order_str, $order_str);
 
 $listing_sql = $select_str . $from_str . $where_str . $order_str;
 // Notifier Point
-$zco_notifier->notify('NOTIFY_SEARCH_ORDERBY_STRING', $listing_sql);
+$zco_notifier->notify('NOTIFY_SEARCH_ORDERBY_STRING', $listing_sql, $listing_sql);
 
 $breadcrumb->add(NAVBAR_TITLE_1, zen_href_link(FILENAME_ADVANCED_SEARCH));
-$breadcrumb->add(NAVBAR_TITLE_2);
+//$breadcrumb->add(NAVBAR_TITLE_2);
 $breadcrumb->add(zen_output_string_protected($keywords));
 
 $result = new splitPageResults($listing_sql, MAX_DISPLAY_PRODUCTS_LISTING, 'p.products_id', 'page');
+$zco_notifier->notify('NOTIFY_SEARCH_RESULTS', $listing_sql, $keywords, $result);
 if ($result->number_of_rows == 0) {
   $messageStack->add_session('search', TEXT_NO_PRODUCTS, 'caution');
   zen_redirect(zen_href_link(FILENAME_ADVANCED_SEARCH, zen_get_all_get_params('action')));
@@ -495,4 +477,3 @@ if ($result->number_of_rows == 1 && SKIP_SINGLE_PRODUCT_CATEGORIES == 'True') {
 }
 // This should be last line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_END_ADVANCED_SEARCH_RESULTS', $keywords);
-//EOF

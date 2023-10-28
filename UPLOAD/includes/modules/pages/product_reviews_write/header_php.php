@@ -1,6 +1,6 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (zencartpro adaptations)
  * reviews Write
  *
  * @copyright Copyright 2003-2022 Zen Cart Development Team

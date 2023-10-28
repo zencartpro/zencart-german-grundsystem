@@ -9,7 +9,7 @@
  * @version $Id: jscript_main.php 2020-01-16 11:04:16Z webchills $
  */
 ?>
-<script type="text/javascript">
+<script>
 function rowOverEffect(object) {
   if (object.className == 'moduleRow') object.className = 'moduleRowOver';
 }

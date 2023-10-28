@@ -9,7 +9,7 @@
  * @version $Id: jscript_main.php 2022-01-11 20:04:16Z webchills $
  */
 ?>
-<script type="text/javascript">
+<script>
 var form = "";
 var submitted = false;
 var error = false;

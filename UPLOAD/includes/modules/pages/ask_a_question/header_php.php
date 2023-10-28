@@ -1,12 +1,12 @@
 <?php
 /**
  * Ask a Question Page (based on Contact Us Page)
- *
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2022-04-09 10:50:16Z webchills $
+ * @version $Id: header_php.php 2023-10-28 14:50:16Z webchills $
  */
 $zco_notifier->notify('NOTIFY_HEADER_START_ASK_A_QUESTION');
 
@@ -17,26 +17,52 @@ $pid = (isset($_GET['pid'])) ? (int)$_GET['pid'] : false;
 //
 if ($pid === false) {
     zen_redirect(zen_href_link(FILENAME_DEFAULT));
-} else {
-    $sql = "SELECT pd.products_name, p.products_image, p.products_model
-            FROM " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd
-            WHERE p.products_id = pd.products_id
-            AND p.products_id = " . (int)$_GET['pid'] . "
-            AND pd.language_id = " . (int)$_SESSION['languages_id'] . "
-            AND p.products_status = 1
-            LIMIT 1";
+}
 
-    $result = $db->Execute($sql);
+// -----
+// Check to see if the "Show Ask a Question" button is enabled for the product's
+// type and it is not a "Call for Price product".
+// If not, redirect to the product's information page.
+//
+$call_for_price = $_GET['cfp'] ?? false;
+$info_page = zen_get_info_page($pid);
+$show_info_page_ask_a_question = 'SHOW_' . strtoupper($info_page) . '_ASK_A_QUESTION';
+$bypass_redirect = false;
+$zco_notifier->notify('NOTIFY_ASK_A_QUESTION_ALLOW_BYPASS_REDIRECT', ['products_id' => $pid, ], $bypass_redirect);
+if ($bypass_redirect === false && $call_for_price === false && (!defined($show_info_page_ask_a_question) || constant($show_info_page_ask_a_question) === '0')) {
+    zen_redirect(zen_href_link($info_page, 'products_id=' . $_GET['pid']));
+}
 
-    if ($result->EOF) {
-        zen_redirect(zen_href_link(zen_get_info_page($pid), 'pid=' . $pid));
+$sql = "SELECT pd.products_name, p.products_image, p.products_model
+        FROM " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd
+        WHERE p.products_id = pd.products_id
+        AND p.products_id = " . (int)$_GET['pid'] . "
+        AND pd.language_id = " . (int)$_SESSION['languages_id'] . "
+        AND p.products_status = 1
+        LIMIT 1";
+
+$result = $db->Execute($sql);
+
+if ($result->EOF) {
+    zen_redirect(zen_href_link($info_page, 'products_id=' . $pid));
     }
 
     $product_details = $result->fields;
-}
 
 require DIR_WS_MODULES . zen_get_module_directory('require_languages.php');
 
+/*
+ * Set up Form Ask Question or Call For Price
+ */
+if ($call_for_price !== false) {
+    $heading_title = CALL_FOR_PRICE_HEADING_TITLE;
+    $form_title = CALL_FOR_PRICE_FORM_TITLE;
+    $email_subject = CALL_FOR_PRICE_EMAIL_SUBJECT;
+} else {
+    $heading_title = HEADING_TITLE;
+    $form_title = FORM_TITLE;
+    $email_subject = EMAIL_SUBJECT;
+}
 $error = false;
 $enquiry = '';
 $antiSpamFieldName = isset($_SESSION['antispam_fieldname']) ? $_SESSION['antispam_fieldname'] : 'should_be_empty';
@@ -118,11 +144,11 @@ if (isset($_GET['action']) && ($_GET['action'] == 'send')) {
             '------------------------------------------------------' . "\n\n" .
             $extra_info['TEXT'];
             // Prepare HTML-portion of message
-            $html_msg['EMAIL_MESSAGE_HTML'] = '<b>'.TEXT_PRODUCT_NAME.': </b><a href="' . zen_href_link(FILENAME_PRODUCT_INFO, 'products_id=' . (int)$_GET['pid']) . '">' . $product_details['products_name'] . '</a><br>' . strip_tags($_POST['enquiry']);
+            $html_msg['EMAIL_MESSAGE_HTML'] = '<b>' . TEXT_PRODUCT_NAME . '</b> <a href="' . zen_href_link(FILENAME_PRODUCT_INFO, 'products_id=' . (int)$_GET['pid']) . '">' . $product_details['products_name'] . '</a><br>' . strip_tags($_POST['enquiry']);
             $html_msg['CONTACT_US_OFFICE_FROM'] = OFFICE_FROM . ' ' . $name . '<br>' . OFFICE_EMAIL . '(' . $email_address . ')';
             $html_msg['EXTRA_INFO'] = $extra_info['HTML'];
             // Send message
-            zen_mail($send_to_name, $send_to_email, EMAIL_SUBJECT, $text_message, $name, $email_address, $html_msg,'ask_a_question');
+            zen_mail($send_to_name, $send_to_email, $email_subject, $text_message, $name, $email_address, $html_msg,'ask_a_question');
         }
         zen_redirect(zen_href_link(FILENAME_ASK_A_QUESTION, 'action=success&pid=' . (int)$_GET['pid'], 'SSL'));
     } else {

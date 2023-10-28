@@ -9,7 +9,7 @@
  * @version $Id: jscript_main.php 2020-01-16 11:04:16Z webchills $
  */
 ?>
-<script type="text/javascript">
+<script>
 var i=0;
 function resize() {
   if (navigator.appName == 'Netscape') i=10;

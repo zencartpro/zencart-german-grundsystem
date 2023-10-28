@@ -2,7 +2,7 @@
 /**
 * check email fields for match*/
 ?>
-<script type="text/javascript"><!--
+<script>
 function check_email_address(field_name_1, field_name_2, field_size, message_1, message_2) {
   if (form.elements[field_name_1] && (form.elements[field_name_1].type != "hidden")) {
     var email_address = form.elements[field_name_1].value;
@@ -17,4 +17,4 @@ function check_email_address(field_name_1, field_name_2, field_size, message_1, 
     }
   }
 }
-//--></script>
+</script>

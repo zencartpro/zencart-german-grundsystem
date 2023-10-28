@@ -2,12 +2,12 @@
 /**
  * GV redeem
  *
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2020-01-15 21:49:16Z webchills $
+ * @version $Id: header_php.php 2023-10-28 15:49:16Z webchills $
  */
 $zco_notifier->notify('NOTIFY_HEADER_START_GV_REDEEM');
 
@@ -20,6 +20,10 @@ if (!zen_is_logged_in() || zen_in_guest_checkout()) {
   $messageStack->add_session('login', ERROR_GV_CREATE_ACCOUNT, 'error');
   zen_redirect(zen_href_link(FILENAME_LOGIN, (isset($_GET['gv_no']) ? 'gv_no=' . preg_replace('/[^0-9.,%]/', '', $_GET['gv_no']) : '' ), 'SSL'));
 }
+
+$message = TEXT_INVALID_GV;
+
+
 // check for a voucher number in the url
 if (isset($_GET['gv_no'])) {
   $error = true;
@@ -41,8 +45,8 @@ if (isset($_GET['gv_no'])) {
     $redeem = $db->Execute($redeem_query);
 
     if ($redeem->RecordCount() == 0 ) {
-      // check for required session variables
       $_SESSION['gv_id'] = $coupon->fields['coupon_id'];
+      $message = sprintf(TEXT_VALID_GV, $currencies->format($coupon->fields['coupon_amount']));
       $error = false;
     } else {
       $error = true;
@@ -73,12 +77,3 @@ if (!$error) {
 }
 
 $breadcrumb->add(NAVBAR_TITLE);
-
-// prepare message for display in template:
-$message = sprintf(TEXT_VALID_GV, $currencies->format($coupon->fields['coupon_amount']));
-
-if ($error) {
-  // if we get here then either the URL gv_no param was not set or it was invalid
-  // so output a message.
-  $message = TEXT_INVALID_GV;
-}

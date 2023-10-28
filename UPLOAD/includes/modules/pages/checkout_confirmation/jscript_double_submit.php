@@ -10,7 +10,7 @@
  * @version $Id: jscript_double_submit.php 2019-07-20 webchills $
  */
 ?>
-<script type="text/javascript">
+<script>
 function submitonce()
 {
   var button = document.getElementById("btn_submit");

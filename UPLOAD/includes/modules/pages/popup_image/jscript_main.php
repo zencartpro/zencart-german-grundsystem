@@ -10,7 +10,7 @@
  * @version $Id: jscript_main.php 2020-01-17 11:49:16Z webchills $
  */
 ?>
-<script type="text/javascript">
+<script>
 var i=0;
 function resize() {
   i=0;

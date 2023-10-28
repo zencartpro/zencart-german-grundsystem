@@ -10,10 +10,10 @@
  * @version $Id: jscript_main.php 2021-11-28 21:49:16Z webchills $
  */
 ?>
-<script type="text/javascript">
+<script>
 
 function couponpopupWindow(url) {
-  window.open(url,'couponpopupWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=450,height=320,screenX=150,screenY=150,top=150,left=150,noreferrer')
+  window.open(url,'couponpopupWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=450,height=320,screenX=150,screenY=150,top=150,left=150')
 }
 
 </script>
