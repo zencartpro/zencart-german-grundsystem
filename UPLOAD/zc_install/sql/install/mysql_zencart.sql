@@ -1,12 +1,12 @@
 #
-# * Zen Cart German Specific
+# * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
 # * Main Zen Cart SQL Load for MySQL databases
 # * @access private
 # * @copyright Copyright 2003-2023 Zen Cart Development Team
 # * Zen Cart German Version - www.zen-cart-pro.at
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_zencart.sql 2023-05-20 08:21:16Z webchills $
+# * @version $Id: mysql_zencart.sql 2023-10-27 16:21:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -512,7 +512,7 @@ CREATE TABLE coupon_email_track (
   customer_id_sent int(11) NOT NULL default '0',
   sent_firstname varchar(32) default NULL,
   sent_lastname varchar(32) default NULL,
-  emailed_to varchar(32) default NULL,
+  emailed_to varchar(96) default NULL,
   date_sent datetime NOT NULL default '0001-01-01 00:00:00',
   PRIMARY KEY  (unique_id),
   KEY idx_coupon_id_zen (coupon_id)
@@ -681,6 +681,8 @@ CREATE TABLE customers (
   customers_email_format varchar(4) NOT NULL default 'TEXT',
   customers_authorization int(1) NOT NULL default '0',
   customers_referral varchar(32) NOT NULL default '',
+  registration_ip varchar(45) NOT NULL default '',
+  last_login_ip varchar(45) NOT NULL default '',
   customers_paypal_payerid VARCHAR(20) NOT NULL default '',
   customers_paypal_ec TINYINT(1) UNSIGNED DEFAULT 0 NOT NULL,
   PRIMARY KEY  (customers_id),
@@ -741,8 +743,41 @@ CREATE TABLE customers_info (
   customers_info_date_account_created datetime default NULL,
   customers_info_date_account_last_modified datetime default NULL,
   global_product_notifications int(1) default '0',
-  PRIMARY KEY  (customers_info_id)
+  PRIMARY KEY  (customers_info_id),
+  KEY idx_date_created_cust_id_zen (customers_info_date_account_created, customers_info_id)
 ) ENGINE=MyISAM;
+# --------------------------------------------------------
+
+#
+# Table structure for table customer_groups - new since 1.5.7g
+#
+DROP TABLE IF EXISTS customer_groups;
+CREATE TABLE customer_groups (
+  group_id int UNSIGNED NOT NULL AUTO_INCREMENT,
+  group_name varchar(191) NOT NULL,
+  group_comment varchar(255),
+  date_added timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (group_id),
+  UNIQUE KEY idx_groupname_zen (group_name)
+);
+
+# --------------------------------------------------------
+
+#
+# Table structure for table customers_to_groups - new since 1.5.7g
+#
+DROP TABLE IF EXISTS customers_to_groups;
+CREATE TABLE customers_to_groups (
+  id int UNSIGNED NOT NULL AUTO_INCREMENT,
+  group_id int UNSIGNED NOT NULL,
+  customer_id int UNSIGNED NOT NULL,
+  date_added timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  UNIQUE KEY idx_custid_groupid_zen (customer_id, group_id),
+  KEY idx_groupid_custid_zen (group_id, customer_id)
+);
 
 # --------------------------------------------------------
 
@@ -949,6 +984,7 @@ CREATE TABLE layout_boxes (
   layout_box_sort_order int(11) NOT NULL default '0',
   layout_box_sort_order_single int(11) NOT NULL default '0',
   layout_box_status_single tinyint(4) NOT NULL default '0',
+  plugin_details varchar(100) NOT NULL default '',
   PRIMARY KEY  (layout_id),
   KEY idx_name_template_zen (layout_template,layout_box_name),
   KEY idx_layout_box_status_zen (layout_box_status),
@@ -1154,7 +1190,7 @@ CREATE TABLE orders (
   customers_city varchar(32) NOT NULL default '',
   customers_postcode varchar(10) NOT NULL default '',
   customers_state varchar(32) default NULL,
-  customers_country varchar(32) NOT NULL default '',
+  customers_country varchar(64) NOT NULL default '',
   customers_telephone varchar(32) NOT NULL default '',
   customers_email_address varchar(96) NOT NULL default '',
   customers_address_format_id int(5) NOT NULL default 0,
@@ -1165,7 +1201,7 @@ CREATE TABLE orders (
   delivery_city varchar(32) NOT NULL default '',
   delivery_postcode varchar(10) NOT NULL default '',
   delivery_state varchar(32) default NULL,
-  delivery_country varchar(32) NOT NULL default '',
+  delivery_country varchar(64) NOT NULL default '',
   delivery_address_format_id int(5) NOT NULL default 0,
   billing_name varchar(64) NOT NULL default '',
   billing_company varchar(64) default NULL,
@@ -1174,7 +1210,7 @@ CREATE TABLE orders (
   billing_city varchar(32) NOT NULL default '',
   billing_postcode varchar(10) NOT NULL default '',
   billing_state varchar(32) default NULL,
-  billing_country varchar(32) NOT NULL default '',
+  billing_country varchar(64) NOT NULL default '',
   billing_address_format_id int(5) NOT NULL default 0,
   payment_method varchar(128) NOT NULL default '',
   payment_module_code varchar(32) NOT NULL default '',
@@ -1219,7 +1255,7 @@ CREATE TABLE orders_products (
   orders_id int(11) NOT NULL default '0',
   products_id int(11) NOT NULL default '0',
   products_model varchar(32) default NULL,
-  products_name varchar(64) NOT NULL default '',
+  products_name varchar(191) NOT NULL default '',
   products_price decimal(15,4) NOT NULL default '0.0000',
   final_price decimal(15,4) NOT NULL default '0.0000',
   products_tax decimal(7,4) NOT NULL default '0.0000',
@@ -1811,7 +1847,7 @@ DROP TABLE IF EXISTS products_description;
 CREATE TABLE products_description (
   products_id int(11) NOT NULL,
   language_id int(11) NOT NULL default '1',
-  products_name varchar(64) NOT NULL default '',
+  products_name varchar(191) NOT NULL default '',
   products_description text,
   products_merkmale varchar(255) NOT NULL default '',
   products_url varchar(255) default NULL,
@@ -1863,6 +1899,7 @@ CREATE TABLE products_options (
   products_options_type int(5) NOT NULL default '0',
   products_options_length smallint(2) NOT NULL default '32',
   products_options_comment varchar(256) default NULL,
+  products_options_comment_position smallint(2) NOT NULL default '0',
   products_options_size smallint(2) NOT NULL default '32',
   products_options_images_per_row int(2) default '5',
   products_options_images_style int(1) default '0',
@@ -2302,14 +2339,27 @@ CREATE TABLE zones_to_geo_zones (
 
 INSERT INTO template_select (template_id, template_dir, template_language) VALUES (1, 'responsive_classic', '0');
 
-# 1 - Default, 2 - USA, 3 - Spain, 4 - Singapore, 5 - Germany, 6 - UK/GB, 7 - Australia
-INSERT INTO address_format VALUES (1, '$firstname $lastname$cr$streets$cr$city, $postcode$cr$statecomma$country','$city / $country');
-INSERT INTO address_format VALUES (2, '$firstname $lastname$cr$streets$cr$city, $state    $postcode$cr$country','$city, $state / $country');
-INSERT INTO address_format VALUES (3, '$firstname $lastname$cr$streets$cr$city$cr$postcode - $statecomma$country','$state / $country');
-INSERT INTO address_format VALUES (4, '$firstname $lastname$cr$streets$cr$city ($postcode)$cr$country', '$postcode / $country');
-INSERT INTO address_format VALUES (5, '$firstname $lastname$cr$streets$cr$postcode $city$cr$country','$city / $country');
-INSERT INTO address_format VALUES (6, '$firstname $lastname$cr$streets$cr$city$cr$state$cr$postcode$cr$country','$postcode / $country');
-INSERT INTO address_format VALUES (7, '$firstname $lastname$cr$streets$cr$city $state $postcode$cr$country','$city $state / $country');
+# 1 - Default, 2 Latvia, 3-4 Historic, 5 - Germany, 6 - UK/GB default, 7 - USA / Austrailia, 8 - Hong Kong, 9 - Italy, 10 - Singapore, 11 - Brazil, 12 - Peru, 13 - Nigeria, 14 - Panama, 15 - Oman, 16 - Venezuela, 17 - Philippians, 18 - Vietnam, 19 - Hungary, 20 - Spain
+INSERT INTO address_format VALUES (1, '$firstname $lastname$cr$streets$cr$city, $postcode$cr$statecomma$country','Default $city, $postcode / $state, $country');
+INSERT INTO address_format VALUES (2, '$firstname $lastname$cr$streets$cr$city, $state    $postcode$cr$country','city, $state $postcode');
+INSERT INTO address_format VALUES (3, '$firstname $lastname$cr$streets$cr$city$cr$postcode - $statecomma$country','Historic $city / $postcode - $statecomma$country');
+INSERT INTO address_format VALUES (4, '$firstname $lastname$cr$streets$cr$city ($postcode)$cr$country', 'Historic $city ($postcode)');
+INSERT INTO address_format VALUES (5, '$firstname $lastname$cr$streets$cr$postcode $city$cr$country','postcode $city');
+INSERT INTO address_format VALUES (6, '$firstname $lastname$cr$streets$cr$city$cr$state$cr$postcode$cr$country','$city / $state / $postcode');
+INSERT INTO address_format VALUES (7, '$firstname $lastname$cr$streets$cr$city $state $postcode$cr$country','$city $state $postcode');
+INSERT INTO address_format VALUES (8,'$firstname $lastname$cr$streets$cr$city$cr$country','$city');
+INSERT INTO address_format VALUES (9,'$firstname $lastname$cr$streets$cr$postcode $city $state$cr$country','$postcode $city $state');
+INSERT INTO address_format VALUES (10,'$firstname $lastname$cr$streets$cr$city $postcode$cr$country','$city $postcode');
+INSERT INTO address_format VALUES (11,'$firstname $lastname$cr$streets$cr$city $state$cr$postcode$cr$country','$city $state / $postcode');
+INSERT INTO address_format VALUES (12,'$firstname $lastname$cr$streets$cr$postcode$cr$city $state$cr$country','$postcode / $city / $state');
+INSERT INTO address_format VALUES (13,'$firstname $lastname$cr$streets$cr$city $postcode$cr$state$cr$country','$city $postcode / $state');
+INSERT INTO address_format VALUES (14,'$firstname $lastname$cr$streets$cr$postcode $city$cr$state$cr$country','$postcode $city / $state');
+INSERT INTO address_format VALUES (15,'$firstname $lastname$cr$streets$cr$postcode$cr$city$cr$state$cr$country','$postcode / $city / $state');
+INSERT INTO address_format VALUES (16,'$firstname $lastname$cr$streets$cr$city $postcode $state$cr$country',' $city $postcode $state');
+INSERT INTO address_format VALUES (17,'$firstname $lastname$cr$streets$cr$city$cr$postcode $state$cr$country',' $city / $postcode $state');
+INSERT INTO address_format VALUES (18,'$firstname $lastname$cr$streets$cr$city$cr$state $postcode$cr$country','$city / $state $postcode');
+INSERT INTO address_format VALUES (19,'$firstname $lastname$cr$city$cr$streets$cr$postcode$cr$country','$city $street / $postcode');
+INSERT INTO address_format VALUES (20,'$firstname $lastname$cr$streets$cr$postcode $city ($state)$cr$country','$postcode $city ($state)');
 
 INSERT INTO admin (admin_id, admin_name, admin_email, admin_pass, admin_profile, last_modified) VALUES
  (1, 'Admin', 'admin@localhost', '351683ea4e19efe34874b501fdbf9792:9b', 1, now());
@@ -2387,6 +2437,7 @@ VALUES ('configMyStore', 'BOX_CONFIGURATION_MY_STORE', 'FILENAME_CONFIGURATION',
        ('plugins', 'BOX_MODULES_PLUGINS', 'FILENAME_PLUGIN_MANAGER', '', 'modules', 'Y', 4),
        ('orderTotal', 'BOX_MODULES_ORDER_TOTAL', 'FILENAME_MODULES', 'set=ordertotal', 'modules', 'Y', 3),
        ('customers', 'BOX_CUSTOMERS_CUSTOMERS', 'FILENAME_CUSTOMERS', '', 'customers', 'Y', 1),
+       ('customerGroups', 'BOX_CUSTOMERS_CUSTOMER_GROUPS', 'FILENAME_CUSTOMER_GROUPS', '', 'customers', 'Y', 3),
        ('orders', 'BOX_CUSTOMERS_ORDERS', 'FILENAME_ORDERS', '', 'customers', 'Y', 2),
        ('groupPricing', 'BOX_CUSTOMERS_GROUP_PRICING', 'FILENAME_GROUP_PRICING', '', 'customers', 'Y', 3),
        ('paypal', 'BOX_CUSTOMERS_PAYPAL', 'FILENAME_PAYPAL', '', 'customers', 'Y', 4),
@@ -2844,9 +2895,9 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Log Date Format', 'STORE_PARSE_DATE_TIME_FORMAT', '%d/%m/%Y %H:%M:%S', 'The date format', '10', '3', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Display The Page Parse Time', 'DISPLAY_PAGE_PARSE_TIME', 'false', 'Display the page parse time on the bottom of each page<br />(Note: This DISPLAYS them. You do NOT need to LOG them to merely display them on your site.)', '10', '4', 'zen_cfg_select_option(array(\'true\', \'false\'), ', now());
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Log Database Queries', 'STORE_DB_TRANSACTIONS', 'false', 'Record the database queries to files in the system /logs/ folder. USE WITH CAUTION. This can seriously degrade your site performance and blow out your disk space storage quotas.<br><strong>Enabling this makes your site NON-COMPLIANT with PCI DSS rules, thus invalidating any certification.</strong>', '10', '5', 'zen_cfg_select_option(array(\'true\', \'false\'), ', now());
-### New since 1.5.6 - Display Logs Options - since 1.5.7 Version 3.0.0
+### New since 1.5.6 - Display Logs Options - since 1.5.7g Version 3.0.2
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function, set_function ) VALUES 
-('Display Logs: Version', 'DISPLAY_LOGS_VERSION', '3.0.0', 'Current plugin version.', 10, 100, now(), NULL, 'trim('),
+('Display Logs: Version', 'DISPLAY_LOGS_VERSION', '3.0.2', 'Current plugin version.', 10, 100, now(), NULL, 'trim('),
 ('Display Logs: Display Maximum', 'DISPLAY_LOGS_MAX_DISPLAY', '20', 'Identify the maximum number of logs to display.  (Default: <b>20</b>)', 10, 100, now(), NULL, NULL),
 ('Display Logs: Maximum File Size', 'DISPLAY_LOGS_MAX_FILE_SIZE', '80000', 'Identify the maximum size of any file to display.  (Default: <b>80000</b>)', 10, 101, now(), NULL, NULL),
 ('Display Logs: Included File Prefixes', 'DISPLAY_LOGS_INCLUDED_FILES', 'myDEBUG-|Paypal|paypal|ipn_|zcInstall|notifier', 'Identify the log-file <em>prefixes</em> to include in the display, separated by the pipe character (|).  Any intervening spaces are removed by the processing code.', 10, 102, now(), NULL, NULL),
@@ -4159,10 +4210,10 @@ INSERT INTO get_terms_to_filter VALUES ('record_company_id', 'TABLE_RECORD_COMPA
 # Dumping data for table project_version
 #
 
-INSERT INTO project_version (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch1, project_version_patch1_source, project_version_patch2, project_version_patch2_source, project_version_comment, project_version_date_applied) VALUES (1, 'Zen-Cart Main', '1', '5.7f', '', '', '', '', 'New Installation-v157f', now());
-INSERT INTO project_version (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch1, project_version_patch1_source, project_version_patch2, project_version_patch2_source, project_version_comment, project_version_date_applied) VALUES (2, 'Zen-Cart Database', '1', '5.7f', '', '', '', '', 'New Installation-v157f', now());
-INSERT INTO project_version_history (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_comment, project_version_date_applied) VALUES (1, 'Zen-Cart Main', '1', '5.7f', '', 'New Installation-v157f', now());
-INSERT INTO project_version_history (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_comment, project_version_date_applied) VALUES (2, 'Zen-Cart Database', '1', '5.7f', '', 'New Installation-v157f', now());
+INSERT INTO project_version (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch1, project_version_patch1_source, project_version_patch2, project_version_patch2_source, project_version_comment, project_version_date_applied) VALUES (1, 'Zen-Cart Main', '1', '5.7g', '', '', '', '', 'New Installation-v157g', now());
+INSERT INTO project_version (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch1, project_version_patch1_source, project_version_patch2, project_version_patch2_source, project_version_comment, project_version_date_applied) VALUES (2, 'Zen-Cart Database', '1', '5.7g', '', '', '', '', 'New Installation-v157g', now());
+INSERT INTO project_version_history (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_comment, project_version_date_applied) VALUES (1, 'Zen-Cart Main', '1', '5.7g', '', 'New Installation-v157g', now());
+INSERT INTO project_version_history (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_comment, project_version_date_applied) VALUES (2, 'Zen-Cart Database', '1', '5.7g', '', 'New Installation-v157g', now());
 
 #
 # German Version Special Definitions
@@ -5243,5 +5294,5 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 
 
 REPLACE INTO product_type_layout_language (configuration_title , configuration_key , languages_id, configuration_description, last_modified, date_added)
-VALUES ('20230520', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Übersetzungen', now(), now());
+VALUES ('20231026', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Übersetzungen', now(), now());
 ##### End of SQL setup for Zen Cart German.

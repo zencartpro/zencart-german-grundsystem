@@ -1,14 +1,14 @@
 <?php
 /**
  * load the system wide functions
- * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
+ * see  {@link  https://docs.zen-cart.com/dev/code/init_system/} for more details.
  *
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_special_funcs.php 2021-11-28 21:29:16Z webchills $
+ * @version $Id: init_special_funcs.php 2023-10-23 14:29:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -24,10 +24,7 @@ zen_update_whos_online();
 require DIR_WS_FUNCTIONS . 'banner.php';
 zen_activate_banners();
 zen_expire_banners();
-/**
- * require product functions one time such that if previously loaded will not cause an error here.
- */
-require_once DIR_WS_FUNCTIONS . 'functions_products.php';
+
 /**
  * only process once per session do not include banners as banners expire per click as well as per date
  * require the banner functions, auto-activate and auto-expire.

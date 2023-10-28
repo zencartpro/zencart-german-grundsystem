@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157)
 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: update_product.php 2021-10-26 09:49:16Z webchills $
+ * @version $Id: update_product.php 2023-10-22 08:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -28,6 +28,9 @@ if (isset($_POST['edit']) && $_POST['edit'] == 'edit') {
     }
   }
   $products_date_available = (date('Y-m-d') < $products_date_available) ? $products_date_available : 'null';
+  if (!empty($products_id)) { 
+    $zco_notifier->notify('NOTIFY_MODULES_UPDATE_PRODUCT_START', ['action' => $action, 'products_id' => $products_id]);
+  }
 
   // Data-cleaning to prevent data-type mismatch errors:
   $sql_data_array = array(

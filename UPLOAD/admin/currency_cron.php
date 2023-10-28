@@ -1,20 +1,21 @@
 #!/usr/bin/php
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: currency_cron.php 2021-10-24 17:49:16Z webchills $
+ * @version $Id: currency_cron.php 2023-10-23 19:49:16Z webchills $
  */
 // uncomment the following line to disable this script execution in the case of an emergency malfunction when you can't access the server cron settings to kill the scheduled cron job:
 // exit(1);
 
 // This is intended to prevent unauthorized execution via a browser
-$is_browser = (isset($_SERVER['HTTP_HOST']) || PHP_SAPI != 'cli');
-if ($is_browser && isset($_SERVER["REMOTE_ADDR"]) && ($_SERVER["REMOTE_ADDR"] != $_SERVER["SERVER_ADDR"])){
+$is_browser = (isset($_SERVER['HTTP_HOST']) || PHP_SAPI !== 'cli');
+if ($is_browser && isset($_SERVER["REMOTE_ADDR"]) && ($_SERVER["REMOTE_ADDR"] !== $_SERVER["SERVER_ADDR"])){
   echo ' ERROR: Permission denied.';
   exit(1);
-};
+}
 
 // Some servers' PHP configuration doesn't know where to find the mysql socket correctly (evidenced by getting errors about mysqli and mysql.sock, esp when running cron or command-line scripts, such as this one)
 // uncomment the following line ONLY if your server's configuration requires it and you don't already have this in your configure.php file
@@ -28,8 +29,8 @@ define('IS_CLI', 'VERBOSE'); // options: VERBOSE will cause it to output informa
 // Set timezone if passed as "TZ=Continent/City" (since often the PHP CLI doesn't know the same timezone as an apache vhost, and thus may not honor the vhost-specific date.timezone setting) (Yes, PHP 5.4+ ignores the TZ environment variable, but this uses it and takes it a step further for forward compatibility)
 if (isset($_SERVER["argc"]) && $_SERVER["argc"] > 1) {
   for($i=1;$i<$_SERVER["argc"];$i++) {
-    list($key, $val) = explode('=', $_SERVER["argv"][$i]);
-    if ($key == 'TZ') {
+    [$key, $val] = explode('=', $_SERVER["argv"][$i]);
+    if ($key === 'TZ') {
       putenv($_SERVER["argv"][$i]);
       date_default_timezone_set($val);
     }
@@ -49,21 +50,21 @@ if (isset($_SERVER["argc"]) && $_SERVER["argc"] > 1) {
 }
 
 // setup
-chdir( dirname(__FILE__) );
+chdir(__DIR__);
 $loaderPrefix = 'currency_cron';
 $_SERVER['REMOTE_ADDR'] = 'cron';
 $_SERVER['REQUEST_URI'] = 'cron';
 $result = require('includes/application_top.php');
-if ($result == FALSE)  die("Error: application_top not found.\nMake sure you have placed the currency_cron.php file in your (renamed) Admin folder.\n\n");
+if ($result === false) die("Error: application_top not found.\nMake sure you have placed the currency_cron.php file in your (renamed) Admin folder.\n\n");
 $_SERVER['HTTP_USER_AGENT'] = 'Zen Cart update';
 
 // main execution area
 if (function_exists('zen_update_currencies'))
 {
-  if (IS_CLI == 'VERBOSE' && $is_browser) echo '<br><pre>' . "\n";
-  if (IS_CLI == 'VERBOSE') echo 'Updating currencies... ' . "\n";
-  zen_update_currencies(IS_CLI == 'VERBOSE');
-  if (IS_CLI == 'VERBOSE') echo 'Done.' . "\n\n";
+  if (IS_CLI === 'VERBOSE' && $is_browser) echo '<br><pre>' . "\n";
+  if (IS_CLI === 'VERBOSE') echo 'Updating currencies... ' . "\n";
+  zen_update_currencies(IS_CLI === 'VERBOSE');
+  if (IS_CLI === 'VERBOSE') echo 'Done.' . "\n\n";
   exit(0); // returns 0 status code, which means successful
 } else {
   echo "Error: Function not found: zen_update_currencies().\nMake sure you have placed the currency_cron.php file in your (renamed) Admin folder.\n\n";

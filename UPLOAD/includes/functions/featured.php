@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * featured-products functions
  *
  * Zen Cart German Specific (158 code in 157)

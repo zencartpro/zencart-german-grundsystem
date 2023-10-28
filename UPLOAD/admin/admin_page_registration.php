@@ -1,10 +1,11 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: admin_page_registration.php 2021-11-29 19:59:16Z webchills $
+ * @version $Id: admin_page_registration.php 2023-10-24 19:59:16Z webchills $
  */
 require('includes/application_top.php');
 
@@ -30,7 +31,7 @@ if (isset($_POST) && !empty($_POST)) {
   if (isset($_POST['language_key'])) {
     $language_key = zen_db_prepare_input($_POST['language_key']);
   }
-  if (empty($language_key)) {
+  if (empty($page_key)) {
     $error = TRUE;
     $messageStack->add(ERROR_LANGUAGE_KEY_NOT_ENTERED, 'error');
   } elseif (!defined($language_key)) {
@@ -88,7 +89,7 @@ if (isset($_POST) && !empty($_POST)) {
 // prepare options for menu pulldown
 $menu_titles = zen_get_menu_titles();
 $menu_options = array();
-$menu_options[0] = array('id' => NULL, 'text' => TEXT_SELECT_MENU);
+$menu_options[0] = array('id' => '', 'text' => TEXT_SELECT_MENU);
 foreach ($menu_titles as $id => $title) {
   $menu_options[] = array('id' => $id, 'text' => $title);
 }
@@ -145,7 +146,7 @@ foreach ($menu_titles as $id => $title) {
       <div class="form-group">
           <?php echo zen_draw_label(TEXT_DISPLAY_ON_MENU, 'display_on_menu', 'class="col-sm-3 control-label"'); ?>
         <div class="col-sm-9 col-md-6">
-          <input type="checkbox" name="display_on_menu" id="displayOnMenu" <?php echo $checked ?> />
+          <input type="checkbox" name="display_on_menu" id="displayOnMenu" <?php echo $checked ?>>
         </div>
       </div>
       <div class="form-group">

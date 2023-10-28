@@ -1,63 +1,75 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: gv_queue.php 2022-01-12 08:37:16Z webchills $
+ * @version $Id: gv_queue.php 2023-10-23 18:37:16Z webchills $
  */
+require 'includes/application_top.php';
 
-  require('includes/application_top.php');
+require DIR_WS_CLASSES . 'currencies.php';
+$currencies = new currencies();
 
-  require(DIR_WS_CLASSES . 'currencies.php');
-  $currencies = new currencies();
-
-  if (isset($_GET['order'])) $_GET['order'] = (int)$_GET['order'];
-  if (isset($_GET['gid'])) $_GET['gid'] = (int)$_GET['gid'];
-  if (!isset($_GET['action'])) $_GET['action'] = '';
+if (isset($_GET['order'])) {
+  $_GET['order'] = (int)$_GET['order'];
+}
+if (isset($_GET['gid'])) {
+  $_GET['gid'] = (int)$_GET['gid'];
+}
+if (!isset($_GET['action'])) {
+  $_GET['action'] = '';
+}
 
 // bof: find gv for a particular order and set page
-  if (!empty($_GET['order'])) {
-    $gv_check = $db->Execute("SELECT order_id, unique_id
-                                  FROM " . TABLE_COUPON_GV_QUEUE . "
-                                  WHERE order_id = '" . $_GET['order'] . "' AND release_flag= 'N' LIMIT 1");
+if (!empty($_GET['order'])) {
+  $gv_check = $db->Execute("SELECT order_id, unique_id
+                            FROM " . TABLE_COUPON_GV_QUEUE . "
+                            WHERE order_id = " . (int)$_GET['order'] . "
+                            AND release_flag= 'N'
+                            LIMIT 1");
 
-    $_GET['gid'] = $gv_check->fields['unique_id'];
+  $_GET['gid'] = $gv_check->fields['unique_id'];
 
-    $gv_page = $db->Execute("SELECT c.customers_firstname, c.customers_lastname, gv.unique_id, gv.date_created, gv.amount, gv.order_id FROM " . TABLE_CUSTOMERS . " c, " . TABLE_COUPON_GV_QUEUE . " gv WHERE (gv.customer_id = c.customers_id AND gv.release_flag = 'N')" . " ORDER BY gv.order_id, gv.unique_id");
-    $page_cnt=1;
-    while (!$gv_page->EOF) {
-      if ($gv_page->fields['order_id'] == $_GET['order']) {
-        break;
-      }
-      $page_cnt++;
-      $gv_page->MoveNext();
+  $gv_pages = $db->Execute("SELECT c.customers_firstname, c.customers_lastname, gv.unique_id, gv.date_created, gv.amount, gv.order_id
+                           FROM " . TABLE_CUSTOMERS . " c,
+                                " . TABLE_COUPON_GV_QUEUE . " gv
+                           WHERE (gv.customer_id = c.customers_id
+                             AND gv.release_flag = 'N')
+                           ORDER BY gv.order_id, gv.unique_id");
+  $page_cnt = 1;
+  foreach ($gv_pages as $gv_page) {
+    if ($gv_page['order_id'] == $_GET['order']) {
+      break;
     }
-    $_GET['page'] = round(($page_cnt/MAX_DISPLAY_SEARCH_RESULTS));
-    zen_redirect(zen_href_link(FILENAME_GV_QUEUE, 'gid=' . $gv_check->fields['unique_id'] . '&page=' . $_GET['page']));
+    $page_cnt++;
   }
+  $_GET['page'] = round(($page_cnt / MAX_DISPLAY_SEARCH_RESULTS));
+  zen_redirect(zen_href_link(FILENAME_GV_QUEUE, 'gid=' . $gv_check->fields['unique_id'] . '&page=' . $_GET['page']));
+}
 // eof: find gv for a particular order and set page
 
-  if ($_GET['action'] == 'confirmrelease' && isset($_POST['gid'])) {
-    $gv_result = $db->Execute("SELECT release_flag
-                               FROM " . TABLE_COUPON_GV_QUEUE . "
-                               WHERE unique_id='" . (int)$_POST['gid'] . "'");
+if ($_GET['action'] == 'confirmrelease' && isset($_POST['gid'])) {
+  $gv_result = $db->Execute("SELECT release_flag
+                             FROM " . TABLE_COUPON_GV_QUEUE . "
+                             WHERE unique_id = " . (int)$_POST['gid']);
 
-    if ($gv_result->fields['release_flag'] == 'N') {
-      $gv_resulta = $db->Execute("SELECT customer_id, amount, order_id
-                                  FROM " . TABLE_COUPON_GV_QUEUE . "
-                                  WHERE unique_id='" . (int)$_POST['gid'] . "'");
+  if ($gv_result->fields['release_flag'] == 'N') {
+    $gv_resulta = $db->Execute("SELECT customer_id, amount, order_id
+                                FROM " . TABLE_COUPON_GV_QUEUE . "
+                                WHERE unique_id = " . (int)$_POST['gid']);
 
-      if ($gv_resulta->RecordCount() > 0) {
+    if ($gv_resulta->RecordCount() > 0) {
       $gv_amount = $gv_resulta->fields['amount'];
 
-  // Begin composing email content
+      // Begin composing email content
 //      //Let's build a message object using the email class
       $mail = $db->Execute("SELECT customers_firstname, customers_lastname, customers_email_address
-                           FROM " . TABLE_CUSTOMERS . "
-                           WHERE customers_id = '" . $gv_resulta->fields['customer_id'] . "'");
+                            FROM " . TABLE_CUSTOMERS . "
+                            WHERE customers_id = " . (int)$gv_resulta->fields['customer_id']);
 
-      $message  = TEXT_REDEEM_GV_MESSAGE_HEADER . "\n" . HTTP_CATALOG_SERVER . DIR_WS_CATALOG . "\n\n" . TEXT_REDEEM_GV_MESSAGE_RELEASED;
+      $message = TEXT_REDEEM_GV_MESSAGE_HEADER . "\n" . HTTP_CATALOG_SERVER . DIR_WS_CATALOG . "\n\n" . TEXT_REDEEM_GV_MESSAGE_RELEASED;
       $message .= sprintf(TEXT_REDEEM_GV_MESSAGE_AMOUNT, $currencies->format($gv_amount)) . "\n\n";
       $message .= TEXT_REDEEM_GV_MESSAGE_THANKS . "\n" . STORE_OWNER . "\n\n" . HTTP_CATALOG_SERVER . DIR_WS_CATALOG;
       $message .= TEXT_REDEEM_GV_MESSAGE_BODY;
@@ -66,9 +78,9 @@
 
       $html_msg['EMAIL_SALUTATION'] = EMAIL_SALUTATION;
       $html_msg['EMAIL_FIRST_NAME'] = $mail->fields['customers_firstname'];
-      $html_msg['EMAIL_LAST_NAME']  = $mail->fields['customers_lastname'];
-      $html_msg['GV_NOTICE_HEADER']  = TEXT_REDEEM_GV_MESSAGE_HEADER;
-      $html_msg['GV_NOTICE_RELEASED']  = TEXT_REDEEM_GV_MESSAGE_RELEASED;
+      $html_msg['EMAIL_LAST_NAME'] = $mail->fields['customers_lastname'];
+      $html_msg['GV_NOTICE_HEADER'] = TEXT_REDEEM_GV_MESSAGE_HEADER;
+      $html_msg['GV_NOTICE_RELEASED'] = TEXT_REDEEM_GV_MESSAGE_RELEASED;
       $html_msg['GV_NOTICE_AMOUNT_REDEEM'] = sprintf(TEXT_REDEEM_GV_MESSAGE_AMOUNT, '<strong>' . $currencies->format($gv_amount) . '</strong>');
       $html_msg['GV_NOTICE_VALUE'] = $currencies->format($gv_amount);
       $html_msg['GV_NOTICE_THANKS'] = TEXT_REDEEM_GV_MESSAGE_THANKS;
@@ -76,67 +88,51 @@
       $html_msg['TEXT_REDEEM_GV_MESSAGE_FOOTER'] = TEXT_REDEEM_GV_MESSAGE_FOOTER;
 
 //send the message
-        zen_mail($mail->fields['customers_firstname'] . ' ' . $mail->fields['customers_lastname'], $mail->fields['customers_email_address'], TEXT_REDEEM_GV_SUBJECT . TEXT_REDEEM_GV_SUBJECT_ORDER . $gv_resulta->fields['order_id'] , $message, STORE_NAME, EMAIL_FROM, $html_msg, 'gv_queue');
+      zen_mail($mail->fields['customers_firstname'] . ' ' . $mail->fields['customers_lastname'], $mail->fields['customers_email_address'], TEXT_REDEEM_GV_SUBJECT . TEXT_REDEEM_GV_SUBJECT_ORDER . $gv_resulta->fields['order_id'], $message, STORE_NAME, EMAIL_FROM, $html_msg, 'gv_queue');
 
       zen_record_admin_activity('GV Queue entry released in the amount of ' . $gv_amount . ' for ' . $mail->fields['customers_email_address'], 'info');
 
-      $gv_amount=$gv_resulta->fields['amount'];
-      $gv_result=$db->Execute("SELECT amount
-                               FROM " . TABLE_COUPON_GV_CUSTOMER . "
-                               WHERE customer_id='" . $gv_resulta->fields['customer_id'] . "'");
+      $gv_result = $db->Execute("SELECT amount
+                                 FROM " . TABLE_COUPON_GV_CUSTOMER . "
+                                 WHERE customer_id = " . (int)$gv_resulta->fields['customer_id']);
 
-      $customer_gv=false;
-      $total_gv_amount=0;
+      $customer_gv = false;
+      $total_gv_amount = 0;
       if ($gv_result->RecordCount() > 0) {
-        $total_gv_amount=$gv_result->fields['amount'];
-        $customer_gv=true;
+        $total_gv_amount = $gv_result->fields['amount'];
+        $customer_gv = true;
       }
-      $total_gv_amount=$total_gv_amount+$gv_amount;
+      $total_gv_amount += $gv_amount;
       if ($customer_gv) {
         $db->Execute("UPDATE " . TABLE_COUPON_GV_CUSTOMER . "
-                      SET amount='" . $total_gv_amount . "'
-                      WHERE customer_id='" . $gv_resulta->fields['customer_id'] . "'");
+                      SET amount = " . (float)$total_gv_amount . "
+                      WHERE customer_id = " . (int)$gv_resulta->fields['customer_id']);
       } else {
-        $db->Execute("INSERT INTO " . TABLE_COUPON_GV_CUSTOMER . "
-                    (customer_id, amount)
-                    VALUES ('" . $gv_resulta->fields['customer_id']. "', '" . $total_gv_amount . "')");
+        $db->Execute("INSERT INTO " . TABLE_COUPON_GV_CUSTOMER . " (customer_id, amount)
+                      VALUES (" . (float)$gv_resulta->fields['customer_id'] . ", " . (int)$total_gv_amount . ")");
       }
-        $db->Execute("UPDATE " . TABLE_COUPON_GV_QUEUE . "
-                      SET release_flag= 'Y'
-                      WHERE unique_id='" . (int)$_POST['gid'] . "'");
-      }
+      $db->Execute("UPDATE " . TABLE_COUPON_GV_QUEUE . "
+                    SET release_flag= 'Y'
+                    WHERE unique_id = " . (int)$_POST['gid']);
     }
-    // return back to same page after release
-    zen_redirect(zen_href_link(FILENAME_GV_QUEUE, 'page=' . (int)$_GET['page']));
   }
+  // return back to same page after release
+  zen_redirect(zen_href_link(FILENAME_GV_QUEUE, 'page=' . (int)$_GET['page']));
+}
 ?>
 <!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
   <head>
-    <meta charset="<?php echo CHARSET; ?>">
-    <title><?php echo TITLE; ?></title>
-    <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-    <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-    <script src="includes/menu.js"></script>
-    <script src="includes/general.js"></script>
-    <script>
-      function init() {
-          cssjsmenu('navbar');
-          if (document.getElementById) {
-              var kill = document.getElementById('hoverJS');
-              kill.disabled = true;
-          }
-      }
-    </script>
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
   </head>
-<body onload="init()">
-<!-- header //-->
-<?php require(DIR_WS_INCLUDES . 'header.php'); ?>
-<!-- header_eof //-->
-
-<!-- body //-->
+  <body>
+    <!-- header //-->
+    <?php require DIR_WS_INCLUDES . 'header.php'; ?>
+    <!-- header_eof //-->
     <div class="container-fluid">
-      <h1><?php echo HEADING_TITLE; ?></h1>
+      <!-- body //-->
+
+      <h1 class="pageHeading"><?php echo HEADING_TITLE; ?></h1>
       <!-- body_text //-->
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 configurationColumnLeft">
@@ -164,7 +160,7 @@
                 if ((!isset($_GET['gid']) || $_GET['gid'] == $gv_list['unique_id']) && (!isset($gInfo))) {
                   $gInfo = new objectInfo($gv_list);
                 }
-                if ((is_object($gInfo)) && ($gv_list['unique_id'] == $gInfo->unique_id)) {
+                if (isset($gInfo) && (is_object($gInfo)) && ($gv_list['unique_id'] == $gInfo->unique_id)) {
                   ?>
                   <tr class="dataTableRowSelected" onclick="document.location.href = '<?php echo zen_href_link('gv_queue.php', zen_get_all_get_params(array('gid', 'action')) . 'gid=' . $gInfo->unique_id . '&action=edit'); ?>'">
                   <?php } else { ?>
@@ -176,7 +172,7 @@
                   <td class="dataTableContent text-right"><?php echo zen_datetime_short($gv_list['date_created']); ?></td>
                   <td class="dataTableContent text-right">
                     <?php
-                    if ((is_object($gInfo)) && ($gv_list['unique_id'] == $gInfo->unique_id)) {
+                    if (isset($gInfo) && (is_object($gInfo)) && ($gv_list['unique_id'] == $gInfo->unique_id)) {
                       echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif');
                     } else {
                       echo '<a href="' . zen_href_link(FILENAME_GV_QUEUE, 'page=' . $_GET['page'] . '&gid=' . $gv_list['unique_id']) . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>';

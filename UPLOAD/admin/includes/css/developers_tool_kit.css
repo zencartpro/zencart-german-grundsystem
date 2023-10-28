@@ -1,9 +1,8 @@
 /*
  * @package Admin 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
- * Zen Cart German Version - www.zen-cart-pro.at
- * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: developers_tool_kit.css 2021-12-28 17:56:29Z webchills $
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: Zen4All Mon Nov 26 10:26:15 2018 +0100 Modified in v1.5.6 $
  */
 
 .dtk-highlite {font-weight: bold; color: rgb(255, 10, 5);}
@@ -15,3 +14,7 @@
 .dtk-contextline {font-family: Verdana, sans-serif;}
 .dtk-linenum {font-family: Verdana, sans-serif;}
 .dataTableGroupChange {border-top: 2px solid #000 !important;}
+table.results {border:2px solid;}
+table.blank {width:100%;}
+table.constantlink {border:3px solid;}
+table.constantlink td {border:1px solid;}

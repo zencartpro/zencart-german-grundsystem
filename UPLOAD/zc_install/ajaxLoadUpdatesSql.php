@@ -1,10 +1,11 @@
 <?php
 /**
  * ajaxLoadUpdatesSql.php
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ajaxLoadUpdatesSql.php 2021-11-28 17:40:53Z webchills $
+ * @version $Id: ajaxLoadUpdatesSql.php 2023-10-26 09:40:53Z webchills $
  */
 define('IS_ADMIN_FLAG', false);
 define('DIR_FS_INSTALL', __DIR__ . '/');
@@ -47,8 +48,9 @@ if ($versionInfo['required'] != $dbVersion)
   if (empty($versionInfo['required'])) $versionInfo['required'] = '[ ERROR: NOT READY FOR UPGRADES YET. NOTIFY DEV TEAM!] ';
   $errorList[] = sprintf(TEXT_COULD_NOT_UPDATE_BECAUSE_ANOTHER_VERSION_REQUIRED, $updateVersion, $dbVersion, $versionInfo['required']);
 }
-if (!$error)
-{
+if ($error) {
+    echo json_encode(array('error'=>$error, 'version'=>$_POST['version'], 'errorList'=>$errorList)); die();
+}
   require_once(DIR_FS_INSTALL . 'includes/classes/class.zcDatabaseInstaller.php');
   $file = DIR_FS_INSTALL . 'sql/updates/' . $db_type . '_upgrade_zencart_' . str_replace('.', '', $updateVersion) . '.sql';
   $options = $systemChecker->getDbConfigOptions();
@@ -56,5 +58,19 @@ if (!$error)
   $result = $dbInstaller->getConnection();
   $errDates = $dbInstaller->runZeroDateSql($options);
   $errorUpg = $dbInstaller->parseSqlFile($file);
+if ($error) {
+    echo json_encode(array('error'=>$error, 'version'=>$_POST['version'], 'errorList'=>$errorList)); die();
+}
+
+// Plugins
+$pluginsfolder = DIR_FS_INSTALL . 'sql/plugins/updates/';
+// get all *.sql files in alpha order
+$sql_files = glob($pluginsfolder . '*.sql');
+if ($sql_files !== false) {
+    foreach ($sql_files as $file) {
+        $extendedOptions = array('doJsonProgressLogging'=>TRUE, 'doJsonProgressLoggingFileName'=>DEBUG_LOG_FOLDER . '/progress.json', 'id'=>'main', 'message'=>TEXT_LOADING_PLUGIN_UPGRADES . ' ' . $file);
+        logDetails('processing file ' . $file);
+        $errorUpg = $dbInstaller->parseSqlFile($file, $extendedOptions);
+    }
 }
 echo json_encode(array('error'=>$error, 'version'=>$_POST['version'], 'errorList'=>$errorList));

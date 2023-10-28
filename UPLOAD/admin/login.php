@@ -1,10 +1,11 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: login.php 2021-10-24 17:44:16Z webchills $
+ * @version $Id: login.php 2023-10-23 18:44:16Z webchills $
  */
 require 'includes/application_top.php';
 
@@ -70,13 +71,7 @@ if ($expired && $message == '') {
 <!DOCTYPE html>
 <html <?php echo HTML_PARAMS; ?>>
   <head>
-    <meta charset="<?php echo CHARSET; ?>">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php echo TITLE; ?></title>
-    <link rel="stylesheet" href="includes/css/bootstrap.min.css">
-    <link rel="stylesheet" href="includes/css/font-awesome.min.css">
-    <link href="includes/css/login.css" rel="stylesheet">
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
     <meta name="robots" content="noindex, nofollow">
   </head>
   <body id="login">
@@ -92,7 +87,7 @@ if ($expired && $message == '') {
               <div class="form-group">
                 <div class="input-group">
                   <span class="input-group-addon">
-                    <i class="fa fa-lg fa-user"></i>
+                    <i class="fa-solid fa-lg fa-user"></i>
                   </span>
                   <?php echo zen_draw_input_field('admin_name', zen_output_string($admin_name), 'class="form-control input-lg" id="admin_name-' . $_SESSION['securityToken'] . '" autocapitalize="none" spellcheck="false" autocomplete="username" autofocus placeholder="' . TEXT_ADMIN_NAME . '"') . PHP_EOL; ?>
                 </div>
@@ -100,7 +95,7 @@ if ($expired && $message == '') {
               <div class="form-group">
                 <div class="input-group">
                   <span class="input-group-addon">
-                    <i class="fa fa-lg fa-lock"></i>
+                    <i class="fa-solid fa-lg fa-lock"></i>
                   </span>
                   <?php echo zen_draw_password_field('admin_pass', '', false, 'class="form-control input-lg" id="admin_pass" autocomplete="current-password" placeholder="' . TEXT_ADMIN_PASS . '"') . PHP_EOL; ?>
                 </div>

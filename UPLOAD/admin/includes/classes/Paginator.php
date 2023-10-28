@@ -2,12 +2,12 @@
 /**
  * split_page_results Class.
  *
- * @package classes
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: Paginator.php 2022-04-17 16:56:29Z webchills $
+ * @version $Id: Paginator.php 2023-10-23 17:56:29Z webchills $
  */
 
 namespace Zencart\Paginator;
@@ -21,10 +21,16 @@ if (!defined('IS_ADMIN_FLAG')) {
  * An sql paging class, that allows for sql result to be shown over a number of pages using simple navigation system
  * Overhaul scheduled for subsequent release
  *
- * @package classes
  */
 class Paginator extends \base {
-  var $sql_query, $number_of_rows, $current_page_number, $number_of_pages, $number_of_rows_per_page, $page_name;
+    protected $cmd;
+    protected $countQuery;
+    protected $current_page_number;
+    protected $number_of_pages;
+    protected $number_of_rows_per_page;
+    protected $number_of_rows;
+    protected $page_name;
+    protected $sql_query;
 
   /* class constructor */
   function __construct($query, $max_rows, $count_key = '*', $page_holder = 'page', $debug = false, $countQuery = "") {
@@ -113,7 +119,7 @@ class Paginator extends \base {
 
     $class = '';
 
-    if (zen_not_null($parameters) && (substr($parameters, -1) != '&')) $parameters .= '&';
+    if (!empty($parameters) && (substr($parameters, -1) != '&')) $parameters .= '&';
 
     // previous button - not displayed on first page
     $link = '<a href="' . zen_href_link($this->cmd, $parameters . $this->page_name . '=' . ($this->current_page_number - 1), $request_type) . '" title="' . PREVNEXT_TITLE_PREVIOUS_PAGE . '">' . PREVNEXT_BUTTON_PREV . '</a>';
@@ -126,10 +132,10 @@ class Paginator extends \base {
 
 
     // check if number_of_pages > $max_page_links
-    $cur_window_num = intval($this->current_page_number / $max_page_links);
+    $cur_window_num = (int)$this->current_page_number / $max_page_links;
     if ($this->current_page_number % $max_page_links) $cur_window_num++;
 
-    $max_window_num = intval($this->number_of_pages / $max_page_links);
+    $max_window_num = (int)$this->number_of_pages / $max_page_links;
     if ($this->number_of_pages % $max_page_links) $max_window_num++;
 
     // previous group of pages

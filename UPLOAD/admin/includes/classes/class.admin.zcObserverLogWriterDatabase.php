@@ -1,10 +1,10 @@
 <?php
 /**
- * @package plugins
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: class.admin.zcObserverLogWriterDatabase.php 2021-12-28 17:56:29Z webchills $
+ * @version $Id: class.admin.zcObserverLogWriterDatabase.php 2023-10-23 17:56:29Z webchills $
  *
  * Designed for ZC >= v1.5.4
  *
@@ -12,6 +12,8 @@
 
 class zcObserverLogWriterDatabase extends base {
 
+    private $notifier;
+    
   public function __construct(notifier $zco_notifier = null) {
     if (!$zco_notifier) $zco_notifier = new notifier;
     $this->notifier = $zco_notifier;

@@ -1,11 +1,11 @@
 <?php
 /** 
- * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: footer.php 2022-01-15 17:24:50Z webchills $
+ * @version $Id: footer.php 2023-10-23 18:24:50Z webchills $
  */
 
 // check and display zen cart version and history version in footer
@@ -14,7 +14,7 @@
   $check_hist_details = $db->Execute($check_hist_query);
   if (!$check_hist_details->EOF) {
     $current_sinfo .=  'v' . $check_hist_details->fields['project_version_major'] . '.' . $check_hist_details->fields['project_version_minor'];
-    if (zen_not_null($check_hist_details->fields['project_version_patch1'])) $current_sinfo .= '&nbsp;&nbsp;Patch: ' . $check_hist_details->fields['project_version_patch1'];
+    if (!empty($check_hist_details->fields['project_version_patch1'])) $current_sinfo .= '&nbsp;&nbsp;Patch: ' . $check_hist_details->fields['project_version_patch1'];
   }
 
 // BOF: Mailbeez Customer Insight

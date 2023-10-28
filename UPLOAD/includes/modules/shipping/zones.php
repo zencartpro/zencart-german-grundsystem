@@ -2,11 +2,11 @@
 /**
  * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: zones.php 2022-11-16 12:37:16Z webchills $
+ * @version $Id: zones.php 2023-10-26 19:37:16Z webchills $
  */
 /*
 
@@ -94,7 +94,8 @@
 
 */
 
-  class zones {
+class zones
+{
     /**
      * $_check is used to check the configuration key set up
      * @var int
@@ -152,7 +153,8 @@
      */
     public $title;
 
-    function __construct() {
+  function __construct()
+  {
       $this->code = 'zones';
       $this->title = MODULE_SHIPPING_ZONES_TEXT_TITLE;
       $this->description = MODULE_SHIPPING_ZONES_TEXT_DESCRIPTION;
@@ -198,7 +200,8 @@
       }
     }
 
-    function quote($method = '') {
+  function quote($method = '')
+  {
       global $order, $shipping_weight, $shipping_num_boxes, $total_count;
       $dest_country = $order->delivery['country']['iso_code_2'];
       $dest_zone = 0;
@@ -235,7 +238,6 @@
           switch (MODULE_SHIPPING_ZONES_METHOD) {
         	  case (MODULE_SHIPPING_ZONES_METHOD == 'Weight'):
               if (round($shipping_weight,9) <= $zones_table[$i]) {
-                $shipping = $zones_table[$i+1];
 
                 switch (SHIPPING_BOX_WEIGHT_DISPLAY) {
                 case (0):
@@ -245,10 +247,10 @@
                   $show_box_weight = ' (' . $shipping_num_boxes . ' ' . TEXT_SHIPPING_BOXES . ')';
                   break;
                 case (2):
-                  $show_box_weight = ' (' . number_format($shipping_weight * $shipping_num_boxes,2) . MODULE_SHIPPING_ZONES_TEXT_UNITS . ')';
+                  $show_box_weight = ' (' . number_format($shipping_weight * $shipping_num_boxes, 2) . TEXT_SHIPPING_WEIGHT . ')';
                   break;
                 default:
-                  $show_box_weight = ' (' . $shipping_num_boxes . ' x ' . number_format($shipping_weight,2) . MODULE_SHIPPING_ZONES_TEXT_UNITS . ')';
+                  $show_box_weight = ' (' . $shipping_num_boxes . ' x ' . number_format($shipping_weight, 2) . TEXT_SHIPPING_WEIGHT . ')';
                   break;
                 }
 
@@ -265,7 +267,7 @@
         	  case (MODULE_SHIPPING_ZONES_METHOD == 'Price'):
 // shipping adjustment
               if (($_SESSION['cart']->show_total() - $_SESSION['cart']->free_shipping_prices()) <= $zones_table[$i]) {
-                $shipping = $zones_table[$i+1];
+               
                 $shipping_method = MODULE_SHIPPING_ZONES_TEXT_WAY . ' ' . $dest_country;
         if (strstr($zones_table[$i+1], '%')) {
           $shipping = ($zones_table[$i+1]/100) * $order_total_amount;
@@ -279,7 +281,7 @@
         	  case (MODULE_SHIPPING_ZONES_METHOD == 'Item'):
 // shipping adjustment
               if (($total_count - $_SESSION['cart']->free_shipping_items()) <= $zones_table[$i]) {
-                $shipping = $zones_table[$i+1];
+               
                 $shipping_method = MODULE_SHIPPING_ZONES_TEXT_WAY . ' ' . $dest_country;
                 $done = true;
         if (strstr($zones_table[$i+1], '%')) {
@@ -321,11 +323,15 @@
           }
         }
       }
-      $this->quotes = array('id' => $this->code,
-                            'module' => MODULE_SHIPPING_ZONES_TEXT_TITLE,
-                            'methods' => array(array('id' => $this->code,
-                                                     'title' => $shipping_method,
-                                                     'cost' => $shipping_cost)));
+    $this->quotes = array(
+      'id' => $this->code,
+      'module' => MODULE_SHIPPING_ZONES_TEXT_TITLE,
+      'methods' => array(array(
+        'id' => $this->code,
+        'title' => $shipping_method,
+        'cost' => $shipping_cost
+      ))
+    );
 
       if ($this->tax_class > 0) {
         $this->quotes['tax'] = zen_get_tax_rate($this->tax_class, $order->delivery['country']['id'], $order->delivery['zone_id']);
@@ -343,7 +349,8 @@
       return $this->quotes;
     }
 
-    function check() {
+  function check()
+  {
       global $db;
       if (!isset($this->_check)) {
         $check_query = $db->Execute("select configuration_value from " . TABLE_CONFIGURATION . " where configuration_key = 'MODULE_SHIPPING_ZONES_STATUS'");
@@ -352,7 +359,8 @@
       return $this->_check;
     }
 
-    function install() {
+  function install()
+  {
       global $db;
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable Zones Method', 'MODULE_SHIPPING_ZONES_STATUS', 'True', 'Do you want to offer zone rate shipping?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Calculation Method', 'MODULE_SHIPPING_ZONES_METHOD', 'Weight', 'Calculate cost based on Weight, Price or Item?', '6', '0', 'zen_cfg_select_option(array(\'Weight\', \'Price\', \'Item\'), ', now())");
@@ -409,13 +417,15 @@
       }
     }
 
-    function remove() {
+  function remove()
+  {
       global $db;
       $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key like 'MODULE\_SHIPPING\_ZONES\_%'");
       $db->Execute("delete from " . TABLE_CONFIGURATION_LANGUAGE . " where configuration_key like 'MODULE\_SHIPPING\_ZONES\_%'");
     }
 
-    function keys() {
+  function keys()
+  {
       $keys = array('MODULE_SHIPPING_ZONES_STATUS', 'MODULE_SHIPPING_ZONES_METHOD', 'MODULE_SHIPPING_ZONES_TAX_CLASS', 'MODULE_SHIPPING_ZONES_TAX_BASIS', 'MODULE_SHIPPING_ZONES_SORT_ORDER', 'MODULE_SHIPPING_ZONES_SKIPPED');
 
       for ($i=1; $i<=$this->num_zones; $i++) {

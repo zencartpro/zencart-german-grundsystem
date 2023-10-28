@@ -1,6 +1,6 @@
 <?php
 /**
- * Zen Cart German Specific (zencartpro adaptations)
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  * Common Template main_template_vars handler
  *
  * Normally a page will automatically load its own template based on the page name.
@@ -11,11 +11,11 @@
  * allows you to override this page and choose the template that loads.
  *
 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main_template_vars 2022-12-04 18:18:58Z webchills $
+ * @version $Id: main_template_vars 2023-10-25 19:18:58Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -48,10 +48,6 @@ if (!defined('IS_ADMIN_FLAG')) {
 /**
  * load page-specific main_template_vars if present, or jump directly to template file
  */
-  if (file_exists(DIR_WS_MODULES . 'pages/' . $current_page_base . '/main_template_vars.php')) {
-    $body_code = DIR_WS_MODULES . 'pages/' . $current_page_base . '/main_template_vars.php';
-  } else {
-    $body_code = $template->get_template_dir('tpl_' . preg_replace('/.php/', '',$_GET['main_page']) . '_default.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_' . $_GET['main_page'] . '_default.php';
-  }
+  $body_code = $pageLoader->getBodyCode();
 
   $zco_notifier->notify('NOTIFY_MAIN_TEMPLATE_VARS_END', $template_dir, $body_code);

@@ -1,17 +1,17 @@
 <?php
 /**
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: collect_info_metatags.php 2019-06-15 16:24:50Z webchills $
+ * @version $Id: collect_info_metatags.php 2023-10-22 08:24:50Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
 
-$parameters = array(
+$parameters = [
   'products_name' => '',
   'products_model' => '',
   'metatags_title_status' => '1',
@@ -23,7 +23,7 @@ $parameters = array(
   'metatags_title' => '',
   'metatags_keywords' => '',
   'metatags_description' => ''
-);
+];
 
 $pInfo = new objectInfo($parameters);
 
@@ -57,7 +57,7 @@ if (isset($_GET['pID']) && empty($_POST)) {
   }
 
   $pInfo->updateObjectInfo($product->fields);
-} elseif (zen_not_null($_POST)) {
+} elseif (!empty($_POST)) {
   $pInfo->updateObjectInfo($_POST);
   $metatags_title = $_POST['metatags_title'];
   $metatags_keywords = $_POST['metatags_keywords'];

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
@@ -109,7 +109,7 @@ if (!empty($action)) {
                   ?>
               <td class="dataTableContent"><?php echo $class['tax_class_id']; ?></td>
               <td class="dataTableContent"><?php echo $class['tax_class_title']; ?></td>
-              <td class="dataTableContent" align="right"><?php
+              <td class="dataTableContent text-right"><?php
                   if (isset($tcInfo) && is_object($tcInfo) && ($class['tax_class_id'] == $tcInfo->tax_class_id)) {
                     echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', '');
                   } else {

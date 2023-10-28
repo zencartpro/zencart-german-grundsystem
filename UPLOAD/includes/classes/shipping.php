@@ -2,11 +2,11 @@
 /**
  * shipping class
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: shipping.php 2023-01-11 16:25:16Z webchills $
+ * @version $Id: shipping.php 2023-10-25 20:25:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -36,7 +36,7 @@ class shipping extends base
 
     public function __construct($module = null)
     {
-        global $PHP_SELF, $messageStack;
+        global $PHP_SELF, $messageStack, $languageLoader;
 
       if (defined('MODULE_SHIPPING_INSTALLED') && !empty(MODULE_SHIPPING_INSTALLED)) {
         $this->modules = explode(';', MODULE_SHIPPING_INSTALLED);
@@ -73,8 +73,8 @@ class shipping extends base
         } else {
           $lang_file = zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/shipping/', $include_modules[$i]['file'], 'false');
         }
-        if (@file_exists($lang_file)) {
-          include_once($lang_file);
+            if ($languageLoader->hasLanguageFile(DIR_FS_CATALOG . DIR_WS_LANGUAGES,  $_SESSION['language'], $include_modules[$i]['file'], '/modules/shipping')) {
+                $languageLoader->loadExtraLanguageFiles(DIR_FS_CATALOG . DIR_WS_LANGUAGES,  $_SESSION['language'], $include_modules[$i]['file'], '/modules/shipping');
         } else {
           if (is_object($messageStack)) {
             if (IS_ADMIN_FLAG === false) {

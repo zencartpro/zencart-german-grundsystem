@@ -1,10 +1,11 @@
 <?php
 /** 
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: admin_activity.php 2022-04-17 16:00:16Z webchills $
+ * @version $Id: admin_activity.php 2023-10-24 20:00:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Admin Aktivitäten Log Manager');
@@ -14,7 +15,7 @@ define('TEXT_ACTIVITY_EXPORT_FORMAT', 'Export als:');
 define('TEXT_ACTIVITY_EXPORT_FILENAME', 'Export Dateiname:');
 define('TEXT_ACTIVITY_EXPORT_SAVETOFILE','Datei auf dem Server speichern? (ansonsten erfolgt der Download der Datei direkt aus diesem Fenster)');
 define('TEXT_ACTIVITY_EXPORT_DEST','Speicherort: ');
-define('TEXT_PROCESSED', ' Verarbeitet.');
+
 define('SUCCESS_EXPORT_ADMIN_ACTIVITY_LOG', 'Export abgeschlossen. ');
 define('FAILURE_EXPORT_ADMIN_ACTIVITY_LOG', 'ACHTUNG: Export fehlgeschlagen. Es konnte nicht gespeichert werden in der Datei ');
 
@@ -44,7 +45,8 @@ define('TEXT_EXPORTFILTER1', 'INFO - Allgemeine Info über Zugriffe');
 define('TEXT_EXPORTFILTER2', 'NOTICE - Wichtige Infos über Aktivitäten, die regelmäßig geprüft werden sollte');
 define('TEXT_EXPORTFILTER3', 'WARNING - Aktivität, die täglich überprüft werden sollte');
 define('TEXT_EXPORTFILTER4', 'Sowohl NOTICE als auch WARNING (übliche Kombination für eine Analyse).');
-
+define('TEXT_ACTIVITY_EXPORT_FILTER_USER','Filtern nach Admin User:');
+define('TEXT_EXPORTFILTER_USER','Alle Admin User');
 define('TEXT_INTERPRETING_LOG_DATA', '<p><strong>Interpretation der Log Daten</strong></p><ul>
 <li><strong>Schweregrad</strong>  - Die Standards für die Protokollierung beschreiben im Allgemeinen folgende Schweregrade:<ul>
 <li><strong>INFO</strong> bezieht sich auf die allgemeine Aktivität. Diese kann bemerkenswerte Details enthalten oder auch nicht.</li>

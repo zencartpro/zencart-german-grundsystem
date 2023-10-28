@@ -1,15 +1,17 @@
 <?php
 /**
  * paypal EC button display template
- * Zen Cart German Specific (zencartpro adaptations)
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_ec_button.php 2022-11-17 08:41:20Z webchills $
+ * @version $Id: tpl_ec_button.php 2023-10-26 19:41:20Z webchills $
  */
 
-$paypalec_enabled = (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATUS == 'True');
+// PayPal module cannot be used for purchase > $10,000 USD equiv
+require_once DIR_FS_CATALOG . DIR_WS_MODULES . 'payment/paypal/paypal_currency_check.php';
+$paypalec_enabled = (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATUS == 'True'  && paypalUSDCheck($_SESSION['cart']->total) === true);
 $ecs_off = (defined('MODULE_PAYMENT_PAYPALWPP_ECS_BUTTON') && MODULE_PAYMENT_PAYPALWPP_ECS_BUTTON == 'Off');
 if ($ecs_off) $paypalec_enabled = FALSE;
 
@@ -44,10 +46,6 @@ if ($paypalec_enabled) {
     $paypalec_enabled = false;
   }
 
-  // PayPal module cannot be used for purchase > $10,000 EUR equiv
-  if ($currencies->value($_SESSION['cart']->total, true, 'EUR') > 10000) {
-    $paypalec_enabled = false;
-  }
 }
 // if all is okay, display the button
 if ($paypalec_enabled) {
@@ -59,7 +57,7 @@ if ($paypalec_enabled) {
     unset($_SESSION['paypal_ec_payer_info']);
     unset($_SESSION['paypal_ec_markflow']);
 
-    include zen_get_file_directory(DIR_FS_CATALOG . DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/payment/','paypalwpp.php', 'false');
+    zen_include_language_file('paypalwpp.php', '/modules/payment/', 'inline'); 
 ?>
 <?php if ( $detect->isMobile() && !$detect->isTablet() || $_SESSION['layoutType'] == 'mobile' ) { ?>
 <div id="PPECbutton" class="buttonRow">

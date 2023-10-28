@@ -1,12 +1,12 @@
 <?php
 /**
  * Displays information related to a single specific order, both for checkout_success and in account_history_info
- *
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_account_history_info_default.php 2022-04-09 17:15:05Z webchills $
+ * @version $Id: tpl_account_history_info_default.php 2023-10-26 16:15:05Z webchills $
  */
 ?>
 <div class="centerColumn" id="accountHistInfo">
@@ -32,18 +32,17 @@
         <th scope="col" id="myAccountTotal"><?php echo HEADING_TOTAL; ?></th>
     </tr>
 <?php
-  for ($i=0, $n=sizeof($order->products); $i<$n; $i++) {
+  foreach($order->products as $op) {
   ?>
     <tr>
-        <td class="accountQuantityDisplay"><?php echo  $order->products[$i]['qty'] . QUANTITY_SUFFIX; ?></td>
-        <td class="accountProductDisplay"><?php
-
-            echo  $order->products[$i]['name'];
-
-    if ( (isset($order->products[$i]['attributes'])) && (sizeof($order->products[$i]['attributes']) > 0) ) {
+        <td class="accountQuantityDisplay"><?php echo $op['qty'] . CART_QUANTITY_SUFFIX; ?></td>
+        <td class="accountProductDisplay">
+<a href="<?php echo zen_href_link(zen_get_info_page($op['id']), 'products_id=' . $op['id']); ?>"><?php echo $op['name']; ?></a>
+<?php
+    if (isset($op['attributes']) && !empty($op['attributes'])) {
       echo '<ul class="orderAttribsList">';
-      for ($j=0, $n2=sizeof($order->products[$i]['attributes']); $j<$n2; $j++) {
-        echo '<li>' . $order->products[$i]['attributes'][$j]['option'] . TEXT_OPTION_DIVIDER . nl2br(zen_output_string_protected($order->products[$i]['attributes'][$j]['value'])) . '</li>';
+      foreach($op['attributes'] as $attr) {
+        echo '<li>' . $attr['option'] . TEXT_OPTION_DIVIDER . nl2br(zen_output_string_protected($attr['value'])) . '</li>';
       }
         echo '</ul>';
     }
@@ -52,16 +51,16 @@
 <?php
     if (isset($order->info['tax_groups']) && count($order->info['tax_groups']) > 1) {
 ?>
-        <td class="accountTaxDisplay"><?php echo zen_display_tax_value($order->products[$i]['tax']) . '%' ?></td>
+        <td class="accountTaxDisplay"><?php echo zen_display_tax_value($op['tax']) . '%' ?></td>
 <?php
     }
 ?>
         <td class="accountTotalDisplay">
         <?php
-         $ppe = zen_round(zen_add_tax($order->products[$i]['final_price'], $order->products[$i]['tax']), $currencies->get_decimal_places($order->info['currency']));
-         $ppt = $ppe * $order->products[$i]['qty'];
-        //        echo $currencies->format(zen_add_tax($order->products[$i]['final_price'], $order->products[$i]['tax']) * $order->products[$i]['qty'], true, $order->info['currency'], $order->info['currency_value']) . ($order->products[$i]['onetime_charges'] != 0 ? '<br>' . $currencies->format(zen_add_tax($order->products[$i]['onetime_charges'], $order->products[$i]['tax']), true, $order->info['currency'], $order->info['currency_value']) : '')
-        echo $currencies->format($ppt, true, $order->info['currency'], $order->info['currency_value']) . ($order->products[$i]['onetime_charges'] != 0 ? '<br>' . $currencies->format(zen_add_tax($order->products[$i]['onetime_charges'], $order->products[$i]['tax']), true, $order->info['currency'], $order->info['currency_value']) : '');
+         $ppe = zen_round(zen_add_tax($op['final_price'], $op['tax']), $currencies->get_decimal_places($order->info['currency']));
+         $ppt = $ppe * $op['qty'];
+        //        echo $currencies->format(zen_add_tax($op['final_price'], $op['tax']) * $op['qty'], true, $order->info['currency'], $order->info['currency_value']) . ($op['onetime_charges'] != 0 ? '<br>' . $currencies->format(zen_add_tax($op['onetime_charges'], $op['tax']), true, $order->info['currency'], $order->info['currency_value']) : '')
+        echo $currencies->format($ppt, true, $order->info['currency'], $order->info['currency_value']) . ($op['onetime_charges'] != 0 ? '<br>' . $currencies->format(zen_add_tax($op['onetime_charges'], $op['tax']), true, $order->info['currency'], $order->info['currency_value']) : '');
         ?></td>
     </tr>
 <?php
@@ -71,10 +70,10 @@
 <hr>
 <div id="orderTotals">
 <?php
-  for ($i=0, $n=sizeof($order->totals); $i<$n; $i++) {
+  foreach($order->totals as $ot) {
 ?>
-     <div class="amount larger forward"><?php echo $order->totals[$i]['text'] ?></div>
-     <div class="lineTitle larger forward"><?php echo $order->totals[$i]['title'] ?></div>
+     <div class="amount larger forward"><?php echo $ot['text'] ?></div>
+     <div class="lineTitle larger forward"><?php echo $ot['title'] ?></div>
 <br class="clearBoth">
 <?php
   }
@@ -94,7 +93,7 @@
 /**
  * Used to loop thru and display order status information
  */
-if (sizeof($statusArray)) {
+if (!empty($order->statuses)) {
 ?>
 
 <h2 id="orderHistoryStatus"><?php echo HEADING_ORDER_HISTORY; ?></h2>
@@ -105,26 +104,26 @@ if (sizeof($statusArray)) {
         <th scope="col" id="myAccountStatusComments"><?php echo TABLE_HEADING_STATUS_COMMENTS; ?></th>
        </tr>
 <?php
-  $first = true; 
-  foreach ($statusArray as $statuses) {
+  // -----
+  // The *first* comment, made by the customer, is 'protected' from using HTML taga; all others are
+  // made by the admin or a 'known' entity and HTML is allowed.
+  //
+  $protected = true;
+  foreach ($order->statuses as $statuses) {
 ?>
     <tr>
         <td><?php echo zen_date_short($statuses['date_added']); ?></td>
         <td><?php echo $statuses['orders_status_name']; ?></td>
         <td>
-<?php 
+<?php
     if (!empty($statuses['comments'])) {
-      if ($first) { 
-         echo nl2br(zen_output_string_protected($statuses['comments']));
-         $first = false; 
-      } else {
-         echo nl2br(zen_output_string($statuses['comments']));
-      }
+       echo nl2br(zen_output_string($statuses['comments'], false, $protected));
     }
 ?>
-       </td> 
+       </td>
      </tr>
 <?php
+    $protected = false;
   }
 ?>
 </table>
@@ -142,12 +141,12 @@ if (sizeof($statusArray)) {
 ?>
 
 <?php
-    if (zen_not_null($order->info['shipping_method'])) {
+    if (!empty($order->info['shipping_method'])) {
 ?>
 <h4><?php echo HEADING_SHIPPING_METHOD; ?></h4>
 <div><?php echo $order->info['shipping_method']; ?></div>
-<?php } else { // temporary just remove these 4 lines ?>
-<div>WARNING: Missing Shipping Information</div>
+<?php } else { ?>
+<div><?php echo TEXT_MISSING_SHIPPING_INFO; ?></div>
 <?php
     }
 ?>

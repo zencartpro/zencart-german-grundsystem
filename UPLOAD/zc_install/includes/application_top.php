@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific (zencartpro adaptations)
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: application_top.php 2022-12-14 10:43:53Z webchills $
+ * @version $Id: application_top.php 2023-10-26 09:43:53Z webchills $
  */
 
 @ini_set("arg_separator.output", "&");
@@ -139,6 +139,8 @@ if ($za_dir = @dir(DIR_FS_INSTALL . 'includes/extra_configures')) {
     $za_dir->close();
 }
 
+require DIR_FS_ROOT . 'includes/classes/traits/ObserverManager.php';
+require DIR_FS_ROOT . 'includes/classes/traits/NotifierManager.php';
 require DIR_FS_ROOT . 'includes/classes/class.base.php';
 require DIR_FS_ROOT . 'includes/classes/class.notifier.php';
 require DIR_FS_INSTALL . 'includes/functions/general.php';

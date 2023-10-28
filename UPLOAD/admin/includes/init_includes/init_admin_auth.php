@@ -1,10 +1,10 @@
 <?php
 /**
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_admin_auth.php 2021-10-25 17:47:36Z webchills $
+ * @version $Id: init_admin_auth.php 2023-10-23 14:47:36Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) die('Illegal Access');
@@ -71,6 +71,7 @@ if (basename($PHP_SELF) != FILENAME_ALERT_PAGE . '.php')
         zen_record_admin_activity('Attempted access to unauthorized page [' . $page . ']. Redirected to DENIED page instead.', 'notice');
         zen_redirect(zen_href_link(FILENAME_DENIED, '', 'SSL'));
       }
+        $zco_notifier->notify('NOTIFY_ADMIN_NONSUPERUSER_ACTION');
     }
 
   }

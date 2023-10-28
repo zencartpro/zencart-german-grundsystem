@@ -1,10 +1,11 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: index_setup_wizard.php 2021-10-24 17:59:51Z webchills $
+ * @version $Id: index_setup_wizard.php 2023-10-23 18:59:51Z webchills $
  */
 if (isset($_GET['action']) && $_GET['action'] == 'update') {
 
@@ -13,7 +14,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'update') {
             SET configuration_value = :configValue:
             WHERE configuration_key = 'STORE_NAME'";
     $sql = $db->bindVars($sql, ':configValue:', $_POST['store_name'], 'string');
-    $db->execute($sql);
+    $db->Execute($sql);
     $store_name = zen_output_string_protected($_POST['store_name']);
   }
   if (isset($_POST['store_owner']) && $_POST['store_owner'] != '') {
@@ -21,7 +22,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'update') {
             SET configuration_value = :configValue:
             WHERE configuration_key = 'STORE_OWNER'";
     $sql = $db->bindVars($sql, ':configValue:', $_POST['store_owner'], 'string');
-    $db->execute($sql);
+    $db->Execute($sql);
     $store_owner = zen_output_string_protected($_POST['store_owner']);
   }
   if (isset($_POST['store_owner_email']) && $_POST['store_owner_email'] != '') {
@@ -34,7 +35,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'update') {
                                         'SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO',
                                         'SEND_EXTRA_REVIEW_NOTIFICATION_EMAILS_TO', 'MODULE_PAYMENT_CC_EMAIL')";
     $sql = $db->bindVars($sql, ':configValue:', $_POST['store_owner_email'], 'string');
-    $db->execute($sql);
+    $db->Execute($sql);
     $store_owner_email = zen_output_string_protected($_POST['store_owner_email']);
   }
   if (isset($_POST['zone_country_id']) && $_POST['zone_country_id'] != '') {
@@ -42,7 +43,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'update') {
                 SET configuration_value = :configValue:
                 WHERE configuration_key in ('STORE_COUNTRY', 'SHIPPING_ORIGIN_COUNTRY')";
     $sql = $db->bindVars($sql, ':configValue:', $_POST['zone_country_id'], 'integer');
-    $db->execute($sql);
+    $db->Execute($sql);
     $store_country = (int)($_POST['zone_country_id']);
   }
   $store_zone = '';
@@ -53,14 +54,14 @@ if (isset($_GET['action']) && $_GET['action'] == 'update') {
           SET configuration_value = :configValue:
           WHERE configuration_key = 'STORE_ZONE'";
   $sql = $db->bindVars($sql, ':configValue:', $store_zone, 'integer');
-  $db->execute($sql);
+  $db->Execute($sql);
 
   if (isset($_POST['store_address']) && $_POST['store_address'] != '') {
     $sql = "UPDATE " . TABLE_CONFIGURATION . "
             SET configuration_value = :configValue:
             WHERE configuration_key = 'STORE_NAME_ADDRESS'";
     $sql = $db->bindVars($sql, ':configValue:', $_POST['store_address'], 'string');
-    $db->execute($sql);
+    $db->Execute($sql);
     $store_address = zen_output_string_protected($_POST['store_address']);
   }
   zen_redirect(zen_href_link(FILENAME_DEFAULT));
@@ -73,27 +74,15 @@ if (isset($_GET['action']) && $_GET['action'] == 'update') {
   $store_address = STORE_NAME_ADDRESS;
 }
 
-$country_string = zen_draw_pull_down_menu('zone_country_id', zen_get_countries(), $store_country, 'id="zone_country_id" class="form-control" onchange="update_zone(this.form);"');
+$country_string = zen_draw_pull_down_menu('zone_country_id', zen_get_countries_for_admin_pulldown(), $store_country, 'id="zone_country_id" class="form-control" onchange="update_zone(this.form);"');
 $zone_string = zen_draw_pull_down_menu('zone_id', zen_get_country_zones($store_country), $store_zone, 'id="zone_id" class="form-control"');
 ?>
 <!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
   <head>
-    <meta charset="<?php echo CHARSET; ?>">
-    <title><?php echo TITLE; ?></title>
-    <meta name="robots" content="noindex, nofollow">
-    <script src="includes/menu.js"></script>
-    <link href="includes/stylesheet.css" rel="stylesheet">
-    <link rel="stylesheet" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
     <link rel="stylesheet" href="includes/css/admin_access.css">
     <script>
-      function init() {
-          cssjsmenu('navbar');
-          if (document.getElementById) {
-              var kill = document.getElementById('hoverJS');
-              kill.disabled = true;
-          }
-      }
       function update_zone(theForm) {
           // if there is no zone_id field to update, or if it is hidden from display, then exit performing no updates
           if (!theForm || !theForm.elements["zone_id"])
@@ -121,7 +110,7 @@ $zone_string = zen_draw_pull_down_menu('zone_id', zen_get_country_zones($store_c
       }
     </script>
   </head>
-  <body id="setupWizardPage" onLoad="init()">
+  <body id="setupWizardPage">
     <!-- header //-->
     <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
     <!-- header_eof //-->

@@ -2,11 +2,11 @@
 /**
  * Payment Class.
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: payment.php 2022-12-15 23:22:16Z webchills $
+ * @version $Id: payment.php 2023-10-25 20:22:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -45,7 +45,7 @@ class payment extends base {
    public $selected_module;
 
   function __construct($module = '') {
-      global $PHP_SELF, $language, $credit_covers, $messageStack;
+      global $PHP_SELF, $language, $credit_covers, $messageStack, $languageLoader;
       $this->doesCollectsCardDataOnsite = false;
 
       if (defined('MODULE_PAYMENT_INSTALLED') && !empty(MODULE_PAYMENT_INSTALLED)) {
@@ -87,8 +87,8 @@ class payment extends base {
 
       for ($i=0, $n=sizeof($include_modules); $i<$n; $i++) {
         $lang_file = zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/payment/', $include_modules[$i]['file'], 'false');
-        if (@file_exists($lang_file)) {
-          include_once($lang_file);
+        if ($languageLoader->hasLanguageFile(DIR_FS_CATALOG . DIR_WS_LANGUAGES,  $_SESSION['language'], $include_modules[$i]['file'], '/modules/payment')) {
+          $languageLoader->loadExtraLanguageFiles(DIR_FS_CATALOG . DIR_WS_LANGUAGES,  $_SESSION['language'], $include_modules[$i]['file'], '/modules/payment');
         } else {
           if (is_object($messageStack)) {
             if (IS_ADMIN_FLAG === false) {

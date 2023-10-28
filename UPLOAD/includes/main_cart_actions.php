@@ -2,19 +2,21 @@
 /**
  * Main shopping Cart actions supported.
  *
- * The main cart actions supported by the current shoppingCart class.
+ * The main cart actions supported by the shopping_cart class.
  * This can be added to externally using the extra_cart_actions directory.
  *
- * @package initSystem
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main_cart_actions.php 2012-11-06 15:29:16Z webchills $
+ * @version $Id: main_cart_actions.php 2023-10-25 19:29:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
+/**
+ * NOTE: the $goto and $parameters variables are set by init_cart_handler.php
+ */
 /**
  * include the list of extra cart action files  (*.php in the extra_cart_actions folder)
  */

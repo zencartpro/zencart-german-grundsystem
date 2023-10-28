@@ -1,13 +1,13 @@
 <?php
 /**
  * Page Template
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_product_reviews_write_default.php 2022-04-09 08:53:16Z webchills $
+ * @version $Id: tpl_product_reviews_write_default.php 2023-10-26 18:53:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="reviewsWrite">
@@ -47,24 +47,24 @@
 <div id="reviewsWriteReviewsRate" class="center"><?php echo SUB_TITLE_RATING; ?></div>
 
 <div class="ratingRow">
-<?php echo zen_draw_radio_field('rating', '1', '', 'id="rating-1"'); ?>
+<?php echo zen_draw_radio_field('rating', '1', ($rating === 1), 'id="rating-1"'); ?>
 <?php echo '<label class="" for="rating-1">' . zen_image($template->get_template_dir(OTHER_IMAGE_REVIEWS_RATING_STARS_ONE, DIR_WS_TEMPLATE, $current_page_base,'images'). '/' . OTHER_IMAGE_REVIEWS_RATING_STARS_ONE, OTHER_REVIEWS_RATING_STARS_ONE_ALT) . '</label> '; ?>
 
-<?php echo zen_draw_radio_field('rating', '2', '', 'id="rating-2"'); ?>
+<?php echo zen_draw_radio_field('rating', '2', ($rating === 2), 'id="rating-2"'); ?>
 <?php echo '<label class="" for="rating-2">' . zen_image($template->get_template_dir(OTHER_IMAGE_REVIEWS_RATING_STARS_TWO, DIR_WS_TEMPLATE, $current_page_base,'images'). '/' . OTHER_IMAGE_REVIEWS_RATING_STARS_TWO, OTHER_REVIEWS_RATING_STARS_TWO_ALT) . '</label>'; ?>
 
-<?php echo zen_draw_radio_field('rating', '3', '', 'id="rating-3"'); ?>
+<?php echo zen_draw_radio_field('rating', '3', ($rating === 3), 'id="rating-3"'); ?>
 <?php echo '<label class="" for="rating-3">' . zen_image($template->get_template_dir(OTHER_IMAGE_REVIEWS_RATING_STARS_THREE, DIR_WS_TEMPLATE, $current_page_base,'images'). '/' . OTHER_IMAGE_REVIEWS_RATING_STARS_THREE, OTHER_REVIEWS_RATING_STARS_THREE_ALT) . '</label>'; ?>
 
-<?php echo zen_draw_radio_field('rating', '4', '', 'id="rating-4"'); ?>
+<?php echo zen_draw_radio_field('rating', '4', ($rating === 4), 'id="rating-4"'); ?>
 <?php echo '<label class="" for="rating-4">' . zen_image($template->get_template_dir(OTHER_IMAGE_REVIEWS_RATING_STARS_FOUR, DIR_WS_TEMPLATE, $current_page_base,'images'). '/' . OTHER_IMAGE_REVIEWS_RATING_STARS_FOUR, OTHER_REVIEWS_RATING_STARS_FOUR_ALT) . '</label>'; ?>
 
-<?php echo zen_draw_radio_field('rating', '5', '', 'id="rating-5"'); ?>
+<?php echo zen_draw_radio_field('rating', '5', ($rating === 5), 'id="rating-5"'); ?>
 <?php echo '<label class="" for="rating-5">' . zen_image($template->get_template_dir(OTHER_IMAGE_REVIEWS_RATING_STARS_FIVE, DIR_WS_TEMPLATE, $current_page_base,'images'). '/' . OTHER_IMAGE_REVIEWS_RATING_STARS_FIVE, OTHER_REVIEWS_RATING_STARS_FIVE_ALT) . '</label>'; ?>
 </div>
 
 <label id="textAreaReviews" for="review-text"><?php echo SUB_TITLE_REVIEW; ?></label>
-<?php echo zen_draw_textarea_field('review_text', 60, 5, '', 'id="review-text"'); ?>
+<?php echo zen_draw_textarea_field('review_text', 60, 5, $review_text, 'id="review-text"'); ?>
 <div class="email-pot">
 <label for="email-us"></label>
 <?php echo zen_draw_input_field(SPAM_TEST_TEXT, '', ' id="email-us" title="do not fill in!" placeholder="do not fill in!" autocomplete="off"', 'email'); ?>

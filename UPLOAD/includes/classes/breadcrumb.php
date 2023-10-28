@@ -1,12 +1,12 @@
 <?php
 /**
  * breadcrumb Class.
- * 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: breadcrumb.php 2022-12-16 08:55:16Z webchills $
+ * @version $Id: breadcrumb.php 2023-10-25 19:55:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -24,7 +24,7 @@ if (!defined('DISABLE_BREADCRUMB_LINKS_ON_LAST_ITEM')) define('DISABLE_BREADCRUM
  */
 class breadcrumb extends base
 {
-    var $_trail;
+    protected $_trail = [];
 
     function __construct()
     {
@@ -104,5 +104,9 @@ class breadcrumb extends base
     function count()
     {
         return count($this->_trail);
+    }
+    function getTrail()
+    {
+       return $this->_trail;
     }
 }

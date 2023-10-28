@@ -1,23 +1,22 @@
 <?php
 /**
- * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: category_product_listing.php 2022-03-20 08:31:16Z webchills $
+ * @version $Id: category_product_listing.php 2023-10-24 16:31:16Z webchills $
  */
 define('HEADING_TITLE', 'Categories / Products');
 define('HEADING_TITLE_GOTO', 'Go To:');
 
-define('TABLE_HEADING_ID', 'ID');
+define('TABLE_HEADING_IMAGE','Image');
 define('TABLE_HEADING_CATEGORIES_PRODUCTS', 'Categories / Products');
 
-define('TABLE_HEADING_PRICE', 'Price/Special/Sale');
 define('TABLE_HEADING_QUANTITY', 'Quantity');
-define('TABLE_HEADING_STATUS', 'Status');
+
 define('TABLE_HEADING_CATEGORIES_SORT_ORDER', 'Sort');
-define('TABLE_HEADING_ACTION', 'Action');
+
 define('TEXT_PRODUCTS_STATUS_ON_OF', ' of ');
 define('TEXT_PRODUCTS_STATUS_ACTIVE', ' active ');
 define('TEXT_CATEGORIES', 'Categories:');
@@ -25,6 +24,8 @@ define('TEXT_PRODUCTS', 'Products:');
 define('TEXT_INFO_HEADING_DELETE_CATEGORY', 'Delete Category');
 define('TEXT_DELETE_CATEGORY_INTRO', 'Are you sure you want to delete this category?');
 define('TEXT_DELETE_CATEGORY_INTRO_LINKED_PRODUCTS', '<strong>Warning:</strong> Linked Products whose Master Categories ID are deleted will not price properly. You should first assure that when deleting a Category that contains Linked Products that you reset the Product(s) Master Categories ID to another Category before removing a Category');
+define('TEXT_DELETE_WARNING_CHILDS','<b>WARNING:</b> There are %u subcategories still under this category!');
+define('TEXT_DELETE_WARNING_PRODUCTS','<b>WARNING:</b> There are %u products still under this category!');
 define('TEXT_INFO_HEADING_MOVE_CATEGORY', 'Move Category');
 define('TEXT_MOVE_CATEGORIES_INTRO', 'Please select which category you wish <b>%s</b> to reside in');
 define('TEXT_MOVE_PRODUCT', 'Move product<br><strong>ID#%1$u %2$s</strong><br>from current category<br><strong>ID#%3$u %4$s</strong><br>to:');
@@ -42,7 +43,6 @@ define('TEXT_COPY_METATAGS','Copy Metatags to Duplicate?');
 define('TEXT_COPY_LINKED_CATEGORIES','Copy Linked Categories to Duplicate?');
 define('TEXT_COPY_EDIT_DUPLICATE', 'Open Duplicate Product for editing');
 
-//used in copy_product_confirm
 define('TEXT_COPY_AS_DUPLICATE_ATTRIBUTES', 'Attributes copied from Product ID#%u to duplicate Product ID#%u');
 define('TEXT_COPY_AS_DUPLICATE_METATAGS', 'Metatags for Language ID#%u copied from Product ID#%u to duplicate Product ID#%u');
 define('TEXT_COPY_AS_DUPLICATE_CATEGORIES', 'Linked Category ID#%u copied from Product ID#%u to duplicate Product ID#%u');
@@ -54,20 +54,12 @@ define('TEXT_PRODUCT_ATTRIBUTES_DOWNLOADS', 'Downloads: ');
 define('TEXT_INFO_ATTRIBUTES_FEATURES_DELETE', 'Delete <strong>ALL</strong> Product Attributes for:<br>');
 define('TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO_PRODUCT', 'Copy Attributes to another <strong>product</strong> from:<br>');
 define('TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO_CATEGORY', 'Copy Attributes to another <strong>category</strong> from:<br>');
-define('TEXT_COPY_ATTRIBUTES_CONDITIONS', '<strong>How should existing product attributes be handled?</strong>');
-define('TEXT_COPY_ATTRIBUTES_DELETE', '<strong>Delete</strong> first, then copy new attributes');
-define('TEXT_COPY_ATTRIBUTES_UPDATE', '<strong>Update</strong> with new settings/prices, then add new ones');
-define('TEXT_COPY_ATTRIBUTES_IGNORE', '<strong>Ignore</strong> and add only new attributes');
 
-// Products and Attribute Copy Options
 define('TEXT_COPY_ATTRIBUTES', 'Copy Product Attributes to Duplicate?');
 
-// Products and Discount Copy Options
 define('TEXT_COPY_DISCOUNTS_ONLY', 'Only used for Duplicate Products with Quantity Discounts ...');
 define('TEXT_COPY_DISCOUNTS', 'Copy Product Quantity Discounts to Duplicate?');
 
-// From categories.php in 1.5.5
-// categories status
 define('TEXT_INFO_HEADING_STATUS_CATEGORY', 'Change Category Status for:');
 define('TEXT_CATEGORIES_STATUS_INTRO', 'Change <strong>this</strong> category\'s status to: ');
 define('TEXT_CATEGORIES_STATUS_OFF', 'Disabled');
@@ -87,6 +79,17 @@ define('WARNING_PRODUCTS_IN_TOP_INFO', 'WARNING: You have Products in the Top Le
 define('TEXT_COPY_MEDIA_MANAGER', 'Copy media?');
 define('SUCCESS_ATTRIBUTES_DELETED','Attributes successfully deleted');
 
-define('TEXT_INFO_HEADING_CHANGE_PRICE', 'Update Price'); 
+define('TEXT_INFO_HEADING_CHANGE_PRICE', 'Change Net Price'); 
 define('TEXT_CHANGE_PRICE_INTRO', 'Product: %s.');
-define('TEXT_CHANGE_PRICE_LABEL', 'Price Update:');
+define('TEXT_CHANGE_PRICE_LABEL', 'New Net Price:');
+define('TEXT_SORT_CATEGORIES_NAME_DESC','Category Name (desc)');
+define('TEXT_SORT_CATEGORIES_ID','Category ID');
+define('TEXT_SORT_CATEGORIES_ID_DESC','Category ID (desc)');
+define('TEXT_SORT_CATEGORIES_STATUS','Category Status (disabled)');
+define('TEXT_SORT_CATEGORIES_STATUS_DESC','Category Status (enabled)');
+define('TEXT_SORT_PRODUCTS_MODEL_DESC','Products Model (desc)');
+define('TEXT_SORT_PRODUCTS_STATUS','Status (disabled), Name');
+define('TEXT_SORT_PRODUCTS_STATUS_DESC','Status (enabled), Name');
+define('TEXT_SORT_PRODUCTS_ID','Products ID');
+define('TEXT_SORT_PRODUCTS_ID_DESC','Products ID (desc)');
+define('TEXT_SORT_PRODUCTS_WEIGHT','Weight');

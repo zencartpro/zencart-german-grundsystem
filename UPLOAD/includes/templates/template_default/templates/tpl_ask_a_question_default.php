@@ -1,11 +1,11 @@
 <?php
 /** 
- * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_ask_a_question.php 2022-04-09 08:51:51Z webchills $
+ * @version $Id: tpl_ask_a_question.php 2023-10-26 16:51:51Z webchills $
  */
 ?>
 <div class="centerColumn" id="askAQuestion">
@@ -15,7 +15,7 @@
 <?php if (CONTACT_US_STORE_NAME_ADDRESS== '1') { ?>
 <address><?php echo nl2br(STORE_NAME_ADDRESS); ?></address>
 <?php } ?>
-<h1><?php echo HEADING_TITLE . $product_details['products_name']; ?></h1>
+<h1><?php echo $heading_title . $product_details['products_name']; ?></h1>
 
 
 <?php
@@ -44,7 +44,7 @@
 <?php if ($messageStack->size('contact') > 0) echo $messageStack->output('contact'); ?>
 
 <fieldset id="contactUsForm">
-<legend><?php echo FORM_TITLE; ?></legend>
+<legend><?php echo $form_title; ?></legend>
 <div class="alert forward"><?php echo FORM_REQUIRED_INFORMATION; ?></div>
 <br class="clearBoth">
 

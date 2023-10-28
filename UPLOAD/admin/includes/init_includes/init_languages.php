@@ -1,13 +1,14 @@
 <?php
 /**
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_languages.php 2023-05-20 13:22:16Z webchills $
+ * @version $Id: init_languages.php 2023-10-23 14:22:16Z webchills $
  */
-use Zencart\LanguageLoader\LanguageLoader as LanguageLoader;
+use Zencart\LanguageLoader\LanguageLoaderFactory;
+
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
@@ -17,7 +18,7 @@ if (!defined('IS_ADMIN_FLAG')) {
     include(DIR_FS_CATALOG . DIR_WS_CLASSES . 'language.php');
     $lng = new language();
 
-    if (isset($_GET['language']) && zen_not_null($_GET['language'])) {
+    if (isset($_GET['language']) && !empty($_GET['language'])) {
       $lng->set_language($_GET['language']);
       $zco_notifier->notify('NOTIFY_LANGUAGE_CHANGE_REQUESTED_BY_ADMIN_VISITOR', $_GET['language'], $lng);
     } else {
@@ -26,12 +27,12 @@ if (!defined('IS_ADMIN_FLAG')) {
     }
 
     if (!is_file(DIR_WS_LANGUAGES . $lng->language['directory'] . '.php')) {
-      $lng->set_language('en');
+      $lng->set_language('de');
     }
 
-    $_SESSION['language'] = (zen_not_null($lng->language['directory']) ? $lng->language['directory'] : 'english');
-    $_SESSION['languages_id'] = (zen_not_null($lng->language['id']) ? (int)$lng->language['id'] : 1);
-    $_SESSION['languages_code'] = (zen_not_null($lng->language['code']) ? $lng->language['code'] : 'en');
+    $_SESSION['language'] = (!empty($lng->language['directory']) ? $lng->language['directory'] : 'german');
+    $_SESSION['languages_id'] = (!empty($lng->language['id']) ? (int)$lng->language['id'] : 43);
+    $_SESSION['languages_code'] = (!empty($lng->language['code']) ? $lng->language['code'] : 'de');
   }
 
 // temporary patch for lang override chicken/egg quirk
@@ -43,5 +44,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 
 // include the language translations
 $current_page = ($PHP_SELF == 'home.php') ? 'index.php' : $PHP_SELF;
-$languageLoader = new LanguageLoader($installedPlugins, $current_page);
-$languageLoader->loadlanguageDefines();
+$languageLoaderFactory = new LanguageLoaderFactory();
+$languageLoader = $languageLoaderFactory->make('admin', $installedPlugins, $current_page, $template_dir);
+$languageLoader->loadInitialLanguageDefines();
+$languageLoader->finalizeLanguageDefines();

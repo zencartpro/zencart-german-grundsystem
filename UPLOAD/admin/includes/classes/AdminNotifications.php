@@ -1,18 +1,17 @@
 <?php
 /**
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: AdminNotifications.php 2021-10-25 17:09:00 webchills $
+ * @version $Id: AdminNotifications.php 2023-10-23 17:09:00 webchills $
  */
 
 class AdminNotifications
 {
-    protected $notificationServer = 'https://versionserver.zen-cart.com/api/notifications';
-
     protected $enabled = true;
+    private $projectNotificationServer;
 
     public function __construct()
     {
@@ -54,6 +53,9 @@ class AdminNotifications
 
     protected function getNotificationInfo()
     {
+        if (empty($this->projectNotificationServer)){
+            return [];
+        }
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->projectNotificationServer);
         curl_setopt($ch, CURLOPT_VERBOSE, 0);

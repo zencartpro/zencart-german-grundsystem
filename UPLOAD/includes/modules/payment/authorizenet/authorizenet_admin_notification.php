@@ -40,7 +40,7 @@
     $outputRefund .= '<br>' . MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_REFUND_TEXT_COMMENTS . '<br>' . zen_draw_textarea_field('refnote', 'soft', '50', '3', MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_REFUND_DEFAULT_MESSAGE);
     //message text
     $outputRefund .= '<br>' . MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_REFUND_SUFFIX;
-    $outputRefund .= '<br><input type="submit" name="buttonrefund" value="' . MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_REFUND_BUTTON_TEXT . '" title="' . MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_REFUND_BUTTON_TEXT . '" />';
+    $outputRefund .= '<br><input type="submit" name="buttonrefund" value="' . MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_REFUND_BUTTON_TEXT . '" title="' . MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_REFUND_BUTTON_TEXT . '">';
     $outputRefund .= '</form>';
     $outputRefund .='</td></tr></table></td>'."\n";
   }

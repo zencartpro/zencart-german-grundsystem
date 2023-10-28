@@ -1,11 +1,11 @@
 <?php
 /**
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_errors.php 2021-10-25 17:52:16Z webchills $
+ * @version $Id: init_errors.php 2023-10-23 14:52:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -31,12 +31,12 @@ if (!defined('IS_ADMIN_FLAG')) {
     $messageStack->add(WARNING_EMAIL_SYSTEM_DISABLED, 'error');
   }
 // check if email sending has been disabled by developer switch
-  if (defined('DEVELOPER_OVERRIDE_EMAIL_STATUS') && DEVELOPER_OVERRIDE_EMAIL_STATUS == 'false') {
-      $messageStack->add(WARNING_EMAIL_SYSTEM_DEVELOPER_OVERRIDE, 'info');
+if (defined('DEVELOPER_OVERRIDE_EMAIL_STATUS') && DEVELOPER_OVERRIDE_EMAIL_STATUS === 'false') {
+    $messageStack->add(WARNING_EMAIL_SYSTEM_DEVELOPER_OVERRIDE, 'info');
 // check if email destinations have been diverted by developer switch
-  } elseif (defined('DEVELOPER_OVERRIDE_EMAIL_ADDRESS') && DEVELOPER_OVERRIDE_EMAIL_ADDRESS != '') {
-      $messageStack->add(sprintf(zen_output_string_protected(WARNING_EMAIL_SYSTEM_DEVELOPER_EMAIL), DEVELOPER_OVERRIDE_EMAIL_ADDRESS), 'info');
-  }
+} elseif (defined('DEVELOPER_OVERRIDE_EMAIL_ADDRESS') && DEVELOPER_OVERRIDE_EMAIL_ADDRESS !== '') {
+    $messageStack->add(sprintf(WARNING_EMAIL_SYSTEM_DEVELOPER_EMAIL, zen_output_string_protected(DEVELOPER_OVERRIDE_EMAIL_ADDRESS), EMAIL_TRANSPORT), 'info');
+}
 
   // this will let the admin know that the website is DOWN FOR MAINTENANCE to the public
   if (DOWN_FOR_MAINTENANCE == 'true') {
@@ -122,8 +122,6 @@ if (WARN_DATABASE_VERSION_PROBLEM != 'false') {
 }
 
 // check for insecure default passwords, and present warning if found
-// include the password crypto functions
-  require_once(DIR_FS_CATALOG . DIR_WS_FUNCTIONS . 'password_funcs.php');
   $admin_security = false;
   $demo_check = $db->Execute("select * from " . TABLE_ADMIN . " where admin_name='demo' or admin_name='Admin'");
   if (!$demo_check->EOF) {

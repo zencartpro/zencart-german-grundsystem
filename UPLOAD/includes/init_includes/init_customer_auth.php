@@ -1,15 +1,15 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  * customer authorisation based on DOWN_FOR_MAINTENANCE and CUSTOMERS_APPROVAL_AUTHORIZATION settings
- * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
+ * see  {@link  https://docs.zen-cart.com/dev/code/init_system/} for more details.
  *
  
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_customer_auth.php 2021-11-28 21:17:40Z webchills $
+ * @version $Id: init_customer_auth.php 2023-10-23 14:17:40Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -199,14 +199,11 @@ switch (true) {
    */
   break;
 }
+
 // -----
 // If an admin is currently logged into the customer's account, let that admin know who s/he is shopping for.
 //
 if (isset($_SESSION['emp_admin_id'])) {
     $shopping_for_name = $_SESSION['customer_first_name'] . ' ' . $_SESSION['customer_last_name'];
-    $severity = EMP_SHOPPING_FOR_MESSAGE_SEVERITY;
-    if (!in_array($severity, array('success', 'caution', 'warning', 'error'))) {
-        $severity = 'success';
-    }
-    $messageStack->add('header', sprintf(EMP_SHOPPING_FOR_MESSAGE, $shopping_for_name, $_SESSION['emp_customer_email_address']), $severity);
+    $messageStack->add('header', sprintf(EMP_SHOPPING_FOR_MESSAGE, $shopping_for_name, $_SESSION['emp_customer_email_address']), 'caution');
 }

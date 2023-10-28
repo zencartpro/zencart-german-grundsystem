@@ -1,7 +1,7 @@
 <?php
 /**
  * Common Template - tpl_main_page.php
- * Zen Cart German Specific
+ * Zen Cart German Specific (zencartpro adaptations)
  * Governs the overall layout of an entire page
  * Normally consisting of a header, left side column. center column. right side column and footer
  * For customizing, this file can be copied to /templates/your_template_dir/pagename

@@ -1,7 +1,7 @@
 <?php
 /**
  * PHP Upgrade Template Page
- * Zen Cart German Specific
+ * Zen Cart German Specific (zencartpro adaptations)
  * This page is auto-displayed if the PHP version is too old.
  * It's primarily intended to be a friendlier face than just a blank page
  * which would appear if incompatible PHP expectations were triggered.
@@ -11,16 +11,16 @@
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_zc_phpupgrade_default.php  2022-02-12 18:28:17 webchills $
+ * @version $Id: tpl_zc_phpupgrade_default.php  2023-10-26 18:28:17 webchills $
  */
 $relPath = (file_exists('includes/templates/template_default/images/logo.gif')) ? '' : '../';
 include 'includes/version.php';
 ?>
 <!DOCTYPE html>
-<html dir="ltr" lang="de">
+<html <?php echo HTML_PARAMS; ?>>
   <head>
-    <meta charset="utf-8">
     <title>Ihre PHP Version ist veraltet</title>    
+    <meta content="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="keywords" content="">
     <meta name="description" content="">
@@ -28,7 +28,7 @@ include 'includes/version.php';
     <meta name="generator" content="Zen-Cart 1.5.7 - deutsche Version, http://www.zen-cart-pro.at">
     <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <style type="text/css">
+    <style>
         body {
         	background: #fff;
         	color: #777;
@@ -225,9 +225,9 @@ include 'includes/version.php';
         <p>Ihre PHP Version (<?php echo PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION;?>) ist zu alt, enthält Sicherheitslücken und unterstützt moderne PHP Syntax nicht.</p>
         <p>Sie wollen die deutsche Zen Cart Version <?php echo PROJECT_VERSION_MAJOR . '.' . PROJECT_VERSION_MINOR; ?> installieren oder auf diese Version aktualisieren oder haben diese Version auf Ihren Server hochgeladen.</p>
         <p>Für die deutsche Zen Cart Version 1.5.7 ist mindestens PHP 7.4.0 erforderlich.</p>
-        <p>Geeignete PHP Versionen für diese Zen Cart Version sind PHP 8.0.x oder PHP 7.4.x</p>
+        <p>Geeignete PHP Versionen für diese Zen Cart Version sind PHP 8.1.x, PHP 8.0.x oder PHP 7.4.x</p>
         <p>Um Zen Cart auf diesem Server weiterverwenden zu können, müssen Sie Ihre PHP Version aktualisieren.</p>
-        <p>Wir empfehlen PHP 8.0.x zu verwenden. Die PHP Version können Sie normalerweise in der Serveradministration Ihres Providers umstellen.</p>
+        <p>Wir empfehlen PHP 8.1.x zu verwenden. Die PHP Version können Sie normalerweise in der Serveradministration Ihres Providers umstellen.</p>
         <p>Bei den meisten Providern ist es auch möglich, für bestimmte Unterverzeichnisse bestimmte PHP Versionen zu aktivieren.</p>
         <p>Wenn Ihre Haupt PHP Version z.B. PHP 7.3 ist und die aus irgendeinem Grund für eine bestehende Applikation auch unbedingt erforderlich ist, dann laden Sie die deutsche Zen Cart Version in ein Unterverzeichnis und stellen nur für dieses Unterverzeichnis PHP 8.0.x ein.</p>
         <p>Bitte wenden Sie sich an Ihren Provider, wenn Sie Fragen dazu haben.</p>

@@ -1,12 +1,11 @@
 /**
  * Main CSS Stylesheet
- *
- * @package templateSystem
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: stylesheet.css 840 2016-04-06 11:33:58Z webchills $
+ * @version $Id: stylesheet.css 2023-10-25 19:33:58Z webchills $
  */
 
 body {
@@ -682,3 +681,9 @@ table{border:none;padding:0;margin:0; border-spacing:0;border-collapse:collapse;
 #quantityDiscountsDetails td {border: 1px solid black;}
 .products-listing .productsAllListing, .productsNewListing, .productsFeaturedListing {width: 100%;}
 .tableBorder1 td {border: 1px solid black;}
+/** Brands page */
+.brandCell {height: 126px !important;}
+.brandImage {margin-top: 20px;}
+.brandCell a {text-decoration: none;}
+.brandCell:hover {background:#eee;}
+

@@ -1,10 +1,8 @@
 /**
- * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
- * Zen Cart German Version - www.zen-cart-pro.at
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: stylesheet.css 2022-12-17 21:27:04 webchills $
+ * @version $Id: torvista 2022 Dec 16 Modified in v1.5.8a $
  */
 
 body {
@@ -13,11 +11,6 @@ body {
 
 a, body, html, table {
     font: normal normal 11px Verdana, sans-serif;
-}
-
-#imagepreview img{
-  max-width: 300px;
-  height: auto;
 }
 
 .pageHeading, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
@@ -171,6 +164,7 @@ a.splitPageLinkCurrent {
     border: 1px solid #0000FF;
     padding: 2px;
 }
+
 body {
     background-color: #ffffff;
     color: #333333;
@@ -179,7 +173,6 @@ body {
 .clearBoth {
     clear: both;
 }
-
 
 input, select, textarea {
     font-size: 11px;
@@ -398,7 +391,7 @@ tr.attributeBoxContent {
     background-color: #e7e6e0;
     color: #333;
     padding: 5px;
-    word-break: break-word; 
+    word-break: break-word;
 }
 
 .infoBoxContent a img, .infoBoxContent input[type="image"] {
@@ -690,6 +683,7 @@ a.btn-pricemanager-on-enabled {
     background-color: #006400;
     color: #eee;
 }
+
 a.btn-pricemanager-off {
     background-color: #d3d3d3;
     color: #eee;
@@ -752,7 +746,7 @@ footer, #footer {
 }
 
 footer, #footer, footer a, #footer a {
-    font-size: 1em;
+    font-size: 0.9em;
 }
 
 /*
@@ -814,8 +808,8 @@ input.faint {
 .btn-help {
   margin-right: 4px;
   margin-bottom: 8px;
-  background-color: #337ab7; 
-  color: white; 
+  background-color: #337ab7;
+  color: white;
 }
 
 /* End of css buttons */

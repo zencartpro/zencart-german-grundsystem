@@ -5,18 +5,17 @@
  * Loaded by main_page=index
  * Displays category/sub-category listing
  * Uses tpl_index_category_row.php to render individual items
- *
- * @package templateSystem
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_index_categories.php 2022-04-09 08:49:16Z webchills $
+ * @version $Id: tpl_index_categories.php 2023-10-26 17:49:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="indexCategories">
 <?php if ($show_welcome == true) { ?>
-<h1 id="indexCategoriesHeading"><?php echo HEADING_TITLE; ?></h1>
+<h1 id="indexCategoriesHeading"><?php echo HEADING_TITLE_NESTED; ?></h1>
 
 <?php if (SHOW_CUSTOMER_GREETING == 1) { ?>
 <h2 class="greeting"><?php echo zen_customer_greeting(); ?></h2>

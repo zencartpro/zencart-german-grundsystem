@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: define_pages_editor.php 2022-02-27 19:34:51Z webchills $
+ * @version $Id: define_pages_editor.php 2023-10-23 19:34:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -173,7 +173,7 @@ if (!$lng_exists) {
             <div class="row"><strong><?php echo TEXT_INFO_CAUTION . '<br><br>' . TEXT_INFO_EDITING . '<br>' . $file . '<br>'; ?></strong></div>
             <div class="row">
                 <?php echo zen_draw_form('language', FILENAME_DEFINE_PAGES_EDITOR, 'lngdir=' . $_SESSION['language'] . '&filename=' . $_GET['filename'] . '&action=save'); ?>
-              <div class="col-sm-6"><?php echo zen_draw_textarea_field('file_contents', 'soft', '100%', '30', htmlspecialchars($file_contents, ENT_COMPAT, CHARSET, TRUE), (($file_writeable) ? '' : 'readonly') . ' class="editorHook form-control"'); ?>
+              <div class="col-sm-6"><?php echo zen_draw_textarea_field('file_contents', 'soft', '', '30', htmlspecialchars($file_contents, ENT_COMPAT, CHARSET, TRUE), (($file_writeable) ? '' : 'readonly') . ' class="editorHook form-control"'); ?>
               </div>
               <div class="col-sm-6">&nbsp;</div>
               <div class="col-sm-12"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></div>

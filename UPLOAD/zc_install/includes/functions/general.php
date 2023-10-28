@@ -3,11 +3,11 @@
  * general functions
  *
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: general.php 2022-12-14 10:56:51Z webchills $
+ * @version $Id: general.php 2023-10-26 09:56:51Z webchills $
  */
 
 if (!defined('TABLE_UPGRADE_EXCEPTIONS')) define('TABLE_UPGRADE_EXCEPTIONS','upgrade_exceptions');
@@ -37,7 +37,7 @@ function zen_get_select_options($optionList, $setDefault)
     static $seeded;
 
     if (!isset($seeded)) {
-      mt_srand((double)microtime()*1000000);
+      mt_srand((int)(microtime(true)*1000000));
       $seeded = true;
     }
 

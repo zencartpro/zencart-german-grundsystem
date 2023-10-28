@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: categories.php 2022-02-27 19:26:51Z webchills $
+ * @version $Id: categories.php 2023-10-23 19:26:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -94,7 +94,9 @@ if (!empty($action)) {
         $categories_id = (int)$_POST['categories_id'];
       }
 
-      $sql_data_array = ['sort_order' => (int)$_POST['sort_order']];
+      $sql_data_array = [
+         'sort_order' => (int)$_POST['sort_order'],
+      ];
 
       if ($action === 'insert_category') {
         $insert_sql_data = [
@@ -113,6 +115,7 @@ if (!empty($action)) {
                 WHERE categories_id = '" . (int)$categories_id . "'";
 
         $parent_cat = $db->Execute($sql);
+        // @TODO - should this be checking against TOPMOST_CATEGORY_PARENT_ID?
         if ($parent_cat->fields['parent_id'] != '0') {
           $sql = "SELECT *
                   FROM " . TABLE_PRODUCT_TYPES_TO_CATEGORY . "
@@ -142,10 +145,9 @@ if (!empty($action)) {
         $categories_description_array = $_POST['categories_description'];
         $language_id = $languages[$i]['id'];
 
-        // clean $categories_description of empty tags
         $sql_data_array = [
           'categories_name' => zen_db_prepare_input($categories_name_array[$language_id]),
-          'categories_description' => empty(trim(strip_tags($categories_description_array[$language_id]))) ? '' : zen_db_prepare_input($categories_description_array[$language_id])
+          'categories_description' => zen_db_prepare_input($categories_description_array[$language_id]),
         ];
 
         if ($action === 'insert_category') {
@@ -163,20 +165,17 @@ if (!empty($action)) {
       }
       // remove the existing image
       if (!empty($_POST['image_delete'])) {
-          $db->Execute("UPDATE " . TABLE_CATEGORIES . "
-                            SET categories_image = ''
-                            WHERE categories_id = " . (int)$categories_id);
+          zen_set_category_image($categories_id, '');
           $messageStack->add_session(sprintf(MESSAGE_IMAGE_REMOVED_CATEGORY, (int)$categories_id, zen_get_category_name($categories_id, $_SESSION['languages_id'])), 'success');
           // or assign a manually-typed/existing image
       } elseif ($_POST['categories_image_manual'] !== '') {
           $categories_image_name = zen_db_input($_POST['img_dir'] . $_POST['categories_image_manual']);
           if (file_exists(DIR_FS_CATALOG_IMAGES . $categories_image_name)) {
-              $db->Execute("UPDATE " . TABLE_CATEGORIES . "
-                      SET categories_image = '" . $categories_image_name . "'
-                      WHERE categories_id = " . (int)$categories_id);
+              zen_set_category_image($categories_id, $categories_image_name);
               $messageStack->add_session(sprintf(MESSAGE_IMAGE_ADDED_MANUAL, (int)$categories_id, zen_get_category_name($categories_id, $_SESSION['languages_id']), $categories_image_name), 'success');
           } else {
-              $messageStack->add_session(sprintf(ERROR_IMAGE_MANUAL_NOT_FOUND, $categories_image_name));
+              $messageStack->add_session(sprintf(ERROR_IMAGE_MANUAL_NOT_FOUND, DIR_FS_CATALOG_IMAGES . $categories_image_name));
+              zen_redirect(zen_href_link(FILENAME_CATEGORIES, 'action=edit_category&cPath=' . $cPath . '&cID=' . (int)$_POST['categories_id']));
           }
           // or upload a new image
       } elseif ($categories_image = new upload('categories_image')) {
@@ -188,11 +187,14 @@ if (!empty($action)) {
           if ($categories_image->filename !== 'none' && $categories_image->filename != '') {
               // save filename when not set to none and not blank
               $db_filename = zen_limit_image_filename($categories_image_name, TABLE_CATEGORIES, 'categories_image');
-              $db->Execute("UPDATE " . TABLE_CATEGORIES . "
-                          SET categories_image = '" . $db_filename . "'
-                          WHERE categories_id = " . (int)$categories_id);
+              zen_set_category_image($categories_id, $db_filename);
           }
       }
+
+      // -----
+      // Enable a watching observer to insert/modify database elements for the just-inserted/updated category.
+      //
+      $zco_notifier->notify('NOTIFY_ADMIN_CATEGORIES_UPDATE_OR_INSERT_FINISH', ['action' => $action, 'categories_id' => (int)$categories_id]);
 
       zen_redirect(zen_href_link(FILENAME_CATEGORY_PRODUCT_LISTING, 'cPath=' . $cPath . '&cID=' . $categories_id . ((isset($_GET['search']) && !empty($_GET['search'])) ? '&search=' . $_GET['search'] : '')));
       break;
@@ -217,9 +219,9 @@ if (!empty($action)) {
         }
 
         $sql_data_array = [
-          'metatags_title' => zen_db_input($_POST['metatags_title'][$language_id]),
-          'metatags_keywords' => zen_db_input($_POST['metatags_keywords'][$language_id]),
-          'metatags_description' => zen_db_input($_POST['metatags_description'][$language_id])
+          'metatags_title' => zen_db_prepare_input(isset($_POST['metatags_title'][$language_id]) ? $_POST['metatags_title'][$language_id] : ''),
+          'metatags_keywords' => zen_db_prepare_input(isset($_POST['metatags_keywords'][$language_id]) ? $_POST['metatags_keywords'][$language_id] : ''),
+          'metatags_description' => zen_db_prepare_input(isset($_POST['metatags_description'][$language_id]) ? $_POST['metatags_description'][$language_id] : '')
         ];
 
         if ($action === 'insert_categories_meta_tags') {
@@ -314,7 +316,7 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
         ?>
         <?php if ($formAction === 'update_category') { ?>
           <div class="form-group">
-            <div class="col-sm-12"><?php echo TEXT_EDIT_INTRO; ?></div>
+            <div class="col-sm-12"><?php echo TEXT_INFO_EDIT_INTRO; ?></div>
           </div>
         <?php } ?>
         <div class="form-group">
@@ -372,7 +374,7 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
               for ($i = 0, $n = count($languages); $i < $n; $i++) {
                 ?>
               <div class="input-group">
-                <span class="input-group-addon" style="vertical-align: top">
+                <span class="input-group-addon align-top">
                     <?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']); ?>
                 </span>
                 <?php echo zen_draw_textarea_field('categories_description[' . $languages[$i]['id'] . ']', 'soft', '100', '5', htmlspecialchars(zen_get_category_description($cInfo->categories_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE), 'class="editorHook form-control" id=categories_description[' . $languages[$i]['id'] . ']'); ?>
@@ -386,15 +388,17 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
         <hr>
             <h2><?php echo TEXT_CATEGORIES_IMAGE; ?></h2>
             <?php
-            if (!empty($cInfo->categories_image) && file_exists(DIR_FS_CATALOG_IMAGES . $cInfo->categories_image)) { ?>
+            if (!empty($cInfo->categories_image)) { ?>
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-9 col-md-6">
                         <div><?php echo zen_info_image($cInfo->categories_image, $cInfo->categories_name, '', '', 'class="table-bordered img-responsive"'); ?></div>
                         <br>
                         <?php
-                        list($width, $height) = getimagesize(DIR_FS_CATALOG_IMAGES . $cInfo->categories_image);
-                        $kb = filesize(DIR_FS_CATALOG_IMAGES . $cInfo->categories_image)/1024;
-                        echo sprintf(TEXT_FILENAME,   '/images/' . $cInfo->categories_image, $width, $height, $kb);
+                        if (file_exists(DIR_FS_CATALOG_IMAGES . $cInfo->categories_image)) {
+                            [$width, $height] = getimagesize(DIR_FS_CATALOG_IMAGES . $cInfo->categories_image);
+                            $kb = filesize(DIR_FS_CATALOG_IMAGES . $cInfo->categories_image) / 1024;
+                        }
+                        echo sprintf(TEXT_FILENAME, '/' . DIR_WS_IMAGES . $cInfo->categories_image, $width ?? 0, $height ?? 0, $kb ?? 0);
                         ?>
                     </div>
                 </div>
@@ -415,7 +419,11 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
         </div>
         <?php
         $dir_info = zen_build_subdirectories_array(DIR_FS_CATALOG_IMAGES);
-        $default_directory = substr($cInfo->categories_image, 0, strpos($cInfo->categories_image, '/') + 1);
+        if (empty($cInfo->categories_image)) {
+            $default_directory = '';
+        } else {
+            $default_directory = substr($cInfo->categories_image, 0, strpos($cInfo->categories_image, '/') + 1);
+        }
         ?>
         <div class="form-group">
             <?php echo zen_draw_label(TEXT_CATEGORIES_IMAGE_DIR, 'img_dir', 'class="col-sm-3 control-label"'); ?>
@@ -500,7 +508,7 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
                 ?>
               <div class="input-group">
                 <span class="input-group-addon"><?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']); ?></span>
-                <?php echo zen_draw_input_field('metatags_title[' . $languages[$i]['id'] . ']', htmlspecialchars(zen_get_category_metatags_title($cInfo->categories_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE), zen_set_field_length(TABLE_METATAGS_CATEGORIES_DESCRIPTION, 'metatags_title') . ' class="form-control" id="metatags_title[' . $languages[$i]['id'] . ']"');
+                <?php echo zen_draw_input_field('metatags_title[' . $languages[$i]['id'] . ']', htmlspecialchars(zen_get_category_metatag_fields($cInfo->categories_id, $languages[$i]['id'], 'metatags_title'), ENT_COMPAT, CHARSET, TRUE), zen_set_field_length(TABLE_METATAGS_CATEGORIES_DESCRIPTION, 'metatags_title') . ' class="form-control" id="metatags_title[' . $languages[$i]['id'] . ']"');
                 ?>
               </div>
               <br>
@@ -516,8 +524,8 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
               for ($i = 0, $n = count($languages); $i < $n; $i++) {
                 ?>
               <div class="input-group">
-                <span class="input-group-addon" style="vertical-align: top;"><?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']); ?></span>
-                <?php echo zen_draw_textarea_field('metatags_keywords[' . $languages[$i]['id'] . ']', 'soft', '100', '3', htmlspecialchars(zen_get_category_metatags_keywords($cInfo->categories_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE), 'class="form-control noEditor" id="metatags_keywords[' . $languages[$i]['id'] . ']"');
+                <span class="input-group-addon align-top"><?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']); ?></span>
+                <?php echo zen_draw_textarea_field('metatags_keywords[' . $languages[$i]['id'] . ']', 'soft', '100', '3', htmlspecialchars(zen_get_category_metatag_fields($cInfo->categories_id, $languages[$i]['id'], 'metatags_keywords'), ENT_COMPAT, CHARSET, TRUE), 'class="form-control noEditor" id="metatags_keywords[' . $languages[$i]['id'] . ']"');
                 ?>
               </div>
               <br>
@@ -533,8 +541,8 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
               for ($i = 0, $n = count($languages); $i < $n; $i++) {
                 ?>
               <div class="input-group">
-                <span class="input-group-addon" style="vertical-align: top"><?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']); ?></span>
-                <?php echo zen_draw_textarea_field('metatags_description[' . $languages[$i]['id'] . ']', 'soft', '100', '7', htmlspecialchars(zen_get_category_metatags_description($cInfo->categories_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE), 'class="form-control noEditor" id="metatags_description[' . $languages[$i]['id'] . ']"');
+                <span class="input-group-addon align-top"><?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']); ?></span>
+                <?php echo zen_draw_textarea_field('metatags_description[' . $languages[$i]['id'] . ']', 'soft', '100', '7', htmlspecialchars(zen_get_category_metatag_fields($cInfo->categories_id, $languages[$i]['id'], 'metatags_description'), ENT_COMPAT, CHARSET, TRUE), 'class="form-control noEditor" id="metatags_description[' . $languages[$i]['id'] . ']"');
                 ?>
               </div>
               <br>

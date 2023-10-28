@@ -1,9 +1,8 @@
 /**
  * @copyright Copyright 2003-2022 Zen Cart Development Team
- * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
- * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: login.css 2022-12-17 21:24:29Z webchills $
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License v2.0
+ * @version $Id: Zen4All 2020 Jul 02 Modified in v1.5.8-alpha $
  */
 
 body {
@@ -53,6 +52,7 @@ a:hover {
     margin-right: -15px;
     margin-left: -15px;
 }
+
 @media screen and (max-width: 63.999rem) {
   .login-main-div {
     padding: 25px 35px 35px 35px;

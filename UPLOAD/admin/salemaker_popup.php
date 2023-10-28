@@ -1,16 +1,15 @@
 <?php
 /**
-
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: salemaker_popup.php 2021-10-24 18:49:16Z webchills $
+ * @version $Id: salemaker_popup.php 2023-10-23 18:49:16Z webchills $
  */
 //
 require("includes/application_top.php");
 
-require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . FILENAME_SALEMAKER_POPUP . '.php');
 $cname = zen_get_category_name($_GET['cid'], (int)$_SESSION['languages_id']);
 $deduction_type_array = array(
   array('id' => '0', 'text' => DEDUCTION_TYPE_DROPDOWN_0),
@@ -21,9 +20,7 @@ $deduction_type_array = array(
 <!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
   <head>
-    <meta charset="<?php echo CHARSET; ?>">
-    <title><?php echo TITLE; ?></title>
-    <link rel="stylesheet"href="includes/stylesheet.css">
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
   </head>
   <body>
     <h1 class="text-center"><?php echo HEADING_TITLE . ' - ' . $cname; ?></h1>

@@ -1,15 +1,16 @@
 <?php
 /**
  * ot_group_pricing order-total module
- * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_group_pricing.php 2022-11-14 19:24:16Z webchills $
+ * @version $Id: ot_group_pricing.php 2023-10-26 19:24:16Z webchills $
  */
 
 class ot_group_pricing {
+
     /**
      * $_check is used to check the configuration key set up
      * @var int
@@ -160,7 +161,7 @@ class ot_group_pricing {
        */
       switch ($this->calculate_tax) {
         case 'None':
-          if ($this->include_tax) {
+          if ($this->include_tax === 'true') {
             foreach ($order->info['tax_groups'] as $key=>$value) {
               $od_amount['tax_groups'][$key] = $order->info['tax_groups'][$key] * $ratio;
             }
@@ -190,6 +191,10 @@ class ot_group_pricing {
     }
     return $od_amount;
   }
+
+  /**
+   * @TODO - Per order_total class, this function is not used. See process() instead.
+   */
   function pre_confirmation_check($order_total) {
     global $order;
     $od_amount = $this->calculate_deductions($order_total);
@@ -239,6 +244,8 @@ class ot_group_pricing {
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function ,date_added) values ('Re-calculate Tax', 'MODULE_ORDER_TOTAL_GROUP_PRICING_CALC_TAX', 'Standard', 'Re-Calculate Tax', '6', '7','zen_cfg_select_option(array(\'None\', \'Standard\', \'Credit Note\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Tax Class', 'MODULE_ORDER_TOTAL_GROUP_PRICING_TAX_CLASS', '0', 'Use the following tax class when treating Group Discount as Credit Note.', '6', '0', 'zen_get_tax_class_title', 'zen_cfg_pull_down_tax_classes(', now())");
   }
+
+
 
   function remove() {
     global $db;

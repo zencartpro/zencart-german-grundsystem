@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: button_names.php 2021-12-27 21:11:14Z webchills $
+ * @version $Id: button_names.php 2023-10-26 17:11:14Z webchills $
  */
 
 
@@ -99,6 +99,7 @@ define('BUTTON_SHIPPING_ESTIMATOR_ALT', 'Voraussichtliche Versandkosten');
 define('BUTTON_SOLD_OUT_ALT', 'Ausverkauft');
 define('BUTTON_SOLD_OUT_SMALL_ALT', 'Ausverkauft');
 define('BUTTON_SUBMIT_ALT', 'Absenden');
+define('BUTTON_SUBMIT_GO_ALT','Los');
 define('BUTTON_UNSUBSCRIBE', 'Abbestellen');
 define('BUTTON_UPDATE_ALT', 'Aktualisieren');
 define('BUTTON_VIEW_SMALL_ALT', 'Anzeigen');

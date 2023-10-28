@@ -3,11 +3,11 @@
  * paypalwpp.php payment module class for PayPal Express Checkout payment method
  * Zen Cart German Specific (zencartpro adaptations / 158 code in 157)
  *
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypalwpp.php 2022-12-13 21:04:14Z webchills $
+ * @version $Id: paypalwpp.php 2023-10-26 19:04:14Z webchills $
  */
 /**
  * load the communications layer code
@@ -273,11 +273,11 @@ class paypalwpp extends base {
       $this->enabled = false;
       $this->zcLog('update_status', 'Module disabled because purchase price (' . $order->info['total'] . ') exceeds PayPal-imposed maximum limit of 1000000 JPY.');
     }
-    // module cannot be used for purchase > $10,000 EUR equiv
-    $order_amount = $this->calc_order_amount($order->info['total'], 'EUR', false);
-    if ($order_amount > 10000) {
+    // module cannot be used for purchase > $10,000 USD equiv
+    require_once DIR_FS_CATALOG . DIR_WS_MODULES . 'payment/paypal/paypal_currency_check.php';
+    if (paypalUSDCheck($order->info['total']) === false) {
       $this->enabled = false;
-      $this->zcLog('update_status', 'Module disabled because purchase price (' . $order_amount . ') exceeds PayPal-imposed maximum limit of 10,000 EUR or equivalent.');
+      $this->zcLog('update_status', 'Module disabled because purchase price (' . $order->info['total']. ') exceeds PayPal-imposed maximum limit of 10,000 USD or equivalent.');
     }
     if ($order->info['total'] == 0) {
       $this->enabled = false;
@@ -1927,19 +1927,20 @@ if (false) { // disabled until clarification is received about coupons in PayPal
     }
 
     // prepare the information to pass to the ec_step2_finish() function, which does the account creation, address build, etc
-    $step2_payerinfo = array('payer_id'        => $response['PAYERID'],
-                             'payer_email'     => urldecode($response['EMAIL']),
-                             'payer_salutation'=> '',
-                             'payer_gender'    => '',
-                             'payer_firstname' => urldecode($response['FIRSTNAME']),
-                             'payer_lastname'  => urldecode($response['LASTNAME']),
-                             'payer_business'  => urldecode($response['BUSINESS']),
-                             'payer_status'    => $response['PAYERSTATUS'],
-                             'ship_country_code'   => urldecode($response[$this->requestPrefix . 'SHIPTOCOUNTRYCODE']),
-                             'ship_address_status' => urldecode($response[$this->requestPrefix . 'ADDRESSSTATUS']),
-                             'ship_phone'      => urldecode($response[$this->requestPrefix . 'SHIPTOPHONENUM'] != '' ? $response[$this->requestPrefix . 'SHIPTOPHONENUM'] : $response['PHONENUM']),
-                             'order_comment'   => (isset($response['NOTE']) && isset($response[$this->requestPrefix . 'NOTETEXT']) ? urldecode($response['NOTE']) . ' ' . urldecode($response[$this->requestPrefix . 'NOTETEXT']) : ''),
-                             );
+    $step2_payerinfo = [
+        'payer_id' => $response['PAYERID'],
+        'payer_email' => urldecode($response['EMAIL']),
+        'payer_salutation'=> '',
+        'payer_gender' => '',
+        'payer_firstname' => urldecode($response['FIRSTNAME']),
+        'payer_lastname'  => urldecode($response['LASTNAME']),
+        'payer_business'  => urldecode($response['BUSINESS']),
+        'payer_status'    => $response['PAYERSTATUS'],
+        'ship_country_code' => urldecode($response[$this->requestPrefix . 'SHIPTOCOUNTRYCODE']),
+        'ship_address_status' => (empty($response[$this->requestPrefix . 'ADDRESSSTATUS'])) ? 'NONE' : urldecode($response[$this->requestPrefix . 'ADDRESSSTATUS']),
+        'ship_phone' => urldecode($response[$this->requestPrefix . 'SHIPTOPHONENUM'] != '' ? $response[$this->requestPrefix . 'SHIPTOPHONENUM'] : $response['PHONENUM']),
+        'order_comment' => (isset($response['NOTE']) && isset($response[$this->requestPrefix . 'NOTETEXT']) ? urldecode($response['NOTE']) . ' ' . urldecode($response[$this->requestPrefix . 'NOTETEXT']) : ''),
+    ];
 
 //    if (strtoupper($response['ADDRESSSTATUS']) == 'NONE' || !isset($response['SHIPTOSTREET']) || $response['SHIPTOSTREET'] == '') {
 //      $step2_shipto = array();
@@ -2033,16 +2034,18 @@ if (false) { // disabled until clarification is received about coupons in PayPal
     $country2 = $db->Execute($sql2);
 
     // see if we found a record, if yes, then use it instead of default American format
-    if ($country1->RecordCount() > 0) {
+    if (!$country1->EOF) {
       $country_id = $country1->fields['countries_id'];
-      if (!isset($paypal_ec_payer_info['ship_country_code']) || $paypal_ec_payer_info['ship_country_code'] == '') $paypal_ec_payer_info['ship_country_code'] = $country1->fields['countries_iso_code_2'];
-      $country_code3 = $country1->fields['countries_iso_code_3'];
-      $address_format_id = (int)$country1->fields['address_format_id'];
-    } elseif ($country2->RecordCount() > 0) {
-      // if didn't find it based on name, check using ISO code (ie: in case of no-shipping-address required/supplied)
-      $country_id = $country2->fields['countries_id'];
-      $country_code3 = $country2->fields['countries_iso_code_3'];
-      $address_format_id = (int)$country2->fields['address_format_id'];
+        if (!isset($paypal_ec_payer_info['ship_country_code']) || $paypal_ec_payer_info['ship_country_code'] == '') {
+            $paypal_ec_payer_info['ship_country_code'] = $country1->fields['countries_iso_code_2'];
+        }
+        $country_code3 = $country1->fields['countries_iso_code_3'];
+        $address_format_id = (int)$country1->fields['address_format_id'];
+    } elseif (!$country2->EOF) {
+        // if didn't find it based on name, check using ISO code (ie: in case of no-shipping-address required/supplied)
+        $country_id = $country2->fields['countries_id'];
+        $country_code3 = $country2->fields['countries_iso_code_3'];
+        $address_format_id = (int)$country2->fields['address_format_id'];
     } else {
       // if defaulting to Germany, make sure Germany is valid
       $sql = "SELECT countries_id FROM " . TABLE_COUNTRIES . " WHERE countries_id = :countryId: LIMIT 1";
@@ -2306,18 +2309,17 @@ if (false) { // disabled until clarification is received about coupons in PayPal
         // send Welcome Email if appropriate
         if ($this->new_acct_notify == 'Yes') {
           // require the language file
-          require(zen_get_file_directory(DIR_FS_CATALOG . DIR_WS_LANGUAGES . $_SESSION['language'] . "/", 'create_account.php', 'false'));
+          zen_include_language_file('create_account.php', '/', 'inline');
           // set the mail text
-          $email_text = sprintf(EMAIL_GREET_NONE, $paypal_ec_payer_info['payer_firstname']) ;
-          $email_text .= "\n" . EMAIL_EC_ACCOUNT_INFORMATION . "\n\nEmail: " . $paypal_ec_payer_info['payer_email'] . "\nPassword: " . $password . "\n\n";
-          $email_text .= EMAIL_WELCOME . "\n\n" . EMAIL_TEXT;
+          $email_text = sprintf(EMAIL_GREET_NONE, $paypal_ec_payer_info['payer_firstname']) . EMAIL_WELCOME . "\n\n" . EMAIL_TEXT;
+          $email_text .= "\n\n" . EMAIL_EC_ACCOUNT_INFORMATION . "\nUsername: " . $paypal_ec_payer_info['payer_email'] . "\nPassword: " . $password . "\n\n";
           $email_text .= EMAIL_CONTACT;
           // include create-account-specific disclaimer
           $email_text .= "\n\n" . sprintf(EMAIL_DISCLAIMER_NEW_CUSTOMER, STORE_OWNER_EMAIL_ADDRESS). "\n\n";
           $email_html = array();
           $email_html['EMAIL_GREETING']      = sprintf(EMAIL_GREET_NONE, $paypal_ec_payer_info['payer_firstname']) ;
-          $email_html['EMAIL_WELCOME']  = nl2br(EMAIL_EC_ACCOUNT_INFORMATION . "\n\nEmail: " . $paypal_ec_payer_info['payer_email'] . "\nPassword: " . $password . "\n");
-          $email_html['EMAIL_MESSAGE_HTML']       = EMAIL_WELCOME . "\n\n" . EMAIL_TEXT;         
+          $email_html['EMAIL_WELCOME']       = EMAIL_WELCOME;
+          $email_html['EMAIL_MESSAGE_HTML']  = nl2br(EMAIL_TEXT . "\n\n" . EMAIL_EC_ACCOUNT_INFORMATION . "\nUsername: " . $paypal_ec_payer_info['payer_email'] . "\nPassword: " . $password . "\n\n");
           $email_html['EMAIL_CONTACT_OWNER'] = EMAIL_CONTACT;
           $email_html['EMAIL_CLOSURE']       = nl2br(EMAIL_GV_CLOSURE);
           $email_html['EMAIL_DISCLAIMER']    = sprintf(EMAIL_DISCLAIMER_NEW_CUSTOMER, '<a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS . '">'. STORE_OWNER_EMAIL_ADDRESS .' </a>');

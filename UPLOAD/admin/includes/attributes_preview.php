@@ -1,10 +1,11 @@
 <?php
 /** 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: attributes_preview.php 2022-04-17 16:09:16Z webchills $
+ * @version $Id: attributes_preview.php 2023-10-21 17:09:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -115,7 +116,7 @@ if (!defined('IS_ADMIN_FLAG')) {
             if ($products_options->fields['attributes_discounted'] == 1) {
 // apply product discount to attributes if discount is on
 //              $new_attributes_price = $products_options->fields['options_values_price'];
-              $new_attributes_price = zen_get_attributes_price_final($products_options->fields["products_attributes_id"], 1, '', 'false', $products_price_is_priced_by_attributes);
+              $new_attributes_price = zen_get_attributes_price_final($products_options->fields["products_attributes_id"], 1, '', false, $products_price_is_priced_by_attributes);
 //              $new_attributes_price = zen_get_discount_calc((int)$_GET['products_id'], true, $new_attributes_price);
             } else {
 // discount is off do not apply
@@ -248,10 +249,10 @@ if (!defined('IS_ADMIN_FLAG')) {
                   }
 
                 if ($products_options->fields['attributes_image'] != '') {
-                  $tmp_attributes_image .= '<td class="smallText" align="center" valign="top">' . zen_draw_radio_field('id[' . $products_options_names->fields['products_options_id'] . ']',
+                  $tmp_attributes_image .= '<td class="smallText text-center align-top">' . zen_draw_radio_field('id[' . $products_options_names->fields['products_options_id'] . ']',
                               $products_options_value_id, $selected_attribute) . zen_image(DIR_WS_CATALOG_IMAGES . $products_options->fields['attributes_image']) . (PRODUCT_IMAGES_ATTRIBUTES_NAMES == '1' ? '<br>' . $products_options->fields['products_options_values_name'] : '') . $products_options_details_noname . '</td>';
                 } else {
-                  $tmp_attributes_image .= '<td class="smallText" align="center" valign="top">' . zen_draw_radio_field('id[' . $products_options_names->fields['products_options_id'] . ']',
+                  $tmp_attributes_image .= '<td class="smallText text-center align-top">' . zen_draw_radio_field('id[' . $products_options_names->fields['products_options_id'] . ']',
                               $products_options_value_id, $selected_attribute) . '<br>' . $products_options->fields['products_options_values_name'] . $products_options_details_noname . '</td>';
                 }
               break;
@@ -266,10 +267,10 @@ if (!defined('IS_ADMIN_FLAG')) {
                   }
 
                 if ($products_options->fields['attributes_image'] != '') {
-                  $tmp_attributes_image .= '<td class="smallText" align="center" valign="top">' . zen_image(DIR_WS_CATALOG_IMAGES . $products_options->fields['attributes_image']) . (PRODUCT_IMAGES_ATTRIBUTES_NAMES == '1' ? '<br>' . $products_options->fields['products_options_values_name'] : '') . ($products_options_details_noname != '' ? '<br>' . $products_options_details_noname : '') . '<br>' . zen_draw_radio_field('id[' . $products_options_names->fields['products_options_id'] . ']',
+                  $tmp_attributes_image .= '<td class="smallText text-center align-top">' . zen_image(DIR_WS_CATALOG_IMAGES . $products_options->fields['attributes_image']) . (PRODUCT_IMAGES_ATTRIBUTES_NAMES == '1' ? '<br>' . $products_options->fields['products_options_values_name'] : '') . ($products_options_details_noname != '' ? '<br>' . $products_options_details_noname : '') . '<br>' . zen_draw_radio_field('id[' . $products_options_names->fields['products_options_id'] . ']',
                                 $products_options_value_id, $selected_attribute) . '</td>';
                 } else {
-                  $tmp_attributes_image .= '<td class="smallText" align="center" valign="top">' . $products_options->fields['products_options_values_name'] . ($products_options_details_noname != '' ? '<br>' . $products_options_details_noname : '') . '<br>' . zen_draw_radio_field('id[' . $products_options_names->fields['products_options_id'] . ']',
+                  $tmp_attributes_image .= '<td class="smallText text-center align-top">' . $products_options->fields['products_options_values_name'] . ($products_options_details_noname != '' ? '<br>' . $products_options_details_noname : '') . '<br>' . zen_draw_radio_field('id[' . $products_options_names->fields['products_options_id'] . ']',
                                 $products_options_value_id, $selected_attribute) . '</td>';
                 }
               break;
@@ -284,10 +285,10 @@ if (!defined('IS_ADMIN_FLAG')) {
                   }
 
                 if ($products_options->fields['attributes_image'] != '') {
-                  $tmp_attributes_image .= '<td class="smallText" align="center" valign="top">' . zen_draw_radio_field('id[' . $products_options_names->fields['products_options_id'] . ']',
+                  $tmp_attributes_image .= '<td class="smallText text-center align-top">' . zen_draw_radio_field('id[' . $products_options_names->fields['products_options_id'] . ']',
                                $products_options_value_id, $selected_attribute) . '<br>' . zen_image(DIR_WS_CATALOG_IMAGES . $products_options->fields['attributes_image']) . (PRODUCT_IMAGES_ATTRIBUTES_NAMES == '1' ? '<br>' . $products_options->fields['products_options_values_name'] : '') . ($products_options_details_noname != '' ? '<br>' . $products_options_details_noname : '') . '</td>';
                 } else {
-                  $tmp_attributes_image .= '<td class="smallText" align="center" valign="top">' . zen_draw_radio_field('id[' . $products_options_names->fields['products_options_id'] . ']',
+                  $tmp_attributes_image .= '<td class="smallText text-center align-top">' . zen_draw_radio_field('id[' . $products_options_names->fields['products_options_id'] . ']',
                                $products_options_value_id, $selected_attribute) . '<br>' . $products_options->fields['products_options_values_name'] . ($products_options_details_noname != '' ? '<br>' . $products_options_details_noname : '') . '</td>';
                 }
               break;
@@ -358,10 +359,10 @@ if (!defined('IS_ADMIN_FLAG')) {
                   }
 
                 if ($products_options->fields['attributes_image'] != '') {
-                  $tmp_attributes_image .= '<td class="smallText" align="center" valign="top">' . zen_draw_checkbox_field('id[' . $products_options_names->fields['products_options_id'] . ']['.$products_options_value_id.']',
+                  $tmp_attributes_image .= '<td class="smallText text-center align-top">' . zen_draw_checkbox_field('id[' . $products_options_names->fields['products_options_id'] . ']['.$products_options_value_id.']',
                                 $products_options_value_id, $selected_attribute) . zen_image(DIR_WS_CATALOG_IMAGES . $products_options->fields['attributes_image']) . (PRODUCT_IMAGES_ATTRIBUTES_NAMES == '1' ? '<br>' . $products_options->fields['products_options_values_name'] : '') . $products_options_details_noname . '</td>';
                 } else {
-                  $tmp_attributes_image .= '<td class="smallText" align="center" valign="top">' . zen_draw_checkbox_field('id[' . $products_options_names->fields['products_options_id'] . ']['.$products_options_value_id.']',
+                  $tmp_attributes_image .= '<td class="smallText text-center align-top">' . zen_draw_checkbox_field('id[' . $products_options_names->fields['products_options_id'] . ']['.$products_options_value_id.']',
                                 $products_options_value_id, $selected_attribute) . '<br>' . $products_options->fields['products_options_values_name'] . $products_options_details_noname . '</td>';
                 }
               break;
@@ -376,10 +377,10 @@ if (!defined('IS_ADMIN_FLAG')) {
                   }
 
                 if ($products_options->fields['attributes_image'] != '') {
-                  $tmp_attributes_image .= '<td class="smallText" align="center" valign="top">' . zen_image(DIR_WS_CATALOG_IMAGES . $products_options->fields['attributes_image']) . (PRODUCT_IMAGES_ATTRIBUTES_NAMES == '1' ? '<br>' . $products_options->fields['products_options_values_name'] : '') . ($products_options_details_noname != '' ? '<br>' . $products_options_details_noname : '') . '<br>' . zen_draw_checkbox_field('id[' . $products_options_names->fields['products_options_id'] . ']['.$products_options_value_id.']',
+                  $tmp_attributes_image .= '<td class="smallText text-center align-top">' . zen_image(DIR_WS_CATALOG_IMAGES . $products_options->fields['attributes_image']) . (PRODUCT_IMAGES_ATTRIBUTES_NAMES == '1' ? '<br>' . $products_options->fields['products_options_values_name'] : '') . ($products_options_details_noname != '' ? '<br>' . $products_options_details_noname : '') . '<br>' . zen_draw_checkbox_field('id[' . $products_options_names->fields['products_options_id'] . ']['.$products_options_value_id.']',
                                 $products_options_value_id, $selected_attribute) . '</td>';
                 } else {
-                  $tmp_attributes_image .= '<td class="smallText" align="center" valign="top">' . $products_options->fields['products_options_values_name'] . ($products_options_details_noname != '' ? '<br>' . $products_options_details_noname : '') . '<br>' . zen_draw_checkbox_field('id[' . $products_options_names->fields['products_options_id'] . ']['.$products_options_value_id.']',
+                  $tmp_attributes_image .= '<td class="smallText text-center align-top">' . $products_options->fields['products_options_values_name'] . ($products_options_details_noname != '' ? '<br>' . $products_options_details_noname : '') . '<br>' . zen_draw_checkbox_field('id[' . $products_options_names->fields['products_options_id'] . ']['.$products_options_value_id.']',
                                 $products_options_value_id, $selected_attribute) . '</td>';
                 }
               break;
@@ -394,10 +395,10 @@ if (!defined('IS_ADMIN_FLAG')) {
                   }
 
                 if ($products_options->fields['attributes_image'] != '') {
-                  $tmp_attributes_image .= '<td class="smallText" align="center" valign="top">' . zen_draw_checkbox_field('id[' . $products_options_names->fields['products_options_id'] . ']['.$products_options_value_id.']',
+                  $tmp_attributes_image .= '<td class="smallText text-center align-top">' . zen_draw_checkbox_field('id[' . $products_options_names->fields['products_options_id'] . ']['.$products_options_value_id.']',
                                 $products_options_value_id, $selected_attribute) . '<br>' . zen_image(DIR_WS_CATALOG_IMAGES . $products_options->fields['attributes_image']) . (PRODUCT_IMAGES_ATTRIBUTES_NAMES == '1' ? '<br>' . $products_options->fields['products_options_values_name'] : '') . ($products_options_details_noname != '' ? '<br>' . $products_options_details_noname : '') . '</td>';
                 } else {
-                  $tmp_attributes_image .= '<td class="smallText" align="center" valign="top">' . zen_draw_checkbox_field('id[' . $products_options_names->fields['products_options_id'] . ']['.$products_options_value_id.']',
+                  $tmp_attributes_image .= '<td class="smallText text-center align-top">' . zen_draw_checkbox_field('id[' . $products_options_names->fields['products_options_id'] . ']['.$products_options_value_id.']',
                                 $products_options_value_id, $selected_attribute) . '<br>' . $products_options->fields['products_options_values_name'] . ($products_options_details_noname != '' ? '<br>' . $products_options_details_noname : '') . '</td>';
                 }
               break;
@@ -413,7 +414,7 @@ if (!defined('IS_ADMIN_FLAG')) {
             if ($_POST['id']) {
                 foreach($_POST['id'] as $key => $value) {
                   if ((preg_replace('/txt_/', '', $key) == $products_options_names->fields['products_options_id'])) {
-                    $tmp_html = '<input type="text" name ="id[' . TEXT_PREFIX . $products_options_names->fields['products_options_id'] . ']" size="' . $products_options_names->fields['products_options_size'] .'" maxlength="' . $products_options_names->fields['products_options_length'] . '" value="' . stripslashes($value) .'" />  ';
+                    $tmp_html = '<input type="text" name ="id[' . TEXT_PREFIX . $products_options_names->fields['products_options_id'] . ']" size="' . $products_options_names->fields['products_options_size'] .'" maxlength="' . $products_options_names->fields['products_options_length'] . '" value="' . stripslashes($value) .'">  ';
                     $tmp_html .= $products_options_details;
                     break;
                   }
@@ -421,7 +422,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 
             } else {
               $tmp_value = $_SESSION['cart']->contents[$_GET['products_id']]['attributes_values'][$products_options_names->fields['products_options_id']];
-              $tmp_html = '<input type="text" name ="id[' . TEXT_PREFIX . $products_options_names->fields['products_options_id'] . ']" size="' . $products_options_names->fields['products_options_size'] .'" maxlength="' . $products_options_names->fields['products_options_length'] . '" value="' . htmlspecialchars($tmp_value, ENT_COMPAT, CHARSET, TRUE) .'" />  ';
+              $tmp_html = '<input type="text" name ="id[' . TEXT_PREFIX . $products_options_names->fields['products_options_id'] . ']" size="' . $products_options_names->fields['products_options_size'] .'" maxlength="' . $products_options_names->fields['products_options_length'] . '" value="' . htmlspecialchars($tmp_value, ENT_COMPAT, CHARSET, TRUE) .'">  ';
               $tmp_html .= $products_options_details;
               $tmp_word_cnt_string = '';
 // calculate word charges
@@ -460,7 +461,7 @@ if (!defined('IS_ADMIN_FLAG')) {
           if ($products_options_names->fields['products_options_type'] == PRODUCTS_OPTIONS_TYPE_FILE) {
             $number_of_uploads++;
 // $cart->contents[$_GET['products_id']]['attributes_values'][$products_options_name['products_options_id']]
-            $tmp_html = '<input type="file" name="id[' . TEXT_PREFIX . $products_options_names->fields['products_options_id'] . ']" /><br>' .
+            $tmp_html = '<input type="file" name="id[' . TEXT_PREFIX . $products_options_names->fields['products_options_id'] . ']"><br>' .
                          $_SESSION['cart']->contents[$prod_id]['attributes_values'][$products_options_names->fields['products_options_id']] .
                          zen_draw_hidden_field(UPLOAD_PREFIX . $number_of_uploads, $products_options_names->fields['products_options_id']) .
                          zen_draw_hidden_field(TEXT_PREFIX . UPLOAD_PREFIX . $number_of_uploads, $_SESSION['cart']->contents[$prod_id]['attributes_values'][$products_options_names->fields['products_options_id']]);
@@ -479,13 +480,13 @@ if (!defined('IS_ADMIN_FLAG')) {
                 $tmp_attributes_image_row = 1;
               }
 
-              $tmp_attributes_image .= '<td class="smallText" align="center">' . zen_image(DIR_WS_CATALOG_IMAGES . $products_options->fields['attributes_image']) . (PRODUCT_IMAGES_ATTRIBUTES_NAMES == '1' ? '<br>' . $products_options->fields['products_options_values_name'] : '') . '</td>';
+              $tmp_attributes_image .= '<td class="smallText text-center">' . zen_image(DIR_WS_CATALOG_IMAGES . $products_options->fields['attributes_image']) . (PRODUCT_IMAGES_ATTRIBUTES_NAMES == '1' ? '<br>' . $products_options->fields['products_options_values_name'] : '') . '</td>';
             }
           }
 
 // Read Only - just for display purposes
           if ($products_options_names->fields['products_options_type'] == PRODUCTS_OPTIONS_TYPE_READONLY) {
-//            $tmp_html .= '<input type="hidden" name ="id[' . $products_options_names->fields['products_options_id'] . ']"' . '" value="' . stripslashes($products_options->fields['products_options_values_name']) . ' SELECTED' . '" />  ' . $products_options->fields['products_options_values_name'];
+//            $tmp_html .= '<input type="hidden" name ="id[' . $products_options_names->fields['products_options_id'] . ']"' . '" value="' . stripslashes($products_options->fields['products_options_values_name']) . ' SELECTED' . '">  ' . $products_options->fields['products_options_values_name'];
             $tmp_html .= $products_options_details . '<br>';
           } else {
             $zv_display_select_option ++;

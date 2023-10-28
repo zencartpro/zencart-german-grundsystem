@@ -1,13 +1,11 @@
 <?php
 /**
  * products class
- *
- * @package classes
- * @copyright Copyright 2003-2022 Zen Cart Development Team
- * Zen Cart German Version - www.zen-cart-pro.at
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products.php 2015-12-21 20:49:16Z webchills $
+ * @version $Id: products.php 2023-10-25 20:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -16,10 +14,8 @@ if (!defined('IS_ADMIN_FLAG')) {
  * products class
  * Class used for managing various product information
  *
- * @package classes
  */
 class products extends base {
-  var $modules, $selected_module;
 
   // class constructor
   function __construct() {

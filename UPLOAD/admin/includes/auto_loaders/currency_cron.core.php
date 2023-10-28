@@ -1,11 +1,11 @@
 <?php
 /**
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: currency_cron.core.php 2021-10-25 17:12:36Z webchills $
+ * @version $Id: currency_cron.core.php 2023-10-23 17:12:36Z webchills $
  */
 if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
 /**
@@ -35,7 +35,7 @@ if (!defined('USE_PCONNECT')) define('USE_PCONNECT', 'false');
   $autoLoadConfig[70][] = array('autoType'=>'init_script',
                                 'loadFile'=> 'init_languages.php');
   $autoLoadConfig[90][] = array('autoType'=>'require',
-                                 'loadFile'=> DIR_WS_FUNCTIONS . 'localization.php');
+                                'loadFile'=> DIR_FS_CATALOG . DIR_WS_FUNCTIONS . 'functions_exchange_rates.php');
   $autoLoadConfig[120][] = array('autoType'=>'init_script',
                                  'loadFile'=> 'init_special_funcs.php');
 //   $autoLoadConfig[140][] = array('autoType'=>'init_script',

@@ -4,13 +4,12 @@
  *
  * Loaded automatically by index.php?main_page=adress_book.
  * Allows customer to manage entries in their address book
- *
- * @package templateSystem
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_address_book_default.php 2022-04-09 08:17:16Z webchills $
+ * @version $Id: tpl_address_book_default.php 2023-10-26 16:17:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="addressBookDefault">
@@ -46,7 +45,7 @@
 </fieldset>
 
 <?php
-  if (zen_count_customer_address_book_entries() < MAX_ADDRESS_BOOK_ENTRIES) {
+  if (count($addressArray) < MAX_ADDRESS_BOOK_ENTRIES) {
 ?>
    <div class="buttonRow forward"><?php echo '<a href="' . zen_href_link(FILENAME_ADDRESS_BOOK_PROCESS, '', 'SSL') . '">' . zen_image_button(BUTTON_IMAGE_ADD_ADDRESS, BUTTON_ADD_ADDRESS_ALT) . '</a>'; ?></div>
 <?php

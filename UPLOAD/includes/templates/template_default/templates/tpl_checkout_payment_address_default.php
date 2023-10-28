@@ -6,11 +6,11 @@
  * Allows customer to change the billing address.
  *
  
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_checkout_payment_address_default.php 2022-04-09 08:16:16Z webchills $
+ * @version $Id: tpl_checkout_payment_address_default.php 2023-10-26 08:16:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="checkoutPayAddressDefault">
@@ -54,7 +54,7 @@
      }
 ?>
 
-<div class="buttonRow back"><?php echo TITLE_CONTINUE_CHECKOUT_PROCEDURE . '<br>' . TEXT_CONTINUE_CHECKOUT_PROCEDURE; ?></div>
+<div class="buttonRow back"><?php echo '<strong>' . TITLE_CONTINUE_CHECKOUT_PROCEDURE . '</strong>' . '<br>' . TEXT_CONTINUE_CHECKOUT_PROCEDURE; ?></div>
 
 <?php
   if ($process == true) {

@@ -1,13 +1,14 @@
 <?php
 /**
  * zcAjaxPayment
- * Zen Cart German Specific (zencartpro adaptations)
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: zcAjaxPayment.php 2022-12-17 15:29:58Z webchills $
+ * @version $Id: zcAjaxPayment.php 2023-10-24 19:29:58Z webchills $
  */
+use Zencart\LanguageLoader\LanguageLoaderFactory;
 class zcAjaxPayment extends base
 {
   /**
@@ -179,7 +180,10 @@ class zcAjaxPayment extends base
     }
 
     $current_page_base = FILENAME_CHECKOUT_CONFIRMATION;
-    require_once(zen_get_file_directory(DIR_FS_CATALOG . DIR_WS_LANGUAGES, $_SESSION['language'].'.php', 'false'));
+    $languageLoaderFactory = new LanguageLoaderFactory();
+    $languageLoader = $languageLoaderFactory->make('catalog', [], $current_page, $template_dir);
+    $languageLoader->loadInitialLanguageDefines();
+    $languageLoader->finalizeLanguageDefines();
     require_once (DIR_WS_MODULES.zen_get_module_directory ('require_languages.php'));
     require_once (DIR_WS_MODULES.zen_get_module_directory ('meta_tags.php'));
     $breadcrumb->add (NAVBAR_TITLE_1, zen_href_link (FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));

@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157 /zencartpro adaptations)
  
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2021-11-28 17:49:16Z webchills $
+ * @version $Id: header_php.php 2023-10-26 09:49:16Z webchills $
  */
 
 $dbCharset = array(
@@ -41,6 +41,10 @@ if (defined('DEVELOPER_MODE') && DEVELOPER_MODE === true) {
     }
     $db_name = isset($db_name) ? $db_name : $db_name_fallback;
 
+    if (empty($db_host_fallback)) {
+        $db_host_fallback = (defined('DEVELOPER_DBHOST_DEFAULT') ? DEVELOPER_DBHOST_DEFAULT : 'localhost');
+    }
+    $db_host = isset($db_host) ? $db_host : $db_host_fallback;
     if (defined('DEVELOPER_INSTALL_DEMO_DATA')) $install_demo_data = !empty(DEVELOPER_INSTALL_DEMO_DATA);
 
 } else {

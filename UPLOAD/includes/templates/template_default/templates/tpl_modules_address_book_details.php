@@ -1,7 +1,7 @@
 <?php
 /**
  * Module Template
- * Zen Cart German Specific
+ 
  * Displays address-book details/selection
  * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  

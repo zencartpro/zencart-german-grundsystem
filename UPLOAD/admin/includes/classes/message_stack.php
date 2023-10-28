@@ -1,11 +1,11 @@
 <?php
 /**
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: message_stack.php 2021-10-25 17:18:16Z webchills $
+ * @version $Id: message_stack.php 2023-10-23 17:18:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -26,15 +26,15 @@ if (!defined('IS_ADMIN_FLAG')) {
 
     function add($message, $type = 'error') {
       if ($type == 'error') {
-        $this->errors[] = array('params' => 'messageStackAlert alert alert-danger', 'text' => '<i class="fa fa-2x fa-exclamation-circle"></i> ' . $message);
+        $this->errors[] = array('params' => 'messageStackAlert alert alert-danger', 'text' => '<i class="fa-solid fa-2x fa-circle-exclamation"></i> ' . $message);
       } elseif ($type == 'warning') {
-        $this->errors[] = array('params' => 'messageStackAlert alert alert-warning', 'text' => '<i class="fa fa-2x fa-question-circle"></i> ' . $message);
+        $this->errors[] = array('params' => 'messageStackAlert alert alert-warning', 'text' => '<i class="fa-solid fa-2x fa-circle-question"></i> ' . $message);
       } elseif ($type == 'info') {
-        $this->errors[] = array('params' => 'messageStackAlert alert alert-info', 'text' => '<i class="fa fa-2x fa-info-circle"></i> ' . $message);
+        $this->errors[] = array('params' => 'messageStackAlert alert alert-info', 'text' => '<i class="fa-solid fa-2x fa-circle-info"></i> ' . $message);
       } elseif ($type == 'success') {
-        $this->errors[] = array('params' => 'messageStackAlert alert alert-success', 'text' => '<i class="fa fa-2x fa-check-circle"></i> ' . $message);
+        $this->errors[] = array('params' => 'messageStackAlert alert alert-success', 'text' => '<i class="fa-solid fa-2x fa-circle-check"></i> ' . $message);
       } elseif ($type == 'caution') {
-        $this->errors[] = array('params' => 'messageStackAlert alert alert-warning', 'text' => '<i class="fa fa-2x fa-hand-stop-o"></i> ' . $message);
+        $this->errors[] = array('params' => 'messageStackAlert alert alert-warning', 'text' => '<i class="fa-solid fa-2x fa-hand-stop-o"></i> ' . $message);
       } else {
         $this->errors[] = array('params' => 'messageStackAlert alert alert-danger', 'text' => $message);
       }

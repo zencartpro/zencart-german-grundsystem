@@ -2,12 +2,12 @@
 /**
  * This file is inserted at the start of the body tag, just above the header menu, and loads most of the admin javascript components
  *
- * Zen Cart German Specific (zencartpro adaptations)
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: javascript_loader.php 2023-05-20 16:27:32Z webchills $
+ * @version $Id: javascript_loader.php 2023-10-23 18:27:32Z webchills $
  */
 ?>
 <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
@@ -30,6 +30,23 @@
     }));
   });
 </script>
+<?php
+$searchBoxScriptArray = [
+    'specials',
+    'coupon_admin',
+    'reviews',
+    'featured',
+    'customers',
+    'category_product_listing',
+    'downloads_manager',
+];
+$searchBoxJs = 'includes/javascript/searchBox.js';
+if (in_array(basename($PHP_SELF, '.php'), $searchBoxScriptArray) && file_exists($searchBoxJs)) {
+    ?>
+    <script defer src="<?= $searchBoxJs; ?>"></script>
+    <?php
+}
+?>
 
 <?php if (file_exists($jsFile = 'includes/javascript/' . basename($PHP_SELF, '.php') . '.js')) { ?>
 <script src="<?php echo $jsFile; ?>"></script>
@@ -53,8 +70,8 @@ foreach ($directory_array as $key => $value) {
 }
 
 foreach ($installedPlugins as $plugin) {
-    $relativeDir = $fs->getPluginRelativeDirectory($plugin['unique_key']);
-    $absoluteDir = $fs->getPluginAbsoluteDirectory($plugin['unique_key']);
+    $relativeDir = $plugin->getRelativePath();
+    $absoluteDir = $plugin->getAbsolutePath();
     $directory_array = $template->get_template_part($absoluteDir . 'admin/includes/javascript/', '/^global_jscript/', '.php');
     foreach ($directory_array as $key => $value) {
         require $absoluteDir . 'admin/includes/javascript/' . $value;

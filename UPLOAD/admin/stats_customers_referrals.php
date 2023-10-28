@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: stats_customers_referrals.php 2022-02-27 20:05:16Z webchills $
+ * @version $Id: stats_customers_referrals.php 2023-10-23 20:05:16Z webchills $
  */
 require('includes/application_top.php');
 
@@ -77,7 +77,7 @@ include DIR_FS_CATALOG . DIR_WS_CLASSES . 'order.php';
             <?php echo zen_draw_input_field('end_date', $_GET['end_date'], 'class="form-control"'); ?>
         </div>
       </div>
-      <div class="col-sm-12 text-right"><button type="submit" class="btn btn-primary"><?php echo IMAGE_DISPLAY; ?></div>
+      <div class="col-sm-12 text-right"><button type="submit" class="btn btn-primary"><?php echo IMAGE_DISPLAY; ?></button></div>
       <?php echo '</form>'; ?>
 
 

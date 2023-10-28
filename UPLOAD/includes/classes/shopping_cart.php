@@ -1,12 +1,12 @@
 <?php
 /**
  * Class for managing the Shopping Cart
- * Zen Cart German Specific 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157 /zencartpro adaptations)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: shopping_cart.php 2022-11-14 20:19:29Z webchills $
+ * @version $Id: shopping_cart.php 2023-10-25 20:19:29Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -2077,16 +2077,18 @@ class shoppingCart extends base
         }
       }
     }
-    // display message if all is good and not on shopping_cart page
-    if ((DISPLAY_CART == 'false' && $_GET['main_page'] != FILENAME_SHOPPING_CART) && $messageStack->size('shopping_cart') == 0) {
-      $messageStack->add_session('header', ($this->display_debug_messages ? 'FUNCTION ' . __FUNCTION__ . ': ' : '') . SUCCESS_ADDED_TO_CART_PRODUCTS, 'success');
-    } else {
-      if (DISPLAY_CART == 'false') {
-        zen_redirect(zen_href_link(FILENAME_SHOPPING_CART));
-      }
-    }
-    if (is_array($parameters) && !in_array('products_id', $parameters) && !strpos($goto, 'reviews') > 5) $parameters[] = 'products_id';
-    zen_redirect(zen_href_link($goto, zen_get_all_get_params($parameters)));
+        // display message if all is good and not on shopping_cart page
+        if ((DISPLAY_CART == 'false' && $_GET['main_page'] != FILENAME_SHOPPING_CART) && $messageStack->size('shopping_cart') == 0 && ($allow_into_cart == 'Y')) {
+            $messageStack->add_session('header', ($this->display_debug_messages ? 'FUNCTION ' . __FUNCTION__ . ': ' : '') . SUCCESS_ADDED_TO_CART_PRODUCTS, 'success');
+            $this->notify('NOTIFIER_CART_OPTIONAL_SUCCESS_BUYNOW_ADDED_TO_CART', $_GET, $goto, $parameters);
+        } else {
+            if (DISPLAY_CART == 'false'  && ($allow_into_cart !== 'Y')) {
+                //zen_redirect(zen_href_link(FILENAME_SHOPPING_CART));
+                $messageStack->add_session('header', ($this->display_debug_messages ? 'FUNCTION ' . __FUNCTION__ . ': ' : '') . FAILED_TO_ADD_UNAVAILABLE_PRODUCTS, 'error');
+            }
+        }
+        $exclude[] = 'action';
+        zen_redirect(zen_href_link($goto, zen_get_all_get_params($exclude)));
   }
     /**
      * Handle MultipleAddProduct cart Action
@@ -2100,7 +2102,7 @@ class shoppingCart extends base
     if ($this->display_debug_messages) $messageStack->add_session('header', 'FUNCTION ' . __FUNCTION__, 'caution');
 
     $addCount = 0;
-        if (is_array($_POST['products_id']) && count($_POST['products_id']) > 0) {
+        if (!empty($_POST['products_id']) && is_array($_POST['products_id'])) {
       $products_list = $_POST['products_id'];
       foreach($products_list as $key => $val) {
         $prodId = preg_replace('/[^0-9a-f:.]/', '', $key);
@@ -2298,12 +2300,13 @@ class shoppingCart extends base
  *
  * @param float $check_qty
      * @param int $product_id
- * @param string $stack messageStack placement
+     * @param string $messageStackPosition messageStack placement
      * @return float
- */
- public function adjust_quantity($check_qty, $product_id, $stack = 'shopping_cart') {
-    global $messageStack;
-    if ($stack == '' || $stack == FALSE) $stack = 'shopping_cart';
+     */
+    public function adjust_quantity($check_qty, $product_id, $messageStackPosition = 'shopping_cart')
+    {
+        global $messageStack;
+        if ($messageStackPosition == '' || $messageStackPosition == false) $messageStackPosition = 'shopping_cart';
       $old_quantity = $check_qty;
         if (QUANTITY_DECIMALS != 0) {
           $fix_qty = $check_qty;
@@ -2318,7 +2321,7 @@ class shoppingCart extends base
         } else {
           if ($check_qty != round($check_qty, QUANTITY_DECIMALS)) {
             $new_qty = round($check_qty, QUANTITY_DECIMALS);
-            $messageStack->add_session($stack, ERROR_QUANTITY_ADJUSTED . zen_get_products_name($product_id) . ERROR_QUANTITY_CHANGED_FROM . $old_quantity . ERROR_QUANTITY_CHANGED_TO . $new_qty, 'caution');
+                $messageStack->add_session($messageStackPosition, ERROR_QUANTITY_ADJUSTED . zen_get_products_name($product_id) . ERROR_QUANTITY_CHANGED_FROM . $old_quantity . ERROR_QUANTITY_CHANGED_TO . $new_qty, 'caution');
           } else {
             $new_qty = $check_qty;
           }

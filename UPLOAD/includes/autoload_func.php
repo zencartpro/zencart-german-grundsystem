@@ -3,22 +3,26 @@
  * File contains the autoloader loop
  * 
  * The autoloader loop takes the array from the auto_loaders directory
- * and uses this this to constuct the InitSysytem. 
- * see {@link http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem} for more details.
- *
+ * and uses it to construct the InitSystem.
+ * see  {@link  https://docs.zen-cart.com/dev/code/init_system/} for more details.
+ * Zen Cart German Specific (158 code in 157)
  
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: autoload_func.php 2021-11-29 21:25:16Z webchills $
+ * @version $Id: autoload_func.php 2023-10-23 15:25:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
 $debugAutoload = false;
 if (defined('DEBUG_AUTOLOAD') && DEBUG_AUTOLOAD == true) $debugAutoload = true;
-if ($debugAutoload) print_r($initSystemList);
+if ($debugAutoload) {
+    echo '<pre>$initSystemList=<br>';
+    print_r($initSystemList);
+    echo '</pre>';
+}
 foreach ($initSystemList as $entry) {
     switch ($entry['type']) {
         case 'include':
@@ -46,7 +50,7 @@ foreach ($initSystemList as $entry) {
             $$objectName = new $className();
             break;
         case 'sessionClass':
-            if ($debugAutoload)  'case "sessionClass": ' . $entry['class'] . "<br>\n";
+            if ($debugAutoload) echo 'case "sessionClass": ' . $entry['class'] . "<br>\n";
             $objectName = $entry['object'];
             $className = $entry['class'];
             if (!$entry['checkInstantiated'] || !isset($_SESSION[$objectName])) {

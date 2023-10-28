@@ -1,11 +1,11 @@
 <?php
 /**
- 
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_sessions.php 2021-10-25 18:28:24Z webchills $
+ * @version $Id: init_sessions.php 2023-10-23 14:28:24Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -27,18 +27,14 @@ $secureFlag = (substr(HTTP_SERVER, 0, 6) == 'https:') ? TRUE : FALSE;
 $samesite = (defined('COOKIE_SAMESITE')) ? COOKIE_SAMESITE : 'lax';
 if (!in_array($samesite, ['lax', 'strict', 'none'])) $samesite = 'lax';
 
-if (PHP_VERSION_ID >= 70300) {
-  session_set_cookie_params([
+session_set_cookie_params([
     'lifetime' => 0,
     'path' => $path,
-    'domain' => (zen_not_null($cookieDomain) ? $domainPrefix . $cookieDomain : ''),
+    'domain' => (!empty($cookieDomain) ? $domainPrefix . $cookieDomain : ''),
     'secure' => $secureFlag,
     'httponly' => true,
     'samesite' => $samesite,
-  ]);
-} else {
-  session_set_cookie_params(0, $path .'; samesite='.$samesite, (zen_not_null($cookieDomain) ? $domainPrefix . $cookieDomain : ''), $secureFlag, true);
-}
+]);
 
 /**
  * Sanitize the IP address, and resolve any proxies.

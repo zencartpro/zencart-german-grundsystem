@@ -2,15 +2,14 @@
 /**
  * password_funcs functions
  *
- * @package functions
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: password_funcs.php 2015-12-21 20:25:16Z webchills $
+ * @version $Id: password_funcs.php 2023-10-23 13:25:16Z webchills $
  */
 // //
-// This function validates a plain text password with an encrpyted password
+// This function validates a plain text password with an encrypted password
 function zen_validate_password($plain, $encrypted, $userRef = NULL)
 {
   $zcPassword = zcPassword::getInstance(PHP_VERSION);
@@ -19,19 +18,12 @@ function zen_validate_password($plain, $encrypted, $userRef = NULL)
 
 /**
  * This function makes a new password from a plaintext password.
- * if php >= 5.5.0 we use inbuilt password_hash function.
- * otherwise we use zen_encrypt_password_new to create a salted sha256 password.
  * @param $plain
  * @return string
  */
 function zen_encrypt_password($plain)
 {
-    if (function_exists('password_hash')) {
-        $password = password_hash($plain, PASSWORD_DEFAULT);
-    } else {
-        $password = zen_encrypt_password_new($plain);
-    }
-    return $password;
+    return password_hash($plain, PASSWORD_DEFAULT);
 }
 
 /**
@@ -110,9 +102,8 @@ function zen_get_entropy($hash = 'sha1', $size = 32)
 
   // Use mcrypt with /dev/urandom if available
   if ($data === null && function_exists('mcrypt_create_iv') && (
-    // There is a bug in Windows + IIS in older versions of PHP
-    (
-strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN' || version_compare(PHP_VERSION, '5.3.7', '>='))))
+    // There is a bug in Windows + IIS 
+    (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN')))
   {
     // echo('Attempting to create entropy using mcrypt');
     $entropy = mcrypt_create_iv($size, MCRYPT_DEV_URANDOM);

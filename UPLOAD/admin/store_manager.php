@@ -1,16 +1,16 @@
 <?php
 /**
- * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: store_manager.php 2022-01-19 21:23:16Z webchills $
+ * @version $Id: store_manager.php 2023-10-23 18:23:16Z webchills $
  */
 
-  require('includes/application_top.php');
-
-  require(DIR_WS_CLASSES . 'currencies.php');
+  require 'includes/application_top.php';
+  require DIR_FS_CATALOG . 'includes/extra_configures/log_files.php'; 
+  require DIR_WS_CLASSES . 'currencies.php';
   $currencies = new currencies();
 
   $languages = zen_get_languages();
@@ -131,7 +131,7 @@
         $dir = dir($purgeFolder);
         while ($file = $dir->read()) {
           if ( ($file != '.') && ($file != '..') && substr($file, 0, 1) != '.') {
-            if (preg_match('/^(myDEBUG-|AIM_Debug_|SIM_Debug_|FirstData_Debug_|Linkpoint_Debug_|Paypal|paypal|ipn_|zcInstall|SHIP_|PAYMENT_|usps_|.*debug).*\.log$/i', $file)) {
+            if (preg_match('/^(' . implode('|', $log_filename_prefix_patterns) . ').*\.log$/i', $file)) {
               if (is_writeable($purgeFolder . '/' . $file)) {
                 zen_remove($purgeFolder . '/' . $file);
               }
@@ -148,20 +148,7 @@
 
     case ('update_all_master_categories_id'):
     // reset products master categories ID
-      
-        $sql = "SELECT products_id FROM " . TABLE_PRODUCTS;
-        $check_products = $db->Execute($sql);
-        while (!$check_products->EOF) {
-          // Note: "USE INDEX ()" is intentional, to retrieve results in original insert order
-          $sql = "SELECT products_id, categories_id FROM " . TABLE_PRODUCTS_TO_CATEGORIES . " USE INDEX () WHERE products_id='" . $check_products->fields['products_id'] . "'";
-          $check_category = $db->Execute($sql);
-
-          $sql = "UPDATE " . TABLE_PRODUCTS . " SET master_categories_id='" . $check_category->fields['categories_id'] . "' WHERE products_id='" . $check_products->fields['products_id'] . "'";
-          $update_viewed = $db->Execute($sql);
-
-          $check_products->MoveNext();
-        }
-
+        zen_reset_all_products_master_categories_id();
         $messageStack->add_session(SUCCESS_UPDATE_ALL_MASTER_CATEGORIES_ID, 'success');
         zen_record_admin_activity('Store Manager executed [update all master categories id]', 'info');
         $action='';
@@ -250,7 +237,7 @@ if ($processing_message != '') {
 <!-- eof: update all products price sorter -->
 
 <!-- bof: reset all counter to 0 -->
-      <tr>
+    <tr>
         <td colspan="2">
             <form name="update_counter" action="<?php echo zen_href_link(FILENAME_STORE_MANAGER, 'action=update_counter', 'NONSSL'); ?>" method="post">
                 <?php echo zen_draw_hidden_field('securityToken', $_SESSION['securityToken']); ?>
@@ -263,16 +250,16 @@ if ($processing_message != '') {
                 </table>
                 <?php echo '</form>'; ?>
         </td>
-      </tr>
-<!-- eof: reset all counter to 0 -->
+    </tr>
+    <!-- eof: reset all counter to 0 -->
 
 <?php /*
 <!-- bof: reset all products_viewed to 0 -->
       <tr>
         <td colspan="2"><br><table border="0" cellspacing="0" cellpadding="2">
           <tr>
-            <td class="main" align="left" valign="top"><?php echo TEXT_INFO_PRODUCTS_VIEWED_UPDATE; ?></td>
-            <td class="main" align="right" valign="middle"><?php echo zen_draw_form('update_all_products_viewed', FILENAME_STORE_MANAGER, 'action=update_all_products_viewed')?><input class="btn btn-default btn-sm" type="submit" value="<?php echo IMAGE_RESET; ?>"></form></td>
+            <td class="main text-left align-top"><?php echo TEXT_INFO_PRODUCTS_VIEWED_UPDATE; ?></td>
+            <td class="main text-right align-middle"><?php echo zen_draw_form('update_all_products_viewed', FILENAME_STORE_MANAGER, 'action=update_all_products_viewed')?><input class="btn btn-default btn-sm" type="submit" value="<?php echo IMAGE_RESET; ?>"></form></td>
           </tr>
         </table></td>
       </tr>
@@ -309,7 +296,7 @@ if ($processing_message != '') {
 <!-- eof: reset all master_categories_id -->
 
 <!-- bof: reset next order to new order number -->
-      <tr>
+    <tr>
         <td colspan="2">
             <form name="update_orders" action="<?php echo zen_href_link(FILENAME_STORE_MANAGER, 'action=update_orders_id', 'NONSSL'); ?>" method="post">
                 <?php echo zen_draw_hidden_field('securityToken', $_SESSION['securityToken']); ?>
@@ -323,8 +310,8 @@ if ($processing_message != '') {
                 </table>
                 <?php echo '</form>'; ?>
         </td>
-      </tr>
-<!-- eof: reset next order to new order number -->
+    </tr>
+    <!-- eof: reset next order to new order number -->
 
 <!-- bof: database table-optimize -->
       <tr>

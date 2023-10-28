@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: record_artists.php 2022-02-27 20:00:51Z webchills $
+ * @version $Id: record_artists.php 2023-10-23 20:00:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -152,7 +152,7 @@ if (!empty($action)) {
                 $artists = $db->Execute($artists_query_raw);
 
                 foreach ($artists as $artist) {
-                  if ((!isset($_GET['mID']) || (isset($_GET['mID']) && ($_GET['mID'] == $artist['artists_id']))) && (substr($action, 0, 3) != 'new')) {
+                  if ((!isset($_GET['mID']) || (isset($_GET['mID']) && ($_GET['mID'] == $artist['artists_id']))) && !isset($aInfo) && (substr($action, 0, 3) != 'new')) {
                     $artists_products = $db->Execute("SELECT COUNT(*) AS products_count
                                                       FROM " . TABLE_PRODUCT_MUSIC_EXTRA . "
                                                       WHERE artists_id = " . (int)$artist['artists_id']);
@@ -199,7 +199,7 @@ if (!empty($action)) {
                 $default_directory = 'artists/';
 
                 $contents[] = array('text' => zen_draw_label(TEXT_ARTISTS_IMAGE_DIR, 'img_dir', 'class="control-label"') . zen_draw_pull_down_menu('img_dir', $dir_info, $default_directory, 'class="form-control"'));
-                $contents[] = array('text' => zen_draw_label(TEXT_ARTISTS_IMAGE_MANUAL, 'artists_image_manual', 'class="control-label"') . zen_draw_input_field('artists_image_manual', '', 'class="form-control"'));
+                $contents[] = array('text' => zen_draw_label(TEXT_IMAGE_MANUAL, 'artists_image_manual', 'class="control-label"') . zen_draw_input_field('artists_image_manual', '', 'class="form-control"'));
 
                 $manufacturer_inputs_string = '';
                 $languages = zen_get_languages();
@@ -213,7 +213,7 @@ if (!empty($action)) {
               case 'edit':
                 $heading[] = array('text' => '<h4>' . TEXT_HEADING_EDIT_RECORD_ARTIST . '</h4>');
                 $contents = array('form' => zen_draw_form('artists', FILENAME_RECORD_ARTISTS, 'page=' . $_GET['page'] . '&mID=' . $aInfo->artists_id . '&action=save', 'post', 'enctype="multipart/form-data"'));
-                $contents[] = array('text' => TEXT_EDIT_INTRO);
+                $contents[] = array('text' => TEXT_INFO_EDIT_INTRO);
                 $contents[] = array('text' => zen_draw_label(TEXT_RECORD_ARTIST_NAME, 'artists_name', 'class="control-label"') . zen_draw_input_field('artists_name', htmlspecialchars($aInfo->artists_name, ENT_COMPAT, CHARSET, TRUE), zen_set_field_length(TABLE_RECORD_ARTISTS, 'artists_name') . ' class="form-control"'));
                 $contents[] = array('text' => zen_draw_label(TEXT_RECORD_ARTIST_IMAGE, 'artists_image', 'class="control-label"') . zen_draw_file_field('artists_image', '', 'class="form-control"') . '<br>' . $aInfo->artists_image);
 
@@ -221,7 +221,7 @@ if (!empty($action)) {
                 $default_directory = substr($aInfo->artists_image, 0, strpos($aInfo->artists_image, '/') + 1);
 
                 $contents[] = array('text' => zen_draw_label(TEXT_ARTISTS_IMAGE_DIR, 'img_dir', 'class="control-label"') . zen_draw_pull_down_menu('img_dir', $dir_info, $default_directory, 'class="form-control"'));
-                $contents[] = array('text' => zen_draw_label(TEXT_ARTISTS_IMAGE_MANUAL, 'artists_image_manual', 'class="control-label"') . zen_draw_input_field('artists_image_manual', '', 'class="form-control"'));
+                $contents[] = array('text' => zen_draw_label(TEXT_IMAGE_MANUAL, 'artists_image_manual', 'class="control-label"') . zen_draw_input_field('artists_image_manual', '', 'class="form-control"'));
                 $contents[] = array('text' => zen_info_image($aInfo->artists_image, $aInfo->artists_name));
                 $manufacturer_inputs_string = '';
                 $languages = zen_get_languages();
@@ -252,12 +252,12 @@ if (!empty($action)) {
                   $heading[] = array('text' => '<h4>' . $aInfo->artists_name . '</h4>');
 
                   $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_RECORD_ARTISTS, 'page=' . $_GET['page'] . '&mID=' . $aInfo->artists_id . '&action=edit') . '" class="btn btn-primary" role="button">' . IMAGE_EDIT . '</a> <a href="' . zen_href_link(FILENAME_RECORD_ARTISTS, 'page=' . $_GET['page'] . '&mID=' . $aInfo->artists_id . '&action=delete') . '" class="btn btn-warning" role="button">' . IMAGE_DELETE . '</a>');
-                  $contents[] = array('text' => '<br>' . TEXT_DATE_ADDED . ' ' . zen_date_short($aInfo->date_added));
+                  $contents[] = array('text' => '<br>' . TEXT_INFO_DATE_ADDED . ' ' . zen_date_short($aInfo->date_added));
                   if (zen_not_null($aInfo->last_modified)) {
-                    $contents[] = array('text' => TEXT_LAST_MODIFIED . ' ' . zen_date_short($aInfo->last_modified));
+                    $contents[] = array('text' => TEXT_INFO_LAST_MODIFIED . ' ' . zen_date_short($aInfo->last_modified));
                   }
                   $contents[] = array('text' => '<br>' . zen_info_image($aInfo->artists_image, $aInfo->artists_name));
-                  $contents[] = array('text' => '<br>' . TEXT_PRODUCTS . ' ' . $aInfo->products_count);
+                  $contents[] = array('text' => '<br>' . TEXT_LINKED_PRODUCTS . ' ' . $aInfo->products_count);
                 }
                 break;
             }
@@ -274,7 +274,7 @@ if (!empty($action)) {
           <td><?php echo $artists_split->display_count($artists_query_numrows, MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'], TEXT_DISPLAY_NUMBER_OF_ARTISTS); ?></td>
           <td class="text-right"><?php echo $artists_split->display_links($artists_query_numrows, MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS, $_GET['page']); ?></td>
         </tr>
-        <?php if (empty($action)) { ?>
+        <?php if (empty($action) && !empty($aInfo)) { ?>
           <tr>
             <td colspan="2" class="text-right"><a href="<?php echo zen_href_link(FILENAME_RECORD_ARTISTS, 'page=' . $_GET['page'] . '&mID=' . $aInfo->artists_id . '&action=new'); ?>" class="btn btn-primary" role="button"><?php echo IMAGE_INSERT; ?></a></td>
           </tr>

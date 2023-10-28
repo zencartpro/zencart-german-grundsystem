@@ -3,48 +3,51 @@
  * Common Template - tpl_tabular_display.php
  *
  * This file is used for generating tabular output where needed, based on the supplied array of table-cell contents.
- *
- * @package templateSystem
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_tabular_display.php 2019-04-12 17:49:16Z webchills $
+ * @version $Id: tpl_tabular_display.php 2023-10-25 19:49:16Z webchills $
  */
-
 $zco_notifier->notify('NOTIFY_TPL_TABULAR_DISPLAY_START', $current_page_base, $list_box_contents);
 
-//print_r($list_box_contents);
-  $cell_scope = (!isset($cell_scope) || empty($cell_scope)) ? 'col' : $cell_scope;
-  $cell_title = (!isset($cell_title) || empty($cell_title)) ? 'list' : $cell_title;
-
+$cell_scope = (empty($cell_scope)) ? 'col' : $cell_scope;
+$cell_title = (empty($cell_title)) ? 'list' : $cell_title;
 ?>
 <table id="<?php echo 'cat' . $cPath . 'Table'; ?>" class="tabTable">
 <?php
-  for($row=0, $n=sizeof($list_box_contents); $row<$n; $row++) {
-    $r_params = "";
-    $c_params = "";
-    if (isset($list_box_contents[$row]['params'])) $r_params .= ' ' . $list_box_contents[$row]['params'];
-?>
-  <tr <?php echo $r_params; ?>>
-<?php
-    for($col=0, $j=sizeof($list_box_contents[$row]); $col<$j; $col++) {
-      $c_params = "";
-      $cell_type = ($row==0) ? 'th' : 'td';
-      if (isset($list_box_contents[$row][$col]['params'])) $c_params .= ' ' . $list_box_contents[$row][$col]['params'];
-      if (isset($list_box_contents[$row][$col]['align']) && $list_box_contents[$row][$col]['align'] != '') $c_params .= ' align="' . $list_box_contents[$row][$col]['align'] . '"';
-      if ($cell_type=='th') $c_params .= ' scope="' . $cell_scope . '" id="' . $cell_title . 'Cell' . $row . '-' . $col.'"';
-      if (isset($list_box_contents[$row][$col]['text'])) {
-?>
-   <?php echo '<' . $cell_type . $c_params . '>'; ?><?php echo $list_box_contents[$row][$col]['text'] ?><?php echo '</' . $cell_type . '>'  . "\n"; ?>
-<?php
-      }
+foreach ($list_box_contents as $row => $cols) {
+    $r_params = '';
+    if (isset($list_box_contents[$row]['params'])) {
+        $r_params .= ' ' . $list_box_contents[$row]['params'];
     }
 ?>
-  </tr>
+    <tr<?php echo $r_params; ?>>
 <?php
-  }
+    foreach ($cols as $num => $col) {
+        $c_params = '';
+        $cell_type = ($row == 0) ? 'th' : 'td';
+        if (isset($col['params'])) {
+            $c_params .= ' ' . $col['params'];
+        }
+        if (!empty($col['align'])) {
+            $c_params .= ' align="' . $col['align'] . '"';
+        }
+
+        if ($cell_type == 'th') {
+            $c_params .= ' scope="' . $cell_scope . '" id="' . $cell_title . 'Cell' . $row . '-' . $num.'"';
+        }
+        if (isset($col['text'])) {
+            echo '<' . $cell_type . $c_params . '>' . $col['text'] . '</' . $cell_type . '>'  . "\n";
+        }
+    }
+?>
+    </tr>
+<?php
+}
 ?>
 </table>
 <?php
 $zco_notifier->notify('NOTIFY_TPL_TABULAR_DISPLAY_END', $current_page_base, $list_box_contents);
+

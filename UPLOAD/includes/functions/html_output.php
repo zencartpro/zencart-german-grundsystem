@@ -1,15 +1,15 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  * html_output.php
  * HTML-generating functions used throughout the core
  *
  
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: html_output.php 2022-11-16 11:18:58Z webchills $
+ * @version $Id: html_output.php 2023-10-23 13:18:58Z webchills $
  */
 
 /*
@@ -29,7 +29,7 @@
 
     if ($connection == 'NONSSL') {
       $link = HTTP_SERVER;
-    } elseif ($connection == 'SSL') {
+    } elseif ($connection == 'SSL' || $connection == '') {
       if (ENABLE_SSL == 'true') {
         $link = HTTPS_SERVER ;
       } else {
@@ -117,152 +117,172 @@ function zen_catalog_href_link($page = '', $parameters = '', $connection = 'NONS
  * The HTML image wrapper function for non-proportional images
  * used when "proportional images" is turned off or if calling from a template directory
  */
-  function zen_image_OLD($src, $alt = '', $width = '', $height = '', $parameters = '') {
+function zen_image_OLD($src, $title = '', $width = '', $height = '', $parameters = '')
+{
     global $template_dir;
 
-//auto replace with defined missing image
+    //auto replace with defined missing image
     if ($src === DIR_WS_IMAGES && PRODUCTS_IMAGE_NO_IMAGE_STATUS === '1') {
-      $src = DIR_WS_IMAGES . PRODUCTS_IMAGE_NO_IMAGE;
+        $src = DIR_WS_IMAGES . PRODUCTS_IMAGE_NO_IMAGE;
     }
 
     if ((empty($src) || $src === DIR_WS_IMAGES) && IMAGE_REQUIRED === 'false') {
-      return false;
+        return false;
     }
 
     // if not in current template switch to template_default
-    if (!file_exists($src)) {
-      $src = str_replace(DIR_WS_TEMPLATES . $template_dir, DIR_WS_TEMPLATES . 'template_default', $src);
+    $file_exists = is_file($src);
+    if ($file_exists === false) {
+        $src = str_replace(DIR_WS_TEMPLATES . $template_dir, DIR_WS_TEMPLATES . 'template_default', $src);
+        $file_exists = is_file($src);
     }
-
-// alt is added to the img tag even if it is null to prevent browsers from outputting
-// the image filename as default
-    $image = '<img src="' . zen_output_string($src) . '" alt="' . zen_output_string($alt) . '"';
-
-    if (!empty($alt)) {
-      $image .= ' title=" ' . zen_output_string($alt) . ' "';
-    }
-
-    if (CONFIG_CALCULATE_IMAGE_SIZE == 'true' && (empty($width) || empty($height)) ) {
-      if ($image_size = @getimagesize($src)) {
-        if (empty($width) && zen_not_null($height)) {
-          $ratio = $height / $image_size[1];
-          $width = $image_size[0] * $ratio;
-        } elseif (zen_not_null($width) && empty($height)) {
-          $ratio = $width / $image_size[0];
-          $height = $image_size[1] * $ratio;
-        } elseif (empty($width) && empty($height)) {
-          $width = $image_size[0];
-          $height = $image_size[1];
-        }
-      } elseif (IMAGE_REQUIRED == 'false') {
+    if ($file_exists === false && IMAGE_REQUIRED === 'false') {
         return false;
-      }
     }
 
-    if (zen_not_null($width) && zen_not_null($height)) {
-      $image .= ' width="' . zen_output_string($width) . '" height="' . zen_output_string($height) . '"';
+    $image = '<img src="' . zen_output_string($src) . '"';
+
+    if (empty($title)) {
+        $alt_text = (defined('IMAGE_ALT_TEXT_NO_TITLE')) ? IMAGE_ALT_TEXT_NO_TITLE : 'n/a';
+    } else {
+        $title_text = zen_output_string($title);
+        $alt_text = ((defined('IMAGE_ALT_PREFIX')) ? (IMAGE_ALT_PREFIX . ' ') : '') . $title_text;
+        $image .= ' title="' . $title_text . '"';
+    }
+    $image .= ' alt="' . $alt_text . '"';
+
+    $width = (int)$width;
+    $height = (int)$height;
+    if ($file_exists === true && CONFIG_CALCULATE_IMAGE_SIZE === 'true' && ($width === 0 || $height === 0)) {
+        $image_size = getimagesize($src);
+        if ($image_size === false) {
+            if (IMAGE_REQUIRED === 'false') {
+                return false;
+            }
+        } elseif ($width === 0 && $height === 0) {
+            $width = (int)$image_size[0];
+            $height = (int)$image_size[1];
+        } elseif ($width === 0) {
+            $ratio = $height / $image_size[1];
+            $width = (int)($image_size[0] * $ratio);
+        } else {
+            $ratio = $width / $image_size[0];
+            $height = (int)($image_size[1] * $ratio);
+        }
     }
 
-    if (zen_not_null($parameters)) $image .= ' ' . $parameters;
+    if ($width !== 0 && $height !== 0) {
+        $image .= ' width="' . $width . '" height="' . $height . '"';
+    }
 
-    $image .= ' />';
+    if (!empty($parameters)) {
+        $image .= ' ' . $parameters;
+    }
+
+    $image .= '>';
 
     return $image;
-  }
-
+}
 
 /*
  * The HTML image wrapper function
  */
-  function zen_image($src, $alt = '', $width = '', $height = '', $parameters = '') {
+function zen_image($src, $title = '', $width = '', $height = '', $parameters = '')
+{
     global $template_dir, $zco_notifier;
 
-    // soft clean the alt tag
-    $alt = zen_clean_html($alt);
+    // soft clean the title attribute's value
+    $title = zen_clean_html($title);
 
     // use old method on template images
-    if (strstr($src, 'includes/templates') || strstr($src, 'includes/languages') || PROPORTIONAL_IMAGES_STATUS == '0') {
-      return zen_image_OLD($src, $alt, $width, $height, $parameters);
+    if (strpos($src, 'includes/templates') !== false || strpos($src, 'includes/languages') !== false || PROPORTIONAL_IMAGES_STATUS === '0') {
+        return zen_image_OLD($src, $title, $width, $height, $parameters);
     }
 
-//auto replace with defined missing image
+    //auto replace with defined missing image
     if ($src === DIR_WS_IMAGES && PRODUCTS_IMAGE_NO_IMAGE_STATUS === '1') {
-      $src = DIR_WS_IMAGES . PRODUCTS_IMAGE_NO_IMAGE;
+        $src = DIR_WS_IMAGES . PRODUCTS_IMAGE_NO_IMAGE;
     }
 
     if ((empty($src) || ($src === DIR_WS_IMAGES)) && IMAGE_REQUIRED === 'false') {
-      return false;
+        return false;
     }
 
     // if not in current template switch to template_default
-    if (!file_exists($src)) {
-      $src = str_replace(DIR_WS_TEMPLATES . $template_dir, DIR_WS_TEMPLATES . 'template_default', $src);
+    if (!is_file($src)) {
+        $src = str_replace(DIR_WS_TEMPLATES . $template_dir, DIR_WS_TEMPLATES . 'template_default', $src);
     }
 
     // hook for handle_image() function such as Image Handler etc
     if (function_exists('handle_image')) {
-      $newimg = handle_image($src, $alt, $width, $height, $parameters);
-      list($src, $alt, $width, $height, $parameters) = $newimg;
-      $zco_notifier->notify('NOTIFY_HANDLE_IMAGE', array($newimg));
+        $newimg = handle_image($src, $title, $width, $height, $parameters);
+        list($src, $title, $width, $height, $parameters) = $newimg;
+        $zco_notifier->notify('NOTIFY_HANDLE_IMAGE', [$newimg]);
     }
 
-    $zco_notifier->notify('NOTIFY_OPTIMIZE_IMAGE', $template_dir, $src, $alt, $width, $height, $parameters);
+    //image is defined but is missing
+    if (PRODUCTS_IMAGE_NO_IMAGE_STATUS === '1' && !is_file($src)) {
+        $src = DIR_WS_IMAGES . PRODUCTS_IMAGE_NO_IMAGE;
+    }
+    
+    $zco_notifier->notify('NOTIFY_OPTIMIZE_IMAGE', $template_dir, $src, $title, $width, $height, $parameters);
+
+    // Determine if the source-file exists.
+    $file_exists = is_file($src);
+    $image_size = false;
+    if ($file_exists === true) {
+        $image_size = getimagesize($src);
+    }
+    if ($image_size === false && IMAGE_REQUIRED === 'false') {
+        return false;
+    }
 
     // Convert width/height to int for proper validation.
-    // intval() used to support compatibility with plugins like image-handler
-    $width = empty($width) ? $width : (int)$width;
-    $height = empty($height) ? $height : (int)$height;
+    $width = empty($width) ? 0 : (int)$width;
+    $height = empty($height) ? 0 : (int)$height;
 
-// alt is added to the img tag even if it is null to prevent browsers from outputting
-// the image filename as default
-    $image = '<img src="' . zen_output_string($src) . '" alt="' . zen_output_string($alt) . '"';
+    $image = '<img src="' . zen_output_string($src) . '"';
 
-    if (!empty($alt)) {
-      $image .= ' title="' . zen_output_string($alt) . '"';
-    }
-
-    if (CONFIG_CALCULATE_IMAGE_SIZE == 'true' && (empty($width) || empty($height))) {
-      if ($image_size = @getimagesize($src)) {
-        if (empty($width) && !empty($height)) {
-          $ratio = $height / $image_size[1];
-          $width = $image_size[0] * $ratio;
-        } elseif (!empty($width) && empty($height)) {
-          $ratio = $width / $image_size[0];
-          $height = $image_size[1] * $ratio;
-        } elseif (empty($width) && empty($height)) {
-          $width = $image_size[0];
-          $height = $image_size[1];
-        }
-      } elseif (IMAGE_REQUIRED == 'false') {
-        return false;
-      }
-    }
-
-
-    if (!empty($width) && !empty($height) && file_exists($src)) {
-// proportional images
-      $image_size = @getimagesize($src);
-      // fix division by zero error
-      $ratio = ($image_size[0] != 0 ? $width / $image_size[0] : 1);
-      if ($image_size[1]*$ratio > $height) {
-        $ratio = $height / $image_size[1];
-        $width = $image_size[0] * $ratio;
-      } else {
-        $height = $image_size[1] * $ratio;
-      }
-// only use proportional image when image is larger than proportional size
-      if ($image_size[0] < $width and $image_size[1] < $height) {
-        $image .= ' width="' . $image_size[0] . '" height="' . (int)$image_size[1] . '"';
-      } else {
-        $image .= ' width="' . round($width) . '" height="' . round($height) . '"';
-      }
+    if (empty($title)) {
+        $alt_text = (defined('IMAGE_ALT_TEXT_NO_TITLE')) ? IMAGE_ALT_TEXT_NO_TITLE : 'n/a';
     } else {
-       // override on missing image to allow for proportional and required/not required
-      if (IMAGE_REQUIRED == 'false') {
-        return false;
-      } else if (substr($src, 0, 4) != 'http') {
+        $title_text = zen_output_string($title);
+        $alt_text = ((defined('IMAGE_ALT_PREFIX')) ? (IMAGE_ALT_PREFIX . ' ') : '') . $title_text;
+        $image .= ' title="' . $title_text . '"';
+    }
+    $image .= ' alt="' . $alt_text . '"';
+
+    if ($image_size !== false && CONFIG_CALCULATE_IMAGE_SIZE === 'true' && ($width === 0 || $height === 0)) {
+        if ($width === 0 && $height === 0) {
+            $width = $image_size[0];
+            $height = $image_size[1];
+        } elseif ($width === 0) {
+            $ratio = $height / $image_size[1];
+            $width = (int)($image_size[0] * $ratio);
+        } else {
+            $ratio = $width / $image_size[0];
+            $height = (int)($image_size[1] * $ratio);
+        }
+    }
+
+    if ($image_size !== false && $width !== 0 && $height !== 0) {
+        // fix division by zero error
+        $ratio = ($image_size[0] !== 0) ? $width / $image_size[0] : 1;
+        if ($image_size[1] * $ratio > $height) {
+            $ratio = $height / $image_size[1];
+            $width = (int)($image_size[0] * $ratio);
+        } else {
+            $height = (int)($image_size[1] * $ratio);
+        }
+
+        // only use proportional image when image is larger than proportional size
+        if ($image_size[0] < $width && $image_size[1] < $height) {
+            $image .= ' width="' . $image_size[0] . '" height="' . $image_size[1] . '"';
+        } else {
+            $image .= ' width="' . (int)round($width) . '" height="' . (int)round($height) . '"';
+        }
+    } elseif (strpos($src, 'http') !== 0) {
         $image .= ' width="' . (int)SMALL_IMAGE_WIDTH . '" height="' . (int)SMALL_IMAGE_HEIGHT . '"';
-      }
     }
 
     // inject rollover class if one is defined. NOTE: This could end up with 2 "class" elements if $parameters contains "class" already.
@@ -311,20 +331,80 @@ function zen_catalog_href_link($page = '', $parameters = '', $connection = 'NONS
     }
 
     $zco_notifier->notify('PAGE_OUTPUT_IMAGE_BUTTON');
-    if (strtolower(IMAGE_USE_CSS_BUTTONS) == 'yes') return zenCssButton($image, $alt, 'button', $sec_class, $parameters);
+    if (strtolower(IMAGE_USE_CSS_BUTTONS) == 'yes') {
+        if (preg_match('/\.(png|gif|jpe?g|webp)/i', $image)) {
+            return zenCssButton($image, $alt, 'button', $sec_class, $parameters);
+        } else {
+            return zen_draw_button($image, $sec_class, '', $parameters, $alt, 'button');
+        }
+    }
     return zen_image($template->get_template_dir($image, DIR_WS_TEMPLATE, $current_page_base, 'buttons/' . $_SESSION['language'] . '/') . $image, $alt, '', '', $parameters);
   }
 
 
 /**
+ * Draw a <button> element
+ **/
+function zen_draw_button($text = '', $added_classes = '', $id = '', $parameters = '', $title = '', $type = 'button')
+{
+    global $zco_notifier;
+
+    // legacy support
+    // remove .gif etc suffix if any
+    $text = preg_replace('/\.(png|gif|jpe?g|webp)$/', '', $text);
+    $text = str_replace('_', ' ', Illuminate\Support\Str::title($text));
+
+    $classes = '';
+    // optionally force something like 'btn' into the current template's buttons by defining a constant for the template:
+    if (defined('TEMPLATE_BASE_CSS_BUTTON_CLASSES')) {
+        $classes .= constant('TEMPLATE_BASE_CSS_BUTTON_CLASSES');
+    }
+
+    $the_button = '';
+
+    $zco_notifier->notify('NOTIFY_ZEN_DRAW_BUTTON', null, $text, $classes, $added_classes, $id, $parameters, $title, $type, $the_button);
+
+    if (empty($the_button)) {
+        $the_button = '<button class="' . $classes;
+        if (!empty($added_classes)) {
+            $the_button .= (empty($classes) ? '' : ' ') . $added_classes;
+        }
+        $the_button .= '"';
+
+        if (!empty($id)) {
+            $the_button .= ' id="' . $id . '"';
+        }
+
+        if ($type != 'button') {
+            $the_button .= ' type="' . $type . '"';
+        }
+
+        if (!empty($parameters)) {
+            $the_button .= ' ' . $parameters;
+        }
+
+        if (!empty($title)) {
+            $the_button .= ' title="' . $title . '"';
+        }
+
+        $the_button .= '>';
+        $the_button .= $text;
+        $the_button .= '</button>';
+    }
+
+    return $the_button;
+}
+
+/**
  * generate CSS buttons in the current language
  * concept from contributions by Seb Rouleau and paulm, subsequently adapted to Zen Cart
  * note: any hard-coded buttons will not be able to use this function
-**/
+ **/
   function zenCssButton($image = '', $text = '', $type = 'button', $sec_class = '', $parameters = '') {
    global $css_button_text, $css_button_opts, $template, $current_page_base, $language;
 
-   $button_name = basename($image, '.gif');
+   $button_name = basename($image);
+   $button_name = preg_replace('/\.(png|gif|jpe?g|webp)$/', '', $button_name);
 
     // if no secondary class is set use the image name for the sec_class
     if (empty($sec_class)) $sec_class = $button_name;
@@ -414,6 +494,52 @@ function zen_catalog_href_link($page = '', $parameters = '', $connection = 'NONS
     }
     return zen_image($image, '', $width, $height);
   }
+
+/**
+ * generates javascript for dynamically updating the states/provinces list when the country is changed
+ *
+ * @param string $country number
+ * @param string $form html form name to attach to
+ * @param string $field html field to attach to
+ * @return string javascript segment
+ */
+function zen_js_zone_list(string $country, string $form, string $field) {
+    global $db;
+    $sql = "SELECT DISTINCT zone_country_id
+            FROM " . TABLE_ZONES . "
+            ORDER BY zone_country_id";
+    $countries = $db->Execute($sql);
+    $num_country = 1;
+    $output_string = '';
+    while (!$countries->EOF) {
+        if ($num_country == 1) {
+            $output_string .= '  if (' . $country . ' == "' . $countries->fields['zone_country_id'] . '") {' . "\n";
+        } else {
+            $output_string .= '  } else if (' . $country . ' == "' . $countries->fields['zone_country_id'] . '") {' . "\n";
+        }
+
+        $sql = "SELECT zone_name, zone_id
+                FROM " . TABLE_ZONES . "
+                WHERE zone_country_id = " . (int)$countries->fields['zone_country_id'] . "
+                ORDER BY zone_name";
+        $results = $db->Execute($sql);
+        $num_state = 1;
+        foreach ($results as $state) {
+            if ($num_state == 1) $output_string .= '    ' . $form . '.' . $field . '.options[0] = new Option("' . PLEASE_SELECT . '", "");' . "\n";
+            $output_string .= '    ' . $form . '.' . $field . '.options[' . $num_state . '] = new Option("' . $state['zone_name'] . '", "' . $state['zone_id'] . '");' . "\n";
+            $num_state++;
+        }
+        $num_country++;
+        $countries->MoveNext();
+        $output_string .= '    hideStateField(' . $form . ');' . "\n" ;
+    }
+    $output_string .= '  } else {' . "\n" .
+        '    ' . $form . '.' . $field . '.options[0] = new Option("' . TYPE_BELOW . '", "");' . "\n" .
+        '    showStateField(' . $form . ');' . "\n" .
+        '  }' . "\n";
+    return $output_string;
+}
+
 
 /*
  *  Output a form
@@ -695,7 +821,7 @@ function zen_draw_pull_down_menu($name, $values, $default = '', $parameters = ''
     return $field;
   }
 
-  $field = '<select rel="dropdown"';
+  $field = '<select ';
 
   if (strpos($parameters, 'id=') === false) {
     $field .= ' id="select-' . zen_output_string($name) . '"';
@@ -752,7 +878,7 @@ function zen_draw_pull_down_menu($name, $values, $default = '', $parameters = ''
     $countries = zen_get_countries();
 
     // Set some default entries at top of list:
-    if (STORE_COUNTRY != SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY) $countriesAtTopOfList[] = SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY;
+    if (SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY !== '' && STORE_COUNTRY !== SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY) $countriesAtTopOfList[] = SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY;
     $countriesAtTopOfList[] = STORE_COUNTRY;
     // Wenn Sie weitere Laender direkt am Anfang der Liste anzeigen lassen wollen, kommentieren Sie die Zeilen mit $countriesAtTopOfList aus.
     // Sie koennen hier soviele Laender angeben wie Sie wollen, einfach weitere solcher Zeilen anlegen
@@ -762,7 +888,16 @@ function zen_draw_pull_down_menu($name, $values, $default = '', $parameters = ''
 
     //process array of top-of-list entries:
     foreach ($countriesAtTopOfList as $key=>$val) {
-      $countries_array[] = array('id' => $val, 'text' => zen_get_country_name($val));
+      // -----
+      // Account for the possibility that one of the top-of-list countries has been disabled.  If
+      // that's the case, issue a PHP notice since the condition really shouldn't happen!
+      //
+      $country_name = zen_get_country_name($val);
+      if ($country_name === '') {
+        trigger_error('Country with countries_id = ' . $val . ' is either disabled or does not exist.', E_USER_NOTICE);
+      } else {
+        $countries_array[] = array('id' => $val, 'text' => $country_name);
+      }
     }
     // now add anything not in the defaults list:
     for ($i=0, $n=count($countries); $i<$n; $i++) {

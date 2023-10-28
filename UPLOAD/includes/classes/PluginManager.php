@@ -1,33 +1,36 @@
 <?php
 /**
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: PluginManager.php 2023-05-20 08:54:16Z webchills $
+ * @version $Id: PluginManager.php 2023-10-23 19:54:16Z webchills $
  */
 
 namespace Zencart\PluginManager;
 
 class PluginManager
 {
+    private
+        $pluginControl,
+        $pluginControlVersion;
 
-    public function __construct($dbConn)
+    public function __construct($pluginControl, $pluginControlVersion)
     {
-        $this->dbConn = $dbConn;
+        $this->pluginControl = $pluginControl;
+        $this->pluginControlVersion = $pluginControlVersion;
     }
 
     public function inspectAndUpdate()
     {
         $pluginsFromFilesystem = $this->getPluginsFromFileSystem();
-
         $this->updateDbPlugins($pluginsFromFilesystem);
     }
 
     public function getInstalledPlugins()
     {
-        $sql = "SELECT * FROM " . TABLE_PLUGIN_CONTROL . " WHERE status = 1";
-        $results = $this->dbConn->execute($sql, false, true, 150);
+        $results = $this->pluginControl->where(['status' => 1])->get();
         $pluginList = [];
         foreach ($results as $result) {
             $pluginList[$result['unique_key']] = $result;
@@ -63,6 +66,11 @@ class PluginManager
         return $versionList;
     }
 
+    public function isNewDownloadAvailable($pluginId, $currentVersion)
+    {
+        $isAvailable = plugin_version_check_for_updates($pluginId, $currentVersion);
+        return $isAvailable;
+    }
     public function getPluginsAfterCheckingForNewVersionsOnline()
     {
         $plugins = $this->getPluginsFromDb();
@@ -134,12 +142,9 @@ class PluginManager
         return $data;
     }
 
-
     protected function getPluginVersions($uniqueKey)
     {
-        $sql = "SELECT version FROM " . TABLE_PLUGIN_CONTROL_VERSIONS . " WHERE unique_key = :uniqueKey:";
-        $sql = $this->dbConn->bindVars($sql, ':uniqueKey:', $uniqueKey, 'string');
-        $result = $this->dbConn->execute($sql);
+        $result = $this->pluginControlVersion->where(['unique_key' => $uniqueKey])->get();
         return $result;
     }
 
@@ -177,11 +182,10 @@ class PluginManager
         return $versionList;
     }
 
-    protected function getPluginsFromDb()
+    public function getPluginsFromDb()
     {
         $pluginList = [];
-        $sql = "SELECT * FROM " . TABLE_PLUGIN_CONTROL;
-        $results = $this->dbConn->execute($sql);
+        $results = $this->pluginControl->all();
         foreach ($results as $result) {
             $pluginList[$result['unique_key']] = $result;
         }
@@ -191,68 +195,62 @@ class PluginManager
     protected function updateDbPlugins($pluginsFromFilesystem)
     {
         $this->updatePluginControl($pluginsFromFilesystem);
-        $this->updatePluginControlVersions($pluginsFromFilesystem);
     }
 
     protected function updatePluginControl($pluginsFromFilesystem)
     {
-        $sql = "UPDATE " . TABLE_PLUGIN_CONTROL . " SET infs = 0";
-        $this->dbConn->execute($sql);
-        if (count($pluginsFromFilesystem)) {
-            $sql = "INSERT INTO " . TABLE_PLUGIN_CONTROL . " 
-        (unique_key, name, description, type, status, author, version, zc_versions, infs, zc_contrib_id) 
-        VALUES ";
+        $this->pluginControl->query()->update(['infs' => 0]);
+        $this->pluginControlVersion->query()->update(['infs' => 0]);
+        $insertValues = [];
+        $versionInsertValues = [];
+        foreach ($pluginsFromFilesystem as $uniqueKey => $plugin) {
+            $pluginVersion = $plugin['versions'][0];
+            $versionInsertValues = $this->processUpdatePluginControlVersions($uniqueKey, $pluginsFromFilesystem, $versionInsertValues);
+            $insertValues[] =
+                [
+                    'unique_key'    => $uniqueKey,
+                    'name'          => $plugin[$pluginVersion]['pluginName'],
+                    'description'   => $plugin[$pluginVersion]['pluginDescription'],
+                    'type'          => '',
+                    'status'        => 0,
+                    'author'        => $plugin[$pluginVersion]['pluginAuthor'],
+                    'version'       => '',
+                    'zc_versions'   => '',
+                    'infs'          => 1,
+                    'zc_contrib_id' => $plugin[$pluginVersion]['pluginId']
+                ];
 
-            foreach ($pluginsFromFilesystem as $uniqueKey => $plugin) {
-                $pluginVersion = $plugin['versions'][0];
-                $sqlPartial = "(:unique_key:, :name:, :description:, '', 0, :author:, '', '', 1, :pluginId:),";
-                $sqlPartial = $this->dbConn->bindVars($sqlPartial, ':unique_key:', $uniqueKey, 'string');
-                $sqlPartial = $this->dbConn->bindVars($sqlPartial, ':name:', $plugin[$pluginVersion]['pluginName'], 'string');
-                $sqlPartial = $this->dbConn->bindVars($sqlPartial, ':description:', $plugin[$pluginVersion]['pluginDescription'], 'string');
-                $sqlPartial = $this->dbConn->bindVars($sqlPartial, ':author:', $plugin[$pluginVersion]['pluginAuthor'], 'string');
-                $sqlPartial = $this->dbConn->bindVars($sqlPartial, ':pluginId:', $plugin[$pluginVersion]['pluginId'], 'integer');
-                $sql .= $sqlPartial;
-            }
-            $sql = rtrim($sql, ',');
-            $sql .= " ON DUPLICATE KEY UPDATE infs = 1";
-            $this->dbConn->execute($sql);
         }
-        $sql = "DELETE FROM " .TABLE_PLUGIN_CONTROL . " WHERE infs = 0";
-        $this->dbConn->execute($sql);
+        $this->pluginControl->upsert(
+            $insertValues,
+            ['id'],
+            ['infs']
+        );
+        $this->pluginControlVersion->upsert(
+            $versionInsertValues,
+            ['id'],
+            ['infs' => 1]
+        );
+        $this->pluginControl->where(['infs' => 0])->delete();
+        $this->pluginControlVersion->where(['infs' => 0])->delete();
     }
 
-    protected function updatePluginControlVersions($pluginsFromFilesystem)
-    {
-        $sql = "UPDATE " . TABLE_PLUGIN_CONTROL_VERSIONS . " SET infs = 0";
-        $this->dbConn->execute($sql);
-        if (count($pluginsFromFilesystem)) {
-            $sqlPluginVersion = "INSERT INTO " . TABLE_PLUGIN_CONTROL_VERSIONS . "(unique_key, author, version, zc_versions, infs) VALUES ";
-            foreach ($pluginsFromFilesystem as $uniqueKey => $plugin) {
-                $sqlPluginVersion .= $this->processUpdateVersions($uniqueKey, $pluginsFromFilesystem);
-            }
-            $sqlPluginVersion = rtrim($sqlPluginVersion, ',');
-            $sqlPluginVersion .= " ON DUPLICATE KEY UPDATE infs = 1";
-            $this->dbConn->execute($sqlPluginVersion);
-        }
-        $sql = "DELETE FROM " .TABLE_PLUGIN_CONTROL_VERSIONS . " WHERE infs = 0";
-        $this->dbConn->execute($sql);
-    }
-
-    protected function processUpdateVersions($uniqueKey, $pluginsFromFilesystem)
+    protected function processUpdatePluginControlVersions($uniqueKey, $pluginsFromFilesystem, $versionInsertValues)
     {
         $currentPlugin = $pluginsFromFilesystem[$uniqueKey];
-        $extraSql = '';
         foreach ($currentPlugin as $version => $versionInfo) {
             if ($version == 'versions') {
                 continue;
             }
-            $extraSql .= "(:unique_key:, :author:, :version:, :zc_versions:, 1),";
-            $extraSql = $this->dbConn->bindVars($extraSql, ':unique_key:', $uniqueKey, 'string');
-            $extraSql = $this->dbConn->bindVars($extraSql, ':author:', $versionInfo['pluginAuthor'], 'string');
-            $extraSql = $this->dbConn->bindVars($extraSql, ':version:', $version, 'string');
-            $extraSql = $this->dbConn->bindVars($extraSql, ':zc_versions:', json_encode($versionInfo['zcVersions']), 'string');
+            $versionInsertValues[] = [
+                'unique_key' => $uniqueKey,
+                'author' => $versionInfo['pluginAuthor'],
+                'version' => $version,
+                'zc_versions' => json_encode($versionInfo['zcVersions']),
+                'infs' => 1
+            ];
         }
-        return $extraSql;
+        return $versionInsertValues;
     }
 
     protected function mergeInVersionInfo($pluginList, $uniqueKey, $versionInfo)
@@ -270,9 +268,7 @@ class PluginManager
 
     public function getPluginVersionsForPlugin($uniqueKey)
     {
-        $sql = "SELECT * FROM " . TABLE_PLUGIN_CONTROL_VERSIONS . " WHERE unique_key = :uniqueKey:";
-        $sql = $this->dbConn->bindVars($sql, ':uniqueKey:', $uniqueKey, 'string');
-        $results = $this->dbConn->execute($sql, false, true, 150);
+        $results = $this->pluginControlVersion->where(['unique_key' => $uniqueKey])->get();
         $versions = [];
         foreach ($results as $result) {
             $versions[$result['version']] = $result;
@@ -292,5 +288,10 @@ class PluginManager
     public function hasPluginVersionsToClean($uniqueKey, $version)
     {
         return count($this->getPluginVersionsToClean($uniqueKey, $version));
+    }
+
+    public function getPluginControl()
+    {
+        return $this->pluginControl;
     }
 }

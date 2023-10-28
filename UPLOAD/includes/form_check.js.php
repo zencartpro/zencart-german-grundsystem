@@ -3,14 +3,14 @@
  * jscript_form_check
  *
  
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: form_check.js.php 2020-01-17 16:49:16Z webchills $
+ * @version $Id: form_check.js.php 2023-10-25 16:49:16Z webchills $
  */
 ?>
-<script type="text/javascript">
+<script>
 var selected;
 
 function check_form_optional(form_name) {

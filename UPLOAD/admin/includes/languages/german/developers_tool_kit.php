@@ -1,11 +1,11 @@
 <?php
 /**
-* Zen Cart German Specific
-* @copyright Copyright 2003-2022 Zen Cart Development Team
+* Zen Cart German Specific (158 code in 157)
+* @copyright Copyright 2003-2023 Zen Cart Development Team
 * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: developers_tool_kit.php 2022-04-17 16:50:27Z webchills $
+* @version $Id: developers_tool_kit.php 2023-10-24 20:50:27Z webchills $
 */
 define('HEADING_TITLE', 'Developers Tool Kit');
 define('TABLE_CONFIGURATION_TABLE', 'KONSTANTEN Definition suchen');
@@ -54,7 +54,8 @@ define('TEXT_ALL_FILES_LOOKUPS', 'Alle Dateien durchsuchen:');
 define('TEXT_ALL_FILES_LOOKUP_CURRENT', 'Alle Dateien - Webshop/Admin');
 define('TEXT_ALL_FILES_LOOKUP_CURRENT_CATALOG', 'Alle Dateien - Webshop');
 define('TEXT_ALL_FILES_LOOKUP_CURRENT_ADMIN', 'Alle Dateien - Admin');
-
+define('TEXT_ALL_FILES_LOOKUP_CURRENT_PLUGINS','Alle Dateien - Plugins');
+define('TEXT_ALL_FILES_LOOKUP_CURRENT_LARAVEL','Alle Dateien - Laravel');
 define('TEXT_INFO_CONFIGURATION_HIDDEN', ' oder, versteckt');
 define('TEXT_SEARCH_ALL_FILES', 'Durchsuche ALLE Dateien nach: ');
 define('TEXT_SEARCH_DATABASE_TABLES', 'Durchsuche die Konfigurationstabellen in der Datenbank nach: ');
@@ -66,6 +67,8 @@ define('TEXT_ALL_FILES_LOOKUP_HTMLTXT', 'nur .html and .txt');
 define('TEXT_ALL_FILES_LOOKUP_JS', 'nur .js');
 define('TEXT_ALL_FILES_LOOKUP_ALL_TYPES', 'Alles');
 define('TEXT_CASE_SENSITIVE', 'Groß-/Kleinschreibung beachten?');
+define('TEXT_INCLUDE_PLUGINS','Plugins einschließen?');
+define('TEXT_INCLUDE_LARAVEL' ,'Laravel Verzeichnis einschließen?');
 define('TEXT_CONTEXT_LINES', 'Kontext Zeilen: ');
 define('TEXT_SEARCH_LOOKUP_PLACEHOLDER', 'Suchbegriff eingeben');
 define('TEXT_SEARCH_KEY_PLACEHOLDER', 'Suchbegriff oder Phrase für die Suche eingeben');
@@ -75,7 +78,7 @@ define('TEXT_BUTTON_SEARCH_ALT', 'Suche ausführen');
 define('TEXT_BUTTON_REGEX_SEARCH', 'Grep');
 define('TEXT_BUTTON_REGEX_SEARCH_ALT', 'Suche mit Regex pattern');
 define('TEXT_ERROR_REGEX_FAIL', 'HINWEIS: Bei der Suche ist ein Fehler aufgetreten. Falls Sie eine Regex/Grep Suche gemacht haben, überprüfen Sie Ihre Regex Pattern auf Syntaxfehler.');
-//Search Configuration Keys
+
 define('SEARCH_CFG_KEYS_HEADING_TITLE','<strong>Suche in Konfigurationseinstellungen/Kofigurationsschlüsseln</strong>');
 define('SEARCH_CFG_KEYS_SEARCH_BOX_TEXT', '<strong>Suchbegriff:</strong> (Durchsucht werden Namen und Beschreibung von Konfigurationseinstellungen und Konfigurationsschlüssel, falls sie exakt dem Suchbegriff entsprechen.)');
 define('SEARCH_CFG_KEYS_TABLE_SECTION', 'Bereich');

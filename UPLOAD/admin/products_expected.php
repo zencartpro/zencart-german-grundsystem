@@ -1,12 +1,12 @@
 <?php
 /**
  
- * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_expected.php 2021-10-24 18:49:16Z webchills $
+ * @version $Id: products_expected.php 2023-10-23 18:49:16Z webchills $
  */
 require('includes/application_top.php');
 
@@ -33,14 +33,14 @@ $db->Execute("UPDATE " . TABLE_PRODUCTS . "
           <table class="table table-hover">
             <thead>
               <tr class="dataTableHeadingRow">
-                <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_PRODUCTS; ?></th>
+                <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_PRODUCTS_NAME; ?></th>
                 <th class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_DATE_EXPECTED; ?></th>
                 <th class="dataTableHeadingContent text-right"><?php echo TABLE_HEADING_ACTION; ?></th>
               </tr>
             </thead>
             <tbody>
                 <?php
-                $products_query_raw = "select pd.products_id, pd.products_name, p.products_date_available from " . TABLE_PRODUCTS_DESCRIPTION . " pd, " . TABLE_PRODUCTS . " p where p.products_id = pd.products_id and p.products_date_available != '' and pd.language_id = '" . (int)$_SESSION['languages_id'] . "' order by p.products_date_available DESC";
+                $products_query_raw = "select pd.products_id, pd.products_name, p.products_date_available from " . TABLE_PRODUCTS_DESCRIPTION . " pd, " . TABLE_PRODUCTS . " p where p.products_id = pd.products_id and p.products_date_available IS NOT NULL and pd.language_id = '" . (int)$_SESSION['languages_id'] . "' order by p.products_date_available DESC";
                 $products_split = new splitPageResults($_GET['page'], MAX_DISPLAY_SEARCH_RESULTS, $products_query_raw, $products_query_numrows);
                 $products = $db->Execute($products_query_raw);
                 foreach ($products as $product) {

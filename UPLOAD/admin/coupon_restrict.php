@@ -6,7 +6,7 @@
  
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: coupon_restrict.php 2023-04-30 23:46:16Z webchills $
+ * @version $Id: coupon_restrict.php 2023-10-23 19:46:16Z webchills $
  */
 
 require('includes/application_top.php');
@@ -297,9 +297,9 @@ require DIR_WS_INCLUDES . 'header.php';
     <h1><?php echo HEADING_TITLE; ?></h1>
     <h2><?php echo sprintf(SUB_HEADING_COUPON_NAME, $coupon_name, $cid); ?></h2>
 <?php
-$allowed_icon = '<i class="fa fa-lg fa-check text-success" title="' . TEXT_ALLOWED . '"></i>';
-$denied_icon = '<i class="fa fa-lg fa-ban text-danger" title="' . TEXT_DENIED . '"></i>';
-$remove_image = '<i class="fa fa-lg fa-trash text-default" title="' . IMAGE_REMOVE . '"></i>';
+$allowed_icon = '<i class="fa-solid fa-lg fa-check text-success" title="' . TEXT_ALLOWED . '"></i>';
+$denied_icon = '<i class="fa-solid fa-lg fa-ban text-danger" title="' . TEXT_DENIED . '"></i>';
+$remove_image = '<i class="fa-solid fa-lg fa-trash text-default" title="' . IMAGE_REMOVE . '"></i>';
 $toggle_button = '&nbsp;&nbsp;<button type="button" class="cr-toggle" title="' . TEXT_STATUS_TOGGLE_TITLE . '">' . TEXT_STATUS_TOGGLE . '</button>';
 
 $cpage = (isset($_GET['cpage'])) ? (int)$_GET['cpage'] : 1;
@@ -378,7 +378,7 @@ $prArrayList = [];
                 <td class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_PRODUCT_ID; ?></td>
                 <td class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_STATUS; ?></td>
                 <td class="dataTableHeadingContent text-left"><?php echo TABLE_HEADING_MODEL; ?></td>
-                <td class="dataTableHeadingContent text-left"><?php echo TABLE_HEADING_PRODUCT_NAME; ?></td>
+                <td class="dataTableHeadingContent text-left"><?php echo TABLE_HEADING_PRODUCTS_NAME; ?></td>
                 <td class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_RESTRICT; ?></td>
                 <td class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_RESTRICT_REMOVE; ?></td>
             </tr>

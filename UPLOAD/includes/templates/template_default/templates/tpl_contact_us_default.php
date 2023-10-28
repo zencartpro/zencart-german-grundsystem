@@ -1,16 +1,15 @@
 <?php
 /**
  * Page Template
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  * Loaded automatically by index.php?main_page=contact_us.
  * Displays contact us page form.
  *
- * 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_contact_us_default.php 2022-04-09 08:49:16Z webchills $
+ * @version $Id: tpl_contact_us_default.php 2023-10-26 16:49:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="contactUsDefault">
@@ -18,7 +17,7 @@
 <?php echo zen_draw_form('contact_us', zen_href_link(FILENAME_CONTACT_US, 'action=send', 'SSL')); ?>
 
 <?php if (CONTACT_US_STORE_NAME_ADDRESS== '1') { ?>
-<address><?php echo nl2br(STORE_NAME_ADDRESS); ?></address>
+<address><?php echo nl2br(STORE_NAME_ADDRESS, false); ?></address>
 <?php } ?>
 
 <?php
@@ -53,24 +52,24 @@
 
 <?php
 // show dropdown if set
-    if (CONTACT_US_LIST !=''){
+    if (CONTACT_US_LIST !== '') {
 ?>
 <label class="inputLabel" for="send-to"><?php echo SEND_TO_TEXT; ?></label>
-<?php echo zen_draw_pull_down_menu('send_to',  $send_to_array, 0, 'id="send-to"') . '<span class="alert">' . ENTRY_REQUIRED_SYMBOL . '</span>'; ?>
+<?php echo zen_draw_pull_down_menu('send_to',  $send_to_array, $send_to_default, 'id="send-to" required size="' . count($send_to_array) . '"') . '<span class="alert">' . ENTRY_REQUIRED_SYMBOL . '</span>'; ?>
 <br class="clearBoth">
 <?php
     }
 ?>
 
 <label class="inputLabel" for="contactname"><?php echo ENTRY_NAME; ?></label>
-<?php echo zen_draw_input_field('contactname', $name, ' size="40" id="contactname" placeholder="' . ENTRY_REQUIRED_SYMBOL . '" autofocus required'); ?>
+<?php echo zen_draw_input_field('contactname', $name, ' size="40" id="contactname" placeholder="' . ENTRY_REQUIRED_SYMBOL . '" required'); ?>
 <br class="clearBoth">
 
 <label class="inputLabel" for="email-address"><?php echo ENTRY_EMAIL; ?></label>
 <?php echo zen_draw_input_field('email', ($email_address), ' size="40" id="email-address" autocomplete="off" placeholder="' . ENTRY_REQUIRED_SYMBOL . '" required', 'email'); ?>
 <br class="clearBoth">
 
-<label class="inputLabel" for="telephone"><?php echo ENTRY_TELEPHONE; ?></label>
+<label class="inputLabel" for="telephone"><?php echo ENTRY_TELEPHONE_NUMBER; ?></label>
 <?php echo zen_draw_input_field('telephone', ($telephone), ' size="20" id="telephone" autocomplete="off"', 'tel'); ?>
 <br class="clearBoth">
 <label for="enquiry"><?php echo ENTRY_ENQUIRY; ?></label>

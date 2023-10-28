@@ -1,15 +1,7 @@
 <?php
 /**
  * Common Template - tpl_header.php
- *
- * this file can be copied to /templates/your_template_dir/pagename
- * example: to override the privacy page
- * make a directory /templates/my_template/privacy
- * copy /templates/templates_defaults/common/tpl_footer.php to /templates/my_template/privacy/tpl_header.php
- * to override the global settings and turn off the footer un-comment the following line:
- * 
- * $flag_disable_header = true;
- * 
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
@@ -23,19 +15,20 @@
   if ($messageStack->size('header') > 0) {
     echo $messageStack->output('header');
   }
-  if (isset($_GET['error_message']) && zen_not_null($_GET['error_message'])) {
+  if (!empty($_GET['error_message'])) {
     echo zen_output_string_protected(urldecode($_GET['error_message']));
   }
-  if (isset($_GET['info_message']) && zen_not_null($_GET['info_message'])) {
+  if (!empty($_GET['info_message'])) {
    echo zen_output_string_protected($_GET['info_message']);
   }
+// check whether to only display errors/alerts, or to also display the rest of the header
+if (isset($flag_disable_header) && $flag_disable_header === true) {
+  // do early-return from this template since $flag_disable_header is true
+  return;
+}
 ?>
-
 
 <!--bof-header logo and navigation display-->
-<?php
-if (!isset($flag_disable_header) || !$flag_disable_header) {
-?>
 
 <div id="headerWrapper">
 <!--bof-navigation display-->
@@ -70,7 +63,7 @@ if (!isset($flag_disable_header) || !$flag_disable_header) {
 
 <!--bof-branding display-->
 <div id="logoWrapper">
-    <div id="logo"><?php echo '<a href="' . HTTP_SERVER . DIR_WS_CATALOG . '">' . zen_image($template->get_template_dir(HEADER_LOGO_IMAGE, DIR_WS_TEMPLATE, $current_page_base,'images'). '/' . HEADER_LOGO_IMAGE, HEADER_ALT_TEXT, HEADER_LOGO_WIDTH, HEADER_LOGO_HEIGHT) . '</a>'; ?></div>
+    <div id="logo"><?php echo '<a href="' . HTTP_SERVER . DIR_WS_CATALOG . '">' . zen_image($template->get_template_dir(HEADER_LOGO_IMAGE, DIR_WS_TEMPLATE, $current_page_base,'images'). '/' . HEADER_LOGO_IMAGE, HEADER_ALT_TEXT) . '</a>'; ?></div>
 <?php if (HEADER_SALES_TEXT != '' || (SHOW_BANNERS_GROUP_SET2 != '' && $banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET2))) { ?>
     <div id="taglineWrapper">
 <?php
@@ -107,4 +100,3 @@ if (!isset($flag_disable_header) || !$flag_disable_header) {
 <?php } ?>
 <!--eof-header ezpage links-->
 </div>
-<?php } ?>

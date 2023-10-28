@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_email.php 2023-04-30 22:35:16Z webchills $
+ * @version $Id: functions_email.php 2023-10-23 13:35:16Z webchills $
  */
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -740,7 +740,7 @@ use PHPMailer\PHPMailer\SMTP;
 
         //now replace the $BLOCK_NAME items in the template file with the values passed to this function's array
         foreach ($block as $key => $value) {
-            $file_holder = str_replace('$' . $key, $value, $file_holder);
+            $file_holder = str_replace('$' . $key, (string)$value, $file_holder);
         }
 
         //DEBUG -- to display preview on-screen

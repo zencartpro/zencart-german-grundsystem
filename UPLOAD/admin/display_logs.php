@@ -137,7 +137,7 @@ if ($numLogFiles > $max_logs_to_display) {
 // If any file delete requests have been made, process them first.
 //
 $action = (isset($_GET['action'])) ? $_GET['action'] : '';
-if (zen_not_null($action) && $action == 'delete') {
+if ($action == 'delete') {
     if (isset($_POST['dList']) && count($_POST['dList']) != 0) {
         $numFiles = count($_POST['dList']);
         $filesDeleted = 0;
@@ -181,23 +181,11 @@ if ($max_log_file_size < 1) {
     $max_log_file_size = 80000;
 }
 ?>
-    <!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+    <!doctype html >
     <html <?php echo HTML_PARAMS; ?>>
     <head>
         <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
-        <style type="text/css">
-            <!--
-            #theButtons { padding-top: 10px; margin-top: 10px; border-top: 1px solid black; }
-            #dButtons, #dSpace { width: 50%; }
-            #dAll { float: right; padding-right: 20px; }
-            #dSel { float: right; }
-            #fContents { overflow: auto; max-height: <?php echo 23 * $max_logs_to_display; ?>px; }
-            #contentsOuter { vertical-align: top; }
-            .bigfile { font-weight: bold; color: red; }
-            -->
-        </style>
-        <script type="text/javascript">
-            <!--
+        <script>
             function buttonCheck(whichButton) {
                 var submitOK = false;
                 var elements = document.getElementsByClassName('cBox');
@@ -208,6 +196,10 @@ if ($max_log_file_size < 1) {
                         for (var i = 0; i < n; i++) {
                             elements[i].checked = true;
                         }
+                    }
+                } else if (whichButton == 'inverse') {
+                    for (var i = 0; i < n; i++) {
+                        elements[i].checked = !elements[i].checked;
                     }
                 } else {
                     var selected = 0;
@@ -222,7 +214,6 @@ if ($max_log_file_size < 1) {
                 }
                 return submitOK;
             }
-            // -->
         </script>
     </head>
     <body>
@@ -231,24 +222,24 @@ if ($max_log_file_size < 1) {
     <!-- header_eof //-->
 
     <!-- body //-->
-    <table border="0" width="100%" cellspacing="2" cellpadding="2">
+    <table>
         <tr>
             <!-- body_text //-->
-            <td width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
+            <td ><table>
                     <tr>
-                        <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
+                        <td><table>
                                 <tr>
                                     <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
-                                    <td class="pageHeading" align="right"><?php echo zen_draw_separator('pixel_trans.gif', HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
+                                    <td class="pageHeading text-right"><?php echo zen_draw_separator('pixel_trans.gif', HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
                                 </tr>
 
                                 <tr>
-                                    <td class="main"><?php echo ((substr(HTTP_SERVER, 0, 5) != 'https') ? WARNING_NOT_SECURE : '') . sprintf(TEXT_INSTRUCTIONS, $max_log_file_size, $sort_description, (($numLogFiles > $max_logs_to_display) ? $max_logs_to_display : $numLogFiles), $numLogFiles, $files_to_match, $files_to_exclude); ?></td>
-                                    <td class="main" align="right"><?php echo zen_draw_separator('pixel_trans.gif', HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
+                                    <td class="main"><?php echo ((substr(HTTP_SERVER, 0, 5) != 'https') ? WARNING_NOT_SECURE : '') . sprintf(TEXT_INSTRUCTIONS, $max_log_file_size, $sort_description, (($numLogFiles > $max_logs_to_display) ? $max_logs_to_display : $numLogFiles), $numLogFiles, $files_to_match, $files_to_exclude, zen_image (DIR_WS_IMAGES . 'icon_info.gif', ICON_INFO_VIEW)); ?></td>
+                                    <td class="main text-right"><?php echo zen_draw_separator('pixel_trans.gif', HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
                                 </tr>
 
-                                <tr colspan="2">
-                                    <td><?php echo zen_draw_form('logs_form', FILENAME_DISPLAY_LOGS, '', 'get') . '<b>' . DISPLAY_DEBUG_LOGS_ONLY . '</b>&nbsp;&nbsp;' . zen_draw_checkbox_field('debug_only', 'on', (isset($_GET['debug_only'])) ? true : false, '', 'onclick="this.form.submit();"') . zen_draw_hidden_field('sort', $sort) . '</form>'; ?></td>
+                                <tr>
+                                    <td  colspan="2"><?php echo zen_draw_form('logs_form', FILENAME_DISPLAY_LOGS, '', 'get') . '<b>' . DISPLAY_DEBUG_LOGS_ONLY . '</b>&nbsp;&nbsp;' . zen_draw_checkbox_field('debug_only', 'on', (isset($_GET['debug_only'])) ? true : false, '', 'onclick="this.form.submit();"') . zen_draw_hidden_field('sort', $sort) . '</form>'; ?></td>
                                 </tr>
 
                             </table></td>
@@ -259,18 +250,18 @@ if ($max_log_file_size < 1) {
         <tr>
             <td>
                 <form id="dlFormID" name="dlForm" action="<?php echo zen_href_link(FILENAME_DISPLAY_LOGS, zen_get_all_get_params (array('action')) . 'action=delete', 'NONSSL'); ?>" method="post"><?php echo zen_draw_hidden_field('securityToken', $_SESSION['securityToken']) . "\n"; ?>
-                    <table border="0" width="100%" cellspacing="0" cellpadding="0">
+                    <table>
 
                         <tr>
-                            <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
+                            <td><table>
                                     <tr>
-                                        <td valign="top" width="50%"><table border="0" width="100%" cellspacing="0" cellpadding="2">
+                                        <td id="logFileDetails"><table >
                                                 <tr class="dataTableHeadingRow">
-                                                    <td class="dataTableHeadingContent" align="left"><?php echo TABLE_HEADING_FILENAME; ?></td>
-                                                    <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_MODIFIED; ?><br><a href="<?php echo zen_href_link(FILENAME_DISPLAY_LOGS, zen_get_all_get_params(array('sort')) . 'sort=date_a', 'NONSSL'); ?>"><?php echo LOG_SORT_ASC; ?></a>&nbsp;&nbsp;<a href="<?php echo zen_href_link(FILENAME_DISPLAY_LOGS, zen_get_all_get_params(array('sort')) . 'sort=date_d', 'NONSSL'); ?>"><?php echo LOG_SORT_DESC; ?></a></td>
-                                                    <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_FILESIZE; ?><br><a href="<?php echo zen_href_link (FILENAME_DISPLAY_LOGS, zen_get_all_get_params(array('sort')) . 'sort=size_a', 'NONSSL'); ?>"><?php echo LOG_SORT_ASC; ?></a>&nbsp;&nbsp;<a href="<?php echo zen_href_link(FILENAME_DISPLAY_LOGS, zen_get_all_get_params(array('sort')) . 'sort=size_d', 'NONSSL'); ?>"><?php echo LOG_SORT_DESC; ?></a></td>
-                                                    <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_DELETE; ?></td>
-                                                    <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
+                                                    <td class="dataTableHeadingContent text-left"><?php echo TABLE_HEADING_FILENAME; ?></td>
+                                                    <td class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_MODIFIED; ?><br><a href="<?php echo zen_href_link(FILENAME_DISPLAY_LOGS, zen_get_all_get_params(array('sort')) . 'sort=date_a', 'NONSSL'); ?>"><?php echo TEXT_ASC; ?></a>&nbsp;&nbsp;<a href="<?php echo zen_href_link(FILENAME_DISPLAY_LOGS, zen_get_all_get_params(array('sort')) . 'sort=date_d', 'NONSSL'); ?>"><?php echo TEXT_DESC; ?></a></td>
+                                                    <td class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_FILESIZE; ?><br><a href="<?php echo zen_href_link (FILENAME_DISPLAY_LOGS, zen_get_all_get_params(array('sort')) . 'sort=size_a', 'NONSSL'); ?>"><?php echo TEXT_ASC; ?></a>&nbsp;&nbsp;<a href="<?php echo zen_href_link(FILENAME_DISPLAY_LOGS, zen_get_all_get_params(array('sort')) . 'sort=size_d', 'NONSSL'); ?>"><?php echo TEXT_DESC; ?></a></td>
+                                                    <td class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_DELETE; ?></td>
+                                                    <td class="dataTableHeadingContent text-right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
                                                 </tr>
                                                 <?php
                                                 reset($logFiles);
@@ -280,11 +271,11 @@ if ($max_log_file_size < 1) {
                                                 foreach ($logFiles as $curHash => $curFile) {
                                                     ?>
                                                     <tr>
-                                                        <td class="dataTableContent" align="left"><?php echo str_replace(DIR_FS_CATALOG, '/', $curFile['name']); ?></td>
-                                                        <td class="dataTableContent" align="center"><?php echo date(DATE_FORMAT . ' H:i:s', $curFile['mtime']); ?></td>
-                                                        <td class="dataTableContent<?php echo ($curFile['filesize'] > $max_log_file_size) ? ' bigfile' : ''; ?>" align="center"><?php echo $curFile['filesize']; ?></td>
-                                                        <td class="dataTableContent" align="center"><?php echo zen_draw_checkbox_field('dList[' . $curHash . ']', false, false, '', 'class="cBox"'); ?></td>
-                                                        <td class="dataTableContent" align="right"><?php if ($getFile == $curHash) { echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', ''); } else { echo '<a href="' . zen_href_link(FILENAME_DISPLAY_LOGS, 'fID=' . $curHash . '&amp;' . zen_get_all_get_params(array('fID'))) . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', ICON_INFO_VIEW) . '</a>'; } ?>&nbsp;</td>
+                                                        <td class="dataTableContent text-left"><?php echo str_replace(DIR_FS_CATALOG, '/', $curFile['name']); ?></td>
+                                                        <td class="dataTableContent text-center"><?php echo date(DATE_FORMAT . ' H:i:s', $curFile['mtime']); ?></td>
+                                                        <td class="dataTableContent<?php echo ($curFile['filesize'] > $max_log_file_size) ? ' bigfile' : ''; ?> text-center"><?php echo $curFile['filesize']; ?></td>
+                                                        <td class="dataTableContent text-center"><?php echo zen_draw_checkbox_field('dList[' . $curHash . ']', false, false, '', 'class="cBox"'); ?></td>
+                                                        <td class="dataTableContent text-right"><?php if ($getFile == $curHash) { echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', ''); } else { echo '<a href="' . zen_href_link(FILENAME_DISPLAY_LOGS, 'fID=' . $curHash . '&amp;' . zen_get_all_get_params(array('fID'))) . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', ICON_INFO_VIEW) . '</a>'; } ?>&nbsp;</td>
                                                     </tr>
                                                     <?php
                                                     if ($getFile == $curHash) {
@@ -302,9 +293,9 @@ if ($max_log_file_size < 1) {
                                                 ?>
                                             </table></td>
                                         <?php
-                                        if (zen_not_null($heading) && zen_not_null($contents)) {
+                                        if (!empty($heading) && !empty($contents)) {
                                             ?>
-                                            <td id="contentsOuter" width="50%">
+                                            <td id="contentsOuter" >
                                                 <?php
                                                 $box = new box;
                                                 echo $box->infoBox($heading, $contents);
@@ -322,6 +313,7 @@ if ($max_log_file_size < 1) {
                             <tr>
                                 <td id="theButtons">
                                     <div id="dButtons">
+                                        <div id="dInv"><button class="btn btn-primary" type="submit" onclick="return buttonCheck('inverse');"><?php echo BUTTON_INVERT_SELECTED; ?></button></div>
                                         <div id="dSel"><button class="btn btn-primary" type="submit" onclick="return buttonCheck('delete');"><?php echo BUTTON_DELETE_SELECTED; ?></button></div>
                                         <div id="dAll"><button class="btn btn-primary" type="submit" onclick="return buttonCheck('all');"><?php echo BUTTON_DELETE_ALL; ?></button></div>
                                     </div>

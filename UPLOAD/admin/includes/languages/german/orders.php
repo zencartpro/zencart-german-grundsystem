@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific 
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: orders.php 2022-04-17 16:06:14Z webchills $
+ * @version $Id: orders.php 2023-10-26 11:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Bestellungen');
@@ -22,50 +22,35 @@ define('TABLE_HEADING_ORDERS_ID', 'ID');
 
 define('TEXT_BILLING_SHIPPING_MISMATCH', 'Rechnungs- und Versandadresse stimmen nicht überein ');
 
-define('TABLE_HEADING_COMMENTS', 'Kommentare:');
-define('TABLE_HEADING_CUSTOMERS', 'Kunden');
+define('TABLE_HEADING_ZONE_INFO','Zone');
+
 define('TABLE_HEADING_ORDER_TOTAL', 'Bestellsumme');
 define('TABLE_HEADING_DATE_PURCHASED', 'Bestelldatum');
-define('TABLE_HEADING_STATUS', 'Status');
-define('TABLE_HEADING_TYPE', 'Bestelltyp');
-define('TABLE_HEADING_ACTION', 'Aktion');
-define('TABLE_HEADING_QUANTITY', 'Stück');
 
-define('TABLE_HEADING_PRODUCTS', 'Artikel');
-define('TABLE_HEADING_TAX', 'MwSt.');
-define('TABLE_HEADING_TOTAL', 'Summe');
-define('TABLE_HEADING_PRICE_EXCLUDING_TAX', 'Preis (exkl. MwSt.)');
-define('TABLE_HEADING_PRICE_INCLUDING_TAX', 'Preis (inkl. MwSt.)');
-define('TABLE_HEADING_TOTAL_EXCLUDING_TAX', 'Summe (exkl. MwSt.)');
-define('TABLE_HEADING_TOTAL_INCLUDING_TAX', 'Summe (inkl. MwSt.)');
-define('TABLE_HEADING_PRICE', 'Preis');
+define('TABLE_HEADING_TYPE', 'Bestelltyp');
+
+define('TABLE_HEADING_QUANTITY', 'Menge');
+
 define('TABLE_HEADING_UPDATED_BY', 'aktualisiert von');
 
-define('TABLE_HEADING_CUSTOMER_NOTIFIED', 'Kunde wurde benachrichtigt');
-define('TABLE_HEADING_DATE_ADDED', 'Erstellt am');
-
 define('ENTRY_CUSTOMER', 'Kunde:');
-define('ENTRY_CUSTOMER_ADDRESS', 'Kundenadresse:<br><i class="fa fa-2x fa-user"></i>');
-define('ENTRY_SOLD_TO', 'Verkauft an:');
+define('ENTRY_CUSTOMER_ADDRESS', 'Kundenadresse:<br><i class="fa-solid fa-2x fa-user"></i>');
 
-define('ENTRY_SHIP_TO', 'Versendet an:');
-define('ENTRY_SHIPPING_ADDRESS', 'Versandadresse:<br><i class="fa fa-2x fa-truck"></i>');
-define('ENTRY_BILLING_ADDRESS', 'Rechnungsadresse:<br><i class="fa fa-2x fa-credit-card"></i>');
+define('ENTRY_SHIPPING_ADDRESS', 'Versandadresse:<br><i class="fa-solid fa-2x fa-truck"></i>');
+define('ENTRY_BILLING_ADDRESS', 'Rechnungsadresse:<br><i class="fa-regular fa-2x fa-credit-card"></i>');
 define('ENTRY_PAYMENT_METHOD', 'Zahlungsart:');
 define('ENTRY_CREDIT_CARD_TYPE', 'Kreditkarte:');
 define('ENTRY_CREDIT_CARD_OWNER', 'Karteninhaber:');
 define('ENTRY_CREDIT_CARD_NUMBER', 'Kartennummer:');
 define('ENTRY_CREDIT_CARD_CVV', 'CVV Nummer:');
 define('ENTRY_CREDIT_CARD_EXPIRES', 'Karte gültig bis:');
-
+define('TEXT_ADDITIONAL_PAYMENT_OPTIONS','Klicken Sie für zusätzliche Optionen zur Zahlungsabwicklung');
 define('ENTRY_SHIPPING', 'Versand:');
 
-define('ENTRY_DATE_PURCHASED', 'Bestelldatum:');
 define('ENTRY_STATUS', 'Status:');
 
 define('ENTRY_NOTIFY_CUSTOMER', 'Kunde wurde benachrichtigt:');
 define('ENTRY_NOTIFY_COMMENTS', 'Kommentare:');
-
 
 define('TEXT_INFO_HEADING_DELETE_ORDER', 'Bestellung löschen');
 define('TEXT_INFO_DELETE_INTRO', 'Wollen Sie diese Bestellung wirklich löschen?');
@@ -73,7 +58,6 @@ define('TEXT_INFO_RESTOCK_PRODUCT_QUANTITY', 'Sollen die verkauften Artikel wied
 define('TEXT_DATE_ORDER_CREATED', 'Erstellt am:');
 define('TEXT_DATE_ORDER_LAST_MODIFIED', 'Letzte Änderung:');
 define('TEXT_INFO_PAYMENT_METHOD', 'Zahlungsart:');
-
 
 define('TEXT_ALL_ORDERS', 'Alle Bestellungen');
 
@@ -95,7 +79,6 @@ define('ERROR_ORDER_DOES_NOT_EXIST', 'FEHLER: Die Bestellung existiert nicht.');
 define('SUCCESS_ORDER_UPDATED', 'Die Bestellung wurde aktualisiert.');
 define('WARNING_ORDER_NOT_UPDATED', 'WARNUNG: Keine Änderung festgestellt. Die Bestellung wurde nicht aktualisiert.');
 
-define('ENTRY_ORDER_ID', 'Bestellnummer: ');
 define('TEXT_INFO_ATTRIBUTE_FREE', '&nbsp;-&nbsp;<span class="alert">KOSTENLOS</span>');
 
 define('TEXT_DOWNLOAD','Download'); 
@@ -130,7 +113,7 @@ define('TEXT_INFO_EXPIRED_COUNT', 'Ablaufzähler:<br>');
 define('TABLE_HEADING_CUSTOMER_COMMENTS', 'Kunden<br>Kommentare');
 define('TEXT_COMMENTS_YES', 'Kundenkommentare - JA');
 define('TEXT_COMMENTS_NO', 'Kundenkommentare - NEIN');
-define('TEXT_CUSTOMER_LOOKUP', '<i class="fa fa-search"></i> Kunden ansehen');
+define('TEXT_CUSTOMER_LOOKUP', '<i class="fa-solid fa-magnifying-glass"></i> Kunden ansehen');
 
 define('TEXT_INVALID_ORDER_STATUS', '<span class="alert">(Ungültiger Bestellstatus)</span>');
 
@@ -141,5 +124,5 @@ define('TEXT_MAP_SHIPPING_ADDRESS', 'Karte Lieferadresse');
 define('TEXT_MAP_BILLING_ADDRESS', 'Karte Rechnungsadresse');
 define('TEXT_EMAIL_LANGUAGE', 'Sprache der Bestellung: %s');
 define('SUCCESS_EMAIL_SENT', 'Email %s an Kunden gesandt');
-
-define('POPUP_ADMIN_NOTIFICATION', 'Klicken Sie für zusätzliche Optionen zur Zahlungsabwicklung');
+define('WARNING_PAYMENT_MODULE_DOESNT_EXIST',"The order's payment module (%s) no longer exists.");
+define('WARNING_PAYMENT_MODULE_NOTIFICATIONS_DISABLED','The configuration of the order\'s payment module (%s) has changed. No refunds, auths, captures or voids can be done for this order.');

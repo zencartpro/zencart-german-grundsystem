@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: freeshipper.php 2022-11-16 11:03:16Z webchills $
+ * @version $Id: freeshipper.php 2023-10-26 19:03:16Z webchills $
  */
 //
   class freeshipper {
@@ -136,6 +136,11 @@
       return $this->_check;
     }
 
+    function get_configuration_errors() {
+      if (!zen_check_for_misconfigured_downloads()) {
+         return TEXT_DOWNLOADABLE_PRODUCTS_MISCONFIGURED; 
+      }
+    }
     function install() {
       global $db;
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Free Shipping', 'MODULE_SHIPPING_FREESHIPPER_STATUS', 'True', 'Do you want to offer Free shipping?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");

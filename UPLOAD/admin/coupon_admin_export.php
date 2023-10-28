@@ -1,12 +1,12 @@
 <?php
 /**
  * Coupon Exporter
- *
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: copupon_admin_export.php 2022-02-27 19:31:14 $
+ * @version $Id: copupon_admin_export.php 2023-10-23 19:31:14 $
  *
  */
 require ('includes/application_top.php');
@@ -311,17 +311,17 @@ require (DIR_WS_INCLUDES . 'header.php');
 <!-- header_eof //-->
 
 <!-- body //-->
-<table border="0" width="100%" cellspacing="2" cellpadding="2">
+<table class="col-sm-12" border="0" cellspacing="2" cellpadding="2">
   <tr>
     <!-- body_text //-->
-    <td width="100%" valign="top">
-    <table border="0" width="100%" cellspacing="0" cellpadding="0">
+    <td class="align-top col-sm-12">
+    <table class="col-sm-12" border="0" cellspacing="0" cellpadding="0">
       <tr>
-        <td width="100%">
-        <table border="0" width="100%" cellspacing="0" cellpadding="0">
+        <td class="col-sm-12">
+        <table class="col-sm-12" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
-            <td class="pageHeading" align="right"><?php echo zen_draw_separator('pixel_trans.gif', HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
+            <td class="pageHeading text-right"><?php echo zen_draw_separator('pixel_trans.gif', HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
           </tr>
         </table>
         </td>
@@ -356,7 +356,7 @@ require (DIR_WS_INCLUDES . 'header.php');
               </td>
           </tr>
           <tr>
-            <td class="main" align="right"><?php echo zen_image_submit('button_go.gif', IMAGE_GO) . '&nbsp;&nbsp;<a href="' . zen_href_link(FILENAME_COUPON_ADMIN, 'cid=' . $_GET['cid'] . (isset($_GET['status']) ? '&status=' . $_GET['status'] : '') . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>'; ?></td>
+            <td class="main text-right"><?php echo '<input type="submit" name="submit" value="'. (defined('BUTTON_TEXT_EXPORT') ? BUTTON_TEXT_EXPORT : IMAGE_GO) . '" id="export_btn" class="btn btn-danger">' . '&nbsp;&nbsp;<a href="' . zen_href_link(FILENAME_COUPON_ADMIN, 'cid=' . $_GET['cid'] . (isset($_GET['status']) ? '&status=' . $_GET['status'] : '') . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')) . '" class="btn btn-warning" role="button">' . IMAGE_CANCEL . '</a>'; ?></td>
           </tr>
         </table>
         </td>

@@ -2,25 +2,23 @@
 /**
  * session handling
  * see  {@link  https://docs.zen-cart.com/dev/code/init_system/} for more details.
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Specific (158 code in 157)
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_sessions.php 2022-11-16 11:29:16Z webchills $
+ * @version $Id: init_sessions.php 2023-10-23 14:29:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
 /**
- * sanity check in case zenid has been incorrectly supplied as an htmlencoded param name
+ * sanity check in case session id has been incorrectly supplied as an htmlencoded param name
  */
-if (!isset($_GET['zenid']) && isset($_GET['amp;zenid'])) {
-  $_GET['zenid'] = $_GET['amp;zenid'];
-  unset($_GET['amp;zenid']);
-} else if (isset($_GET['amp;zenid'])) {
-  unset($_GET['amp;zenid']);
+if (!isset($_GET[$zenSessionId]) && isset($_GET['amp;' .$zenSessionId])) {
+    $_GET[$zenSessionId] = $_GET['amp;' . $zenSessionId];
 }
+unset($_GET['amp;' . $zenSessionId]);
 
 /**
  * require the session handling functions
@@ -29,7 +27,7 @@ require(DIR_WS_FUNCTIONS . 'sessions.php');
 /**
  * set the session name and save path
  */
-zen_session_name('zenid');
+zen_session_name($zenSessionId);
 zen_session_save_path(SESSION_WRITE_DIRECTORY);
 /**
  * set the session cookie parameters
@@ -72,7 +70,14 @@ $_SERVER['REMOTE_ADDR'] = $ipAddress;
  */
 $session_started = false;
 if (SESSION_FORCE_COOKIE_USE == 'True') {
-  setcookie('cookie_test', 'please_accept_for_session', time()+60*60*24*30, $path, (!empty($cookieDomain) ? $domainPrefix . $cookieDomain : ''), $secureFlag);
+    if (PHP_VERSION_ID < 70300) {
+        setcookie('cookie_test', 'please_accept_for_session', time()+60*60*24*30, $path, (!empty($cookieDomain) ? $domainPrefix . $cookieDomain : ''), $secureFlag);
+    } else {
+        $params = session_get_cookie_params();
+        unset($params['lifetime']);
+        $params['expires'] = time() + 60 * 60 * 24 * 30;
+        setcookie('cookie_test', 'please_accept_for_session', $params);
+    }
 
   if (isset($_COOKIE['cookie_test'])) {
     zen_session_start();
@@ -99,10 +104,10 @@ if (SESSION_FORCE_COOKIE_USE == 'True') {
     zen_session_start();
     $session_started = true;
   } else {
-    if (isset($_GET['zenid']) && $_GET['zenid'] != '') {
+    if (isset($_GET[$zenSessionId]) && $_GET[$zenSessionId] != '') {
       $tmp = (isset($_GET['main_page']) && $_GET['main_page'] != '') ? $_GET['main_page'] : FILENAME_DEFAULT;
       @header("HTTP/1.1 301 Moved Permanently");
-      @zen_redirect(@zen_href_link($tmp, @zen_get_all_get_params(array('zenid')), $request_type, FALSE));
+      @zen_redirect(@zen_href_link($tmp, @zen_get_all_get_params(array($zenSessionId)), $request_type, FALSE));
       unset($tmp);
       die();
     }

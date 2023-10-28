@@ -1,20 +1,20 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: display_logs.php 2021-12-26 11:49:16Z webchills $
+ * @version $Id: display_logs.php 2023-10-27 16:49:16Z webchills $
  */
  
 define('HEADING_TITLE', 'Display Debug Log Files');
 
-define('TABLE_HEADING_FILENAME', 'File Name');
-define('TABLE_HEADING_MODIFIED', 'Date Modified');
-define('TABLE_HEADING_FILESIZE', 'File Size (bytes)');
-define('TABLE_HEADING_DELETE', 'Delete?');
+define('TABLE_HEADING_FILENAME', 'Filename');
+define('TABLE_HEADING_MODIFIED', 'Date');
+define('TABLE_HEADING_FILESIZE', 'Size (b)');
+define('TABLE_HEADING_DELETE', 'Selected');
 define('TABLE_HEADING_ACTION', 'Action');
-
+define('BUTTON_INVERT_SELECTED' , 'Invert Selection');
 define('BUTTON_DELETE_SELECTED', 'Delete Selected');
 define('DELETE_SELECTED_ALT', 'Delete all selected files');
 define('BUTTON_DELETE_ALL', 'Delete All');
@@ -23,30 +23,13 @@ define('DELETE_ALL_ALT', 'Delete all files in the current view');
 define('ICON_INFO_VIEW', 'View the contents of this file');
 
 define('DISPLAY_DEBUG_LOGS_ONLY', 'Display debug-logs only?');
-define('LOG_SORT_ASC', 'Asc');
-define('LOG_SORT_DESC', 'Desc');
 define('TEXT_HEADING_INFO', 'File Contents');
-// -----
-// Sort-order descriptions, used in the instructions' display.
-//
 define('TEXT_MOST_RECENT', 'most recent');
 define('TEXT_OLDEST', 'oldest');
 define('TEXT_SMALLEST', 'smallest');
 define('TEXT_LARGEST', 'largest');
 
-// -----
-// The TEXT_INSTRUCTIONS string is passed into sprintf to produce the instructions given on the plugin's main display,
-// using the following variables:
-//
-// %1$u ... The maximum size of a fully-displayed file.
-// %2$s ... Contains a descriptive string identifying the current sort order
-// %3$u ... The number of log files currently being displayed.
-// %4$u ... The number of log files currently present in the log-related directories.
-// %5$s ... The "included" prefixes for the log-files displayed.
-// %6$s ... The "excluded" prefixes for the log-files displayed.
-//
-$imageName = zen_image (DIR_WS_IMAGES . 'icon_info.gif', ICON_INFO_VIEW);
-define('TEXT_INSTRUCTIONS', '<br><br>The files can be sorted in either ascending or descending order (based on either the last-modified date or the file-size) by clicking on one of the <em>Asc</em> or <em>Desc</em> links. Click on an ' . $imageName . ' icon to view the contents of the associated file.  Only the first %1$u bytes of the selected file will be read; if a file is &quot;over-sized&quot;, its <em>File Size</em> will be highlighted like <span class="bigfile">this</span>.<br><br>Clicking the <strong>delete all</strong> button will delete all files currently being viewed; clicking <strong>delete selected</strong> will delete only those files with checked checkboxes.<br><br>Currently viewing the %2$s %3$u of %4$u log files with these <code>%5$s</code> prefixes and <b>not</b> matching these <code>%6$s</code>.<br>');
+define('TEXT_INSTRUCTIONS' , '<p>The files may be sorted in ascending or descending order by clicking on the <em>Asc</em> or <em>Desc</em> column links.</p> <p>Click on an %7$s icon to view the contents of the associated file. Only the first %1$u bytes of the selected file will be read/displayed; if a file is &quot;over-sized&quot;, its <em>File Size</em> will be highlighted like <span class="bigfile">this</span>.</p><ul><li><strong>Delete All</strong> will delete all the files currently displayed.</li><li><strong>Delete Selected</strong> will delete only those files with selected checkboxes.</li><li><strong>Invert Selection</strong> will swap checked files for unchecked and vice versa. For example, if you want to delete all but one file, tick the selection for the file to be kept, then "Invert Selection" and finally "Delete Selected".</li></ul><p>Currently viewing the %2$s %3$u of %4$u log files having these prefixes:<br><code>%5$s</code><br>and <b>not</b> matching any (optional) user-defined prefixes: <code>%6$s</code>.</p>');
 
 define('JS_MESSAGE_DELETE_ALL_CONFIRM', 'Are you sure you want to delete these \'+n+\' files?');
 define('JS_MESSAGE_DELETE_SELECTED_CONFIRM', 'Are you sure you want to delete the \'+selected+\' selected file(s)?');

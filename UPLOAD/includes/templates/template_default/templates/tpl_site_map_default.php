@@ -1,16 +1,16 @@
 <?php
 /**
  * Page Template
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  * Loaded by index.php?main_page=site_map
  * Displays site-map and some hard-coded navigation components
  *
  
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_site_map_default.php 2022-04-09 09:18:36Z webchills $
+ * @version $Id: tpl_site_map_default.php 2023-10-26 19:18:36Z webchills $
  */
 ?>
 <div class="centerColumn" id="siteMap">
@@ -137,7 +137,7 @@
       }
       if (!empty($page_query_list)) { 
 ?>
-          <li><?php echo BOX_HEADING_MORE_INFORMATION; ?>
+          <li><?php echo BOX_HEADING_EZPAGES; ?>
           <ul>
 <?php foreach ($page_query_list as $item) {  ?>
             <li><?php echo '<a href="' . $item['link'] . '">' . $item['name'] . '</a>'; ?></li>

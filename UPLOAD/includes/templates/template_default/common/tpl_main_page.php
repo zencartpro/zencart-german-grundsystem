@@ -1,7 +1,7 @@
 <?php
 /**
  * Common Template - tpl_main_page.php
- * Zen Cart German Specific
+ * Zen Cart German Specific (zencartpro adaptations)
  * Governs the overall layout of an entire page
  * Normally consisting of a header, left side column. center column. right side column and footer
  * For customizing, this file can be copied to /templates/your_template_dir/pagename
@@ -32,11 +32,11 @@
  * }
  *
  
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_main_page.php 2022-04-09 09:13:16Z webchills $
+ * @version $Id: tpl_main_page.php 2023-10-25 19:13:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -161,14 +161,14 @@ if (COLUMN_RIGHT_STATUS == 0 || (CUSTOMERS_APPROVAL == '1' and !zen_is_logged_in
 }
 if (!isset($flag_disable_right) || !$flag_disable_right) {
 ?>
-<td id="navColumnTwo" class="columnRight" style="width: <?php echo (int)COLUMN_WIDTH_RIGHT; ?>"px>
+<td id="navColumnTwo" class="columnRight" style="width: <?php echo (int)COLUMN_WIDTH_RIGHT; ?>px">
 <?php
  /**
   * prepares and displays right column sideboxes
   *
   */
 ?>
-<div id="navColumnTwoWrapper" style="width: <?php echo (int)BOX_WIDTH_RIGHT; ?>"px><?php require(DIR_WS_MODULES . zen_get_module_directory('column_right.php')); ?></div>
+<div id="navColumnTwoWrapper" style="width: <?php echo (int)BOX_WIDTH_RIGHT; ?>px"><?php require(DIR_WS_MODULES . zen_get_module_directory('column_right.php')); ?></div>
 </td>
 <?php
 }

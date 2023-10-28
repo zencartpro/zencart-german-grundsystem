@@ -2,9 +2,9 @@
 /**
  * polyfills to accommodate older PHP versions, adapted from https://github.com/symfony/polyfill/
  * @copyright Portions  (c) Fabien Potencier <fabien@symfony.com>
- *
+ * Zen Cart German Specific (158 code in 157)
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: php_polyfills.php 2021-12-28 17:56:29Z webchills $
+ * @version $Id: php_polyfills.php 2023-10-23 13:56:29Z webchills $
  */
 
 
@@ -12,7 +12,7 @@ if (PHP_VERSION_ID >= 80100) {
     return;
 }
 if (!function_exists('array_is_list')) {
-    function array_is_list(array $array)
+    function array_is_list(array $array): bool
     {
         if ([] === $array) {
             return true;
@@ -39,7 +39,7 @@ if (!defined('FILTER_VALIDATE_BOOL') && defined('FILTER_VALIDATE_BOOLEAN')) {
     define('FILTER_VALIDATE_BOOL', FILTER_VALIDATE_BOOLEAN);
 }
 if (!function_exists('fdiv')) {
-    function fdiv($dividend, $divisor)
+    function fdiv(float $dividend, float $divisor)
     {
         return @($dividend / $divisor);
     }
@@ -58,6 +58,8 @@ if (!function_exists('preg_last_error_msg')) {
                 return 'Backtrack limit exhausted';
             case PREG_RECURSION_LIMIT_ERROR:
                 return 'Recursion limit exhausted';
+            case PREG_JIT_STACKLIMIT_ERROR:
+                return 'JIT stack limit exhausted';
             case PREG_NO_ERROR:
                 return 'No error';
             default:
@@ -66,19 +68,19 @@ if (!function_exists('preg_last_error_msg')) {
     }
 }
 if (!function_exists('str_contains')) {
-    function str_contains($haystack, $needle)
+    function str_contains(string $haystack, string $needle)
     {
         return '' === $needle || false !== strpos($haystack, $needle);
     }
 }
 if (!function_exists('str_starts_with')) {
-    function str_starts_with($haystack, $needle)
+    function str_starts_with(string $haystack, string $needle)
     {
         return 0 === \strncmp($haystack, $needle, \strlen($needle));
     }
 }
 if (!function_exists('str_ends_with')) {
-    function str_ends_with($haystack, $needle)
+    function str_ends_with(string $haystack, string $needle)
     {
         return '' === $needle || ('' !== $haystack && 0 === \substr_compare($haystack, $needle, -\strlen($needle)));
     }
@@ -116,6 +118,16 @@ if (!function_exists('get_debug_type')) {
         return (get_parent_class($class) ?: key(class_implements($class)) ?: 'class').'@anonymous';
     }
 }
+if (!function_exists('get_resource_id')) {
+    function get_resource_id($res)
+    {
+        if (!\is_resource($res) && null === @get_resource_type($res)) {
+            throw new \TypeError(sprintf('Argument 1 passed to get_resource_id() must be of the type resource, %s given', get_debug_type($res)));
+        }
+
+        return (int) $res;
+    }
+}
 
 
 
@@ -130,128 +142,4 @@ if (!function_exists('array_key_first')) {
 }
 if (!function_exists('array_key_last')) {
     function array_key_last(array $array) { return key(array_slice($array, -1, 1, true)); }
-}
-
-
-
-if (PHP_VERSION_ID >= 70200) {
-    return;
-}
-if (!defined('PHP_FLOAT_DIG')) {
-    define('PHP_FLOAT_DIG', 15);
-}
-if (!defined('PHP_FLOAT_EPSILON')) {
-    define('PHP_FLOAT_EPSILON', 2.2204460492503E-16);
-}
-if (!defined('PHP_FLOAT_MIN')) {
-    define('PHP_FLOAT_MIN', 2.2250738585072E-308);
-}
-if (!defined('PHP_FLOAT_MAX')) {
-    define('PHP_FLOAT_MAX', 1.7976931348623157E+308);
-}
-if (!defined('PHP_OS_FAMILY')) {
-    function php_os_family()
-    {
-        if ('\\' === \DIRECTORY_SEPARATOR) {
-            return 'Windows';
-        }
-
-        $map = array(
-            'Darwin' => 'Darwin',
-            'DragonFly' => 'BSD',
-            'FreeBSD' => 'BSD',
-            'NetBSD' => 'BSD',
-            'OpenBSD' => 'BSD',
-            'Linux' => 'Linux',
-            'SunOS' => 'Solaris',
-        );
-
-        return isset($map[PHP_OS]) ? $map[PHP_OS] : 'Unknown';
-    }
-
-    define('PHP_OS_FAMILY', php_os_family());
-}
-if (!function_exists('utf8_encode')) {
-    function utf8_encode($s)
-    {
-        $s .= $s;
-        $len = \strlen($s);
-
-        for ($i = $len >> 1, $j = 0; $i < $len; ++$i, ++$j) {
-            switch (true) {
-                case $s[$i] < "\x80": $s[$j] = $s[$i]; break;
-                case $s[$i] < "\xC0": $s[$j] = "\xC2"; $s[++$j] = $s[$i]; break;
-                default: $s[$j] = "\xC3"; $s[++$j] = \chr(\ord($s[$i]) - 64); break;
-            }
-        }
-
-        return substr($s, 0, $j);
-    }
-}
-if (!function_exists('utf8_decode')) {
-    function utf8_decode($s)
-    {
-        $s = (string) $s;
-        $len = \strlen($s);
-
-        for ($i = 0, $j = 0; $i < $len; ++$i, ++$j) {
-            switch ($s[$i] & "\xF0") {
-                case "\xC0":
-                case "\xD0":
-                    $c = (\ord($s[$i] & "\x1F") << 6) | \ord($s[++$i] & "\x3F");
-                    $s[$j] = $c < 256 ? \chr($c) : '?';
-                    break;
-
-                case "\xF0":
-                    ++$i;
-                    // no break
-
-                case "\xE0":
-                    $s[$j] = '?';
-                    $i += 2;
-                    break;
-
-                default:
-                    $s[$j] = $s[$i];
-            }
-        }
-
-        return substr($s, 0, $j);
-    }
-}
-
-
-
-if (PHP_VERSION_ID >= 70100) {
-    return;
-}
-if (!function_exists('is_iterable')) {
-    function is_iterable($value)
-    {
-        return \is_array($value) || $value instanceof \Traversable;
-    }
-}
-
-
-
-if (PHP_VERSION_ID >= 70000) {
-    return;
-}
-if (!defined('PHP_INT_MIN')) {
-    define('PHP_INT_MIN', ~PHP_INT_MAX);
-}
-if (!defined('PREG_JIT_STACKLIMIT_ERROR')) {
-    define('PREG_JIT_STACKLIMIT_ERROR', 6);
-}
-if (!function_exists('error_clear_last')) {
-    function error_clear_last()
-    {
-        static $handler;
-        if (!$handler) {
-            $handler = function () { return false; };
-        }
-        set_error_handler($handler);
-        @trigger_error('');
-        restore_error_handler();
-    }
 }

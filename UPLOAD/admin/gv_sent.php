@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: gv_sent.php 2022-02-25 16:30:16Z webchills $
+ * @version $Id: gv_sent.php 2023-10-23 18:30:16Z webchills $
  */
 
 
@@ -55,7 +55,7 @@ $currencies = new currencies();
                   if ((empty($_GET['gid']) || (@$_GET['gid'] == $gv_list['coupon_id'])) && !isset($gInfo)) {
                     $gInfo = new objectInfo($gv_list);
                   }
-                  if (is_object($gInfo) && $gv_list['coupon_id'] == $gInfo->coupon_id) {
+                  if (isset($gInfo) && is_object($gInfo) && $gv_list['coupon_id'] == $gInfo->coupon_id) {
                     ?>
                     <tr class="dataTableRowSelected" onclick="document.location.href = '<?php echo zen_href_link('gv_sent.php', zen_get_all_get_params(array('gid', 'action')) . 'gid=' . $gInfo->coupon_id . '&action=edit'); ?>'">
                     <?php } else { ?>
@@ -68,7 +68,7 @@ $currencies = new currencies();
                     <td class="dataTableContent text-right"><?php echo (empty($gv_list['redeem_date']) ? TEXT_INFO_NOT_REDEEMED : zen_date_short($gv_list['redeem_date'])); ?></td>
                     <td class="dataTableContent text-right">
                       <?php
-                      if ((is_object($gInfo)) && ($gv_list['coupon_id'] == $gInfo->coupon_id)) {
+                      if (isset($gInfo) && (is_object($gInfo)) && ($gv_list['coupon_id'] == $gInfo->coupon_id)) {
                         echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif');
                       } else {
                         echo '<a href="' . zen_href_link(FILENAME_GV_SENT, 'page=' . $_GET['page'] . '&gid=' . $gv_list['coupon_id']) . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>';
@@ -99,7 +99,7 @@ $currencies = new currencies();
               $redeemed = 'No';
               if ($redeem->RecordCount() > 0)
                 $redeemed = 'Yes';
-  $contents[] = array('text' => TEXT_INFO_SENDERS_ID . ' ' . $gInfo->customer_id_sent);
+              $contents[] = array('text' => TEXT_INFO_SENDERS_ID . ' ' . $gInfo->customer_id_sent . ' ' . ($gInfo->customer_id_sent != 0 ? zen_get_customer_email_from_id($gInfo->customer_id_sent) : ''));
   $contents[] = array('text' => TEXT_INFO_AMOUNT_SENT . ' ' . $currencies->format($gInfo->coupon_amount));
   $contents[] = array('text' => TEXT_INFO_DATE_SENT . ' ' . zen_date_short($gInfo->date_sent));
   $contents[] = array('text' => TEXT_INFO_VOUCHER_CODE . ' ' . $gInfo->coupon_code);
@@ -107,7 +107,7 @@ $currencies = new currencies();
   if ($redeemed=='Yes') {
                 $contents[] = array('text' => '<br>' . TEXT_INFO_DATE_REDEEMED . ' ' . zen_date_short($redeem->fields['redeem_date']));
     $contents[] = array('text' => TEXT_INFO_IP_ADDRESS . ' ' . $redeem->fields['redeem_ip']);
-    $contents[] = array('text' => TEXT_INFO_CUSTOMERS_ID . ' ' . $redeem->fields['customer_id']);
+                $contents[] = array('text' => TEXT_INFO_CUSTOMERS_ID . ' ' . $redeem->fields['customer_id'] . ' ' . ($redeem->fields['customer_id'] != 0 ? zen_get_customer_email_from_id($redeem->fields['customer_id']) : ''));
   } else {
                 $contents[] = array('text' => '<br>' . TEXT_INFO_NOT_REDEEMED);
   }
