@@ -48,16 +48,14 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
 <div id="pinfo-left">
 <!--bof Main Product Image -->
 <?php
-  if (!empty($products_image)) {
+  if (!empty($products_image) || !empty($enable_additional_images_without_main_image)) {
   ?>
 <?php
 /**
  * display the main product image
  */
    require($template->get_template_dir('/tpl_modules_main_product_image.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_main_product_image.php'); ?>
-<?php
-  }
-?>
+
 <!--eof Main Product Image-->
 
 <!--bof Additional Product Images -->
@@ -68,7 +66,9 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
   require($template->get_template_dir('/tpl_modules_additional_images.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_additional_images.php'); ?>
 <!--eof Additional Product Images -->
 </div>
-
+<?php
+  }
+?>
 <div id="pinfo-right">
 <!--bof Product details list  -->
 <?php if ( (($flag_show_product_info_model == 1 and $products_model != '') or ($flag_show_product_info_weight == 1 and $products_weight !=0) or ($flag_show_product_info_quantity == 1) or ($flag_show_product_info_manufacturer == 1 and !empty($manufacturers_name))) ) { ?>

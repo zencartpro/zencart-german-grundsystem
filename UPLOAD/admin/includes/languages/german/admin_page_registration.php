@@ -1,11 +1,11 @@
 <?php
 /**
  
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: admin_page_registration.php 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: admin_page_registration.php 2023-10-28 17:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Admin Seiten Registrierung');
@@ -15,7 +15,7 @@ define('TEXT_MAIN_PAGE', 'Seiten Dateiname');
 define('TEXT_PAGE_PARAMS', 'Seiten Parameter');
 define('TEXT_MENU_KEY', 'Menü');
 define('TEXT_DISPLAY_ON_MENU', 'Anzeigen im Menü?');
-define('TEXT_SORT_ORDER', 'Sortierung');
+
 
 define('TEXT_EXAMPLE_PAGE_KEY', '(z.B. meinModulSeitenName)');
 define('TEXT_EXAMPLE_LANGUAGE_KEY', '(z.B. BOX_MEIN_MOD_SEITEN_NAME)');

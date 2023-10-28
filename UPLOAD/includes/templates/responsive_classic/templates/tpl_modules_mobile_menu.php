@@ -1,13 +1,13 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (zencartpro adaptations)
  * Module Template for responsive mobile support
  * 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_mobile_menu.php 2022-05-19 07:33:58Z webchills $
+ * @version $Id: tpl_modules_mobile_menu.php 2023-10-28 16:33:58Z webchills $
  */
 ?>
 
@@ -175,12 +175,13 @@ echo $menulist;
     <li id="menu-search">
       <?php require(DIR_WS_MODULES . zen_get_module_sidebox_directory('search_header.php')); ?>
     </li>
+
   </ul>
 </nav>
 
-<script src="<?php echo $template->get_template_dir('jquery.mmenu.min.all.js',DIR_WS_TEMPLATE, $current_page_base,'jscript') . '/jquery.mmenu.min.all.js' ?>" type="text/javascript"></script>
-<script src="<?php echo $template->get_template_dir('jquery.mmenu.fixedelements.min.js',DIR_WS_TEMPLATE, $current_page_base,'jscript') . '/jquery.mmenu.fixedelements.min.js' ?>" type="text/javascript"></script>
-<script type="text/javascript">
+<script src="<?php echo $template->get_template_dir('jquery.mmenu.min.all.js',DIR_WS_TEMPLATE, $current_page_base,'jscript') . '/jquery.mmenu.min.all.js' ?>"></script>
+<script src="<?php echo $template->get_template_dir('jquery.mmenu.fixedelements.min.js',DIR_WS_TEMPLATE, $current_page_base,'jscript') . '/jquery.mmenu.fixedelements.min.js' ?>"></script>
+<script>
   $(function() {
     $("#menu")
       .mmenu({

@@ -1,21 +1,21 @@
 <?php
 /**
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: countries.php 2021-11-30 20:57:16Z webchills $
+ * @version $Id: countries.php 2023-10-28 20:57:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Countries');
 
-define('TABLE_HEADING_COUNTRY_NAME', 'Country');
+
 define('TABLE_HEADING_COUNTRY_CODES', 'ISO Codes');
 define('TABLE_HEADING_COUNTRY_STATUS', 'Status');
-define('TABLE_HEADING_ACTION', 'Action');
 
-define('TEXT_INFO_EDIT_INTRO', 'Please make any necessary changes');
+
+
 define('TEXT_INFO_COUNTRY_NAME', 'Name:');
 define('TEXT_INFO_COUNTRY_CODE_2', 'ISO Code (2):');
 define('TEXT_INFO_COUNTRY_CODE_3', 'ISO Code (3):');

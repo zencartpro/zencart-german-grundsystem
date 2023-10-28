@@ -1,11 +1,11 @@
 <?php
 /**
-
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: geo_zones.php 2019-04-13 15:49:16Z webchills $
+ * @version $Id: geo_zones.php 2023-10-28 15:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Zone Definitions - Taxes, Payment and Shipping');
@@ -14,9 +14,7 @@ define('TABLE_HEADING_COUNTRY', 'Country');
 define('TABLE_HEADING_COUNTRY_ZONE', 'Zone');
 define('TABLE_HEADING_TAX_ZONES', 'Zone Name');
 define('TABLE_HEADING_TAX_ZONES_DESCRIPTION', 'Zone Description');
-define('TABLE_HEADING_STATUS', 'Status');
-define('TABLE_HEADING_ACTION', 'Action');
-//define('TEXT_LEGEND', 'LEGEND: ');
+
 define('TEXT_LEGEND_TAX_AND_ZONES', ': Taxes &amp; Zones Defined');
 define('TEXT_LEGEND_ONLY_ZONES', ': Zones Defined but not Taxes ');
 define('TEXT_LEGEND_NOT_CONF', ': Not Configured ');
@@ -39,8 +37,7 @@ define('TEXT_INFO_EDIT_SUB_ZONE_INTRO', 'Please make any necessary changes');
 define('TEXT_INFO_HEADING_DELETE_SUB_ZONE', 'Delete Sub Zone');
 define('TEXT_INFO_DELETE_SUB_ZONE_INTRO', 'Are you sure you want to delete this sub zone?');
 
-define('TEXT_INFO_DATE_ADDED', 'Date Added:');
-define('TEXT_INFO_LAST_MODIFIED', 'Last Modified:');
+
 define('TEXT_INFO_ZONE_NAME', 'Zone Name:');
 define('TEXT_INFO_NUMBER_ZONES', 'Number of Zones:');
 define('TEXT_INFO_ZONE_DESCRIPTION', 'Description:');

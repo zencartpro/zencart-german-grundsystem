@@ -1,21 +1,21 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: zones.php 2015-12-22 15:49:16Z webchills $
+ * @version $Id: zones.php 2023-10-28 19:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Zones');
 
-define('TABLE_HEADING_COUNTRY_NAME', 'Country');
+
 define('TABLE_HEADING_ZONE_NAME', 'Zones');
 define('TABLE_HEADING_ZONE_CODE', 'Code');
-define('TABLE_HEADING_ACTION', 'Action');
 
-define('TEXT_INFO_EDIT_INTRO', 'Please make any necessary changes');
+
+
 define('TEXT_INFO_ZONES_NAME', 'Zones Name:');
 define('TEXT_INFO_ZONES_CODE', 'Zones Code:');
 define('TEXT_INFO_COUNTRY_NAME', 'Country:');

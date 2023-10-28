@@ -1,11 +1,11 @@
 <?php
 /**
-
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: whos_online.php 2021-11-30 20:49:16Z webchills $
+ * @version $Id: whos_online.php 2023-10-28 20:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Who\'s Online');
@@ -18,17 +18,14 @@ define('TABLE_HEADING_ENTRY_TIME', 'Entry Time');
 define('TABLE_HEADING_LAST_CLICK', 'Last Click Time');
 define('TIME_PASSED_LAST_CLICKED', '<strong>Time Since Clicked:</strong> ');
 define('TABLE_HEADING_LAST_PAGE_URL', 'Last URL Viewed');
-define('TABLE_HEADING_ACTION', 'Action');
+
 define('TABLE_HEADING_SHOPPING_CART', 'Visitor\'s Shopping Cart');
 define('TEXT_SHOPPING_CART_SUBTOTAL', 'Subtotal');
 define('TEXT_NUMBER_OF_CUSTOMERS', 'Currently there are %s customers online');
 
 define('WHOS_ONLINE_REFRESH_LIST_TEXT', 'REFRESH LIST');
 define('WHOS_ONLINE_LEGEND_TEXT', 'Legend:');
-define('WHOS_ONLINE_ACTIVE_TEXT', 'Active cart');
-define('WHOS_ONLINE_INACTIVE_TEXT', 'Inactive cart');
-define('WHOS_ONLINE_ACTIVE_NO_CART_TEXT', 'Active no cart');
-define('WHOS_ONLINE_INACTIVE_NO_CART_TEXT', 'Inactive no cart');
+
 define('WHOS_ONLINE_INACTIVE_LAST_CLICK_TEXT', 'Inactive is Last Click >=');
 define('WHOS_ONLINE_INACTIVE_ARRIVAL_TEXT', 'Inactive since arrival >');
 define('WHOS_ONLINE_REMOVED_TEXT', 'will be removed');
@@ -40,8 +37,7 @@ define('TEXT_EMPTY_CART', '<strong>Empty Cart</strong>');
 define('TEXT_WHOS_ONLINE_FILTER_SPIDERS', 'Exclude Spiders?');
 define('TEXT_WHOS_ONLINE_FILTER_ADMINS', 'Exclude Admin IP Addresses?');
 
-// show Last Clicked time and host name - 1 both(default), 0=time-only
-if (!defined('WHOIS_SHOW_HOST')) define('WHOIS_SHOW_HOST', '1');
+
 
 define('TEXT_DUPLICATE_IPS', 'Duplicate IP Addresses: ');
 define('TEXT_TOTAL_UNIQUE_USERS', 'Total Unique Users: ');

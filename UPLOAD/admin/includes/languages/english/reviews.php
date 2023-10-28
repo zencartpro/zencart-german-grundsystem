@@ -1,22 +1,20 @@
 <?php
 /**
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: reviews.php 2021-10-25 19:49:16Z webchills $
+ * @version $Id: reviews.php 2023-10-28 19:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Reviews');
 
-define('TABLE_HEADING_PRODUCT', 'Product');
+
 define('TABLE_HEADING_CUSTOMER_NAME','Customer Name');
 define('TABLE_HEADING_LANGUAGE', 'Lang');
 define('TABLE_HEADING_RATING', 'Rating');
-define('TABLE_HEADING_DATE_ADDED', 'Date Added');
-define('TABLE_HEADING_STATUS', 'Status');
-define('TABLE_HEADING_ACTION', 'Action');
+
 
 define('ENTRY_PRODUCT', 'Product:');
 define('ENTRY_FROM', 'From:');
@@ -27,8 +25,7 @@ define('ENTRY_RATING', 'Rating:');
 
 define('TEXT_INFO_DELETE_REVIEW_INTRO', 'Are you sure you want to delete this review?');
 
-define('TEXT_INFO_DATE_ADDED', 'Date Added:');
-define('TEXT_INFO_LAST_MODIFIED', 'Last Modified:');
+
 define('TEXT_INFO_REVIEW_AUTHOR', 'Author:');
 define('TEXT_INFO_REVIEW_RATING', 'Rating:');
 define('TEXT_INFO_REVIEW_READ', 'Read:');

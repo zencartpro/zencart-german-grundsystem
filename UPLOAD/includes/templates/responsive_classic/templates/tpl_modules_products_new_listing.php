@@ -5,12 +5,12 @@
  * Loaded automatically by index.php?main_page=products_new.
  * Displays listing of New Products
  *
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_products_new_listing.php 2022-12-15 10:33:58Z webchills $
+ * @version $Id: tpl_modules_products_new_listing.php 2023-10-28 16:33:58Z webchills $
 
  */
 ?>
@@ -21,7 +21,22 @@
 
   if ($products_new_split->number_of_rows > 0) {
     $products_new = $db->Execute($products_new_split->sql_query);
+    require DIR_WS_CLASSES . 'ProductConfigurationSwitch.php';
     while (!$products_new->EOF) {
+      // Rebuild switch object only if not set or different prod type
+      if (!isset($config_switches)) { 
+        $config_switches = new ProductConfigurationSwitch($products_new->fields['products_id']);
+      } else {
+         if ($products_new->fields['products_type'] != $config_switches->getProductsType()) {
+          $config_switches = new ProductConfigurationSwitch($products_new->fields['products_id']);
+         } 
+      }
+      $flag_show_model = $config_switches->getSwitch('model');
+      $flag_show_weight = $config_switches->getSwitch('weight');
+      $flag_show_quantity = $config_switches->getSwitch('quantity');
+      $flag_show_date_added = $config_switches->getSwitch('date_added');
+      $flag_show_manufacturer = $config_switches->getSwitch('manufacturer');
+      $flag_show_free_shipping_image = $config_switches->getSwitch('ALWAYS_FREE_SHIPPING_IMAGE_SWITCH');
 
       if (PRODUCT_NEW_LIST_IMAGE != '0') {
         if ($products_new->fields['products_image'] == '' and PRODUCTS_IMAGE_NO_IMAGE_STATUS == 0) {
@@ -39,19 +54,19 @@
         $display_products_name = '';
       }
 
-      if (PRODUCT_NEW_LIST_MODEL != '0' and zen_get_show_product_switch($products_new->fields['products_id'], 'model')) {
+      if (PRODUCT_NEW_LIST_MODEL != '0' and $flag_show_model) {
         $display_products_model = '<b>' . TEXT_PRODUCT_MODEL . '</b>' . $products_new->fields['products_model'] . str_repeat('<br>', substr(PRODUCT_NEW_LIST_MODEL, 3, 1));
       } else {
         $display_products_model = '';
       }
 
-      if (PRODUCT_NEW_LIST_WEIGHT != '0' and zen_get_show_product_switch($products_new->fields['products_id'], 'weight')) {
+      if (PRODUCT_NEW_LIST_WEIGHT != '0' and $flag_show_weight) {
         $display_products_weight = '<b>' . TEXT_PRODUCTS_WEIGHT . '</b>' . $products_new->fields['products_weight'] . TEXT_SHIPPING_WEIGHT . str_repeat('<br>', substr(PRODUCT_NEW_LIST_WEIGHT, 3, 1));
       } else {
         $display_products_weight = '';
       }
 
-      if (PRODUCT_NEW_LIST_QUANTITY != '0' and zen_get_show_product_switch($products_new->fields['products_id'], 'quantity')) {
+      if (PRODUCT_NEW_LIST_QUANTITY != '0' and $flag_show_quantity) {
         if ($products_new->fields['products_quantity'] <= 0) {
           $display_products_quantity = TEXT_OUT_OF_STOCK . str_repeat('<br>', substr(PRODUCT_NEW_LIST_QUANTITY, 3, 1));
         } else {
@@ -61,13 +76,13 @@
         $display_products_quantity = '';
       }
 
-      if (PRODUCT_NEW_LIST_DATE_ADDED != '0' and zen_get_show_product_switch($products_new->fields['products_id'], 'date_added')) {
-        $display_products_date_added = '<b>' . TEXT_DATE_ADDED . '</b> ' . zen_date_long($products_new->fields['products_date_added']) . str_repeat('<br>', substr(PRODUCT_NEW_LIST_DATE_ADDED, 3, 1));
+      if (PRODUCT_NEW_LIST_DATE_ADDED != '0' and $flag_show_date_added) {
+        $display_products_date_added = '<b>' . TEXT_DATE_ADDED_LISTING . '</b> ' . zen_date_long($products_new->fields['products_date_added']) . str_repeat('<br>', substr(PRODUCT_NEW_LIST_DATE_ADDED, 3, 1));
       } else {
         $display_products_date_added = '';
       }
 
-      if (PRODUCT_NEW_LIST_MANUFACTURER != '0' and zen_get_show_product_switch($products_new->fields['products_id'], 'manufacturer')) {
+      if (PRODUCT_NEW_LIST_MANUFACTURER != '0' and $flag_show_manufacturer) {
         $display_products_manufacturers_name = ($products_new->fields['manufacturers_name'] != '' ? '<b>' . TEXT_MANUFACTURER . '</b> ' . $products_new->fields['manufacturers_name'] . str_repeat('<br>', substr(PRODUCT_NEW_LIST_MANUFACTURER, 3, 1)) : '');
       } else {
         $display_products_manufacturers_name = '';
@@ -95,12 +110,12 @@
         }
 
         $the_button = $link;
-        $products_link = '<a class="list-more" href="' . zen_href_link(zen_get_info_page($products_new->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_new->fields['master_categories_id']) . '&products_id=' . $products_new->fields['products_id']) . '">' . MORE_INFO_TEXT . '</a>';
+        $products_link = '<a class="list-more" href="' . zen_href_link(zen_get_info_page($products_new->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_new->fields['master_categories_id']) . '&products_id=' . $products_new->fields['products_id']) . '" title="' . $products_new->fields['products_id'] . '">' . MORE_INFO_TEXT . '</a>';
         $display_products_button = zen_get_buy_now_button($products_new->fields['products_id'], $the_button, $products_link) . '<br>' . zen_get_products_quantity_min_units_display($products_new->fields['products_id']) . str_repeat('<br class="clearBoth">', substr(PRODUCT_NEW_BUY_NOW, 3, 1));
       } else {
-        $link = '<a class="list-more" href="' . zen_href_link(zen_get_info_page($products_new->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_new->fields['master_categories_id']) . '&products_id=' . $products_new->fields['products_id']) . '">' . MORE_INFO_TEXT . '</a>';
+        $link = '<a class="list-more" href="' . zen_href_link(zen_get_info_page($products_new->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_new->fields['master_categories_id']) . '&products_id=' . $products_new->fields['products_id']) . '" title="' . $products_new->fields['products_id'] . '">' . MORE_INFO_TEXT . '</a>';
         $the_button = $link;
-        $products_link = '<a class="list-more" href="' . zen_href_link(zen_get_info_page($products_new->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_new->fields['master_categories_id']) . '&products_id=' . $products_new->fields['products_id']) . '">' . MORE_INFO_TEXT . '</a>';
+        $products_link = '<a class="list-more" href="' . zen_href_link(zen_get_info_page($products_new->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_new->fields['master_categories_id']) . '&products_id=' . $products_new->fields['products_id']) . '" title="' . $products_new->fields['products_id'] . '">' . MORE_INFO_TEXT . '</a>';
         $display_products_button = zen_get_buy_now_button($products_new->fields['products_id'], $the_button, $products_link) . '<br>' . zen_get_products_quantity_min_units_display($products_new->fields['products_id']) . str_repeat('<br class="clearBoth">', substr(PRODUCT_NEW_BUY_NOW, 3, 1));
       }
 
@@ -108,7 +123,7 @@
         $disp_text = zen_get_products_description($products_new->fields['products_id']);
         $disp_text = zen_clean_html($disp_text);
 
-        $display_products_description = stripslashes(zen_trunc_string($disp_text, PRODUCT_NEW_LIST_DESCRIPTION, '<a href="' . zen_href_link(zen_get_info_page($products_new->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_new->fields['master_categories_id']) . '&products_id=' . $products_new->fields['products_id']) . '"> ' . MORE_INFO_TEXT . '</a>'));
+        $display_products_description = stripslashes(zen_trunc_string($disp_text, PRODUCT_NEW_LIST_DESCRIPTION, '<a href="' . zen_href_link(zen_get_info_page($products_new->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_new->fields['master_categories_id']) . '&products_id=' . $products_new->fields['products_id']) . '" title="' . $products_new->fields['products_id'] . '"> ' . MORE_INFO_TEXT . '</a>'));
       } else {
         $display_products_description = '';
       }

@@ -1,23 +1,20 @@
 <?php
-/**
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
- * Zen Cart German Version - www.zen-cart-pro.at2
- * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_price_manager.php 2022-04-17 16:19:04Z webchills $
+/** 
+* Zen Cart German Specific (158 code in 157)
+* @copyright Copyright 2003-2023 Zen Cart Development Team
+* Zen Cart German Version - www.zen-cart-pro.at
+* @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
+* @version $Id: products_price_manager.php 2023-10-28 16:49:16Z webchills $
  */
 
 
 define('HEADING_TITLE', 'Artikelpreismanager');
 define('HEADING_TITLE_PRODUCT_SELECT','Wählen Sie bitte eine Kategorie mit Artikeln aus, um die Preisinformationen anzuzeigen von ...');
-define('TABLE_HEADING_PRODUCTS', 'Artikel');
 
-define('TABLE_HEADING_PRODUCTS_PRICE', 'Preis | Sonderpreis | Abverkauf');
+
+
 define('TABLE_HEADING_PRODUCTS_PERCENTAGE','Prozentsatz');
-define('TABLE_HEADING_AVAILABLE_DATE', 'Verfügbar ab');
-define('TABLE_HEADING_EXPIRES_DATE','Ablaufdatum');
-define('TABLE_HEADING_STATUS', 'Status');
-define('TABLE_HEADING_ACTION', 'Aktion');
+
 define('TEXT_PRODUCT_INFO', 'Artikelinfo:');
 define('TEXT_PRODUCTS_PRICE_INFO', 'Artikelpreis Info:');
 
@@ -26,16 +23,13 @@ define('TEXT_PRICE_NET', 'Preis (exkl. Steuer)');
 define('TEXT_PRICE_GROSS', 'Preis (inkl. Steuer)');
 define('TEXT_PRODUCT_AVAILABLE_DATE', 'Verfügbar ab:');
 define('TEXT_PRODUCTS_STATUS', 'Artikelstatus:');
-define('TEXT_PRODUCT_AVAILABLE', 'Aktiv');
-define('TEXT_PRODUCT_NOT_AVAILABLE', 'Nicht aktiv');
-define('TEXT_PRODUCT_INFO_NONE', 'Bitte wählen Sie einen Artikel ...');
+
 define('TEXT_PRODUCT_IS_FREE','Artikel ist kostenlos:');
 define('TEXT_PRODUCTS_IS_FREE_EDIT','<br>*Artikel markiert als KOSTENLOS');
 define('TEXT_PRODUCT_IS_CALL','Preis bitte anfragen:');
 define('TEXT_PRODUCTS_IS_CALL_EDIT','<br>*Artikel ist als "Preis bitte anfragen" markiert');
 define('TEXT_PRODUCTS_PRICED_BY_ATTRIBUTES','Preis durch Attribute festgelegt:');
-define('TEXT_PRODUCT_IS_PRICED_BY_ATTRIBUTE','Ja');
-define('TEXT_PRODUCT_NOT_PRICED_BY_ATTRIBUTE','Nein');
+
 define('TEXT_PRODUCTS_PRICED_BY_ATTRIBUTES_EDIT','<br>*Der angezeigte Preis enthält den niedrigsten Gruppenattributspreis plus dem Grundpreis');
 define('TEXT_PRODUCTS_MIXED','Artikel Mindestabnahme/Anzahl Mix:');
 define('TEXT_PRODUCTS_MIXED_DISCOUNT_QUANTITY', 'Stückzahlermäßigung gilt für gemischte Attribute');
@@ -66,18 +60,16 @@ define('TEXT_SPECIALS_PRODUCT_NOT_AVAILABLE', 'Inaktiv');
 define('TEXT_SPECIALS_NO_GIFTS','Keine Sonderangebote durch Gutscheine');
 define('TEXT_SPECIAL_DISABLED', '<strong>HINWEIS: "Sonderangebot" Info ist deaktiviert, abgelaufen oder derzeit nicht aktiv</strong>');
 define('TEXT_SPECIALS_CONFIRM_DELETE', 'Bitte bestätigen Sie, dass Sie bei diesem Artikel den Status "Sonderangebot" entfernen wollen');
-define('TEXT_INFO_DATE_ADDED', 'Erstellt am:');
-define('TEXT_INFO_LAST_MODIFIED', 'Letzte Änderung:');
+
 define('TEXT_INFO_NEW_PRICE', 'Neuer Preis:');
 define('TEXT_INFO_ORIGINAL_PRICE', 'Originalpreis:');
 define('TEXT_INFO_STATUS_CHANGE', 'Letzte Statusänderung:');
 define('TEXT_INFO_HEADING_DELETE_FEATURED', 'Empfohlene Artikel löschen');
 define('TEXT_INFO_DELETE_INTRO', 'Sind Sie sicher, dass Sie diesen Status löschen wollen?');
-define('TEXT_ATTRIBUTES_INSERT_INFO', '<strong>Definieren Sie die Einstellungen der Attribute und klicken anschließend auf Einfügen, um die Änderungen wirksam zu machen</strong>');
+
 
 define('TEXT_PRODUCTS_PRICE', 'Artikelpreis: ');
-define('TEXT_FREE', 'KOSTENLOS');
-define('TEXT_CALL_FOR_PRICE', 'Preis bitte anfragen');
+
 define('TEXT_ADD_ADDITIONAL_DISCOUNT', DISCOUNT_QTY_ADD . ' leere Mengenrabatt hinzufügen:');
 define('TEXT_BLANKS_INFO','Alle 0 Stückzahlreduktionen werden bei der Aktualisierung entfernt');
 define('TEXT_INFO_NO_DISCOUNTS', 'Es wurden keine Stückzahlreduktionen definiert');

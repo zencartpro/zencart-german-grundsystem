@@ -48,16 +48,13 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
 <div id="pinfo-left">
 <!--bof Main Product Image -->
 <?php
-  if (!empty($products_image)) {
+  if (!empty($products_image) || !empty($enable_additional_images_without_main_image)) {
   ?>
 <?php
 /**
  * display the main product image
  */
    require($template->get_template_dir('/tpl_modules_main_product_image.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_main_product_image.php'); ?>
-<?php
-  }
-?>
 <!--eof Main Product Image-->
 
 <!--bof Additional Product Images -->

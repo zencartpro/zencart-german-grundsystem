@@ -1,17 +1,17 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157)
  * Page Template
  *
  * Loaded automatically by index.php?main_page=shopping_cart.
  * Displays shopping-cart contents
  *
 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_shopping_cart_default.php 2022-04-08 22:06:58Z webchills $
+ * @version $Id: tpl_shopping_cart_default.php 2023-10-28 22:06:58Z webchills $
  */
 ?>
 <?php 
@@ -212,6 +212,16 @@ if (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATU
 
 <?php
       }
+
+    // -----
+    // Enable extra content to be included, via additional header_php_*.php files present
+    // in /includes/modules/pages/shopping_cart.
+    //
+    if (!empty($extra_content_shopping_cart) && is_array($extra_content_shopping_cart)) {
+        foreach ($extra_content_shopping_cart as $extra_content) {
+            require $extra_content;
+        }
+    }
 ?>
 <?php
   } else {
@@ -220,6 +230,16 @@ if (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATU
 <h2 id="cartEmptyText"><?php echo TEXT_CART_EMPTY; ?></h2>
 
 <?php
+    // -----
+    // Enable extra content to be included, via additional header_php_*.php files present
+    // in /includes/modules/pages/shopping_cart.
+    //
+    if (!empty($extra_content_shopping_cart) && is_array($extra_content_shopping_cart)) {
+        foreach ($extra_content_shopping_cart as $extra_content) {
+            require $extra_content;
+        }
+    }
+
 $show_display_shopping_cart_empty = $db->Execute(SQL_SHOW_SHOPPING_CART_EMPTY);
 
 while (!$show_display_shopping_cart_empty->EOF) {

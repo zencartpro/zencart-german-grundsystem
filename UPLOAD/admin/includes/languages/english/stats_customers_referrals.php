@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-  * @version $Id: stats_customers_referrals.php 2012-11-06 08:28:24Z webchills $
+ * @$Id: stats_customers_referrals.php 2012-11-06 17:05:14Z webchills $
  */
 
   define('HEADING_TITLE', 'Customers Referral Report');

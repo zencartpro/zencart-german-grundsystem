@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: banner_manager.php 2022-04-17 16:41:14Z webchills $
+ * @version $Id: banner_manager.php 2023-10-28 19:34:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Banner Manager');
@@ -13,10 +13,10 @@ define('HEADING_TITLE', 'Banner Manager');
 define('TABLE_HEADING_BANNERS', 'Bannerwerbungen');
 define('TABLE_HEADING_GROUPS', 'Gruppen');
 define('TABLE_HEADING_STATISTICS', 'Anzeige / Klicks');
-define('TABLE_HEADING_STATUS', 'Status');
+
 define('TABLE_HEADING_BANNER_OPEN_NEW_WINDOWS', 'Neues Fenster');
 define('TABLE_HEADING_BANNER_ON_SSL', 'Auf SSL Seiten anzeigen');
-define('TABLE_HEADING_ACTION', 'Aktion');
+
 define('TABLE_HEADING_BANNER_SORT_ORDER', 'Sortier<br>folge');
 
 define('TEXT_BANNERS_TITLE', 'Name des Banner:');
@@ -56,8 +56,7 @@ define('TEXT_BANNERS_STATUS_CHANGE', 'Status ändern: %s');
 
 
 define('TEXT_BANNERS_LAST_3_DAYS', 'Die letzten 3 Tage');
-define('TEXT_BANNERS_BANNER_VIEWS', 'Bannereinblendungen');
-define('TEXT_BANNERS_BANNER_CLICKS', 'Bannerklicks');
+
 
 define('TEXT_INFO_DELETE_INTRO', 'Sind Sie sicher dass Sie diesen Banner löschen wollen?');
 define('TEXT_INFO_DELETE_IMAGE', 'Bannerbild löschen');
@@ -73,13 +72,13 @@ define('ERROR_IMAGE_DOES_NOT_EXIST', 'Fehler: Bild existiert nicht');
 define('ERROR_IMAGE_IS_NOT_WRITEABLE', 'Fehler: Bild kann nicht entfernt werden');
 define('ERROR_UNKNOWN_STATUS_FLAG', 'Fehler: Unbekannter Status gesetzt.');
 define('ERROR_BANNER_IMAGE_REQUIRED', 'Fehler: Banner Bild erforderlich.');
-
-
+define('ERROR_UNKNOWN_BANNER_OPEN_NEW_WINDOW' , 'Fehler: Banner konnte nicht als neues Fenster gesetzt werden');
+define('ERROR_UNKNOWN_BANNER_ON_SSL', 'Fehler: Banner konnte nicht als SSL gesetzt werden');
 
 define('TEXT_LEGEND_BANNER_ON_SSL', 'SSL anzeigen');
 define('TEXT_LEGEND_BANNER_OPEN_NEW_WINDOWS', 'Neues Fenster');
 
-// Tooltip Text for images in Banner Manager
+
 define('IMAGE_ICON_BANNER_OPEN_NEW_WINDOWS_ON', 'Neues Fenster öffnen - EIN');
 define('IMAGE_ICON_BANNER_OPEN_NEW_WINDOWS_OFF', 'Neues Fenster öffnen - AUS');
 define('IMAGE_ICON_BANNER_ON_SSL_ON', 'Auf SSL Seiten darstellen - EIN');

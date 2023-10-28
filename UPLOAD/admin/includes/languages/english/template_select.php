@@ -1,11 +1,11 @@
 <?php
 /**
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: template_select.php 2021-11-30 20:49:16Z webchills $
+ * @version $Id: template_select.php 2023-10-28 20:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Template Selection');
@@ -14,7 +14,7 @@ define('TEXT_TEMPLATE_SELECT_INFO', '<p>Here you may change the template used to
 define('TABLE_HEADING_LANGUAGE', 'Template Language');
 define('TABLE_HEADING_NAME', 'Template Name');
 define('TABLE_HEADING_DIRECTORY', 'Template Directory');
-define('TABLE_HEADING_ACTION', 'Action');
+
 
 define('TEXT_INFO_HEADING_LANGUAGE', 'Language');
 define('TEXT_INFO_DEFAULT_TEMPLATE', 'This template is used by default / when an installed language does not have an assigned template.');

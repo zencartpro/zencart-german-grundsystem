@@ -1,19 +1,15 @@
 <?php
-/** 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+/**
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: newsletters.php 2022-04-17 16:05:14Z webchills $
+ * @version $Id: newsletters.php 2023-10-28 15:49:16Z webchills $
  */
 
 define('HEADING_TITLE','Newsletter & Artikelbenachrichtigungen Manager');
-define('TABLE_HEADING_NEWSLETTERS','Newsletter');
-define('TABLE_HEADING_SIZE','Größe');
-define('TABLE_HEADING_MODULE','Module');
-define('TABLE_HEADING_SENT','Gesendet');
-define('TABLE_HEADING_STATUS','Status');
-define('TABLE_HEADING_ACTION','Aktion');
+
 define('TEXT_NEWSLETTER_MODULE','Module:');
 define('TEXT_NEWSLETTER_TITLE','Titel des Newsletters:');
 define('TEXT_NEWSLETTER_CONTENT','NUR-Text <br>Inhalt:');

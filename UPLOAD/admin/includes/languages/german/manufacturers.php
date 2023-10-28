@@ -1,39 +1,35 @@
 <?php
-/**
- * Zen Cart German Specific
+/** 
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: manufacturers.php 2023-07-03 09:52:16Z webchills $
+ * @version $Id: manufacturers.php 2023-10-28 19:30:16Z webchills $
  */
 
 define('HEADING_TITLE','Hersteller');
 
 define('TABLE_HEADING_MANUFACTURERS','Hersteller');
-define('TABLE_HEADING_ID', 'ID');
-define('TABLE_HEADING_ACTION','Aktion');
+
 
 define('TEXT_HEADING_NEW_MANUFACTURER','Neuer Hersteller');
 define('TEXT_HEADING_EDIT_MANUFACTURER','Hersteller bearbeiten');
 define('TEXT_HEADING_DELETE_MANUFACTURER','Hersteller löschen');
 define('TEXT_MANUFACTURERS','Hersteller:');
-define('TEXT_DATE_ADDED','Erstellt am:');
-define('TEXT_LAST_MODIFIED','Letzte Änderung:');
-define('TEXT_PRODUCTS','Artikel:');
-define('TEXT_PRODUCTS_IMAGE_DIR','Uploadverzeichnis:');
 
-define('TEXT_MANUFACTURERS_IMAGE_MANUAL', '<strong>Oder wählen Sie ein bestehendes Bild vom Server, Dateiname:</strong>');
+
+
 
 define('TEXT_NEW_INTRO','Bitte geben Sie die folgenden Informationen für den neuen Hersteller an');
-define('TEXT_EDIT_INTRO','Bitte führen Sie hier die notwendigen Änderungen durch');
+
 
 define('TEXT_MANUFACTURERS_NAME','Herstellername:');
 define('TEXT_MANUFACTURERS_IMAGE','Herstellerbild:');
 define('TEXT_MANUFACTURERS_URL','Hersteller URL:');
 
 define('TEXT_DELETE_INTRO','Sind Sie sicher, dass Sie diesen Hersteller löschen wollen?');
-define('TEXT_DELETE_IMAGE','Herstellerbild wirklich löschen?');
+
 define('TEXT_DELETE_PRODUCTS','Die Artikel diese Herstellers wirklich löschen? (Alle Daten werden gelöscht!)');
 define('TEXT_DELETE_WARNING_PRODUCTS','<b>WARNUNG:</b> Es sind noch %s Artikel mit diesem Hersteller verlinkt!');
 

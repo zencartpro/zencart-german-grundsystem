@@ -1,24 +1,23 @@
 <?php
 /** 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: media_manager.php 2022-04-17 16:39:16Z webchills $
+ * @version $Id: media_manager.php 2023-10-28 15:49:16Z webchills $
  */
 
 define('HEADING_TITLE_MEDIA_MANAGER', 'Medienmanager');
 
 define('TABLE_HEADING_MEDIA', 'Name der Kollektion');
-define('TABLE_HEADING_ACTION', 'Aktion');
+
 define('TEXT_HEADING_NEW_MEDIA_COLLECTION', 'Neue Medienkollektion');
 define('TEXT_NEW_INTRO', 'Bitte tragen Sie die notwendigen Details für die neue Medienkollektion unten ein');
 define('TEXT_MEDIA_COLLECTION_NAME', 'Name der Medienkollektion');
 define('TEXT_MEDIA_EDIT_INSTRUCTIONS', 'Zum Ändern des Namens der Medienkollektion verwenden Sie bitte die obere Sektion. Klicken Sie anschließend auf "Speichern".<br><br>
                                         Verwenden Sie die untere Sektion, um Medien zur Medienkollektion hinzuzufügen oder von dieser zu entfernen.');
-define('TEXT_DATE_ADDED', 'Erstellt am:');
-define('TEXT_LAST_MODIFIED', 'Letzte Änderung:');
-define('TEXT_PRODUCTS', 'Verlinkte Artikel:');
+
 define('TEXT_CLIPS', 'Verlinkte Clips:');
 define('TEXT_NO_PRODUCTS', 'Keine Artikel in dieser Kategorie');
 define('TEXT_HEADING_EDIT_MEDIA_COLLECTION', 'Medienkollektion bearbeiten');

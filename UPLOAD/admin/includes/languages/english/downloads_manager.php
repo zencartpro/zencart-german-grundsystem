@@ -1,26 +1,20 @@
 <?php
 /**
-
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: downloads_manager.php 2021-10-25 18:49:16Z webchills $
+ * @version $Id: downloads_manager.php 2023-10-28 18:49:16Z webchills $
  */
 
 define('HEADING_TITLE','Downloads Manager');
 define('TABLE_HEADING_ATTRIBUTES_ID', 'Attr ID');
 define('TABLE_HEADING_PRODUCTS_ID', 'Prod ID');
-define('TABLE_HEADING_PRODUCT', 'Product Name');
-define('TABLE_HEADING_OPT_NAME', 'Option Name');
-define('TABLE_HEADING_OPT_VALUE', 'Option Value Name');
 define('TABLE_TEXT_FILENAME', 'Filename');
+define('TABLE_TEXT_DATE' , 'File Date');
 define('TABLE_TEXT_MAX_DAYS', 'Days');
 define('TABLE_TEXT_MAX_COUNT', 'Count');
-define('TABLE_HEADING_ACTION', 'Action');
-
-define('TABLE_HEADING_OPT_PRICE', 'Price');
-define('TABLE_HEADING_OPT_PRICE_PREFIX', 'Prefix');
 
 define('TEXT_PRODUCTS_NAME', 'Product: ');
 
@@ -32,5 +26,7 @@ define('TEXT_INFO_FILENAME', 'Filename: ');
 define('TEXT_INFO_MAX_DAYS', 'Max Days: ');
 define('TEXT_INFO_MAX_COUNT', 'Max Downloads: ');
 
-define('TEXT_INFO_FILENAME_MISSING','&nbsp;Missing filename');
-define('TEXT_INFO_FILENAME_GOOD','&nbsp;Valid filename');
+define('TEXT_INFO_FILENAME_MISSING','Missing filename');
+define('TEXT_INFO_FILENAME_GOOD','Valid filename');
+define('TEXT_WARNING_PRODUCT_MISCONFIGURED_SHORT', 'Downloadable Product is misconfigured');
+define('TEXT_WARNING_PRODUCT_MISCONFIGURED' , 'Product should not be free shipping or virtual.  See <a href="https://docs.zen-cart.com/user/products/downloadable/#additional-notes-about-downloads-and-shipping-costs">shipping cost documentation</a>.'); 

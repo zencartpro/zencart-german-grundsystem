@@ -1,22 +1,16 @@
 <?php
 /**
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- *  $Id: featured.php 2021-11-30 20:49:16Z webchills $
+ *  $Id: featured.php 2023-10-28 20:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Featured Products');
 
-define('TABLE_HEADING_PRODUCTS', 'Product');
-define('TABLE_HEADING_STOCK', 'Stock');
-define('TABLE_HEADING_PRODUCTS_PRICE', 'Price/Special/Sale');
-define('TABLE_HEADING_AVAILABLE_DATE', 'Active From');
-define('TABLE_HEADING_EXPIRES_DATE','Expires On');
-define('TABLE_HEADING_STATUS', 'Featured Status');
-define('TABLE_HEADING_ACTION', 'Actions');
+
 define('TEXT_ADD_FEATURED_SELECT', 'Add Featured Product by Selection');
 define('TEXT_ADD_FEATURED_PID', 'Add Featured Product by Product ID');
 define('TEXT_SEARCH_FEATURED', 'Search current Featured Products');
@@ -28,8 +22,7 @@ define('TEXT_FEATURED_PRODUCT', 'Product:');
 define('TEXT_FEATURED_AVAILABLE_DATE', 'Date Featured Active:');
 define('TEXT_FEATURED_EXPIRES_DATE', 'Date Featured Expires:');
 
-define('TEXT_INFO_DATE_ADDED', 'Date Added:');
-define('TEXT_INFO_LAST_MODIFIED', 'Last Modified:');
+
 define('TEXT_INFO_NEW_PRICE', 'Special Price:');
 define('TEXT_INFO_ORIGINAL_PRICE', 'Original Price:');
 define('TEXT_INFO_DISPLAY_PRICE', 'Currently Displayed Price:');

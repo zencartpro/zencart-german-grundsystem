@@ -1,15 +1,15 @@
 <?php
 /**
  * Page Template
- * Zen Cart German Specific
+ * Zen Cart German Specific (zencartpro adaptations)
  * Loaded automatically by index.php?main_page=product_info.
  * Displays details of a typical product
  *
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_product_info_display.php 2022-04-09 09:26:36Z webchills $
+ * @version $Id: tpl_product_info_display.php 2023-10-28 16:26:36Z webchills $
  */
 
 //require(DIR_WS_MODULES . '/debug_blocks/product_info_prices.php');
@@ -50,16 +50,13 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
 <div id="pinfo-left" class="group">
 <!--bof Main Product Image -->
 <?php
-  if (!empty($products_image)) {
+  if (!empty($products_image) || !empty($enable_additional_images_without_main_image)) {
   ?>
 <?php
 /**
  * display the main product image
  */
    require($template->get_template_dir('/tpl_modules_main_product_image.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_main_product_image.php'); ?>
-<?php
-  }
-?>
 <!--eof Main Product Image-->
 
 <!--bof Additional Product Images -->
@@ -70,7 +67,9 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
   require($template->get_template_dir('/tpl_modules_additional_images.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_additional_images.php'); ?>
 <!--eof Additional Product Images -->
 </div>
-
+<?php
+  }
+?>
 <div id="pinfo-right" class="group grids">
 <!--bof Product Price block -->
 <!--bof Product details list  -->

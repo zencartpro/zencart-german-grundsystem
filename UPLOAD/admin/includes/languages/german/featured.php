@@ -1,21 +1,18 @@
 <?php
-/** 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+/**
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: featured.php 2022-04-17 16:19:04Z webchills $
+ *  $Id: featured.php 2023-10-28 20:49:16Z webchills $
  */
 
-define('HEADING_TITLE', 'Empfohlene Artikel');
-define('TABLE_HEADING_PRODUCTS', 'Artikel');
-define('TABLE_HEADING_STOCK', 'Lagerbestand');
-define('TABLE_HEADING_PRODUCTS_PRICE', 'Preis/Sonderpreis/Abverkauf');
 
-define('TABLE_HEADING_AVAILABLE_DATE', 'Startdatum');
-define('TABLE_HEADING_EXPIRES_DATE', 'Ablaufdatum');
-define('TABLE_HEADING_STATUS', 'Status');
-define('TABLE_HEADING_ACTION', 'Aktion');
+define('HEADING_TITLE', 'Empfohlene Artikel');
+
+
+
 define('TEXT_ADD_FEATURED_SELECT', 'Empfehlung per Auswahl hinzufügen');
 define('TEXT_ADD_FEATURED_PID', 'Empfehlung per Artikel ID hinzufügen');
 define('TEXT_SEARCH_FEATURED', 'Suche derzeitige empfohlene Artikel');
@@ -27,8 +24,7 @@ define('TEXT_FEATURED_PRODUCT', 'Artikel:');
 define('TEXT_FEATURED_AVAILABLE_DATE', 'Empfehlung Startdatum:');
 define('TEXT_FEATURED_EXPIRES_DATE', 'Empfehlung Ablaufdatum:');
 
-define('TEXT_INFO_DATE_ADDED', 'hinzugefügt am:');
-define('TEXT_INFO_LAST_MODIFIED', 'zuletzt geändert am:');
+
 define('TEXT_INFO_NEW_PRICE', 'Sonderpreis:');
 define('TEXT_INFO_ORIGINAL_PRICE', 'Original Preis:');
 define('TEXT_INFO_DISPLAY_PRICE', 'derzeit angezeigter Preis:');

@@ -1,20 +1,21 @@
 <?php
 /** 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ezpages.php 2021-10-25 19:03:16Z webchills $
+ * @version $Id: ezpages.php 2023-10-28 18:03:16Z webchills $
  */
  
 define('HEADING_TITLE', 'EZ-Pages');
 define('TABLE_HEADING_PAGES', 'Page Title');
-define('TABLE_HEADING_ACTION', 'Action');
+
 define('TABLE_HEADING_VSORT_ORDER', 'Sidebox Sort Order');
 define('TABLE_HEADING_HSORT_ORDER', 'Footer Sort Order');
 define('TEXT_PAGES_TITLE', 'Page Title:');
 define('TEXT_PAGES_HTML_TEXT', 'HTML Content:');
-define('TABLE_HEADING_DATE_ADDED', 'Date Added:');
+
 define('TEXT_PAGES_STATUS_CHANGE', 'Status Change: %s');
 define('TEXT_INFO_DELETE_INTRO', 'Are you sure you want to delete this page?');
 define('SUCCESS_PAGE_INSERTED', 'Success: The page has been inserted.');
@@ -25,7 +26,7 @@ define('ERROR_PAGE_TITLE_REQUIRED', 'Error: Page title required.');
 define('ERROR_UNKNOWN_STATUS_FLAG', 'Error: Unknown status flag.');
 define('ERROR_MULTIPLE_HTML_URL', 'Error: you have defined multiple settings when only one may be defined per Link ...<br>Only define either: HTML Content -or- Internal Link URL -or- External Link URL');
 
-define('TABLE_HEADING_ID', 'ID');
+
 define('TABLE_HEADING_STATUS_HEADER', 'Header:');
 define('TABLE_HEADING_STATUS_SIDEBOX', 'Sidebox:');
 define('TABLE_HEADING_STATUS_FOOTER', 'Footer:');
@@ -72,4 +73,4 @@ define('TEXT_SORT_PAGE_TITLE', 'Page Title');
 define('TEXT_SORT_PAGE_ID_TITLE', 'Page ID, Title');
 
 define('TEXT_PAGE_TITLE', 'Title:');
-define('TEXT_WARNING_MULTIPLE_SETTINGS', '<strong>WARNING: Multiple Link Definition</strong>');
+define('TEXT_WARNING_MULTIPLE_SETTINGS', 'WARNING: Multiple Link Definition');

@@ -1,11 +1,11 @@
 <?php
 /**
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: geo_zones.php 2019-10-31 22:15:14Z webchills $
+ * @version $Id: geo_zones.php 2023-10-28 15:49:16Z webchills $
  */
 
 define('HEADING_TITLE','Zonendefinitionen - Steuern, Zahlungsarten und Versandarten');
@@ -14,9 +14,7 @@ define('TABLE_HEADING_COUNTRY','Land');
 define('TABLE_HEADING_COUNTRY_ZONE','Bundesland/Steuerzone');
 define('TABLE_HEADING_TAX_ZONES','Steuerzonen');
 define('TABLE_HEADING_TAX_ZONES_DESCRIPTION', 'Zonenbeschreibung');
-define('TABLE_HEADING_STATUS', 'Status');
-define('TABLE_HEADING_ACTION','Aktion');
-//define('TEXT_LEGEND', 'LEGEND: ');
+
 define('TEXT_LEGEND_TAX_AND_ZONES', ': Steuersätze & -zonen definiert ');
 define('TEXT_LEGEND_ONLY_ZONES', ': Steuerzonen, aber keine Steuersätze definiert ');
 define('TEXT_LEGEND_NOT_CONF', ': Nicht konfiguriert ');
@@ -39,8 +37,7 @@ define('TEXT_INFO_EDIT_SUB_ZONE_INTRO','Führen Sie hier bitte die notwendigen �
 define('TEXT_INFO_HEADING_DELETE_SUB_ZONE','Steuerklasse löschen');
 define('TEXT_INFO_DELETE_SUB_ZONE_INTRO','Wollen Sie diese Steuerklasse wirklich löschen?');
 
-define('TEXT_INFO_DATE_ADDED','Erstellt am:');
-define('TEXT_INFO_LAST_MODIFIED','Letzte Änderung:');
+
 define('TEXT_INFO_ZONE_NAME','Name der Steuerzone');
 define('TEXT_INFO_NUMBER_ZONES','Anzahl der Steuerzonen:');
 define('TEXT_INFO_ZONE_DESCRIPTION','Beschreibung:');

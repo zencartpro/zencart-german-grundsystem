@@ -7,7 +7,7 @@
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * @version $Id: product_music.php 2019-04-12 08:49:16Z webchills $
  */
-//
+
 define('BOX_CATALOG_RECORD_ARTISTS', 'Record Artists');
 define('BOX_CATALOG_RECORD_COMPANY', 'Record Companies');
 define('BOX_CATALOG_MUSIC_GENRE', 'Music Genre');

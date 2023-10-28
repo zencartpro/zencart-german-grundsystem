@@ -1,10 +1,11 @@
 <?php
 /** 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: coupon_admin.php 2021-11-30 20:44:24Z webchills $
+ * @version $Id: coupon_admin.php 2023-10-28 20:44:24Z webchills $
  */
 
 define('HEADING_TITLE', 'Discount Coupons');
@@ -20,7 +21,7 @@ define('TEXT_FROM', 'From:');
 define('TEXT_FREE_SHIPPING', 'Free Shipping');
 define('TEXT_MESSAGE', 'Message:');
 define('TEXT_RICH_TEXT_MESSAGE','Rich-Text Message:');
-define('TEXT_CONFIRM_DELETE', 'Are you sure you want to delete this Coupon?');
+define('TEXT_CONFIRM_DELETE', 'Are you sure you want to deactivate this Coupon?');
 define('TEXT_SEE_RESTRICT', 'Restrictions Apply');
 
 define('TEXT_COUPON_ANNOUNCE','We\'re pleased to offer you a Store Coupon');
@@ -31,8 +32,6 @@ define('TEXT_REMEMBER', 'Don\'t lose the coupon code, make sure to keep the code
 define('TEXT_VISIT', 'Visit us at %s');
 define('TEXT_COUPON_HELP_DATE', '<p>The coupon is valid between %s and %s</p>');
 define('HTML_COUPON_HELP_DATE', '<p>The coupon is valid between %s and %s</p>');
-
-define('TABLE_HEADING_ACTION', 'Action');
 
 define('CUSTOMER_ID', 'Customer ID');
 define('CUSTOMER_NAME', 'Customer Name');
@@ -49,7 +48,7 @@ define('ERROR_NO_CUSTOMER_SELECTED', 'Error: No customer has been selected.');
 define('ERROR_NO_SUBJECT', 'Error: No subject has been entered.');
 
 define('COUPON_NAME', 'Coupon Name');
-//define('COUPON_VALUE', 'Coupon Value');
+
 define('COUPON_AMOUNT', 'Coupon Amount');
 
 define('TEXT_COUPON_PRODUCT_COUNT_PER_ORDER', 'Per Order');
@@ -81,17 +80,15 @@ define('TEXT_COUPON_ZONE_RESTRICTION', 'Coupon Zone Restriction are optional.');
 define('COUPON_ORDER_LIMIT', 'Customer previous Orders less than: ');
 define('COUPON_ORDER_LIMIT_HELP', 'Customer must have previous Orders less than, leave blank for unlimited');
 
-define('COUPON_IS_VALID_FOR_SALES', 'Coupon valid for sales:');
-define('TEXT_COUPON_IS_VALID_FOR_SALES', 'Coupon IS allowed for Products on Sale');
+define('COUPON_IS_VALID_FOR_SALES', 'Coupon valid for sales and specials:');
+define('TEXT_COUPON_IS_VALID_FOR_SALES', 'Coupon IS allowed for Products on Sale or Special');
 define('TEXT_COUPON_IS_VALID_FOR_SALES_EMAIL', 'Coupon is valid for Products on Sale or Special');
 define('TEXT_NO_COUPON_IS_VALID_FOR_SALES', 'Coupon NOT allowed for Products on Sale or Special');
 define('TEXT_NO_COUPON_IS_VALID_FOR_SALES_EMAIL', 'Coupon is not valid for Products on Sale or Special');
 
-
 define('ERROR_NO_COUPON_AMOUNT', 'No coupon amount entered');
 define('ERROR_NO_COUPON_NAME', 'No coupon name entered ');
 define('ERROR_COUPON_EXISTS', 'A coupon with that code already exists');
-
 
 define('COUPON_NAME_HELP', 'A short name for the coupon');
 define('COUPON_AMOUNT_HELP', 'The value of the discount for the coupon, either fixed or add a % on the end for a percentage discount.<br>Per Order or Per Qualifying Item applies only when amount is used.');
@@ -120,7 +117,7 @@ define('ERROR_DISCOUNT_COUPON_DUPLICATE', 'WARNING! Duplicate Coupon exists ... 
 define('TEXT_CONFIRM_COPY', 'Are you sure you want to Copy this Discount Coupon to another Discount Coupon?');
 define('SUCCESS_COUPON_DUPLICATE', 'Success! Discount Coupon was duplicated ...<br><br>Be sure to check Coupon Name and Dates ...');
 define('WARNING_COUPON_DUPLICATE', 'Warning! No Discount Coupons were made! Number of Discount Coupons to create was not defined ... ');
-
+define('WARNING_COUPON_DUPLICATE_FAILED' , 'Warning! Coupon duplication failed');
 define('TEXT_COUPON_COPY_INFO', 'Copy for multiple duplicates');
 define('TEXT_COUPON_COPY_DUPLICATE', 'Create Multiple Coupons with Base Coupon Code of: ');
 define('TEXT_COUPON_COPY_DUPLICATE_CNT', 'How many duplicate Discount Coupons do you want to create? ');
@@ -128,20 +125,21 @@ define('TEXT_COUPON_COPY_DUPLICATE_CNT', 'How many duplicate Discount Coupons do
 define('TEXT_CONFIRM_DELETE_DUPLICATE', 'Delete all matching Discount Coupons based on the Base coupon code<br>Example: <strong>%s</strong> would delete all Discount Coupons codes starting with: <strong>%s</strong>');
 define('TEXT_COUPON_DELETE_DUPLICATE', 'Delete all Discount Coupons matching base code: ');
 
-define('TEXT_DISCOUNT_COUPON_EMAIL', 'Email Discount Coupon');
-define('TEXT_DISCOUNT_COUPON_CONFIRM_DELETE', 'Confirm Delete Discount Coupon');
+define('TEXT_DISCOUNT_COUPON_EMAIL', 'Email');
+define('TEXT_DISCOUNT_COUPON_CONFIRM_DELETE', 'Confirm Deactivate');
 define('TEXT_DISCOUNT_COUPON_CONFIRM_RESTORE', 'Confirm Restore Discount Coupon');
 
-define('TEXT_DISCOUNT_COUPON_EDIT', 'Edit Discount Coupon');
-define('TEXT_DISCOUNT_COUPON_DELETE', 'Delete Discount Coupon');
-define('TEXT_DISCOUNT_COUPON_RESTORE', 'Restore Discount Coupon');
-define('TEXT_DISCOUNT_COUPON_RESTRICT', 'Restrict Discount Coupon');
-define('TEXT_DISCOUNT_COUPON_REPORT', 'Discount Coupon Report');
-define('TEXT_DISCOUNT_COUPON_COPY', 'Copy Discount Coupon');
-define('TEXT_DISCOUNT_COUPON_COPY_MULTIPLE', 'Copy to Multiple Discount Coupons');
-define('TEXT_DISCOUNT_COUPON_DELETE_MULTIPLE', 'Delete Multiple Discount Coupons');
-define('TEXT_DISCOUNT_COUPON_REPORT_MULTIPLE', 'Multiple Discount Coupons Report');
-define('TEXT_DISCOUNT_COUPON_DOWNLOAD', 'Download Multiple Coupon Codes');
+define('TEXT_DISCOUNT_COUPON_EDIT', 'Edit');
+define('TEXT_DISCOUNT_COUPON_DELETE', 'Deactivate');
+define('TEXT_DISCOUNT_COUPON_DEACTIVATED' , 'Deactivated: ');
+define('TEXT_DISCOUNT_COUPON_RESTORE', 'Restore');
+define('TEXT_DISCOUNT_COUPON_RESTRICT', 'Restrict');
+define('TEXT_DISCOUNT_COUPON_REPORT', 'Report');
+define('TEXT_DISCOUNT_COUPON_COPY', 'Copy');
+define('TEXT_DISCOUNT_COUPON_COPY_MULTIPLE', 'Copy to Multiple');
+define('TEXT_DISCOUNT_COUPON_DELETE_MULTIPLE', 'Deactivate Multiple');
+define('TEXT_DISCOUNT_COUPON_REPORT_MULTIPLE', 'Multiple Report');
+define('TEXT_DISCOUNT_COUPON_DOWNLOAD', 'Download Multiple');
 define('REDEEM_ORDER_ID', 'Order #');
 define('SUCCESS_COUPON_REACTIVATE', 'Successful Reactivate');
 define('TEXT_CONFIRM_REACTIVATE', 'Are you sure you want to restore this Coupon?<br>NOTE: Restore does not affect Start/Expiration Dates.<br>Restore does not affect limits on use per coupon/use per customer if already redeemed.');

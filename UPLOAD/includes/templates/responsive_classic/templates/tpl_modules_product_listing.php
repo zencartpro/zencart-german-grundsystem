@@ -3,11 +3,11 @@
  * Module Template
  * 
  
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_product_listing.php 2021-12-27 19:33:58Z webchills $
+ * @version $Id: tpl_modules_product_listing.php 2023-10-28 16:33:58Z webchills $
  */
  include(DIR_WS_MODULES . zen_get_module_directory(FILENAME_PRODUCT_LISTING));
 ?>
@@ -50,7 +50,7 @@
 /**
  * load the list_box_content template to display the products
  */
-if ($product_listing_layout_style == 'columns') {
+if (in_array($product_listing_layout_style, ['columns', 'fluid'])) {
   require($template->get_template_dir('tpl_columnar_display.php',DIR_WS_TEMPLATE, $current_page_base,'common'). '/tpl_columnar_display.php');
 } else {
   require($template->get_template_dir('tpl_tabular_display.php',DIR_WS_TEMPLATE, $current_page_base,'common'). '/tpl_tabular_display.php');

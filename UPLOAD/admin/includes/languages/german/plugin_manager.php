@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: plugin_manager.php 2023-10-27 16:54:16Z webchills $
+ * @version $Id: plugin_manager.php 2023-10-28 16:54:16Z webchills $
  */
 define('HEADING_TITLE', 'Plugin Manager');
 
@@ -49,3 +49,4 @@ define('TEXT_INFO_CONFIRM_CLEAN', 'Bestätigen Sie die Verzeichnisse, die aufger
 define('TEXT_LABEL_STATUS', 'Status: ');
 define('ERROR_NOT_FOUND_IN_SQL_FUNCTIONS_MAP' , 'SQL Abfrage prüfen. Eine sql function map wurde nicht gefunden für : ');
 define('ERROR_INVALID_SYNTAX', 'Die Tabelle konnte nicht identifiziert werden, da die Syntax nicht korrekt ist in: ');
+define('ERROR_SQL_PATCH', 'Fehler beim Verarbeiten des SQL Installers.');

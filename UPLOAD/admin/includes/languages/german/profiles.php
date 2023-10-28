@@ -1,11 +1,11 @@
 <?php
 /**
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: profiles.php 2015-01-22 09:49:16Z webchills $
+ * @version $Id: profiles.php 2023-10-28 09:49:16Z webchills $
  */
 
 define('HEADING_TITLE_ALL_PROFILES', 'Benutzer Profile');
@@ -24,7 +24,7 @@ define('SUCCESS_PROFILE_UPDATED', 'Profil aktualisiert');
 define('SUCCESS_PROFILE_NAME_UPDATED', 'Profil Name aktualisiert');
 define('SUCCESS_PROFILE_DELETED', 'Profil gelöscht');
 
-define('TEXT_ID', 'ID');
+
 define('TEXT_NAME', 'Name');
 define('TEXT_USERS', 'Benutzer');
 define('TEXT_NO_PROFILES_FOUND', 'Es wurden bisher keine Profile angelegt');

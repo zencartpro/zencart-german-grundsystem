@@ -5,11 +5,11 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: orders.php 2023-10-26 11:49:16Z webchills $
+ * @version $Id: orders.php 2023-10-28 11:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Orders');
-define('HEADING_TITLE_DETAILS', 'Order Details (#%u)');     //-%u is filled in with the actual order-number
+define('HEADING_TITLE_DETAILS', 'Order Details (#%u)');
 define('HEADING_TITLE_SEARCH', 'Order ID:');
 define('HEADING_TITLE_STATUS', 'Status:');
 define('HEADING_TITLE_SEARCH_DETAIL_ORDERS_PRODUCTS', 'Product Name or ID:XX or Model');

@@ -1,10 +1,11 @@
 <?php
 /** 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: coupon_admin.php 2022-04-17 16:15:08Z webchills $
+ * @version $Id: coupon_admin.php 2023-10-28 20:44:24Z webchills $
  */
 
 
@@ -34,7 +35,7 @@ define('TEXT_VISIT','Besuchen Sie uns auf %s');
 define('TEXT_COUPON_HELP_DATE', '<p><p>Der Aktionskupon ist gültig vom %s bis zum %s</p></p>');
 define('HTML_COUPON_HELP_DATE', '<p><p>Der Aktionskupon ist gültig vom %s bis zum %s</p></p>');
 
-define('TABLE_HEADING_ACTION','Aktion');
+
 
 define('CUSTOMER_ID','Kunden ID');
 define('CUSTOMER_NAME','Kundenname');
@@ -117,7 +118,7 @@ define('ERROR_DISCOUNT_COUPON_DUPLICATE', 'ACHTUNG! Doppelter Aktionskupon exist
 define('TEXT_CONFIRM_COPY', 'Wollen Sie diesen Aktionskupon kopieren?');
 define('SUCCESS_COUPON_DUPLICATE', 'Aktionskupon erfolgreich kopiert ...<br><br>Bitte Name und Datum überprüfen ...');
 define('WARNING_COUPON_DUPLICATE', 'Warnung! Keine Aktionskupons angelegt! Die Anzahl der anzulegenden Kupons wurde nicht festgelegt ... ');
-
+define('WARNING_COUPON_DUPLICATE_FAILED' , 'Warnung! Duplizierung fehlgeschlagen');
 define('TEXT_COUPON_COPY_INFO', 'Duplikate erstellen');
 define('TEXT_COUPON_COPY_DUPLICATE', 'Mehrfache Coupons erstellen auf Basis von: ');
 define('TEXT_COUPON_COPY_DUPLICATE_CNT', 'Wieviele Duplikate möchten Sie erstellen? ');
@@ -125,20 +126,21 @@ define('TEXT_COUPON_COPY_DUPLICATE_CNT', 'Wieviele Duplikate möchten Sie erstel
 define('TEXT_CONFIRM_DELETE_DUPLICATE', 'Alle zum Basis Coupon passenden Rabatt Coupons löschen<br>Beispiel: <strong>%s</strong> würde alle Aktionskupons löschen, die beginnen mit: <strong>%s</strong>');
 define('TEXT_COUPON_DELETE_DUPLICATE', 'Alle Coupons löschen, die zu diesem Code passen: ');
 
-define('TEXT_DISCOUNT_COUPON_EMAIL', 'Email Aktionskupon');
-define('TEXT_DISCOUNT_COUPON_CONFIRM_DELETE', 'Löschen bestätigen');
+define('TEXT_DISCOUNT_COUPON_EMAIL', 'Email');
+define('TEXT_DISCOUNT_COUPON_CONFIRM_DELETE', 'Deaktivieren bestätigen');
 define('TEXT_DISCOUNT_COUPON_CONFIRM_RESTORE', 'Wiederherstellen bestätigen');
 
-define('TEXT_DISCOUNT_COUPON_EDIT', 'Aktionskupon bearbeiten');
-define('TEXT_DISCOUNT_COUPON_DELETE', 'Aktionskupon löschen');
-define('TEXT_DISCOUNT_COUPON_RESTORE', 'Aktionskupon wieder herstellen');
-define('TEXT_DISCOUNT_COUPON_RESTRICT', 'Aktionskupon einschränken');
-define('TEXT_DISCOUNT_COUPON_REPORT', 'Aktionskupon Report');
-define('TEXT_DISCOUNT_COUPON_COPY', 'Aktionskupon kopieren');
-define('TEXT_DISCOUNT_COUPON_COPY_MULTIPLE', 'Klone zu mehreren Aktionskupons');
-define('TEXT_DISCOUNT_COUPON_DELETE_MULTIPLE', 'Lösche mehrere Aktionskupons');
-define('TEXT_DISCOUNT_COUPON_REPORT_MULTIPLE', 'Mehrere Aktionskupons Report');
-define('TEXT_DISCOUNT_COUPON_DOWNLOAD', 'Download/Export mehrerer Aktionskupons');
+define('TEXT_DISCOUNT_COUPON_EDIT', 'Bearbeiten');
+define('TEXT_DISCOUNT_COUPON_DELETE', 'Deaktivieren');
+define('TEXT_DISCOUNT_COUPON_DEACTIVATED' , 'Deaktiviert: ');
+define('TEXT_DISCOUNT_COUPON_RESTORE', 'Wiederherstellen');
+define('TEXT_DISCOUNT_COUPON_RESTRICT', 'Einschränken');
+define('TEXT_DISCOUNT_COUPON_REPORT', 'Report');
+define('TEXT_DISCOUNT_COUPON_COPY', 'Kopieren');
+define('TEXT_DISCOUNT_COUPON_COPY_MULTIPLE', 'Klone zu mehreren');
+define('TEXT_DISCOUNT_COUPON_DELETE_MULTIPLE', 'Deaktiviere mehrere');
+define('TEXT_DISCOUNT_COUPON_REPORT_MULTIPLE', 'Mehrere Report');
+define('TEXT_DISCOUNT_COUPON_DOWNLOAD', 'Download mehrere');
 define('REDEEM_ORDER_ID', 'Bestellnummer');
 define('SUCCESS_COUPON_REACTIVATE', 'Reaktivierung erfolgreich');
 define('TEXT_CONFIRM_REACTIVATE', 'Wollen Sie diesen Aktionskupon wirklich wiederherstellen?<br>HINWEIS: Eine Wiederherstellung betrifft nicht das Start/Ablauf Datum.<br>Eien Wiederherstellung betrifft nicht Einschränkungen für die Zahl der Verwendungen per Kupon oder Kunde, falls der Kupon bereits eingelöst wurde.');

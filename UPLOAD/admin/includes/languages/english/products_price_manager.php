@@ -1,22 +1,18 @@
 <?php
 /** 
-* @copyright Copyright 2003-2022 Zen Cart Development Team
+* Zen Cart German Specific (158 code in 157)
+* @copyright Copyright 2003-2023 Zen Cart Development Team
 * Zen Cart German Version - www.zen-cart-pro.at
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: products_price_manager.php 2022-04-17 16:49:16Z webchills $
+* @version $Id: products_price_manager.php 2023-10-28 16:49:16Z webchills $
 */
 
 define('HEADING_TITLE', 'Products Price Manager');
 define('HEADING_TITLE_PRODUCT_SELECT','Please select a Category with Products to display the Pricing Information of ...');
 
-define('TABLE_HEADING_PRODUCTS', 'Products');
 
-define('TABLE_HEADING_PRODUCTS_PRICE', 'Products Price/Special/Sale');
 define('TABLE_HEADING_PRODUCTS_PERCENTAGE','Percentage');
-define('TABLE_HEADING_AVAILABLE_DATE', 'Available');
-define('TABLE_HEADING_EXPIRES_DATE','Expires');
-define('TABLE_HEADING_STATUS', 'Status');
-define('TABLE_HEADING_ACTION', 'Action');
+
 
 define('TEXT_PRODUCT_INFO', 'Product Info:');
 define('TEXT_PRODUCTS_PRICE_INFO', 'Product Price Info:');
@@ -26,17 +22,15 @@ define('TEXT_PRICE_NET', 'Price (Net)');
 define('TEXT_PRICE_GROSS', 'Price (Gross)');
 define('TEXT_PRODUCT_AVAILABLE_DATE', 'Available Date:');
 define('TEXT_PRODUCTS_STATUS', 'Products Status:');
-define('TEXT_PRODUCT_AVAILABLE', 'Enabled');
-define('TEXT_PRODUCT_NOT_AVAILABLE', 'Disabled');
 
-define('TEXT_PRODUCT_INFO_NONE', 'Please select a Product from above ...');
+
+
 define('TEXT_PRODUCT_IS_FREE','Product is Free:');
 define('TEXT_PRODUCTS_IS_FREE_EDIT','<br>*Product marked FREE');
 define('TEXT_PRODUCT_IS_CALL','Call for Price:');
 define('TEXT_PRODUCTS_IS_CALL_EDIT','<br>*Product marked CALL FOR PRICE');
 define('TEXT_PRODUCTS_PRICED_BY_ATTRIBUTES','Priced by Attributes:');
-define('TEXT_PRODUCT_IS_PRICED_BY_ATTRIBUTE','Yes');
-define('TEXT_PRODUCT_NOT_PRICED_BY_ATTRIBUTE','No');
+
 define('TEXT_PRODUCTS_PRICED_BY_ATTRIBUTES_EDIT','<br>*Display price will include lowest group attributes prices plus price');
 define('TEXT_PRODUCTS_MIXED','Qty Min/Unit Mix:');
 define('TEXT_PRODUCTS_MIXED_DISCOUNT_QUANTITY', 'Discount Qty Applies<br>to Mixed Attributes');
@@ -71,8 +65,7 @@ define('TEXT_SPECIALS_NO_GIFTS','No Specials on GV');
 define('TEXT_SPECIAL_DISABLED', '<strong>NOTE: Special Product Info is currently disabled, expired or not yet active</strong>');
 define('TEXT_SPECIALS_CONFIRM_DELETE', 'Please confirm that you want to delete the Special associated with this product');
 
-define('TEXT_INFO_DATE_ADDED', 'Date Added:');
-define('TEXT_INFO_LAST_MODIFIED', 'Last Modified:');
+
 define('TEXT_INFO_NEW_PRICE', 'New Price:');
 define('TEXT_INFO_ORIGINAL_PRICE', 'Original Price:');
 define('TEXT_INFO_STATUS_CHANGE', 'Status Change:');
@@ -80,10 +73,9 @@ define('TEXT_INFO_STATUS_CHANGE', 'Status Change:');
 define('TEXT_INFO_HEADING_DELETE_FEATURED', 'Delete Featured');
 define('TEXT_INFO_DELETE_INTRO', 'Are you sure you want to delete the featured product?');
 
-define('TEXT_ATTRIBUTES_INSERT_INFO', '<strong>Define the Attribute Settings then press Insert to apply</strong>');
+
 define('TEXT_PRODUCTS_PRICE', 'Products Price: ');
-define('TEXT_FREE', 'FREE');
-define('TEXT_CALL_FOR_PRICE', 'Call for Price');
+
 
 define('TEXT_ADD_ADDITIONAL_DISCOUNT', 'Add ' . DISCOUNT_QTY_ADD . ' Blank Qty Discounts:');
 define('TEXT_BLANKS_INFO','All 0 Quantity Discounts will be removed when Updated');

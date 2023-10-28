@@ -1,20 +1,21 @@
 <?php
 /** 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ezpages.php 2022-04-17 16:39:16Z webchills $
+ * @version $Id: ezpages.php 2023-10-28 18:03:16Z webchills $
  */
  
 define('HEADING_TITLE', 'EZ-Pages');
 define('TABLE_HEADING_PAGES', 'Seitentitel');
-define('TABLE_HEADING_ACTION', 'Aktion');
+
 define('TABLE_HEADING_VSORT_ORDER', 'Sidebox Sortierung');
 define('TABLE_HEADING_HSORT_ORDER', 'Fusszeile Sortierung');
 define('TEXT_PAGES_TITLE', 'Seitentitel:');
 define('TEXT_PAGES_HTML_TEXT', 'HTML Inhalt:');
-define('TABLE_HEADING_DATE_ADDED', 'Erstellt am:');
+
 define('TEXT_PAGES_STATUS_CHANGE', 'Status Änderung: %s');
 define('TEXT_INFO_DELETE_INTRO', 'Sind Sie sicher, dass Sie die Seite löschen wollen?');
 define('SUCCESS_PAGE_INSERTED', 'Erfolg: Die Seite wurde eingefügt.');
@@ -24,7 +25,7 @@ define('SUCCESS_PAGE_STATUS_UPDATED', 'Erfolg: Der Status der Seite wurde geänd
 define('ERROR_PAGE_TITLE_REQUIRED', 'FEHLER: Seitentitel ist notwendig.');
 define('ERROR_UNKNOWN_STATUS_FLAG', 'FEHLER: Unbekanntes Status Flag.');
 define('ERROR_MULTIPLE_HTML_URL', 'FEHLER: Mehrere Optionen gewählt, obwohl pro Link nur eine zulässig ist  ...<br>Entweder: HTML Inhalt -oder- Interne Link URL -oder- Externe Link URL');
-define('TABLE_HEADING_ID', 'ID');
+
 define('TABLE_HEADING_STATUS_HEADER', 'Kopfzeile:');
 define('TABLE_HEADING_STATUS_SIDEBOX', 'Sidebox:');
 define('TABLE_HEADING_STATUS_FOOTER', 'Fusszeile:');

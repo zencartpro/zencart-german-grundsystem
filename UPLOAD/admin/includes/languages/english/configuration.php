@@ -1,27 +1,21 @@
 <?php
 /**
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: configuration.php 2022-11-30 20:49:16Z webchills $
+ * @version $Id: configuration.php 2023-10-28 18:49:16Z webchills $
  */
 
-define('TABLE_HEADING_CONFIGURATION_TITLE', 'Title');
-define('TABLE_HEADING_CONFIGURATION_VALUE', 'Value');
-define('TABLE_HEADING_ACTION', 'Action');
 
-define('TEXT_INFO_EDIT_INTRO', 'Please make any necessary changes');
-define('TEXT_INFO_DATE_ADDED', 'Date Added:');
-define('TEXT_INFO_LAST_MODIFIED', 'Last Modified:');
 define('TEXT_MIN_ADMIN_USER_LENGTH', 'Must be of a length of 4 or more.');
-// Validation defines
+
 define('TEXT_DATA_OUT_OF_RANGE', 'Data out of range');
 define('TEXT_MIN_GENERAL_ADMIN', 'The minimum value entered was not a whole number (integer).');
 define('TEXT_MAX_GENERAL_ADMIN', 'The value entered as a maximum was not a whole number (integer).');
 
-// These are the same now but may diverge in the future, so it's useful to have separate constants 
+
 define('TEXT_MIN_ADMIN_FIRST_NAME_LENGTH','Value must be an integer'); 
 define('TEXT_MIN_ADMIN_LAST_NAME_LENGTH','Value must be an integer'); 
 define('TEXT_MIN_ADMIN_DOB_LENGTH','Value must be an integer'); 
@@ -35,13 +29,13 @@ define('TEXT_MIN_ADMIN_TELEPHONE_LENGTH', 'Value must be an integer');
 define('TEXT_MIN_ADMIN_PASSWORD_LENGTH','Value must be an integer'); 
 define('TEXT_MIN_ADMIN_CC_OWNER_LENGTH', 'Value must be an integer'); 
 define('TEXT_MIN_ADMIN_CC_NUMBER_LENGTH','Value must be an integer'); 
-define('TEXT_MIN_ADMIN_CC_CVV_LENGTH', 'Value must be an integer'); 
+
 define('TEXT_MIN_ADMIN_REVIEW_LENGTH', 'Value must be an integer'); 
 define('TEXT_MIN_ADMIN_DISPLAY_BESTSELLERS_LENGTH', 'Value must be an integer');
 define('TEXT_MIN_ADMIN_DISPLAY_ALSO_PURCHASED_LENGTH', 'Value must be an integer');
 define('TEXT_MIN_ADMIN_ENTRY_NICK_LENGTH', 'Value must be an integer');
 
-// Max values 
+
 define('TEXT_MAX_ADMIN_ADDRESS_BOOK_ENTRIES_LENGTH', 'Value must be an integer.'); 
 define('TEXT_MAX_ADMIN_DISPLAY_SEARCH_RESULTS_LENGTH', 'Value must be an integer.'); 
 define('TEXT_MAX_ADMIN_DISPLAY_PAGE_LINKS_LENGTH',  'Value must be an integer.'); 
@@ -71,7 +65,7 @@ define('TEXT_MAX_ADMIN_DISPLAY_SEARCH_RESULTS_RESULTS_LENGTH', 'Value must be an
 define('TEXT_MAX_ADMIN_DISPLAY_RESULTS_CATEGORIES_LENGTH', 'Value must be an integer.'); 
 define('TEXT_MAX_ADMIN_DISPLAY_PRODUCTS_LISTING_LENGTH', 'Value must be an integer.'); 
 define('TEXT_MAX_ADMIN_ROW_LISTS_OPTIONS_LENGTH','Value must be an integer.');
-define('TEXT_MAX_ADMIN_ROW_LISTS_ATTRIBUTES_CONTROLLER_LENGTH','Value must be an integer.');
+
 define('TEXT_MAX_ADMIN_DISPLAY_SEARCH_RESULTS_DOWNLOADS_MANAGER_LENGTH','Value must be an integer.'); 
 define('TEXT_MAX_ADMIN_DISPLAY_SEARCH_RESULTS_FEATURED_ADMIN_LENGTH','Value must be an integer.'); 
 define('TEXT_MAX_ADMIN_DISPLAY_SEARCH_RESULTS_FEATURED_LENGTH','Value must be an integer.'); 

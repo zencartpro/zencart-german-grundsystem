@@ -1,11 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tax_rates.php 730 2015-12-22 15:49:16Z webchills $
+ * @version $Id: tax_rates.php 2023-10-28 19:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Tax Rates');
@@ -15,11 +15,9 @@ define('TABLE_HEADING_TAX_CLASS_TITLE', 'Tax Class');
 define('TABLE_HEADING_COUNTRIES_NAME', 'Country');
 define('TABLE_HEADING_ZONE', 'Zone');
 define('TABLE_HEADING_TAX_RATE', 'Tax Rate');
-define('TABLE_HEADING_ACTION', 'Action');
 
-define('TEXT_INFO_EDIT_INTRO', 'Please make any necessary changes');
-define('TEXT_INFO_DATE_ADDED', 'Date Added:');
-define('TEXT_INFO_LAST_MODIFIED', 'Last Modified:');
+
+
 define('TEXT_INFO_CLASS_TITLE', 'Tax Class Title:');
 define('TEXT_INFO_COUNTRY_NAME', 'Country:');
 define('TEXT_INFO_ZONE_NAME', 'Zone:');

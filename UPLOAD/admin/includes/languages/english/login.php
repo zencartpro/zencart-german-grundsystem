@@ -1,17 +1,18 @@
 <?php
 /** 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: login.php 2021-10-25 19:49:16Z webchills $
+ * @version $Id: login.php 2023-10-28 19:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Admin Login');
 define('HEADING_TITLE_EXPIRED', 'Admin Login - Password Expired');
 
 define('TEXT_SUBMIT','Submit');
-define('TEXT_ADMIN_NAME', 'Admin Username');
+
 define('TEXT_ADMIN_PASS', 'Admin Password');
 define('TEXT_ADMIN_OLD_PASSWORD', 'Old Password');
 define('TEXT_ADMIN_NEW_PASSWORD', 'New Password');

@@ -1,14 +1,15 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: store_manager.php 2022-04-17 16:59:50Z webchills $
+ * @version $Id: store_manager.php 2023-10-28 16:59:50Z webchills $
  */
 
   define('HEADING_TITLE', 'Store Manager');
-  define('TABLE_CONFIGURATION_TABLE', 'Lookup CONSTANT Definitions');
+
 
   define('SUCCESS_PRODUCT_UPDATE_SORT_ALL', '<strong>Successful</strong> update for Attributes Sort Order');
   define('SUCCESS_PRODUCT_UPDATE_PRODUCTS_PRICE_SORTER', '<strong>Successful</strong> update for Products Price Sorter Values');
@@ -32,29 +33,10 @@
   define('TEXT_MSG_NEXT_ORDER_MAX', 'Due to existing order data, the next order number is currently: %s');
   define('TEXT_MSG_NEXT_ORDER_TOO_LARGE', 'Due to database limitations, you cannot set the next order number higher than 2000000000. Please choose a lower value.');
 
-  define('TEXT_CONFIGURATION_CONSTANT', '<strong>Look-up CONSTANT or Language File defines</strong>');
-  define('TEXT_CONFIGURATION_KEY', 'Key or Name:');
-  define('TEXT_INFO_CONFIGURATION_UPDATE', '<strong>NOTE:</strong> CONSTANTS are written in uppercase.<br>Language file lookups may be an alternative search when nothing has been found in the database tables.');
-
-
-
-  define('TABLE_TITLE_KEY', '<strong>Key:</strong>');
-  define('TABLE_TITLE_TITLE', '<strong>Title:</strong>');
-  define('TABLE_TITLE_DESCRIPTION', '<strong>Description:</strong>');
-  define('TABLE_TITLE_GROUP', '<strong>Group:</strong>');
-  define('TABLE_TITLE_VALUE', '<strong>Value:</strong>');
-
-  define('TEXT_LANGUAGE_LOOKUPS', 'Language File Look-ups:');
   
-  define('TEXT_LANGUAGE_LOOKUP_CURRENT_LANGUAGE', 'All Language Files for ' . strtoupper($_SESSION['language']) . ' - Catalog/Admin');
-  define('TEXT_LANGUAGE_LOOKUP_CURRENT_CATALOG', 'All Main Language files - Catalog (' . DIR_WS_CATALOG . DIR_WS_LANGUAGES . 'english.php /espanol.php etc.)');
-  define('TEXT_LANGUAGE_LOOKUP_CURRENT_CATALOG_TEMPLATE', 'All Current Selected Language Files - ' . DIR_WS_CATALOG . DIR_WS_LANGUAGES . $_SESSION['language'] . '/*.php');
-  define('TEXT_LANGUAGE_LOOKUP_CURRENT_ADMIN', 'All Main Language files - Admin (' . DIR_WS_ADMIN . DIR_WS_LANGUAGES . 'english.php /espanol.php etc.)');
-  define('TEXT_LANGUAGE_LOOKUP_CURRENT_ADMIN_LANGUAGE', 'All Current Selected Language Files - Admin (' . DIR_WS_ADMIN . DIR_WS_LANGUAGES . $_SESSION['language'] . '/*.php)');
-  define('TEXT_LANGUAGE_LOOKUP_CURRENT_ALL', 'All Current Selected Language files - Catalog/Admin');
 
-  define('TEXT_INFO_NO_EDIT_AVAILABLE','No edit available');
-  define('TEXT_INFO_CONFIGURATION_HIDDEN', ' or, HIDDEN');
+  
+
 
   define('TEXT_INFO_DATABASE_OPTIMIZE', '<strong>Optimize Database</strong> to remove wasted space from deleted records.<br>May be optionally run monthly or weekly on a busy database.<br>(Best to run during non-busy times.)');
   define('TEXT_INFO_OPTIMIZING_DATABASE_TABLES', 'Database table optimization in progress. This may take a few minutes. Please wait. The previous menu will re-appear when finished ... ');

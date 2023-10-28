@@ -1,11 +1,11 @@
 <?php
 /**
-
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: index.php 2021-12-02 16:48:04Z webchills $
+ * @version $Id: index.php 2023-10-28 20:40:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Aktion wählen...');
@@ -19,10 +19,7 @@ define('WO_GRAPH_REGISTERED', 'User:');
 define('WO_GRAPH_GUEST', 'Gast:');
 define('WO_GRAPH_SPIDER', 'Spider:');
 define('WO_GRAPH_TOTAL', 'Gesamt:');
-define('WHOS_ONLINE_ACTIVE_TEXT', 'Aktiver Warenkorb');
-define('WHOS_ONLINE_INACTIVE_TEXT', 'Inaktiver Warenkorb');
-define('WHOS_ONLINE_ACTIVE_NO_CART_TEXT', 'Aktiv, leerer Warenkorb');
-define('WHOS_ONLINE_INACTIVE_NO_CART_TEXT', 'Inaktiv, leerer Warenkorb');
+
 
 define('DASHBOARD_DAY', 'Tag');
 define('DASHBOARD_SESSIONS', 'Sessions');

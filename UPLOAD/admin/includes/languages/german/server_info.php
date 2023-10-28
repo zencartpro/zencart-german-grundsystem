@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: server_info.php 2022-12-17 21:15:14Z webchills $
+ * @version $Id: server_info.php 2023-10-28 21:14:16Z webchills $
  */
 
 define('HEADING_TITLE','Serverinformationen');
@@ -35,4 +35,3 @@ define('TEXT_DATABASE_VARIABLES_LINK', '<a href="#db-h2">Erweiterte Infos zur Da
 define('TITLE_DATABASE_VARIABLES', 'Datenbank Variablen: ');
 define('HEADING_DATABASE_VARIABLE', 'Variable Name');
 define('HEADING_DATABASE_VALUE', 'Wert');
-define('STORE_HOME', 'Home Verzeichnis:');

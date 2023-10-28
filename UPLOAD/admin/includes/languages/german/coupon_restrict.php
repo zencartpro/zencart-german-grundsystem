@@ -1,10 +1,11 @@
 <?php
 /** 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: coupon_restrict.php 2022-04-17 16:02:16Z webchills $
+ * @version $Id: coupon_restrict.php 2023-10-28 20:49:16Z webchills $
  */
 
 define('HEADING_TITLE','Aktionskupon - Artikel/Kategorien Einschränkungen');
@@ -14,13 +15,13 @@ define('HEADING_TITLE_PRODUCT','Artikeleinschränkungen');
 define('SUB_HEADING_COUPON_NAME', 'Einschränkungen für den Aktionskupon namens &quot;%1$s&quot; [%2$u].');  //-%1$s = coupon-name, %2$u = coupon_id
 define('TABLE_HEADING_CATEGORY_ID', 'Kategorie ID');
 define('TABLE_HEADING_CATEGORY_NAME', 'Kategoriename');
-define('TABLE_HEADING_PRODUCT_NAME', 'Artikelname');
+
 define('TABLE_HEADING_PRODUCT_ID', 'Artikel ID');
 define('TABLE_HEADING_RESTRICT', 'Einschränkung');
 define('TABLE_HEADING_RESTRICT_REMOVE', 'Entfernen');
 define('IMAGE_REMOVE', 'Diese Einschränkung entfernen');
 define('TEXT_ALL_CATEGORIES', 'Alle Kategorien');
-define('MAX_DISPLAY_RESTRICT_ENTRIES', 20);
+
 define('TEXT_ALL_PRODUCTS_ADD', 'Alle Artikel der Kategorie hinzufügen');
 define('TEXT_ALL_PRODUCTS_REMOVE', 'Alle Artikel der Kategorie entfernen');
 define('TEXT_INFO_ADD_DENY_ALL', '<strong>Bei der Auswahl von "Alle Artikel der Kategorie hinzufügen" werden nur Artikel hinzugefügt, für die noch keine Einschränkungen definiert wurden.<br>
@@ -33,7 +34,7 @@ define('HEADER_MANUFACTURER_NAME', '<br> -- ODER -- <br>' . 'Hersteller: ');
 define('TEXT_ALL_MANUFACTURERS_ADD', 'Alle Artikel des Herstellers hinzufügen');
 define('TEXT_ALL_MANUFACTURERS_REMOVE', 'Alle Artikel des Herstellers entfernen');
 
-define('TABLE_HEADING_STATUS', 'Status');
+
 
 define('ERROR_RESET_CATEGORY_MANUFACTURER', 'Kategorie und Hersteller Filter zurückgesetzt. Verwenden Sie die Filter individuell.');
 

@@ -6,11 +6,11 @@
  * Displays listing of Featured Products
  *
  
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_products_featured_listing.php 2022-04-08 21:33:58Z webchills $
+ * @version $Id: tpl_modules_products_featured_listing.php 2023-10-28 16:33:58Z webchills $
  */
 ?>
 <div id="product-listing">
@@ -63,7 +63,7 @@
       }
 
       if (PRODUCT_FEATURED_LIST_DATE_ADDED != '0' and zen_get_show_product_switch($featured_products->fields['products_id'], 'date_added')) {
-        $display_products_date_added = '<b>' . TEXT_DATE_ADDED . '</b> ' . zen_date_long($featured_products->fields['products_date_added']) . str_repeat('<br  />', substr(PRODUCT_FEATURED_LIST_DATE_ADDED, 3, 1));
+        $display_products_date_added = '<b>' . TEXT_DATE_ADDED_LISTING . '</b> ' . zen_date_long($featured_products->fields['products_date_added']) . str_repeat('<br>', substr(PRODUCT_FEATURED_LIST_DATE_ADDED, 3, 1));
       } else {
         $display_products_date_added = '';
       }
@@ -96,12 +96,12 @@
         }
 
         $the_button = $link;
-        $products_link = '<a class="list-more" href="' . zen_href_link(zen_get_info_page($featured_products->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($featured_products->fields['master_categories_id']) . '&products_id=' . $featured_products->fields['products_id']) . '">' . MORE_INFO_TEXT . '</a>';
+        $products_link = '<a class="list-more" href="' . zen_href_link(zen_get_info_page($featured_products->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($featured_products->fields['master_categories_id']) . '&products_id=' . $featured_products->fields['products_id']) . '" title="' . $featured_products->fields['products_id'] . '">' . MORE_INFO_TEXT . '</a>';
         $display_products_button = zen_get_buy_now_button($featured_products->fields['products_id'], $the_button, $products_link) . '<br>' . zen_get_products_quantity_min_units_display($featured_products->fields['products_id']) . str_repeat('<br>', substr(PRODUCT_FEATURED_BUY_NOW, 3, 1));
       } else {
-        $link = '<a class="list-more" href="' . zen_href_link(zen_get_info_page($featured_products->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($featured_products->fields['master_categories_id']) . '&products_id=' . $featured_products->fields['products_id']) . '">' . MORE_INFO_TEXT . '</a>';
+        $link = '<a class="list-more" href="' . zen_href_link(zen_get_info_page($featured_products->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($featured_products->fields['master_categories_id']) . '&products_id=' . $featured_products->fields['products_id']) . '" title="' . $featured_products->fields['products_id'] . '">' . MORE_INFO_TEXT . '</a>';
         $the_button = $link;
-        $products_link = '<a class="list-more" href="' . zen_href_link(zen_get_info_page($featured_products->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($featured_products->fields['master_categories_id']) . '&products_id=' . $featured_products->fields['products_id']) . '">' . MORE_INFO_TEXT . '</a>';
+        $products_link = '<a class="list-more" href="' . zen_href_link(zen_get_info_page($featured_products->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($featured_products->fields['master_categories_id']) . '&products_id=' . $featured_products->fields['products_id']) . '" title="' . $featured_products->fields['products_id'] . '">' . MORE_INFO_TEXT . '</a>';
         $display_products_button = zen_get_buy_now_button($featured_products->fields['products_id'], $the_button, $products_link) . '<br>' . zen_get_products_quantity_min_units_display($featured_products->fields['products_id']) . str_repeat('<br>', substr(PRODUCT_FEATURED_BUY_NOW, 3, 1));
       }
 
@@ -109,7 +109,7 @@
         $disp_text = zen_get_products_description($featured_products->fields['products_id']);
         $disp_text = zen_clean_html($disp_text);
 
-        $display_products_description = stripslashes(zen_trunc_string($disp_text, PRODUCT_FEATURED_LIST_DESCRIPTION, '<a href="' . zen_href_link(zen_get_info_page($featured_products->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($featured_products->fields['master_categories_id']) . '&products_id=' . $featured_products->fields['products_id']) . '"> ' . MORE_INFO_TEXT . '</a>'));
+        $display_products_description = stripslashes(zen_trunc_string($disp_text, PRODUCT_FEATURED_LIST_DESCRIPTION, '<a href="' . zen_href_link(zen_get_info_page($featured_products->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($featured_products->fields['master_categories_id']) . '&products_id=' . $featured_products->fields['products_id']) . '" title="' . $featured_products->fields['products_id'] . '"> ' . MORE_INFO_TEXT . '</a>'));
       } else {
         $display_products_description = '';
       }

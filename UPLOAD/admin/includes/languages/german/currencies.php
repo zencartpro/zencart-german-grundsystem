@@ -1,10 +1,11 @@
 <?php
-/** 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+/**
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: currencies.php 2022-04-17 16:05:14Z webchills $
+ * @version $Id: currencies.php 2023-10-28 15:49:16Z webchills $
  */
 
 define('HEADING_TITLE','Währungen');
@@ -12,9 +13,8 @@ define('HEADING_TITLE','Währungen');
 define('TABLE_HEADING_CURRENCY_NAME','Währung');
 define('TABLE_HEADING_CURRENCY_CODES','Code');
 define('TABLE_HEADING_CURRENCY_VALUE','Wechselkurs');
-define('TABLE_HEADING_ACTION','Aktion');
 
-define('TEXT_INFO_EDIT_INTRO','Führen Sie hier bitte die notwendigen Änderungen durch');
+
 define('TEXT_INFO_CURRENCY_TITLE','Name:');
 define('TEXT_INFO_CURRENCY_CODE','Code:');
 define('TEXT_INFO_CURRENCY_SYMBOL_LEFT','Währungssymbol links:');
@@ -23,6 +23,7 @@ define('TEXT_INFO_CURRENCY_DECIMAL_POINT','Dezimalstellen Trennzeichen:');
 define('TEXT_INFO_CURRENCY_THOUSANDS_POINT','1000er Trennzeichen');
 define('TEXT_INFO_CURRENCY_DECIMAL_PLACES','Dezimalstellen:');
 define('TEXT_INFO_CURRENCY_LAST_UPDATED','Letzte Aktualisierung:');
+
 
 define('TEXT_INFO_CURRENCY_VALUE','Wert:<br><br><strong>Achtung, wenn hier ein anderer Wert als 1 eingetragen ist, dann wird der jeweilige Artikelpreis mit diesem Wert multipliziert (siehe auch unter Beispielausgabe)!</strong><br><br>');
 define('TEXT_INFO_CURRENCY_EXAMPLE','Beispielausgabe:');

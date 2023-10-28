@@ -1,24 +1,23 @@
 <?php
 /**
-
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tax_classes.php 2011-08-09 15:49:16Z hugo13 $
+ * @version $Id: tax_classes.php 2023-10-28 19:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Tax Classes');
 
 define('TABLE_HEADING_TAX_CLASS_ID', 'ID');
 define('TABLE_HEADING_TAX_CLASSES', 'Tax Classes');
-define('TABLE_HEADING_ACTION', 'Action');
 
-define('TEXT_INFO_EDIT_INTRO', 'Please make any necessary changes');
+
+
 define('TEXT_INFO_CLASS_TITLE', 'Tax Class Title:');
 define('TEXT_INFO_CLASS_DESCRIPTION', 'Description:');
-define('TEXT_INFO_DATE_ADDED', 'Date Added:');
-define('TEXT_INFO_LAST_MODIFIED', 'Last Modified:');
+
 define('TEXT_INFO_INSERT_INTRO', 'Please enter the new tax class with its related data');
 define('TEXT_INFO_DELETE_INTRO', 'Are you sure you want to delete this tax class?');
 define('TEXT_INFO_HEADING_NEW_TAX_CLASS', 'New Tax Class');

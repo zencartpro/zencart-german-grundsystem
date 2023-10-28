@@ -1,6 +1,6 @@
 <?php
 /**
- * @package admin
+ 
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
