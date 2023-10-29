@@ -2,12 +2,12 @@
 /**
  * GV FAQ 
  * 
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2022-04-09 11:03:16Z webchills $
+ * @version $Id: header_php.php 2023-10-29 21:03:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -19,18 +19,10 @@ $customer_has_gv_balance = false;
 $customer_gv_balance = 0;
 
 if (zen_is_logged_in() && !zen_in_guest_checkout()) {
-
-  $gv_query = "SELECT amount
-               FROM " . TABLE_COUPON_GV_CUSTOMER . "
-               WHERE customer_id = :customersID";
-
-  $gv_query = $db->bindVars($gv_query, ':customersID', $_SESSION['customer_id'], 'integer');
-  $gv_result = $db->Execute($gv_query);
-
-  if (!$gv_result->EOF && $gv_result->fields['amount'] > 0 ) {
-    $customer_has_gv_balance = true;
-    $customer_gv_balance = $currencies->format($gv_result->fields['amount']);
-  }
+    $customer = new Customer;
+    $gv_balance = $customer->getData('gv_balance');
+    $customer_has_gv_balance = !empty($gv_balance);
+    $customer_gv_balance = !is_null($gv_balance) ? $currencies->format($gv_balance) : false;
 }
 
 $gv_faq_item =  (empty($_GET['faq_item'])) ? 0 : (int)$_GET['faq_item'];

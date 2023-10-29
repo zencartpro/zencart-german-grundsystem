@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: auto.downloads_via_aws.php 2019-07-22 08:25:51Z webchills $
+ * @version $Id: auto.downloads_via_aws.php 2023-10-29 19:25:51Z webchills $
  */
 
 /**
@@ -207,7 +207,7 @@ class zcObserverDownloadsViaAws extends base {
     $expires = time() + $this->link_expiry_time;
 
     $raw_request = "GET\n\n\n" . $expires . "\n/" . $bucketAndFilename;
-    $sig = urlencode(base64_encode((hash_hmac("sha1", utf8_encode($raw_request), $this->aws_secret, true))));
+    $sig = urlencode(base64_encode((hash_hmac('sha1', $raw_request, $this->aws_secret, true))));
 
     $params = 'AWSAccessKeyId=' . $this->aws_key . '&Expires=' . $expires . '&Signature=' . $sig;
 

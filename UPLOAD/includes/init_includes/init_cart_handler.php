@@ -1,9 +1,8 @@
 <?php
 /**
  * initialise and handle cart actions
- * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
+ * see  {@link  https://docs.zen-cart.com/dev/code/init_system/} for more details.
  *
- * @package initSystem
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce

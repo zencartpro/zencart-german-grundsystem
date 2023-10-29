@@ -3,11 +3,11 @@
  * checkout_confirmation header_php.php
  *
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2022-12-15 23:13:16Z webchills $
+ * @version $Id: header_php.php 2023-10-29 21:13:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -22,13 +22,14 @@ if ($_SESSION['cart']->count_contents() <= 0) {
   if (!zen_is_logged_in()) {
     $_SESSION['navigation']->set_snapshot(array('mode' => 'SSL', 'page' => FILENAME_CHECKOUT_PAYMENT));
     zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
-  } else {
-    // validate customer
-    if (zen_get_customer_validate_session($_SESSION['customer_id']) == false) {
-      $_SESSION['navigation']->set_snapshot();
-      zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
-    }
   }
+
+$customer = new Customer($_SESSION['customer_id']);
+// validate customer
+if (zen_get_customer_validate_session($_SESSION['customer_id']) === false) {
+    $_SESSION['navigation']->set_snapshot();
+    zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
+}
 
 // Ensure no cart content changes during the checkout procedure by checking the internal cartID
 if (isset($_SESSION['cart']->cartID) && isset($_SESSION['cartID'])) {

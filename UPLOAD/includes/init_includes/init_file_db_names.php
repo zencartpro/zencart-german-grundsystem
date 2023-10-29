@@ -1,14 +1,13 @@
 <?php
 /**
  * load the filename/database table names and the compatiblity functions
- * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
- *
- * @package initSystem
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * see  {@link  https://docs.zen-cart.com/dev/code/init_system/} for more details.
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_file_db_names.php 2019-06-15 17:29:16Z webchills $
+ * @version $Id: init_file_db_names.php 2023-10-29 19:29:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -52,32 +51,7 @@ require(DIR_WS_FUNCTIONS . 'compatibility.php');
 $extra_datafiles_directory = DIR_FS_CATALOG . DIR_WS_INCLUDES . 'extra_datafiles/';
 $ws_extra_datafiles_directory = DIR_WS_INCLUDES . 'extra_datafiles/';
 
-// Check for new databases and filename etc in extra_datafiles directory
-$directory_array = array();
-
-if ($dir = @dir($extra_datafiles_directory)) {
-  while ($file = $dir->read()) {
-    if (!is_dir($extra_datafiles_directory . $file)) {
-      if (preg_match('~^[^\._].*\.php$~', $file) > 0) {
-        $directory_array[] = $file;
-      }
-    }
-  }
-  if (sizeof($directory_array)) {
-    sort($directory_array);
-  }
-  $dir->close();
-}
-
-$file_cnt=0;
-for ($i = 0, $n = sizeof($directory_array); $i < $n; $i++) {
-  $file_cnt++;
-  $file = $directory_array[$i];
-
-  if (file_exists($ws_extra_datafiles_directory . $file)) {
-      /**
-       * require 3rd party datafiles (ussually to add extra filename/DB Table name definitions)
-       */
-    include($ws_extra_datafiles_directory . $file);
-  }
+// Check for new database tables and filenames etc in extra_datafiles directory, usually for plugins
+foreach (glob($extra_datafiles_directory . '*.php') ?? [] as $file) {
+    include($ws_extra_datafiles_directory . basename($file));
 }

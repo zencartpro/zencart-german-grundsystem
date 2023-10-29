@@ -2,12 +2,12 @@
 /**
  * create_account_success header_php.php
  *
- * @package page
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2019-06-15 21:49:16Z webchills $
+ * @version $Id: header_php.php 2023-10-29 21:49:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -53,7 +53,7 @@ $addresses = $db->Execute($addresses_query);
 
 $addressArray = array();
 while (!$addresses->EOF) {
-  $format_id = zen_get_address_format_id($addresses->fields['country_id']);
+  $format_id = zen_get_address_format_id((int)$addresses->fields['country_id']);
 
   $addressArray[] = array('firstname'=>$addresses->fields['firstname'],
                           'lastname'=>$addresses->fields['lastname'],

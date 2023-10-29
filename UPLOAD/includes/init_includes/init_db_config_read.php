@@ -1,44 +1,27 @@
 <?php
 /**
  * read the configuration settings from the db
- *
- * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
- *
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * see  {@link  https://docs.zen-cart.com/dev/code/init_system/} for more details.
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_db_config_read.php 2021-11-29 18:34:16Z webchills $
+ * @version $Id: init_db_config_read.php 2023-10-29 19:34:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
+use App\Models\Configuration;
+use App\Models\ProductTypeLayout;
 
+// need to enable caching in eloquent. for now, no caching @todo
 $use_cache = (isset($_GET['nocache']) ? false : true ) ;
-$configuration = $db->Execute('select configuration_key as cfgkey, configuration_value as cfgvalue, configuration_group_id  
-                                 from ' . TABLE_CONFIGURATION, '', $use_cache, 150);
-while (!$configuration->EOF) {
-  /**
- * dynamic define based on info read from DB
- */
-  if ($configuration->fields['configuration_group_id'] == 2 || $configuration->fields['configuration_group_id'] == 3) {
-    define(strtoupper($configuration->fields['cfgkey']), (int)$configuration->fields['cfgvalue']);
-  } else { 
-    define(strtoupper($configuration->fields['cfgkey']), $configuration->fields['cfgvalue']);
-  }
-  $configuration->MoveNext();
-}
-$configuration = $db->Execute('select configuration_key as cfgkey, configuration_value as cfgvalue
-                               from ' . TABLE_PRODUCT_TYPE_LAYOUT, '', $use_cache, 150);
+$config = new Configuration;
+$config->loadConfigSettings();
+$config = new ProductTypeLayout;
+$config->loadConfigSettings();
 
-while (!$configuration->EOF) {
-  /**
- * dynamic define based on info read from DB
- * @ignore
- */
-  define(strtoupper($configuration->fields['cfgkey']), $configuration->fields['cfgvalue']);
-  $configuration->MoveNext();
-}
 if (file_exists(DIR_WS_CLASSES . 'db/' . DB_TYPE . '/define_queries.php')) {
   /**
  * Load the database dependant query defines

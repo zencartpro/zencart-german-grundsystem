@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: payment.php 2023-10-25 20:22:16Z webchills $
+ * @version $Id: payment.php 2023-10-29 20:22:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -133,7 +133,7 @@ class payment extends base {
       if (isset($credit_covers) && $credit_covers === true) {
           $credit_is_covered = true;
           $this->modules = '';
-          $this->selected_method = '';
+          $this->selected_module = '';
       }
       return $credit_is_covered;
   }
