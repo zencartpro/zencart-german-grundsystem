@@ -1,10 +1,10 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
- * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ask_a_question.php 2021-12-27 21:02:53Z webchills $
+ * @version $Id: ask_a_question.php 2023-10-29 08:56:29Z webchills $
  */
 define('NAVBAR_TITLE', 'Frage zum Artikel stellen');
 
@@ -14,14 +14,7 @@ define('FORM_TITLE', 'Was ist Ihre Frage?');
 define('TEXT_SUCCESS', 'Ihre Nachricht wurde erfolgreich versandt.');
 define('EMAIL_SUBJECT', 'Artikelanfrage an ' . STORE_NAME);
 
-define('ENTRY_NAME', 'Ihr Name:');
-define('ENTRY_EMAIL', 'Email Adresse:');
-define('ENTRY_TELEPHONE', 'Telefonnummer:');
-define('ENTRY_ENQUIRY', 'Nachricht:');
 define('TEXT_PRODUCT_NAME', 'Artikelname: ');
-
-define('SEND_TO_TEXT','Email senden an:');
-define('ENTRY_EMAIL_NAME_CHECK_ERROR','Sorry, ist Ihr Name korrekt? Unser System benötigt mindestens ' . ENTRY_FIRST_NAME_MIN_LENGTH . ' Zeichen. Bitte erneut eingeben.');
-define('ENTRY_EMAIL_CONTENT_CHECK_ERROR','Haben Sie Ihre Nachricht vergessen? Bitte ins Textfeld unten eingeben.');
-
-define('NOT_LOGGED_IN_TEXT', 'Nicht eingeloggt');
+define('CALL_FOR_PRICE_HEADING_TITLE', 'Für Preis anrufen ');
+define('CALL_FOR_PRICE_FORM_TITLE','Bitte ergänzen Sie Ihre Kontaktinformationen');
+define('CALL_FOR_PRICE_EMAIL_SUBJECT', 'Artikelpreisanfrage an ' . STORE_NAME);

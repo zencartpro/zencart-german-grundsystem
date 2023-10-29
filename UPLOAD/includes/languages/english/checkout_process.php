@@ -1,17 +1,17 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157)
  
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: checkout_process.php 2022-01-14 16:49:16Z webchills $
+ * @version $Id: checkout_process.php 2023-10-29 16:49:16Z webchills $
  */
 
 define('EMAIL_TEXT_SUBJECT', 'Order Confirmation');
 define('EMAIL_TEXT_HEADER', 'Order Confirmation');
-define('EMAIL_TEXT_FROM',' from ');  //added to the EMAIL_TEXT_HEADER, above on text-only emails
+define('EMAIL_TEXT_FROM',' from ');
 define('EMAIL_THANKS_FOR_SHOPPING','Thanks for shopping with us today!');
 define('EMAIL_DETAILS_FOLLOW','The following are the details of your order.');
 define('EMAIL_TEXT_ORDER_NUMBER', 'Order Number:');
@@ -29,7 +29,3 @@ define('EMAIL_GREETING_MR', 'Dear Mr.');
 define('EMAIL_GREETING_MS', 'Dear Mrs.');
 define('EMAIL_GREETING_NEUTRAL', 'Dear');
 
-// suggest not using # vs No as some spamm protection block emails with these subjects
-define('EMAIL_ORDER_NUMBER_SUBJECT', ' No: ');
-define('HEADING_ADDRESS_INFORMATION','Address Information');
-define('HEADING_SHIPPING_METHOD','Shipping Method');

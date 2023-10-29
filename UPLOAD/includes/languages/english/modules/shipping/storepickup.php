@@ -19,4 +19,4 @@ define('MODULE_SHIPPING_STOREPICKUP_TEXT_WAY', 'Walk In');
 // "Location One, Location Two, Location Three"
 // or leave it blank to simply use the same text as defined in the Admin, regardless of language
 // TIP: This should really be left blank for the default language, otherwise the Admin settings field is never used.
-define('MODULE_SHIPPING_STOREPICKUP_MULTIPLE_WAYS', "");
+define('MODULE_SHIPPING_STOREPICKUP_MULTIPLE_WAYS', '');

@@ -1,11 +1,11 @@
 <?php
 /**
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: gv_send.php 2022-04-17 09:49:16Z webchills $
+ * @version $Id: gv_send.php 2023-10-29 09:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Send ' . TEXT_GV_NAME);
@@ -14,8 +14,7 @@ define('HEADING_TITLE_COMPLETED', TEXT_GV_NAME . ' Sent');
 define('NAVBAR_TITLE', 'Send ' . TEXT_GV_NAME);
 define('EMAIL_SUBJECT', 'Message from ' . STORE_NAME);
 define('HEADING_TEXT','Please enter the name, email address and amount of the ' . TEXT_GV_NAME . ' you wish to send. For more information, please see our <a href="' . zen_href_link(FILENAME_GV_FAQ, '', 'NONSSL').'">' . GV_FAQ . '.</a>');
-define('ENTRY_NAME', 'Recipient\'s Name:');
-define('ENTRY_EMAIL', 'Recipient Email:');
+
 define('ENTRY_MESSAGE', 'Your Message:');
 define('ENTRY_AMOUNT', 'Amount to Send:');
 define('ERROR_ENTRY_TO_NAME_CHECK', 'We did not get the Recipient\'s Name. Please fill it in below. ');
@@ -26,7 +25,7 @@ define('SECONDARY_MESSAGE', 'Dear %s,<br><br>' . 'You have been sent a ' . TEXT_
 define('PERSONAL_MESSAGE', '%s says:');
 define('TEXT_SUCCESS', 'Congratulations, your ' . TEXT_GV_NAME . ' has been sent.');
 define('TEXT_SEND_ANOTHER', 'Would you like to send another ' . TEXT_GV_NAME . '?');
-define('TEXT_AVAILABLE_BALANCE',  'Gift Certificate Account');
+
 
 define('EMAIL_GV_TEXT_SUBJECT', 'A gift from %s');
 define('EMAIL_SEPARATOR', '----------------------------------------------------------------------------------------');

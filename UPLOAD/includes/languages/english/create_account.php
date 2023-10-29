@@ -1,11 +1,11 @@
 <?php
 /**
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: create_account.php 2020-02-29 20:50:16Z webchills $
+ * @version $Id: create_account.php 2023-10-29 20:50:16Z webchills $
  */
 
 define('NAVBAR_TITLE', 'Create an Account');
@@ -17,24 +17,24 @@ define('TEXT_ORIGIN_LOGIN', '<strong class="note">NOTE:</strong> If you already 
 define('ERROR_CREATE_ACCOUNT_SPAM_DETECTED', 'Thank you, your account request has been submitted for review.');
 
 
-// greeting salutation
+
 define('EMAIL_SUBJECT', 'Welcome to ' . STORE_NAME);
 define('EMAIL_GREET_MR', 'Dear Mr. %s,' . "\n\n");
 define('EMAIL_GREET_MS', 'Dear Ms. %s,' . "\n\n");
 define('EMAIL_GREET_NONE', 'Dear %s,' . "\n\n");
 
-// First line of the greeting
+
 define('EMAIL_WELCOME', 'We wish to welcome you to <strong>' . STORE_NAME . '</strong>.');
 define('EMAIL_SEPARATOR', '--------------------');
 define('EMAIL_COUPON_INCENTIVE_HEADER', 'Congratulations! To make your next visit to our online shop a more rewarding experience, listed below are details for a Discount Coupon created just for you!' . "\n\n");
-// your Discount Coupon Description will be inserted before this next define
+
 define('EMAIL_COUPON_REDEEM', 'To use the Discount Coupon, enter the ' . TEXT_GV_REDEEM . ' code during checkout:  <strong>%s</strong>' . "\n\n");
-define('TEXT_COUPON_HELP_DATE', '<p>The coupon is valid between %s and %s</p>');
+
 
 define('EMAIL_GV_INCENTIVE_HEADER', 'Just for stopping by today, we have sent you a ' . TEXT_GV_NAME . ' for %s!' . "\n");
 define('EMAIL_GV_REDEEM', 'The ' . TEXT_GV_NAME . ' ' . TEXT_GV_REDEEM . ' is: %s ' . "\n\n" . 'You can enter the ' . TEXT_GV_REDEEM . ' during Checkout, after making your selections in the store. ');
 define('EMAIL_GV_LINK', ' Or, you may redeem it now by following this link: ' . "\n");
-// GV link will automatically be included before this line
+
 
 define('EMAIL_GV_LINK_OTHER','Once you have added the ' . TEXT_GV_NAME . ' to your account, you may use the ' . TEXT_GV_NAME . ' for yourself, or send it to a friend!' . "\n\n");
 
@@ -42,5 +42,5 @@ define('EMAIL_TEXT', 'You now have an account with '. STORE_NAME . ' providing:'
 define('EMAIL_CONTACT', 'For help with any of our online services, please email the store-owner: <a href="mailto:' . STORE_OWNER_EMAIL_ADDRESS . '">'. STORE_OWNER_EMAIL_ADDRESS ." </a>\n\n");
 define('EMAIL_GV_CLOSURE', "\n" . 'Sincerely,' . "\n\n" . STORE_OWNER . "\nStore Owner\n\n". '<a href="' . HTTP_SERVER . DIR_WS_CATALOG . '">'.HTTP_SERVER . DIR_WS_CATALOG ."</a>\n\n");
 
-// email disclaimer - this disclaimer is separate from all other email disclaimers
+
 define('EMAIL_DISCLAIMER_NEW_CUSTOMER', 'This email address was given to us by you or by one of our customers. If you did not signup for an account, or feel that you have received this email in error, please send an email to %s ');

@@ -1,12 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
- * @package languageDefines
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157 /zencartpro adaptations)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
- * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0 
- * @version $Id: checkout_confirmation.php 2022-04-24 14:53:14Z webchills $
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
+ * @version $Id: checkout_confirmation.php 2023-10-29 15:02:16Z webchills $
  */
 
 define('NAVBAR_TITLE_1','Bestellung');
@@ -15,15 +14,13 @@ define('NAVBAR_TITLE_2','Bestellung bestätigen');
 define('HEADING_TITLE','Schritt 3 von 3: Zahlungspflichtig bestellen');
 define('TEXT_ZUSATZ_SCHRITT3','Überprüfen Sie Ihre Bestellung und drücken dann den Button "KAUFEN" unten auf dieser Seite.');
 define('BRAINTREE_MESSAGE_PLEASE_CONFIRM_ORDER', '<b>Ihre Kreditkarte wurde erfolgreich verifiziert, es hat aber noch keine Zahlung stattgefunden. Bitte bestätigen Sie nun Ihre Bestellung mit dem Button unten. Erst dann werden Zahlung und Bestellung durchgeführt.</b>');
-define('HEADING_BILLING_ADDRESS','Rechnungsanschrift');
-define('HEADING_DELIVERY_ADDRESS','Lieferanschrift');
-define('HEADING_SHIPPING_METHOD','Versandart:');
-define('HEADING_PAYMENT_METHOD','Zahlungsart:');
 define('HEADING_PRODUCTS','Warenkorbinhalt');
-define('HEADING_TAX','MwSt.');
-define('HEADING_ORDER_COMMENTS','Anmerkungen oder Hinweise');
-// no comments entered
+
+
 define('NO_COMMENTS_TEXT','Keine');
+
+define('TITLE_CONTINUE_CHECKOUT_PROCEDURE', 'Letzter Schritt');
+define('TEXT_CONTINUE_CHECKOUT_PROCEDURE', '- weiter um Ihre Bestellung zu bestätigen.');
 
 // buttonloesung
 define('TABLE_HEADING_SINGLEPRICE','Einzelpreis');

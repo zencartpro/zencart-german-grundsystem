@@ -6,7 +6,7 @@
 * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: english.php 2023-10-26 15:18:32Z webchills $
+* @version $Id: english.php 2023-10-29 09:18:32Z webchills $
 */
 // -----
 // Since the languages are now loaded via classes, the $locales definition
@@ -184,6 +184,7 @@ define('ENTRY_STREET_ADDRESS_ERROR','Your Street Address must contain a minimum 
 define('ENTRY_STREET_ADDRESS_TEXT','*');
 define('ENTRY_SUBURB','Address Line 2:');
 define('ENTRY_SUBURB_TEXT','');
+define('ENTRY_TELEPHONE','Telephone Number:');
 define('ENTRY_TELEPHONE_NUMBER','Telephone Number:');
 define('ENTRY_TELEPHONE_NUMBER_ERROR','Your Telephone Number must contain a minimum of ' . ENTRY_TELEPHONE_MIN_LENGTH . ' characters.');
 define('ENTRY_TELEPHONE_NUMBER_TEXT','*');
@@ -534,21 +535,20 @@ define('WARNING_NO_FILE_UPLOADED','Warning:  no file uploaded.');
 define('WARNING_PRODUCT_QUANTITY_ADJUSTED','Quantity has been adjusted to what is in stock. ');
 define('WARNING_SHOPPING_CART_COMBINED','NOTICE: For your convenience, your current shopping cart has been combined with your shopping cart from your last visit. Please review your shopping cart before checking out.');
 // Definitions that require references to other definitions
-$define['ATTRIBUTES_QTY_PRICE_SYMBOL'] = zen_image(DIR_WS_TEMPLATE_ICONS . 'icon_status_green.gif', $define['TEXT_ATTRIBUTES_QTY_PRICE_HELP_LINK'], 10, 10) . '&nbsp;';
-$define['BOX_HEADING_GIFT_VOUCHER'] = $define['TEXT_GV_NAME'] . ' Account';
-$define['BOX_INFORMATION_GV'] = $define['TEXT_GV_NAME'] . ' FAQ';
-$define['ENTRY_EMAIL_PREFERENCE'] = 'Newsletter and Email Details';
+define('ATTRIBUTES_QTY_PRICE_SYMBOL', zen_image(DIR_WS_TEMPLATE_ICONS . 'icon_status_green.gif', TEXT_ATTRIBUTES_QTY_PRICE_HELP_LINK, 10, 10) . '&nbsp;'); 
+define('BOX_HEADING_GIFT_VOUCHER', TEXT_GV_NAME . ' Account'); 
+define('BOX_INFORMATION_GV', TEXT_GV_NAME . ' FAQ'); 
+define('ENTRY_EMAIL_PREFERENCE','Newsletter and Email Details'); 
 if (ACCOUNT_NEWSLETTER_STATUS === '0') {
-  $define['ENTRY_EMAIL_PREFERENCE'] = 'Email Details';
+define('ENTRY_EMAIL_PREFERENCE','Email Details'); 
 }
-$define['ERROR_NO_INVALID_REDEEM_GV'] = 'Invalid ' . $define['TEXT_GV_NAME'] . ' ' . $define['TEXT_GV_REDEEM'];
-$define['ERROR_NO_REDEEM_CODE'] = 'You did not enter a ' . $define['TEXT_GV_REDEEM'] . '.';
-$define['ERROR_REDEEMED_AMOUNT'] = 'Congratulations, you have redeemed ';
-$define['GV_FAQ'] = $define['TEXT_GV_NAME'] . ' FAQ';
-$define['TABLE_HEADING_CREDIT'] = 'Credits Available';
-$define['TEXT_AVAILABLE_BALANCE'] = 'Your ' . $define['TEXT_GV_NAME'] . ' Account';
-$define['TEXT_BALANCE_IS'] = 'Your ' . $define['TEXT_GV_NAME'] . ' balance is: ';
-$define['TEXT_COUPON_GV_RESTRICTION'] = '<p class="smallText">Discount Coupons may not be applied towards the purchase of ' . $define['TEXT_GV_NAMES'] . '. Limit 1 coupon per order.</p>';
-$define['TEXT_SEND_OR_SPEND'] = 'You have a balance available in your ' . $define['TEXT_GV_NAME'] . ' account. You may spend it or send it to someone else. To send click the button below.';
-$define['VOUCHER_BALANCE'] = $define['TEXT_GV_NAME'] . ' Balance ';
-return $define;
+define('ERROR_NO_INVALID_REDEEM_GV', 'Invalid ' . TEXT_GV_NAME . ' ' . TEXT_GV_REDEEM); 
+define('ERROR_NO_REDEEM_CODE', 'You did not enter a ' . TEXT_GV_REDEEM . '.'); 
+define('ERROR_REDEEMED_AMOUNT', 'Congratulations, you have redeemed ');
+define('GV_FAQ', TEXT_GV_NAME . ' FAQ');
+define('TABLE_HEADING_CREDIT', 'Credits Available'); 
+define('TEXT_AVAILABLE_BALANCE', 'Your ' . TEXT_GV_NAME . ' Account'); 
+define('TEXT_BALANCE_IS', 'Your ' . TEXT_GV_NAME . ' balance is: '); 
+define('TEXT_COUPON_GV_RESTRICTION','<p class="smallText">Discount Coupons may not be applied towards the purchase of ' . TEXT_GV_NAMES . '. Limit 1 coupon per order.</p>'); 
+define('TEXT_SEND_OR_SPEND','You have a balance available in your ' . TEXT_GV_NAME . ' account. You may spend it or send it to someone else. To send click the button below.'); 
+define('VOUCHER_BALANCE', TEXT_GV_NAME . ' Balance '); 

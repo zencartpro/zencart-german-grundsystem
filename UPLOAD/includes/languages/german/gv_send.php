@@ -1,12 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- 
- * @version $Id: gv_send.php 2022-02-04 18:52:14Z webchills $
+ * @version $Id: gv_send.php 2023-10-29 09:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Geschenkgutschein versenden');
@@ -16,8 +15,7 @@ define('NAVBAR_TITLE', 'Geschenkgutschein versenden');
 define('EMAIL_SUBJECT', 'Nachricht von ' . STORE_NAME);
 define('HEADING_TEXT','<br>Bitte tragen Sie unten die Daten für den Geschenkgutschein ein, den Sie versenden möchten. Für weitere Informationen zum Thema Geschenkgutscheine, lesen Sie bitte die <a href="' . zen_href_link(FILENAME_GV_FAQ, '', 'NONSSL').'">' . GV_FAQ . '</a>.<br>');
 define('ENTRY_NAME','Name des Empfängers:');
-define('ENTRY_EMAIL','E-Mail Adresse des Empfängers:');
-define('ENTRY_MESSAGE','Ihre Nachricht an den Empfänger:');
+
 define('ENTRY_AMOUNT','Betrag des Geschenkgutscheins:');
 define('ERROR_ENTRY_TO_NAME_CHECK', 'Empfängername wurde nicht ausgefüllt.  Füllen Sie ihn bitte unten aus. ');
 define('ERROR_ENTRY_AMOUNT_CHECK','<span class="errorText">Ungültiger oder zu hoher Betrag</span>');
@@ -27,7 +25,6 @@ define('SECONDARY_MESSAGE', 'Guten Tag %s,<br><br>' . 'Du hast einen Geschenkgut
 define('PERSONAL_MESSAGE','%s schreibt:');
 define('TEXT_SUCCESS','Herzlichen Glückwunsch, der Geschenkgutschein wurde erfolgreich versendet.');
 define('TEXT_SEND_ANOTHER', 'Wollen Sie einen weiteren Geschenkgutschein versenden?');
-define('TEXT_AVAILABLE_BALANCE',  'Geschenkgutschein Konto');
 
 define('EMAIL_GV_TEXT_SUBJECT', 'Ein Geschenk von %s');
 define('EMAIL_SEPARATOR', '----------------------------------------------------------------------------------------');

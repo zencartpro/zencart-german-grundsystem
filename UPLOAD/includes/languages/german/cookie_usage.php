@@ -1,17 +1,18 @@
 <?php
-/** 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+/**
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: cookie_usage.php 2015-12-23 19:28:14Z webchills $
+ * @version $Id: cookie_usage.php 2023-10-29 09:00:16Z webchills $
  */
 
 define('NAVBAR_TITLE','Verwendung von Cookies');
 define('HEADING_TITLE','Verwendung von Cookies');
 define('TEXT_INFORMATION','Unser System hat festgestellt, dass Ihr Browser Cookies nicht unterstützt oder die Verwendung von Cookies deaktiviert ist.');
 define('TEXT_INFORMATION_2','Um unsere Onlinedienste in Anspruch nehmen zu können, muss die Verwendung von Cookies in Ihrem Browser aktiviert sein.');
-define('TEXT_INFORMATION_3','Benutzer des <strong>Internet Explorer</strong>, folgen bitte diesen Anweisungen:<br><ol><li>Klicken Sie auf "Extras", und wählen Sie "Internetoptionen"</li><li>Klicken Sie auf den Tabulator "Sicherheit", und ändern die Sicherheitsstufe auf "mittel" </li></ol>');
+define('TEXT_INFORMATION_3','Anleitungen zum Aktivieren von Cookies finden Sie in einer Websuche nach <strong>Cookies aktivieren NAME-IHRES-BROWSERS</strong>');
 define('TEXT_INFORMATION_4','Wir haben diese Option zugunsten Ihrer und unserer Sicherheit gewählt. Bitte entschuldigen Sie, wenn Ihnen dadurch Unbequemlichkeiten entstanden sind.');
 define('TEXT_INFORMATION_5','Sollten Sie Fragen haben, kontaktieren Sie bitte den Shopbetreiber.');
 define('BOX_INFORMATION_HEADING','<strong>Cookies - Datenschutz und Sicherheit</strong>');

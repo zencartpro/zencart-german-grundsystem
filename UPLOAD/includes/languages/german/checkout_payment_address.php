@@ -17,11 +17,11 @@ define('HEADING_TITLE','Rechnungsinformationen ändern');
 
 define('TABLE_HEADING_PAYMENT_ADDRESS','Rechnungsanschrift');
 define('TEXT_SELECTED_PAYMENT_DESTINATION','Dies ist Ihre derzeitige Rechnungsanschrift.');
-define('TITLE_PAYMENT_ADDRESS','<strong>Rechnungsanschrift:</strong>');
+define('TITLE_PAYMENT_ADDRESS','Rechnungsanschrift:');
 
 define('TITLE_PLEASE_SELECT','Ändern Sie die Rechnungsadresse für diese Bestellung');
 
 define('TABLE_HEADING_NEW_PAYMENT_ADDRESS','...oder wählen Sie eine Anschrift aus Ihrem Adressbuch');
 
-define('TITLE_CONTINUE_CHECKOUT_PROCEDURE','<strong>Weiter</strong>');
+define('TITLE_CONTINUE_CHECKOUT_PROCEDURE','Weiter');
 define('TEXT_CONTINUE_CHECKOUT_PROCEDURE','- zu den Zahlungsarten.');

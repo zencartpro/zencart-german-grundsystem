@@ -1,12 +1,11 @@
 <?php
 /**
-
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- 
- * @version $Id: product_reviews_write.php 2022-01-14 19:05:14Z webchills $
+ * @version $Id: product_reviews_write.php 2023-10-29 16:57:16Z webchills $
  */
 
 define('NAVBAR_TITLE', 'Bewertungen');
@@ -20,7 +19,6 @@ define('TEXT_BAD', 'Schlecht');
 
 
 
-define('TEXT_APPROVAL_REQUIRED', '<strong>HINWEIS:</strong> Bewertungen benötigen eine Überprüfung, bevor diese veröffentlicht werden können');
 
 define('EMAIL_REVIEW_PENDING_SUBJECT', 'Freischaltbare Produktbewertungen: %s');
 define('EMAIL_PRODUCT_REVIEW_CONTENT_INTRO', 'Eine neue Produktbewertung für %s wurde abgeschickt und wartet auf Ihre Freischaltung.' . "\n\n");

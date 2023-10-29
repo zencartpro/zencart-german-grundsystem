@@ -6,7 +6,7 @@
 * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: english.php 2023-10-28 08:33:32Z webchills $
+* @version $Id: english.php 2023-10-29 09:33:32Z webchills $
 */
 // -----
 // Since the languages are now loaded via classes, the $locales definition
@@ -122,7 +122,7 @@ define('ENTRY_DATE_FROM','Datum von:');
 define('ENTRY_DATE_OF_BIRTH','Geburtsdatum:');
 define('ENTRY_DATE_OF_BIRTH_ERROR','Ist Ihr Geburtsdatum korrekt? Unser System benötigt das Datum in diesem Format: DD.MM.YYYY (z.B. 21.05.1970) oder dieses Format: JJJJ-MM-TT (z.B. 1970-05-21)');
 define('ENTRY_DATE_OF_BIRTH_TEXT','* (z. B. 21.05.1970)');
-define('EINTRAG_DATUM_TO','Datum bis:');
+define('ENTRY_DATE_TO','Datum bis:');
 define('ENTRY_EMAIL','Email Adresse:');
 define('ENTRY_EMAIL_ADDRESS','E-Mail-Adresse:');
 define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR','Sorry, unser System versteht Ihre E-Mail-Adresse nicht. Bitte versuchen Sie es erneut.');
@@ -183,6 +183,7 @@ define('ENTRY_STREET_ADDRESS_ERROR','Ihre Straße muss mindestens ' . ENTRY_STRE
 define('ENTRY_STREET_ADDRESS_TEXT','*');
 define('ENTRY_SUBURB','Adresszeile 2:');
 define('ENTRY_SUBURB_TEXT','');
+define('ENTRY_TELEPHONE','Telefonnummer:');
 define('ENTRY_TELEPHONE_NUMBER','Telefonnummer:');
 define('ENTRY_TELEPHONE_NUMBER_ERROR','Ihre Telefonnummer muss mindestens ' . ENTRY_TELEPHONE_MIN_LENGTH . ' Zeichen enthalten.');
 define('ENTRY_TELEPHONE_NUMBER_TEXT','*');
@@ -265,7 +266,7 @@ define('JS_REVIEW_RATING','* Bitte wählen Sie eine Bewertung für diesen Artike
 define('JS_REVIEW_TEXT','* Bitte fügen Sie Ihrem Kommentar noch ein paar Worte hinzu. Die Bewertung muss mindestens ' . REVIEW_TEXT_MIN_LENGTH . ' Zeichen haben.');
 define('LANGUAGE_CURRENCY','EUR');
 define('MALE','Herr');
-define('META_TAG_PRODUCTS_PRICE_IS_FREE_TEXT','Es ist kostenlos!');
+define('META_TAG_PRODUCTS_PRICE_IS_FREE_TEXT','Kostenlos!');
 define('MORE_INFO_TEXT','... mehr Infos');
 define('NOT_LOGGED_IN_TEXT','Nicht eingeloggt');
 define('ORDER_HEADING_DIVIDER','&nbsp;-&nbsp;');
@@ -393,7 +394,7 @@ define('TEXT_BANNER_BOX_ALL','Bitte besuchen Sie unsere Sponsoren ...');
 define('TEXT_BASE_PRICE','Ab: ');
 define('TEXT_BEFORE_DOWN_FOR_MAINTENANCE','HINWEIS: Diese Website wird wegen Wartungsarbeiten voraussichtlich nicht zur Verfügung stehen am: ');
 define('TEXT_BY',' von ');
-define('TEXT_CALL_FOR_PRICE','Preisanfragen');
+define('TEXT_CALL_FOR_PRICE','Für Preis anfragen');
 define('TEXT_CCVAL_ERROR_INVALID_DATE','Das eingegebene Verfallsdatum der Kreditkarte ist ungültig. Bitte überprüfen Sie das Datum und versuchen Sie es erneut.');
 define('TEXT_CCVAL_ERROR_INVALID_NUMBER','Die eingegebene Kreditkartennummer ist ungültig. Bitte überprüfen Sie die Nummer und versuchen Sie es erneut.');
 define('TEXT_CCVAL_ERROR_UNKNOWN_CARD','Die Kreditkartennummer, die mit %s beginnt, wurde nicht korrekt eingegeben, oder wir akzeptieren diese Art von Karte nicht. Bitte versuchen Sie es erneut oder verwenden Sie eine andere Kreditkarte.');
@@ -532,6 +533,21 @@ define('WARNING_COULD_NOT_LOCATE_LANG_FILE','WARNUNG: Die Sprachdatei konnte nic
 define('WARNING_NO_FILE_UPLOADED','Warnung: Keine Datei hochgeladen.');
 define('WARNING_PRODUCT_QUANTITY_ADJUSTED','Die Menge wurde an den Lagerbestand angepasst. ');
 define('WARNING_SHOPPING_CART_COMBINED', 'HINWEIS: Ihr aktueller Warenkorb wurde mit dem Warenkorb Ihres letzten Besuchs zusammengelegt. Bitte überprüfen Sie den Inhalt Ihres Warenkorbs, bevor Sie ihre Bestellung abschließen.');
-
-define('BOX_INFORMATION_GV', 'Geschenkgutschein FAQ');
-define('GV_FAQ', 'Geschenkgutschein FAQ');
+// Definitions that require references to other definitions
+define('ATTRIBUTES_QTY_PRICE_SYMBOL', zen_image(DIR_WS_TEMPLATE_ICONS . 'icon_status_green.gif', TEXT_ATTRIBUTES_QTY_PRICE_HELP_LINK, 10, 10) . '&nbsp;'); 
+define('BOX_HEADING_GIFT_VOUCHER', TEXT_GV_NAME . ' Konto'); 
+define('BOX_INFORMATION_GV', TEXT_GV_NAME . ' FAQ'); 
+define('ENTRY_EMAIL_PREFERENCE','Newsletter und E-Mail Format');
+if (ACCOUNT_NEWSLETTER_STATUS === '0') {
+define('ENTRY_EMAIL_PREFERENCE','E-Mail Format'); 
+}
+define('ERROR_NO_INVALID_REDEEM_GV', 'Ungültiger ' . TEXT_GV_NAME . ' oder ' . TEXT_GV_REDEEM); 
+define('ERROR_NO_REDEEM_CODE', 'Sie haben keine ' . TEXT_GV_REDEEM . ' eingegeben.'); 
+define('ERROR_REDEEMED_AMOUNT', 'Herzlichen Glückwunsch! Sie haben erfolgreich eingelöst ');
+define('GV_FAQ', TEXT_GV_NAME . ' FAQ');
+define('TABLE_HEADING_CREDIT', 'Guthaben verfügbar'); 
+define('TEXT_AVAILABLE_BALANCE', 'Ihr ' . TEXT_GV_NAME . ' Konto'); 
+define('TEXT_BALANCE_IS', 'Ihr ' . TEXT_GV_NAME . ' Guthaben ist: '); 
+define('TEXT_COUPON_GV_RESTRICTION','<p class="smallText">Aktionskupons können nicht zum Kauf von ' . TEXT_GV_NAMES . ' verwendet werden. Limit: 1 Aktionskupon pro Bestellung.</p>'); 
+define('TEXT_SEND_OR_SPEND','Sie haben Guthaben auf Ihrem ' . TEXT_GV_NAME . 'konto. Wenn Sie möchten können Sie dieses Guthaben durch Klick auf untenstehende Schaltfläche an eine andere Person senden.'); 
+define('VOUCHER_BALANCE', TEXT_GV_NAME . ' Guthaben '); 

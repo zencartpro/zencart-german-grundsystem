@@ -19,4 +19,4 @@ define('MODULE_SHIPPING_STOREPICKUP_TEXT_WAY','Sie holen die Ware in unserem Hau
 // Demogasse 17 in 1010 Wien,4.00;Beispielweg 15 in 8020 Graz,0.00<br>
 // Wenn Sie den Eintrag leer lassen, dann werden die unter Module > Versandarten > Selbstabholung eingetragenen Werte verwendet
 // HINWEIS: Wenn Sie nur eine Sprache verwenden, oder keine multilinguale Darstellung dieser Ortsangaben brauchen, dann tragen Sie hier NICHTS ein, es werden sonst nie die Admineinstellungen verwendet. Was Sie hier eintragen überschreibt Ihre Konfiguration im Versandmodul Selbstabholung!
-define('MODULE_SHIPPING_STOREPICKUP_MULTIPLE_WAYS', "");
+define('MODULE_SHIPPING_STOREPICKUP_MULTIPLE_WAYS', '');

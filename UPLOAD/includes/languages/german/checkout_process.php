@@ -1,12 +1,12 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157)
  
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: checkout_process.php 2022-02-04 18:50:14Z webchills $
+ * @version $Id: checkout_process.php 2023-10-29 16:49:16Z webchills $
  */
 
 define('EMAIL_TEXT_SUBJECT', 'Bestellbestätigung');
@@ -28,7 +28,3 @@ define('EMAIL_GREETING_MR', 'Sehr geehrter Herr');
 define('EMAIL_GREETING_MS', 'Sehr geehrte Frau');
 define('EMAIL_GREETING_NEUTRAL', 'Guten Tag');
 
-// suggest not using # vs No as some spamm protection block emails with these subjects
-define('EMAIL_ORDER_NUMBER_SUBJECT', ' Bestellnummer ');
-define('HEADING_ADDRESS_INFORMATION', 'Adressinformation');
-define('HEADING_SHIPPING_METHOD', 'Versandart');
