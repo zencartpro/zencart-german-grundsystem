@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_prices.php 2023-10-23 13:12:24Z webchills $
+ * @version $Id: functions_prices.php 2023-10-29 20:12:24Z webchills $
  */
 
 /**
@@ -416,8 +416,11 @@ function zen_get_products_display_price($product_id)
             }
         }
     }
-
+    if (IS_ADMIN_FLAG === true) {
     return $final_display_price . $free_tag . $call_tag;
+    } else {
+    return $final_display_price . vatAddOn($product_check) . $free_tag . $call_tag;
+    }
 }
 
 
