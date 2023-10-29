@@ -9,11 +9,11 @@
  */
 
 
-
-define('HEADING_TITLE', TEXT_GV_NAMES . ' Sent');
+require DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'gv_name.php';
+define('HEADING_TITLE', 'Gift Certificates Sent');
 
 define('TABLE_HEADING_SENDERS_NAME', 'Senders Name');
-define('TABLE_HEADING_VOUCHER_VALUE', TEXT_GV_NAME . ' Value');
+define('TABLE_HEADING_VOUCHER_VALUE', 'Gift Certificate Value');
 define('TABLE_HEADING_VOUCHER_CODE', TEXT_GV_REDEEM);
 define('TABLE_HEADING_DATE_SENT', 'Date Sent');
 define('TEXT_HEADING_DATE_REDEEMED', 'Date Redeemed');

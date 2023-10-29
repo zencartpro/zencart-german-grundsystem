@@ -8,9 +8,9 @@
  * @version $Id: gv_mail.php 2023-10-28 19:49:16Z webchills $
  */
 
+require DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'gv_name.php';
 
-
-define('HEADING_TITLE', 'Send a ' . TEXT_GV_NAME . ' To Customers');
+define('HEADING_TITLE', 'Send a Gift Certificate To Customers');
 
 define('TEXT_FROM', 'From:');
 define('TEXT_TO', 'Email To:');

@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_general_shared.php 2023-10-23 13:04:14Z webchills $
+ * @version $Id: functions_general_shared.php 2023-10-29 14:32:14Z webchills $
  */ 
 function zen_get_zcversion()
 {
@@ -390,8 +390,11 @@ function request()
     return \Zencart\Request\Request::getInstance();
 }
 
-function zen_updated_by_admin($admin_id = null)
+function zen_updated_by_admin($admin_id = null): string
 {
+    if (empty($admin_id) && empty($_SESSION['admin_id'])) {
+        return '';
+    }
     if (empty($admin_id)) {
         $admin_id = $_SESSION['admin_id'];
     }

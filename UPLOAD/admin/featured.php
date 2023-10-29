@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * $Id: featured.php 2023-10-23 18:49:16Z webchills $
+ * $Id: featured.php 2023-10-29 15:49:16Z webchills $
  * structurally identical to specials.php, modifications should be replicated
  */
 require 'includes/application_top.php';
@@ -17,6 +17,11 @@ $action = (isset($_GET['action']) ? $_GET['action'] : '');
 $currentPage = (isset($_GET['page']) && $_GET['page'] != '' ? (int)$_GET['page'] : 0);
 
 if (!empty($action)) {
+  // -----
+  // Set an indicator for init_special_funcs.php to perform auto-enable/expiration.
+  //
+  $_SESSION['expirationsNeedUpdate'] = true;
+
   switch ($action) {
     case 'setflag':
       if (isset($_POST['flag']) && ($_POST['flag'] === '1' || $_POST['flag'] === '0')) {

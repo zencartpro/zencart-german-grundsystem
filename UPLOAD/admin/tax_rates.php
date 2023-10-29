@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tax_rates.php 2022-02-27 20:09:51Z webchills $
+ * @version $Id: tax_rates.php 2023-10-29 16:09:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -80,7 +80,7 @@ if (!empty($action)) {
       <div class="row">
         <!-- body_text //-->
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 configurationColumnLeft">
-          <table class="table table-hover">
+          <table class="table table-hover" role="listbox">
             <thead>
               <tr class="dataTableHeadingRow">
                 <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_TAX_RATE_PRIORITY; ?></th>
@@ -106,9 +106,9 @@ if (!empty($action)) {
                   }
 
                   if (isset($trInfo) && is_object($trInfo) && ($rate['tax_rates_id'] == $trInfo->tax_rates_id)) {
-                    echo '              <tr id="defaultSelected" class="dataTableRowSelected" onclick="document.location.href=\'' . zen_href_link(FILENAME_TAX_RATES, 'page=' . $_GET['page'] . '&tID=' . $trInfo->tax_rates_id . '&action=edit') . '\'" role="button">' . "\n";
+                    echo '              <tr id="defaultSelected" class="dataTableRowSelected" onclick="document.location.href=\'' . zen_href_link(FILENAME_TAX_RATES, 'page=' . $_GET['page'] . '&tID=' . $trInfo->tax_rates_id . '&action=edit') . '\'" role="option" aria-selected="true">' . "\n";
                   } else {
-                    echo '              <tr class="dataTableRow" onclick="document.location.href=\'' . zen_href_link(FILENAME_TAX_RATES, 'page=' . $_GET['page'] . '&tID=' . $rate['tax_rates_id']) . '\'" role="button">' . "\n";
+                    echo '              <tr class="dataTableRow" onclick="document.location.href=\'' . zen_href_link(FILENAME_TAX_RATES, 'page=' . $_GET['page'] . '&tID=' . $rate['tax_rates_id']) . '\'" role="option" aria-selected="false">' . "\n";
                   }
                   ?>
               <td class="dataTableContent"><?php echo $rate['tax_priority']; ?></td>

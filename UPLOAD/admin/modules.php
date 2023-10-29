@@ -132,8 +132,7 @@ if (!empty($action)) {
           break;
       }
       if (file_exists($module_directory . $class . $file_extension)) {
-          if (file_exists(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/modules/' . $module_type . '/' . $class . $file_extension)) {
-            include DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/modules/' . $module_type . '/' . $class . $file_extension;
+          if ($languageLoader->loadModuleDefinesFromFile( '/modules/', $_SESSION['language'],  $module_type, $class . $file_extension)) {
             include $module_directory . $class . $file_extension;
             $module = new $class();
             $msg = sprintf(TEXT_EMAIL_MESSAGE_ADMIN_MODULE_INSTALLED, preg_replace('/[^\w]/', '*', $_POST['module']), $admname);
@@ -150,8 +149,7 @@ if (!empty($action)) {
       $file_extension = substr($PHP_SELF, strrpos($PHP_SELF, '.'));
       $class = basename($_POST['module']);
       if (file_exists($module_directory . $class . $file_extension)) {
-          if (file_exists(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/modules/' . $module_type . '/' . $class . $file_extension)) {
-              include DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/modules/' . $module_type . '/' . $class . $file_extension;
+          if ($languageLoader->loadModuleDefinesFromFile( '/modules/', $_SESSION['language'],  $module_type, $class . $file_extension)) {
               include $module_directory . $class . $file_extension;
               $module = new $class();
               $msg    = sprintf(TEXT_EMAIL_MESSAGE_ADMIN_MODULE_REMOVED, preg_replace('/[^\w]/', '*', $_POST['module']), $admname);
@@ -198,24 +196,12 @@ if (!empty($action)) {
             </thead>
             <tbody>
                 <?php
-                $directory_array = [];
-                if ($dir = @dir($module_directory)) {
-                  while ($file = $dir->read()) {
-                    if (!is_dir($module_directory . $file)) {
-                      if (preg_match('~^[^\._].*\.php$~i', $file) > 0) {
-                        $directory_array[] = $file;
-                      }
-                    }
-                  }
-                  sort($directory_array);
-                  $dir->close();
-                }
-
+                $directory_array = zen_get_files_in_directory($module_directory);
                 $installed_modules = $temp_for_sort = [];
                 for ($i = 0, $n = count($directory_array); $i < $n; $i++) {
-                  $file = $directory_array[$i];
-                  if (file_exists(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/modules/' . $module_type . '/' . $file)) {
-                    include(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/modules/' . $module_type . '/' . $file);
+                  $file = basename($directory_array[$i]);
+                  if ($languageLoader->hasLanguageFile( DIR_FS_CATALOG . DIR_WS_LANGUAGES, $_SESSION['language'],  $file, '/modules/' . $module_type)) {
+                      $languageLoader->loadExtraLanguageFiles(DIR_FS_CATALOG . DIR_WS_LANGUAGES, $_SESSION['language'],  $file, '/modules/' . $module_type);
                     include($module_directory . $file);
                     $class = substr($file, 0, strrpos($file, '.'));
                     if (class_exists($class)) {
@@ -268,7 +254,7 @@ if (!empty($action)) {
                             <tr class="dataTableRow" style="cursor:pointer" onclick="document.location.href='<?php echo zen_href_link(FILENAME_MODULES, 'set=' . $set . '&module=' . $class, 'SSL'); ?>'">
                         <?php } ?>
                   <td class="dataTableContent"><?php echo $module->title; ?></td>
-                  <td class="dataTableContent"><?php echo(strstr($module->code, 'paypal') ? 'PayPal' : $module->code); ?></td>
+                  <td class="dataTableContent"><?php echo $module->code; ?></td>
                   <td class="dataTableContent text-right">
                       <?php if (is_numeric($module->sort_order)) {
                           echo $module->sort_order;
@@ -299,7 +285,7 @@ if (!empty($action)) {
                       <?php
                       if (isset($mInfo) && is_object($mInfo) && ($class == $mInfo->code)) {
                         echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif');
-                        $_GET['module'] = !isset($_GET['module']) ? $mInfo->code : $_GET['module'];
+                        $_GET['module'] = $_GET['module'] ?? $mInfo->code;
                       } else {
                         echo '<a href="' . zen_href_link(FILENAME_MODULES, 'set=' . $set . '&module=' . $class, 'SSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>';
                       }
@@ -352,7 +338,11 @@ if (!empty($action)) {
               }
               $keys = '';
               foreach($mInfo->keys as $key => $value) {
-                $keys .= '<b>' . $value['title'] . '</b><br>' . $value['description'] . '<br>';
+                  $displayKey = '';
+                  if (ADMIN_CONFIGURATION_KEY_ON === '1') {
+                      $displayKey = 'Key: ' . $key . '<br>';
+                  }
+                $keys .= '<b>' . $displayKey . $value['title'] . '</b><br>' . $value['description'] . '<br>';
                 if ($value['set_function']) {
                   eval('$keys .= ' . $value['set_function'] . '"' . zen_output_string($value['value'], array('"' => '&quot;', '`' => 'null;return;exit;')) . '", "' . $key . '");');
                 } else {
@@ -364,7 +354,7 @@ if (!empty($action)) {
               $heading[] = ['text' => '<h4>' . $mInfo->title . '</h4>'];
               $contents = ['form' => zen_draw_form('modules', FILENAME_MODULES, 'set=' . $set . ($_GET['module'] != '' ? '&module=' . $_GET['module'] : '') . '&action=save', 'post', 'class="form-horizontal"', true)];
               if (ADMIN_CONFIGURATION_KEY_ON == 1) {
-                $contents[] = ['text' => '<strong>Key: ' . $mInfo->code . '</strong><br>'];
+                $contents[] = ['text' => '<strong>Module code: ' . $mInfo->code . '</strong><br>'];
               }
               $contents[] = ['text' => $keys];
               $contents[] = ['align' => 'text-center', 'text' => '<button type="submit" class="btn btn-danger" id="saveButton">' . IMAGE_UPDATE . '</button>&nbsp;<a href="' . zen_href_link(FILENAME_MODULES, 'set=' . $set . ($_GET['module'] != '' ? '&module=' . $_GET['module'] : ''), 'SSL') . '" class="btn btn-default" role="button" id="cancelButton">' . IMAGE_CANCEL . '</a>'];
@@ -372,10 +362,32 @@ if (!empty($action)) {
             default:
               $heading[] = ['text' => '<h4>' . $mInfo->title . '</h4>'];
 
+              $help_button = [];
+              $file_extension = substr($PHP_SELF, strrpos($PHP_SELF, '.'));
+              $class = basename($_GET['module']);
+              if (file_exists($module_directory . $class . $file_extension)) {
+                  if ($languageLoader->loadModuleDefinesFromFile( '/modules/', $_SESSION['language'],  $module_type, $class . $file_extension)) {
+                    include_once $module_directory . $class . $file_extension;
+                    $module = new $class;
+                    if (method_exists($module, 'help')) {
+                       $help_text = $module->help();
+                       if (isset($help_text['link'])) {
+                          $help_button = array('align' => 'text-center', 'text' => '<a href="' . $help_text['link'] . '" target="_blank" rel="noreferrer noopener">' . '<button type="submit" class="btn btn-primary " id="helpButton">' . IMAGE_MODULE_HELP. '</button></a>');
+                       } else if (isset($help_text['body'])) {
+                          $help_title = $module->title;
+                          $help_button = array('align' => 'text-center', 'text' => '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#helpModal">' . IMAGE_MODULE_HELP . '</button>');
+                       }
+                    }
+                  }
+              }
               if ($mInfo->status == '1') {
                 $keys = '';
-                foreach($mInfo->keys as $value) {
-                  $keys .= '<b>' . $value['title'] . '</b><br>';
+                foreach($mInfo->keys as $key => $value) {
+                    $displayKey = '';
+                    if (ADMIN_CONFIGURATION_KEY_ON === '1') {
+                        $displayKey = 'Key: ' . $key . '<br>';
+                    }
+                  $keys .= '<b>'. $displayKey . $value['title'] . '</b><br>';
                   if ($value['use_function']) {
                     $use_function = $value['use_function'];
                     if (preg_match('/->/', $use_function)) {
@@ -397,7 +409,7 @@ if (!empty($action)) {
                 }
 
                 if (ADMIN_CONFIGURATION_KEY_ON == 1) {
-                  $contents[] = ['text' => '<strong>Key: ' . $mInfo->code . '</strong><br>'];
+                  $contents[] = ['text' => '<strong>Module code: ' . $mInfo->code . '</strong><br>'];
                 }
                 $keys = substr($keys, 0, strrpos($keys, '<br><br>'));
                 if (!(!$is_ssl_protected && in_array($mInfo->code, ['paypaldp', 'authorizenet_aim', 'authorizenet_echeck']))) {
@@ -405,14 +417,24 @@ if (!empty($action)) {
                 } else {
                   $contents[] = ['align' => 'text-center', 'text' => TEXT_WARNING_SSL_EDIT];
                 }
-                $contents[] = ['align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_MODULES, 'set=' . $set . '&module=' . $mInfo->code . '&action=remove', 'SSL') . '" class="btn btn-warning" role="button" id="removeButton"><i class="fa fa-minus"></i> ' . IMAGE_MODULE_REMOVE . '</a>'];
+                $contents[] = ['align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_MODULES, 'set=' . $set . '&module=' . $mInfo->code . '&action=remove', 'SSL') . '" class="btn btn-warning" role="button" id="removeButton"><i class="fa-solid fa-minus"></i> ' . IMAGE_MODULE_REMOVE . '</a>'];
+                if (!empty($help_button)) {
+                   $contents[] = $help_button;
+                }
                 $contents[] = ['text' => '<br>' . $mInfo->description];
+
+                if (!empty($mInfo->configuration_errors)) {
+                  $contents[] = ['text' => $mInfo->configuration_errors . '<br>'];  // warnings, etc.
+                }
                 $contents[] = ['text' => '<br>' . $keys];
               } else {
                 if (!(!$is_ssl_protected && in_array($mInfo->code, ['paypaldp', 'authorizenet_aim', 'authorizenet_echeck']))) {
-                  $contents[] = ['align' => 'text-center', 'text' => zen_draw_form('install_module', FILENAME_MODULES, 'set=' . $set . '&action=install') . zen_draw_hidden_field('module', $mInfo->code) . '<button type="submit" id="installButton" class="btn btn-primary"><i class="fa fa-plus"></i> ' . IMAGE_MODULE_INSTALL . '</button></form>'];
+                  $contents[] = ['align' => 'text-center', 'text' => zen_draw_form('install_module', FILENAME_MODULES, 'set=' . $set . '&action=install') . zen_draw_hidden_field('module', $mInfo->code) . '<button type="submit" id="installButton" class="btn btn-primary"><i class="fa-solid fa-plus"></i> ' . IMAGE_MODULE_INSTALL . '</button></form>'];
                 } else {
                   $contents[] = ['align' => 'text-center', 'text' => TEXT_WARNING_SSL_INSTALL];
+                }
+                if (!empty($help_button)) {
+                   $contents[] = $help_button;
                 }
                 $contents[] = ['text' => '<br>' . $mInfo->description];
               }
@@ -434,6 +456,26 @@ if (!empty($action)) {
     <!-- footer //-->
     <?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
     <!-- footer_eof //-->
+
+<?php if (!empty($help_text['body'])) { ?>
+<div id="helpModal" class="modal fade">
+      <div class="modal-dialog">
+           <div class="modal-content">
+                <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                     <h4 class="modal-title"><?php echo $help_title . ' ' . IMAGE_MODULE_HELP; ?></h4>
+                </div>
+                <div class="modal-body">
+<?php echo $help_text['body']; ?>
+                </div>
+                <div class="modal-footer">
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+           </div>
+      </div>
+</div>
+<?php } ?>
+
   </body>
 </html>
 <?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>

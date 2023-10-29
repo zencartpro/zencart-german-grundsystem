@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_admin_auth.php 2023-10-23 14:47:36Z webchills $
+ * @version $Id: init_admin_auth.php 2023-10-29 16:47:36Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) die('Illegal Access');
@@ -28,7 +28,7 @@ if (basename($PHP_SELF) == FILENAME_AJAX . '.php') {
 }
 
 // admin folder rename required
-if (!defined('ADMIN_BLOCK_WARNING_OVERRIDE') || ADMIN_BLOCK_WARNING_OVERRIDE == '')
+if ((!defined('ADMIN_BLOCK_WARNING_OVERRIDE') || ADMIN_BLOCK_WARNING_OVERRIDE == '') && !defined('ZENCART_TESTFRAMEWORK_RUNNING'))
 {
   if (basename($PHP_SELF) != FILENAME_ALERT_PAGE . '.php')
   {

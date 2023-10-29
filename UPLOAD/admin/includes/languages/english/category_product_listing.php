@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: category_product_listing.php 2023-10-28 16:31:16Z webchills $
+ * @version $Id: category_product_listing.php 2023-10-29 16:31:16Z webchills $
  */
 define('HEADING_TITLE', 'Categories / Products');
 define('HEADING_TITLE_GOTO', 'Go To:');
@@ -93,3 +93,5 @@ define('TEXT_SORT_PRODUCTS_STATUS_DESC','Status (enabled), Name');
 define('TEXT_SORT_PRODUCTS_ID','Products ID');
 define('TEXT_SORT_PRODUCTS_ID_DESC','Products ID (desc)');
 define('TEXT_SORT_PRODUCTS_WEIGHT','Weight');
+define('TEXT_HIDE_IMAGES', 'Hide Images');
+define('TEXT_SHOW_IMAGES' , 'Show Images');

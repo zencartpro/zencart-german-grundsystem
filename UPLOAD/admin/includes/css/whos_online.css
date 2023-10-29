@@ -20,6 +20,6 @@
 .dataTableRowSelectedBot .last-url-link {background: #f0cbfa;}
 
 #wo-legend {float: left;}
-#wo-filters { float: right; background-color: #599659; color: #fff}
-#wo-filters .optionClick { display: inline-block; color: #fff; border: 1px solid #fff; font-weight: bold; padding: 1px; margin: 2px 1px;}
-#wo-filters .chosen {background-color: #003D00;}
+#wo-filters { float: right; background-color: #D7D6CC; color: #000000}
+#wo-filters .optionClick { display: inline-block; color: #000000; border: 1px solid #fff; font-weight: bold; padding: 1px; margin: 2px 1px;}
+#wo-filters .chosen {background-color: green;color:#FFFFFF;}

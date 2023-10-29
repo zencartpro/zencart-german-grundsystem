@@ -8,20 +8,20 @@
  * @version $Id: gv_queue.php 2023-10-28 20:49:16Z webchills $
  */
 
-
-define('HEADING_TITLE', TEXT_GV_NAME . ' Release Queue');
+require DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'gv_name.php';
+define('HEADING_TITLE', 'Gift Certificate Release Queue');
 
 
 define('TABLE_HEADING_ORDERS_ID', 'Order-No.');
-define('TABLE_HEADING_VOUCHER_VALUE', TEXT_GV_NAME . ' Value');
+define('TABLE_HEADING_VOUCHER_VALUE', 'Gift Certificate Value');
 define('TABLE_HEADING_DATE_PURCHASED', 'Date Purchased');
 
 
-define('TEXT_REDEEM_GV_MESSAGE_HEADER', 'You recently purchased a ' . TEXT_GV_NAME . ' from our online store.');
+define('TEXT_REDEEM_GV_MESSAGE_HEADER', 'You recently purchased a Gift Certificate from our online store.');
 define('TEXT_REDEEM_GV_MESSAGE_RELEASED', 'For security reasons this was not made immediately available to you.');
                                           );
 
-define('TEXT_REDEEM_GV_MESSAGE_AMOUNT', 'The ' . TEXT_GV_NAME . '(s) you purchased are worth %s');
+define('TEXT_REDEEM_GV_MESSAGE_AMOUNT', 'The Gift Certificate(s) you purchased are worth %s');
 define('TEXT_REDEEM_GV_MESSAGE_THANKS', 'Thank you for shopping with us!');
 
 define('TEXT_REDEEM_GV_MESSAGE_BODY', '');

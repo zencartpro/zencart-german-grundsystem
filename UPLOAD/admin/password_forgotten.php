@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: password_forgotten.php 2022-02-27 19:54:16Z webchills $
+ * @version $Id: password_forgotten.php 2023-10-29 15:54:16Z webchills $
  */
 // reset-token is good for only 24 hours:
 define('ADMIN_PWD_TOKEN_DURATION', (24 * 60 * 60));
@@ -119,7 +119,7 @@ $has_duplicate_admin_emails = ($result->RecordCount() > 0);
               <div class="form-group">
                 <div class="input-group">
                   <span class="input-group-addon">
-                    <i class="fa fa-lg fa-at"></i>
+                    <i class="fa-solid fa-lg fa-at"></i>
                   </span>
                   <?php echo zen_draw_input_field('admin_email', '', 'class="form-control input-lg" id="admin_email" autocapitalize="none" spellcheck="false" autocomplete="off" autofocus required placeholder="' . TEXT_ADMIN_EMAIL . '" aria-label="' . TEXT_ADMIN_EMAIL . '"', false, 'email') . PHP_EOL; ?>
                 </div>
@@ -128,7 +128,7 @@ $has_duplicate_admin_emails = ($result->RecordCount() > 0);
               <div class="form-group">
                 <div class="input-group">
                   <span class="input-group-addon">
-                    <i class="fa fa-lg fa-user"></i>
+                    <i class="fa-solid fa-lg fa-user"></i>
                   </span>
                   <?php echo zen_draw_input_field('admin_username', '', 'class="form-control input-lg" id="admin_username" autocapitalize="none" spellcheck="false" autocomplete="off" placeholder="' . TEXT_ADMIN_USERNAME . '" aria-label="' . TEXT_ADMIN_USERNAME . '"', false, 'text') . PHP_EOL; ?>
                 </div>

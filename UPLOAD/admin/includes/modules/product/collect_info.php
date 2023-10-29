@@ -1,12 +1,12 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: collect_info.php 2023-10-22 08:16:50Z webchills $
+ * @version $Id: collect_info.php 2023-10-29 16:16:50Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -385,7 +385,7 @@ if (zen_get_categories_status($current_category_id) == 0 && $pInfo->products_sta
     if (!empty($pInfo->products_image)) { ?>
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9 col-md-6">
-                <?php echo zen_info_image($pInfo->products_image, (is_array($pInfo->products_name) ? $pInfo->products_name[$_SESSION['languages_id']] : $pInfo->products_name)); ?>
+                <span id="imagepreview"><?php echo zen_info_image($pInfo->products_image, (is_array($pInfo->products_name) ? $pInfo->products_name[$_SESSION['languages_id']] : $pInfo->products_name)); ?></span>
                 <br>	
                 <?php echo $pInfo->products_image; ?>
             </div>
@@ -411,7 +411,7 @@ if (zen_get_categories_status($current_category_id) == 0 && $pInfo->products_sta
     $default_directory = substr($pInfo->products_image, 0, strpos($pInfo->products_image, '/') + 1);
     ?>
     <div class="form-group">
-        <?php echo zen_draw_label(TEXT_PRODUCTS_IMAGE_DIR, 'img_dir', 'class="col-sm-3 control-label"'); ?>
+        <?php echo zen_draw_label(TEXT_UPLOAD_DIR, 'img_dir', 'class="col-sm-3 control-label"'); ?>
         <div class="col-sm-9 col-md-9 col-lg-6">
             <?php echo zen_draw_pull_down_menu('img_dir', $dir_info, $default_directory, 'class="form-control" id="img_dir"'); ?>
         </div>

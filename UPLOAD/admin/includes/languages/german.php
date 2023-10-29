@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2023-10-28 07:52:04Z webchills $
+ * @version $Id: german.php 2023-10-29 14:57:04Z webchills $
  */
 @setlocale(LC_TIME, ['de_DE.UTF-8', 'de_AT.UTF-8', 'de_CH.UTF-8', 'de_DE.ISO_8859-1','de_DE@euro', 'de_DE', 'de', 'ge', 'deu.deu']);
 
@@ -518,6 +518,9 @@ define('TEXT_FIELD_REQUIRED','&nbsp;<span class="fieldRequired">*</span>');
 define('TEXT_FREE','FREE');
 define('TEXT_FREE_SHIPPING_EDIT','Warnung: Ja macht das Produkt - Kostenloser Versand, Versandadresse erforderlich<br>Das Modul "Kostenloser Versand" ist erforderlich, wenn alle Produkte in der Bestellung immer versandkostenfreie Produkte sind');
 define('TEXT_FREE_SHIPPING_PREVIEW','Warnung: Dieses Produkt ist gekennzeichnet mit - Kostenloser Versand, Versandadresse erforderlich<br>Das Modul für den kostenlosen Versand ist erforderlich, wenn alle Produkte in der Bestellung immer Produkte mit kostenlosem Versand sind');
+define('TEXT_GV_NAME','Geschenkgutschein');
+define('TEXT_GV_NAMES','Geschenkgutscheine');
+define('TEXT_GV_REDEEM', 'Gutscheinnummer'); 
 define('TEXT_GROUP_ALL','-- Alle --');
 define('TEXT_HIDDEN','Versteckt');
 define('TEXT_HIDE','Verstecken');
@@ -596,6 +599,16 @@ define('TEXT_SORT_PRODUCTS_QUANTITY','Artikelmenge+, Artikelname');
 define('TEXT_SORT_PRODUCTS_QUANTITY_DESC','Artikelmenge-, Artikelname');
 define('TEXT_SORT_PRODUCTS_SORT_ORDER_PRODUCTS_NAME','Artikelsortierung, Artikelname');
 define('TEXT_STATUS_WARNING','<strong>HINWEIS:</strong> Status ist automatisch aktiviert/deaktiviert wenn Datumsangaben eingegeben werden');
+define('TEXT_TIMEOUT_WARNING', '**WARNUNG**');
+define('TEXT_TIMEOUT_TIME_REMAINING', ' verbleibende Zeit:');
+define('TEXT_TIMEOUT_SECONDS', 'Sekunden!');
+define('TEXT_TIMEOUT_ARE_YOU_STILL_THERE', 'Sind Sie noch da?');
+define('TEXT_TIMEOUT_WILL_LOGOUT_SOON', 'Sie waren inaktiv und werden demnächst automatisch ausgeloggt.');
+define('TEXT_TIMEOUT_STAY_LOGGED_IN', 'Weiterarbeiten');
+define('TEXT_TIMEOUT_LOGOUT_NOW', 'Jetzt abmelden');
+define('TEXT_TIMEOUT_TIMED_OUT_TITLE', 'Abgemeldet.');
+define('TEXT_TIMEOUT_LOGIN_AGAIN', 'Wieder anmelden');
+define('TEXT_TIMEOUT_TIMED_OUT_MESSAGE', 'Ihre Session ist abgelaufen. Sie waren inaktiv, daher wurden Sie automatisch ausgeloggt.');
 define('TEXT_TOP','Top');
 define('TEXT_UNCHECK_ALL','Alle abwählen');
 define('TEXT_UNKNOWN','Unbekannt');

@@ -1,11 +1,11 @@
 <?php
 /**
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_file_db_names.php 2021-10-25 17:49:16Z webchills $
+ * @version $Id: init_file_db_names.php 2023-10-29 17:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -40,13 +40,6 @@ $request_type = (((isset($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) ==
 
 // include the list of extra database tables and filenames
 $extra_datafiles_dir = DIR_WS_INCLUDES . 'extra_datafiles/';
-if ($dir = @dir($extra_datafiles_dir)) {
-  while ($file = $dir->read()) {
-    if (!is_dir($extra_datafiles_dir . $file)) {
-      if (preg_match('~^[^\._].*\.php$~i', $file) > 0) {
-        require($extra_datafiles_dir . $file);
-      }
-    }
-  }
-  $dir->close();
+foreach (glob($extra_datafiles_dir . '*.php') ?? [] as $file) {
+    require($file);
 }

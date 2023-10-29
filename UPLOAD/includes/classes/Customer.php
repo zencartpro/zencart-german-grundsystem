@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: Customer.php 2023-10-21 15:06:39Z webchills $
+ * @version $Id: Customer.php 2023-10-29 16:06:39Z webchills $
  */
 
 class Customer extends base
@@ -369,15 +369,15 @@ class Customer extends base
     protected function getPricingGroupAssociation()
     {
         global $db;
-        $group_query = $db->Execute(
+        $sql =
             "SELECT group_name, group_percentage
                FROM " . TABLE_GROUP_PRICING . "
-              WHERE group_id = " . (int)$this->data['customers_group_pricing']
-        );
+              WHERE group_id = " . (int)$this->data['customers_group_pricing'];
+        $result = $db->Execute($sql);
 
-        if ($group_query->RecordCount()) {
-            $this->data['pricing_group_name'] = $group_query->fields['group_name'];
-            $this->data['pricing_group_discount_percentage'] = $group_query->fields['group_percentage'];
+        if ($result->RecordCount()) {
+            $this->data['pricing_group_name'] = $result->fields['group_name'];
+            $this->data['pricing_group_discount_percentage'] = $result->fields['group_percentage'];
         } else {
             $this->data['pricing_group_name'] = defined('TEXT_NONE') ? TEXT_NONE : '';
             $this->data['pricing_group_discount_percentage'] = 0;
@@ -436,12 +436,12 @@ class Customer extends base
     public function setCustomerAuthorizationStatus(int $status)
     {
         global $db;
-        $db->Execute(
+        $sql =
             "UPDATE " . TABLE_CUSTOMERS . "
                 SET customers_authorization = " . (int)$status . "
-              WHERE customers_id = " . (int)$this->customer_id,
-            1
-        );
+              WHERE customers_id = " . (int)$this->customer_id;
+        $db->Execute($sql, 1);
+
         $this->data['customers_authorization'] = (int)$status;
 
         return $this->data;
@@ -533,7 +533,7 @@ class Customer extends base
         $addressArray = [];
 
         foreach ($results as $result) {
-            $format_id = zen_get_address_format_id($result['country_id']);
+            $format_id = zen_get_address_format_id((int)$result['country_id']);
 
             if (empty($result['state']) && !empty($result['zone_name'])) {
                 $result['state'] = $result['zone_name'];
@@ -806,7 +806,7 @@ class Customer extends base
             $sql_data_array[] = ['fieldName' => 'customers_gender', 'value' => $data['gender'], 'type' => 'stringIgnoreNull'];
         }
         if (ACCOUNT_DOB == 'true') {
-            $sql_data_array[] = ['fieldName' => 'customers_dob', 'value' =>empty($_POST['dob']) || $data['dob'] == '0001-01-01 00:00:00' ? ('0001-01-01 00:00:00') : zen_date_raw($_POST['dob']), 'type' => 'date'];
+            $sql_data_array[] = ['fieldName' => 'customers_dob', 'value' =>(empty($data['dob']) || $data['dob'] === '0001-01-01 00:00:00') ? '0001-01-01 00:00:00' : zen_date_raw($data['dob']), 'type' => 'date'];
         }
 
         $db->perform(TABLE_CUSTOMERS, $sql_data_array);

@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: music_genre.php 2021-10-24 18:33:51Z webchills $
+ * @version $Id: music_genre.php 2023-10-29 15:33:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -54,7 +54,7 @@ if (!empty($action)) {
         }
       } else {
         $db->Execute("UPDATE " . TABLE_PRODUCT_MUSIC_EXTRA . "
-                      SET music_genre_id = 0 
+                      SET music_genre_id = 0
                       WHERE music_genre_id = " . (int)$music_genre_id);
       }
 
@@ -91,15 +91,16 @@ if (!empty($action)) {
                                           ORDER BY music_genre_name";
                 $music_genre_split = new splitPageResults($_GET['page'], MAX_DISPLAY_SEARCH_RESULTS, $music_genre_query_raw, $music_genre_query_numrows);
                 $music_genres = $db->Execute($music_genre_query_raw);
-
+                $mGenre_parameter = '';
                 foreach ($music_genres as $music_genre) {
-                  if ((!isset($_GET['mID']) || (isset($_GET['mID']) && ($_GET['mID'] == $music_genre['music_genre_id']))) && (substr($action, 0, 3) != 'new')) {
+                  if ((!isset($_GET['mID']) || (isset($_GET['mID']) && ($_GET['mID'] == $music_genre['music_genre_id']))) && !isset($aInfo) && (substr($action, 0, 3) != 'new')) {
                     $music_genre_products = $db->Execute("SELECT COUNT(*) AS products_count
                                                           FROM " . TABLE_PRODUCT_MUSIC_EXTRA . "
                                                           WHERE music_genre_id = " . (int)$music_genre['music_genre_id']);
 
                     $aInfo_array = array_merge($music_genre, $music_genre_products->fields);
                     $aInfo = new objectInfo($aInfo_array);
+					$mGenre_parameter = '&mID=' . $aInfo->music_genre_id;
                   }
 
                   if (isset($aInfo) && is_object($aInfo) && ($music_genre['music_genre_id'] == $aInfo->music_genre_id)) {
@@ -134,14 +135,14 @@ if (!empty($action)) {
                 $contents = array('form' => zen_draw_form('music_genre', FILENAME_MUSIC_GENRE, 'action=insert', 'post', 'enctype="multipart/form-data"'));
                 $contents[] = array('text' => TEXT_NEW_INTRO);
                 $contents[] = array('text' => zen_draw_label(TEXT_MUSIC_GENRE_NAME, 'music_genre_name', 'class="control-label"') . zen_draw_input_field('music_genre_name', '', zen_set_field_length(TABLE_MUSIC_GENRE, 'music_genre_name') . ' class="form-control"'));
-                $contents[] = array('align' => 'center', 'text' => '<button type="submit" class="btn btn-primary">' . IMAGE_SAVE . '</button> <a href="' . zen_href_link(FILENAME_MUSIC_GENRE, 'page=' . $_GET['page'] . '&mID=' . $_GET['mID']) . '" class="btn btn-default" role="button">' . IMAGE_CANCEL . '</a>');
+                $contents[] = array('align' => 'center', 'text' => '<button type="submit" class="btn btn-primary">' . IMAGE_SAVE . '</button> <a href="' . zen_href_link(FILENAME_MUSIC_GENRE, 'page=' . $_GET['page'] . (isset($_GET['mID']) ? '&mID=' . $_GET['mID'] : '')) . '" class="btn btn-default" role="button">' . IMAGE_CANCEL . '</a>');
                 break;
               case 'edit':
                 $heading[] = array('text' => '<h4>' . TEXT_HEADING_EDIT_MUSIC_GENRE . '</h4>');
-                $contents = array('form' => zen_draw_form('music_genre', FILENAME_MUSIC_GENRE, 'page=' . $_GET['page'] . '&mID=' . $aInfo->music_genre_id . '&action=save', 'post', 'enctype="multipart/form-data"'));
-                $contents[] = array('text' => TEXT_EDIT_INTRO);
+                $contents = array('form' => zen_draw_form('music_genre', FILENAME_MUSIC_GENRE, 'page=' . $_GET['page'] . $mGenre_parameter . '&action=save', 'post', 'enctype="multipart/form-data"'));
+                $contents[] = array('text' => TEXT_INFO_EDIT_INTRO);
                 $contents[] = array('text' => zen_draw_label(TEXT_MUSIC_GENRE_NAME, 'music_genre_name', 'class="control-label"') . zen_draw_input_field('music_genre_name', htmlspecialchars($aInfo->music_genre_name, ENT_COMPAT, CHARSET, TRUE), zen_set_field_length(TABLE_MUSIC_GENRE, 'music_genre_name') . ' class="form-control"'));
-                $contents[] = array('align' => 'center', 'text' => '<button type="submit" class="btn btn-primary">' . IMAGE_SAVE . '</button> <a href="' . zen_href_link(FILENAME_MUSIC_GENRE, 'page=' . $_GET['page'] . '&mID=' . $aInfo->music_genre_id) . '" class="btn btn-default" role="button">' . IMAGE_CANCEL . '</a>');
+                $contents[] = array('align' => 'center', 'text' => '<button type="submit" class="btn btn-primary">' . IMAGE_SAVE . '</button> <a href="' . zen_href_link(FILENAME_MUSIC_GENRE, 'page=' . $_GET['page'] . $mGenre_parameter) . '" class="btn btn-default" role="button">' . IMAGE_CANCEL . '</a>');
                 break;
               case 'delete':
                 $heading[] = array('text' => '<h4>' . TEXT_HEADING_DELETE_MUSIC_GENRE . '</h4>');
@@ -155,16 +156,16 @@ if (!empty($action)) {
                   $contents[] = array('text' => '<br>' . sprintf(TEXT_DELETE_WARNING_PRODUCTS, $aInfo->products_count));
                 }
 
-                $contents[] = array('align' => 'center', 'text' => '<button type="submit" class="btn btn-danger">' . IMAGE_DELETE . '</button> <a href="' . zen_href_link(FILENAME_MUSIC_GENRE, 'page=' . $_GET['page'] . '&mID=' . $aInfo->music_genre_id) . '" class="btn btn-default" role="button">' . IMAGE_CANCEL . '</a>');
+                $contents[] = array('align' => 'center', 'text' => '<button type="submit" class="btn btn-danger">' . IMAGE_DELETE . '</button> <a href="' . zen_href_link(FILENAME_MUSIC_GENRE, 'page=' . $_GET['page'] . $mGenre_parameter) . '" class="btn btn-default" role="button">' . IMAGE_CANCEL . '</a>');
                 break;
               default:
                 if (isset($aInfo) && is_object($aInfo)) {
                   $heading[] = array('text' => '<h4>' . $aInfo->music_genre_name . '</h4>');
 
-                  $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_MUSIC_GENRE, 'page=' . $_GET['page'] . '&mID=' . $aInfo->music_genre_id . '&action=edit') . '" class="btn btn-primary" role="button">' . IMAGE_EDIT . '</a> <a href="' . zen_href_link(FILENAME_MUSIC_GENRE, 'page=' . $_GET['page'] . '&mID=' . $aInfo->music_genre_id . '&action=delete') . '" class="btn btn-warning" role="button">' . IMAGE_DELETE . '</a>');
-                  $contents[] = array('text' => '<br>' . TEXT_DATE_ADDED . ' ' . zen_date_short($aInfo->date_added));
+                  $contents[] = array('align' => 'center', 'text' => '<a href="' . zen_href_link(FILENAME_MUSIC_GENRE, 'page=' . $_GET['page'] . $mGenre_parameter . '&action=edit') . '" class="btn btn-primary" role="button">' . IMAGE_EDIT . '</a> <a href="' . zen_href_link(FILENAME_MUSIC_GENRE, 'page=' . $_GET['page'] . $mGenre_parameter . '&action=delete') . '" class="btn btn-warning" role="button">' . IMAGE_DELETE . '</a>');
+                  $contents[] = array('text' => '<br>' . TEXT_INFO_DATE_ADDED . ' ' . zen_date_short($aInfo->date_added));
                   if (zen_not_null($aInfo->last_modified)) {
-                    $contents[] = array('text' => TEXT_LAST_MODIFIED . ' ' . zen_date_short($aInfo->last_modified));
+                    $contents[] = array('text' => TEXT_INFO_LAST_MODIFIED . ' ' . zen_date_short($aInfo->last_modified));
                   }
                   $contents[] = array('text' => '<br>' . TEXT_PRODUCTS . ' ' . $aInfo->products_count);
                 }
@@ -185,7 +186,7 @@ if (!empty($action)) {
         </tr>
         <?php if (empty($action)) { ?>
           <tr>
-            <td colspan="2" class="text-right"><a href="<?php echo zen_href_link(FILENAME_MUSIC_GENRE, 'page=' . $_GET['page'] . '&mID=' . $aInfo->music_genre_id . '&action=new'); ?>" class="btn btn-primary" role="button"><?php echo IMAGE_INSERT; ?></a></td>
+            <td colspan="2" class="text-right"><a href="<?php echo zen_href_link(FILENAME_MUSIC_GENRE, 'page=' . $_GET['page'] . $mGenre_parameter . '&action=new'); ?>" class="btn btn-primary" role="button"><?php echo IMAGE_INSERT; ?></a></td>
           </tr>
         <?php } ?>
       </table>

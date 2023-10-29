@@ -1,8 +1,12 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: brittainmark 2022 Aug 13 Modified in v1.5.8-alpha2 $
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
+ * @version $Id: customer_groups.php 2023-10-29 15:49:16Z webchills $
+
  */
 require('includes/application_top.php');
 $max_records_per_page = 75; // MAX_DISPLAY_SEARCH_RESULTS;
@@ -35,6 +39,8 @@ if (!empty($action)) {
 
             if (is_string($result)) {
                 $messageStack->add_session(ERROR_GROUP_STILL_HAS_CUSTOMERS, 'error');
+            } else {
+                unset($group_id);
             }
             zen_redirect(zen_href_link(FILENAME_CUSTOMER_GROUPS, $href_page_param . (!empty($group_id) ?  'gID=' . $group_id : '')));
             break;
@@ -57,7 +63,7 @@ if (!empty($action)) {
     <div class="row">
         <!-- body_text //-->
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 configurationColumnLeft">
-            <table class="table table-hover">
+            <table class="table table-hover" role="listbox">
                 <thead>
                 <tr class="dataTableHeadingRow">
                     <th class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_ID; ?></th>
@@ -108,23 +114,37 @@ if (!empty($action)) {
                     }
 
                     $class_and_id = 'class="dataTableRow"';
+                    $role = 'role="option" aria-selected="false"';
                     if (isset($gInfo) && is_object($gInfo) && ($group['group_id'] == $gInfo->group_id)) {
                         $class_and_id = 'id="defaultSelected" class="dataTableRowSelected"';
-                    }
+                        $role = 'role="option" aria-selected="true"';
+                    } 
                     ?>
-                    <tr <?php echo $class_and_id; ?> onclick="document.location.href='<?php echo zen_href_link(FILENAME_CUSTOMER_GROUPS, $href_page_param . 'gID=' . $group['group_id'] . '&action=edit'); ?>'" role="button">
+                    <tr <?php echo $class_and_id; ?> onclick="document.location.href='<?php echo zen_href_link(FILENAME_CUSTOMER_GROUPS, $href_page_param . 'gID=' . $group['group_id']); ?>'" <?php echo $role;?>>
                         <td class="dataTableContent text-center"><?php echo $group['group_id']; ?></td>
                         <td class="dataTableContent"><?php echo $group['group_name']; ?></td>
                         <td class="dataTableContent text-center"><?php echo $group['customer_count']; ?></td>
                         <td class="dataTableContent"><?php echo $group['group_comment']; ?></td>
                         <td class="dataTableContent text-right"><div>
-                            <?php echo '<a href="' . zen_href_link(FILENAME_CUSTOMER_GROUPS, $href_page_param . 'gID=' . $group['group_id'] . '&action=edit') . '" class="btn btn-primary" role="button">' . ICON_EDIT . '</a>'; ?>
-                            <?php echo '<a href="' . zen_href_link(FILENAME_CUSTOMER_GROUPS, $href_page_param . 'gID=' . $group['group_id'] . '&action=delete') . '" class="btn btn-warning" role="button">' . ICON_DELETE . '</a>'; ?>
-                            <?php 
-                              if (!isset($gInfo) || (isset($gInfo) && is_object($gInfo) && ($group['group_id'] != $gInfo->group_id))) {
-                                 echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', ''); 
-                              }
-                             ?>
+                            <a href="<?php echo zen_href_link(FILENAME_CUSTOMER_GROUPS, $href_page_param . 'gID=' . $group['group_id'] . '&action=edit')?>" role="button" title="<?php echo ICON_EDIT; ?>">
+                                <i class="fa-solid fa-pencil fa-2x fa-fw txt-blue align-middle"></i>
+                            </a>
+                            <a href="<?php echo zen_href_link(FILENAME_CUSTOMER_GROUPS, $href_page_param . 'gID=' . $group['group_id'] . '&action=delete')?>" role="button" title="<?php echo ICON_DELETE;?>">
+                                <i class="fa-solid fa-trash-can fa-2x fa-fw txt-red align-middle"></i>
+                            </a>
+<?php 
+                    if (isset($gInfo) && is_object($gInfo) && ($group['group_id'] == $gInfo->group_id)) {
+?>
+                            <i class="fa-solid fa-caret-right fa-2x fa-fw txt-navy align-middle" title="<?php echo ICON_SELECTED;?>"></i>
+<?php
+                    } else {
+?>
+                            <a href="<?php echo zen_href_link(FILENAME_CUSTOMER_GROUPS,  $href_page_param . 'gID=' . $group['group_id']);?>" role="button" title="<?php echo IMAGE_ICON_INFO;?>">
+                                <i class="fa-solid fa-circle-info fa-2x fa-fw txt-black align-middle"></i>
+                            </a>
+<?php
+                    }
+?>
                             </div>
                         </td>
                     </tr>
@@ -177,7 +197,7 @@ if (!empty($action)) {
                     if (isset($gInfo) && is_object($gInfo) && !empty($gInfo->group_name)) {
                         $heading[] = ['text' => '<h4>' . $gInfo->group_name . '</h4>'];
 
-                        $contents[] = ['align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_CUSTOMER_GROUPS, $href_page_param . 'gID=' . $gInfo->group_id . '&action=edit') . '"class="btn btn-primary" role="button">' . IMAGE_EDIT . '</a>
+                        $contents[] = ['align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_CUSTOMER_GROUPS, $href_page_param . 'gID=' . $gInfo->group_id . '&action=edit') . '" class="btn btn-primary" role="button">' . IMAGE_EDIT . '</a>
                                 <a href="' . zen_href_link(FILENAME_CUSTOMER_GROUPS, $href_page_param . 'gID=' . $gInfo->group_id . '&action=delete') . '" class="btn btn-warning" role="button">' . IMAGE_DELETE . '</a>'];
                         $contents[] = ['text' => '<br>' . TEXT_INFO_DATE_ADDED . ' ' . zen_date_short($gInfo->date_added)];
                         if (!empty($gInfo->last_modified)) $contents[] = ['text' => TEXT_INFO_LAST_MODIFIED . ' ' . zen_date_short($gInfo->last_modified)];

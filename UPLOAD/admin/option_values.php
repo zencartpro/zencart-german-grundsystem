@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: option_values.php 2022-02-27 19:51:16Z webchills $
+ * @version $Id: option_values.php 2023-10-29 15:51:16Z webchills $
  */
 require('includes/application_top.php');
 
@@ -97,19 +97,20 @@ switch ($_GET['action']) {
           <?php echo zen_draw_form('quick_jump', FILENAME_PRODUCTS_OPTIONS_VALUES, '', 'get', 'class="form-horizontal"'); ?>
           <table class="table table-condensed">
             <tr class="dataTableHeadingRow">
-              <td colspan="2" align="center" class="dataTableHeadingContent"><?php echo TEXT_UPDATE_OPTION_VALUES; ?></td>
+              <td colspan="2" class="dataTableHeadingContent text-center"><?php echo TEXT_UPDATE_OPTION_VALUES; ?></td>
             </tr>
             <tr class="dataTableHeadingRow">
               <td class="dataTableHeadingContent">
-                  <?php echo zen_draw_label(TEXT_SELECT_OPTION, 'options_id', 'class="control-label"'); ?>
-                  <?php
-                  $options_values = $db->Execute("SELECT products_options_id, products_options_name
-                                                  FROM " . TABLE_PRODUCTS_OPTIONS . "
-                                                  WHERE language_id = " . (int)$_SESSION['languages_id'] . "
-                                                  AND products_options_name != ''
-                                                  AND products_options_type != " . (int)PRODUCTS_OPTIONS_TYPE_TEXT . "
-                                                  AND products_options_type != " . (int)PRODUCTS_OPTIONS_TYPE_FILE . "
-                                                  ORDER BY products_options_name");
+                  <?php echo zen_draw_label(TEXT_SELECT_OPTION, 'options_id', 'class="control-label"');
+                  //filter the dropdown to only show Option Names that have Option Values defined
+                  $options_values = $db->Execute("SELECT DISTINCT po.products_options_id, po.products_options_name
+                                                  FROM " . TABLE_PRODUCTS_OPTIONS . " po INNER JOIN " . TABLE_PRODUCTS_OPTIONS_VALUES_TO_PRODUCTS_OPTIONS . " povtpo
+                                                  ON po.products_options_id = povtpo.products_options_id
+                                                  WHERE po.language_id = " . (int)$_SESSION['languages_id'] . "
+                                                  AND po.products_options_name != ''
+                                                  AND po.products_options_type != " . (int)PRODUCTS_OPTIONS_TYPE_TEXT . "
+                                                  AND po.products_options_type != " . (int)PRODUCTS_OPTIONS_TYPE_FILE . "
+                                                  ORDER BY po.products_options_name");
                   $optionsValuesArray = array();
                   foreach ($options_values as $options_value) {
                     $optionsValuesArray[] = array(
@@ -118,7 +119,7 @@ switch ($_GET['action']) {
                     );
                   }
                   ?>
-                  <?php echo zen_draw_pull_down_menu('options_id', $optionsValuesArray, '', 'class="form-control"'); ?>
+                  <?php echo zen_draw_pull_down_menu('options_id', $optionsValuesArray, '', 'class="form-control" id="options_id"'); ?>
               </td>
               <td class="dataTableHeadingContent text-center">
                 <button type="submit" class="btn btn-primary"><?php echo IMAGE_EDIT; ?></button>
@@ -132,7 +133,7 @@ switch ($_GET['action']) {
           <?php echo zen_draw_form('update', FILENAME_PRODUCTS_OPTIONS_VALUES, 'action=update_sort_order&options_id=' . $_GET['options_id'], 'post', 'class="form-horizontal"'); ?>
           <table class="table table-condensed table-striped">
             <tr class="dataTableHeadingRow">
-              <td colspan="3" class="dataTableHeadingContent" align="center">
+              <td colspan="3" class="dataTableHeadingContent text-center">
                 <?php echo TEXT_EDIT_OPTION_NAME; ?> <?php echo zen_options_name($_GET['options_id']); ?></td>
             </tr>
             <tr class="dataTableHeadingRow">
@@ -217,7 +218,7 @@ switch ($_GET['action']) {
         <div class="row">
             <?php echo zen_draw_form('update_product_attributes', FILENAME_PRODUCTS_OPTIONS_VALUES, 'action=update_product', 'post', 'class="form-horizontal"'); ?>
             <?php echo zen_draw_hidden_field('products_update_id'); ?>
-          <div class="col-sm-6"><?php echo zen_draw_products_pull_down_attributes('products_update_id', 'class="form-control"'); ?></div>
+          <div class="col-sm-6"><?php echo zen_draw_pulldown_products_having_attributes('products_update_id', 'class="form-control"'); ?></div>
           <div class="col-sm-2">
             <button type="submit" class="btn btn-warning"><?php echo IMAGE_UPDATE; ?></button>
           </div>
@@ -236,7 +237,7 @@ switch ($_GET['action']) {
         <div class="row">
             <?php echo zen_draw_form('update_categories_attributes', FILENAME_PRODUCTS_OPTIONS_VALUES, 'action=update_categories_attributes', 'post', 'class="form-horizontal"'); ?>
             <?php echo zen_draw_hidden_field('categories_update_id'); ?>
-          <div class="col-sm-3"><?php echo zen_draw_products_pull_down_categories_attributes('categories_update_id', 'class="form-control"'); ?></div>
+          <div class="col-sm-3"><?php echo zen_draw_pulldown_categories_having_products_with_attributes('categories_update_id', 'class="form-control"'); ?></div>
           <div class="col-sm-2"><button type="submit" class="btn btn-warning"><?php echo IMAGE_UPDATE; ?></button></div>
           <?php echo '</form>'; ?>
         </div>

@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: meta_tags.php 2023-05-01 10:56:16Z webchills $
+ * @version $Id: meta_tags.php 2023-10-29 15:56:16Z webchills $
  */
 $meta_tags_over_ride = false;
 $metatag_page_name = $current_page_base;
@@ -151,21 +151,6 @@ switch ($metatag_page_name) {
     } else {
       if (isset($_GET['manufacturers_id'])) {
 
-        $manufacturer_metatag = $db->Execute("SELECT * FROM " . TABLE_MANUFACTURERS_META . " WHERE manufacturers_id = " . (int)$_GET['manufacturers_id'] . " AND language_id = " . (int)$_SESSION['languages_id'] . " LIMIT 1");
-        if (!$manufacturer_metatag->EOF) {
-          if (!empty (zen_clean_html ($manufacturer_metatag->fields['metatags_title']))) {
-            define('META_TAG_TITLE', str_replace('"','', zen_clean_html ($manufacturer_metatag->fields['metatags_title'])));
-            
-          }
-          if (!empty (zen_clean_html ($manufacturer_metatag->fields['metatags_description']))) {
-            define('META_TAG_DESCRIPTION', str_replace('"','', zen_clean_html ($manufacturer_metatag->fields['metatags_description'])));
-            
-          }
-          if (!empty (zen_clean_html ($manufacturer_metatag->fields['metatags_keywords']))) {
-            define('META_TAG_KEYWORDS', str_replace('"','', zen_clean_html ($manufacturer_metatag->fields['metatags_keywords'])));
-            
-          }
-        }
         $sql = "SELECT manufacturers_name FROM " . TABLE_MANUFACTURERS . " WHERE manufacturers_id = '" . (int)$_GET['manufacturers_id'] . "'";
         $manufacturer_metatags = $db->Execute($sql);
         if ($manufacturer_metatags->EOF) {

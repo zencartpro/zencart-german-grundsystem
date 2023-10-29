@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: orders.php 2023-10-26 11:44:51Z webchills $
+ * @version $Id: orders.php 2023-10-29 15:44:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -37,14 +37,8 @@ if (!isset($_GET['page'])) $_GET['page'] = '';
 include DIR_FS_CATALOG . DIR_WS_CLASSES . 'order.php';
 $show_including_tax = (DISPLAY_PRICE_WITH_TAX === 'true');
 // prepare order-status look-up list
-$orders_status_array = [];
-$orders_status = $db->Execute("SELECT orders_status_id, orders_status_name
-                               FROM " . TABLE_ORDERS_STATUS . "
-                               WHERE language_id = " . (int)$_SESSION['languages_id'] . "
-                               ORDER BY orders_status_id");
-foreach ($orders_status as $status) {
-  $orders_status_array[$status['orders_status_id']] = $status['orders_status_name'];
-}
+$ordersStatus = zen_getOrdersStatuses();
+$orders_status_array = $ordersStatus['orders_status_array'];
 
 $action = ($_GET['action'] ?? '');
 $order_exists = false;
@@ -67,7 +61,7 @@ if (isset($_POST['oID'])) {
 if ($oID) {
   $orders = $db->Execute("SELECT orders_id
                           FROM " . TABLE_ORDERS . "
-                          WHERE orders_id = " . $oID);
+                          WHERE orders_id = " . $oID, 1);
   $order_exists = true;
   if ($orders->RecordCount() <= 0) {
     $order_exists = false;
@@ -561,7 +555,7 @@ if (!empty($action) && $order_exists === true) {
           <div class="col-sm-3 col-lg-4 text-left noprint">
             <?php echo $left_side_buttons; ?>
           </div>
-          <div class="col-sm-6 col-lg-6 noprint">
+          <div class="col-sm-6 col-lg-4 noprint">
             <div class="input-group">
               <span class="input-group-btn">
                   <?php echo $prev_button; ?>
@@ -618,7 +612,7 @@ if (!empty($action) && $order_exists === true) {
                 <?php
                 if (!empty($order->info['ip_address'])) {
                   $lookup_ip = substr($order->info['ip_address'], 0, strpos($order->info['ip_address'], ' '));
-                  $whois_url = 'https://tools.dnsstuff.com/#whois|type=ipv4&&value=' . $lookup_ip;
+                  $whois_url = 'https://ipdata.co/' . $lookup_ip . '?utm_source=zen_cart';
                   //$whois_url = 'https://whois.domaintools.com/' . $lookup_ip;
                   $zco_notifier->notify('ADMIN_ORDERS_IP_LINKS', $lookup_ip, $whois_url);
                   ?>
@@ -1148,19 +1142,19 @@ if (!empty($action) && $order_exists === true) {
                         $disp_order = "c.customers_id DESC";
                     }
                     ?>
-                  <td class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_ORDERS_ID; ?></td>
-                  <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_PAYMENT_METHOD; ?></td>
-                  <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_CUSTOMERS; ?></td>
+                  <th class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_ORDERS_ID; ?></th>
+                  <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_PAYMENT_METHOD; ?></th>
+                  <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_CUSTOMERS; ?></th>
 <?php if ($show_zone_info) { ?>
-                  <td class="dataTableHeadingContent"><?php echo TABLE_HEADING_ZONE_INFO; ?></td>
+                  <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_ZONE_INFO; ?></th>
 <?php } ?>
-                  <td class="dataTableHeadingContent text-right"><?php echo TABLE_HEADING_ORDER_TOTAL; ?></td>
+                  <th class="dataTableHeadingContent text-right"><?php echo TABLE_HEADING_ORDER_TOTAL; ?></th>
 <?php if ($quick_view_popover_enabled) { ?>
-                  <td></td>
+                  <th></th>
 <?php } ?>
-                  <td class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_DATE_PURCHASED; ?></td>
-                  <td class="dataTableHeadingContent text-right"><?php echo TABLE_HEADING_STATUS; ?></td>
-                  <td class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_CUSTOMER_COMMENTS; ?></td>
+                  <th class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_DATE_PURCHASED; ?></th>
+                  <th class="dataTableHeadingContent text-right"><?php echo TABLE_HEADING_STATUS; ?></th>
+                  <th class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_CUSTOMER_COMMENTS; ?></th>
 <?php
   // -----
   // A watching observer can provide an associative array in the form:
@@ -1181,12 +1175,12 @@ if (!empty($action) && $order_exists === true) {
       foreach ($extra_headings as $heading_info) {
           $align = (isset($heading_info['align'])) ? (' text-' . $heading_info['align']) : '';
 ?>
-                <td class="dataTableHeadingContent<?php echo $align; ?>"><?php echo $heading_info['text']; ?></td>
+                <th class="dataTableHeadingContent<?php echo $align; ?>"><?php echo $heading_info['text']; ?></th>
 <?php
       }
   }
 ?>
-                  <td class="dataTableHeadingContent noprint text-right"><?php echo TABLE_HEADING_ACTION; ?></td>
+                  <th class="dataTableHeadingContent noprint text-right"><?php echo TABLE_HEADING_ACTION; ?></th>
                 </tr>
               </thead>
               <tbody>

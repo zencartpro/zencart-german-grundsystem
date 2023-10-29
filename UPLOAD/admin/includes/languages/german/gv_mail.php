@@ -8,7 +8,7 @@
  * @version $Id: gv_mail.php 2023-10-28 19:49:16Z webchills $
  */
 
-
+require DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'gv_name.php';
 define('HEADING_TITLE', 'Sende ' . TEXT_GV_NAME . ' an Kunden');
 
 define('TEXT_FROM', 'Von:');

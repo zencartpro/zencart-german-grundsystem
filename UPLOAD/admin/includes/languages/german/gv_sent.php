@@ -9,18 +9,18 @@
  */
 
 
-
-define('HEADING_TITLE', TEXT_GV_NAMES . ' gesandt');
+require DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'gv_name.php';
+define('HEADING_TITLE', 'Bereits versandte Geschenkgutscheine');
 define('TABLE_HEADING_SENDERS_NAME', 'Name des Absenders');
-define('TABLE_HEADING_VOUCHER_VALUE', TEXT_GV_NAME . ' Value');
-define('TABLE_HEADING_VOUCHER_CODE', TEXT_GV_REDEEM);
+define('TABLE_HEADING_VOUCHER_VALUE', 'Geschenkgutschein Wert');
+define('TABLE_HEADING_VOUCHER_CODE', 'Gutscheinnummer');
 define('TABLE_HEADING_DATE_SENT', 'Gesendet am');
 define('TEXT_HEADING_DATE_REDEEMED', 'Einlösedatum');
 
 define('TEXT_INFO_SENDERS_ID', 'Absender ID:');
 define('TEXT_INFO_AMOUNT_SENT', 'Betrag gesendet:');
 define('TEXT_INFO_DATE_SENT', 'Gesendet am:');
-define('TEXT_INFO_VOUCHER_CODE', TEXT_GV_REDEEM . ':');
+define('TEXT_INFO_VOUCHER_CODE', 'Gutscheinnummer:');
 define('TEXT_INFO_EMAIL_ADDRESS', 'E-Mail Adresse:');
 define('TEXT_INFO_DATE_REDEEMED', 'Einlösedatum:');
 define('TEXT_INFO_IP_ADDRESS', 'IP Adresse:');

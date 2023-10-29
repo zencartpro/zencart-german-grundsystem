@@ -1,14 +1,13 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: english.php 2023-10-24 17:40:32Z webchills $
+ * @version $Id: english.php 2023-10-29 14:59:32Z webchills $
  */
 @setlocale(LC_TIME, ['en_US', 'en_US.utf8', 'en', 'English_United States.1252']);
-
 
 define('TEXT_PASSWORD_LAST_CHANGE', 'Password last changed:&nbsp;');
 define('TEXT_LAST_LOGIN_INFO', 'Last Login [IP]:&nbsp;');
@@ -519,6 +518,8 @@ define('TEXT_FIELD_REQUIRED','&nbsp;<span class="fieldRequired">*</span>');
 define('TEXT_FREE','FREE');
 define('TEXT_FREE_SHIPPING_EDIT','Warning: Yes makes the product - Free Shipping, Shipping Address Required<br>Free Shipping Module is required when all products in the order are Always Free Shipping Products');
 define('TEXT_FREE_SHIPPING_PREVIEW','Warning: This product is marked - Free Shipping, Shipping Address Required<br>Free Shipping Module is required when all products in the order are Always Free Shipping Products');
+define('TEXT_GV_NAME','Gift Certificate');
+define('TEXT_GV_NAMES','Gift Certificates');
 define('TEXT_GROUP_ALL','-- All --');
 define('TEXT_HIDDEN','Hidden');
 define('TEXT_HIDE','Hide');

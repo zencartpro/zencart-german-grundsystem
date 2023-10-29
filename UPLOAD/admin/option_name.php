@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: option_name.php 2021-10-24 18:10:16Z webchills $
+ * @version $Id: option_name.php 2023-10-29 15:10:16Z webchills $
  */
 require('includes/application_top.php');
 
@@ -74,11 +74,11 @@ if ($_GET['action'] == "update_sort_order") {
         <table class="table table-condensed table-striped">
           <thead>
             <tr class="dataTableHeadingRow">
-              <th colspan="<?php echo ($_GET['lng_id'] == $_SESSION['languages_id'] ? '5' : '8'); ?>" class="dataTableHeadingContent text-center"><?php echo TEXT_EDIT_ALL; ?></th>
+              <th class="dataTableHeadingContent text-center" colspan="2"><?php echo TEXT_EDIT_ALL; ?></th>
             </tr>
             <tr class="dataTableHeadingRow">
-              <th colspan="3" class="dataTableHeadingContent text-center"><?php echo ($_GET['lng_id'] != $_SESSION['languages_id'] ? 'Current Language' : '&nbsp;'); ?></th>
-              <th colspan="<?php echo ($_GET['lng_id'] == $_SESSION['languages_id'] ? '2' : '5'); ?>" class="dataTableHeadingContent" class="text-center">
+              <th class="dataTableHeadingContent text-center col-sm-5"><?php echo ($_GET['lng_id'] != $_SESSION['languages_id'] ? 'Current Language' : '&nbsp;'); ?></th>
+              <th class="dataTableHeadingContent text-center">
                   <?php echo zen_draw_form('lng', FILENAME_PRODUCTS_OPTIONS_NAME, '', 'get'); ?>
                   <?php echo zen_hide_session_id(); ?>
                 <?php echo zen_draw_label(TEXT_SELECTED_LANGUAGE . zen_get_language_icon($_GET['lng_id']), 'lng_id', 'class="control-label"'); ?>&nbsp;&nbsp;&nbsp;
@@ -86,8 +86,13 @@ if ($_GET['action'] == "update_sort_order") {
                 <?php echo '</form>'; ?>
               </th>
             </tr>
+          </thead>
+          <tr>
+              <td colspan="2">
             <?php echo zen_draw_form('update', FILENAME_PRODUCTS_OPTIONS_NAME, 'action=update_sort_order&lng_id=' . $_GET['lng_id']); ?>
-            <tr class="dataTableHeadingRow">
+                <table class="table table-condensed table-striped">
+                    <thead>
+          <tr class="dataTableHeadingRow">
                 <?php
                 if ($_GET['lng_id'] != $_SESSION['languages_id']) {
                   ?>
@@ -103,7 +108,7 @@ if ($_GET['action'] == "update_sort_order") {
             </tr>
           </thead>
           <tbody>
-            <tr>
+
                 <?php
                 $options_types = $db->Execute("SELECT * FROM " . TABLE_PRODUCTS_OPTIONS_TYPES);
                 $options_types_names = array();
@@ -118,7 +123,9 @@ if ($_GET['action'] == "update_sort_order") {
                 foreach ($rows as $row) {
                   $option_type = $row['products_options_type'];
                   $the_attributes_type = (isset($options_types_names[$option_type])) ? $options_types_names[$option_type] : " (UNKNOWN: $option_type)";
-
+                ?>
+              <tr>
+                <?php
                   if ($_GET['lng_id'] != $_SESSION['languages_id']) {
                     ?>
                   <td class="dataTableContent text-center"><?php echo zen_get_language_icon($_SESSION['languages_id']); ?></td>
@@ -142,8 +149,11 @@ if ($_GET['action'] == "update_sort_order") {
                 <button type="submit" class="btn btn-primary"><?php echo TEXT_UPDATE_SUBMIT; ?></button>
               </td>
             </tr>
-            <?php echo '</form>'; ?>
           </tbody>
+        </table>
+            <?php echo '</form>'; ?>
+                </td>
+            </tr>
         </table>
         <!-- body_text_eof //-->
         <!-- body_eof //-->

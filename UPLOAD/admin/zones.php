@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: zones.php 2023-10-23 18:11:51Z webchills $
+ * @version $Id: zones.php 2023-10-29 16:11:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -65,7 +65,7 @@ if (!empty($action)) {
       <div class="row">
         <!-- body_text //-->
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 configurationColumnLeft">
-          <table class="table table-hover">
+          <table class="table table-hover" role="listbox">
             <thead>
               <tr class="dataTableHeadingRow">
                 <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_COUNTRY_NAME; ?></th>
@@ -89,9 +89,9 @@ if (!empty($action)) {
                   }
 
                   if (isset($cInfo) && is_object($cInfo) && ($zone['zone_id'] == $cInfo->zone_id)) {
-                    echo '              <tr id="defaultSelected" class="dataTableRowSelected" onclick="document.location.href=\'' . zen_href_link(FILENAME_ZONES, 'zone_page=' . $_GET['zone_page'] . '&cID=' . $cInfo->zone_id . '&action=edit') . '\'" role="button">' . "\n";
+                    echo '              <tr id="defaultSelected" class="dataTableRowSelected" onclick="document.location.href=\'' . zen_href_link(FILENAME_ZONES, 'zone_page=' . $_GET['zone_page'] . '&cID=' . $cInfo->zone_id . '&action=edit') . '\'" role="option" aria-selected="true">' . "\n";
                   } else {
-                    echo '              <tr class="dataTableRow" onclick="document.location.href=\'' . zen_href_link(FILENAME_ZONES, 'zone_page=' . $_GET['zone_page'] . '&cID=' . $zone['zone_id']) . '\'" role="button">' . "\n";
+                    echo '              <tr class="dataTableRow" onclick="document.location.href=\'' . zen_href_link(FILENAME_ZONES, 'zone_page=' . $_GET['zone_page'] . '&cID=' . $zone['zone_id']) . '\'" role="option" aria-selected="false">' . "\n";
                   }
                   ?>
               <td class="dataTableContent"><?php echo $zone['countries_name']; ?></td>

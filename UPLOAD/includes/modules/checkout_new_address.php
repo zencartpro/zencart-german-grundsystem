@@ -2,11 +2,11 @@
 /**
  * checkout_new_address.php
  * Zen Cart German Specific (zencartpro adaptations)
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: checkout_new_address.php 2022-11-22 21:46:16Z webchills $
+ * @version $Id: checkout_new_address.php 2023-10-29 15:46:16Z webchills $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_MODULE_START_CHECKOUT_NEW_ADDRESS');
@@ -80,7 +80,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'submit')) {
       $check_query = $db->bindVars($check_query, ':zoneCountryID', $country, 'integer');
       $check = $db->Execute($check_query);
       $entry_state_has_zones = ($check->fields['total'] > 0);
-      if ($entry_state_has_zones == true) {
+      if ($entry_state_has_zones == true && ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN === 'true') {
       $zone_query = "SELECT distinct zone_id, zone_name, zone_code
                        FROM " . TABLE_ZONES . "
                        WHERE zone_country_id = :zoneCountryID

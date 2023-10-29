@@ -1,6 +1,6 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (zencartpro adaptations)
  * footer code - calculates information for display, and calls the template file for footer-rendering
  *
 

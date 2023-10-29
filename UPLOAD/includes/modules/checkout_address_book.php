@@ -2,27 +2,20 @@
 /**
  * checkout_address_book.php
  *
- * @package modules
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: checkout_address_book.php 2019-04-14 18:49:16Z webchills $
+ * @version $Id: checkout_address_book.php 2023-10-29 15:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
-$radio_buttons = 0;
 
-$addresses_query = "select address_book_id, entry_firstname as firstname, entry_lastname as lastname,
-                                 entry_company as company, entry_street_address as street_address,
-                                 entry_suburb as suburb, entry_city as city, entry_postcode as postcode,
-                                 entry_state as state, entry_zone_id as zone_id,
-                                 entry_country_id as country_id
-                          from " . TABLE_ADDRESS_BOOK . "
-                          where customers_id = '" . (int)$_SESSION['customer_id'] . "'";
+$customer = new Customer;
+$addresses = $customer->getFormattedAddressBookList();
 
-$addresses = $db->Execute($addresses_query);
-if (!$addresses->EOF) $radio_buttons = $addresses->recordCount();
+$radio_buttons = count($addresses);
 
-$zco_notifier->notify('NOTIFY_MODULE_END_CHECKOUT_ADDRESS_BOOK', $addresses_query, $addresses);
+$zco_notifier->notify('NOTIFY_MODULE_END_CHECKOUT_ADDRESS_BOOK', $customer, $addresses);

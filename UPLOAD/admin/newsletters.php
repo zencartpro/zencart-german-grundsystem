@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: newsletters.php 2022-02-27 19:49:51Z webchills $
+ * @version $Id: newsletters.php 2023-10-29 15:49:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -143,9 +143,6 @@ if (!empty($action)) {
       <!-- body //-->
 
       <h1 class="pageHeading"><?php echo HEADING_TITLE; ?></h1>
-      <br>
-      <span style="color:red; font-size:12px;">Hinweis: Ein Versand von Newslettern über Zen Cart wird NICHT empfohlen!<br>Er ist nicht DSGVO-konform, da die Empfänger nie via Double-Optin zugestimmt haben.<br>Verwenden Sie stattdessen echte Newslettersysteme und importieren Ihre Newsletterempfänger in diese Systeme oder koppeln Sie diese Systeme direkt mit Ihrem Zen Cart Shop.</span>
-      <br>
       <div class="row">
         <div class="col-sm-offset-6 col-sm-6">
             <?php if ($action == 'new') { ?>
@@ -190,23 +187,11 @@ if (!empty($action)) {
           $nInfo->updateObjectInfo($_POST);
         }
 
-        $directory_array = array();
-        if ($dir = dir(DIR_WS_MODULES . 'newsletters/')) {
-          while ($file = $dir->read()) {
-            if (!is_dir(DIR_WS_MODULES . 'newsletters/' . $file)) {
-              if (preg_match('~^[^\._].*\.php$~i', $file) > 0) {
-                $directory_array[] = $file;
-              }
-            }
-          }
-          sort($directory_array);
-          $dir->close();
-        }
-
-        for ($i = 0, $n = sizeof($directory_array); $i < $n; $i++) {
-          $modules_array[] = array(
-            'id' => substr($directory_array[$i], 0, strrpos($directory_array[$i], '.')),
-            'text' => substr($directory_array[$i], 0, strrpos($directory_array[$i], '.')));
+        foreach (zen_get_files_in_directory(DIR_WS_MODULES . 'newsletters') as $file) {
+            $modules_array[] = [
+                'id' => basename($file, '.php'),
+                'text' => basename($file, '.php'),
+            ];
         }
         ?>
         <?php
@@ -230,13 +215,13 @@ if (!empty($action)) {
         <div class="form-group">
             <?php echo zen_draw_label(TEXT_NEWSLETTER_CONTENT_HTML, 'message_html', 'class="control-label col-sm-3"'); ?>
           <div class="col-sm-9 col-md-6">
-              <?php echo zen_draw_textarea_field('message_html', 'soft', '100%', '30', htmlspecialchars($nInfo->content_html, ENT_COMPAT, CHARSET, TRUE), 'id="message_html" class="editorHook form-control"'); ?>
+              <?php echo zen_draw_textarea_field('message_html', 'soft', '', '30', htmlspecialchars($nInfo->content_html, ENT_COMPAT, CHARSET, TRUE), 'id="message_html" class="editorHook form-control"'); ?>
           </div>
         </div>
         <div class="form-group">
             <?php echo zen_draw_label(TEXT_NEWSLETTER_CONTENT, 'content', 'class="control-label col-sm-3"'); ?>
           <div class="col-sm-9 col-md-6">
-              <?php echo zen_draw_textarea_field('content', 'soft', '100%', '20', htmlspecialchars($nInfo->content, ENT_COMPAT, CHARSET, TRUE), 'class="noEditor form-control"'); ?>
+              <?php echo zen_draw_textarea_field('content', 'soft', '', '20', htmlspecialchars($nInfo->content, ENT_COMPAT, CHARSET, TRUE), 'class="noEditor form-control"'); ?>
           </div>
         </div>
         <div class="main row text-right">
@@ -262,7 +247,7 @@ if (!empty($action)) {
         </div>
         <div class="row">
           <div class="col-sm-3"><?php echo zen_draw_label(strip_tags(TEXT_NEWSLETTER_CONTENT), '', 'class="control-label"'); ?></div>
-          <div class="col-sm-9 col-md-6"><tt><?php echo nl2br($nInfo->content); ?></tt></div>
+          <div class="col-sm-9 col-md-6 tt"><?php echo nl2br($nInfo->content); ?></div>
         </div>
         <div class="row"><?php echo zen_draw_separator(); ?></div>
         <div class="row text-right">
@@ -278,7 +263,7 @@ if (!empty($action)) {
 
         $nInfo = new objectInfo($newsletter->fields);
 
-        include(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/newsletters/' . $nInfo->module . substr($PHP_SELF, strrpos($PHP_SELF, '.')));
+        $languageLoader->loadExtraLanguageFiles( DIR_WS_LANGUAGES, $_SESSION['language'],  $nInfo->module . substr($PHP_SELF, strrpos($PHP_SELF, '.')), '/modules/newsletters/');
         include(DIR_WS_MODULES . 'newsletters/' . $nInfo->module . substr($PHP_SELF, strrpos($PHP_SELF, '.')));
         $module_name = $nInfo->module;
         $module = new $module_name($nInfo->title, $nInfo->content, $nInfo->content_html);
@@ -302,7 +287,7 @@ if (!empty($action)) {
 
         $nInfo = new objectInfo($newsletter->fields);
 
-        include(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/newsletters/' . $nInfo->module . substr($PHP_SELF, strrpos($PHP_SELF, '.')));
+        $languageLoader->loadExtraLanguageFiles( DIR_WS_LANGUAGES, $_SESSION['language'],  $nInfo->module . substr($PHP_SELF, strrpos($PHP_SELF, '.')), '/modules/newsletters/');
         include(DIR_WS_MODULES . 'newsletters/' . $nInfo->module . substr($PHP_SELF, strrpos($PHP_SELF, '.')));
         $module_name = $nInfo->module;
         $module = new $module_name($nInfo->title, $nInfo->content, $nInfo->content_html);
@@ -318,10 +303,10 @@ if (!empty($action)) {
 
         $nInfo = new objectInfo($newsletter->fields);
 
-        include(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/newsletters/' . $nInfo->module . substr($PHP_SELF, strrpos($PHP_SELF, '.')));
+        $languageLoader->loadExtraLanguageFiles( DIR_WS_LANGUAGES, $_SESSION['language'],  $nInfo->module . substr($PHP_SELF, strrpos($PHP_SELF, '.')), '/modules/newsletters/');
         include(DIR_WS_MODULES . 'newsletters/' . $nInfo->module . substr($PHP_SELF, strrpos($PHP_SELF, '.')));
         $module_name = $nInfo->module;
-        $module = new $module_name($nInfo->title, $nInfo->content, $nInfo->content_html, $_POST['audience_selected']);
+        $module = new $module_name($nInfo->title, $nInfo->content, $nInfo->content_html, $_POST['audience_selected'] ?? '');
         ?>
         <div class="row">
           <div class="col-sm-12"><strong><?php echo TEXT_PLEASE_WAIT; ?></strong></div>
@@ -375,16 +360,16 @@ if (!empty($action)) {
                     <tr class="dataTableRow" onclick="document.location.href = '<?php echo zen_href_link(FILENAME_NEWSLETTERS, 'page=' . $_GET['page'] . '&nID=' . $newsletter['newsletters_id']); ?>'">
                       <?php } ?>
                     <td class="dataTableContent"><?php echo '<a href="' . zen_href_link(FILENAME_NEWSLETTERS, 'page=' . $_GET['page'] . '&nID=' . $newsletter['newsletters_id'] . '&action=preview') . '">' . zen_image(DIR_WS_ICONS . 'preview.gif', ICON_PREVIEW) . '</a>&nbsp;' . $newsletter['title']; ?></td>
-                    <td class="dataTableContent" align="right"><?php echo number_format($newsletter['content_length'] + $newsletter['content_html_length']) . ' bytes'; ?></td>
-                    <td class="dataTableContent" align="right"><?php echo $newsletter['module']; ?></td>
-                    <td class="dataTableContent" align="center"><?php
+                    <td class="dataTableContent text-right"><?php echo number_format($newsletter['content_length'] + $newsletter['content_html_length']) . ' bytes'; ?></td>
+                    <td class="dataTableContent text-right"><?php echo $newsletter['module']; ?></td>
+                    <td class="dataTableContent text-center"><?php
                         if ($newsletter['status'] == '1') {
                           echo zen_image(DIR_WS_ICONS . 'tick.gif', ICON_TICK);
                         } else {
                           echo zen_image(DIR_WS_ICONS . 'cross.gif', ICON_CROSS);
                         }
                         ?></td>
-                    <td class="dataTableContent" align="right"><?php
+                    <td class="dataTableContent text-right"><?php
                         if (isset($nInfo) && is_object($nInfo) && ($newsletter['newsletters_id'] == $nInfo->newsletters_id)) {
                           echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', '');
                         } else {

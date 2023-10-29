@@ -5,12 +5,12 @@
  * Prepares attributes content for rendering in the template system
  * Prepares HTML for input fields with required uniqueness so template can display them as needed and keep collected data in proper fields
  *
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: attributes.php 2022-04-09 15:42:16Z webchills $
+ * @version $Id: attributes.php 2023-10-29 15:42:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -52,7 +52,7 @@ if (PRODUCTS_OPTIONS_SORT_ORDER == '0') {
 }
 
 $sql = "SELECT DISTINCT popt.products_options_id, popt.products_options_name, popt.products_options_sort_order,
-            popt.products_options_type, popt.products_options_length, popt.products_options_comment,
+            popt.products_options_type, popt.products_options_length, popt.products_options_comment, popt.products_options_comment_position,
             popt.products_options_size,
             popt.products_options_images_per_row,
             popt.products_options_images_style,
@@ -120,9 +120,6 @@ while (!$products_options_names->EOF) {
 
     $zco_notifier->notify('NOTIFY_ATTRIBUTES_MODULE_START_OPTION', $products_options_names->fields);
 
-    if (!isset($products_options_names->fields['products_options_comment_position'])) {
-        $products_options_names->fields['products_options_comment_position'] = '0';
-    }
 
     // loop through each Attribute
     while (!$products_options->EOF) {
@@ -476,6 +473,7 @@ while (!$products_options_names->EOF) {
                     $tmp_html = '<input type="text" name="id[' . TEXT_PREFIX . $products_options_id . ']" size="' . $products_options_names->fields['products_options_size'] . '" maxlength="' . $products_options_names->fields['products_options_length'] . '" value="' . htmlspecialchars($tmp_value, ENT_COMPAT, CHARSET, true) . '" id="' . $inputFieldId . '"'  . $data_properties . $field_disabled . '>  ';
                 }
                 $tmp_html .= $products_options_details;
+               if (defined('ATTRIBUTES_ENABLED_TEXT_PRICES') && ATTRIBUTES_ENABLED_TEXT_PRICES == 'true') { // test ATTRIBUTES_ENABLED_TEXT_PRICES
                 $tmp_word_cnt_string = '';
                 // calculate word charges
                 $tmp_word_cnt = 0;
@@ -503,6 +501,7 @@ while (!$products_options_names->EOF) {
                     $tmp_letters_price = $currencies->display_price($tmp_letters_price, zen_get_tax_rate($product_info->fields['products_tax_class_id']));
                     $tmp_html .= '<br>' . TEXT_CHARGES_LETTERS . ' ' . $tmp_letters_cnt . ' = ' . $tmp_letters_price;
                 }
+               } // test ATTRIBUTES_ENABLED_TEXT_PRICES
                 $tmp_html .= "\n";
             }
         }
@@ -551,8 +550,9 @@ while (!$products_options_names->EOF) {
         // default
         // find default attribute if set for default dropdown
         if ($products_options->fields['attributes_default'] == '1') {
-            $selected_attribute = $products_options_value_id;
+            $selected_dropdown_attribute = $products_options_value_id;
         }
+        $selected_attribute = $selected_dropdown_attribute;
 
         $products_options->MoveNext();
         // end of inner while() loop

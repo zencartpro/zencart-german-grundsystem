@@ -5,14 +5,14 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: sqlpatch.php 2023-10-28 19:49:16Z webchills $
+ * @version $Id: sqlpatch.php 2023-10-29 14:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'SQL Patches installieren');
 
-  define('HEADING_INFO','The SQL Query Executor allows you to run SQL queries directly on the database by pasting a script into the textarea or uploading a text file containing the script. It is intended for the manual installation of fields for Plugins and your own corrections/additions.');
-  define('HEADING_WARNING_INSTALLSCRIPTS', 'This tool should <b>NOT</b> be used to execute Zen Cart database-upgrade scripts: use the Zen Cart Installer as per the documentation.');
- define('HEADING_WARNING', '<p>BEFORE you perform ANY database operation using this tool, ensure you have a VERIFIED backup of your database and you know how to restore it.<br>If you are installing 3rd-party modifications/Plugins, note that you do so at your own risk. Zen Cart&reg; makes no warranty as to the safety of scripts supplied by 3rd-party contributors.</p><p>Always test every script on a DEVELOPMENT server before using on your live shop!</p>');
+define('HEADING_INFO','Mit dem SQL Query Executor können Sie SQL-Abfragen direkt in der Datenbank ausführen, indem Sie ein Skript in das Textfeld einfügen oder eine Textdatei hochladen, die das Skript enthält. Er ist für die manuelle Installation von Feldern für Plugins und Ihre eigenen Korrekturen/Ergänzungen gedacht.');
+define('HEADING_WARNING_INSTALLSCRIPTS', 'Dieses Tool sollte <b>NICHT</b> zum Ausführen von Skripten zur Aktualisierung der Zen Cart-Datenbank verwendet werden: Verwenden Sie den Zen Cart Installer, wie in der Dokumentation beschrieben.');
+define('HEADING_WARNING', '<p>Bevor Sie irgendeine Datenbankoperation mit diesem Tool durchführen, stellen Sie sicher, dass Sie ein VERIFIZIERTES Backup Ihrer Datenbank haben und wissen, wie Sie es wiederherstellen können.<br>Wenn Sie Modifikationen/Plugins von Drittanbietern installieren, beachten Sie, dass Sie dies auf eigenes Risiko tun. Zen Cart&reg; übernimmt keine Garantie für die Sicherheit von Skripten, die von Drittanbietern zur Verfügung gestellt werden.</p><p>Testen Sie jedes Skript immer auf einem ENTWICKLUNGSSERVER, bevor Sie es in Ihrem Live-Shop einsetzen!</p>');
 define('TEXT_QUERY_RESULTS', 'Abfrageergebnisse:');
 define('TEXT_ENTER_QUERY_STRING', 'SQL-Befehl(e) ausführen:&nbsp;&nbsp;<br>(Abschliessen<br>mit ;)');
 define('TEXT_QUERY_FILENAME', '<br>oder Datei:');

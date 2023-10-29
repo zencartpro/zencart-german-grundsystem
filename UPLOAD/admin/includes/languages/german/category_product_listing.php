@@ -5,14 +5,13 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: category_product_listing.php 2023-10-24 16:31:16Z webchills $
+ * @version $Id: category_product_listing.php 2023-10-29 16:31:16Z webchills $
  */
 define('HEADING_TITLE', 'Kategorien / Artikel');
 define('HEADING_TITLE_GOTO', 'Gehe zu:');
 
 define('TABLE_HEADING_IMAGE','Bild');
 define('TABLE_HEADING_CATEGORIES_PRODUCTS', 'Kategorien & Artikel');
-
 
 define('TABLE_HEADING_QUANTITY', 'Anzahl');
 
@@ -57,13 +56,10 @@ define('TEXT_INFO_ATTRIBUTES_FEATURES_DELETE', 'Lösche <strong>ALLE</strong> Ar
 define('TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO_PRODUCT', 'Kopiere Attribute zu einem anderen <strong>Artikel</strong> von:<br>');
 define('TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO_CATEGORY', 'Kopiere Attribute zu einer anderen <strong>Kategorie</strong> von:<br>');
 
-
 define('TEXT_COPY_ATTRIBUTES', 'Artikelattribute zum Duplikat kopieren?');
-
 
 define('TEXT_COPY_DISCOUNTS_ONLY', 'wird nur verwendet für duplizierte Artikel mit Mengenrabatten ...');
 define('TEXT_COPY_DISCOUNTS', 'Mengenrabatte des Artikels zum Duplikat kopieren?');
-
 
 define('TEXT_INFO_HEADING_STATUS_CATEGORY', 'Kategoriestatus ändern für:');
 define('TEXT_CATEGORIES_STATUS_INTRO', 'Kategoriestatus ändern nach: ');
@@ -98,3 +94,6 @@ define('TEXT_SORT_PRODUCTS_STATUS_DESC','Status (aktiviert), Name');
 define('TEXT_SORT_PRODUCTS_ID','Artikel ID'); 
 define('TEXT_SORT_PRODUCTS_ID_DESC','Artikel ID (desc)'); 
 define('TEXT_SORT_PRODUCTS_WEIGHT','Gewicht'); 
+
+define('TEXT_HIDE_IMAGES', 'Bilder verbergen');
+define('TEXT_SHOW_IMAGES' , 'Bilder anzeigen');

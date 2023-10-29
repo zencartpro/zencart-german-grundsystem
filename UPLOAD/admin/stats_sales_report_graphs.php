@@ -6,7 +6,7 @@
  * @author inspired from sales_report_graphs.php,v 0.01 2002/11/27 19:02:22 cwi Exp  Released under the GNU General Public License $
  
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: stats_sales_report_graphs.php 2023-10-23 18:21:51Z webchills $
+ * @version $Id: stats_sales_report_graphs.php 2023-10-29 15:21:51Z webchills $
  */
 require 'includes/application_top.php';
 
@@ -303,7 +303,7 @@ for ($i = 0; $i < $report->size; $i++) {
           for ($i = 0; $i < $report->status_available_size; $i++) {
             ?>
             <tr>
-              <td class="dataTableContent text-left"><?php echo $report->status_available[$i]['value'] ?></a></td>
+              <td class="dataTableContent text-left"><?php echo $report->status_available[$i]['text'] ?></a></td>
               <?php
               if (substr($sales_report_filter, $i, 1) == "0") {
                 $tmp = substr($sales_report_filter, 0, $i) . "1" . substr($sales_report_filter, $i + 1, $report->status_available_size - ($i + 1));

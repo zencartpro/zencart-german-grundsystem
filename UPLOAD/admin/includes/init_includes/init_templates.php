@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_templates.php 2023-10-23 14:49:16Z webchills $
+ * @version $Id: init_templates.php 2023-10-29 16:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -48,4 +48,4 @@ if ($pagename == '') {
   $pagename = STORE_NAME;
 }
 $title = TEXT_ADMIN_TAB_PREFIX . ' ' . $pagename;
-define('TITLE', $title);
+zen_define_default('TITLE', $title);
