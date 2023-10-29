@@ -576,7 +576,7 @@ if ($action === 'edit' || $action === 'update') {
                                 $cInfo->customers_gender
                             ) . DIVERS; ?>
                     </label>
-                    <?php echo (error == true && $entry_gender_error == true) ? '&nbsp;' . ENTRY_GENDER_ERROR : ''; ?>
+                    
                 </div>
             </div>
 <?php

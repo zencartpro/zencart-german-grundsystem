@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: braintree_api.php 2023-06-29 14:56:14 webchills $
+ * @version $Id: braintree_api.php 2023-10-29 10:56:14 webchills $
 */
 use Braintree\Gateway;
 use Braintree\Transaction;
@@ -197,13 +197,13 @@ class braintree_api extends base {
         $issue_year = array();
 
         for ($i = 1; $i < 13; $i++) {
-            $expires_month[] = array('id' => sprintf('%02d', $i), 'text' => strftime('%B - (%m)', mktime(0, 0, 0, $i, 1, 2000)));
+            $expires_month[] = array('id' => sprintf('%02d', $i), 'text' => $zcDate->output('%B - (%m)', mktime(0, 0, 0, $i, 1, 2000)));
         }
 
         $today = getdate();
 
         for ($i = $today['year']; $i < $today['year'] + 15; $i++) {
-            $expires_year[] = array('id' => strftime('%y', mktime(0, 0, 0, 1, 1, $i)), 'text' => strftime('%Y', mktime(0, 0, 0, 1, 1, $i)));
+            $expires_year[] = array('id' => $zcDate->output('%y', mktime(0, 0, 0, 1, 1, $i)), 'text' => $zcDate->output('%Y', mktime(0, 0, 0, 1, 1, $i)));
         }
 
         $onFocus = ' onfocus="methodSelect(\'pmt-' . $this->code . '\')"';

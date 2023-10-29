@@ -1,11 +1,11 @@
 <?php
 /**
- * @package admin
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: phplot.php 730 2018-03-30 11:49:16Z webchills $
+ * @version $Id: phplot.php 2023-10-29 10:49:16Z webchills $
  */
 
 /*
@@ -1526,7 +1526,7 @@ class PHPlot{
         $xlab = '';
       break;
       case "time":  //Time formatting suggested by Marlin Viss
-        $xlab = strftime($this->x_time_format,$this->plot_min_x);
+        $xlab = $zcDate->output($this->x_time_format,$this->plot_min_x);
       break;
       default:
         //Unchanged from whatever format is passed in
@@ -1574,7 +1574,7 @@ class PHPlot{
           $xlab = '';
         break;
         case "time":  //Time formatting suggested by Marlin Viss
-          $xlab = strftime($this->x_time_format,$x_tmp);
+          $xlab = $zcDate->output($this->x_time_format,$x_tmp);
         break;
         default:
           //Unchanged from whatever format is passed in
@@ -1621,7 +1621,7 @@ class PHPlot{
         $ylab = '';
       break;
       case "time":
-        $ylab = strftime($this->y_time_format,$which_ylab);
+        $ylab = $zcDate->output($this->y_time_format,$which_ylab);
       break;
       case "right":
         //Make it right aligned
