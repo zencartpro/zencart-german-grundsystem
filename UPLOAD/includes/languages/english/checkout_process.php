@@ -1,12 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
- 
+ * Zen Cart German Specific (158 code in 157) 
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: checkout_process.php 2023-10-29 16:49:16Z webchills $
+ * @version $Id: checkout_process.php 2023-10-29 11:49:16Z webchills $
  */
 
 define('EMAIL_TEXT_SUBJECT', 'Order Confirmation');
@@ -24,6 +23,7 @@ define('EMAIL_TEXT_BILLING_ADDRESS', 'Billing Address');
 define('EMAIL_TEXT_PAYMENT_METHOD', 'Payment Method');
 
 define('EMAIL_SEPARATOR', '------------------------------------------------------');
+define('EMAIL_ORDER_NUMBER_SUBJECT',' No: ');
 
 define('EMAIL_GREETING_MR', 'Dear Mr.');
 define('EMAIL_GREETING_MS', 'Dear Mrs.');

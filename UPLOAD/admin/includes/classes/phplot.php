@@ -13,7 +13,7 @@
 */
 
 class PHPlot{
-
+  global $zcDate;
   var $is_inline = 0;			//0 = Sends headers, 1 = sends just raw image data
   var $browser_cache = '1';	// 0 = Sends headers for browser to not cache the image, (i.e. 0 = don't let browser cache image)
                   // (only if is_inline = 0 also)

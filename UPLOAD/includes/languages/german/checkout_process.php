@@ -23,6 +23,7 @@ define('EMAIL_TEXT_DELIVERY_ADDRESS', 'Lieferanschrift');
 define('EMAIL_TEXT_BILLING_ADDRESS', 'Rechnungsanschrift');
 define('EMAIL_TEXT_PAYMENT_METHOD', 'Zahlungsart');
 define('EMAIL_SEPARATOR', '------------------------------------------------------');
+define('EMAIL_ORDER_NUMBER_SUBJECT',' Nummer: ');
 
 define('EMAIL_GREETING_MR', 'Sehr geehrter Herr');
 define('EMAIL_GREETING_MS', 'Sehr geehrte Frau');
