@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @author inspired from sales_report_graphs.php,v 0.01 2002/11/27 19:02:22 cwi Exp  Released under the GNU General Public License $
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-  * @version $Id: stats_sales_report_graph.php 2023-10-21 15:56:29Z webchills $
+  * @version $Id: stats_sales_report_graph.php 2023-10-30 13:56:29Z webchills $
  */
 
 class statsSalesReportGraph
@@ -59,13 +59,9 @@ class statsSalesReportGraph
         $this->globalStartDate = mktime(0, 0, 0, date('m', $first->fields['first']), date('d', $first->fields['first']), date('Y', $first->fields['first']));
 
         // get all possible status for filter
-        $statuses = $db->Execute("SELECT * FROM " . TABLE_ORDERS_STATUS . " WHERE language_id = " . (int)$_SESSION['languages_id'], false,true, 1800);
-        $tmp = [];
-        foreach ($statuses as $status) {
-            $tmp[] = ['index'=> $status['orders_status_id'], 'value' => $status['orders_status_name']];
-        }
-        $this->status_available = $tmp;
-        $this->status_available_size = count($tmp);
+        $ordersStatus = zen_getOrdersStatuses();
+        $this->status_available = $ordersStatus['orders_statuses'];
+        $this->status_available_size = count($ordersStatus['orders_statuses']);
 
         // -----
         // If supplied, the $startDate and $endDate are expected to be either:
@@ -257,9 +253,9 @@ class statsSalesReportGraph
                 if (substr($filter, $i, 1) === '1') {
                     $tmp1 .= '1';
                     if (strlen($tmp) === 0) {
-                        $tmp = "o.orders_status <> " . $this->status_available[$i]['index'];
+                        $tmp = "o.orders_status <> " . $this->status_available[$i]['id'];
                     } else {
-                        $tmp .= " and o.orders_status <> " . $this->status_available[$i]['index'];
+                        $tmp .= " and o.orders_status <> " . $this->status_available[$i]['id'];
                     }
                 } else {
                     $tmp1 .= '0';

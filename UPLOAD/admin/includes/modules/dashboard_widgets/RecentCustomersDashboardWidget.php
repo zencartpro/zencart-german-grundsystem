@@ -1,9 +1,10 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: RecentCustomersDashboardWidget.php 2021-12-28 17:56:29Z webchills $
+ * @version $Id: RecentCustomersDashboardWidget.php 2023-10-30 14:56:29Z webchills $
  */
 
 if (!zen_is_superuser() && !check_page(FILENAME_CUSTOMERS, '')) return;
@@ -18,6 +19,7 @@ $sql = "SELECT c.customers_id as customers_id, c.customers_firstname as customer
                    a.customers_info_date_account_created as customers_info_date_account_created, a.customers_info_id
             FROM " . TABLE_CUSTOMERS . " c
             LEFT JOIN " . TABLE_CUSTOMERS_INFO . " a ON c.customers_id = a.customers_info_id
+            WHERE c.customers_id = a.customers_info_id
             ORDER BY a.customers_info_date_account_created DESC";
 $customers = $db->Execute($sql, (int)$maxRows, true, 1800);
 

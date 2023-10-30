@@ -16,7 +16,7 @@ if (isset($module)) {
 
 // Override instructions in:
 // https://docs.zen-cart.com/user/admin/site_specific_overrides/
-$quick_view_popover_enabled = $quick_view_popover_enabled ?? false;
+$quick_view_popover_enabled = $quick_view_popover_enabled ?? true;
 $includeAttributesInProductDetailRows = $includeAttributesInProductDetailRows ?? true;
 $show_product_tax = $show_product_tax ?? true;
 $show_zone_info = $show_zone_info ?? true;

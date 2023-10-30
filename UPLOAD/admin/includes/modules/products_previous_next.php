@@ -1,11 +1,11 @@
 <?php
 /**
-
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_previous_next.php 2020-01-18 16:49:16Z webchills $
+ * @version $Id: products_previous_next.php 2023-10-30 14:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -28,33 +28,7 @@ if (!isset($prev_next_list) || $prev_next_list == '') {
   if (!defined('PRODUCT_INFO_PREVIOUS_NEXT_SORT')) define('PRODUCT_INFO_PREVIOUS_NEXT_SORT', zen_get_configuration_key_value_layout('PRODUCT_INFO_PREVIOUS_NEXT_SORT', $check_type));
 
   // sort order
-  switch (PRODUCT_INFO_PREVIOUS_NEXT_SORT) {
-    case (0):
-      $prev_next_order = ' ORDER BY p.products_id';
-      break;
-    case (1):
-      $prev_next_order = " ORDER BY pd.products_name";
-      break;
-    case (2):
-      $prev_next_order = " ORDER BY p.products_model";
-      break;
-    case (3):
-      $prev_next_order = " ORDER BY p.products_price, pd.products_name";
-      break;
-    case (4):
-      $prev_next_order = " ORDER BY p.products_price, p.products_model";
-      break;
-    case (5):
-      $prev_next_order = " ORDER BY pd.products_name, p.products_model";
-      break;
-    case (6):
-      $prev_next_order = " ORDER BY p.products_sort_order";
-      break;
-    default:
-      $prev_next_order = " ORDER BY pd.products_name";
-      break;
-  }
-
+    $prev_next_order = zen_products_sort_order();
 
 // set current category
   $current_category_id = (isset($_GET['current_category_id']) ? (int)$_GET['current_category_id'] : $current_category_id);

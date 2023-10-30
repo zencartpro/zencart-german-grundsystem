@@ -1,9 +1,10 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: SalesReportDashboardWidget.php 2021-12-28 17:56:29Z webchills $
+ * @version $Id: SalesReportDashboardWidget.php 2023-10-30 14:56:29Z webchills $
  */
 
 if (!zen_is_superuser() && !check_page(FILENAME_STATS_SALES_REPORT_GRAPHS, '')) return;
@@ -48,8 +49,8 @@ $currencies = new currencies();
 
   function drawSalesGraph() {
       data = new google.visualization.DataTable();
-      data.addColumn('string', '<?php echo html_entity_decode(DASHBOARD_MONTH); ?>');
-      data.addColumn('number', '<?php echo html_entity_decode(DASHBOARD_SALES); ?>');
+      data.addColumn('string', '<?php echo DASHBOARD_MONTH; ?>');
+      data.addColumn('number', '<?php echo DASHBOARD_SALES; ?>');
       data.addRows(<?php echo "[" . $salesData . "]"; ?>);
 
       var options = {

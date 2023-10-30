@@ -6,13 +6,11 @@
  * Initializes common classes & methods. Controlled by an array which describes
  * the elements to be initialised and the order in which that happens.
  * see  {@link  https://docs.zen-cart.com/dev/code/init_system/} for more details.
- *
- 
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: application_top.php 2023-10-23 15:30:24Z webchills $
+ * @version $Id: application_top.php 2023-10-30 14:58:24Z webchills $
  */
 
 use App\Models\PluginControl;
@@ -155,20 +153,18 @@ if (file_exists('includes/defined_paths.php')) {
 }
 require DIR_FS_CATALOG . DIR_WS_FUNCTIONS . 'php_polyfills.php';
 require DIR_FS_CATALOG . DIR_WS_FUNCTIONS . 'zen_define_default.php';
+
+/**
+ * Register error-handling functions
+ */
+require DIR_FS_CATALOG . DIR_WS_FUNCTIONS . 'functions_error_handling.php';
+zen_enable_error_logging();
+
 /**
  * include the list of extra configure files
  */
-if ($za_dir = @dir(DIR_WS_INCLUDES . 'extra_configures')) {
-  while ($zv_file = $za_dir->read()) {
-    if (preg_match('~^[^\._].*\.php$~i', $zv_file) > 0) {
-      /**
-       * load any user/contribution specific configuration files.
-       */
-      include(DIR_WS_INCLUDES . 'extra_configures/' . $zv_file);
-    }
-  }
-  $za_dir->close();
-  unset($za_dir);
+foreach (glob(DIR_WS_INCLUDES . 'extra_configures/*.php') ?? [] as $file) {
+    include($file);
 }
 $autoLoadConfig = [];
 if (isset($loaderPrefix)) {

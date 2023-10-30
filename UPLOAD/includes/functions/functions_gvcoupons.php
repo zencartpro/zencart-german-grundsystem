@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_gvcoupons.php 2023-10-23 13:49:16Z webchills $
+ * @version $Id: functions_gvcoupons.php 2023-10-30 14:49:16Z webchills $
  */
 
 /**
@@ -49,23 +49,22 @@ function zen_gv_account_update(int $customer_id, int $gv_id)
 /**
  * Return GV balance for customer
  *
- * @TODO - alias to look into Customer class $data array instead
- *
  * @param int $customer_id
  * @return mixed|string
  */
 function zen_user_has_gv_account(int $customer_id)
 {
-    global $db;
-    if (zen_is_logged_in() && !zen_in_guest_checkout()) {
-        $gv_result = $db->Execute("select amount from " . TABLE_COUPON_GV_CUSTOMER . " where customer_id = '" . (int)$customer_id . "'");
-        if ($gv_result->RecordCount() > 0) {
-            if ($gv_result->fields['amount'] > 0) {
-                return $gv_result->fields['amount'];
-            }
-        }
+    global $customer;
+    if (!zen_is_logged_in() || zen_in_guest_checkout()) {
+        return 0.00;
     }
-    return '0.00';
+
+    if (isset($customer) && is_a($customer, Customer::class) && ($customer_id === (int)$customer->getData('customers_id'))) {
+        return $customer->getData('gv_balance');
+    }
+
+    $newCustomer = new Customer($customer_id);
+    return $newCustomer->getData('gv_balance');
 }
 
 /**

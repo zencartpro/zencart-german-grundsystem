@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_dates.php 2023-10-23 12:57:16Z webchills $
+ * @version $Id: functions_dates.php 2023-10-30 14:57:16Z webchills $
  */
 
 // Normally this zen_date_raw function will ONLY be defined here.
@@ -455,4 +455,28 @@ function zen_count_days($start_date, $end_date, $lookup = 'm')
         if (($counter == 1) && ($end_date_month == $start_date_month)) $counter = ($counter - 1);
     }
     return $counter;
+}
+if (!function_exists('datetime_to_sql_format')) {
+    /**
+     * Used especially for converting PayPal-IPN dates to a standard format for db storage
+     */
+    function datetime_to_sql_format(string $dateString, string $format = 'H:i:s M d, Y e'): string
+    {
+        $dateTime = DateTime::createFromFormat($format, $dateString);
+        $dateTime->setTimezone((new DateTime)->getTimezone());
+        return $dateTime->format('Y-m-d H:i:s');
+    }
+}
+
+if (!function_exists('convertToLocalTimeZone')) {
+    /** Used primarily to convert a time value from one timezone to another
+     *  particularly when no timezone component is included in the time value.
+     *  Mainly needed for converting 3rd party Zulu time values to local time
+     */
+    function convertToLocalTimeZone(string $dateTime, string $fromTz = 'UTC', string $outputFormat = 'Y-m-d H:i:s'): string
+    {
+        $localDateTime = new DateTime($dateTime, new DateTimeZone($fromTz));
+        $localDateTime->setTimezone((new DateTime)->getTimezone());
+        return $localDateTime->format($outputFormat);
+    }
 }

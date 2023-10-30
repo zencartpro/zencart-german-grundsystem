@@ -5,8 +5,11 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: log_files.php 2023-10-23 14:46:12Z webchills $
+ * @version $Id: log_files.php 2023-10-30 14:46:12Z webchills $
  */
+if (!defined('IS_ADMIN_FLAG')) {
+    exit('Invalid Access');
+}
 
 /**
  * @param array $log_filename_prefix_patterns Used by /admin/store_manager.php for purging debug logs

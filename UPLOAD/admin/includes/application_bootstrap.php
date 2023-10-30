@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: application_bootstrap.php 2023-10-23 18:41:36Z webchills $
+ * @version $Id: application_bootstrap.php 2023-10-30 14:41:36Z webchills $
  */
 use App\Models\PluginControl;
 use App\Models\PluginControlVersion;
@@ -77,6 +77,7 @@ if (file_exists('includes/local/configure.php')) {
      */
     include('includes/local/configure.php');
 }
+
 require('../includes/application_testing.php');
 /**
  * check for and load application configuration parameters
@@ -125,19 +126,18 @@ if (file_exists($file) && $lines = @file($file)) {
         }
     }
 }
+
+/**
+ * Register error-handling functions
+ */
+require DIR_FS_CATALOG . DIR_WS_FUNCTIONS . 'functions_error_handling.php';
+zen_enable_error_logging();
+
 /**
  * include the extra_configures files
  */
-if ($za_dir = @dir(DIR_WS_INCLUDES . 'extra_configures')) {
-    while ($zv_file = $za_dir->read()) {
-        if (preg_match('~^[^\._].*\.php$~i', $zv_file) > 0) {
-            /**
-             * load any user/contribution specific configuration files.
-             */
-            include(DIR_WS_INCLUDES . 'extra_configures/' . $zv_file);
-        }
-    }
-    $za_dir->close();
+foreach (glob(DIR_WS_INCLUDES . 'extra_configures/*.php') ?? [] as $file) {
+    include($file);
 }
 /**
  * init some vars

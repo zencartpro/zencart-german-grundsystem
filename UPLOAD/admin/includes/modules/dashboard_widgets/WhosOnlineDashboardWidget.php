@@ -1,9 +1,10 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: WhosOnlineDashboardWidget.php 2021-12-28 17:56:29Z webchills $
+ * @version $Id: WhosOnlineDashboardWidget.php 2023-10-30 14:56:29Z webchills $
  */
 
 if (!zen_is_superuser() && !check_page(FILENAME_WHOS_ONLINE, '')) return;
@@ -28,26 +29,26 @@ $spider_array = $whos_online_stats['spider_array'];
         <td><?php echo WO_GRAPH_REGISTERED; ?></td>
         <td>
           <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-1x" style="color: #5ce400;"></i>
-            <i class="fa fa-circle-o fa-stack-1x"></i>
+            <i class="fa-solid fa-circle fa-stack-1x txt-lime"></i>
+            <i class="fa-regular fa-circle fa-stack-1x"></i>
           </span>&nbsp;&nbsp;<?php echo ($user_array[0] ?: ''); ?>
         </td>
         <td>
           <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-1x" style="color: #fc0;"></i>
-            <i class="fa fa-circle-o fa-stack-1x"></i>
+            <i class="fa-solid fa-circle fa-stack-1x txt-orange"></i>
+            <i class="fa-regular fa-circle fa-stack-1x"></i>
           </span>&nbsp;&nbsp;<?php echo ($user_array[1] ?: ''); ?>
         </td>
         <td>
           <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-1x" style="color: #f00;"></i>
-            <i class="fa fa-circle-o fa-stack-1x"></i>
+            <i class="fa-solid fa-circle fa-stack-1x txt-red"></i>
+            <i class="fa-regular fa-circle fa-stack-1x"></i>
           </span>&nbsp;&nbsp;<?php echo ($user_array[2] ?: ''); ?>
         </td>
         <td>
           <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-1x" style="color: #ffbaba;"></i>
-            <i class="fa fa-circle-o fa-stack-1x"></i>
+            <i class="fa-solid fa-circle fa-stack-1x txt-pink"></i>
+            <i class="fa-regular fa-circle fa-stack-1x"></i>
           </span>&nbsp;&nbsp;<?php echo ($user_array[3] ?: ''); ?>
         </td>
       </tr>
@@ -55,26 +56,26 @@ $spider_array = $whos_online_stats['spider_array'];
         <td><?php echo WO_GRAPH_GUEST; ?></td>
         <td>
           <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-1x" style="color: #5ce400;"></i>
-            <i class="fa fa-circle-o fa-stack-1x"></i>
+            <i class="fa-solid fa-circle fa-stack-1x txt-lime"></i>
+            <i class="fa-regular fa-circle fa-stack-1x"></i>
           </span>&nbsp;&nbsp;<?php echo ($guest_array[0] ?: ''); ?>
         </td>
         <td>
           <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-1x" style="color: #fc0;"></i>
-            <i class="fa fa-circle-o fa-stack-1x"></i>
+            <i class="fa-solid fa-circle fa-stack-1x txt-orange"></i>
+            <i class="fa-regular fa-circle fa-stack-1x"></i>
           </span>&nbsp;&nbsp;<?php echo ($guest_array[1] ?: ''); ?>
         </td>
         <td>
           <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-1x" style="color: #f00;"></i>
-            <i class="fa fa-circle-o fa-stack-1x"></i>
+            <i class="fa-solid fa-circle fa-stack-1x txt-red"></i>
+            <i class="fa-regular fa-circle fa-stack-1x"></i>
           </span>&nbsp;&nbsp;<?php echo ($guest_array[2] ?: ''); ?>
         </td>
         <td>
           <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-1x" style="color: #ffbaba;"></i>
-            <i class="fa fa-circle-o fa-stack-1x"></i>
+            <i class="fa-solid fa-circle fa-stack-1x txt-pink"></i>
+            <i class="fa-regular fa-circle fa-stack-1x"></i>
           </span>&nbsp;&nbsp;<?php echo ($guest_array[3] ?: ''); ?>
         </td>
       </tr>
@@ -82,25 +83,25 @@ $spider_array = $whos_online_stats['spider_array'];
         <td><?php echo WO_GRAPH_SPIDER; ?></td>
         <td>
           <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-1x" style="color: #5ce400;"></i>
-            <i class="fa fa-circle-o fa-stack-1x"></i>
+            <i class="fa-solid fa-circle fa-stack-1x txt-lime"></i>
+            <i class="fa-regular fa-circle fa-stack-1x"></i>
           </span>&nbsp;&nbsp;<?php echo ($spider_array[0] ?: ''); ?>
         </td>
         <td>
           <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-1x" style="color: #fc0;"></i>
-            <i class="fa fa-circle-o fa-stack-1x"></i>
+            <i class="fa-solid fa-circle fa-stack-1x txt-orange"></i>
+            <i class="fa-regular fa-circle fa-stack-1x"></i>
           </span>&nbsp;&nbsp;<?php echo ($spider_array[1] ?: ''); ?></td>
         <td>
           <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-1x" style="color: #f00;"></i>
-            <i class="fa fa-circle-o fa-stack-1x"></i>
+            <i class="fa-solid fa-circle fa-stack-1x txt-red"></i>
+            <i class="fa-regular fa-circle fa-stack-1x"></i>
           </span>&nbsp;&nbsp;<?php echo ($spider_array[2] ?: ''); ?>
         </td>
         <td>
           <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-1x" style="color: #ffbaba;"></i>
-            <i class="fa fa-circle-o fa-stack-1x"></i>
+            <i class="fa-solid fa-circle fa-stack-1x txt-pink"></i>
+            <i class="fa-regular fa-circle fa-stack-1x"></i>
           </span>&nbsp;&nbsp;<?php echo ($spider_array[3] ?: ''); ?>
         </td>
       </tr>
@@ -111,20 +112,20 @@ $spider_array = $whos_online_stats['spider_array'];
       <tr class="smallText">
         <td colspan="5">
           <span class="fa-stack">
-            <i class="fa fa-circle fa-stack-1x" style="color: #5ce400;"></i>
-            <i class="fa fa-circle-o fa-stack-1x"></i>
+            <i class="fa-solid fa-circle fa-stack-1x txt-lime"></i>
+            <i class="fa-regular fa-circle fa-stack-1x"></i>
           </span>&nbsp;<?php echo WHOS_ONLINE_ACTIVE_TEXT; ?>&nbsp;&nbsp;
           <span class="fa-stack">
-            <i class="fa fa-circle fa-stack-1x" style="color: #fc0;"></i>
-            <i class="fa fa-circle-o fa-stack-1x"></i>
+            <i class="fa-solid fa-circle fa-stack-1x txt-orange"></i>
+            <i class="fa-regular fa-circle fa-stack-1x"></i>
           </span>&nbsp;<?php echo WHOS_ONLINE_INACTIVE_TEXT; ?>&nbsp;&nbsp;
           <span class="fa-stack">
-            <i class="fa fa-circle fa-stack-1x" style="color: #f00;"></i>
-            <i class="fa fa-circle-o fa-stack-1x"></i>
+            <i class="fa-solid fa-circle fa-stack-1x txt-red"></i>
+            <i class="fa-regular fa-circle fa-stack-1x"></i>
           </span>&nbsp;<?php echo WHOS_ONLINE_ACTIVE_NO_CART_TEXT; ?>&nbsp;&nbsp;
           <span class="fa-stack">
-            <i class="fa fa-circle fa-stack-1x" style="color: #ffbaba;"></i>
-            <i class="fa fa-circle-o fa-stack-1x"></i>
+            <i class="fa-solid fa-circle fa-stack-1x txt-pink"></i>
+            <i class="fa-regular fa-circle fa-stack-1x"></i>
           </span>&nbsp;<?php echo WHOS_ONLINE_INACTIVE_NO_CART_TEXT; ?>
         </td>
       </tr>

@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_addresses.php 2023-10-27 15:43:16Z webchills $
+ * @version $Id: functions_addresses.php 2023-10-30 14:43:16Z webchills $
  */
 
 /**
@@ -102,7 +102,7 @@ function zen_get_countries(int $country_id = 0, bool $with_iso_codes = false, bo
  */
 function zen_get_country_name($country_id, $activeOnly = true)
 {
-    $country_array = zen_get_countries($country_id, false, $activeOnly);
+    $country_array = zen_get_countries((int)$country_id, false, $activeOnly);
     return $country_array['countries_name'];
 }
 
@@ -114,7 +114,7 @@ function zen_get_country_name($country_id, $activeOnly = true)
  */
 function zen_get_countries_with_iso_codes($country_id, $activeOnly = TRUE)
 {
-    return zen_get_countries($country_id, true, $activeOnly);
+    return zen_get_countries((int)$country_id, true, $activeOnly);
 }
 
 
@@ -397,7 +397,7 @@ function zen_address_label($customers_id, $address_id = 1, $html = false, $boln 
 
     $zco_notifier->notify('NOTIFY_ZEN_ADDRESS_LABEL', null, $customers_id, $address_id, $address->fields);
 
-    $format_id = zen_get_address_format_id($address->fields['country_id']);
+    $format_id = zen_get_address_format_id((int)$address->fields['country_id']);
 
     return zen_address_format($format_id, $address->fields, $html, $boln, $eoln);
 }

@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: delete_product_confirm.php 2023-10-22 08:49:16Z webchills $
+ * @version $Id: delete_product_confirm.php 2023-10-30 14:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -32,18 +32,15 @@ if (!empty($cascaded_prod_id_for_delete) && !empty($cascaded_prod_cat_for_delete
 
 if ($do_delete_flag) {
   //--------------PRODUCT_TYPE_SPECIFIC_INSTRUCTIONS_GO__BELOW_HERE--------------------------------------------------------
+
   //--------------PRODUCT_TYPE_SPECIFIC_INSTRUCTIONS_GO__ABOVE__HERE--------------------------------------------------------
   // now do regular non-type-specific delete:
   // remove product from all its categories:
   for ($k = 0, $m = count($product_categories); $k < $m; $k++) {
-    $db->Execute("DELETE FROM " . TABLE_PRODUCTS_TO_CATEGORIES . "
-                  WHERE products_id = " . (int)$product_id . "
-                  AND categories_id = " . (int)$product_categories[$k]);
+      zen_unlink_product_from_category((int)$product_id, $product_categories[$k]);
   }
   // confirm that product is no longer linked to any categories
-  $count_categories = $db->Execute("SELECT COUNT(categories_id) AS total
-                                    FROM " . TABLE_PRODUCTS_TO_CATEGORIES . "
-                                    WHERE products_id = " . (int)$product_id);
+  $count_categories = zen_get_linked_categories_for_product((int)$product_id);
   // echo 'count of category links for this product=' . count($count_categories . '<br>';
   // if not linked to any categories, do delete:
   if (empty($count_categories)) {

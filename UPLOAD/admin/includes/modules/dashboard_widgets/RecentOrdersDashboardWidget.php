@@ -1,9 +1,10 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: RecentOrdersDashboardWidget.php 2021-12-28 17:56:29Z webchills $
+ * @version $Id: RecentOrdersDashboardWidget.php 2023-10-30 14:56:29Z webchills $
  */
 
 if (!zen_is_superuser() && !check_page(FILENAME_ORDERS, '')) return;
@@ -12,9 +13,10 @@ if (!zen_is_superuser() && !check_page(FILENAME_ORDERS, '')) return;
 // return;
 
 // Configure settings
-$maxRows = 25;
-$quick_view_popover_enabled = false;
-$includeAttributesInProductDetailRows = true;
+// To override the $show_* or $attr_img_width values, see
+// https://docs.zen-cart.com/user/admin/site_specific_overrides/
+$includeAttributesInPopoverRows = $includeAttributesInPopoverRows ?? true;
+$maxRows = $recentOrdersMaxRows ?? 25;
 
 // Get data
 $sql = "SELECT o.orders_id as orders_id, o.customers_name as customers_name, o.customers_id,
@@ -51,7 +53,7 @@ $currencies = new currencies();
           foreach($orderProducts as $product) {
               $product_details .= $product['qty'] . ' x ' . $product['name'] . (!empty($product['model']) ? ' (' . $product['model'] . ')' :''). "\n";
 
-              if ($includeAttributesInProductDetailRows) {
+              if ($includeAttributesInPopoverRows) {
                   $sql = "SELECT products_options, products_options_values
                           FROM " . TABLE_ORDERS_PRODUCTS_ATTRIBUTES . "
                           WHERE orders_products_id = " . (int)$product['orders_products_id'] . " ORDER BY orders_products_attributes_id ASC";
@@ -74,11 +76,10 @@ $currencies = new currencies();
                 <?php echo $order['orders_id'] . ' - ' . substr($order['customers_name'], 0, 20); ?>
             </a>
           </td>
-          <td class="text-right" title="<?php echo zen_output_string($product_details, array('"' => '&quot;', "'" => '&#39;', '<br />' => '', '<hr>' => "----\n")); ?>">
+          <td class="text-right" title="<?php echo zen_output_string($product_details, array('"' => '&quot;', "'" => '&#39;', '<br>' => '', '<br />' => '', '<hr>' => "----\n")); ?>">
             <?php echo $amt; ?>
           </td>
           <td class="text-right"><?php echo zen_date_short($order['date_purchased']); ?></td>
-<?php if ($quick_view_popover_enabled) { ?>
           <td class="text-center">
               <a tabindex="0" class="btn btn-xs btn-link orderProductsPopover" role="button" data-toggle="popover"
                  data-trigger="focus"
@@ -89,7 +90,6 @@ $currencies = new currencies();
                   <?php echo TEXT_PRODUCT_POPUP_BUTTON; ?>
               </a>
           </td>
-<?php } ?>
         </tr>
       <?php } ?>
     </table>

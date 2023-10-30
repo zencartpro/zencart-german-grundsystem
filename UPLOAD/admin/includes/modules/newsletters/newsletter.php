@@ -1,11 +1,11 @@
 <?php
 /**
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+* Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: newsletter.php 2020-01-17 19:01:16Z webchills $
+ * @version $Id: newsletter.php 2023-10-30 14:01:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -13,7 +13,32 @@ if (!defined('IS_ADMIN_FLAG')) {
 
 class newsletter {
 
-  var $show_choose_audience, $title, $content, $content_html, $queryname;
+    /**
+     * $content_html is the email content in HTML form.
+     * @var string
+     */
+    protected $content_html;
+    /**
+     * $content is the email content in text form.
+     * @var string
+     */
+    protected $content;
+    /**
+     * $query_name is the audience select query to process
+     * @var string
+     */
+    protected $query_name = '';
+    /**
+     * $show_choose_audience is a flag that toggles the select audience form display
+     * @var boolean
+     */
+    public $show_choose_audience;
+    /**
+     * $title is the display title
+     * @var string
+     */
+    protected $title;
+
 
   function __construct($title, $content, $content_html, $queryname = '') {
     $this->show_choose_audience = true;
@@ -25,7 +50,6 @@ class newsletter {
   }
 
   function choose_audience() {
-    global $_GET;
 
     $choose_audience_string = zen_draw_form('audience', FILENAME_NEWSLETTERS, 'page=' . $_GET['page'] . '&nID=' . $_GET['nID'] . '&action=confirm', 'post', 'onsubmit="return check_form(audience);" class="form-horizontal"') . PHP_EOL;
     $choose_audience_string .= '<div class="form-group">' . PHP_EOL;
@@ -71,7 +95,7 @@ class newsletter {
     $confirm_string .= zen_draw_separator() . PHP_EOL;
     $confirm_string .= '</div>' . PHP_EOL;
     $confirm_string .= '<div class="row">' . PHP_EOL;
-    $confirm_string .= '<div class="col-sm-12"><tt>' . nl2br($this->content) . '</tt></div>' . PHP_EOL;
+    $confirm_string .= '<div class="col-sm-12 tt">' . nl2br($this->content) . '</div>' . PHP_EOL;
     $confirm_string .= '</div>' . PHP_EOL;
     $confirm_string .= '<div class="row">' . PHP_EOL;
     $confirm_string .= zen_draw_separator() . PHP_EOL;

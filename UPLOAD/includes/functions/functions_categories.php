@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_categories.php 2023-10-21 15:22:16Z webchills $
+ * @version $Id: functions_categories.php 2023-10-30 14:22:16Z webchills $
  */
 
 /**
@@ -62,7 +62,7 @@ function zen_count_products_in_category($category_id, $include_inactive = false)
     if ($distinct === true) {
         return zen_count_distinct_products_in_category($category_id, $include_inactive);
     }
-    
+
     global $db;
     $products_count = 0;
 
@@ -356,7 +356,7 @@ function zen_product_in_parent_category($product_id, $cat_id, $parent_cat_id)
  */
 function zen_draw_pulldown_products($field_name, $parameters = '', $exclude = [], $show_id = false, $set_selected = 0, $show_model = false, $show_current_category = false, $order_by = '', $filter_by_option_name = null)
 {
-    global $prev_next_order, $current_category_id;
+    global $current_category_id;
 
     $only_active = false;
 
@@ -365,7 +365,7 @@ function zen_draw_pulldown_products($field_name, $parameters = '', $exclude = []
     }
 
     if (empty($order_by)) {
-        $order_by = zen_products_sort_order(false);
+        $order_by = str_replace(['pd.', 'p.'], '', zen_products_sort_order(false));
     }
 
     $sort_array = array_map('trim', array_filter(explode(',', str_ireplace('order by ', '', $order_by))));

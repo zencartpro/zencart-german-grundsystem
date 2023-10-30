@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_customers.php 2023-10-23 13:08:16Z webchills $
+ * @version $Id: functions_customers.php 2023-10-30 14:08:16Z webchills $
  */
 
 /**
@@ -26,6 +26,8 @@ function zen_customer_greeting(): string
 }
 
 /**
+ * @deprecated use $customer->getNumberOfOrders() directly
+ *
  * @param int|null $customer_id
  * @param bool $check_session unused legacy param
  * @return int
@@ -38,7 +40,7 @@ function zen_count_customer_orders(int $customer_id = null, $check_session = tru
 }
 
 /**
- * look up customers default or primary address
+ * look up customer's default/primary address
  * @param int $customer_id
  * @return int|null
  */
@@ -124,8 +126,15 @@ function zen_check_email_address_not_already_used(string $email, int $customer_i
  */
 function zen_get_customer_validate_session(int $customer_id): bool
 {
-    global $messageStack;
-    $customer = new Customer($customer_id);
+    global $messageStack, $customer;
+
+    if (!zen_is_logged_in()) {
+        return false;
+    }
+
+    if (!isset($customer) || !is_a($customer, Customer::class)) {
+        $customer = new Customer($customer_id);
+    }
 
     $banned = $customer->isBanned($customer_id);
 
