@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: product.php 2023-10-28 20:49:16Z webchills $
+ * @version $Id: product.php 2023-10-30 15:17:16Z webchills $
  */
 
 
@@ -87,3 +87,4 @@ define('TEXT_META_EXCLUDED', '<span class="alert">EXCLUDED</span>');
 define('TEXT_TITLE_PLUS_TAGLINE', 'Store Title+Tagline');
 
 define('TEXT_PRODUCTS_PRICE_INFO', 'Price:');
+define('WARNING_PRODUCT_DOES_NOT_EXIST' , 'Warning: Product ID#%u cannot be modified, it does not exist.');

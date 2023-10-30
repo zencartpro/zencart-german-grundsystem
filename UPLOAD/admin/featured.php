@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * $Id: featured.php 2023-10-29 15:49:16Z webchills $
+ * $Id: featured.php 2023-10-30 15:13:16Z webchills $
  * structurally identical to specials.php, modifications should be replicated
  */
 require 'includes/application_top.php';
@@ -44,7 +44,7 @@ if (!empty($action)) {
             $featured_date_available_raw = $dt->format('Y-m-d');
           }
         }
-        $featured_date_available = (date('Y-m-d') < $featured_date_available_raw) ? $featured_date_available_raw : '0001-01-01';
+        $featured_date_available = (date('Y-m-d') <= $featured_date_available_raw) ? $featured_date_available_raw : '0001-01-01';
         $expires_date_raw = zen_db_prepare_input($_POST['expires_date']);
         if (DATE_FORMAT_DATE_PICKER != 'yy-mm-dd' && !empty($expires_date_raw)) {
           $local_fmt = zen_datepicker_format_fordate();
@@ -54,7 +54,7 @@ if (!empty($action)) {
             $expires_date_raw = $dt->format('Y-m-d');
           }
         }
-        $expires_date = (date('Y-m-d') < $expires_date_raw) ? $expires_date_raw : '0001-01-01';
+        $expires_date = (date('Y-m-d') <= $expires_date_raw) ? $expires_date_raw : '0001-01-01';
 
         $db->Execute("INSERT INTO " . TABLE_FEATURED . " (products_id, featured_date_added, expires_date, status, featured_date_available)
                       VALUES (" . (int)$products_id . ", now(), '" . zen_db_input($expires_date) . "', 1, '" . zen_db_input($featured_date_available) . "')");
@@ -81,7 +81,7 @@ if (!empty($action)) {
           $featured_date_available_raw = $dt->format('Y-m-d');
         }
       }
-      $featured_date_available = (date('Y-m-d') < $featured_date_available_raw) ? $featured_date_available_raw : '0001-01-01';
+      $featured_date_available = (date('Y-m-d') <= $featured_date_available_raw) ? $featured_date_available_raw : '0001-01-01';
       $expires_date_raw = zen_db_prepare_input($_POST['expires_date']);
       if (DATE_FORMAT_DATE_PICKER != 'yy-mm-dd' && !empty($expires_date_raw)) {
         $local_fmt = zen_datepicker_format_fordate();
@@ -91,7 +91,7 @@ if (!empty($action)) {
           $expires_date_raw = $dt->format('Y-m-d');
         }
       }
-      $expires_date = (date('Y-m-d') < $expires_date_raw) ? $expires_date_raw : '0001-01-01';
+      $expires_date = (date('Y-m-d') <= $expires_date_raw) ? $expires_date_raw : '0001-01-01';
 
       $db->Execute("UPDATE " . TABLE_FEATURED . "
                     SET featured_last_modified = now(),
@@ -255,12 +255,7 @@ if (!empty($action)) {
             <div class="form-group">
               <?php echo zen_draw_label(TEXT_FEATURED_PRODUCT, 'products_id', 'class="col-sm-3 control-label"'); ?>
               <div class="col-sm-9 col-md-6">
-                <?php
-                if (empty($prev_next_order)) {
-                  $prev_next_order = ' ORDER BY products_model'; // set sort order of dropdown
-                }
-                echo zen_draw_pulldown_products('products_id', 'required size="15" class="form-control" id="products_id"', $featured_array, true, (!empty($_GET['add_products_id']) ? $_GET['add_products_id'] : ''), true);
-                ?>
+                <?= zen_draw_pulldown_products('products_id', 'required size="15" class="form-control" id="products_id"', $featured_array, true, (!empty($_GET['add_products_id']) ? $_GET['add_products_id'] : ''), true); ?>
               </div>
             </div>
           <?php } ?>

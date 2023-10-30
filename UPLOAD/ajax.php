@@ -3,11 +3,12 @@
  * ajax front controller
  *
  * @package core
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ajax.php 2021-10-24 17:32:29Z webchills $
+ * @version $Id: ajax.php 2023-10-30 15:32:29Z webchills $
  */
 // Abort if the request was not an AJAX call
 if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
@@ -34,28 +35,14 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 
 
 // --- support functions ------------------
-if (!function_exists('utf8_encode_recurse')) {
-    function utf8_encode_recurse($mixed_value)
-    {
-        if (strtolower(CHARSET) == 'utf-8') {
-            return $mixed_value;
-        } elseif (!is_array($mixed_value)) {
-            return utf8_encode((string)$mixed_value);
-        } else {
-            $result = array();
-            foreach ($mixed_value as $key => $value) {
-                $result[$key] = utf8_encode($value);
-            }
-            return $result;
-        }
-    }
-}
-
 function ajaxAbort($status = 400, $msg = null)
 {
+    global $zc_ajax_base_dir;
     http_response_code($status); // 400 = "Bad Request"
-    if ($msg) echo $msg;
-    require('includes/application_bottom.php');
+    if ($msg) {
+        echo $msg;
+    }
+    require $zc_ajax_base_dir . 'includes/application_bottom.php';
     exit();
 }
 // --- support functions ------------------
@@ -84,6 +71,5 @@ if (!method_exists($class, $_GET['method'])) {
 
 // Accepted request, so execute and return appropriate response:
 $result = call_user_func(array($class, $_GET['method']));
-$result = utf8_encode_recurse($result);
 echo json_encode($result);
-require('includes/application_bottom.php');
+require $zc_ajax_base_dir . 'includes/application_bottom.php';

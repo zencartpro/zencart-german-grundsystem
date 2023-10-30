@@ -1,12 +1,11 @@
 <?php 
 /**
  * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
-
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: product.php 2023-10-28 20:49:16Z webchills $
+ * @version $Id: product.php 2023-10-30 15:49:16Z webchills $
  */
 
 
@@ -72,9 +71,6 @@ define('TEXT_PRODUCT_MORE_INFORMATION', 'Für weitere Informationen besuchen Sie
 define('TEXT_PRODUCT_DATE_ADDED', 'Dieser Artikel wurde am %s hinzugefügt.');
 define('TEXT_PRODUCT_DATE_AVAILABLE', 'Artikel wird ab %s wieder angeboten.');
 
-
-
-
 define('TEXT_META_TAG_TITLE_INCLUDES', '<strong>Wählen Sie aus, welche Informationen die Metatags des Artikels enthalten sollen:</strong>');
 define('TEXT_PRODUCTS_METATAGS_PRODUCTS_NAME_STATUS', '<strong>Artikelname:</strong>');
 define('TEXT_PRODUCTS_METATAGS_TITLE_STATUS', '<strong>Titel:</strong>');
@@ -88,3 +84,4 @@ define('TEXT_META_EXCLUDED', '<span class="alert">AUSGESCHLOSSEN</span>');
 define('TEXT_TITLE_PLUS_TAGLINE', 'Store Title+Tagline'); // this refers to whatever rules the storeowner has built into customizing their catalog /includes/modules/meta_tags.php and its lang file.
 
 define('TEXT_PRODUCTS_PRICE_INFO', 'Preis:');
+define('WARNING_PRODUCT_DOES_NOT_EXIST' , 'Warnung: Artikel ID#%u kann nicht bearbeitet werden, sie existiert nicht.');
