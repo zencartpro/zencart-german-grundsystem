@@ -1,12 +1,14 @@
 <?php
 /**
  * file contains systemChecker Class
- * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
+
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: class.systemChecker.php 2022-12-14 10:42:53Z webchills $
+ * @version $Id: class.systemChecker.php 2023-10-31 16:42:53Z webchills $
  */
+
 /**
  * systemChecker Class
  */
@@ -106,6 +108,7 @@ class systemChecker
                 $result = TRUE;
             }
         }
+        $this->log(($result ? 'TRUE' : 'FALSE'), __METHOD__, []);
         return $result;
     }
 
@@ -185,6 +188,9 @@ class systemChecker
                 if (isset($version)) break;
             }
         }
+
+        $this->log((!empty($version) ? $version : 'Cannot Be Determined'), __METHOD__, []);
+
 //echo print_r($this->errorList);
         return $version;
     }
@@ -632,6 +638,10 @@ class systemChecker
 
     function log($result, $methodName, $methodDetail)
     {
+        $status = $result;
+        if (is_bool($result)) {
+            $status = ($result === true) ? 'PASSED' : 'FAILED';
+        }
         if (VERBOSE_SYSTEMCHECKER == 'screen' || VERBOSE_SYSTEMCHECKER === TRUE || VERBOSE_SYSTEMCHECKER == 'TRUE') {
             echo $methodName . "<br>";
             if (is_array($methodDetail['parameters'])) {
@@ -639,11 +649,11 @@ class systemChecker
                     echo $key . " : " . $value . "<br>";
                 }
             }
-            echo (($result == 1) ? 'PASSED' : 'FAILED') . "<br>";
+            echo $status  . "<br>";
             echo "------------------<br><br>";
         }
         if (!in_array(VERBOSE_SYSTEMCHECKER, array('silent', 'none', 'off', 'OFF', 'NONE', 'SILENT'))) {
-            logDetails((($result == 1) ? 'PASSED' : 'FAILED') .
+            logDetails($status .
                 (isset($methodDetail['parameters']) ? substr(print_r($methodDetail['parameters'], TRUE), 5) : ''),
                 $methodName);
         }
@@ -684,6 +694,9 @@ class systemChecker
                 }
             }
         }
+
+        $this->log('Present: ' . PROJECT_VERSION_MAJOR . '.' . PROJECT_VERSION_MINOR . '; Latest release online: ' . trim($lines[0]) . '.'. trim($lines[1]), __METHOD__, []);
+
         // prepare displayable download link
         if ($new_version != '' && $new_version != TEXT_VERSION_CHECK_CURRENT) {
             $new_version .= '<a href="' . $lines[6] . '" rel="noopener" target="_blank">' . TEXT_VERSION_CHECK_DOWNLOAD . '</a>';
@@ -718,6 +731,43 @@ class systemChecker
                 $sql = "update " . $dbPrefixVal . "configuration set configuration_value = '" . $db->prepare_input($newip) . "' where configuration_key = 'EXCLUDE_ADMIN_IP_FOR_MAINTENANCE'";
                 $db->Execute($sql);
             }
+        }
+    }
+    /**
+     * Check installed Database version
+     * The check is only validated if the information is available.
+     * There are other checks that will fail so don't issue spurious error message
+     */
+    public function checkMysqlVersion($parameters) {
+        if (function_exists('mysqli_connect')) {
+            $dbServerVal = $this->getServerConfig()->getDefine('DB_SERVER');
+            $dbNameVal = $this->getServerConfig()->getDefine('DB_DATABASE');
+            $dbPasswordVal = $this->getServerConfig()->getDefine('DB_SERVER_PASSWORD');
+            $dbUserVal = $this->getServerConfig()->getDefine('DB_SERVER_USERNAME');
+            require_once(DIR_FS_ROOT . 'includes/classes/db/mysql/query_factory.php');
+            $db = new queryFactory();
+            $result = $db->simpleConnect($dbServerVal, $dbUserVal, $dbPasswordVal, $dbNameVal);
+            if ($db->error_number == '2002') {
+                // Cannot connect to database don't fail test
+                return true;
+            }
+            $version = $db->get_server_info();
+            if ($version === 'UNKNOWN') {
+                // versions not found don't fail
+                return true;
+            } elseif (strripos($version, '-MariaDB') === false) {
+                // mysql database check version
+                $checkVersion = $parameters['mysqlVersion'];
+            } else {
+                // mariaDb Check version must remove -MariaDB from the version 
+                // as version compare treats -... as a lower version than N.N.N
+                $version = substr($version, 0, strripos($version, '-MariaDB'));
+                $checkVersion = $parameters['mariaDBVersion'];
+            }
+            return version_compare($version, $checkVersion) >= 0;
+        } else {
+            // mysqli_connect not available don't fail test
+            return true;
         }
     }
 }

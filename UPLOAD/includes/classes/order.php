@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: order.php 2023-10-21 18:10:25Z webchills $
+ * @version $Id: order.php 2023-10-31 16:42:25Z webchills $
  */
 /**
  * order class
@@ -16,6 +16,7 @@
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
+
 class order extends base
 {
 
@@ -228,9 +229,10 @@ class order extends base
                         'orders_status' => $order->fields['orders_status'],
                         'total' => $order->fields['order_total'],
                         'tax' => $order->fields['order_tax'],
+                        'shipping_tax_rate' => $order->fields['shipping_tax_rate'],
                         'last_modified' => $order->fields['last_modified'],
                         'language_code' => $order->fields['language_code'],
-			                  'order_weight' => $order->fields['order_weight'],
+			 'order_weight' => $order->fields['order_weight'],
                         'order_device' => $order->fields['order_device'],
         ];
 
@@ -561,6 +563,7 @@ class order extends base
                         'shipping_cost' => !empty($_SESSION['shipping']['cost']) ? $_SESSION['shipping']['cost'] : 0,
                         'subtotal' => 0,
                         'shipping_tax' => 0,
+                        'shipping_tax_rate' => null,
                         'tax' => 0,
                         'total' => 0,
                         'tax_groups' => [],
@@ -570,23 +573,23 @@ class order extends base
 
     if ($customer_address->RecordCount() > 0) {
     $this->customer = [
-    'gender' => $customer_address->fields['customers_gender'],
-                              'firstname' => $customer_address->fields['customers_firstname'],
-                              'lastname' => $customer_address->fields['customers_lastname'],
-                              'company' => $customer_address->fields['entry_company'],
-                              'street_address' => $customer_address->fields['entry_street_address'],
-                              'suburb' => $customer_address->fields['entry_suburb'],
-                              'city' => $customer_address->fields['entry_city'],
-                              'postcode' => $customer_address->fields['entry_postcode'],
-                              'state' => ((zen_not_null($customer_address->fields['entry_state'])) ? $customer_address->fields['entry_state'] : $customer_address->fields['zone_name']),
-                              'state_code' => ((zen_not_null($customer_address->fields['zone_code'])) ? $customer_address->fields['zone_code'] : $customer_address->fields['zone_name']),
-                              'zone_id' => $customer_address->fields['entry_zone_id'],
+                'gender' => $customer_address->fields['customers_gender'],
+                'firstname' => $customer_address->fields['customers_firstname'],
+                'lastname' => $customer_address->fields['customers_lastname'],
+                'company' => $customer_address->fields['entry_company'],
+                'street_address' => $customer_address->fields['entry_street_address'],
+                'suburb' => $customer_address->fields['entry_suburb'],
+                'city' => $customer_address->fields['entry_city'],
+                'postcode' => $customer_address->fields['entry_postcode'],
+                'state' => ((zen_not_null($customer_address->fields['entry_state'])) ? $customer_address->fields['entry_state'] : $customer_address->fields['zone_name']),
+                'state_code' => ((zen_not_null($customer_address->fields['zone_code'])) ? $customer_address->fields['zone_code'] : $customer_address->fields['zone_name']),
+                'zone_id' => $customer_address->fields['entry_zone_id'],
                 'country' => ['id' => $customer_address->fields['countries_id'], 'title' => $customer_address->fields['countries_name'], 'iso_code_2' => $customer_address->fields['countries_iso_code_2'], 'iso_code_3' => $customer_address->fields['countries_iso_code_3']],
                 'format_id' => (int)$customer_address->fields['address_format_id'],
                 'telephone' => $customer_address->fields['customers_telephone'],
                 'email_address' => $customer_address->fields['customers_email_address'],
             ];
-    }
+        }
 
     if ($this->content_type == 'virtual') {
             $this->delivery = [
@@ -944,6 +947,7 @@ class order extends base
                             'orders_status' => $this->info['order_status'],
                             'order_total' => $this->info['total'],
                             'order_tax' => $this->info['tax'],
+                            'shipping_tax_rate' => $this->info['shipping_tax_rate'] ?? 'null',
                             'currency' => $this->info['currency'],
                             'currency_value' => $this->info['currency_value'],                          
                             'language_code' => $_SESSION['languages_code'],

@@ -6,7 +6,7 @@
 # * Zen Cart German Version - www.zen-cart-pro.at
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_zencart.sql 2023-10-27 16:21:16Z webchills $
+# * @version $Id: mysql_zencart.sql 2023-10-31 16:41:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -1178,7 +1178,7 @@ CREATE TABLE newsletters (
 #
 # Table structure for table 'orders'
 # Zen Cart German Specific
-
+# shipping_tax_rate new since 1.5.7g
 DROP TABLE IF EXISTS orders;
 CREATE TABLE orders (
   orders_id int(11) NOT NULL auto_increment,
@@ -1230,6 +1230,7 @@ CREATE TABLE orders (
   currency_value decimal(14,6) default NULL,
   order_total decimal(15,4) default NULL,
   order_tax decimal(15,4) default NULL,
+  shipping_tax_rate decimal(15,4) DEFAULT NULL,
   paypal_ipn_id int(11) NOT NULL default 0,
   ip_address varchar(96) NOT NULL default '',
   order_device varchar(10) NOT NULL default '',
@@ -5294,5 +5295,5 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 
 
 REPLACE INTO product_type_layout_language (configuration_title , configuration_key , languages_id, configuration_description, last_modified, date_added)
-VALUES ('20231026', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Übersetzungen', now(), now());
+VALUES ('20231031', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Übersetzungen', now(), now());
 ##### End of SQL setup for Zen Cart German.

@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: application_top.php 2023-10-26 09:43:53Z webchills $
+ * @version $Id: application_top.php 2023-10-31 16:43:53Z webchills $
  */
 
 @ini_set("arg_separator.output", "&");
@@ -125,18 +125,10 @@ if (!isset($_GET['cacheignore'])) {
 }
 
 /**
- * include the list of extra configure files
+ * include any extra_configures files
  */
-if ($za_dir = @dir(DIR_FS_INSTALL . 'includes/extra_configures')) {
-    while ($zv_file = $za_dir->read()) {
-        if (preg_match('~^[^\._].*\.php$~i', $zv_file) > 0) {
-            /**
-             * load any user/contribution specific configuration files.
-             */
-            include DIR_FS_INSTALL . 'includes/extra_configures/' . $zv_file;
-        }
-    }
-    $za_dir->close();
+foreach (glob(DIR_FS_INSTALL . 'includes/extra_configures/*.php') ?? [] as $file) {
+    include $file;
 }
 
 require DIR_FS_ROOT . 'includes/classes/traits/ObserverManager.php';
