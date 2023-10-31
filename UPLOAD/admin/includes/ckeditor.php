@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific (zencartpro adaptations)
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2010 Kuroi Web Design
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ckeditor.php 2022-05-10 21:11:32Z webchills $
+ * @version $Id: ckeditor.php 2023-10-31 10:11:32Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -18,7 +18,8 @@ foreach ($var as $key)
   $jsLanguageLookupArray .= "        lang[" . $key['id'] . "] = '" . $key['code'] . "';\n";
 }
 ?>
-<script type="text/javascript" src="../<?php echo DIR_WS_EDITORS ?>ckeditor/ckeditor.js"></script>
+
+<script src="../<?php echo DIR_WS_EDITORS ?>ckeditor/ckeditor.js"></script>
 
 <script title="ckEditor-Initialize">
     jQuery(document).ready(function() {

@@ -58,10 +58,15 @@ if ($xsell_category_id !== 0 && $xsell_pid === 0) {
     $excluded_products = array_unique($excluded_products);
 
     // -----
-    // Set the $current_category_id (used by zen_draw_products_pull_down) to reflect the currently-selected xsell category.
+    // Set the $current_category_id to reflect the currently-selected xsell category.
     //
     $current_category_id = $xsell_category_id;
-    echo zen_draw_products_pull_down('xsell_pid', 'class="form-control" id="xsell_pid"', $excluded_products, true, $xsell_pid, true, true, true); ?>
+    if (function_exists('zen_draw_pulldown_products')) { 
+       echo zen_draw_pulldown_products('xsell_pid', 'class="form-control" id="xsell_pid"', $excluded_products, true, $xsell_pid, true, true, true);
+    } else {
+       echo zen_draw_products_pull_down('xsell_pid', 'class="form-control" id="xsell_pid"', $excluded_products, true, $xsell_pid, true, true, true);
+    }
+?>
     &nbsp;&nbsp;<button class="btn btn-info" type="submit"><?php echo TEXT_BUTTON_NEW; ?></button>
     <?php echo '</form>'; ?>
     </div>

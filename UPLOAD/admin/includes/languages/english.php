@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: english.php 2023-10-29 14:59:32Z webchills $
+ * @version $Id: english.php 2023-10-31 08:57:32Z webchills $
  */
 @setlocale(LC_TIME, ['en_US', 'en_US.utf8', 'en', 'English_United States.1252']);
 
@@ -244,8 +244,8 @@ define('ERROR_USPS_STATUS','<strong>Warning:</strong> USPS shipping module is ei
 define('FEMALE','Female');
 define('HEADER_ALT_TEXT','Admin Powered by Zen Cart :: The Art of E-Commerce');
 define('HEADER_LOGO_IMAGE','logo.gif');
-define('HEADER_LOGO_WIDTH','192');
-define('HEADER_LOGO_HEIGHT','68');
+define('HEADER_LOGO_WIDTH','240');
+define('HEADER_LOGO_HEIGHT','70');
 define('HEADER_TITLE_ACCOUNT','Account');
 define('HEADER_TITLE_LOGOFF','Logoff');
 define('HEADER_TITLE_ONLINE_CATALOG','Storefront');
@@ -266,6 +266,7 @@ define('ICON_ERROR','Error');
 define('ICON_FOLDER','Folder');
 define('ICON_MOVE','Move');
 define('ICON_PREVIEW','Preview');
+define('ICON_SELECTED' , 'Selected Row');
 define('ICON_STATISTICS','Statistics');
 define('ICON_SUCCESS','Success');
 define('ICON_TICK','True');
@@ -286,7 +287,7 @@ define('IMAGE_EDIT_ATTRIBUTES','Edit Attributes');
 define('IMAGE_EDIT_PRODUCT','Edit Product');
 define('IMAGE_EMAIL','Email');
 define('IMAGE_FORGET_ONLY','Forget Only');
-define('IMAGE_GIFT_QUEUE','%%TEXT_GV_NAME%%' . ' Queue');
+define('IMAGE_GIFT_QUEUE','Gift Certificate Queue');
 define('IMAGE_GO','Go');
 define('IMAGE_ICON_INFO','Info');
 define('IMAGE_ICON_LINKED','Product is Linked');
@@ -324,7 +325,7 @@ define('IMAGE_ORDERS_PACKINGSLIP','Packing Slip');
 define('IMAGE_PREVIEW','Preview');
 define('IMAGE_PRODUCTS_PRICE_MANAGER','Products Price Manager');
 define('IMAGE_PRODUCTS_TO_CATEGORIES','Multiple Categories Link Manager');
-define('IMAGE_RELEASE','Redeem ' . '%%TEXT_GV_NAME%%');
+define('IMAGE_RELEASE','Redeem Gift Certificate');
 define('IMAGE_REMOVE_FEATURED','Remove Featured Product Info');
 define('IMAGE_REMOVE_SPECIAL','Remove Special Price Info');
 define('IMAGE_RESET','Reset');
@@ -520,6 +521,7 @@ define('TEXT_FREE_SHIPPING_EDIT','Warning: Yes makes the product - Free Shipping
 define('TEXT_FREE_SHIPPING_PREVIEW','Warning: This product is marked - Free Shipping, Shipping Address Required<br>Free Shipping Module is required when all products in the order are Always Free Shipping Products');
 define('TEXT_GV_NAME','Gift Certificate');
 define('TEXT_GV_NAMES','Gift Certificates');
+define('TEXT_GV_REDEEM', 'Redemption Code'); 
 define('TEXT_GROUP_ALL','-- All --');
 define('TEXT_HIDDEN','Hidden');
 define('TEXT_HIDE','Hide');
@@ -622,6 +624,7 @@ define('WARNING_ADMIN_DOWN_FOR_MAINTENANCE','<strong>WARNING:</strong> Site is c
 define('WARNING_ATTRIBUTE_COPY_INVALID_ID','Warning: Attribute Copy to Product ID#%u aborted. Invalid ID');
 define('WARNING_ATTRIBUTE_COPY_NO_ATTRIBUTES','Warning: Attribute Copy aborted. No Attributes found for source Product ID#%u, "%s".');
 define('WARNING_ATTRIBUTE_COPY_SAME_ID','Warning: Attribute Copy aborted. Cannot copy from Product ID#%u to Product ID#%u (same ID).');
+define('WARNING_CATEGORY_DOES_NOT_EXIST' , 'Warning: Category ID#%u is invalid, it does not exist.');
 define('WARNING_CONFIG_FILE_WRITEABLE','Warning: Your configuration file: %s is writeable. This is a potential security risk - please set the right user permissions on this file (read-only, CHMOD 644 or 444 are typical). You may need to use your webhost control panel/file-manager to change the permissions effectively. Contact your webhost for assistance. <a href="https://docs.zen-cart.com/user/miscellaneous/configure/" rel="noopener" target="_blank">See this FAQ</a>');
 define('WARNING_COULD_NOT_LOCATE_LANG_FILE','WARNING: Could not locate language file: ');
 define('WARNING_DATABASE_VERSION_OUT_OF_DATE','Your database appears to need patching to a higher level. See Tools->' . '%%BOX_TOOLS_SERVER_INFO%%' . ' to review patch levels.');

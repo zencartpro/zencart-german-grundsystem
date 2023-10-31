@@ -6,7 +6,7 @@
 * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: english.php 2023-10-29 09:33:32Z webchills $
+* @version $Id: english.php 2023-10-31 09:33:32Z webchills $
 */
 // -----
 // Since the languages are now loaded via classes, the $locales definition
@@ -254,8 +254,8 @@ define('ICON_IMAGE_UPDATE','button_update_cart.png');
 define('ICON_IMAGE_WARNING','warning.png');
 define('ICON_SUCCESS_ALT','Erfolg');
 define('ICON_TINYCART_ALT','Legen Sie dieses Produkt in Ihren Warenkorb, indem Sie hier klicken.');
-define('ICON_TRASH_ALT','Löschen Sie diesen Artikel aus dem Warenkorb, indem Sie auf dieses Symbol klicken.');
-define('ICON_UPDATE_ALT','Ändern Sie Ihre Menge, indem Sie die Zahl im Feld markieren, die Menge korrigieren und auf diese Schaltfläche klicken.');
+define('ICON_TRASH_ALT','Löschen');
+define('ICON_UPDATE_ALT','Aktualiseren');
 define('ICON_WARNING_ALT','Warnung');
 define('IMAGE_ALT_PREFIX','(Bild für)');
 define('IMAGE_ALT_TEXT_NO_TITLE','Ein allgemeines Bild');
@@ -527,6 +527,7 @@ define('TEXT_TOTAL_WEIGHT','&nbsp;&nbsp;Gewicht: ');
 define('TEXT_UNKNOWN_TAX_RATE','Unbekannter Steuersatz');
 define('TEXT_VALID_COUPON','Herzlichen Glückwunsch, Sie haben den Rabattcoupon eingelöst');
 define('TEXT_WORDS_FREE','Wort(e) frei');
+define('TEXT_XSELL_PRODUCTS', 'Zu diesem Artikel empfehlen wir'); 
 define('TEXT_YOUR_IP_ADDRESS','Ihre IP-Adresse lautet: ');
 define('TYPE_BELOW','Geben Sie unten eine Auswahl ein ...');
 define('WARNING_COULD_NOT_LOCATE_LANG_FILE','WARNUNG: Die Sprachdatei konnte nicht gefunden werden: ');

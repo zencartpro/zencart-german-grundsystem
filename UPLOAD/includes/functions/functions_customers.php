@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_customers.php 2023-10-30 14:08:16Z webchills $
+ * @version $Id: functions_customers.php 2023-10-31 08:58:16Z webchills $
  */
 
 /**
@@ -316,7 +316,7 @@ function zen_validate_hmac_login()
     ksort($params);
     $hmacData = implode('&', $params);
     $hmac = hash_hmac('sha256', $hmacData, $secret);
-    return true;
+    return hash_equals($secret, $hmac);
 }
 
 function zen_validate_hmac_timestamp()

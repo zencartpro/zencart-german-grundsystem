@@ -5,14 +5,13 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: downloads_manager.php 2023-10-28 18:49:16Z webchills $
+ * @version $Id: downloads_manager.php 2023-10-31 09:06:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Downloadmanager');
 define('TABLE_HEADING_ATTRIBUTES_ID', 'Attribut ID');
 define('TABLE_HEADING_PRODUCTS_ID', 'Artikel ID');
-define('TABLE_TEXT_FILENAME', 'Dateiname')
-
+define('TABLE_TEXT_FILENAME', 'Dateiname');
 
 define('TABLE_TEXT_DATE' , 'Datei Datum');
 define('TABLE_TEXT_MAX_DAYS', 'Tage');

@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2023-10-29 14:57:04Z webchills $
+ * @version $Id: german.php 2023-10-31 08:57:04Z webchills $
  */
 @setlocale(LC_TIME, ['de_DE.UTF-8', 'de_AT.UTF-8', 'de_CH.UTF-8', 'de_DE.ISO_8859-1','de_DE@euro', 'de_DE', 'de', 'ge', 'deu.deu']);
 
@@ -266,6 +266,7 @@ define('ICON_ERROR','Fehler');
 define('ICON_FOLDER','Ordner');
 define('ICON_MOVE','Verschieben');
 define('ICON_PREVIEW','Vorschau');
+define('ICON_SELECTED' , 'Ausgewählte Zeile');
 define('ICON_STATISTICS','Statistiken');
 define('ICON_SUCCESS','Erfolg');
 define('ICON_TICK','True');
@@ -286,7 +287,7 @@ define('IMAGE_EDIT_ATTRIBUTES','Attribute bearbeiten');
 define('IMAGE_EDIT_PRODUCT','Artikel bearbeiten');
 define('IMAGE_EMAIL','Email');
 define('IMAGE_FORGET_ONLY','nur vergessen');
-define('IMAGE_GIFT_QUEUE','%%TEXT_GV_NAME%%' . ' Warteschlange');
+define('IMAGE_GIFT_QUEUE','Geschenkgutschein Warteschlange');
 define('IMAGE_GO','Los');
 define('IMAGE_ICON_INFO','Info');
 define('IMAGE_ICON_LINKED','Artikel ist verlinkt');
@@ -633,6 +634,7 @@ define('WARNING_ADMIN_DOWN_FOR_MAINTENANCE','<strong>WARNUNG:</strong> Der Shop 
 define('WARNING_ATTRIBUTE_COPY_INVALID_ID','WARNUNG: Attribute Kopieren zu Artikel ID#%u abgebrochen. Ungültige ID');
 define('WARNING_ATTRIBUTE_COPY_NO_ATTRIBUTES','WARNUNG: Attribute Kopieren abgebrochen. Keine Attribute gefunden für Quell Artikel ID#%u, "%s".');
 define('WARNING_ATTRIBUTE_COPY_SAME_ID','WARNUNG: Attribute Kopieren abgebrochen. Kann nicht kopieren von Artikel ID#%u zu Artikel ID#%u (gleiche ID).');
+define('WARNING_CATEGORY_DOES_NOT_EXIST' , 'WARNUNG: Kategorie ID#%u ist ungültig, sie existiert nicht.');
 define('WARNING_CONFIG_FILE_WRITEABLE','WARNUNG: Ihre Konfigurationsdatei: %s ist beschreibbar. Dies ist ein potenzielles Sicherheitsrisiko - bitte setzen Sie per FTP die richtigen Benutzerrechte für diese Datei (schreibgeschützt, CHMOD 644 oder 444 sind typisch). Möglicherweise müssen Sie Ihr Webhost-Kontrollpanel/Dateimanager verwenden, um die Berechtigungen effektiv zu ändern. Wenden Sie sich an Ihren Provider für Hilfe.');
 define('WARNING_COULD_NOT_LOCATE_LANG_FILE','WARNUNG: Sprachdatei nicht gefunden: ');
 define('WARNING_DATABASE_VERSION_OUT_OF_DATE','Ihre Datenbank scheint einen Patch auf eine höhere Zen Cart Version zu benötigen. Prüfen Sie Tools-> Server Info um die aktuelle Version zu sehen.');

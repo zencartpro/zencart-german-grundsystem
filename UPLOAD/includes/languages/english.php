@@ -6,7 +6,7 @@
 * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: english.php 2023-10-29 09:18:32Z webchills $
+* @version $Id: english.php 2023-10-31 09:18:32Z webchills $
 */
 // -----
 // Since the languages are now loaded via classes, the $locales definition
@@ -255,8 +255,8 @@ define('ICON_IMAGE_UPDATE','button_update_cart.png');
 define('ICON_IMAGE_WARNING','warning.png');
 define('ICON_SUCCESS_ALT','Success');
 define('ICON_TINYCART_ALT','Add this product to your cart by clicking here.');
-define('ICON_TRASH_ALT','Delete this item from the cart by clicking this icon.');
-define('ICON_UPDATE_ALT','Change your quantity by highlighting the number in the box, correcting the quantity and clicking this button.');
+define('ICON_TRASH_ALT','Delete');
+define('ICON_UPDATE_ALT','Update');
 define('ICON_WARNING_ALT','Warning');
 define('IMAGE_ALT_PREFIX','(image for)');
 define('IMAGE_ALT_TEXT_NO_TITLE','A generic image');
@@ -528,6 +528,7 @@ define('TEXT_TOTAL_WEIGHT','&nbsp;&nbsp;Weight: ');
 define('TEXT_UNKNOWN_TAX_RATE','Sales Tax');
 define('TEXT_VALID_COUPON','Congratulations you have redeemed the Discount Coupon');
 define('TEXT_WORDS_FREE',' Word(s) free ');
+define('TEXT_XSELL_PRODUCTS', 'Related Products');  
 define('TEXT_YOUR_IP_ADDRESS','Your IP Address is: ');
 define('TYPE_BELOW','Type a choice below ...');
 define('WARNING_COULD_NOT_LOCATE_LANG_FILE','WARNING: Could not locate language file: ');
