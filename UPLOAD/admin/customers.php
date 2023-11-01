@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: customers.php 2023-10-27 16:00:51Z webchills $
+ * @version $Id: customers.php 2023-10-31 17:59:51Z webchills $
  */
 require 'includes/application_top.php';
 
@@ -1937,6 +1937,7 @@ if ($action === 'edit' || $action === 'update') {
                         zen_catalog_href_link(FILENAME_LOGIN, '', 'SSL') .
                         '" method="post">';
                     $hiddenFields = zen_draw_hidden_field('email_address', $cInfo->customers_email_address);
+                        $hiddenFields .= zen_draw_hidden_field('empadminlogin', 'allowed');
                     if (defined('EMP_LOGIN_AUTOMATIC') && EMP_LOGIN_AUTOMATIC === 'true' && ENABLE_SSL_CATALOG === 'true') {
                         $secret = zen_update_customers_secret($cInfo->customers_id);
                         $timestamp = time();
@@ -2042,7 +2043,7 @@ if ($action === 'edit' || $action === 'update') {
                     'text' =>
                         '<br>' .
                         TEXT_INFO_COUNTRY . ' ' .
-                        $cInfo->country_iso
+                        $cInfo->country_name
                 ];
                 $contents[] = [
                     'text' =>

@@ -6,7 +6,7 @@
 # * Zen Cart German Version - www.zen-cart-pro.at
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_utf8.sql 2021-12-29 19:38:16Z webchills $
+# * @version $Id: mysql_utf8.sql 2023-10-31 18:38:16Z webchills $
 #
 # NOTE: UTF8 files need to be saved with encoding format set to UTF8-without-BOM.
 #
@@ -68,7 +68,7 @@ INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, count
 (49,'Congo','CG','COG','1','0'),
 (50,'Cook Islands','CK','COK','1','0'),
 (51,'Costa Rica','CR','CRI','1','0'),
-(52,"Côte d'Ivoire",'CI','CIV','1','0'),
+(52,'Côte d\'Ivoire','CI','CIV','1','0'),
 (53,'Croatia','HR','HRV','1','1'),
 (54,'Cuba','CU','CUB','1','0'),
 (55,'Cyprus','CY','CYP','1','1'),
@@ -127,11 +127,11 @@ INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, count
 (109,'Kazakhstan','KZ','KAZ','1','0'),
 (110,'Kenya','KE','KEN','1','0'),
 (111,'Kiribati','KI','KIR','1','0'),
-(112,"Korea, Democratic People's Republic of",'KP','PRK','1','0'),
+(112,'Korea, Democratic People\'s Republic of','KP','PRK','1','0'),
 (113,'Korea, Republic of','KR','KOR','1','0'),
 (114,'Kuwait','KW','KWT','1','0'),
 (115,'Kyrgyzstan','KG','KGZ','1','0'),
-(116,"Lao People's Democratic Republic",'LA','LAO','1','0'),
+(116,'Lao People\'s Democratic Republic','LA','LAO','1','0'),
 (117,'Latvia','LV','LVA','1','1'),
 (118,'Lebanon','LB','LBN','1','0'),
 (119,'Lesotho','LS','LSO','1','0'),
@@ -264,9 +264,7 @@ INSERT INTO countries (countries_id, countries_name, countries_iso_code_2, count
 (247,'Curaçao','CW','CUW','1','0'),
 (248,'Sint Maarten','SX','SXM','1','0');
 
-
 INSERT INTO countries_name (countries_id, language_id, countries_name) VALUES
-
 (1, 1, 'Afghanistan'),
 (2, 1,  'Albania'),
 (3, 1,  'Algeria'),
@@ -377,11 +375,11 @@ INSERT INTO countries_name (countries_id, language_id, countries_name) VALUES
 (109, 1,  'Kazakhstan'),
 (110, 1, 'Kenya'),
 (111, 1, 'Kiribati'),
-(112, 1, 'Korea, Democratic People''s Republic of'),
+(112, 1, 'Korea, Democratic People\'s Republic of'),
 (113, 1, 'Korea, Republic of'),
 (114, 1, 'Kuwait'),
 (115, 1, 'Kyrgyzstan'),
-(116, 1, 'Lao People''s Democratic Republic'),
+(116, 1, 'Lao People\'s Democratic Republic'),
 (117, 1, 'Latvia'),
 (118, 1,  'Lebanon'),
 (119, 1,  'Lesotho'),
@@ -759,11 +757,6 @@ INSERT INTO countries_name (countries_id, language_id, countries_name) VALUES
 (246, 43, 'Südsudan'),
 (247, 43, 'Curaçao'),
 (248, 43, 'Sint Maarten');
-
-
-
-
-
 # USA
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES (1,223,'AL','Alabama');
 INSERT INTO zones (zone_id, zone_country_id, zone_code, zone_name) VALUES (2,223,'AK','Alaska');

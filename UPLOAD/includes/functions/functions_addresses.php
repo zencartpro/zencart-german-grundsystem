@@ -54,7 +54,7 @@ function zen_get_countries(int $country_id = 0, bool $with_iso_codes = false, bo
     global $db;
     $countries_array = [];
 
-    $sql = "SELECT co.countries_id, con.countries_name, co.countries_iso_code_2, co.countries_iso_code_3, co.status
+    $sql = "SELECT co.countries_id, con.countries_name as countries_name, co.countries_iso_code_2, co.countries_iso_code_3, co.status
             FROM " . TABLE_COUNTRIES . " co
                     LEFT JOIN " . TABLE_COUNTRIES_NAME . " con ON con.countries_id = co.countries_id
                     AND con.language_id = " . (int)$_SESSION['languages_id'] ."";
@@ -66,7 +66,7 @@ function zen_get_countries(int $country_id = 0, bool $with_iso_codes = false, bo
     } else {
         if ($activeOnly) $sql .= " WHERE co.status != 0 ";
     }
-    $sql .= " ORDER BY con.countries_name";
+    $sql .= " ORDER BY countries_name";
     $results = $db->Execute($sql);
 
     if (!empty($country_id)) {
@@ -96,6 +96,7 @@ function zen_get_countries(int $country_id = 0, bool $with_iso_codes = false, bo
 
     return $countries_array;
 }
+
 
 /*
  *  Alias function to zen_get_countries()
