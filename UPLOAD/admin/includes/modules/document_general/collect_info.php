@@ -1,18 +1,19 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: collect_info.php 2023-10-30 14:24:50Z webchills $
+ * @version $Id: collect_info.php 2023-11-03 13:24:50Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
 $parameters = [
   'products_name' => '',
+  'products_merkmale' => '',
   'products_description' => '',
   'products_url' => '',
   'products_id' => '',
@@ -47,7 +48,7 @@ $parameters = [
 $pInfo = new objectInfo($parameters);
 
 if (isset($_GET['pID']) && empty($_POST)) {
-  $product = $db->Execute("SELECT pd.products_name, pd.products_description, pd.products_url,
+  $product = $db->Execute("SELECT pd.products_name, pd.products_merkmale, pd.products_description, pd.products_url,
                                   p.*,
                                   date_format(p.products_date_available, '" .  zen_datepicker_format_forsql() . "') as products_date_available
                            FROM " . TABLE_PRODUCTS . " p,
@@ -67,6 +68,7 @@ if (isset($_GET['pID']) && empty($_POST)) {
       $pInfo->master_categories_id = $pInfo->cPath;
   }
   $products_name = $_POST['products_name'] ?? '';
+  $products_merkmale = $_POST['products_merkmale'] ?? '';
   $products_description = $_POST['products_description'] ?? '';
   $products_url = $_POST['products_url'] ?? '';
 }
@@ -209,6 +211,24 @@ if (zen_get_categories_status($current_category_id) == 0 && $pInfo->products_sta
       ?>
     </div>
   </div>
+  <div class="form-group">
+      <?php echo zen_draw_label(TEXT_PRODUCTS_MERKMALE, 'products_merkmale', 'class="col-sm-3 control-label"'); ?>
+    <div class="col-sm-9 col-md-6">
+        <?php
+        for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
+          ?>
+        <div class="input-group">
+          <span class="input-group-addon">
+              <?php echo zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']); ?>
+          </span>
+          <?php echo zen_draw_input_field('products_merkmale[' . $languages[$i]['id'] . ']', htmlspecialchars(isset($products_merkmale[$languages[$i]['id']]) ? stripslashes($products_merkmale[$languages[$i]['id']]) : zen_get_products_merkmale($pInfo->products_id, $languages[$i]['id']), ENT_COMPAT, CHARSET, TRUE), zen_set_field_length(TABLE_PRODUCTS_DESCRIPTION, 'products_merkmale') . ' class="form-control"'); ?>
+        </div>
+        <br>
+        <?php
+      }
+      ?>
+    </div>
+  </div>
 <?php
     // -----
     // Give an observer the chance to supply some additional product-related inputs.  Each
@@ -266,7 +286,7 @@ if (zen_get_categories_status($current_category_id) == 0 && $pInfo->products_sta
     if (!empty($pInfo->products_image)) { ?>
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9 col-md-6">
-                <?php echo zen_info_image($pInfo->products_image, (is_array($pInfo->products_name) ? $pInfo->products_name[$_SESSION['languages_id']] : $pInfo->products_name)); ?>
+                <span id="imagepreview"><?php echo zen_info_image($pInfo->products_image, (is_array($pInfo->products_name) ? $pInfo->products_name[$_SESSION['languages_id']] : $pInfo->products_name)); ?></span>
                 <br>
                 <?php echo $pInfo->products_image; ?>
             </div>

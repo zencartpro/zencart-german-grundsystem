@@ -1,11 +1,11 @@
 <?php
 /**
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: delete_product_confirm.php 2022-04-17 15:49:16Z webchills $
+ * @version $Id: delete_product_confirm.php 2023-11-03 15:49:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -14,8 +14,8 @@ if (!defined('IS_ADMIN_FLAG')) {
 
 $do_delete_flag = false;
 //echo 'products_id=' . $_POST['products_id'] . '<br>';
-if (isset($_POST['products_id']) && isset($_POST['product_categories']) && is_array($_POST['product_categories'])) {
-  $product_id = zen_db_prepare_input($_POST['products_id']);
+if (isset($_POST['products_id'], $_POST['product_categories']) && is_array($_POST['product_categories'])) {
+  $product_id = (int)$_POST['products_id'];
   $product_categories = $_POST['product_categories'];
   $do_delete_flag = true;
   if (!isset($delete_linked)) {
@@ -71,23 +71,19 @@ if ($do_delete_flag) {
   //--------------PRODUCT_TYPE_SPECIFIC_INSTRUCTIONS_GO__ABOVE__HERE--------------------------------------------------------
   // now do regular non-type-specific delete:
   // remove product from all its categories:
-  for ($k = 0, $m = sizeof($product_categories); $k < $m; $k++) {
-    $db->Execute("DELETE FROM " . TABLE_PRODUCTS_TO_CATEGORIES . "
-                  WHERE products_id = " . (int)$product_id . "
-                  AND categories_id = " . (int)$product_categories[$k]);
+  for ($k = 0, $m = count($product_categories); $k < $m; $k++) {
+      zen_unlink_product_from_category((int)$product_id, $product_categories[$k]);
   }
   // confirm that product is no longer linked to any categories
-  $count_categories = $db->Execute("SELECT COUNT(categories_id) AS total
-                                    FROM " . TABLE_PRODUCTS_TO_CATEGORIES . "
-                                    WHERE products_id = " . (int)$product_id);
-  // echo 'count of category links for this product=' . $count_categories->fields['total'] . '<br>';
+  $count_categories = zen_get_linked_categories_for_product((int)$product_id);
+  // echo 'count of category links for this product=' . count($count_categories . '<br>';
   // if not linked to any categories, do delete:
-  if ($count_categories->fields['total'] == '0') {
+  if (empty($count_categories)) {
     zen_remove_product($product_id, $delete_linked);
   }
 } // endif $do_delete_flag
 // if this is a single-product delete, redirect to categories page
 // if not, then this file was called by the cascading delete initiated by the category-delete process
-if ($action == 'delete_product_confirm') {
+if ($action === 'delete_product_confirm') {
   zen_redirect(zen_href_link(FILENAME_CATEGORY_PRODUCT_LISTING, 'cPath=' . $cPath));
 }

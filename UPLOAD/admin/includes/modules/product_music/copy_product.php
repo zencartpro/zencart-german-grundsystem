@@ -1,15 +1,15 @@
 <?php
 
 /**
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: copy_product.php 2021-10-26 09:8:10 webchills $
+ * @version $Id: copy_product.php 2023-11-03 12:47:10 webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
-  die('Illegal Access');
+    die('Illegal Access');
 }
 
 $copy_attributes_delete_first = '0';
@@ -31,7 +31,13 @@ if (empty($pInfo->products_id)) {
 $contents = array('form' => zen_draw_form('copy_product', FILENAME_CATEGORY_PRODUCT_LISTING, 'action=copy_product_confirm&cPath=' . $cPath . (isset($_GET['page']) ? '&page=' . $_GET['page'] : ''), 'post', 'class="form-horizontal"') . zen_draw_hidden_field('products_id', $pInfo->products_id));
 $contents[] = array('text' => TEXT_INFO_CURRENT_PRODUCT . '<br><strong>' . $pInfo->products_model . ' - ' . $pInfo->products_name . ' [ID#' . $pInfo->products_id . ']</strong>');
 $contents[] = array('text' => TEXT_INFO_CURRENT_CATEGORIES . '<br><strong>' . zen_output_generated_category_path($pInfo->products_id, 'product') . '</strong>');
-$contents[] = array('text' => zen_draw_label(TEXT_CATEGORIES, 'categories_id', 'class="control-label"') . zen_draw_pull_down_menu('categories_id', zen_get_category_tree(), $current_category_id, 'class="form-control" id="categories_id"'));
+
+// -----
+// Determine if the site already has products in the top-most category. If so,
+// the topmost category will be included in the list of categories to which the product can be copied.
+//
+$exclude_category = (zen_count_products_in_category(TOPMOST_CATEGORY_PARENT_ID, true) === 0) ? '' : TOPMOST_CATEGORY_PARENT_ID;
+$contents[] = array('text' => zen_draw_label(TEXT_CATEGORIES, 'categories_id', 'class="control-label"') . zen_draw_pull_down_menu('categories_id', zen_get_category_tree('', '', $exclude_category), $current_category_id, 'class="form-control" id="categories_id"'));
 
 $contents[] = array(
     'text' => '<h5>' . TEXT_HOW_TO_COPY . '</h5>' .
@@ -39,24 +45,24 @@ $contents[] = array(
         zen_image(DIR_WS_IMAGES . 'pixel_black.gif', '', '', '1', 'style="width:100%"') .
         '<div class="radio h6"><label>' . zen_draw_radio_field('copy_as', 'duplicate') . TEXT_COPY_AS_DUPLICATE . '</label></div>'
 );
-$contents[] = array('text' => '<div class="checkbox"><label>'.zen_draw_checkbox_field('copy_media',true, true) . TEXT_COPY_MEDIA_MANAGER . '</label></div>');
 
 // only ask about attributes if defined
-if (zen_has_product_attributes($pInfo->products_id, 'false')) {
+if (zen_has_product_attributes($pInfo->products_id, false)) {
     $contents[] = array(
         'text' => '<h6>' . TEXT_COPY_ATTRIBUTES . '</h6>' .
             '<div class="radio"><label>' . zen_draw_radio_field('copy_attributes', 'copy_attributes_yes', true) . TEXT_YES . '</label></div>' .
             '<div class="radio"><label>' . zen_draw_radio_field('copy_attributes', 'copy_attributes_no') . TEXT_NO . '</label></div>'
     );
-
-    $zco_notifier->notify('NOTIFY_ADMIN_PRODUCT_COPY_TO_ATTRIBUTES', $pInfo, $contents);
 }
+
+$zco_notifier->notify('NOTIFY_ADMIN_PRODUCT_COPY_TO_ATTRIBUTES', $pInfo, $contents);
+
 //are any metatags defined
 $metatags_defined = false;
 for ($i = 0, $n = count($languages); $i < $n; $i++) {
-    if (zen_get_metatags_description($pInfo->products_id,
-            $languages[$i]['id']) . zen_get_metatags_keywords($pInfo->products_id,
-            $languages[$i]['id']) . zen_get_metatags_title($pInfo->products_id, $languages[$i]['id']) != '') {
+    if (zen_get_product_metatag_fields($pInfo->products_id, $languages[$i]['id'], 'metatags_description')
+        . zen_get_product_metatag_fields($pInfo->products_id, $languages[$i]['id'], 'metatags_keywords')
+        . zen_get_product_metatag_fields($pInfo->products_id, $languages[$i]['id'], 'metatags_title') != '') {
         $metatags_defined = true;
     }
 }
@@ -87,7 +93,7 @@ if (zen_has_product_discounts($pInfo->products_id) == 'true') {
 }
 $contents[] = array('text' => '<label>' . zen_draw_checkbox_field('edit_duplicate', '1', true) . TEXT_COPY_EDIT_DUPLICATE . '</label>');
 $contents[] = array('text' => zen_image(DIR_WS_IMAGES . 'pixel_black.gif', '', '', '3', 'style="width:100%"'));
-$contents[] = array('align' => 'center', 'text' => '<button type="submit" class="btn btn-primary">' . IMAGE_COPY . '</button> 
+$contents[] = array('align' => 'center', 'text' => '<button type="submit" class="btn btn-primary">' . IMAGE_COPY . '</button>
 <a href="' . zen_href_link(FILENAME_CATEGORY_PRODUCT_LISTING, 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')) . '" class="btn btn-default" role="button">' . IMAGE_CANCEL . '</a>'
 );
 

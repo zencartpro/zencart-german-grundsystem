@@ -1,15 +1,15 @@
 <?php
 
 /**
- 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: copy_product_confirm.php 2021-10-26 09:09:32 $
+ * @version $Id: copy_product_confirm.php 2023-11-03 12:09:32 webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
-  die('Illegal Access');
+    die('Illegal Access');
 }
 if (isset($_POST['products_id'], $_POST['categories_id'])) {
     $products_id = (int)$_POST['products_id'];
@@ -54,15 +54,15 @@ if (isset($_POST['products_id'], $_POST['categories_id'])) {
             $product->fields['products_quantity_order_min'] = 1;
         }
 
-        $sql_data_array = array();
-        $separately_updated_fields = array(
+        $sql_data_array = [];
+        $separately_updated_fields = [
           'products_id',
           'products_status',
           'products_last_modified',
           'products_date_added',
           'products_date_available',
-        );
-        $casted_fields = array(
+        ];
+        $casted_fields = [
           'products_quantity' =>  'float',
           'products_price' =>  'float',
           'products_weight' =>  'float',
@@ -71,7 +71,7 @@ if (isset($_POST['products_id'], $_POST['categories_id'])) {
           'product_is_free' =>  'int',
           'product_is_call' =>  'int',
           'products_quantity_mixed' =>  'int',
-        );
+        ];
 
         // -----
         // Give an observer the chance to add any customized fields to the two arrays above.
@@ -87,11 +87,11 @@ if (isset($_POST['products_id'], $_POST['categories_id'])) {
             if ($casted_fields[$key] == 'int') {
               $sql_data_array[$key] = (int)$value;
             } else {
-              $sql_data_array[$key] = (!zen_not_null($value) || $value == '' || $value == 0) ? 0 : $value;
+                    $sql_data_array[$key] = (!zen_not_null($value) || $value == '' || $value == 0) ? 0 : $value;
+                }
+            } else {
+                $sql_data_array[$key] = $value;
             }
-          } else {
-            $sql_data_array[$key] = $value;
-          }
         }
 
         // separately_updated_fields - last_modified and products_id are skipped
@@ -105,7 +105,6 @@ if (isset($_POST['products_id'], $_POST['categories_id'])) {
         zen_db_perform(TABLE_PRODUCTS, $sql_data_array);
 
         $dup_products_id = (int)$db->insert_ID();
-
 
 // Music Media Copy
         if (isset($_POST['copy_media']) && ($_POST['copy_media'] == '1' || $_POST['copy_media'] == 'on')) {
@@ -129,16 +128,15 @@ if (isset($_POST['products_id'], $_POST['categories_id'])) {
                                   '" . zen_db_input($music_extra->fields['artists_id']) . "',
                                   '" . zen_db_input($music_extra->fields['record_company_id']) . "',
                                   '" . zen_db_input($music_extra->fields['music_genre_id']) . "')");
-
-
-        $descriptions = $db->Execute("SELECT language_id, products_name, products_description, products_url
+        $descriptions = $db->Execute("SELECT language_id, products_name, products_merkmale,products_description, products_url
                                       FROM " . TABLE_PRODUCTS_DESCRIPTION . "
                                       WHERE products_id = " . $products_id);
         foreach ($descriptions as $description) {
-            $db->Execute("INSERT INTO " . TABLE_PRODUCTS_DESCRIPTION . " (products_id, language_id, products_name, products_description, products_url)
+            $db->Execute("INSERT INTO " . TABLE_PRODUCTS_DESCRIPTION . " (products_id, language_id, products_name, products_merkmale, products_description, products_url)
                     VALUES ('" . $dup_products_id . "',
                             '" . (int)$description['language_id'] . "',
                             '" . zen_db_input($description['products_name']) . " " . TEXT_DUPLICATE_IDENTIFIER . "',
+			    '" . zen_db_input($description['products_merkmale']) . "',
                             '" . zen_db_input($description['products_description']) . "',
                             '" . zen_db_input($description['products_url']) . "'
                             )");
@@ -152,14 +150,13 @@ if (isset($_POST['products_id'], $_POST['categories_id'])) {
         // additional product-related fields.
         //
         $zco_notifier->notify('NOTIFY_PRODUCT_MUSIC_COPY_TO_CONFIRM_DUPLICATE', compact('products_id', 'dup_products_id'));
-
 // FIX HERE
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 // copy attributes to Duplicate
-        if (!empty($_POST['copy_attributes']) && $_POST['copy_attributes'] == 'copy_attributes_yes') {
+        if (!empty($_POST['copy_attributes']) && $_POST['copy_attributes'] === 'copy_attributes_yes') {
 
-            if (DOWNLOAD_ENABLED == 'true') {
+            if (DOWNLOAD_ENABLED === 'true') {
                 $copy_attributes_include_downloads = '1';
                 $copy_attributes_include_filename = '1';
             } else {
@@ -174,7 +171,7 @@ if (isset($_POST['products_id'], $_POST['categories_id'])) {
         }
 
 // copy meta tags to Duplicate
-        if (!empty($_POST['copy_metatags']) && $_POST['copy_metatags'] == 'copy_metatags_yes') {
+        if (!empty($_POST['copy_metatags']) && $_POST['copy_metatags'] === 'copy_metatags_yes') {
             $metatags_status = $db->Execute("SELECT metatags_title_status, metatags_products_name_status, metatags_model_status, metatags_price_status, metatags_title_tagline_status
                                              FROM " . TABLE_PRODUCTS . "
                                              WHERE products_id = '" . $products_id . "'");
@@ -222,14 +219,14 @@ if (isset($_POST['products_id'], $_POST['categories_id'])) {
         }
 
 // copy product discounts to Duplicate
-        if (!empty($_POST['copy_discounts']) && $_POST['copy_discounts'] == 'copy_discounts_yes') {
+        if (!empty($_POST['copy_discounts']) && $_POST['copy_discounts'] === 'copy_discounts_yes') {
             zen_copy_discounts_to_product($products_id, $dup_products_id);
             $messageStack->add_session(sprintf(TEXT_COPY_AS_DUPLICATE_DISCOUNTS, $products_id, $dup_products_id), 'success');
         }
 
         zen_record_admin_activity('Product ' . $products_id . ' duplicated as product ' . $dup_products_id . ' via admin console.', 'info');
 
-        $zco_notifier->notify('NOTIFY_PRODUCT_MUSIC_COPY_TO_CONFIRM_DUPLICATE', compact('products_id', 'dup_products_id'));
+        $zco_notifier->notify('NOTIFY_MODULES_COPY_TO_CONFIRM_DUPLICATE', compact('products_id', 'dup_products_id'));
 
         $products_id = $dup_products_id;//reset for further use in price update and final redirect to new linked product or new duplicated product
     }// EOF duplication
@@ -242,4 +239,3 @@ if ($_POST['copy_as'] === 'duplicate' && !empty($_POST['edit_duplicate'])) {
 } else {
     zen_redirect(zen_href_link(FILENAME_CATEGORY_PRODUCT_LISTING, 'cPath=' . $categories_id . '&pID=' . $products_id . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')));
 }
-
