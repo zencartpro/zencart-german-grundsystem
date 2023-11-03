@@ -1,20 +1,21 @@
 <?php
 /** 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: customers_without_order.php 2022-04-17 16:10:14Z webchills $
+ * @version $Id: customers_without_order.php 2023-11-03 16:10:14Z webchills $
  */
 
 define('HEADING_TITLE', 'Kunden, die nie etwas bestellt haben');
 
-define('TABLE_HEADING_ID', 'ID');
+
 define('TABLE_HEADING_FIRSTNAME', 'Vorname');
 define('TABLE_HEADING_LASTNAME', 'Nachname');
 define('TABLE_HEADING_ACCOUNT_CREATED', 'Konto erstellt am');
 define('TABLE_HEADING_LOGIN', 'Letzte Anmeldung');
-define('TABLE_HEADING_ACTION', 'Aktion');
+define('TABLE_HEADING_REGISTRATION_IP','Registrierung IP');
 define('TABLE_HEADING_PRICING_GROUP', 'Preisgruppe');
 define('TABLE_HEADING_AUTHORIZATION_APPROVAL', 'Autorisiert');
 define('TABLE_HEADING_GV_AMOUNT', 'Gutschein Guthaben');
@@ -23,9 +24,11 @@ define('TEXT_DATE_ACCOUNT_CREATED', 'Konto erstellt am:');
 define('TEXT_DATE_ACCOUNT_LAST_MODIFIED', 'Letzte Änderung:');
 define('TEXT_INFO_DATE_LAST_LOGON', 'Letzte Anmeldung:');
 define('TEXT_INFO_NUMBER_OF_LOGONS', 'Anzahl der Anmeldungen:');
+define('TEXT_LAST_LOGIN_IP','Letztes Login IP:');
+define('TEXT_REGISTRATION_IP','Registrierung IP:');
 define('TEXT_INFO_COUNTRY', 'Land:');
 define('TEXT_INFO_NUMBER_OF_REVIEWS', 'Anzahl der Bewertungen:');
-define('TEXT_DELETE_INTRO', 'Sind Sie sicher, dass Sie diesen Kunden löschen wollen?');
+define('TEXT_DELETE_INTRO','Sind Sie sicher, dass Sie diesen Kunden löschen möchten?<br>"Nur vergessen" - Löscht identifizierbare persönliche Daten aus dem Kundendatensatz.<br>"Löschen" - Löscht den Kundendatensatz aus der Datenbank.');
 define('TEXT_DELETE_REVIEWS', 'Lösche %s Bewertung(en)');
 define('TEXT_INFO_HEADING_DELETE_CUSTOMER', 'Lösche Kunde');
 define('TYPE_BELOW', 'Geben Sie unten ein');
@@ -65,3 +68,4 @@ define('TEXT_INFO_ADDRESS_BOOK_COUNT', ' | <a href="%s">%s Einträge</a>');
 define('TEXT_INFO_ADDRESS_BOOK_COUNT_SINGLE', '');
 define('EMP_BUTTON_PLACEORDER_ALT', 'Als dieser Kunde einloggen');
 define('EMP_BUTTON_PLACEORDER', 'Login als Kunde');
+define('TEXT_CUSTOMER_GROUPS','Kundengruppen');

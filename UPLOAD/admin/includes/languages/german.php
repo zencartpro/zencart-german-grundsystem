@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2023-10-31 08:57:04Z webchills $
+ * @version $Id: german.php 2023-11-03 16:57:04Z webchills $
  */
 @setlocale(LC_TIME, ['de_DE.UTF-8', 'de_AT.UTF-8', 'de_CH.UTF-8', 'de_DE.ISO_8859-1','de_DE@euro', 'de_DE', 'de', 'ge', 'deu.deu']);
 
@@ -85,6 +85,8 @@ define('BOX_CUSTOMERS_INVOICE','Rechnung');
 define('BOX_CUSTOMERS_ORDERS','Bestellungen');
 define('BOX_CUSTOMERS_PACKING_SLIP','Lieferschein');
 define('BOX_CUSTOMERS_PAYPAL','PayPal IPN');
+define('BOX_CUSTOMERS_WITHOUT_ORDER', 'Kunden, die nie etwas bestellt haben');
+define('BOX_DSGVO_KUNDENEXPORT', 'DSGVO Kundendatenexport');
 define('BOX_ENTRY_COUNTER','Besucherzähler:');
 define('BOX_ENTRY_COUNTER_DATE','Besucherzähler gestartet:');
 define('BOX_GV_ADMIN_MAIL','Geschenkgutschein senden');

@@ -1,20 +1,20 @@
 <?php
 /** 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: customers_without_order.php 2022-01-02 08:01:16Z webchills $
+ * @version $Id: customers_without_order.php 2023-11-03 15:01:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Customers who have never completed a purchase');
 
-define('TABLE_HEADING_ID', 'ID#');
 define('TABLE_HEADING_FIRSTNAME', 'First Name');
 define('TABLE_HEADING_LASTNAME', 'Last Name');
 define('TABLE_HEADING_ACCOUNT_CREATED', 'Account Created');
 define('TABLE_HEADING_LOGIN', 'Last Login');
-define('TABLE_HEADING_ACTION', 'Action');
+define('TABLE_HEADING_REGISTRATION_IP','Registration IP');
 define('TABLE_HEADING_PRICING_GROUP', 'Pricing Group');
 define('TABLE_HEADING_AUTHORIZATION_APPROVAL', 'Authorized');
 define('TABLE_HEADING_GV_AMOUNT', 'GV Balance');
@@ -23,9 +23,11 @@ define('TEXT_DATE_ACCOUNT_CREATED', 'Account Created:');
 define('TEXT_DATE_ACCOUNT_LAST_MODIFIED', 'Last Modified:');
 define('TEXT_INFO_DATE_LAST_LOGON', 'Last Logon:');
 define('TEXT_INFO_NUMBER_OF_LOGONS', 'Number of Logons:');
+define('TEXT_LAST_LOGIN_IP','Last Login IP:');
+define('TEXT_REGISTRATION_IP','Registration IP:');
 define('TEXT_INFO_COUNTRY', 'Country:');
 define('TEXT_INFO_NUMBER_OF_REVIEWS', 'Number of Reviews:');
-define('TEXT_DELETE_INTRO', 'Are you sure you want to delete this customer?');
+define('TEXT_DELETE_INTRO','Are you sure you want to delete this customer?<br>"Forget Only" - Delete identifiable personal details from the customer record.<br>"Delete" - Delete the customer record from the database.');
 define('TEXT_DELETE_REVIEWS', 'Delete %s review(s)');
 define('TEXT_INFO_HEADING_DELETE_CUSTOMER', 'Delete Customer');
 define('TYPE_BELOW', 'Type below');
@@ -70,3 +72,4 @@ define('TEXT_INFO_ADDRESS_BOOK_COUNT', ' | <a href="%s">%s Entries</a>');
 define('TEXT_INFO_ADDRESS_BOOK_COUNT_SINGLE', '');
 define('EMP_BUTTON_PLACEORDER_ALT', 'Place an order for this customer');
 define('EMP_BUTTON_PLACEORDER', 'Place Order');
+define('TEXT_CUSTOMER_GROUPS','Customer Groups');

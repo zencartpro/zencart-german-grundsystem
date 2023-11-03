@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: english.php 2023-10-31 08:57:32Z webchills $
+ * @version $Id: english.php 2023-11-03 16:57:32Z webchills $
  */
 @setlocale(LC_TIME, ['en_US', 'en_US.utf8', 'en', 'English_United States.1252']);
 
@@ -85,6 +85,8 @@ define('BOX_CUSTOMERS_INVOICE','Invoice');
 define('BOX_CUSTOMERS_ORDERS','Orders');
 define('BOX_CUSTOMERS_PACKING_SLIP','Packing Slip');
 define('BOX_CUSTOMERS_PAYPAL','PayPal IPN');
+define('BOX_CUSTOMERS_WITHOUT_ORDER', 'Customers who have never completed a purchase');
+define('BOX_DSGVO_KUNDENEXPORT', 'GDPR Customer Data Export');
 define('BOX_ENTRY_COUNTER','Hit Counter:');
 define('BOX_ENTRY_COUNTER_DATE','Hit Counter Started:');
 define('BOX_GV_ADMIN_MAIL','Send a ' . '%%TEXT_GV_NAME%%');

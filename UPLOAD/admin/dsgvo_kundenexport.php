@@ -1,10 +1,11 @@
 <?php
 /** 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: dsgvo_kundenxport.php 2021-12-27 14:24:51Z webchills $
+ * @version $Id: dsgvo_kundenxport.php 2023-11-03 16:24:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -64,8 +65,6 @@ zen_redirect(zen_href_link(FILENAME_DSGVO_KUNDENEXPORT, 'cID=' . (int)$_GET['cID
 break;
       
 case 'dsgvoexport':    
-ob_end_clean();
-
 $output = fopen("php://output",'w') or die("Can't open php://output");
 header('Content-Type: text/csv; charset=utf-8');
 header("Content-Disposition:attachment; filename=dsgvo_kundendatensatz_kundennummer_".$_GET['cID'].".csv"); 
@@ -387,7 +386,7 @@ while (!$attribute_query->EOF) {
                   $zco_notifier->notify('NOTIFY_ADMIN_CUSTOMERS_LISTING_NEW_FIELDS', array(), $new_fields, $disp_order);
 
                   $customers_query_raw = "SELECT c.customers_id, c.customers_lastname, c.customers_firstname, c.customers_email_address, c.customers_group_pricing, c.customers_telephone, c.customers_authorization, c.customers_referral, c.customers_secret,
-                                           a.entry_country_id, a.entry_company, a.entry_company, a.entry_street_address, a.entry_city, a.entry_postcode,
+                                           a.entry_country_id, a.entry_company, a.entry_street_address, a.entry_city, a.entry_postcode,
                                            ci.customers_info_date_of_last_logon, ci.customers_info_date_account_created
                                            " . $new_fields . ",
                                            cgc.amount
@@ -459,7 +458,7 @@ while (!$attribute_query->EOF) {
                     }
 
                     $zc_address_book_count_list = zen_get_customers_address_book($customer['customers_id']);
-                    $zc_address_book_count = $zc_address_book_count_list->RecordCount();
+                  
                     ?>
                 <td class="dataTableContent text-right"><?php echo $customer['customers_id']; ?></td>
                 <td class="dataTableContent"><?php echo zen_output_string($customer['customers_lastname']); ?></td>
