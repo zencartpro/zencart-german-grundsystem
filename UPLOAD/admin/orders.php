@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: orders.php 2023-10-29 15:44:51Z webchills $
+ * @version $Id: orders.php 2023-11-03 18:44:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -608,20 +608,6 @@ if (!empty($action) && $order_exists === true) {
                 <td><?php echo '<a href="mailto:' . $order->customer['email_address'] . '">' . $order->customer['email_address'] . '</a>'; ?></td>
               </tr>
               <tr>
-                <td><strong><?php echo TEXT_INFO_IP_ADDRESS; ?></strong></td>
-                <?php
-                if (!empty($order->info['ip_address'])) {
-                  $lookup_ip = substr($order->info['ip_address'], 0, strpos($order->info['ip_address'], ' '));
-                  $whois_url = 'https://ipdata.co/' . $lookup_ip . '?utm_source=zen_cart';
-                  //$whois_url = 'https://whois.domaintools.com/' . $lookup_ip;
-                  $zco_notifier->notify('ADMIN_ORDERS_IP_LINKS', $lookup_ip, $whois_url);
-                  ?>
-                  <td class="noprint"><a href="<?php echo $whois_url; ?>" rel="noreferrer noopener" target="_blank"><?php echo $order->info['ip_address']; ?></a></td>
-                <?php } else { ?>
-                  <td><?php echo TEXT_UNKNOWN; ?></td>
-                <?php } ?>
-              </tr>
-              <tr>
                 <td class="noprint"><strong><?php echo ENTRY_CUSTOMER; ?></strong></td>
                 <td class="noprint"><?php echo '<a href="' . zen_href_link(FILENAME_CUSTOMERS, 'search=' . $order->customer['email_address'], 'SSL') . '">' . TEXT_CUSTOMER_LOOKUP . '</a>'; ?></td>
               </tr>
@@ -636,7 +622,10 @@ if (!empty($action) && $order_exists === true) {
 <?php if (!empty($order->delivery)) { ?>
               <tr>
                 <td>&nbsp;</td>
-                <td class="noprint"><a href="https://maps.google.com/maps/search/?api=1&amp;query=<?php echo urlencode($order->delivery['street_address'] . ',' . $order->delivery['city'] . ',' . $order->delivery['state'] . ',' . $order->delivery['postcode']); ?>" rel="noreferrer" target="map"><i class="fa-regular fa-map">&nbsp;</i> <u><?php echo TEXT_MAP_SHIPPING_ADDRESS; ?></u></a></td>
+                <td class="noprint"><a href="https://maps.google.com/maps/search/?api=1&amp;query=<?php echo urlencode($order->delivery['street_address'] . ',' . $order->delivery['city'] . ',' . $order->delivery['state'] . ',' . $order->delivery['postcode']); ?>" rel="noreferrer" target="map"><i class="fa-regular fa-map">&nbsp;</i> <u><?php echo TEXT_MAP_SHIPPING_ADDRESS; ?></u></a>
+		<br><br>
+		<?php echo '<a href="' . zen_href_link(FILENAME_ADRESSKORREKTUR, zen_get_all_get_params(array('oID', 'action')) . 'oID=' . $orders->fields['orders_id'] . '&action=edit', 'NONSSL') . '">' . zen_image_button('button_adresskorrektur.gif', IMAGE_ADRESSKORREKTUR) . '</a>'; ?>
+		</td>
               </tr>
 <?php
   }
@@ -679,6 +668,10 @@ if (!empty($action) && $order_exists === true) {
             <tr>
               <td class="main"><strong><?php echo ENTRY_PAYMENT_METHOD; ?></strong></td>
               <td class="main"><?php echo $order->info['payment_method']; ?></td>
+            </tr>
+	 <tr>
+           <td class="main"><strong>Device: </strong></td>
+           <td class="main"><?php echo $order->info['order_device']; ?></td>
             </tr>
             <?php
             if (!empty($order->info['cc_type']) || !empty($order->info['cc_owner']) || !empty($order->info['cc_number'])) {
@@ -1155,6 +1148,7 @@ if (!empty($action) && $order_exists === true) {
                   <th class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_DATE_PURCHASED; ?></th>
                   <th class="dataTableHeadingContent text-right"><?php echo TABLE_HEADING_STATUS; ?></th>
                   <th class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_CUSTOMER_COMMENTS; ?></th>
+		  <th class="dataTableHeadingContent text-center">Device</th>
 <?php
   // -----
   // A watching observer can provide an associative array in the form:
@@ -1232,12 +1226,12 @@ if (!empty($action) && $order_exists === true) {
                       ];
                       $search = zen_build_keyword_where_clause($keyword_search_fields, trim($keywords), true);
                   }
-                  $new_fields .= ", o.customers_company, o.customers_email_address, o.customers_street_address, o.delivery_company, o.delivery_name, o.delivery_street_address, o.billing_company, o.billing_name, o.billing_street_address, o.payment_module_code, o.shipping_module_code, o.orders_status, o.ip_address, o.language_code, o.delivery_state, o.delivery_country ";
+                  $new_fields .= ", o.customers_company, o.customers_email_address, o.customers_street_address, o.delivery_company, o.delivery_name, o.delivery_street_address, o.billing_company, o.billing_name, o.billing_street_address, o.payment_module_code, o.shipping_module_code, o.orders_status, o.language_code, o.delivery_state, o.delivery_country ";
 
                   $order_by = " ORDER BY o.orders_id DESC";
                   $zco_notifier->notify('NOTIFY_ADMIN_ORDERS_SEARCH_PARMS', $keywords, $search, $search_distinct, $new_fields, $new_table, $order_by);
 
-                  $orders_query_raw = "SELECT " . $search_distinct . " o.orders_id, o.customers_id, o.customers_name, o.payment_method, o.shipping_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, s.orders_status_name, o.order_total" .
+                  $orders_query_raw = "SELECT " . $search_distinct . " o.orders_id, o.customers_id, o.customers_name, o.payment_method, o.shipping_method, o.date_purchased, o.last_modified, o.currency, o.currency_value, o.order_device, s.orders_status_name, o.order_total" .
                       $new_fields . "
                           FROM (" . TABLE_ORDERS . " o " .
                       $new_table . ")
@@ -1363,6 +1357,18 @@ if (!empty($action) && $order_exists === true) {
                      echo '<td class="dataTableContent text-center"></td>';
                    }
                 ?>
+    
+<?php if ($orders->fields['order_device'] == 'Mobile') { 
+	 echo '<td class="dataTableContent text-center"><img src="images/icon-mobile.png" alt="Mobile" title="Mobile"/></td>';
+
+  } else if ($orders->fields['order_device'] == 'Tablet') { 
+  	
+	echo '	<td class="dataTableContent text-center"><img src="images/icon-tablet.png" alt="Tablet" title="Tablet"/></td>';
+
+  } else {
+  echo '	<td class="dataTableContent text-center"><img src="images/icon-desktop.png" alt="Desktop" title="Desktop"/></td>';
+  }
+?>
 <?php
   // -----
   // A watching observer can provide an associative array in the form:
@@ -1454,6 +1460,8 @@ if (!empty($action) && $order_exists === true) {
 
                     $contents[] = ['align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(['oID', 'action']) . 'oID=' . $oInfo->orders_id . '&action=edit', 'NONSSL') . '" class="btn btn-primary" role="button">' . IMAGE_DETAILS . '</a> <a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(['oID', 'action']) . 'oID=' . $oInfo->orders_id . '&action=delete', 'NONSSL') . '" class="btn btn-warning" role="button">' . IMAGE_DELETE . '</a>'];
                     $contents[] = ['align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_ORDERS_INVOICE, 'oID=' . $oInfo->orders_id) . '" target="_blank" class="btn btn-info" role="button">' . IMAGE_ORDERS_INVOICE . '</a> <a href="' . zen_href_link(FILENAME_ORDERS_PACKINGSLIP, 'oID=' . $oInfo->orders_id) . '" target="_blank" class="btn btn-info" role="button">' . IMAGE_ORDERS_PACKINGSLIP . '</a>'];
+                    $contents[] = ['align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_ADRESSKORREKTUR, zen_get_all_get_params(['oID', 'action']) . 'oID=' . $oInfo->orders_id . '&action=edit', 'NONSSL') . '" class="btn btn-primary" role="button">' . IMAGE_ADRESSKORREKTUR  . '</a>'];
+                    $contents[] = ['align' => 'text-center', 'text' => '<a href="' . zen_href_link(FILENAME_RL_INVOICE3, 'oID=' . $oInfo -> orders_id) . '" target="_blank" class="btn btn-info" role="button">' . IMAGE_RL_INVOICE  . '</a>'];
                     $zco_notifier->notify('NOTIFY_ADMIN_ORDERS_MENU_BUTTONS', $oInfo, $contents);
 
                     // each contents array is drawn in a div, so this form block must be a single array element.
@@ -1475,6 +1483,7 @@ if (!empty($action) && $order_exists === true) {
                     }
                     $contents[] = ['text' => '<br>' . TEXT_INFO_PAYMENT_METHOD . ' ' . $oInfo->payment_method];
                     $contents[] = ['text' => '<br>' . ENTRY_SHIPPING . ' ' . $oInfo->shipping_method];
+                    $contents[] = ['text' => 'Device: ' . $oInfo->order_device];
 
 // check if order has open gv
                     $gv_check = $db->Execute("SELECT order_id, unique_id

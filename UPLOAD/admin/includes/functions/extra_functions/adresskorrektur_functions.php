@@ -2,12 +2,12 @@
 /**
  * adresskorrektur functions
  *
- * @package functions
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: adresskorrektur.php 2016-08-15 09:49:16Z webchills $
+ * @version $Id: adresskorrektur_functions.php 2023-11-03 18:25:16Z webchills $
  */
 
 if(!function_exists('zen_field_exists')) {
@@ -22,20 +22,6 @@ if(!function_exists('zen_field_exists')) {
         }
 
         return false;
-    }
-}
-
-if(!function_exists('zen_html_quotes')) {
-    function zen_html_quotes($string) {
-        if(function_exists('zen_db_output'))
-            return zen_db_output($string);
-        return htmlspecialchars($string, ENT_COMPAT, CHARSET, TRUE);
-    }
-}
-
-if(!function_exists('zen_html_unquote')) {
-    function zen_html_unquote($string) {
-        return htmlspecialchars_decode($string, ENT_COMPAT);
     }
 }
 

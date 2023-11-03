@@ -1,10 +1,11 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: adresskorrektur.php 2022-02-20 08:34:51Z webchills $
+ * @version $Id: adresskorrektur.php 2023-11-03 18:34:51Z webchills $
  */
   
 require 'includes/application_top.php';
@@ -35,7 +36,7 @@ $oID = zen_db_prepare_input($_GET['oID']);
 			'customers_city' => zen_db_prepare_input($_POST['update_customer_city']),
 			'customers_state' => zen_db_prepare_input($_POST['update_customer_state']),
 			'customers_postcode' => zen_db_prepare_input($_POST['update_customer_postcode']),
-			'customers_country' => zen_db_prepare_input($_POST['update_customer_country']),
+			
 			'customers_telephone' => zen_db_prepare_input($_POST['update_customer_telephone']),
 			'customers_email_address' => zen_db_prepare_input($_POST['update_customer_email_address']),
 			
@@ -47,7 +48,7 @@ $oID = zen_db_prepare_input($_GET['oID']);
 			'billing_city' => zen_db_prepare_input($_POST['update_billing_city']),
 			'billing_state' => zen_db_prepare_input($_POST['update_billing_state']),
 			'billing_postcode' => zen_db_prepare_input($_POST['update_billing_postcode']),
-			'billing_country' => zen_db_prepare_input($_POST['update_billing_country']),
+			
 
 			'delivery_name' => zen_db_prepare_input($_POST['update_delivery_name']),
 			'delivery_company' => zen_db_prepare_input($_POST['update_delivery_company']),
@@ -55,8 +56,8 @@ $oID = zen_db_prepare_input($_GET['oID']);
 			'delivery_suburb' => zen_db_prepare_input($_POST['update_delivery_suburb']),
 			'delivery_city' => zen_db_prepare_input($_POST['update_delivery_city']),
 			'delivery_state' => zen_db_prepare_input($_POST['update_delivery_state']),
-			'delivery_postcode' => zen_db_prepare_input($_POST['update_delivery_postcode']),
-			'delivery_country' => zen_db_prepare_input($_POST['update_delivery_country'])
+			'delivery_postcode' => zen_db_prepare_input($_POST['update_delivery_postcode'])
+			
 			
 		];
 
@@ -171,76 +172,61 @@ $order_updated = true;
 
   <tr>
     <td valign="top"><strong><?php echo ENTRY_CUSTOMER_NAME; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_customer_name" size="45" value="<?php echo zen_html_quotes($order->customer['name']); ?>"></td>
+    <td valign="top"><input name="update_customer_name" size="45" value="<?php echo zen_output_string_protected($order->customer['name']); ?>"></td>
 	<td valign="top"><strong><?php echo ENTRY_CUSTOMER_NAME; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_billing_name" size="45" value="<?php echo zen_html_quotes($order->billing['name']); ?>"></td>
+    <td valign="top"><input name="update_billing_name" size="45" value="<?php echo zen_output_string_protected($order->billing['name']); ?>"></td>
     <td valign="top"><strong><?php echo ENTRY_CUSTOMER_NAME; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_delivery_name" size="45" value="<?php echo zen_html_quotes($order->delivery['name']); ?>"></td>
+    <td valign="top"><input name="update_delivery_name" size="45" value="<?php echo zen_output_string_protected($order->delivery['name']); ?>"></td>
   </tr>
   <tr>
     <td valign="top"><strong><?php echo ENTRY_CUSTOMER_COMPANY; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_customer_company" size="45" value="<?php echo zen_html_quotes($order->customer['company']); ?>"></td>
+    <td valign="top"><input name="update_customer_company" size="45" value="<?php echo zen_output_string_protected($order->customer['company']); ?>"></td>
     <td valign="top"><strong><?php echo ENTRY_CUSTOMER_COMPANY; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_billing_company" size="45" value="<?php echo zen_html_quotes($order->billing['company']); ?>"></td>
+    <td valign="top"><input name="update_billing_company" size="45" value="<?php echo zen_output_string_protected($order->billing['company']); ?>"></td>
     <td valign="top"><strong><?php echo ENTRY_CUSTOMER_COMPANY; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_delivery_company" size="45" value="<?php echo zen_html_quotes($order->delivery['company']); ?>"></td>
+    <td valign="top"><input name="update_delivery_company" size="45" value="<?php echo zen_output_string_protected($order->delivery['company']); ?>"></td>
   </tr>
   <tr>
     <td valign="top"><strong><?php echo ENTRY_CUSTOMER_ADDRESS; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_customer_street_address" size="45" value="<?php echo zen_html_quotes($order->customer['street_address']); ?>"></td>
+    <td valign="top"><input name="update_customer_street_address" size="45" value="<?php echo zen_output_string_protected($order->customer['street_address']); ?>"></td>
     <td valign="top"><strong> <?php echo ENTRY_CUSTOMER_ADDRESS; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_billing_street_address" size="45" value="<?php echo zen_html_quotes($order->billing['street_address']); ?>"></td>
+    <td valign="top"><input name="update_billing_street_address" size="45" value="<?php echo zen_output_string_protected($order->billing['street_address']); ?>"></td>
     <td valign="top"><strong> <?php echo ENTRY_CUSTOMER_ADDRESS; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_delivery_street_address" size="45" value="<?php echo zen_html_quotes($order->delivery['street_address']); ?>"></td>
+    <td valign="top"><input name="update_delivery_street_address" size="45" value="<?php echo zen_output_string_protected($order->delivery['street_address']); ?>"></td>
   </tr>
   <tr>
     <td valign="top"><strong><?php echo ENTRY_CUSTOMER_SUBURB; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_customer_suburb" size="45" value="<?php echo zen_html_quotes($order->customer['suburb']); ?>"></td>
+    <td valign="top"><input name="update_customer_suburb" size="45" value="<?php echo zen_output_string_protected($order->customer['suburb']); ?>"></td>
     <td valign="top"><strong> <?php echo ENTRY_CUSTOMER_SUBURB; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_billing_suburb" size="45" value="<?php echo zen_html_quotes($order->billing['suburb']); ?>"></td>
+    <td valign="top"><input name="update_billing_suburb" size="45" value="<?php echo zen_output_string_protected($order->billing['suburb']); ?>"></td>
     <td valign="top"><strong> <?php echo ENTRY_CUSTOMER_SUBURB; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_delivery_suburb" size="45" value="<?php echo zen_html_quotes($order->delivery['suburb']); ?>"></td>
+    <td valign="top"><input name="update_delivery_suburb" size="45" value="<?php echo zen_output_string_protected($order->delivery['suburb']); ?>"></td>
   </tr>
   <tr>
     <td valign="top"><strong><?php echo ENTRY_CUSTOMER_CITY; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_customer_city" size="45" value="<?php echo zen_html_quotes($order->customer['city']); ?>"></td>
+    <td valign="top"><input name="update_customer_city" size="45" value="<?php echo zen_output_string_protected($order->customer['city']); ?>"></td>
     <td valign="top"><strong><?php echo ENTRY_CUSTOMER_CITY; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_billing_city" size="45" value="<?php echo zen_html_quotes($order->billing['city']); ?>"></td>
+    <td valign="top"><input name="update_billing_city" size="45" value="<?php echo zen_output_string_protected($order->billing['city']); ?>"></td>
     <td valign="top"><strong><?php echo ENTRY_CUSTOMER_CITY; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_delivery_city" size="45" value="<?php echo zen_html_quotes($order->delivery['city']); ?>"></td>
+    <td valign="top"><input name="update_delivery_city" size="45" value="<?php echo zen_output_string_protected($order->delivery['city']); ?>"></td>
   </tr>
   <tr>
     <td valign="top"><strong><?php echo ENTRY_CUSTOMER_STATE; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_customer_state" size="45" value="<?php echo zen_html_quotes($order->customer['state']); ?>"></td>
+    <td valign="top"><input name="update_customer_state" size="45" value="<?php echo zen_output_string_protected($order->customer['state']); ?>"></td>
     <td valign="top"><strong><?php echo ENTRY_CUSTOMER_STATE; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_billing_state" size="45" value="<?php echo zen_html_quotes($order->billing['state']); ?>"></td>
+    <td valign="top"><input name="update_billing_state" size="45" value="<?php echo zen_output_string_protected($order->billing['state']); ?>"></td>
     <td valign="top"><strong><?php echo ENTRY_CUSTOMER_STATE; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_delivery_state" size="45" value="<?php echo zen_html_quotes($order->delivery['state']); ?>"></td>
+    <td valign="top"><input name="update_delivery_state" size="45" value="<?php echo zen_output_string_protected($order->delivery['state']); ?>"></td>
   </tr>
   <tr>
     <td valign="top"><strong><?php echo ENTRY_CUSTOMER_POSTCODE; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_customer_postcode" size="45" value="<?php echo zen_html_quotes($order->customer['postcode']); ?>"></td>
+    <td valign="top"><input name="update_customer_postcode" size="45" value="<?php echo zen_output_string_protected($order->customer['postcode']); ?>"></td>
     <td valign="top"><strong><?php echo ENTRY_CUSTOMER_POSTCODE; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_billing_postcode" size="45" value="<?php echo zen_html_quotes($order->billing['postcode']); ?>"></td>
+    <td valign="top"><input name="update_billing_postcode" size="45" value="<?php echo zen_output_string_protected($order->billing['postcode']); ?>"></td>
     <td valign="top"><strong><?php echo ENTRY_CUSTOMER_POSTCODE; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_delivery_postcode" size="45" value="<?php echo zen_html_quotes($order->delivery['postcode']); ?>"></td>
+    <td valign="top"><input name="update_delivery_postcode" size="45" value="<?php echo zen_output_string_protected($order->delivery['postcode']); ?>"></td>
   </tr>
-  <tr>
-    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_COUNTRY; ?>:&nbsp;</strong></td>
-    <td valign="top">
-			<input name="update_customer_country" size="45" value="<?php echo zen_html_quotes($order->customer['country']); ?>">
-	
-    </td>
-    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_COUNTRY; ?>:&nbsp;</strong></td>
-    <td valign="top">
-			<input name="update_billing_country" size="45" value="<?php echo zen_html_quotes($order->billing['country']); ?>">
-		
-	</td>
-    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_COUNTRY; ?>:&nbsp;</strong></td>
-    <td valign="top">
-			<input name="update_delivery_country" size="45" value="<?php echo zen_html_quotes($order->delivery['country']); ?>">
-		
-  </tr>
+ 
 </table>
 </td></tr></table>
 <!-- End Addresses Block -->
@@ -254,11 +240,11 @@ $order_updated = true;
         <td><table border="0" cellspacing="0" cellpadding="2">
       		<tr>
       		  <td class="main"><strong><?php echo ENTRY_TELEPHONE_NUMBER; ?></strong></td>
-      		  <td class="main"><input name='update_customer_telephone' size='35' value='<?php echo zen_html_quotes($order->customer['telephone']); ?>'></td>
+      		  <td class="main"><input name='update_customer_telephone' size='35' value='<?php echo zen_output_string_protected($order->customer['telephone']); ?>'></td>
       		</tr>
       		<tr>
       		  <td class="main"><strong><?php echo ENTRY_EMAIL_ADDRESS; ?></strong></td>
-      		  <td class="main"><input name='update_customer_email_address' size='35' value='<?php echo zen_html_quotes($order->customer['email_address']); ?>'></td>
+      		  <td class="main"><input name='update_customer_email_address' size='35' value='<?php echo zen_output_string_protected($order->customer['email_address']); ?>'></td>
       		</tr>
       	</table></td>
       </tr>
