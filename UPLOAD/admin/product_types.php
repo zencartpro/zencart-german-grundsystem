@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: product_types.php 2023-10-29 15:34:51Z webchills $
+ * @version $Id: product_types.php 2023-11-03 15:34:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -173,11 +173,17 @@ if (!empty($action)) {
                     $cfgValue = $item['configuration_value'];
                   }
 
+    /* r.l. multilanguage */
+    
+   
+        $lang = getProdTypeLangArr($configuration->fields);
+        $item['configuration_title'] = $lang['configuration_title'];
                   if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ($_GET['cID'] == $item['configuration_id']))) && !isset($cInfo) && (substr($action, 0, 3) != 'new')) {
                     $cfg_extra = $db->Execute("SELECT configuration_key, configuration_description, date_added, last_modified, use_function, set_function
                                                          FROM " . TABLE_PRODUCT_TYPE_LAYOUT . "
                                                          WHERE configuration_id = " . (int)$item['configuration_id']);
                     $cInfo_array = array_merge($item, $cfg_extra->fields);
+	    	    $cInfo_array = array_merge($cInfo_array, $lang);
                     $cInfo = new objectInfo($cInfo_array);
                   }
 
