@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: product.php 2023-10-30 15:49:16Z webchills $
+ * @version $Id: product.php 2023-11-03 13:49:16Z webchills $
  */
 
 
@@ -13,7 +13,7 @@ define('TEXT_PRODUCTS_STATUS', 'Artikelstatus:');
 define('TEXT_PRODUCTS_VIRTUAL', 'Virtueller Artikel:');
 define('TEXT_PRODUCTS_IS_ALWAYS_FREE_SHIPPING', 'Immer versandkostenfrei:');
 
-define('TEXT_PRODUCTS_QTY_BOX_STATUS', 'Box für mengeneingabefeld anzeigen:');
+define('TEXT_PRODUCTS_QTY_BOX_STATUS', 'Mengeneingabefeld anzeigen:');
 
 define('TEXT_PRODUCTS_DATE_AVAILABLE', 'Erscheinungsdatum:');
 define('TEXT_PRODUCT_IS_VIRTUAL', 'Ja, keine Versandadresse abfragen');
