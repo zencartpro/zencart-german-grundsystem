@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2023-11-04 16:06:04Z webchills $
+ * @version $Id: german.php 2023-11-08 20:52:04Z webchills $
  */
 @setlocale(LC_TIME, ['de_DE.UTF-8', 'de_AT.UTF-8', 'de_CH.UTF-8', 'de_DE.ISO_8859-1','de_DE@euro', 'de_DE', 'de', 'ge', 'deu.deu']);
 
@@ -122,14 +122,21 @@ define('BOX_TAXES_TAX_CLASSES','Steuerklassen');
 define('BOX_TAXES_TAX_RATES','Steuersätze');
 define('BOX_TAXES_ZONES','Zonen');
 define('BOX_TOOLS_BANNER_MANAGER','Banner Manager');
+define('BOX_TOOLS_BACKUP_MYSQL', 'Datenbanksicherung');
+
+
+
 define('BOX_TOOLS_DEFINE_CONDITIONS','AGB');
 define('BOX_TOOLS_DEFINE_PAGES_EDITOR','Seiteneditor');
 define('BOX_TOOLS_DEVELOPERS_TOOL_KIT','Developers Tool Kit');
+define('BOX_TOOLS_EMAIL_EXPORT', 'Emailadressen Export');
 define('BOX_TOOLS_EZPAGES','EZ-Pages');
+define('BOX_TOOLS_FINDDUPMODELS', 'Doppelte und fehlende Artikelnummern finden');
 define('BOX_TOOLS_LAYOUT_CONTROLLER','Boxlayout');
 define('BOX_TOOLS_MAIL','Email senden');
 define('BOX_TOOLS_NEWSLETTER_MANAGER','Newsletter & Artikelbenachrichtigungen Manager');
 define('BOX_TOOLS_SERVER_INFO','Server/Version Info');
+define('BOX_TOOLS_SHOPVOTE', 'Shopvote');
 define('BOX_TOOLS_SQLPATCH','SQL Patches installieren');
 define('BOX_TOOLS_STORE_MANAGER','Shop Manager');
 define('BOX_TOOLS_TEMPLATE_SELECT','Template Auswahl');

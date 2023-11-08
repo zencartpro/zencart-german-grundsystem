@@ -1,13 +1,19 @@
 <?php
 /**
  * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: backup_mysql.php 2022-10-07 08:50:16Z webchills $
+ * @version $Id: backup_mysql.php 2023-11-08 21:04:16Z webchills $
  */
 
+// define the locations of the mysql utilities.  Typical location is in '/usr/bin/' ... but not on Windows servers.
+// try 'c:/mysql/bin/mysql.exe' and 'c:/mysql/bin/mysqldump.exe' on Windows hosts ... change drive letter and path as needed
+define('LOCAL_EXE_MYSQL',     '/usr/bin/mysql');  // used for restores
+define('LOCAL_EXE_MYSQLDUMP', '/usr/bin/mysqldump');  // used for backups
+
+// the following are the language definitions
 define('HEADING_TITLE', 'MySQL Datenbank Backup/Wiederherstellung');
 define('ERROR_BACKUP_DIRECTORY_DOES_NOT_EXIST', 'Fehler: Backup Verzeichnis<br>"'.DIR_FS_BACKUP.'"<br>existiert nicht (Slash Richtung hat keine Bedeutung).<br>Bitte prüfen Sie die configure.php im Adminverzeichnis (oder /local/configure.php falls verwendet).');
 define('ERROR_BACKUP_DIRECTORY_NOT_WRITEABLE', 'Fehler: Backup Verzeichnis ist nicht beschreibbar.');
