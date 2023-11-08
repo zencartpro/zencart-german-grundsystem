@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2023-11-03 16:57:04Z webchills $
+ * @version $Id: german.php 2023-11-04 16:06:04Z webchills $
  */
 @setlocale(LC_TIME, ['de_DE.UTF-8', 'de_AT.UTF-8', 'de_CH.UTF-8', 'de_DE.ISO_8859-1','de_DE@euro', 'de_DE', 'de', 'ge', 'deu.deu']);
 
@@ -65,7 +65,7 @@ define('BOX_CONFIGURATION_IMAGES','Bilder');
 define('BOX_CONFIGURATION_INDEX_LISTING','Liste - Artikelindex');
 define('BOX_CONFIGURATION_LAYOUT_SETTINGS','Layout Einstellungen');
 define('BOX_CONFIGURATION_LOGGING','Protokollierung/Logfiles');
-define('BOX_CONFIGURATION_MAXIMUM_VALUES','Maxmale Werte');
+define('BOX_CONFIGURATION_MAXIMUM_VALUES','Maximale Werte');
 define('BOX_CONFIGURATION_MINIMUM_VALUES','Minimale Werte');
 define('BOX_CONFIGURATION_MY_STORE','Mein Shop - Grundeinstellungen');
 define('BOX_CONFIGURATION_NEW_LISTING','Liste - Neue Artikel');

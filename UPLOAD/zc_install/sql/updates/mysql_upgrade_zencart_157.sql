@@ -1,5 +1,5 @@
 #
-# * This SQL script upgrades the core Zen Cart database structure from v1.5.6 to v1.5.7
+# * This SQL script upgrades the core Zen Cart database structure from v1.5.6 to v1.5.7g
 # *
 # * @access private
 # * Zen Cart German Specific
@@ -7,7 +7,7 @@
 # * Zen Cart German Version - www.zen-cart-pro.at
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_upgrade_zencart_157.sql 2023-05-20 08:36:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_157.sql 2023-11-08 18:04:59Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -35,8 +35,8 @@
 # Set store to Down-For-Maintenance mode.  Must reset manually via admin after upgrade is done.
 UPDATE configuration set configuration_value = 'true' where configuration_key = 'DOWN_FOR_MAINTENANCE';
 
-# Fix greater than sign in query_builder 
-UPDATE query_builder SET query_name = 'Customers Dormant for 3+ months (Subscribers)' WHERE query_id = 3; 
+# Remove greater-than sign in query_builder
+UPDATE query_builder SET query_name = 'Customers Dormant for 3+ months (Subscribers)' WHERE query_id = 3;
 
 # Clear out active customer sessions. Truncating helps the database clean up behind itself.
 TRUNCATE TABLE whos_online;
@@ -146,6 +146,76 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 DELETE FROM configuration WHERE configuration_key = 'ADMIN_DEMO';
 DELETE FROM configuration WHERE configuration_key = 'UPLOAD_FILENAME_EXTENSIONS';
 
+## Remove remnants of tell a friend
+DELETE FROM configuration WHERE configuration_key = 'ALLOW_GUEST_TO_TELL_A_FRIEND';
+DELETE FROM configuration WHERE configuration_key = 'SEND_EXTRA_TELL_A_FRIEND_EMAILS_TO';
+DELETE FROM configuration WHERE configuration_key = 'SEND_EXTRA_TELL_A_FRIEND_EMAILS_TO_STATUS';
+DELETE FROM product_type_layout WHERE configuration_key = 'SHOW_DOCUMENT_GENERAL_INFO_TELL_A_FRIEND';
+DELETE FROM product_type_layout WHERE configuration_key = 'SHOW_DOCUMENT_PRODUCT_INFO_TELL_A_FRIEND';
+DELETE FROM product_type_layout WHERE configuration_key = 'SHOW_PRODUCT_FREE_SHIPPING_INFO_TELL_A_FRIEND';
+DELETE FROM product_type_layout WHERE configuration_key = 'SHOW_PRODUCT_INFO_TELL_A_FRIEND';
+DELETE FROM product_type_layout WHERE configuration_key = 'SHOW_PRODUCT_MUSIC_INFO_TELL_A_FRIEND';
+
+#############
+### 1.5.7g bring address formats up to date
+
+### Move any none core address formats created by users
+UPDATE address_format SET address_format_id = address_format_id + 13  WHERE address_format_id > 7;
+UPDATE countries SET address_format_id = address_format_id + 13  WHERE address_format_id > 7;
+UPDATE orders SET customers_address_format_id = customers_address_format_id + 13 WHERE customers_address_format_id  > 7;
+UPDATE orders SET  delivery_address_format_id = delivery_address_format_id + 13 WHERE delivery_address_format_id > 7;
+UPDATE orders SET  billing_address_format_id = billing_address_format_id + 13 WHERE billing_address_format_id > 7;
+
+### Updated address summary for original address format address_summary
+UPDATE address_format SET address_summary = 'Default $city $country' WHERE address_format_id = 1;
+UPDATE address_format SET address_summary = '$city, $state $postcode' WHERE address_format_id = 2;
+UPDATE address_format SET address_summary = 'Historic $city / $postcode - $statecomma$country' WHERE address_format_id = 3;
+UPDATE address_format SET address_summary = 'Historic $city ($postcode)' WHERE address_format_id = 4;
+UPDATE address_format SET address_summary = '$postcode $city' WHERE address_format_id = 5;
+UPDATE address_format SET address_summary = '$city / $state / $postcode' WHERE address_format_id = 6 ;
+UPDATE address_format SET address_summary = '$city $state $postcode' WHERE address_format_id = 7;
+
+### Add new address formats
+INSERT INTO address_format VALUES (8,'$firstname $lastname$cr$streets$cr$city$cr$country','$city');
+INSERT INTO address_format VALUES (9,'$firstname $lastname$cr$streets$cr$postcode $city $state$cr$country','$postcode $city $state');
+INSERT INTO address_format VALUES (10,'$firstname $lastname$cr$streets$cr$city $postcode$cr$country','$city $postcode');
+INSERT INTO address_format VALUES (11,'$firstname $lastname$cr$streets$cr$city $state$cr$postcode$cr$country','$city $state / $postcode');
+INSERT INTO address_format VALUES (12,'$firstname $lastname$cr$streets$cr$postcode$cr$city $state$cr$country','$postcode / $city / $state');
+INSERT INTO address_format VALUES (13,'$firstname $lastname$cr$streets$cr$city $postcode$cr$state$cr$country','$city $postcode / $state');
+INSERT INTO address_format VALUES (14,'$firstname $lastname$cr$streets$cr$postcode $city$cr$state$cr$country','$postcode $city / $state');
+INSERT INTO address_format VALUES (15,'$firstname $lastname$cr$streets$cr$postcode$cr$city$cr$state$cr$country','$postcode / $city / $state');
+INSERT INTO address_format VALUES (16,'$firstname $lastname$cr$streets$cr$city $postcode $state$cr$country',' $city $postcode $state');
+INSERT INTO address_format VALUES (17,'$firstname $lastname$cr$streets$cr$city$cr$postcode $state$cr$country',' $city / $postcode $state');
+INSERT INTO address_format VALUES (18,'$firstname $lastname$cr$streets$cr$city$cr$state $postcode$cr$country','$city / $state $postcode');
+INSERT INTO address_format VALUES (19,'$firstname $lastname$cr$city$cr$streets$cr$postcode$cr$country','$city $street / $postcode');
+INSERT INTO address_format VALUES (20,'$firstname $lastname$cr$streets$cr$postcode $city ($state)$cr$country','$postcode $city ($state)');
+
+
+### Update countries with new address_format_id use countries_iso_code_2 to match and only change if still set to original address_format_id.
+UPDATE countries SET address_format_id = '2' WHERE countries_iso_code_2 IN ('LV', 'MM', 'KN', 'SO', 'TT') AND address_format_id = '1';
+UPDATE countries SET address_format_id = '5' WHERE countries_iso_code_2 IN ('AX', 'AL', 'DZ', 'AD', 'AR', 'AM', 'AZ', 'BA', 'BG', 'CV', 'CL', 'HR', 'CY', 'CZ', 'DK', 'DO', 'GQ', 'EE', 'ET', 'FO', 'FI', 'FR', 'GF', 'PF', 'TF', 'GA', 'GE', 'GR', 'GL', 'GP', 'GN', 'GW', 'HT', 'IS', 'IL', 'JM', 'KW', 'LA', 'LI', 'LT', 'LU', 'MK', 'MG', 'MQ', 'YT', 'MD', 'MC', 'MA', 'NC', 'NE', 'NO', 'PY', 'PL', 'PT', 'RE', 'RO', 'SM', 'SN', 'SK', 'SI', 'PM', 'SJ', 'CH', 'SY', 'TJ', 'TM', 'UY', 'WF', 'PS', 'ME', 'SS') AND address_format_id = '1';
+UPDATE countries SET address_format_id = '6' WHERE countries_iso_code_2 IN ('AF', 'IO', 'EG', 'FK', 'GI', 'IN', 'IR', 'IE', 'KZ', 'KE', 'KI', 'MT', 'MS', 'PN', 'RU', 'SC', 'SB', 'ZA', 'GS', 'LK', 'SH', 'SZ', 'TG', 'TC', 'TV', 'UA', 'AE', 'UZ', 'RS', 'ZW', 'GG', 'IM', 'JE') AND address_format_id = '1';
+UPDATE countries SET address_format_id = '7' WHERE countries_iso_code_2 IN ('AS', 'KH', 'KY', 'CN', 'CX', 'CC', 'CO', 'GU', 'GY', 'HM', 'JP', 'KR', 'MH', 'FM', 'NF', 'MP', 'PK', 'PW', 'PR', 'UM', 'VI', 'CW', 'SX') AND address_format_id = '1';
+UPDATE countries SET address_format_id = '7' WHERE countries_iso_code_2 IN  ('US', 'CA') AND address_format_id = '2';
+UPDATE countries SET address_format_id = '8' WHERE countries_iso_code_2 IN ('AO', 'AG', 'AW', 'BB', 'BJ', 'BO', 'BW', 'BV', 'BI', 'CM', 'CF', 'TD', 'KM', 'CG', 'CI', 'DJ', 'DM', 'ER', 'FJ', 'GM', 'GD', 'HK', 'LY', 'MO', 'MW', 'ML', 'MR', 'MU', 'NA', 'QA', 'RW', 'LC', 'WS', 'ST', 'SL', 'SR', 'TO', 'UG', 'VU', 'EH', 'YE')  AND address_format_id = '1';
+UPDATE countries SET address_format_id = '9' WHERE countries_iso_code_2 IN ('CU', 'HN', 'LR', 'MX', 'TN', 'TR', 'VA') AND address_format_id = '1';
+UPDATE countries SET address_format_id = '9' WHERE countries_iso_code_2 = 'IT' AND address_format_id = '5';
+UPDATE countries SET address_format_id = '10' WHERE countries_iso_code_2 IN ('AI', 'AQ', 'BS', 'BH', 'BD', 'BZ', 'BM', 'BT', 'BF', 'CK', 'TL', 'ID', 'JO', 'KP', 'LB', 'LS', 'MV', 'MN', 'NR', 'NP', 'BQ', 'NZ', 'NU', 'VC', 'SA', 'TW', 'TK', 'VG', 'ZM') AND address_format_id = '1';
+UPDATE countries SET address_format_id = '10' WHERE countries_iso_code_2 = 'SG' AND address_format_id = '4';
+UPDATE countries SET address_format_id = '11' WHERE countries_iso_code_2 IN ('BR', 'CR', 'GH', 'IQ', 'TH') AND address_format_id = '1';
+UPDATE countries SET address_format_id = '12' WHERE countries_iso_code_2 IN ('EC', 'NI', 'PE', 'SD') AND address_format_id = '1';
+UPDATE countries SET address_format_id = '13' WHERE countries_iso_code_2 = 'NG' AND address_format_id = '1';
+UPDATE countries SET address_format_id = '14' WHERE countries_iso_code_2 IN ('BY', 'GT', 'KG', 'MY', 'MZ', 'PA', 'SV', 'TZ') AND address_format_id = '1';
+UPDATE countries SET address_format_id = '15' WHERE countries_iso_code_2 = 'OM' AND address_format_id = '1';
+UPDATE countries SET address_format_id = '16' WHERE countries_iso_code_2 IN ('PG', 'VE') AND address_format_id = '1';
+UPDATE countries SET address_format_id = '17' WHERE countries_iso_code_2 = 'PH' AND address_format_id = '1';
+UPDATE countries SET address_format_id = '18' WHERE countries_iso_code_2 IN ('VN', 'BN')  AND address_format_id = '1';
+UPDATE countries SET address_format_id = '19' WHERE countries_iso_code_2 = 'HU' AND address_format_id = '1';
+UPDATE countries SET address_format_id = '20' WHERE countries_iso_code_2 = 'ES' AND address_format_id = '3';
+################
+
+
+
 #val_function update for MIN values
 UPDATE configuration SET val_function = '{"error":"TEXT_MIN_ADMIN_FIRST_NAME_LENGTH","id":"FILTER_VALIDATE_INT","options":{"options":{"min_range":0}}}' WHERE configuration_key ='ENTRY_FIRST_NAME_MIN_LENGTH';
 UPDATE configuration SET val_function = '{"error":"TEXT_MIN_ADMIN_LAST_NAME_LENGTH","id":"FILTER_VALIDATE_INT","options":{"options":{"min_range":0}}}' WHERE configuration_key ='ENTRY_LAST_NAME_MIN_LENGTH';
@@ -160,7 +230,6 @@ UPDATE configuration SET val_function = '{"error":"TEXT_MIN_ADMIN_TELEPHONE_LENG
 UPDATE configuration SET val_function = '{"error":"TEXT_MIN_ADMIN_PASSWORD_LENGTH","id":"FILTER_VALIDATE_INT","options":{"options":{"min_range":0}}}' WHERE configuration_key ='ENTRY_PASSWORD_MIN_LENGTH';
 UPDATE configuration SET val_function = '{"error":"TEXT_MIN_ADMIN_CC_OWNER_LENGTH","id":"FILTER_VALIDATE_INT","options":{"options":{"min_range":0}}}' WHERE configuration_key ='CC_OWNER_MIN_LENGTH';
 UPDATE configuration SET val_function = '{"error":"TEXT_MIN_ADMIN_CC_NUMBER_LENGTH","id":"FILTER_VALIDATE_INT","options":{"options":{"min_range":0}}}' WHERE configuration_key ='CC_NUMBER_MIN_LENGTH';
-UPDATE configuration SET val_function = '{"error":"TEXT_MIN_ADMIN_CC_CVV_LENGTH","id":"FILTER_VALIDATE_INT","options":{"options":{"min_range":0}}}' WHERE configuration_key ='CC_CVV_MIN_LENGTH';
 UPDATE configuration SET val_function = '{"error":"TEXT_MIN_ADMIN_REVIEW_LENGTH","id":"FILTER_VALIDATE_INT","options":{"options":{"min_range":0}}}' WHERE configuration_key ='REVIEW_TEXT_MIN_LENGTH';
 UPDATE configuration SET val_function = '{"error":"TEXT_MIN_ADMIN_DISPLAY_BESTSELLERS_LENGTH","id":"FILTER_VALIDATE_INT","options":{"options":{"min_range":0}}}' WHERE configuration_key ='MIN_DISPLAY_BESTSELLERS';
 UPDATE configuration SET val_function = '{"error":"TEXT_MIN_ADMIN_DISPLAY_ALSO_PURCHASED_LENGTH","id":"FILTER_VALIDATE_INT","options":{"options":{"min_range":0}}}' WHERE configuration_key ='MIN_DISPLAY_ALSO_PURCHASED';
@@ -198,7 +267,6 @@ UPDATE configuration SET val_function = '{"error":"TEXT_MAX_ADMIN_DISPLAY_SEARCH
 UPDATE configuration SET val_function = '{"error":"TEXT_MAX_ADMIN_DISPLAY_RESULTS_CATEGORIES_LENGTH","id":"FILTER_VALIDATE_INT","options":{"options":{"min_range":0}}}' WHERE configuration_key ='MAX_DISPLAY_RESULTS_CATEGORIES';
 UPDATE configuration SET val_function = '{"error":"TEXT_MAX_ADMIN_DISPLAY_PRODUCTS_LISTING_LENGTH","id":"FILTER_VALIDATE_INT","options":{"options":{"min_range":0}}}' WHERE configuration_key ='MAX_DISPLAY_PRODUCTS_LISTING';
 UPDATE configuration SET val_function = '{"error":"TEXT_MAX_ADMIN_ROW_LISTS_OPTIONS_LENGTH","id":"FILTER_VALIDATE_INT","options":{"options":{"min_range":0}}}' WHERE configuration_key ='MAX_ROW_LISTS_OPTIONS';
-UPDATE configuration SET val_function = '{"error":"TEXT_MAX_ADMIN_ROW_LISTS_ATTRIBUTES_CONTROLLER_LENGTH","id":"FILTER_VALIDATE_INT","options":{"options":{"min_range":0}}}' WHERE configuration_key ='MAX_ROW_LISTS_ATTRIBUTES_CONTROLLER';
 UPDATE configuration SET val_function = '{"error":"TEXT_MAX_ADMIN_DISPLAY_SEARCH_RESULTS_DOWNLOADS_MANAGER_LENGTH","id":"FILTER_VALIDATE_INT","options":{"options":{"min_range":0}}}' WHERE configuration_key ='MAX_DISPLAY_SEARCH_RESULTS_DOWNLOADS_MANAGER';
 UPDATE configuration SET val_function = '{"error":"TEXT_MAX_ADMIN_DISPLAY_SEARCH_RESULTS_FEATURED_ADMIN_LENGTH","id":"FILTER_VALIDATE_INT","options":{"options":{"min_range":0}}}' WHERE configuration_key ='MAX_DISPLAY_SEARCH_RESULTS_FEATURED_ADMIN';
 UPDATE configuration SET val_function = '{"error":"TEXT_MAX_ADMIN_DISPLAY_SEARCH_RESULTS_FEATURED_LENGTH","id":"FILTER_VALIDATE_INT","options":{"options":{"min_range":0}}}' WHERE configuration_key ='MAX_DISPLAY_SEARCH_RESULTS_FEATURED';
@@ -214,17 +282,17 @@ UPDATE configuration SET val_function = '{"error":"TEXT_MAX_ADMIN_DISPLAY_PRODUC
 UPDATE configuration SET val_function = '{"error":"TEXT_MAX_ADMIN_DISPLAY_SEARCH_RESULTS_EZPAGE_LENGTH","id":"FILTER_VALIDATE_INT","options":{"options":{"min_range":0}}}' WHERE configuration_key ='MAX_DISPLAY_SEARCH_RESULTS_EZPAGE';
 
 #val_function update for email addresses
-UPDATE configuration SET val_function = '{"error":"TEXT_EMAIL_ADDRESS_VALIDATE","id":"FILTER_CALLBACK","options":{"options":["configurationValidation","sanitizeEmail"]}}' WHERE configuration_key ='STORE_OWNER_EMAIL_ADDRESS';
-UPDATE configuration SET val_function = '{"error":"TEXT_EMAIL_ADDRESS_VALIDATE","id":"FILTER_CALLBACK","options":{"options":["configurationValidation","sanitizeEmail"]}}' WHERE configuration_key ='EMAIL_FROM';
-UPDATE configuration SET val_function = '{"error":"TEXT_EMAIL_ADDRESS_VALIDATE","id":"FILTER_CALLBACK","options":{"options":["configurationValidation","sanitizeEmail"]}}' WHERE configuration_key ='SEND_EXTRA_ORDER_EMAILS_TO';
-UPDATE configuration SET val_function = '{"error":"TEXT_EMAIL_ADDRESS_VALIDATE","id":"FILTER_CALLBACK","options":{"options":["configurationValidation","sanitizeEmail"]}}' WHERE configuration_key ='SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO';
-UPDATE configuration SET val_function = '{"error":"TEXT_EMAIL_ADDRESS_VALIDATE","id":"FILTER_CALLBACK","options":{"options":["configurationValidation","sanitizeEmail"]}}' WHERE configuration_key ='SEND_EXTRA_GV_CUSTOMER_EMAILS_TO';
-UPDATE configuration SET val_function = '{"error":"TEXT_EMAIL_ADDRESS_VALIDATE","id":"FILTER_CALLBACK","options":{"options":["configurationValidation","sanitizeEmail"]}}' WHERE configuration_key ='SEND_EXTRA_GV_ADMIN_EMAILS_TO';
-UPDATE configuration SET val_function = '{"error":"TEXT_EMAIL_ADDRESS_VALIDATE","id":"FILTER_CALLBACK","options":{"options":["configurationValidation","sanitizeEmail"]}}' WHERE configuration_key ='SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO';
-UPDATE configuration SET val_function = '{"error":"TEXT_EMAIL_ADDRESS_VALIDATE","id":"FILTER_CALLBACK","options":{"options":["configurationValidation","sanitizeEmail"]}}' WHERE configuration_key ='SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO';
-UPDATE configuration SET val_function = '{"error":"TEXT_EMAIL_ADDRESS_VALIDATE","id":"FILTER_CALLBACK","options":{"options":["configurationValidation","sanitizeEmail"]}}' WHERE configuration_key ='SEND_EXTRA_REVIEW_NOTIFICATION_EMAILS_TO';
-UPDATE configuration SET val_function = '{"error":"TEXT_EMAIL_ADDRESS_VALIDATE","id":"FILTER_CALLBACK","options":{"options":["configurationValidation","sanitizeEmail"]}}' WHERE configuration_key ='CONTACT_US_LIST';
-UPDATE configuration SET val_function = '{"error":"TEXT_EMAIL_ADDRESS_VALIDATE","id":"FILTER_CALLBACK","options":{"options":["configurationValidation","sanitizeEmail"]}}' WHERE configuration_key ='SEND_EXTRA_LOW_STOCK_EMAILS_TO';
+UPDATE configuration SET val_function = '{"error":"TEXT_EMAIL_ADDRESS_VALIDATE_SINGLE","id":"FILTER_CALLBACK","options":{"options":["configurationValidation","sanitizeEmail"]}}' WHERE configuration_key = 'EMAIL_FROM';
+UPDATE configuration SET val_function = '{"error":"TEXT_EMAIL_ADDRESS_VALIDATE_SINGLE","id":"FILTER_CALLBACK","options":{"options":["configurationValidation","sanitizeEmail"]}}' WHERE configuration_key = 'STORE_OWNER_EMAIL_ADDRESS';
+UPDATE configuration SET val_function = '{"error":"TEXT_EMAIL_ADDRESS_VALIDATE","id":"FILTER_CALLBACK","options":{"options":["configurationValidation","sanitizeEmailNullOK"]}}' WHERE configuration_key ='SEND_EXTRA_ORDER_EMAILS_TO';
+UPDATE configuration SET val_function = '{"error":"TEXT_EMAIL_ADDRESS_VALIDATE","id":"FILTER_CALLBACK","options":{"options":["configurationValidation","sanitizeEmailNullOK"]}}' WHERE configuration_key ='SEND_EXTRA_CREATE_ACCOUNT_EMAILS_TO';
+UPDATE configuration SET val_function = '{"error":"TEXT_EMAIL_ADDRESS_VALIDATE","id":"FILTER_CALLBACK","options":{"options":["configurationValidation","sanitizeEmailNullOK"]}}' WHERE configuration_key ='SEND_EXTRA_GV_CUSTOMER_EMAILS_TO';
+UPDATE configuration SET val_function = '{"error":"TEXT_EMAIL_ADDRESS_VALIDATE","id":"FILTER_CALLBACK","options":{"options":["configurationValidation","sanitizeEmailNullOK"]}}' WHERE configuration_key ='SEND_EXTRA_GV_ADMIN_EMAILS_TO';
+UPDATE configuration SET val_function = '{"error":"TEXT_EMAIL_ADDRESS_VALIDATE","id":"FILTER_CALLBACK","options":{"options":["configurationValidation","sanitizeEmailNullOK"]}}' WHERE configuration_key ='SEND_EXTRA_DISCOUNT_COUPON_ADMIN_EMAILS_TO';
+UPDATE configuration SET val_function = '{"error":"TEXT_EMAIL_ADDRESS_VALIDATE","id":"FILTER_CALLBACK","options":{"options":["configurationValidation","sanitizeEmailNullOK"]}}' WHERE configuration_key ='SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO';
+UPDATE configuration SET val_function = '{"error":"TEXT_EMAIL_ADDRESS_VALIDATE","id":"FILTER_CALLBACK","options":{"options":["configurationValidation","sanitizeEmailNullOK"]}}' WHERE configuration_key ='SEND_EXTRA_REVIEW_NOTIFICATION_EMAILS_TO';
+UPDATE configuration SET val_function = '{"error":"TEXT_EMAIL_ADDRESS_VALIDATE","id":"FILTER_CALLBACK","options":{"options":["configurationValidation","sanitizeEmailNullOK"]}}' WHERE configuration_key ='SEND_EXTRA_LOW_STOCK_EMAILS_TO';
+UPDATE configuration SET val_function = '{"error":"TEXT_EMAIL_ADDRESS_VALIDATE","id":"FILTER_CALLBACK","options":{"options":["configurationValidation","sanitizeEmailNullOK"]}}' WHERE configuration_key ='CONTACT_US_LIST';
 
 
 #
@@ -261,6 +329,39 @@ ALTER TABLE ezpages DROP pages_html_text;
 # ZC 155 upgrade missed these operations
 ALTER TABLE admin_activity_log ADD logmessage mediumtext NOT NULL;
 ALTER TABLE admin_activity_log ADD severity varchar(9) NOT NULL DEFAULT 'info';
+
+# modify existing tables for 1.5.7g
+ALTER TABLE layout_boxes ADD plugin_details varchar(100) NOT NULL default '';
+ALTER TABLE manufacturers ADD COLUMN featured tinyint default 0;
+ALTER TABLE customers ADD registration_ip varchar(45) NOT NULL default '';
+ALTER TABLE customers ADD last_login_ip varchar(45) NOT NULL default '';
+ALTER TABLE customers_info ADD INDEX idx_date_created_cust_id_zen (customers_info_date_account_created, customers_info_id);
+
+ALTER TABLE orders_products MODIFY products_name varchar(191) NOT NULL default '';
+ALTER TABLE products_description MODIFY products_name varchar(191) NOT NULL default '';
+
+ALTER TABLE orders MODIFY customers_country varchar(64) NOT NULL default '';
+ALTER TABLE orders MODIFY delivery_country varchar(64) NOT NULL default '';
+ALTER TABLE orders MODIFY billing_country varchar(64) NOT NULL default '';
+ALTER TABLE orders ADD shipping_tax_rate decimal(15,4) DEFAULT NULL AFTER order_tax; 
+
+ALTER TABLE products_options ADD products_options_comment_position smallint(2) NOT NULL default '0' AFTER products_options_comment;
+
+ALTER TABLE coupon_email_track MODIFY emailed_to varchar(96) default NULL;
+
+# Remove deprecated defines
+DELETE FROM configuration WHERE configuration_key = 'CATEGORIES_SPLIT_DISPLAY';
+DELETE FROM configuration_language WHERE configuration_key = 'CATEGORIES_SPLIT_DISPLAY';
+DELETE FROM configuration WHERE configuration_key = 'CUSTOMERS_AUTHORIZATION_PRICES_OFF';
+DELETE FROM configuration_language WHERE configuration_key = 'CUSTOMERS_AUTHORIZATION_PRICES_OFF';
+DELETE FROM configuration WHERE configuration_key = 'EMAIL_FRIENDLY_ERRORS';
+DELETE FROM configuration_language WHERE configuration_key = 'EMAIL_FRIENDLY_ERRORS';
+DELETE FROM configuration WHERE configuration_key = 'EMAIL_LINEFEED';
+DELETE FROM configuration_language WHERE configuration_key = 'EMAIL_LINEFEED';
+DELETE FROM configuration WHERE configuration_key = 'CC_CVV_MIN_LENGTH';
+DELETE FROM configuration_language WHERE configuration_key = 'CC_CVV_MIN_LENGTH';
+DELETE FROM configuration WHERE configuration_key = 'MAX_ROW_LISTS_ATTRIBUTES_CONTROLLER';
+DELETE FROM configuration_language WHERE configuration_key = 'MAX_ROW_LISTS_ATTRIBUTES_CONTROLLER';
 
 
 # New Plugin tables
@@ -343,7 +444,6 @@ DROP TABLE IF EXISTS google_analytics_languages;
 # delete unused admin pages and admin menus
 DELETE FROM admin_pages WHERE main_page = 'FILENAME_GERMAN';
 DELETE FROM admin_menus WHERE menu_key = 'german1';
-
 
 
 ### New since 157
@@ -447,13 +547,13 @@ DELETE FROM configuration_language WHERE configuration_key = 'FACEBOOK_LIKE_BUTT
 
 
 # update Image Handler Version to 5.3.3
-UPDATE configuration SET configuration_value = '5.3.3' WHERE configuration_key = 'IH_VERSION';
+UPDATE configuration SET configuration_value = '5.3.4' WHERE configuration_key = 'IH_VERSION';
 
-# update display logs version to 3.0.0
-UPDATE configuration SET configuration_value = '3.0.0' WHERE configuration_key = 'DISPLAY_LOGS_VERSION';
+# update display logs version to 3.0.2
+UPDATE configuration SET configuration_value = '3.0.2' WHERE configuration_key = 'DISPLAY_LOGS_VERSION';
 
-# update cross sell version to 2.0.1
-UPDATE configuration SET configuration_value = '2.0.1' WHERE configuration_key = 'XSELL_VERSION';
+# update cross sell version to 2.0.2
+UPDATE configuration SET configuration_value = '2.0.2' WHERE configuration_key = 'XSELL_VERSION';
 
 ### change cross sell table structure ###
 ALTER TABLE products_xsell
@@ -461,6 +561,31 @@ MODIFY COLUMN ID int(11) NOT NULL auto_increment,
 MODIFY COLUMN products_id int(11) NOT NULL,
 MODIFY COLUMN xsell_id int(11) NOT NULL,
 MODIFY COLUMN sort_order int(11) NOT NULL DEFAULT 1;
+
+# new tables customer_groups and customer_to_groups since 1.5.7g
+
+INSERT IGNORE INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order)
+VALUES ('customerGroups', 'BOX_CUSTOMERS_CUSTOMER_GROUPS', 'FILENAME_CUSTOMER_GROUPS', '', 'customers', 'Y', 3);
+
+CREATE TABLE customer_groups (
+  group_id int UNSIGNED NOT NULL AUTO_INCREMENT,
+  group_name varchar(191) NOT NULL,
+  group_comment varchar(255),
+  date_added timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (group_id),
+  UNIQUE KEY idx_groupname_zen (group_name)
+);
+CREATE TABLE customers_to_groups (
+  id int UNSIGNED NOT NULL AUTO_INCREMENT,
+  group_id int UNSIGNED NOT NULL,
+  customer_id int UNSIGNED NOT NULL,
+  date_added timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  UNIQUE KEY idx_custid_groupid_zen (customer_id, group_id),
+  KEY idx_groupid_custid_zen (group_id, customer_id)
+);
 
 #############
 # lets replace all german config translations with the latest from 1.5.7
@@ -528,7 +653,6 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('Passwort', 'ENTRY_PASSWORD_MIN_LENGTH', 43, 'Minimale Zeichenlänge für das Passwort', now(), now()),
 ('Kreditkarteninhaber', 'CC_OWNER_MIN_LENGTH', 43, 'Minimale Zeichenlänge für den Namen des Kreditkarteninhabers', now(), now()),
 ('Kreditkartennummer', 'CC_NUMBER_MIN_LENGTH', 43, 'Minimale Zeichenlänge für die Kreditkartennummer', now(), now()),
-('Kreditkarten Prüfziffer (CVV)', 'CC_CVV_MIN_LENGTH', 43, 'Minimale Zeichenlänge für den Kreditkarten Prüfziffer (CVV)', now(), now()),
 ('Zeichenlänge für Bewertungstexte', 'REVIEW_TEXT_MIN_LENGTH', 43, 'Minimale Zeichenlänge für den Text einer Bewertung', now(), now()),
 ('Bestseller', 'MIN_DISPLAY_BESTSELLERS', 43, 'Wieviele Bestseller/Top Artikel sollen mindestens angezeigt werden?', now(), now()),
 ('Empfohlene Artikel', 'MIN_DISPLAY_ALSO_PURCHASED', 43, 'Minimale Anzahl der anzuzeigenden Artikel in der Box Empfohlene Artikel', now(), now()),
@@ -566,7 +690,6 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('Artikel in Kategorien pro Seite', 'MAX_DISPLAY_RESULTS_CATEGORIES', 43, 'Wieviele Artikel sollen im Adminbereich --> Artikel & Kategorien in den jeweiligen Kategorien pro Seite angezeigt werden?', now(), now()),
 ('Artikelliste: Anzahl der Artikel', 'MAX_DISPLAY_PRODUCTS_LISTING', 43, 'Wieviele Artikel in der Artikelliste der jeweiligen Kategorie im Shop angezeigt werden?', now(), now()),
 ('Artikelattribute: Ansicht Attributnamen und -werte', 'MAX_ROW_LISTS_OPTIONS', 43, 'Wieviele Attributnamen und -werte sollen auf der Seite der Artikelattribute maximal angezeigt werden?', now(), now()),
-('Artikelattribute: Ansicht Attributmanager', 'MAX_ROW_LISTS_ATTRIBUTES_CONTROLLER', 43, 'Wieviele Attribute sollen auf der Seite des Attributmanagers maximal angezeigt werden?', now(), now()),
 ('Artikelattribute - Downloadmanager', 'MAX_DISPLAY_SEARCH_RESULTS_DOWNLOADS_MANAGER', 43, 'Wieviele Downloadattribute sollen pro Seite im Downloadmanager angezeigt werden?', now(), now()),
 ('Empfohlene Artikel im Adminbereich', 'MAX_DISPLAY_SEARCH_RESULTS_FEATURED_ADMIN', 43, 'Anzahl empfohlener Artikel pro Seite im Adminbereich', now(), now()),
 ('Empfohlene Artikel auf der Startseite', 'MAX_DISPLAY_SEARCH_RESULTS_FEATURED', 43, 'Anzahl empfohlener Artikel auf der Startseite', now(), now()),
@@ -657,7 +780,6 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('Kunden Autorisierung: linke Spalte ausblenden', 'CUSTOMERS_AUTHORIZATION_COLUMN_LEFT_OFF', 43, 'Kunden Autorisierung: linke Spalte ausblenden <br />(true= ausblenden<br />false= anzeigen)', now(), now()),
 ('Kunden Autorisierung: rechte Spalte ausblenden', 'CUSTOMERS_AUTHORIZATION_COLUMN_RIGHT_OFF', 43, 'Kunden Autorisierung: rechte Spalte ausblenden <br />(true= ausblenden<br />false= anzeigen)', now(), now()),
 ('Kunden Autorisierung: Fusszeile ausblenden', 'CUSTOMERS_AUTHORIZATION_FOOTER_OFF', 43, 'Kunden Autorisierung: Fusszeile ausblenden<br />(true= ausblenden<br />false= anzeigen)', now(), now()),
-('Kunden Autorisierung: Preise ausblenden', 'CUSTOMERS_AUTHORIZATION_PRICES_OFF', 43, 'Kunden Autorisierung: Preise ausblenden <br />(true= ausblenden<br />false= anzeigen)', now(), now()),
 ('Kundenempfehlung', 'CUSTOMERS_REFERRAL_STATUS', 43, 'Kunden Referer - Status<br /><br />0= AUS - Kundenempfehlung deaktiviert<br />1= Durch die erste Verwendung eines Aktionskupons<br />2= Kunde kann während der Erstellung des Kundenkontos die Empfehlung eintragen, falls diese leer ist<br /><br />HINWEIS: Wurde die Kundenempfehlung einmal erstellt, kann diese nur noch im Adminbereich geändert werden', now(), now()),
 
 # Adminmenü ID 6 - Wird nicht im Adminbereich angezeigt, dient meist für die Module
@@ -794,12 +916,10 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('SMTP E-Mail - Mailserver Name', 'EMAIL_SMTPAUTH_MAIL_SERVER', 43, 'SMTP Mailserver für Authentifizierung z.B. smtp.domain.com', now(), now()),
 ('SMTP E-Mail - Mailserver Port', 'EMAIL_SMTPAUTH_MAIL_SERVER_PORT', 43, 'SMTP Mailserver Port', now(), now()),
 ('Währungssymbole für Text-Emails', 'CURRENCIES_TRANSLATIONS', 43, 'Welche Währungssymbole sollen für Text-Emails konvertiert werden?<br />Am besten lassen Sie die folgende Voreinstellung völlig unverändert:<br>&amp;pound; = £, &amp;euro; = €, &amp;reg; = ® , &amp;trade; = ™', now(), now()),
-('E-Mail Zeilenvorschub', 'EMAIL_LINEFEED', 43, 'Legen Sie hier die Zeichen fest, die Sie zur Trennung des E-Mail Headers verwenden wollen.', now(), now()),
 ('E-Mail als MIME HTML versenden', 'EMAIL_USE_HTML', 43, 'Wollen Sie e-Mails im HTML Format versenden falls der Empänger in seinen Einstellungen HTML statt Text angekreuzt hat?<br>HINWEIS: Dies ist der generelle Hauptschalter. Wenn Sie hier auf false stellen, dann wird der Shop keinerlei HTML Emails versenden.', now(), now()),
 ('E-Mail durch DNS-Server verifizieren', 'ENTRY_EMAIL_ADDRESS_CHECK', 43, 'Soll die Gültigkeit von e-Mails durch DNS-Server verifiziert werden?', now(), now()),
 ('E-Mail senden', 'SEND_EMAILS', 43, 'E-Mails senden', now(), now()),
 ('E-Mail Archivierung aktiviert', 'EMAIL_ARCHIVE', 43, 'Wenn Sie E-Mail, die versendet werden, archivieren wollen, setzen Sie desen Wert auf "true".', now(), now()),
-('E-Mail Fehlermeldungen', 'EMAIL_FRIENDLY_ERRORS', 43, 'Gibt lesbare Fehlermeldungen aus falls der E-Mail Versand scheitert (true). Bei (false) werden auch PHP Fehler angezeigt . Diese Einstellung ist nur für die Fehlersuche gedacht!', now(), now()),
 ('E-Mail Adresse (Kontaktadresse)', 'STORE_OWNER_EMAIL_ADDRESS', 43, 'Die E-Mail Adresse des Shopbetreibers / der Kontaktperson.', now(), now()),
 ('E-Mail Absender', 'EMAIL_FROM', 43, 'Die Absenderadresse, mit der E-Mails versendet werden sollen.', now(), now()),
 ('E-Mail Absenderdomain verwenden?', 'EMAIL_SEND_MUST_BE_STORE', 43, 'Alle vom Mailserver verschickten E-Mails müssen eine Absenderadresse "FROM" haben?<br /><br />Dies wird oft verwendet um das verschicken von SPAM mails zu verhindern. Bei JA wird der Wert der Einstellung "E-Mail Absender" als "FROM" Adresse für alle ausgehenden Mails verwendet.', now(), now()),
@@ -979,7 +1099,6 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 ('Kategoriezähler Suffix', 'CATEGORIES_COUNT_SUFFIX', 43, 'Welches Symbol wollen Sie für den Suffix für Kategoriezähler verwenden?<br />Standard= )', now(), now()),
 ('Unterkategorie einrücken mit', 'CATEGORIES_SUBCATEGORIES_INDENT', 43, 'Wie sollen Unterkategorien eingerückt werden?<br />Standard= & & ', now(), now()),
 ('Kategoriezähler für Kategorien mit 0 Artikel anzeigen', 'CATEGORIES_COUNT_ZERO', 43, 'Sollen Kategoriezähler für Kategorien, die keine Artikel enthalten, angezeigt werden?<br />0= nein<br />1= ja', now(), now()),
-('Kategoriebox teilen', 'CATEGORIES_SPLIT_DISPLAY', 43, 'Soll die Kategoriebox nach Artikeltyp aufgeteilt werden?', now(), now()),
 ('Warenkorb: Summe anzeigen', 'SHOW_TOTALS_IN_CART', 43, 'Soll die Summe unter dem Warenkorb angezeigt werden?<br />0= nein<br />1= ja, Summe Artikel - Gewicht - Betrag<br />2= ja, Summe Artikel - Gewicht - Betrag, keine Anzeige des Gewichts, wenn dieses 0 ist<br />3= ja, Summe Artikel - Betrag', now(), now()),
 ('Willkommenstext auf Startseite zeigen?', 'SHOW_CUSTOMER_GREETING', 43, 'Willkommenstext auf Startseite zeigen?<br />0= AUS<br />1= EIN', now(), now()),
 ('Kategorien: Immer auf der Startseite anzeigen', 'SHOW_CATEGORIES_ALWAYS', 43, 'Sollen Top Level Kategorien immer auf der Startseite angezeigt werden?<br />0= nein<br />1= ja<br />Die Standardkategorie kann als "Top Level Kategorie" gesetzt sein oder eine bestimmte "Top Level Kategorie" sein', now(), now()),
@@ -1328,7 +1447,7 @@ INSERT INTO product_type_layout_language (configuration_title, configuration_key
 #############
 
 REPLACE INTO product_type_layout_language (configuration_title , configuration_key , languages_id, configuration_description, last_modified, date_added) VALUES 
-('20230520', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Uebersetzungen', now(), now());
+('20231108', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Uebersetzungen', now(), now());
 
 #############
 
@@ -1341,7 +1460,7 @@ SELECT project_version_key, project_version_major, project_version_minor, projec
 FROM project_version;
 
 ## Now set to new version
-UPDATE project_version SET project_version_major='1', project_version_minor='5.7f', project_version_patch1='', project_version_patch1_source='', project_version_patch2='', project_version_patch2_source='', project_version_comment='Version Update 1.5.6->1.5.7f', project_version_date_applied=now() WHERE project_version_key = 'Zen-Cart Main';
-UPDATE project_version SET project_version_major='1', project_version_minor='5.7f', project_version_patch1='', project_version_patch1_source='', project_version_patch2='', project_version_patch2_source='', project_version_comment='Version Update 1.5.6->1.5.7f', project_version_date_applied=now() WHERE project_version_key = 'Zen-Cart Database';
+UPDATE project_version SET project_version_major='1', project_version_minor='5.7g', project_version_patch1='', project_version_patch1_source='', project_version_patch2='', project_version_patch2_source='', project_version_comment='Version Update 1.5.6->1.5.7g', project_version_date_applied=now() WHERE project_version_key = 'Zen-Cart Main';
+UPDATE project_version SET project_version_major='1', project_version_minor='5.7g', project_version_patch1='', project_version_patch1_source='', project_version_patch2='', project_version_patch2_source='', project_version_comment='Version Update 1.5.6->1.5.7g', project_version_date_applied=now() WHERE project_version_key = 'Zen-Cart Database';
 
 ##### END OF UPGRADE SCRIPT

@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: orders.php 2023-10-26 11:49:16Z webchills $
+ * @version $Id: orders.php 2023-11-08 11:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Bestellungen');
@@ -22,7 +22,7 @@ define('TABLE_HEADING_ORDERS_ID', 'ID');
 
 define('TEXT_BILLING_SHIPPING_MISMATCH', 'Rechnungs- und Versandadresse stimmen nicht überein ');
 
-define('TABLE_HEADING_ZONE_INFO','Zone');
+define('TABLE_HEADING_ZONE_INFO','Land');
 
 define('TABLE_HEADING_ORDER_TOTAL', 'Bestellsumme');
 define('TABLE_HEADING_DATE_PURCHASED', 'Bestelldatum');
@@ -124,5 +124,5 @@ define('TEXT_MAP_SHIPPING_ADDRESS', 'Karte Lieferadresse');
 define('TEXT_MAP_BILLING_ADDRESS', 'Karte Rechnungsadresse');
 define('TEXT_EMAIL_LANGUAGE', 'Sprache der Bestellung: %s');
 define('SUCCESS_EMAIL_SENT', 'Email %s an Kunden gesandt');
-define('WARNING_PAYMENT_MODULE_DOESNT_EXIST',"The order's payment module (%s) no longer exists.");
-define('WARNING_PAYMENT_MODULE_NOTIFICATIONS_DISABLED','The configuration of the order\'s payment module (%s) has changed. No refunds, auths, captures or voids can be done for this order.');
+define('WARNING_PAYMENT_MODULE_DOESNT_EXIST','Das Zahlungsmodul dieser Bestellung (%s) gibt es nicht mehr.');
+define('WARNING_PAYMENT_MODULE_NOTIFICATIONS_DISABLED','Die Konfiguration des Zahlungsmoduls dieser Bestellung (%s) wurde geändert. Es sind keine Rückerstattungen möglich.');

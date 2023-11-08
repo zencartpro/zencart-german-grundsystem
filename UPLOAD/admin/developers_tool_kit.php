@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: developers_tool_kit.php 2023-10-23 19:25:16Z webchills $
+ * @version $Id: developers_tool_kit.php 2023-11-03 21:08:16Z webchills $
  */
 require('includes/application_top.php');
 
@@ -352,9 +352,7 @@ switch ($action) {
     if (zen_not_null($search) && $search_type != 'all') {
       $searchClause = "AND (configuration_title LIKE '%:search:%' OR configuration_description LIKE '%:search:%' :cfgKeySearch:)";
       // support configuration_key constants
-      $cfgKeySearch = " OR configuration_key = :zcconfigkey:";
-      if (strtoupper($search) == $search && preg_match('/^(%?).*(%?)$/', $search))
-        $cfgKeySearch = " OR configuration_key like :zcconfigkey: ";
+      $cfgKeySearch = " OR configuration_key like '%:zcconfigkey:%' ";
     }
     $cfgAndClause = $searchClause;
     $ptypeAndClause = $searchClause;
@@ -362,7 +360,7 @@ switch ($action) {
     $sql = $db->bindVars($sql, ':ptypeAndClause:', $ptypeAndClause, 'passthru');
     $sql = $db->bindVars($sql, ':typeRestriction:', ' and t.type_id=1 ', 'passthru');
     $sql = $db->BindVars($sql, ':cfgKeySearch:', $cfgKeySearch, 'passthru');
-    $sql = $db->BindVars($sql, ':zcconfigkey:', str_replace('_', '\_', strtoupper($search)), 'string');
+    $sql = $db->BindVars($sql, ':zcconfigkey:', str_replace('_', '\_', strtoupper($search)), 'noquotestring');
     $sql = $db->bindVars($sql, ':search:', $search, 'noquotestring');
     if (isset($_GET['s']) && $_GET['s'] == 'k')
       $sql .= ' ORDER BY configuration_key';

@@ -6,7 +6,7 @@
 # * Zen Cart German Version - www.zen-cart-pro.at
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_zencart.sql 2023-10-31 16:41:16Z webchills $
+# * @version $Id: mysql_zencart.sql 2023-11-08 19:05:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -2438,6 +2438,7 @@ VALUES ('configMyStore', 'BOX_CONFIGURATION_MY_STORE', 'FILENAME_CONFIGURATION',
        ('plugins', 'BOX_MODULES_PLUGINS', 'FILENAME_PLUGIN_MANAGER', '', 'modules', 'Y', 4),
        ('orderTotal', 'BOX_MODULES_ORDER_TOTAL', 'FILENAME_MODULES', 'set=ordertotal', 'modules', 'Y', 3),
        ('customers', 'BOX_CUSTOMERS_CUSTOMERS', 'FILENAME_CUSTOMERS', '', 'customers', 'Y', 1),
+       ('customerswithoutorder', 'BOX_CUSTOMERS_CUSTOMERS_WITHOUT_ORDER', 'FILENAME_CUSTOMERS_WITHOUT_ORDER', '', 'customers', 'Y', 6),
        ('customerGroups', 'BOX_CUSTOMERS_CUSTOMER_GROUPS', 'FILENAME_CUSTOMER_GROUPS', '', 'customers', 'Y', 3),
        ('orders', 'BOX_CUSTOMERS_ORDERS', 'FILENAME_ORDERS', '', 'customers', 'Y', 2),
        ('groupPricing', 'BOX_CUSTOMERS_GROUP_PRICING', 'FILENAME_GROUP_PRICING', '', 'customers', 'Y', 3),
@@ -2725,7 +2726,7 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('IH resize images', 'IH_RESIZE', 'yes', 'Select either ''no'' which is old Zen-Cart behaviour or ''yes'' to activate automatic resizing and caching of images. If you want to use ImageMagick you have to specify the location of the <strong>convert</strong> binary in <em>includes/extra_configures/bmz_image_handler_conf.php</em>.', 4, 76, NULL, now(), NULL, 'zen_cfg_select_option(array(''yes'', ''no''),');
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('IH small images filetype', 'SMALL_IMAGE_FILETYPE', 'no_change', 'Select one of -jpg-, -gif- or -png-. Older versions of Internet Explorer -v6.0 and older- will have issues displaying -png- images with transparent areas. You better stick to -gif- for transparency if you MUST support older versions of Internet Explorer. However -png- is a MUCH BETTER format for transparency. Use -jpg- or -png- for larger images. -no_change- is old zen-cart behavior, use the same file extension for small images as uploaded image', 4, 77, NULL, now(), NULL, 'zen_cfg_select_option(array(''gif'', ''jpg'', ''png'', ''no_change''),');
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('IH small images background', 'SMALL_IMAGE_BACKGROUND', '255:255:255', 'If converted from an uploaded image with transparent areas, these areas become the specified color. Set to -transparent- to keep transparency', 4, 82, NULL, now(), NULL, 'zen_cfg_textarea_small(');
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Image Handler Version', 'IH_VERSION', '5.3.3', 'This is used by image handler to check if the database is up to date with uploaded image handler files.', 0, 100, NULL, now(), NULL, 'zen_cfg_textarea_small(');
+INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('Image Handler Version', 'IH_VERSION', '5.3.4', 'This is used by image handler to check if the database is up to date with uploaded image handler files.', 0, 100, NULL, now(), NULL, 'zen_cfg_textarea_small(');
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('IH small images watermark', 'WATERMARK_SMALL_IMAGES', 'no', 'Set to -yes-, if you want to show watermarked small images instead of unmarked small images.', 4, 78, NULL, now(), NULL, 'zen_cfg_select_option(array(''no'', ''yes''),');
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('IH small images zoom on hover', 'ZOOM_SMALL_IMAGES', 'no', 'IH small images zoom on hover', 4, 79, now(), now(), NULL, 'zen_cfg_select_option(array(''no'', ''yes''),');
 INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES ('IH small images zoom on hover size', 'ZOOM_IMAGE_SIZE', 'Medium', 'Set to -Medium-, if you want to the zoom on hover display to use the medium sized image. Otherwise, to use the large sized image on hover, set to -Large-', 4, 80, NULL, now(), NULL, 'zen_cfg_select_option(array(''Medium'', ''Large''),');
@@ -3452,7 +3453,7 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 ('Display Cross-Sell Products - Maximal', 'MAX_DISPLAY_XSELL', 6, 'Identify the maximum number of cross-sells to display on the storefront (default: <b>6</b>).<br><br>Set the value to <b>0</b> to disable the storefront display.', 39, 2, now(), now(),NULL,NULL),
 ('Cross-Sell Products Columns per Row', 'SHOW_PRODUCT_INFO_COLUMNS_XSELL_PRODUCTS', 3, 'Identify the number of cross-sells to display per row (on the storefront).  Set the value to <em>0</em> to display <em>all</em> products on a single row.  Default: <b>3</b>.', 39, 3, now(), now(),NULL, 'zen_cfg_select_option(array(0, 1, 2, 3, 4), '),
 ('Cross-Sell - Display prices?', 'XSELL_DISPLAY_PRICE', 'false', 'Should the cross-sell product prices be displayed on the storefront (default: \'false\')?', 39, 4, now(), now(),NULL, 'zen_cfg_select_option(array(\'true\',\'false\'), '),
-('Cross-Sell - Version', 'XSELL_VERSION', '2.0.1', 'Cross Sell Advanced Version', 39, 0, now(), now(), NULL, 'zen_cfg_read_only(');
+('Cross-Sell - Version', 'XSELL_VERSION', '2.0.2', 'Cross Sell Advanced Version', 39, 0, now(), now(), NULL, 'zen_cfg_read_only(');
 
 
 #Vataddon
@@ -5295,5 +5296,5 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 
 
 REPLACE INTO product_type_layout_language (configuration_title , configuration_key , languages_id, configuration_description, last_modified, date_added)
-VALUES ('20231031', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Übersetzungen', now(), now());
+VALUES ('20231108', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Übersetzungen', now(), now());
 ##### End of SQL setup for Zen Cart German.
