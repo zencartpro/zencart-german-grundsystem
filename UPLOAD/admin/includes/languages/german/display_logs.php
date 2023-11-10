@@ -4,7 +4,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: display_logs.php 2023-10-27 16:49:16Z webchills $
+ * @version $Id: display_logs.php 2023-11-09 07:49:16Z webchills $
  */
 define('HEADING_TITLE', 'Logfiles anzeigen');
 define('TABLE_HEADING_FILENAME', 'Dateiname');
@@ -12,7 +12,7 @@ define('TABLE_HEADING_MODIFIED', 'Datum');
 define('TABLE_HEADING_FILESIZE', 'Dateigröße (bytes)');
 define('TABLE_HEADING_DELETE', 'Ausgewählt');
 define('TABLE_HEADING_ACTION', 'Aktion');
-define('BUTTON_INVERT_SELECTED' , 'Invert Selection');
+define('BUTTON_INVERT_SELECTED' , 'Auswahl umkehren');
 define('BUTTON_DELETE_SELECTED', 'ausgewählte löschen');
 define('DELETE_SELECTED_ALT', 'Alle ausgewählten Dateien löschen');
 define('BUTTON_DELETE_ALL', 'alle löschen');

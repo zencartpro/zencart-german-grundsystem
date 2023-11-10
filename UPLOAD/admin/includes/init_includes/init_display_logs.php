@@ -1,18 +1,18 @@
 <?php
 /**
  * Zen Cart German Specific
- * @package admin
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_display_logs.php 3 2020-02-05 20:15:08Z webchills $
+ * @version $Id: init_display_logs.php 2023-11-08 20:15:08Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
 }
 
-define('DISPLAY_LOGS_CURRENT_VERSION', '2.2.0');
+
 // -----
 // If enabled check to see if there are any debug-logs present and, if so, notify the current admin via header message ... unless the admin is already on the display logs page.
 //

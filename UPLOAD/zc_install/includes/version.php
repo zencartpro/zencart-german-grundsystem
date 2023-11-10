@@ -10,7 +10,7 @@
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: version.php 2023-10-26 10:06:58Z webchills $
+ * @version $Id: version.php 2023-11-10 17:14:58Z webchills $
  * @private
  */
 
@@ -25,4 +25,4 @@ define('NEW_VERSION_CHECKUP_URL','https://www.zen-cart-pro.at/version_id.txt');
 define('PROJECT_VERSIONSERVER_URL', 'https://www.zen-cart-pro.at');
 define('PROJECT_NOTIFICATIONSERVER_URL', 'https://www.zen-cart-pro.at');
 define('EXPECTED_DATABASE_VERSION_MAJOR', '1');
-define('EXPECTED_DATABASE_VERSION_MINOR', '5.7');
+define('EXPECTED_DATABASE_VERSION_MINOR', '5.7g');
