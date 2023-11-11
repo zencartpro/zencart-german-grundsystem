@@ -2,11 +2,11 @@
 /**
  * ipncheck.php diagnostic tool
  *
- * @package utilities
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at 
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ipncheck.php 2022-02-05 09:44:29Z webchills $
+ * @version $Id: ipncheck.php 2023-11-10 16:44:29Z webchills $
  *
  * This utility is intended to be used to check whether this webserver is able to connect TO PayPal in order to RESPOND to an incoming IPN notification.
  * Unfortunately it cannot test whether PayPal's servers can successfully post an IPN *to* your store.  To do that one should test a live transaction.
@@ -44,7 +44,7 @@ if ($testSandbox) $_POST['test_ipn'] = 1;
 define('ENABLE_SSL','true');
 
 echo 'IPNCHECK.PHP - Version 1.5.5';
-echo '<br /><br /><pre>';
+echo '<br><br><pre>';
     $defaultMethod = $altMethod = '';
     $info = '';
     $postdata = '';
@@ -60,7 +60,7 @@ echo '<br /><br /><pre>';
     $postback .= "cmd=_notify-validate";
     $postback_array['cmd'] = "_notify-validate";
     if ($postdata == '=&') {
-      die('IPN NOTICE :: No POST data to process -- Bad IPN data<br /><pre>' . print_r($_POST, true));
+      die('IPN NOTICE :: No POST data to process -- Bad IPN data<br><pre>' . print_r($_POST, true));
     }
     $postdata_array = $_POST;
     ksort($postdata_array);
@@ -219,7 +219,7 @@ echo '<br><br>Script finished.';
       echo nl2br('CURL ERROR: ' . $status . $errors . "\n" . 'Trying direct HTTP on port 80 instead ...' . "\n");
       $web['scheme'] = 'http';
       $web['port'] = '80';
-      $status = 'Attempted alternate connection on: ' .$web['scheme'] . '://' . $web['host'] . $web['path'] . "\n<br />";
+      $status = 'Attempted alternate connection on: ' .$web['scheme'] . '://' . $web['host'] . $web['path'] . "\n<br>";
       curl_setopt($ch, CURLOPT_URL, $web['scheme'] . '://' . $web['host'] . $web['path']);
       curl_setopt($ch, CURLOPT_PORT, $web['port']);
       $response = curl_exec($ch);
@@ -236,7 +236,7 @@ echo '<br><br>Script finished.';
     }
 
     $status = (strstr($response,'VERIFIED')) ? 'VERIFIED' : (strstr($response,'SUCCESS') ? 'SUCCESS' : (strstr($response,'INVALID') ? 'CURL RESPONSE RECEIVED - Communications OKAY' : 'FAILED'));
-    echo  $status . '<br />';
+    echo  $status . '<br>';
 
 
     return $response;

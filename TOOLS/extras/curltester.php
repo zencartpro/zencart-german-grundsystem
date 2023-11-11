@@ -7,11 +7,11 @@
  *   i=1 -- in conjunction with [d] or [r], will show the detailed curlinfo certificate data from the host being connected to. Helpful for advanced debugging.
  *
  *
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: curltester.php 2021-12-29 16:32:29Z webchills $
+ * @version $Id: curltester.php 2023-11-10 16:32:29Z webchills $
  */
 // no caching
 header('Cache-Control: no-cache, no-store, must-revalidate');
@@ -78,11 +78,10 @@ echo 'Connecting to FedEx (port 80)...<br>';
 dofsockTest('fedex.com', 80);
 
 echo 'Connecting to Canada Post SellOnline HTTP/S ...<br>';
-doCurlTest('https://qa-sellonline.canadapost.ca/sellonline/Rating');
-// doCurlTest('https://sellonline.canadapost.ca/sellonline/Rating');
+doCurlTest('https://sellonline-cybervente.canadapost-postescanada.ca/'); 
 
 echo 'Connecting to Canada Post REST API (SSL) ...<br>';
-doCurlTest('https://ct.soa-gw.canadapost.ca/rs/ship/price');
+doCurlTest('https://soa-gw.canadapost.ca/rs/ship/price');
 
 echo 'Connecting to PayPal IPN (port 443)...<br>';
 dofsockTest('www.paypal.com', 443);

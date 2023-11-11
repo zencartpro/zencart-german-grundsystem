@@ -1,0 +1,94 @@
+fieldset {
+    margin: 0 auto;
+    padding: 8px;
+}
+legend {
+    background: #ffffff;
+    border: 1px solid #c96e29;
+    color: #333333;
+    font-size: 90%;
+    padding: 0.2em 0.5em;
+    text-align: right;
+}
+.totalHeadingRow {
+    background-color: #7f7979;
+}
+.totalHeadingContent {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 10px;
+}
+.totalRow {
+    background-color: #f7f6ef;
+}
+.totalRowOver {
+    background-color: #ffffff;
+}
+.totalContent {
+    color: #000000;
+    font-size: 9px;
+}
+.lineItemHeadingRow {
+    background-color: #7f4000;
+}
+.lineItemHeadingContent {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 10px;
+}
+.lineItemRow {
+    background-color: #f3d6ba;
+    cursor: auto;
+}
+.lineItemRow:hover, .lineItemRow:hover .ValidationColumnContent {
+    background-color: #ffffff;
+    cursor: pointer;
+}
+.lineItemContent {
+    color: #000000;
+    font-size: 9px;
+}
+.lineItemContent a {
+    font-size: 9px;
+    font-weight: bold;
+}
+.footerRow {
+    background-color: #00994c;
+}
+.footerContent {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 9px;
+}
+.ValidationColumnHeader {
+    background-color: #945a50;
+}
+.ValidationColumnContent {
+    background-color: #f8e6ca;
+}
+.v-top {
+    vertical-align: top;
+}
+.v-bot {
+    vertical-align: bottom;
+}
+.no-wrap {
+    white-space: nowrap;
+}
+#span_auto_print, #span_csv_header {
+    display: none;
+}
+#td_wait_text {
+    font-size: 12px;
+    visibility: hidden;
+}
+#spiffycalendar {
+    left: 10px!important;
+}
+i.fa {
+    margin: 0 .25em;
+    color: #c96e29;
+}
+a > i.fa {
+    font-weight: bold;
+}

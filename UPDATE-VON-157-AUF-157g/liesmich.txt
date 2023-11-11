@@ -1,0 +1,127 @@
+Updatepaket für Zen Cart 1.5.7 deutsch auf 1.5.7g deutsch
+
+Dieses Paket enthält alle geänderten und neuen Dateien um eine bestehende 1.5.7, 1.5.7e oder 1.5.7f Installation auf 1.5.7g aktualisieren zu können.
+Nur geeignet, wenn Sie bereits 1.5.7, 1.5.7e oder 1.5.7f deutsch verwenden!
+
+Für das Update einer älteren deutschen Zen Cart Version als 1.5.7 (Sie verwenden z.B. derzeit 1.5.6 oder 1.5.5), führen Sie bitte ein normales Update mit dem kompletten 1.5.7g Paket durch!
+
+
+Um Ihren bestehenden 1.5.7 deutsch Shop auf 1.5.7g deutsch zu aktualisieren gehen Sie folgendermaßen vor:
+
+!!! BEVOR SIE BEGINNEN MACHEN SIE EINE KOMPLETTE SICHERUNG IHRER SHOPDATEIEN UND IHRER DATENBANK !!!
+
+Schalten Sie Ihren Shop unter Konfiguration > Shopwartung in den Wartungsmodus und gehen dann in folgenden 3 Schritten vor:
+
+1)
+
+Im Ordner 1 - GEAENDERTE DATEIEN finden Sie alle Dateien, die in 1.5.7g gegenüber 1.5.7 geändert wurden.
+Benennen Sie den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses um.
+Vergleichen Sie nun mit BeyondCompare oder WinMerge alle Dateien in diesem Ordner mit denen Ihrer Shopinstallation am Server.
+Sehr viele dieser Dateien werden Sie wahrscheinlich noch nie geändert haben, es ist aber trotzdem unbedingt empfohlen, die geänderten Dateien nicht einfach hochzuladen, sondern sie vorher mit BeyondCompare oder WinMerge zu prüfen, damit nicht von Modulen darin bereits vorgenommene Änderungen verloren gehen.
+Ausgenommen davon sind geänderte Javascripts, die müssen Sie nicht vergleichen, es handelt sich hier um neue Versionen, die die alten ersetzen.
+
+Achten Sie insbesondere auf Änderungen in den Templates. Wenn Sie ein eigenes Template verwenden, vergleichen Sie die geänderten Dateien dieses Updatepakets mit den Dateien Ihrer Override Ordner für Ihr eigenes Template (includes/templates/DEINTEMPLATE, includes/modules/DEINTEMPLATE, ...).
+Die Mobile Detect Funktionalität wurde auf Version 3.74 aktualisiert und im Zuge dessen verlagert nach:
+includes/classes/vendors/MobileDetect/MobileDetect.php
+Früher wurde die Datei includes/classes/Mobile_Detect.php verwendet.
+Die Aufrufe von Mobile Detect wurden also angepasst von früher:
+if (!class_exists('Mobile_Detect')) {
+  include_once(DIR_WS_CLASSES . 'Mobile_Detect.php');
+}
+auf nun:
+if (!class_exists('MobileDetect')) {
+  include_once(DIR_WS_CLASSES . 'vendors/MobileDetect/MobileDetect.php');
+}
+Mit Mobile Detect 3.74 hat sich auch der Namespace geändert von früher:
+$detect = new Mobile_Detect;
+auf nun:
+$detect = new \Detection\MobileDetect;
+
+Übernehmen Sie alle Änderungen und laden dann die Ordner/Dateien in der vorgegebenen Struktur in Ihr Shopverzeichnis hoch.
+
+2)
+
+Im Ordner 2 - NEUE DATEIEN befinden sich die kompletten neuen Versionen der CKEditor und TinyMCE Editoren, der Braintree PHP Komponente, des PHP Mailers, eine neue Font Awesome Version, sowie die neuen Ordner laravel und zc_plugins
+Benennen Sie den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses um.
+Statt hier mühsame Dateivergleiche durchzuführen, können Sie die bestehenden Pakete einfach komplett mit den neuen ersetzen.
+Löschen Sie den kompletten Ordner editors/ckeditor vom Server
+Löschen Sie den kompletten Ordner editors/tiny_mce vom Server
+Löschen Sie den kompletten Ordner includes/classes/vendors/PHPMailer vom Server
+Löschen Sie den kompletten Ordner includes/modules/payment/braintree vom Server
+Laden Sie dann den Inhalt des Ordners 2 - NEUEDATEIEN in der vorgegebenen Struktur ins Shopverzeichnis hoch.
+
+
+3)
+
+In einem letzten Schritt müssen nun noch einige Änderungen in der Datenbank vorgenommen werden.
+
+Um diese Änderungen vorzunehmen gehen Sie nun in den Ordner 3 - DATENBANKAKTUALISIERUNG
+
+Benennen Sie den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses um.
+
+Laden Sie die Dateien in der vorgebenen Struktur ins Shopverzeichnis hoch.
+Dabei wird die bestehende DEINADMIN/includes/application_bootstrap.php überschrieben.
+
+Loggen Sie sich nun in Ihre Zen Cart Administration ein.
+
+Sie sehen oben verschiedene grüne Erfolgsmeldungen und zum Schluss: 
+Aktualisierung auf 1.5.7g deutsch erfolgreich abgeschlossen
+
+
+WICHTIG WICHTIG WICHTIG:
+Bevor Sie nun irgendetwas anclicken oder tun, löschen Sie erst sofort die beiden folgenden hochgeladenen Dateien wieder vom Server:
+DEINADMIN/includes/auto_loaders/config.157g_update.php
+DEINADMIN/includes/init_includes/init_157g_update.php
+
+Prüfen Sie nun, ob Ihr Adminbereich und ihr Frontend problemlos funktionieren.
+
+
+4)
+
+Nachdem Sie Ihren Shop erfolgreich auf 1.5.7g aktualisiert haben, ersetzen Sie nun die Datei admin/includes/application_bootstrap.php wieder mit der Originaldatei
+
+Um diese Änderung vorzunehmen gehen Sie nun in den Ordner 4 - DATEI ERSETZEN
+
+Benennen Sie den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses um.
+
+Laden Sie die Datei in der vorgebenen Struktur ins Shopverzeichnis hoch und ersetzen Sie die DEINADMIN/includes/application_bootstrap.php am Server mit der aus dem Ordner.
+
+Dann schalten Sie den Wartungsmodus unter Konfiguration > Shopwartung wieder aus.
+
+
+5)
+
+Die folgenden Dateien sind in 1.5.7g nicht mehr enthalten.
+Löschen Sie diese nun vom Server:
+(Falls Sie in den Override Verzeichnissen responsive_classic Anpassungen für Ihren Shop vorgenommen und dieses Template aktiv haben, dann löschen Sie die Dateien in den angegebenen responsive_classic Ordnern natürlich nicht!)
+
+admin\includes\functions\database.php
+admin\includes\functions\functions_customers.php
+admin\includes\functions\languages.php
+admin\includes\functions\localization.php
+admin\includes\languages\english\configuration_validation.php
+admin\includes\languages\english\uploads.php
+admin\includes\languages\german\configuration_validation.php
+admin\includes\languages\german\uploads.php
+admin\includes\psr4Autoload.php
+admin\uploads.php
+extras\fontawesome\6.2.1 (gesamter Ordner)
+includes\classes\TableViewControllers\BaseController.php
+includes\classes\TableViewControllers\TableViewController.php
+includes\classes\traits\EventManager.php
+includes\functions\password_compat.php
+includes\languages\english\responsive_classic\button_names.php
+includes\languages\english\responsive_classic\header.php
+includes\languages\english\responsive_classic\icon_names.php
+includes\languages\english\responsive_classic\other_images_names.php
+includes\languages\english\icon_names.php
+includes\languages\english\other_images_names.php
+includes\languages\german\responsive_classic\button_names.php
+includes\languages\german\responsive_classic\header.php
+includes\languages\german\responsive_classic\icon_names.php
+includes\languages\german\responsive_classic\other_images_names.php
+includes\languages\german\icon_names.php
+includes\languages\german\other_images_names.php
+includes\modules\pages\advanced_search_result\jscript_onload_helper.php
+includes\modules\pages\advanced_search_result\on_load_focus.js
+includes\templates\responsive_classic\templates\tpl_advanced_search_result_default.php

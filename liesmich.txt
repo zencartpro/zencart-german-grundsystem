@@ -1,36 +1,25 @@
-Zen Cart 1.5.7f deutsch 
+Zen Cart 1.5.7g deutsch 
 
-Version vom 21.12.2022
+Version vom xx.11.2023
 
 #####################################################################################################################################
 
-1.5.7f deutsch ist ein Service Pack für 1.5.7e deutsch, behebt seit Release von 1.5.7e deutsch gefundene Bugs und bringt die integrierten Module und 3rd Party Komponenten auf den Stand von Dezember 2022.
+1.5.7g deutsch ist ein sehr umfangreicher Service Pack für 1.5.7 deutsch
+Es integriert die fast vollständige Codebasis der aktuellen amerikanischen Version 1.5.8 in die deutsche Zen Cart Version
+Damit wird PHP 8.1.x vollständig unterstützt.
+Die integrierten Module und 3rd Party Komponenten werden auf den Stand von November 2023 gebracht.
 
-Security Fixes:
-- Admin Login als Kunde ist nicht mehr via Frontend möglich, nur noch über den Button in der Administration
-- veraltete Javascripts aktualisiert
+Die Umstellung der Sprachdateien, die die amerikanische Version 1.5.8 bereits mitbringt, wird in einer für Herbst 2024 geplanten deutschen Zen Cart Version 1.5.8 mit vollständiger PHP 8.2 Unterstützung nachgezogen.
+Dadurch kann in 1.5.7g weiterhin mit den gewohnten Sprachdefinitionen gearbeitet werden. 
 
-Bugfixes:
-- Fix für falsche Summen im Verkaufsbericht
-- Darstellung der Frage zum Artikel Buttons auf Artikeltypendetailseiten korrigiert
-- Mit PHP 8.0.x ist es mit der aktuellen Codebasis nicht zu 100% möglich, alle etwaigen Warning und Notices in den Debug Logfiles zu vermeiden. 1.5.7f reduziert die Anzahl aber ganz erheblich.
-
-Verbesserung:
-- Admin > Tools > Serverinfo zeigt nun detaillierte Informationen zur Konfiguration der Datenbank
+1.5.7g behebt auch alle Fehler die seit Erscheinen von 1.5.7f aug Github gemeldet wurden.
 
 Aktualisierte Komponenten:
-- Update Braintree Zahlungsmodul auf braintree_php 6.10.0 und braintree_web 3.88.5
-- Update jQuery auf 3.6.3
-- Update PHPMailer auf 6.7.1
-- Update MobileDetect auf 3.74.0
-- Update Image Handler auf 5.3.1
-- Update Mailbeez Installer auf 4.6
-- Update Font Awesome auf 6.2.1
-- Update CKEditor auf 4.20.1
-- Update TinyMCE auf 6.3.1
+- tbd
 
-Wer bereits 1.5.7e verwendet kann mit dem speziellen Updatepaket in UPDATE-VON-157e-AUF-157f sehr einfach auf 1.5.7f aktualisieren.
-Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157e-AUF-157f
+
+Wer bereits 1.5.7, 1.5.7e oder 1.5.7f verwendet kann mit dem speziellen Updatepaket in UPDATE-VON-157-AUF-157g auf 1.5.7g aktualisieren.
+Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157-AUF-157g
 
 #####################################################################################################################################
 
@@ -41,18 +30,18 @@ Bei Nginx müssen die bei Apache durch .htaccess Unterstützung gewährleisteten
 Windows Server/IIS werden nicht unterstützt
 
 PHP
-mindestens: PHP 7.3.x
-höchstens: PHP 8.0.x
+mindestens: PHP 7.4.x
+höchstens: PHP 8.1.x
 
 MySQL oder MariaDB
-MySQL mindestens 5.1
+MySQL mindestens 5.7.8
 MySQL höchstens: 8.0.x
-MariaDB mindestens 10.1
+MariaDB mindestens 10.2.7
 MariaDB höchstens 10.5
 
 Empfohlen:
 Apache 2.4
-PHP 8.0.x
+PHP 8.1.x
 MySQL 8.0.x
 
 #####################################################################################################################################
