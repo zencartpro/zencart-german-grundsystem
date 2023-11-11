@@ -119,6 +119,7 @@ includes\init_includes\init_non_db_settings.php
 includes\modules\pages\contact_us\jscript_main.js
 includes\modules\pages\popup_attributes_qty_prices\jscript_main.php
 includes\modules\pages\shopping_cart\jscript_addr_pulldowns.php
+includes\modules\payment\braintree (gesamter Ordner)
 includes\modules\payment\paypal\paypal_currency_check.php
 includes\templates\template_default\jscript\jscript_sidebox_select_form.php
 includes\templates\template_default\jscript\zen_addr_pulldowns.php
@@ -755,28 +756,6 @@ includes\modules\pages\reviews\header_php.php
 includes\modules\pages\shopping_cart\jscript_main.php
 includes\modules\pages\time_out\header_php.php
 includes\modules\payment\authorizenet\authorizenet_admin_notification.php
-includes\modules\payment\braintree\lib\Braintree\Test\Nonces.php
-includes\modules\payment\braintree\lib\Braintree\Test\Transaction.php
-includes\modules\payment\braintree\lib\Braintree\Base.php
-includes\modules\payment\braintree\lib\Braintree\Dispute.php
-includes\modules\payment\braintree\lib\Braintree\DisputeSearch.php
-includes\modules\payment\braintree\lib\Braintree\EndsWithNode.php
-includes\modules\payment\braintree\lib\Braintree\ExchangeRateQuoteGateway.php
-includes\modules\payment\braintree\lib\Braintree\GraphQLClient.php
-includes\modules\payment\braintree\lib\Braintree\Instance.php
-includes\modules\payment\braintree\lib\Braintree\IsNode.php
-includes\modules\payment\braintree\lib\Braintree\KeyValueNode.php
-includes\modules\payment\braintree\lib\Braintree\MultipleValueNode.php
-includes\modules\payment\braintree\lib\Braintree\MultipleValueOrTextNode.php
-includes\modules\payment\braintree\lib\Braintree\RangeNode.php
-includes\modules\payment\braintree\lib\Braintree\SepaDirectDebitAccount.php
-includes\modules\payment\braintree\lib\Braintree\TestingGateway.php
-includes\modules\payment\braintree\lib\Braintree\Transaction.php
-includes\modules\payment\braintree\lib\Braintree\TransactionGateway.php
-includes\modules\payment\braintree\lib\Braintree\Version.php
-includes\modules\payment\braintree\lib\Braintree\WebhookNotification.php
-includes\modules\payment\braintree\lib\Braintree\WebhookNotificationGateway.php
-includes\modules\payment\braintree\lib\Braintree\WebhookTestingGateway.php
 includes\modules\payment\paypal\tpl_ec_button.php
 includes\modules\payment\authorizenet.php
 includes\modules\payment\authorizenet_aim.php
