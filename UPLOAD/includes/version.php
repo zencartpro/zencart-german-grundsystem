@@ -23,6 +23,7 @@ define('PROJECT_VERSION_PATCH1_SOURCE', '');
 define('PROJECT_VERSION_PATCH2_SOURCE', '');
 define('NEW_VERSION_CHECKUP_URL','https://www.zen-cart-pro.at/version_id.txt');
 define('PROJECT_VERSIONSERVER_URL', 'https://www.zen-cart-pro.at');
+define('PLUGIN_VERSIONSERVER_URL', 'https://ping.zen-cart.com/plugincheck');
 define('PROJECT_NOTIFICATIONSERVER_URL', 'https://www.zen-cart-pro.at');
 define('EXPECTED_DATABASE_VERSION_MAJOR', '1');
 define('EXPECTED_DATABASE_VERSION_MINOR', '5.7g');
