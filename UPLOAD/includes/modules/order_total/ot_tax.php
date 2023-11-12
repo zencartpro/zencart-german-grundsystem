@@ -1,6 +1,6 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  * ot_tax order-total module
  *
  * @package orderTotal
@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_tax.php 2023-10-26 19:11:23Z webchills $
+ * @version $Id: ot_tax.php 2023-11-12 07:11:23Z webchills $
  */
     class ot_tax
     {
@@ -80,7 +80,7 @@
                 if (SHOW_SPLIT_TAX_CHECKOUT === 'true') {
                     if ($value > 0 || (abs($value) < PHP_FLOAT_EPSILON && STORE_TAX_DISPLAY_STATUS === '1')) {
                         $this->output[] = [
-                            'title' => ((is_numeric($key) && $key == 0) ? TEXT_UNKNOWN_TAX_RATE : $key) . ':',
+                            'title' => $this->description .' '.((is_numeric($key) && $key == 0) ? TEXT_UNKNOWN_TAX_RATE : $key) . ':',
                             'text' => $currencies->format($value, true, $order->info['currency'], $order->info['currency_value']),
                             'value' => $value,
                         ];
