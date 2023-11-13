@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: orders.php 2023-11-03 18:44:51Z webchills $
+ * @version $Id: orders.php 2023-11-13 17:02:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -1327,7 +1327,7 @@ if (!empty($action) && $order_exists === true) {
                 <td class="dataTableContent"><?php echo '<a href="' . zen_href_link(FILENAME_CUSTOMERS, 'cID=' . $orders->fields['customers_id'], 'NONSSL') . '">' . zen_image(DIR_WS_ICONS . 'preview.gif', ICON_PREVIEW . ' ' . TABLE_HEADING_CUSTOMERS) . '</a>&nbsp;' . $orders->fields['customers_name'] . ($orders->fields['customers_company'] !== '' ? '<br>' . $orders->fields['customers_company'] : ''); ?></td>
 <?php if ($show_zone_info) { ?>
                 <td class="dataTableContent text-left">
-<?php echo $orders->fields['delivery_state'] . '<br>' . $orders->fields['delivery_country']; ?>
+<?php echo $orders->fields['delivery_country']; ?>
                 </td>
 <?php } ?>
                 <td class="dataTableContent text-right" title="<?php echo zen_output_string($product_details, ['"' => '&quot;', "'" => '&#39;', '<br>' => '', '<br />' => '', '<hr>' => "----\n"]); ?>">
