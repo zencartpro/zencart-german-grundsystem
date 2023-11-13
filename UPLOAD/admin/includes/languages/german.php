@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2023-11-08 20:52:04Z webchills $
+ * @version $Id: german.php 2023-11-13 18:35:04Z webchills $
  */
 @setlocale(LC_TIME, ['de_DE.UTF-8', 'de_AT.UTF-8', 'de_CH.UTF-8', 'de_DE.ISO_8859-1','de_DE@euro', 'de_DE', 'de', 'ge', 'deu.deu']);
 
@@ -56,7 +56,8 @@ define('BOX_CONFIGURATION_ATTRIBUTE_OPTIONS','Attribut Einstellungen');
 define('BOX_CONFIGURATION_CREDIT_CARDS','Kreditkarten');
 define('BOX_CONFIGURATION_CUSTOMER_DETAILS','Kunden Details');
 define('BOX_CONFIGURATION_DEFINE_PAGE_STATUS','Define Page Status');
-define('BOX_CONFIGURATION_EMAIL_OPTIONS','Email');
+define('BOX_CONFIGURATION_EMAIL_OPTIONS','E-Mail Optionen');
+define('BOX_CONFIGURATION_FACEBOOK', 'Open Graph / Microdata');
 define('BOX_CONFIGURATION_EZPAGES_SETTINGS','EZ-Pages Einstellungen');
 define('BOX_CONFIGURATION_FEATURED_LISTING','Liste - Empfohlene Artikel');
 define('BOX_CONFIGURATION_GV_COUPONS','Geschenkgutscheine');
@@ -66,16 +67,21 @@ define('BOX_CONFIGURATION_INDEX_LISTING','Liste - Artikelindex');
 define('BOX_CONFIGURATION_LAYOUT_SETTINGS','Layout Einstellungen');
 define('BOX_CONFIGURATION_LOGGING','Protokollierung/Logfiles');
 define('BOX_CONFIGURATION_MAXIMUM_VALUES','Maximale Werte');
+define('BOX_CONFIGURATION_MINIFY', 'Minify');
 define('BOX_CONFIGURATION_MINIMUM_VALUES','Minimale Werte');
 define('BOX_CONFIGURATION_MY_STORE','Mein Shop - Grundeinstellungen');
 define('BOX_CONFIGURATION_NEW_LISTING','Liste - Neue Artikel');
 define('BOX_CONFIGURATION_PRODUCT_INFO','Artikeldetailseite');
 define('BOX_CONFIGURATION_PRODUCT_LISTING','Artikelliste');
 define('BOX_CONFIGURATION_REGULATIONS','AGB & Datenschutz');
+define('BOX_CONFIGURATION_RSSFEED', 'RSS Feed');
 define('BOX_CONFIGURATION_SESSIONS','Sitzungen/Sessions');
 define('BOX_CONFIGURATION_SHIPPING_PACKAGING','Versandoptionen');
+define('BOX_CONFIGURATION_SHOPVOTE', 'Shopvote Konfiguration');
+define('BOX_CONFIGURATION_SPAM_PROTECTION', 'Spamschutz');
 define('BOX_CONFIGURATION_STOCK','Lagerverwaltung und Warenkorb');
 define('BOX_CONFIGURATION_WEBSITE_MAINTENANCE','Shopwartung');
+define('BOX_CONFIGURATION_ZEN_COLORBOX', 'Zen Colorbox Einstellungen');
 define('BOX_COUPON_ADMIN','Aktionskupon Admin');
 define('BOX_COUPON_RESTRICT','Aktionskupon Einschränkungen');
 define('BOX_CUSTOMERS_CUSTOMERS','Kunden');

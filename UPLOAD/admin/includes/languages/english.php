@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: english.php 2023-11-03 16:57:32Z webchills $
+ * @version $Id: english.php 2023-11-13 18:29:32Z webchills $
  */
 @setlocale(LC_TIME, ['en_US', 'en_US.utf8', 'en', 'English_United States.1252']);
 
@@ -57,6 +57,7 @@ define('BOX_CONFIGURATION_CREDIT_CARDS','Credit Cards');
 define('BOX_CONFIGURATION_CUSTOMER_DETAILS','Customer Details');
 define('BOX_CONFIGURATION_DEFINE_PAGE_STATUS','Define Page Status');
 define('BOX_CONFIGURATION_EMAIL_OPTIONS','Email');
+define('BOX_CONFIGURATION_FACEBOOK', 'Open Graph / Microdata');
 define('BOX_CONFIGURATION_EZPAGES_SETTINGS','EZ-Pages Settings');
 define('BOX_CONFIGURATION_FEATURED_LISTING','Featured Listing');
 define('BOX_CONFIGURATION_GV_COUPONS','GV Coupons');
@@ -66,16 +67,21 @@ define('BOX_CONFIGURATION_INDEX_LISTING','Index Listing');
 define('BOX_CONFIGURATION_LAYOUT_SETTINGS','Layout Settings');
 define('BOX_CONFIGURATION_LOGGING','Logging');
 define('BOX_CONFIGURATION_MAXIMUM_VALUES','Maximum Values');
+define('BOX_CONFIGURATION_MINIFY', 'Minify');
 define('BOX_CONFIGURATION_MINIMUM_VALUES','Minimum Values');
 define('BOX_CONFIGURATION_MY_STORE','My Store');
 define('BOX_CONFIGURATION_NEW_LISTING','New Listing');
 define('BOX_CONFIGURATION_PRODUCT_INFO','Product Info');
 define('BOX_CONFIGURATION_PRODUCT_LISTING','Product Listing');
+define('BOX_CONFIGURATION_SPAM_PROTECTION', 'Spam Protection');
 define('BOX_CONFIGURATION_REGULATIONS','Regulations');
 define('BOX_CONFIGURATION_SESSIONS','Sessions');
 define('BOX_CONFIGURATION_SHIPPING_PACKAGING','Shipping/Packaging');
+define('BOX_CONFIGURATION_SHOPVOTE', 'Shopvote Configuration');
+define('BOX_CONFIGURATION_SPAM_PROTECTION', 'Spamschutz');
 define('BOX_CONFIGURATION_STOCK','Stock');
 define('BOX_CONFIGURATION_WEBSITE_MAINTENANCE','Website Maintenance');
+define('BOX_CONFIGURATION_ZEN_COLORBOX', 'Zen Colorbox Einstellungen');
 define('BOX_COUPON_ADMIN','Coupon Admin');
 define('BOX_COUPON_RESTRICT','Coupon Restrictions');
 define('BOX_CUSTOMERS_CUSTOMERS','Customers');
@@ -122,14 +128,18 @@ define('BOX_TAXES_TAX_CLASSES','Tax Classes');
 define('BOX_TAXES_TAX_RATES','Tax Rates');
 define('BOX_TAXES_ZONES','Zones');
 define('BOX_TOOLS_BANNER_MANAGER','Banner Manager');
+define('BOX_TOOLS_BACKUP_MYSQL', 'Database Backup');
 define('BOX_TOOLS_DEFINE_CONDITIONS','Conditions of Use');
 define('BOX_TOOLS_DEFINE_PAGES_EDITOR','Define Pages Editor');
 define('BOX_TOOLS_DEVELOPERS_TOOL_KIT','Developers Tool Kit');
+define('BOX_TOOLS_EMAIL_EXPORT', 'Export Email Adresses');
 define('BOX_TOOLS_EZPAGES','EZ-Pages');
+define('BOX_TOOLS_FINDDUPMODELS', 'Find missing and double model numbers');
 define('BOX_TOOLS_LAYOUT_CONTROLLER','Layout Boxes Controller');
 define('BOX_TOOLS_MAIL','Send Email');
 define('BOX_TOOLS_NEWSLETTER_MANAGER','Newsletter and Product Notifications Manager');
 define('BOX_TOOLS_SERVER_INFO','Server/Version Info');
+define('BOX_TOOLS_SHOPVOTE', 'Shopvote');
 define('BOX_TOOLS_SQLPATCH','Install SQL Patches');
 define('BOX_TOOLS_STORE_MANAGER','Store Manager');
 define('BOX_TOOLS_TEMPLATE_SELECT','Template Selection');
