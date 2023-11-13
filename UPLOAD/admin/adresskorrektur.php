@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: adresskorrektur.php 2023-11-03 18:34:51Z webchills $
+ * @version $Id: adresskorrektur.php 2023-11-13 19:34:51Z webchills $
  */
   
 require 'includes/application_top.php';
@@ -36,7 +36,7 @@ $oID = zen_db_prepare_input($_GET['oID']);
 			'customers_city' => zen_db_prepare_input($_POST['update_customer_city']),
 			'customers_state' => zen_db_prepare_input($_POST['update_customer_state']),
 			'customers_postcode' => zen_db_prepare_input($_POST['update_customer_postcode']),
-			
+			'customers_country' => zen_db_prepare_input($_POST['update_customer_country']),
 			'customers_telephone' => zen_db_prepare_input($_POST['update_customer_telephone']),
 			'customers_email_address' => zen_db_prepare_input($_POST['update_customer_email_address']),
 			
@@ -48,7 +48,7 @@ $oID = zen_db_prepare_input($_GET['oID']);
 			'billing_city' => zen_db_prepare_input($_POST['update_billing_city']),
 			'billing_state' => zen_db_prepare_input($_POST['update_billing_state']),
 			'billing_postcode' => zen_db_prepare_input($_POST['update_billing_postcode']),
-			
+			'billing_country' => zen_db_prepare_input($_POST['update_billing_country']),
 
 			'delivery_name' => zen_db_prepare_input($_POST['update_delivery_name']),
 			'delivery_company' => zen_db_prepare_input($_POST['update_delivery_company']),
@@ -56,8 +56,8 @@ $oID = zen_db_prepare_input($_GET['oID']);
 			'delivery_suburb' => zen_db_prepare_input($_POST['update_delivery_suburb']),
 			'delivery_city' => zen_db_prepare_input($_POST['update_delivery_city']),
 			'delivery_state' => zen_db_prepare_input($_POST['update_delivery_state']),
-			'delivery_postcode' => zen_db_prepare_input($_POST['update_delivery_postcode'])
-			
+			'delivery_postcode' => zen_db_prepare_input($_POST['update_delivery_postcode']),
+			'delivery_country' => zen_db_prepare_input($_POST['update_delivery_country'])
 			
 		];
 
@@ -110,7 +110,9 @@ $order_updated = true;
     <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
     <script src="includes/menu.js"></script>
     <script src="includes/general.js"></script>
-
+<style>
+.eo-label { font-weight: bold; text-align:right;margin-right:3px;white-space: nowrap; }
+</style>
 </head>
 <body onLoad="init()">
 <!-- header //-->
@@ -171,62 +173,70 @@ $order_updated = true;
   </tr>
 
   <tr>
-    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_NAME; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_customer_name" size="45" value="<?php echo zen_output_string_protected($order->customer['name']); ?>"></td>
-	<td valign="top"><strong><?php echo ENTRY_CUSTOMER_NAME; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_billing_name" size="45" value="<?php echo zen_output_string_protected($order->billing['name']); ?>"></td>
-    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_NAME; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_delivery_name" size="45" value="<?php echo zen_output_string_protected($order->delivery['name']); ?>"></td>
+    <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_CUSTOMER_NAME, 'entry_name', 'class="col-sm-3 control-label"'); ?></label></td>
+    <td valign="top"><input class="form-control" name="update_customer_name" size="35" value="<?php echo zen_output_string_protected($order->customer['name']); ?>"></td>
+   <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_CUSTOMER_NAME, 'entry_name', 'class="col-sm-3 control-label"'); ?></label></td>
+    <td valign="top"><input class="form-control" name="update_billing_name" size="35" value="<?php echo zen_output_string_protected($order->billing['name']); ?>"></td>
+    <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_CUSTOMER_NAME, 'entry_name', 'class="col-sm-3 control-label"'); ?></label></td>
+    <td valign="top"><input class="form-control" name="update_delivery_name" size="35" value="<?php echo zen_output_string_protected($order->delivery['name']); ?>"></td>
   </tr>
   <tr>
-    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_COMPANY; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_customer_company" size="45" value="<?php echo zen_output_string_protected($order->customer['company']); ?>"></td>
-    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_COMPANY; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_billing_company" size="45" value="<?php echo zen_output_string_protected($order->billing['company']); ?>"></td>
-    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_COMPANY; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_delivery_company" size="45" value="<?php echo zen_output_string_protected($order->delivery['company']); ?>"></td>
+    <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_CUSTOMER_COMPANY, 'entry_company', 'class="col-sm-3 control-label"'); ?></label></td>
+    <td valign="top"><input class="form-control" name="update_customer_company" size="35" value="<?php echo zen_output_string_protected($order->customer['company']); ?>"></td>
+    <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_CUSTOMER_COMPANY, 'entry_company', 'class="col-sm-3 control-label"'); ?></label></td>
+    <td valign="top"><input class="form-control" name="update_billing_company" size="35" value="<?php echo zen_output_string_protected($order->billing['company']); ?>"></td>
+    <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_CUSTOMER_COMPANY, 'entry_company', 'class="col-sm-3 control-label"'); ?></label></td>
+    <td valign="top"><input class="form-control" name="update_delivery_company" size="35" value="<?php echo zen_output_string_protected($order->delivery['company']); ?>"></td>
   </tr>
   <tr>
-    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_ADDRESS; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_customer_street_address" size="45" value="<?php echo zen_output_string_protected($order->customer['street_address']); ?>"></td>
-    <td valign="top"><strong> <?php echo ENTRY_CUSTOMER_ADDRESS; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_billing_street_address" size="45" value="<?php echo zen_output_string_protected($order->billing['street_address']); ?>"></td>
-    <td valign="top"><strong> <?php echo ENTRY_CUSTOMER_ADDRESS; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_delivery_street_address" size="45" value="<?php echo zen_output_string_protected($order->delivery['street_address']); ?>"></td>
+    <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_CUSTOMER_ADDRESS, 'entry_address', 'class="col-sm-3 control-label"'); ?></label></td>
+    <td valign="top"><input class="form-control" name="update_customer_street_address" size="35" value="<?php echo zen_output_string_protected($order->customer['street_address']); ?>"></td>
+    <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_CUSTOMER_ADDRESS, 'entry_address', 'class="col-sm-3 control-label"'); ?></label></td>
+    <td valign="top"><input class="form-control" name="update_billing_street_address" size="35" value="<?php echo zen_output_string_protected($order->billing['street_address']); ?>"></td>
+    <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_CUSTOMER_ADDRESS, 'entry_address', 'class="col-sm-3 control-label"'); ?></label></td>
+    <td valign="top"><input class="form-control" name="update_delivery_street_address" size="35" value="<?php echo zen_output_string_protected($order->delivery['street_address']); ?>"></td>
   </tr>
   <tr>
-    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_SUBURB; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_customer_suburb" size="45" value="<?php echo zen_output_string_protected($order->customer['suburb']); ?>"></td>
-    <td valign="top"><strong> <?php echo ENTRY_CUSTOMER_SUBURB; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_billing_suburb" size="45" value="<?php echo zen_output_string_protected($order->billing['suburb']); ?>"></td>
-    <td valign="top"><strong> <?php echo ENTRY_CUSTOMER_SUBURB; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_delivery_suburb" size="45" value="<?php echo zen_output_string_protected($order->delivery['suburb']); ?>"></td>
+    <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_CUSTOMER_SUBURB, 'entry_suburb', 'class="col-sm-3 control-label"'); ?></label></td>
+    <td valign="top"><input class="form-control" name="update_customer_suburb" size="35" value="<?php echo zen_output_string_protected($order->customer['suburb']); ?>"></td>
+    <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_CUSTOMER_SUBURB, 'entry_suburb', 'class="col-sm-3 control-label"'); ?></label></td>
+    <td valign="top"><input class="form-control" name="update_billing_suburb" size="35" value="<?php echo zen_output_string_protected($order->billing['suburb']); ?>"></td>
+    <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_CUSTOMER_SUBURB, 'entry_suburb', 'class="col-sm-3 control-label"'); ?></label></td>
+    <td valign="top"><input class="form-control" name="update_delivery_suburb" size="35" value="<?php echo zen_output_string_protected($order->delivery['suburb']); ?>"></td>
   </tr>
   <tr>
-    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_CITY; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_customer_city" size="45" value="<?php echo zen_output_string_protected($order->customer['city']); ?>"></td>
-    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_CITY; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_billing_city" size="45" value="<?php echo zen_output_string_protected($order->billing['city']); ?>"></td>
-    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_CITY; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_delivery_city" size="45" value="<?php echo zen_output_string_protected($order->delivery['city']); ?>"></td>
+    <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_CUSTOMER_CITY, 'entry_city', 'class="col-sm-3 control-label"'); ?></label></td>
+    <td valign="top"><input class="form-control" name="update_customer_city" size="35" value="<?php echo zen_output_string_protected($order->customer['city']); ?>"></td>
+    <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_CUSTOMER_CITY, 'entry_city', 'class="col-sm-3 control-label"'); ?></label></td>
+    <td valign="top"><input class="form-control" name="update_billing_city" size="35" value="<?php echo zen_output_string_protected($order->billing['city']); ?>"></td>
+    <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_CUSTOMER_CITY, 'entry_city', 'class="col-sm-3 control-label"'); ?></label></td>
+    <td valign="top"><input class="form-control" name="update_delivery_city" size="35" value="<?php echo zen_output_string_protected($order->delivery['city']); ?>"></td>
   </tr>
   <tr>
-    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_STATE; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_customer_state" size="45" value="<?php echo zen_output_string_protected($order->customer['state']); ?>"></td>
-    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_STATE; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_billing_state" size="45" value="<?php echo zen_output_string_protected($order->billing['state']); ?>"></td>
-    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_STATE; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_delivery_state" size="45" value="<?php echo zen_output_string_protected($order->delivery['state']); ?>"></td>
+    <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_CUSTOMER_STATE, 'entry_state', 'class="col-sm-3 control-label"'); ?></label></td>
+    <td valign="top"><input class="form-control" name="update_customer_state" size="35" value="<?php echo zen_output_string_protected($order->customer['state']); ?>"></td>
+    <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_CUSTOMER_STATE, 'entry_state', 'class="col-sm-3 control-label"'); ?></label></td>
+    <td valign="top"><input class="form-control" name="update_billing_state" size="35" value="<?php echo zen_output_string_protected($order->billing['state']); ?>"></td>
+    <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_CUSTOMER_STATE, 'entry_state', 'class="col-sm-3 control-label"'); ?></label></td>
+    <td valign="top"><input class="form-control" name="update_delivery_state" size="35" value="<?php echo zen_output_string_protected($order->delivery['state']); ?>"></td>
   </tr>
   <tr>
-    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_POSTCODE; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_customer_postcode" size="45" value="<?php echo zen_output_string_protected($order->customer['postcode']); ?>"></td>
-    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_POSTCODE; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_billing_postcode" size="45" value="<?php echo zen_output_string_protected($order->billing['postcode']); ?>"></td>
-    <td valign="top"><strong><?php echo ENTRY_CUSTOMER_POSTCODE; ?>:&nbsp;</strong></td>
-    <td valign="top"><input name="update_delivery_postcode" size="45" value="<?php echo zen_output_string_protected($order->delivery['postcode']); ?>"></td>
+    <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_CUSTOMER_POSTCODE, 'entry_postcode', 'class="col-sm-3 control-label"'); ?></label></td>
+    <td valign="top"><input class="form-control" name="update_customer_postcode" size="35" value="<?php echo zen_output_string_protected($order->customer['postcode']); ?>"></td>
+    <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_CUSTOMER_POSTCODE, 'entry_postcode', 'class="col-sm-3 control-label"'); ?></label></td>
+    <td valign="top"><input class="form-control" name="update_billing_postcode" size="35" value="<?php echo zen_output_string_protected($order->billing['postcode']); ?>"></td>
+    <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_CUSTOMER_POSTCODE, 'entry_postcode', 'class="col-sm-3 control-label"'); ?></label></td>
+    <td valign="top"><input class="form-control" name="update_delivery_postcode" size="35" value="<?php echo zen_output_string_protected($order->delivery['postcode']); ?>"></td>
   </tr>
- 
+         <tr>
+    <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_CUSTOMER_COUNTRY, 'entry_country', 'class="col-sm-3 control-label"'); ?></label></td>
+    <td valign="top"><input class="form-control" name="update_customer_country" size="35" value="<?php echo $order->customer['country']['title']; ?>"></td>
+  <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_CUSTOMER_COUNTRY, 'entry_country', 'class="col-sm-3 control-label"'); ?></label></td>
+    <td valign="top"><input class="form-control" name="update_billing_country" size="35" value="<?php echo $order->billing['country']['title']; ?>"></td>
+      <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_CUSTOMER_COUNTRY, 'entry_country', 'class="col-sm-3 control-label"'); ?></label></td>
+    <td valign="top"><input class="form-control" name="update_delivery_country" size="35" value="<?php echo $order->delivery['country']['title']; ?>"></td>
+        </tr>
+
 </table>
 </td></tr></table>
 <!-- End Addresses Block -->
@@ -239,12 +249,17 @@ $order_updated = true;
       <tr>
         <td><table border="0" cellspacing="0" cellpadding="2">
       		<tr>
-      		  <td class="main"><strong><?php echo ENTRY_TELEPHONE_NUMBER; ?></strong></td>
-      		  <td class="main"><input name='update_customer_telephone' size='35' value='<?php echo zen_output_string_protected($order->customer['telephone']); ?>'></td>
+      		
+      		  <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_TELEPHONE_NUMBER, 'entry_telephone', 'class="col-sm-3 control-label"'); ?></label></td>
+      		  		
+      		 <td><input class="form-control" name='update_customer_telephone' size='35' value='<?php echo zen_output_string_protected($order->customer['telephone']); ?>'></td>
       		</tr>
       		<tr>
-      		  <td class="main"><strong><?php echo ENTRY_EMAIL_ADDRESS; ?></strong></td>
-      		  <td class="main"><input name='update_customer_email_address' size='35' value='<?php echo zen_output_string_protected($order->customer['email_address']); ?>'></td>
+      		 <td class="eo-label"><label><?php echo zen_draw_label(ENTRY_EMAIL_ADDRESS, 'entry_email_address', 'class="col-sm-3 control-label"'); ?></label></td>
+     <td>
+      		  	<input class="form-control" name='update_customer_email_address' size='35' value='<?php echo zen_output_string_protected($order->customer['email_address']); ?>'>
+      		 
+      		  	</td>
       		</tr>
       	</table></td>
       </tr>
