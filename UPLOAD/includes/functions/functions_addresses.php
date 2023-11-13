@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_addresses.php 2023-10-30 14:43:16Z webchills $
+ * @version $Id: functions_addresses.php 2023-11-13 11:43:16Z webchills $
  */
 
 /**
@@ -25,9 +25,13 @@ function zen_get_countries_for_admin_pulldown($pre_populated_entry = '')
             'status' => '',
         ];
     }
-    $sql = "SELECT countries_id, countries_name, status
-            FROM " . TABLE_COUNTRIES . "
-            ORDER BY countries_name";
+      $sql = "SELECT co.countries_id, con.countries_name as countries_name, co.status
+              FROM " . TABLE_COUNTRIES . " co
+                    LEFT JOIN " . TABLE_COUNTRIES_NAME . " con ON con.countries_id = co.countries_id
+                    AND con.language_id = " . (int)$_SESSION['languages_id'] ."
+                    ORDER BY countries_name
+                    ";
+   
     $results = $db->Execute($sql);
     foreach ($results as $result) {
         $countries_array[] = [
