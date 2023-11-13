@@ -549,6 +549,7 @@ define('TEXT_INFO_CURRENCY_UPDATED','The exchange rate for %s (%s) was updated s
 define('TEXT_INFO_DATE_ADDED','Date Added:');
 define('TEXT_INFO_EDIT_INTRO','Please make any necessary changes');
 define('TEXT_INFO_ID',' ID# ');
+define('TEXT_INFO_LANGUAGE_ID', 'Enter telephone country access code without leading 0<br>(english must be 1, german must be 43):'); 
 define('TEXT_INFO_LAST_MODIFIED','Last Modified:');
 define('TEXT_INFO_MASTER_CATEGORIES_ID','<strong>NOTE: Master Category is used for pricing purposes where the product category affects the pricing on linked products, example: Sales</strong>');
 define('TEXT_INFO_META_TAGS_USAGE','<strong>NOTE:</strong> The Site/Tagline is your defined definition for your site in the meta_tags.php file.');

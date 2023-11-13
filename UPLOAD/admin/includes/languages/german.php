@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2023-11-13 18:35:04Z webchills $
+ * @version $Id: german.php 2023-11-13 18:45:04Z webchills $
  */
 @setlocale(LC_TIME, ['de_DE.UTF-8', 'de_AT.UTF-8', 'de_CH.UTF-8', 'de_DE.ISO_8859-1','de_DE@euro', 'de_DE', 'de', 'ge', 'deu.deu']);
 
@@ -552,6 +552,7 @@ define('TEXT_INFO_CURRENCY_UPDATED','Der Wechselkurs für %s (%s) wurde erfolgre
 define('TEXT_INFO_DATE_ADDED','hinzugefügt am:');
 define('TEXT_INFO_EDIT_INTRO','Bitte die gewünschten Änderungen vornehmen');
 define('TEXT_INFO_ID',' ID# ');
+define('TEXT_INFO_LANGUAGE_ID', 'Geben Sie den Telefon Ländercode OHNE 0 ein<br>(english MUSS 1 sein, deutsch MUSS 43 sein):'); 
 define('TEXT_INFO_LAST_MODIFIED','zuletzt aktualisiert:');
 define('TEXT_INFO_MASTER_CATEGORIES_ID','<strong>HINWEIS: Die Hauptkategorie wird für Preisfestsetzungszwecke verwendet, wenn die Produktkategorie die Preisfestsetzung für verknüpfte Produkte beeinflusst, Beispiel: Verkauf</strong>');
 define('TEXT_INFO_META_TAGS_USAGE','<strong>HINWEIS:</strong> Site/Tagline ist Ihre definierte Definition in der Sprachdatei meta_tags.php .');

@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_languages.php 2023-10-23 14:22:16Z webchills $
+ * @version $Id: init_languages.php 2023-11-13 19:01:16Z webchills $
  */
 use Zencart\LanguageLoader\LanguageLoaderFactory;
 
@@ -26,7 +26,7 @@ if (!defined('IS_ADMIN_FLAG')) {
       $lng->set_language(DEFAULT_LANGUAGE);
     }
 
-    if (!is_file(DIR_WS_LANGUAGES . 'lang.' . $lng->language['directory'] . '.php')) {
+    if (!is_file(DIR_WS_LANGUAGES . $lng->language['directory'] . '.php')) {
       $lng->set_language('de');
     }
 
