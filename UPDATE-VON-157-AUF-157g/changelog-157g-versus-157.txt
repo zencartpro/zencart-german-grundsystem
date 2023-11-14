@@ -9,7 +9,24 @@ Dadurch kann in 1.5.7g weiterhin mit den gewohnten Sprachdefinitionen gearbeitet
 1.5.7g behebt auch alle Fehler die seit Erscheinen von 1.5.7f aug Github gemeldet wurden
 
 Aktualisierte Komponenten:
-- tbd
+- PHP Mailer Update auf 6.8.1
+- MobileDetect Update auf 3.74.3
+- CKEditor Update auf 4.22.1
+- TinyMCE Editor Update auf 6.7.2
+- braintree_web Update auf 3.97.2, braintree_php Update auf 6.14.0 
+- FontAwesome Update auf 6.4.0
+- jQuery Update auf 3.7.0
+- Image Handler Update auf 5.3.4 mit webp Unterstützung
+
+Neue Funktionalitäten:
+- Kunden können Kundengruppen zugeordnet werden. Plugins könnten bestimmte Funktionen nur für bestimmte Kundengruppen bereitstellen.
+- Unterstützung des Plugin Managers für Module, die bereits dieses Format nutzen
+
+Verbesserungen:
+- Vollständige Unterstützung von PHP 8.1
+- Neustrukturierung wichtiger Funktionsdateien
+- Performanceoptimierung durch Zentralisierung von Klassen und Funktionen 
+- Admin Layout durchgehend augenfreundlich und mobilefreundlich
 
 Wer bereits 1.5.7f verwendet kann mit dem speziellen Updatepaket in UPDATE-VON-157f-AUF-157g auf 1.5.7g aktualisieren.
 Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157f-AUF-157g
@@ -36,6 +53,7 @@ admin\includes\functions\datepicker.php
 admin\includes\init_includes\init_log_manager.php
 admin\includes\init_includes\init_non_db_settings_admin.php
 admin\includes\javascript\searchBox.js
+admin\includes\javascript\dateChecker.php
 admin\includes\languages\english\extra_definitions\log_manager_messages.php
 admin\includes\languages\english\customer_groups.php
 admin\includes\languages\english\plugin_manager.php
@@ -54,6 +72,7 @@ editors\ckeditor (gesamter Ordner)
 editors\tiny_mce (gesamter Ordner)
 extras\fontawesome\6.4.0\ (gesamter Ordner)
 includes\classes\ajax\zcAjaxAdminSessionChange.php
+includes\classes\ajax\zcAjaxAdminDatePickerDateCheck.php
 includes\classes\Exceptions\PluginInstallerException.php
 includes\classes\Filters\baseFilter.php
 includes\classes\Filters\FilterFactory.php

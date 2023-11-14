@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2023-11-13 18:45:04Z webchills $
+ * @version $Id: german.php 2023-11-14 21:33:04Z webchills $
  */
 @setlocale(LC_TIME, ['de_DE.UTF-8', 'de_AT.UTF-8', 'de_CH.UTF-8', 'de_DE.ISO_8859-1','de_DE@euro', 'de_DE', 'de', 'ge', 'deu.deu']);
 
@@ -117,11 +117,14 @@ define('BOX_MODULES_ORDER_TOTAL','Zusammenfassung');
 define('BOX_MODULES_PAYMENT','Zahlungsarten');
 define('BOX_MODULES_PLUGINS','Plugin Manager');
 define('BOX_MODULES_SHIPPING','Versandarten');
-define('BOX_REPORTS_CUSTOMERS_REFERRALS','Herkunfstverweise (Referrals)');
+define('BOX_REPORTS_CUSTOMERS_REFERRALS','Herkunftsverweise (Referrals)');
+define('BOX_REPORTS_DISABLED_STOCK', 'Deaktivierte Artikel');
 define('BOX_REPORTS_ORDERS_TOTAL','Umsatz pro Kunde');
 define('BOX_REPORTS_PRODUCTS_LOWSTOCK','Artikelbestand');
 define('BOX_REPORTS_PRODUCTS_PURCHASED','Gekaufte Artikel');
 define('BOX_REPORTS_PRODUCTS_VIEWED','Besuchte Artikel');
+define('BOX_REPORTS_SALES_REPORT', 'Verkaufsbericht');
+define('BOX_REPORTS_SALES_REPORT_GRAPHS', 'Graphischer Verkaufsbericht');
 define('BOX_TAXES_COUNTRIES','Länder');
 define('BOX_TAXES_GEO_ZONES','Steuerzonen');
 define('BOX_TAXES_TAX_CLASSES','Steuerklassen');
@@ -129,9 +132,6 @@ define('BOX_TAXES_TAX_RATES','Steuersätze');
 define('BOX_TAXES_ZONES','Zonen');
 define('BOX_TOOLS_BANNER_MANAGER','Banner Manager');
 define('BOX_TOOLS_BACKUP_MYSQL', 'Datenbanksicherung');
-
-
-
 define('BOX_TOOLS_DEFINE_CONDITIONS','AGB');
 define('BOX_TOOLS_DEFINE_PAGES_EDITOR','Seiteneditor');
 define('BOX_TOOLS_DEVELOPERS_TOOL_KIT','Developers Tool Kit');

@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: english.php 2023-11-13 18:29:32Z webchills $
+ * @version $Id: english.php 2023-11-14 21:37:32Z webchills $
  */
 @setlocale(LC_TIME, ['en_US', 'en_US.utf8', 'en', 'English_United States.1252']);
 
@@ -118,10 +118,13 @@ define('BOX_MODULES_PAYMENT','Payment');
 define('BOX_MODULES_PLUGINS','Plugin Manager');
 define('BOX_MODULES_SHIPPING','Shipping');
 define('BOX_REPORTS_CUSTOMERS_REFERRALS','Customers Referral');
+define('BOX_REPORTS_DISABLED_STOCK', 'Deactivated Products');
 define('BOX_REPORTS_ORDERS_TOTAL','Customer Orders-Total');
 define('BOX_REPORTS_PRODUCTS_LOWSTOCK','Products Low Stock');
 define('BOX_REPORTS_PRODUCTS_PURCHASED','Products Purchased');
 define('BOX_REPORTS_PRODUCTS_VIEWED','Products Viewed');
+define('BOX_REPORTS_SALES_REPORT', 'Sales Report');
+define('BOX_REPORTS_SALES_REPORT_GRAPHS', 'Graphical Sales Report');
 define('BOX_TAXES_COUNTRIES','Countries');
 define('BOX_TAXES_GEO_ZONES','Zones Definitions');
 define('BOX_TAXES_TAX_CLASSES','Tax Classes');
