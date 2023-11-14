@@ -27,9 +27,9 @@ if (stream_resolve_include_path('cloudloader/languages/' . $install_lang . '.php
 
 $base_path = '../' . MH_ROOT_PATH . 'cloudbeez/';
 
-include 'cloudloader.php';
-include 'cloudloader/php/boot.php';
-include 'cloudloader/php/CloudloaderInit.php';
+include_once 'cloudloader.php';
+include_once 'cloudloader/php/boot.php';
+include_once 'cloudloader/php/CloudloaderInit.php';
 
 
 if ($cloudloader_mode == 'install_core') {
@@ -133,11 +133,12 @@ if ($_GET['cloudloader_mode'] == 'update_core') {
     window.securityToken_name = '<?php echo(isset($_SESSION['CSRFName']) ? $_SESSION['CSRFName'] : 'none') ?>';
     window.securityToken_value = '<?php echo(isset($_SESSION['CSRFToken']) ? $_SESSION['CSRFToken'] : '-1') ?>';
     <?php
-    if (SESSION_FORCE_COOKIE_USE == 'False' && function_exists('xtc_href_link')) {
+    if (defined('SESSION_FORCE_COOKIE_USE') && constant('SESSION_FORCE_COOKIE_USE') == 'False' && function_exists('xtc_href_link')):
     ?>
     window.session_name = '<?php echo xtc_session_name(); ?>';
     window.session_value = '<?php echo xtc_session_id(); ?>';
-    <?php }
+    <?php
+    endif;
     ?>
 
 </script>

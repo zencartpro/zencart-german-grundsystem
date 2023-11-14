@@ -23,7 +23,11 @@ function mh_define($const, $value)
         define($const, $value);
 }
 
+
+
 mh_define('MH_ROOT_PATH', 'mailhive/');
+
+$gx_version = null;
 
 if (function_exists('zen_redirect')) {
     mh_define('MH_PLATFORM', 'zencart');

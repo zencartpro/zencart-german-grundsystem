@@ -3,10 +3,10 @@
 // add version information for deployment
 class mailbeez_installer_dummy
 {
+    public $version;
     function __construct()
     {
-        $this->version = 4.6; // float value
-        
+        $this->version = 4.84; // float value
     }
 }
 $version = new mailbeez_installer_dummy();

@@ -1,0 +1,23 @@
+<?php
+define('HEADING_TITLE', 'Change address details of an order');
+define('HEADING_TITLE_SEARCH', 'Order Number:');
+define('HEADING_TITLE_STATUS', 'Status:');
+define('TABLE_HEADING_CUSTOMERS', 'Customer:');
+define('ENTRY_CUSTOMER', 'Customer Address:');
+define('ENTRY_CUSTOMER_NAME', 'Name:');
+define('ENTRY_CUSTOMER_COMPANY', 'Company:');
+define('ENTRY_CUSTOMER_ADDRESS', 'Street:');
+define('ENTRY_CUSTOMER_SUBURB', 'Line 2:');
+define('ENTRY_CUSTOMER_CITY', 'City:');
+define('ENTRY_CUSTOMER_STATE', 'Zone:');
+define('ENTRY_CUSTOMER_POSTCODE', 'ZIP Code:');
+define('ENTRY_CUSTOMER_COUNTRY', 'Country:');
+define('ENTRY_SHIPPING_ADDRESS', 'Delivery Address:');
+define('ENTRY_BILLING_ADDRESS', 'Invoice Address:');
+define('ERROR_ORDER_DOES_NOT_EXIST', 'ERROR: Order does not exist.');
+define('SUCCESS_ORDER_UPDATED', 'SUCCESS: The address details of this order were successfully corrected.');
+define('WARNING_ORDER_NOT_UPDATED', 'WARNING: Nothing to change, order details were not changed.');
+define('IMAGE_ORDER_DETAILS', 'Order details');
+define('BUTTON_TO_LIST', 'Sort list');
+define('SELECT_ORDER_LIST', 'Go to order:');
+define('IMAGE_ADRESSKORREKTUR', 'Address Correction'); 

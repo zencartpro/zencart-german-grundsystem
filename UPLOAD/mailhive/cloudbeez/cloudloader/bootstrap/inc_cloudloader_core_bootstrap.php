@@ -84,10 +84,10 @@ $inc_content_common = $cloudloader->getContent('mailbeez_core_common/' . $inst_l
         }
 
         .device {
-            height: 440px;
+            /*height: 440px;*/
             margin-left: -24px;
             margin-top: 20px;
-            overflow: hidden;
+            /*overflow: hidden;*/
             position: relative;
             width: 987px;
         }

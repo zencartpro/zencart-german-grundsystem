@@ -290,6 +290,7 @@ class Cloudloader extends CloudloaderBase
             case 'backupZip':
 
                 $exclude_dirs = array('images/cache', 'common/templates_c', 'cloudbeez');
+                $exclude_files = '';
                 $backup_dir = '../' . MH_ROOT_PATH;
                 $this->cleanLegacyImageCache($this->deployDirectory . 'images/cache');
                 $this->cleanBackups($this->backupDirectory);
@@ -556,7 +557,13 @@ class Cloudloader extends CloudloaderBase
         }
 
         $filename = $this->logFile;
-        $stream = fopen($filename, 'a');
+
+        $stream = @fopen($filename, 'a');
+
+        if ($stream === false) {
+            return;
+        }
+
         $string = "[" . date("Y/m/d h:i:s", time()) . "] " . vsprintf($message, $args);
         fwrite($stream, $string . PHP_EOL);
         fclose($stream);
@@ -888,7 +895,12 @@ class Cloudloader extends CloudloaderBase
     {
         $_SESSION[$name] = $value;
         $filename = $this->tempDirectory . '/var_' . $name . '.txt';
-        $stream = fopen($filename, 'w');
+        $stream = @fopen($filename, 'w');
+
+        if ($stream === false) {
+            return;
+        }
+
         fwrite($stream, $value);
         fclose($stream);
     }
@@ -914,7 +926,7 @@ class Cloudloader extends CloudloaderBase
 
     function link($uri = '')
     {
-        if (SESSION_FORCE_COOKIE_USE == 'False' && function_exists('xtc_href_link')) {
+        if (defined('SESSION_FORCE_COOKIE_USE') && constant('SESSION_FORCE_COOKIE_USE') == 'False' && function_exists('xtc_href_link')) {
             $link = xtc_href_link('mailbeez.php', '', $connection = 'NONSSL', $add_session_id = true);
             if (stristr($link, '?')) {
                 $link .= '&' . $uri;

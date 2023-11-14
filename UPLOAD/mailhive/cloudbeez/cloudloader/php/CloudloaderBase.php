@@ -110,7 +110,7 @@ class CloudloaderBase
 
 //            if (!file_exists($__dest) || !($this->check_in_array($source, $options['exclude_overwrite']))) {
             if (!($this->check_in_array($source, $options['exclude_overwrite']))) {
-                if ($options['test_writable']) {
+                if (isset($options['test_writable']) && $options['test_writable']) {
                     $this->debug_output("test $__dest<br>");
                     $result = (file_exists($__dest)) ? is_writeable($__dest) : true;
                     if (!$result) {
@@ -120,8 +120,7 @@ class CloudloaderBase
 
                 } else {
                     $result = copy($source, $__dest);
-                    //chmod($__dest, $options['filePermission']);
-                    chmod($__dest, fileperms($source));
+                    @chmod($__dest, fileperms($source));
                 }
             } else {
                 $result = true;
@@ -180,9 +179,9 @@ class CloudloaderBase
                     $__source = $source . "/" . $file;
                     //$this->debug_output( "$__source ||| $__dest<br />";
                     if ($__source != $dest) {
-                        if ($options['test_writable'] && is_dir($__source)) {
+                        if (isset($options['test_writable']) && $options['test_writable'] && is_dir($__source)) {
                             $this->debug_output("test write permissions $__dest<br>");
-                        } else if (!$options['test_writable']) {
+                        } else if (isset($options['test_writable']) && !$options['test_writable']) {
                             $this->debug_output("copy $__source -> $__dest<br>");
                         }
                         $result = $this->smartCopy($__source, $__dest, $options);

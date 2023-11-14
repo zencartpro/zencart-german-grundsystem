@@ -57,10 +57,10 @@ $install_url = $cloudloader->link('cloudloader_mode=install_package');
         }
 
         .device {
-            height: 440px;
+            /*height: 440px;*/
             margin-left: -24px;
             margin-top: 20px;
-            overflow: hidden;
+            /*overflow: hidden;*/
             position: relative;
             width: 987px;
         }

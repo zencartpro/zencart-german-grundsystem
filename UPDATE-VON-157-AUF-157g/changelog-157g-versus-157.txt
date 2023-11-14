@@ -199,6 +199,7 @@ admin\includes\languages\english\modules\newsletters\product_notification.php
 admin\includes\languages\english\admin_account.php
 admin\includes\languages\english\admin_activity.php
 admin\includes\languages\english\admin_page_registration.php
+admin\includes\languages\english\adresskorrektur.php
 admin\includes\languages\english\attributes_controller.php
 admin\includes\languages\english\backup_mysql.php
 admin\includes\languages\english\banner_manager.php
@@ -276,6 +277,7 @@ admin\includes\languages\english\zones.php
 admin\includes\languages\german\extra_definitions\document_general.php
 admin\includes\languages\german\modules\newsletters\newsletter.php
 admin\includes\languages\german\modules\newsletters\product_notification.php
+admin\includes\languages\german\adresskorrektur.php
 admin\includes\languages\german\admin_account.php
 admin\includes\languages\german\admin_activity.php
 admin\includes\languages\german\admin_page_registration.php

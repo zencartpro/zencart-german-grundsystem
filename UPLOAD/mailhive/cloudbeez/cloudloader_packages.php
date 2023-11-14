@@ -26,17 +26,19 @@ if (stream_resolve_include_path('cloudloader/languages/' . $install_lang . '.php
 
 $base_path = '../' . MH_ROOT_PATH . 'cloudbeez/';
 
-include 'cloudloader.php';
-include 'cloudloader/php/boot.php';
-include 'cloudloader/php/CloudloaderInit.php';
+include_once 'cloudloader.php';
+include_once 'cloudloader/php/boot.php';
+include_once 'cloudloader/php/CloudloaderInit.php';
 
 
 if ($cloudloader_mode == 'install_package') {
     // install
+    $inc_content_intro = '';
     $inc_content_progress = $cloudloader->getContent('mailbeez_package_installer_steps/' . $inst_lang, array());
     $inc_content_install_final = $cloudloader->getContent('mailbeez_package_installer_final/' . $inst_lang, array());
 } else {
     // update
+    $inc_content_intro = '';
     $inc_content_progress = $cloudloader->getContent('mailbeez_package_update_steps/' . $inst_lang, array());
     $inc_content_update_final = $cloudloader->getContent('mailbeez_package_update_final/' . $inst_lang, array());
 }
@@ -129,7 +131,7 @@ if ($_GET['cloudloader_mode'] == 'update_core' || $_GET['cloudloader_mode'] == '
     window.securityToken_value = '<?php echo(isset($_SESSION['CSRFToken']) ? $_SESSION['CSRFToken'] : '-1') ?>';
 
     <?php
-    if (SESSION_FORCE_COOKIE_USE == 'False' && function_exists('xtc_href_link')) {
+    if (defined('SESSION_FORCE_COOKIE_USE') && constant('SESSION_FORCE_COOKIE_USE') == 'False' && function_exists('xtc_href_link')) {
     ?>
     window.session_name = '<?php echo xtc_session_name(); ?>';
     window.session_value = '<?php echo xtc_session_id(); ?>';
