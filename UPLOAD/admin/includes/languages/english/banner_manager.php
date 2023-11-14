@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: banner_manager.php 2023-10-28 19:34:16Z webchills $
+ * @version $Id: banner_manager.php 2023-11-14 20:34:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Banner Manager');
@@ -56,7 +56,6 @@ define('TEXT_BANNERS_STATUS_CHANGE', 'Status Change: %s');
 
 define('TEXT_BANNERS_LAST_3_DAYS', 'Last 3 Days');
 
-
 define('TEXT_INFO_DELETE_INTRO', 'Are you sure you want to delete this banner?');
 define('TEXT_INFO_DELETE_IMAGE', 'Delete banner image');
 
@@ -73,9 +72,10 @@ define('ERROR_UNKNOWN_STATUS_FLAG', 'Error: Unknown status flag.');
 define('ERROR_BANNER_IMAGE_REQUIRED', 'Error: Banner image required.');
 define('ERROR_UNKNOWN_BANNER_OPEN_NEW_WINDOW' , 'Error: Banner could not be set to open in a new window');
 define('ERROR_UNKNOWN_BANNER_ON_SSL', 'Error: Banner could not be set to use SSL');
+define('ERROR_INVALID_SCHEDULED_DATE','The &quot;Scheduled At&quot; date is not valid, please re-enter.');
+define('ERROR_INVALID_EXPIRES_DATE','The &quot;Expires On&quot; date is not valid, please-re-enter.');
 define('TEXT_LEGEND_BANNER_ON_SSL', 'Show SSL');
 define('TEXT_LEGEND_BANNER_OPEN_NEW_WINDOWS', 'New Window');
-
 
 define('IMAGE_ICON_BANNER_OPEN_NEW_WINDOWS_ON','Open New Window - Enabled');
 define('IMAGE_ICON_BANNER_OPEN_NEW_WINDOWS_OFF','Open New Window - Disabled');

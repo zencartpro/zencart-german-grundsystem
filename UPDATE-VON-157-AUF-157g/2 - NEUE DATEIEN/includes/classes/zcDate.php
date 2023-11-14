@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: zcDate.php 2023-10-21 15:06:39Z webchills $
+ * @version $Id: zcDate.php 2023-11-14 20:37:39Z webchills $
  */
 class zcDate extends base
 {
@@ -200,6 +200,18 @@ class zcDate extends base
         return str_replace($replacements['from'], $replacements['to'], $format);
     }
     
+    /**
+     * @param string $date  The date to be validated, according to the same rules as strtotime.
+     *
+     * @return bool  Indicates whether/not the supplied date is valid
+     */
+    public static function validateDate(string $date): bool
+    {
+        ['year' => $year, 'month' => $month, 'day' => $day, 'warning_count' => $warning_count, 'error_count' => $error_count] = date_parse($date);
+
+        return ($year !== false && $month !== false && $day !== false && (($warning_count + $error_count) === 0));
+    }
+
     protected function debug(string $message)
     {
         if ($this->debug === true) {

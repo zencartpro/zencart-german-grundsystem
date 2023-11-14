@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: banner_manager.php 2023-10-28 19:34:16Z webchills $
+ * @version $Id: banner_manager.php 2023-11-14 20:34:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Banner Manager');
@@ -54,9 +54,7 @@ define('TEXT_BANNERS_EXPIRES_AT_DATE', 'Endet am: <b>%s</b>');
 define('TEXT_BANNERS_EXPIRES_AT_IMPRESSIONS', 'Endet nach: <b>%s</b> Einblendungen');
 define('TEXT_BANNERS_STATUS_CHANGE', 'Status ändern: %s');
 
-
 define('TEXT_BANNERS_LAST_3_DAYS', 'Die letzten 3 Tage');
-
 
 define('TEXT_INFO_DELETE_INTRO', 'Sind Sie sicher dass Sie diesen Banner löschen wollen?');
 define('TEXT_INFO_DELETE_IMAGE', 'Bannerbild löschen');
@@ -74,10 +72,10 @@ define('ERROR_UNKNOWN_STATUS_FLAG', 'Fehler: Unbekannter Status gesetzt.');
 define('ERROR_BANNER_IMAGE_REQUIRED', 'Fehler: Banner Bild erforderlich.');
 define('ERROR_UNKNOWN_BANNER_OPEN_NEW_WINDOW' , 'Fehler: Banner konnte nicht als neues Fenster gesetzt werden');
 define('ERROR_UNKNOWN_BANNER_ON_SSL', 'Fehler: Banner konnte nicht als SSL gesetzt werden');
-
+define('ERROR_INVALID_SCHEDULED_DATE','Das &quot;geplante Startdatum&quot; ist nicht gültig, bitte neu eingeben.');
+define('ERROR_INVALID_EXPIRES_DATE','Das &quot;geplante Enddatum&quot; ist nicht gültig, bitte neu eingeben.');
 define('TEXT_LEGEND_BANNER_ON_SSL', 'SSL anzeigen');
 define('TEXT_LEGEND_BANNER_OPEN_NEW_WINDOWS', 'Neues Fenster');
-
 
 define('IMAGE_ICON_BANNER_OPEN_NEW_WINDOWS_ON', 'Neues Fenster öffnen - EIN');
 define('IMAGE_ICON_BANNER_OPEN_NEW_WINDOWS_OFF', 'Neues Fenster öffnen - AUS');
