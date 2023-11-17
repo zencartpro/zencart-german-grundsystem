@@ -1,17 +1,20 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: VersionServer.php 2023-10-30 13:14:16Z webchills $
+ * @version $Id: VersionServer.php 2023-11-17 10:14:16Z webchills $
  */
 
 class VersionServer
 {
     protected $projectVersionServer = 'https://www.zen-cart-pro.at';
     protected $pluginVersionServer = 'https://ping.zen-cart.com/plugincheck';
+    const TIMEOUT = 3;
+
+    const CONNECTTIMEOUT = 1;
 
     public function __construct()
     {
@@ -37,8 +40,8 @@ class VersionServer
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($currentInfo));
         curl_setopt($ch, CURLOPT_VERBOSE, 0);
         curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 9);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 9);
+        curl_setopt($ch, CURLOPT_TIMEOUT, self::TIMEOUT);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, self::CONNECTTIMEOUT);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_USERAGENT, 'Core Version Check ' . HTTP_SERVER);
         $response = curl_exec($ch);
@@ -70,8 +73,8 @@ class VersionServer
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($currentInfo));
         curl_setopt($ch, CURLOPT_VERBOSE, 0);
         curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 9);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 9);
+        curl_setopt($ch, CURLOPT_TIMEOUT, self::TIMEOUT);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, self::CONNECTTIMEOUT);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_USERAGENT, 'Plugin Version Check ' . $type . ' ' . HTTP_SERVER);
         $response = curl_exec($ch);
@@ -89,9 +92,11 @@ class VersionServer
         if (trim($newVersionInfo['versionMajor']) > PROJECT_VERSION_MAJOR) {
             return false;
         }
+
         if ((int)trim($newVersionInfo['versionMajor']) === (int)PROJECT_VERSION_MAJOR && trim($newVersionInfo['versionMinor']) > PROJECT_VERSION_MINOR) {
             return false;
         }
+
         return true;
     }
 

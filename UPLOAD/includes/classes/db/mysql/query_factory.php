@@ -1,6 +1,6 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  * MySQL query_factory Class.
  * Class used for database abstraction to MySQL via mysqli
  * 
@@ -9,7 +9,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions adapted from http://www.data-diggers.com/
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: query_factory.php 2023-10-21 18:47:16Z webchills $
+ * @version $Id: query_factory.php 2023-11-17 16:47:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -697,10 +697,10 @@ class queryFactory extends base
             echo $this->error_number . ' ' . $this->error_text;
             echo '<br>in:<br>[' . (strstr($this->zf_sql, 'db_cache') ? 'db_cache table' : $this->zf_sql) . ']<br>';
         } else {
-            echo 'WARNING: An Error occurred, please let us know!';
+            echo '<span style="color:red;font-size:13px;font-family:Arial,Verdana,sans-serif;">FEHLER:<br>Datenbankabfragen oder Datenbankeinträge schlagen fehl.</span>';
         }
         if (defined('IS_ADMIN_FLAG') && IS_ADMIN_FLAG == true) {
-            echo ' If you were entering information, press the BACK button in your browser and re-check the information you had entered to be sure you entered valid data.<br>';
+            echo ' <span style="color:red;font-size:13px;font-family:Arial,Verdana,sans-serif;"><br>Den Grund für diesen Fehler finden Sie in den Errorlogs.<br>Gehen Sie so vor wie in den FAQ auf <a href="http://error.zen-cart-pro.at" target="_blank">http://error.zen-cart-pro.at</a> beschrieben.</span><br>';
         }
         echo '</div>';
 

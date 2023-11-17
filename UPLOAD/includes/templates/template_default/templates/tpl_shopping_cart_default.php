@@ -10,7 +10,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_shopping_cart_default.php 2023-10-26 18:49:16Z webchills $
+ * @version $Id: tpl_shopping_cart_default.php 2023-11-15 19:49:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="shoppingCartDefault">
@@ -28,7 +28,7 @@
 
 <h1 id="cartDefaultHeading"><?php echo HEADING_TITLE; ?></h1>
 <!-- ** BEGIN PAYPAL EXPRESS CHECKOUT for not logged in visitors only! ** -->
-<?php if (!$_SESSION['customer_id']) { ?>	
+<?php if (!zen_is_logged_in()) { ?>	
 <div class="buttonRow forward">
 <?php  // the tpl_ec_button template only displays EC option if cart contents >0 and value >0
 if (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') && MODULE_PAYMENT_PAYPALWPP_STATUS == 'True') {

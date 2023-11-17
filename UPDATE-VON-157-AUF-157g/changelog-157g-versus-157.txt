@@ -21,12 +21,18 @@ Aktualisierte Komponenten:
 Neue Funktionalitäten:
 - Kunden können Kundengruppen zugeordnet werden. Plugins könnten bestimmte Funktionen nur für bestimmte Kundengruppen bereitstellen.
 - Unterstützung des Plugin Managers für Module, die bereits dieses Format nutzen
+- Beim Löschen eines Kunden kann entweder der gesamte Kundeneintrag gelöscht werden (Standard) oder mit "Nur vergessen" nur die persönlichen Daten anonymisiert werden.
 
 Verbesserungen:
 - Vollständige Unterstützung von PHP 8.1
 - Neustrukturierung wichtiger Funktionsdateien
 - Performanceoptimierung durch Zentralisierung von Klassen und Funktionen 
 - Admin Layout durchgehend augenfreundlich und mobilefreundlich
+- Suchfunktionen im Adminbereich verbessert
+- mehrfache Sprachdefinitionen wurden entfernt
+- Artikelmerkmale stehen nun auch in den anderen Artikeltypen zur Verfügung
+- Steuersatz der Versandkosten wird nun in der Datenbank bei der Bestellung gespeichert
+- Performanceverbesserungen für Shops mit großen Datenbanken
 
 Wer bereits 1.5.7f verwendet kann mit dem speziellen Updatepaket in UPDATE-VON-157f-AUF-157g auf 1.5.7g aktualisieren.
 Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157f-AUF-157g
