@@ -28,6 +28,7 @@ Neue Funktionalitäten:
 - Kunden können Kundengruppen zugeordnet werden. Plugins könnten bestimmte Funktionen nur für bestimmte Kundengruppen bereitstellen.
 - Unterstützung des Plugin Managers für Module, die bereits dieses Format nutzen
 - Beim Löschen eines Kunden kann entweder der gesamte Kundeneintrag gelöscht werden (Standard) oder mit "Nur vergessen" nur die persönlichen Daten anonymisiert werden.
+- Logfilemanager integriert (automatisches Löschen von Logfiles nach einem bestimmten Zeitraum)
 
 Verbesserungen:
 - Vollständige Unterstützung von PHP 8.1
