@@ -5,7 +5,7 @@
 * @copyright Portions Copyright 2003 osCommerce
 * Zen Cart German Version - www.zen-cart-pro.at
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: init_157g_update.php 2023-11-11 15:03:51Z webchills $
+* @version $Id: init_157g_update.php 2023-11-18 08:03:51Z webchills $
 */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -244,7 +244,7 @@ $messageStack->add('Image Handler / Display Logs / Cross Sell erfolgreich aktual
 // 
 //
 $db->Execute("REPLACE INTO product_type_layout_language (configuration_title , configuration_key , languages_id, configuration_description, last_modified, date_added) VALUES 
-('20231108', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Uebersetzungen', now(), now());");
+('20231118', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Uebersetzungen', now(), now());");
 
 // -----
 // Version History aktualisieren
@@ -254,7 +254,7 @@ $db->Execute ("INSERT INTO ".TABLE_PROJECT_VERSION_HISTORY." (project_version_ke
 SELECT project_version_key, project_version_major, project_version_minor, project_version_patch1 as project_version_patch, project_version_date_applied, project_version_comment
 FROM ".TABLE_PROJECT_VERSION.";");
 $db->Execute ("UPDATE ".TABLE_PROJECT_VERSION." SET project_version_major='1', project_version_minor='5.7g', project_version_patch1='', project_version_patch1_source='', project_version_patch2='', project_version_patch2_source='', project_version_comment='Version Update 1.5.7->1.5.7g', project_version_date_applied=now() WHERE project_version_key = 'Zen-Cart Main';");
-$db->Execute ("UPDATE ".TABLE_PROJECT_VERSION." SET project_version_major='1', project_version_minor='5.7g', project_version_patch1='', project_version_patch1_source='', project_version_patch2='', project_version_patch2_source='', project_version_comment='Version Update 1.5.7->1.5.7g', project_version_date_applied=now() WHERE project_version_key = 'Zen-Cart Database';");
+$db->Execute ("UPDATE ".TABLE_PROJECT_VERSION." SET project_version_major='1', project_version_minor='5.7', project_version_patch1='', project_version_patch1_source='', project_version_patch2='', project_version_patch2_source='', project_version_comment='Version Update 1.5.7->1.5.7g', project_version_date_applied=now() WHERE project_version_key = 'Zen-Cart Database';");
 // -----
 // abschließende Erfolgsmeldung ausgeben
 //

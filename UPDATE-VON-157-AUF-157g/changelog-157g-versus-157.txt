@@ -15,7 +15,7 @@ Aktualisierte Komponenten:
 - TinyMCE Editor Update auf 6.7.2
 - braintree_web Update auf 3.97.2, braintree_php Update auf 6.14.0 
 - FontAwesome Update auf 6.4.0
-- jQuery Update auf 3.7.0
+- jQuery Update auf 3.7.1
 - Image Handler Update auf 5.3.4 mit webp Unterstützung
 
 Neue Funktionalitäten:
@@ -39,7 +39,7 @@ Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157f-AUF-157g
 
 ---------------------------------------------------------------------------------------------
 Changelog Zen Cart 1.5.7g deutsch gegenüber 1.5.7g deutsch
-2023-10-30
+2023-11-18
 ---------------------------------------------------------------------------------------------
 
 ---------------------------------------------------------------------------------------------

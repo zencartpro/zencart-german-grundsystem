@@ -36,7 +36,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_main_page.php 2023-10-25 19:13:16Z webchills $
+ * @version $Id: tpl_main_page.php 2023-11-18 09:13:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -208,8 +208,7 @@ if(!empty($RC_loader_files)){
 		if ($file['defer']) {
 			if($file['include']) {
 					include($file['src']);
-			} else if (!$RI_CJLoader->get('minify_css') || $file['external']) {
-					//$link = $file['src'];
+			} else if (!$RI_CJLoader->get('minify_css') || $file['external']) {					
 					echo '
 					<script type="text/javascript" async>
 						var elm = document.createElement("link");
@@ -220,15 +219,13 @@ if(!empty($RC_loader_files)){
 						var links = document.getElementsByTagName("link")[0];
 						links.parentNode.appendChild(elm);
 					</script>';
-			} else {
-					//$link = 'min/?f='.$file['src'].'&'.$RI_CJLoader->get('minify_time');
+			} else {					
 					echo '
 					<script type="text/javascript" async>
 						var elm = document.createElement("link");
 						elm.rel = "stylesheet";
 						elm.type = "text/css";
-						elm.href = "extras/min/?f='.$file['src'].'&'.$RI_CJLoader->get('minify_time').'";
-						
+						elm.href = "extras/min/?f='.$file['src'].'&'.$RI_CJLoader->get('minify_time').'";						
 						var links = document.getElementsByTagName("link")[0];
 						links.parentNode.appendChild(elm);
 					</script>';
@@ -239,7 +236,7 @@ if(!empty($RC_loader_files)){
   foreach($RC_loader_files['jscript'] as $file)
     if($file['include']) {
       include($file['src']);
-    } else if(!$RI_CJLoader->get('minify_js') || $file['external']) {
+    } else if(!$RI_CJLoader->get('minify_js')) {
       echo '<script type="text/javascript" src="'.$file['src'].'"'.($file['defer'] ? ' defer async': '').'></script>'."\n";
 
     } else {

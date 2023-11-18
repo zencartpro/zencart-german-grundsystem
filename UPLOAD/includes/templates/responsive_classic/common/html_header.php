@@ -9,7 +9,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: html_header.php 2023-10-25 19:22:39Z webchills $
+ * @version $Id: html_header.php 2023-11-18 08:22:39Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -90,7 +90,7 @@ $manufacturers_id = (isset($_GET['manufacturers_id'])) ? $_GET['manufacturers_id
 <?php if (RSS_FEED_ENABLED == 'true'){ ?>
 <?php echo rss_feed_link_alternate();?>
 <?php } ?>
-<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha384-1H217gwSVyLSIfaLxHbE7dRb3v4mYCKbpQvzx0cegeju1MVsGrX5xXxAvs/HgeFs" crossorigin="anonymous"></script>
 <?php if (file_exists(DIR_WS_TEMPLATE . "jscript/jquery.min.js")) { ?>
 <script type="text/javascript">window.jQuery || document.write(unescape('%3Cscript type="text/javascript" src="<?php echo $template->get_template_dir('.js',DIR_WS_TEMPLATE, $current_page_base,'jscript'); ?>/jquery.min.js"%3E%3C/script%3E'));</script>
 <?php } ?>

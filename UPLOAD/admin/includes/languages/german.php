@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2023-11-14 21:33:04Z webchills $
+ * @version $Id: german.php 2023-11-18 09:35:04Z webchills $
  */
 @setlocale(LC_TIME, ['de_DE.UTF-8', 'de_AT.UTF-8', 'de_CH.UTF-8', 'de_DE.ISO_8859-1','de_DE@euro', 'de_DE', 'de', 'ge', 'deu.deu']);
 
@@ -60,7 +60,7 @@ define('BOX_CONFIGURATION_EMAIL_OPTIONS','E-Mail Optionen');
 define('BOX_CONFIGURATION_FACEBOOK', 'Open Graph / Microdata');
 define('BOX_CONFIGURATION_EZPAGES_SETTINGS','EZ-Pages Einstellungen');
 define('BOX_CONFIGURATION_FEATURED_LISTING','Liste - Empfohlene Artikel');
-define('BOX_CONFIGURATION_GV_COUPONS','Geschenkgutscheine');
+define('BOX_CONFIGURATION_GV_COUPONS','Gutscheine & Aktionskupons');
 define('BOX_CONFIGURATION_GZIP_COMPRESSION','GZip Kompression');
 define('BOX_CONFIGURATION_IMAGES','Bilder');
 define('BOX_CONFIGURATION_INDEX_LISTING','Liste - Artikelindex');
