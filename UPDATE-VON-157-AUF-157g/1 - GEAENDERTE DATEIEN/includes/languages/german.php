@@ -6,16 +6,17 @@
 * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: english.php 2023-11-17 15:33:32Z webchills $
+* @version $Id: english.php 2023-11-18 16:41:32Z webchills $
 */
 // -----
 // Since the languages are now loaded via classes, the $locales definition
 // needs to be globalized for use in payment-methods (e.g. paypalwpp) and
 // other processing.
-//
+// do NOT change or remove the following 3 lines
 global $locales;
 $locales = ['de_DE.UTF-8', 'de_AT.UTF-8', 'de_CH.UTF-8', 'de_DE.ISO_8859-1','de_DE@euro', 'de_DE', 'de', 'ge', 'deu.deu'];
 @setlocale(LC_TIME, $locales);
+//
 define('ARIA_DELETE_ITEM_FROM_CART','Artikel aus dem Warenkorn löschen');
 define('ARIA_EDIT_QTY_IN_CART','Menge im Warenkorb ändern');
 define('ARIA_PAGINATION_','');
@@ -192,7 +193,7 @@ define('ERROR_CART_UPDATE','<strong>Bitte aktualisieren Sie Ihre Bestellung.</st
 define('ERROR_CONDITIONS_NOT_ACCEPTED', 'Bitte bestätigen Sie unsere AGB!');
 define('ERROR_CORRECTIONS_HEADING','Bitte korrigieren Sie die folgenden Angaben: <br>');
 define('ERROR_CUSTOMERS_ID_INVALID', 'Die Kundeninformation konnte nicht verifiziert werden!<br>Bitte melden Sie sich an oder erstellen Sie Ihr Kundenkonto erneut ...');
-define('ERROR_DATABASE_MAINTENANCE_NEEDED','<a href="https://docs.zen-cart.com/user/troubleshooting/error_71_maintenance_required/" rel="noopener" target="_blank">ERROR 0071 Es scheint ein Problem mit der Datenbank zu geben. Eine Wartung ist erforderlich.</a>');
+define('ERROR_DATABASE_MAINTENANCE_NEEDED','<a href="https://www.zen-cart-pro.at/themen/logfiles-und-troubleshooting/" rel="noopener" target="_blank">FEHLER 0071: Es scheint ein Problem mit der Datenbank zu geben. Ausführung von Datenbankwartungsfunktionen ist erforderlich.</a>');
 define('ERROR_DESTINATION_DOES_NOT_EXIST','Fehler: Ziel existiert nicht.');
 define('ERROR_DESTINATION_NOT_WRITEABLE','Fehler: Ziel ist nicht beschreibbar.');
 define('ERROR_FILETYPE_NOT_ALLOWED','Fehler: Dateityp nicht erlaubt.');

@@ -5,9 +5,12 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2023-11-14 21:33:04Z webchills $
+ * @version $Id: german.php 2023-11-18 16:39:04Z webchills $
  */
+
+// important line - do NOT change
 @setlocale(LC_TIME, ['de_DE.UTF-8', 'de_AT.UTF-8', 'de_CH.UTF-8', 'de_DE.ISO_8859-1','de_DE@euro', 'de_DE', 'de', 'ge', 'deu.deu']);
+//
 
 define('TEXT_PASSWORD_LAST_CHANGE', 'Passwort zuletzt geändert:&nbsp;');
 define('TEXT_LAST_LOGIN_INFO', 'Letztes Login [IP]:&nbsp;');
@@ -29,7 +32,7 @@ define('ATTRIBUTE_WARNING_DUPLICATE','Doppeltes Attribut - Attribut wurde nicht 
 define('ATTRIBUTE_WARNING_DUPLICATE_UPDATE','Doppeltes Attribut vorhanden - Attribut wurde nicht geändert');
 define('ATTRIBUTE_WARNING_INVALID_MATCH','Attributoption und Optionswert stimmen nicht überein - Attribut wurde nicht hinzugefügt');
 define('ATTRIBUTE_WARNING_INVALID_MATCH_UPDATE','Attributoption und Optionswert stimmen nicht überein - Attribut wurde nicht geändert');
-define('BOX_ADMIN_ACCESS_LOGS','Admin AktivitätenLogs');
+define('BOX_ADMIN_ACCESS_LOGS','Admin Aktivitäten Logs');
 define('BOX_ADMIN_ACCESS_PAGE_REGISTRATION','Admin Seiten Registrierung');
 define('BOX_ADMIN_ACCESS_PROFILES','Admin Profile');
 define('BOX_ADMIN_ACCESS_USERS','Admin User');
@@ -60,7 +63,7 @@ define('BOX_CONFIGURATION_EMAIL_OPTIONS','E-Mail Optionen');
 define('BOX_CONFIGURATION_FACEBOOK', 'Open Graph / Microdata');
 define('BOX_CONFIGURATION_EZPAGES_SETTINGS','EZ-Pages Einstellungen');
 define('BOX_CONFIGURATION_FEATURED_LISTING','Liste - Empfohlene Artikel');
-define('BOX_CONFIGURATION_GV_COUPONS','Geschenkgutscheine');
+define('BOX_CONFIGURATION_GV_COUPONS','Gutscheine & Aktionskupons');
 define('BOX_CONFIGURATION_GZIP_COMPRESSION','GZip Kompression');
 define('BOX_CONFIGURATION_IMAGES','Bilder');
 define('BOX_CONFIGURATION_INDEX_LISTING','Liste - Artikelindex');
@@ -159,7 +162,7 @@ define('CATEGORY_HAS_SUBCATEGORIES','HINWEIS: Kategorie hat Unterkategorien<br>A
 define('CATEGORY_OPTIONS','Optionen');
 define('CATEGORY_PERSONAL','Persönliche Daten');
 define('CHARSET','utf-8');
-define('CONFIGURATION_MENU_ENTRIES_TO_SORT_BY_NAME','1');
+define('CONFIGURATION_MENU_ENTRIES_TO_SORT_BY_NAME','0');
 define('CONNECTION_TYPE_UNKNOWN','nicht gültig');
 define('DATE_FORMAT','d.m.Y');
 define('DATE_FORMAT_DATE_PICKER','dd-mm-yy');
@@ -228,7 +231,7 @@ define('ERROR_CATALOG_IMAGE_DIRECTORY_NOT_WRITEABLE','FEHLER: Das Bildverzeichni
 define('ERROR_CATEGORY_HAS_PRODUCTS','FEHLER: Kategorie enthält Artikel!<br><br>Dies kann zwar vorübergehend geschehen, um Ihre Kategorien aufzubauen ... ABER: Kategorien enthalten entweder Produkte oder Kategorien, aber niemals beides!');
 define('ERROR_CONTACTING_PROJECT_VERSION_SERVER','FEHLER: Updateserver nicht erreichbar');
 define('ERROR_CURRENCY_INVALID','FEHLER: Der Wechselkurs für %s (%s) wurde nicht aktualisiert via %s. Ist das ein gültiger Währungscode?');
-define('ERROR_DATABASE_MAINTENANCE_NEEDED','<a href="https://docs.zen-cart.com/user/troubleshooting/error_71_maintenance_required/" rel="noopener" target="_blank">ERROR 0071 There appears to be a problem with the database. Maintenance is required.</a>');
+define('ERROR_DATABASE_MAINTENANCE_NEEDED','<a href="https://www.zen-cart-pro.at/themen/logfiles-und-troubleshooting/" rel="noopener" target="_blank">FEHLER 0071: Es scheint ein Problem mit der Datenbank zu geben. Ausführung von Datenbankwartungsfunktionen ist erforderlich.</a>');
 define('ERROR_DEFINE_OPTION_NAMES','WARNUNG: Es sind keine Attributnamen definiert');
 define('ERROR_DEFINE_OPTION_VALUES','WARNUNG: Es sind keine Attributwerte definiert');
 define('ERROR_DEFINE_PRODUCTS','WARNUNG: Es sind keine Artikel definiert');

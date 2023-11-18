@@ -66,7 +66,7 @@ Laden Sie dann den Inhalt des Ordners 2 - NEUEDATEIEN in der vorgegebenen Strukt
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 HINWEIS FÜR PROFIS:
-Wenn Sie mit phpMyAdmin vertraut sind, können Sie die folgenden Schritte 3 - DATENBANKAKTUALISIERUNG und 4 - DATEI ERSETZEN weglassen und die Datenbankbefehle stattdessen direkt via phpMyAdmin einspielen.
+Wenn Sie mit phpMyAdmin sehr gut vertraut sind, können Sie die folgenden Schritte 3 - DATENBANKAKTUALISIERUNG und 4 - DATEI ERSETZEN weglassen und die Datenbankbefehle stattdessen direkt via phpMyAdmin einspielen.
 Infos dazu in der liesmich.txt im Ordner PROFI - DATENBANKAKTUALISIERUNG VIA PHPMYADMIN
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -94,6 +94,7 @@ DEINADMIN/includes/auto_loaders/config.157g_update.php
 DEINADMIN/includes/init_includes/init_157g_update.php
 
 Prüfen Sie nun, ob Ihr Adminbereich und ihr Frontend problemlos funktionieren.
+Durch die Verwendung der modifizierten DEINADMIN/includes/application_bootstrap.php wird es einige völlig harmlose Warning Logfiles geben, die können Sie löschen.
 
 
 4) DATEI ERSETZEN
@@ -112,7 +113,7 @@ Dann schalten Sie den Wartungsmodus unter Konfiguration > Shopwartung wieder aus
 5) DATEIEN LÖSCHEN
 
 Die folgenden Dateien sind in 1.5.7g nicht mehr enthalten.
-Löschen Sie diese nun vom Server:
+Löschen Sie diese nun vom Server, falls sie dort noch vorhanden sind:
 (Falls Sie in den Override Verzeichnissen responsive_classic Anpassungen für Ihren Shop vorgenommen und dieses Template aktiv haben, dann löschen Sie die Dateien in den angegebenen responsive_classic Ordnern natürlich nicht!)
 
 admin\includes\functions\database.php
@@ -129,6 +130,7 @@ extras\fontawesome\6.2.1 (gesamter Ordner)
 includes\classes\TableViewControllers\BaseController.php
 includes\classes\TableViewControllers\TableViewController.php
 includes\classes\traits\EventManager.php
+includes\classes\vendors\password_compat-master (gesamter Ordner)
 includes\functions\password_compat.php
 includes\languages\english\responsive_classic\button_names.php
 includes\languages\english\responsive_classic\header.php

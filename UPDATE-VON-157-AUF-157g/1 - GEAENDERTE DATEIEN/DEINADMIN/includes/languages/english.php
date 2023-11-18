@@ -5,9 +5,12 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: english.php 2023-11-14 21:37:32Z webchills $
+ * @version $Id: english.php 2023-11-18 15:37:32Z webchills $
  */
+ 
+// important line - do NOT change
 @setlocale(LC_TIME, ['en_US', 'en_US.utf8', 'en', 'English_United States.1252']);
+//
 
 define('TEXT_PASSWORD_LAST_CHANGE', 'Password last changed:&nbsp;');
 define('TEXT_LAST_LOGIN_INFO', 'Last Login [IP]:&nbsp;');

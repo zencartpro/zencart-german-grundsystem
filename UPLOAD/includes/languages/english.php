@@ -6,17 +6,17 @@
 * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: english.php 2023-10-31 09:18:32Z webchills $
+* @version $Id: english.php 2023-11-18 15:18:32Z webchills $
 */
 // -----
 // Since the languages are now loaded via classes, the $locales definition
 // needs to be globalized for use in payment-methods (e.g. paypalwpp) and
 // other processing.
-//
+// do NOT change or remove the following 3 lines
 global $locales;
 $locales = ['en_US', 'en_US.utf8', 'en', 'English_United States.1252'];
 @setlocale(LC_TIME, $locales);
-
+//
 define('ARIA_DELETE_ITEM_FROM_CART','Delete this item from the cart');
 define('ARIA_EDIT_QTY_IN_CART','Edit quantity in cart');
 define('ARIA_PAGINATION_','');

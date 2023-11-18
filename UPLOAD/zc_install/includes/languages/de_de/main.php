@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main.php 2023-10-31 16:50:29Z webchills $
+ * @version $Id: main.php 2023-11-18 16:15:29Z webchills $
  */
 
 
@@ -136,8 +136,8 @@ return [
 'TEXT_ERROR_COULD_NOT_WRITE_CONFIGFILE' => 'Konnte die Konfigurationsdatei nicht schreiben: %s. Stellen Sie sicher, dass diese Datei existiert und beschreibbar ist.',
 'TEXT_ERROR_STORE_CONFIGURE' => 'Frontend Konfigurationsdatei /includes/configure.php existiert nicht, ist nicht lesbar oder ist nicht beschreibbar',
 'TEXT_ERROR_ADMIN_CONFIGURE' => 'Admin Konfigurationsdatei /admin/includes/configure.php existiert nicht, ist nicht lesbar oder ist nicht beschreibbar',
-'TEXT_ERROR_PHP_VERSION' => str_replace(["\n", "\r"], '', 'Ungeeignete PHP Version.<p>Ihre verwendete PHP Version (' . PHP_VERSION . ') ist ungeeignet. Die deutsche Zen Cart Version 1.5.7g kann damit NICHT verwendet werden</p><p>Diese Version von Zen Cart deutsch ist kompatibel mit PHP Versionen von 7.4.x bis 8.1.x</p>'),
-'TEXT_ERROR_PHP_VERSION_RECOMMENDED' => '<p>Ihre verwendete PHP Version ist veraltet. Für maximale Sicherheit und Kompatibilität sollten Sie mindestens PHP %s oder neuer verwenden. Wir können mit der Installation trotzdem weitermachen, weisen aber darauf hin, dass Sie in Ihrem eigenen Interesse keine solch veraltete PHP Version verwenden sollten.</p>',
+'TEXT_ERROR_PHP_VERSION' => str_replace(["\n", "\r"], '', 'Ungeeignete PHP Version.<p>Ihre verwendete PHP Version (' . PHP_VERSION . ') ist ungeeignet. Die deutsche Zen Cart Version 1.5.7g kann damit NICHT verwendet werden</p><p>Diese Version von Zen Cart deutsch ist kompatibel mit PHP Versionen von 7.4.x bis 8.1.x, wobei 8.0.x oder 8.1.x empfohlen sind.</p>'),
+'TEXT_ERROR_PHP_VERSION_RECOMMENDED' => '<p>Ihre verwendete PHP Version ist veraltet. Für maximale Sicherheit und Kompatibilität sollten Sie mindestens PHP 8.0.x oder PHP %s verwenden. Wir können mit der Installation trotzdem weitermachen, weisen aber darauf hin, dass Sie in Ihrem eigenen Interesse keine solch veraltete PHP Version verwenden sollten.</p>',
 'TEXT_ERROR_PHP_VERSION_MIN' => 'Die PHP Version sollte höher sein als %s',
 'TEXT_ERROR_PHP_VERSION_MAX' => 'Die PHP Version sollte niedriger sein als %s',
 'TEXT_ERROR_MYSQL_SUPPORT' => 'Probleme mit Ihrer MySQL (mysqli) Unterstützung',
