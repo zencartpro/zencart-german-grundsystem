@@ -11,4 +11,4 @@
 // %3$s ... The directory from which the files were removed.
 // %4$s ... The date/time that was used during the check.
 //
-define('LOG_MANAGER_FILES_MESSAGE_FORMAT', 'Es wurden %1$u %2$s Logfiles aus diesen Verzeichnissen (%3$s) entfernt, die älter waren als %4$s.');
+define('LOG_MANAGER_FILES_MESSAGE_FORMAT', 'Es wurden %1$u %2$s Logfiles aus dem Logverzeichnis entfernt, die älter waren als %4$s.');

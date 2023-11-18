@@ -1,6 +1,6 @@
 <?php
 /**
-* Zen Cart German Specific
+* Zen Cart German Specific (zencartpro adaptations)
 * @copyright Copyright 2003-2023 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * Zen Cart German Version - www.zen-cart-pro.at
@@ -50,12 +50,10 @@ if (isset($_SESSION['admin_id']) && !isset($_SESSION['log_managed'])) {
         // /app/storage/logs, sub-directories as well as any additional directories
         // that might be supplied in an optional constant definition.
         //
+        if (!defined('DIR_FS_LOGS')) define('DIR_FS_LOGS', DIR_FS_CATALOG . 'logs');
         $log_manager_dirs = [
             DIR_FS_LOGS,
-        ];
-        if (is_dir(DIR_FS_CATALOG . 'app/storage/logs')) {
-            $log_manager_dirs[] = DIR_FS_CATALOG . 'app/storage/logs';
-        }
+        ];        
 
         // -----
         // To remove .log files from other directories, too, use an /admin/extra_datafiles file to
@@ -106,7 +104,7 @@ if (isset($_SESSION['admin_id']) && !isset($_SESSION['log_managed'])) {
         // If one or more .log files was removed, let the admin know (via message) and log the removal action.
         //
         if ($files_removed !== 0) {
-            $log_directories = implode($log_manager_dirs, ', ');
+            $log_directories = $log_manager_dirs;
             $logMessage = sprintf(LOG_MANAGER_FILES_MESSAGE_FORMAT, $files_removed, '.log', $log_directories, $keep_until_date);
             $messageStack->add($logMessage, 'success');
             error_log(date(PHP_DATE_TIME_FORMAT) . ', ' . $_SESSION['admin_id'] . ": $logMessage" . PHP_EOL, 3, DIR_FS_LOGS . '/log_manager_removal.log');
