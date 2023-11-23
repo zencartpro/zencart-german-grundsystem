@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_osh_update.php 2023-10-23 13:58:42Z webchills $
+ * @version $Id: functions_osh_update.php 2023-11-23 12:51:42Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     exit('Invalid Access');
@@ -74,7 +74,7 @@ function zen_update_orders_history($orders_id, $message = '', $updated_by = null
             $pdfT->createPdfFile(true);
             $attach = $pdfT->getPDFAttachments('ALL');
         } else {
-            $attach = null;
+            $attach = [];
         }
       }
         // EOF pdf Rechnung

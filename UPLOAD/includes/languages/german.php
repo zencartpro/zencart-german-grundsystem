@@ -6,7 +6,7 @@
 * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: english.php 2023-11-18 16:41:32Z webchills $
+* @version $Id: german.php 2023-11-23 12:08:32Z webchills $
 */
 // -----
 // Since the languages are now loaded via classes, the $locales definition
@@ -130,7 +130,7 @@ define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR', 'Ihre E-Mail Adresse scheint nicht kor
 define('ENTRY_EMAIL_ADDRESS_CONFIRM', 'E-Mail bestätigen:'); 
 define('ENTRY_EMAIL_ADDRESS_CONFIRM_NOT_MATCHING', 'Die angegebenen Emailadressen stimmen nicht überein.'); 
 define('ENTRY_EMAIL_ADDRESS_ERROR','Ist Ihre E-Mail-Adresse korrekt? Sie sollte mindestens ' . ENTRY_EMAIL_ADDRESS_MIN_LENGTH . ' Zeichen enthalten. Bitte versuchen Sie es erneut.');
-define('ENTRY_EMAIL_ADDRESS_ERROR_EXISTS','Unser System hat bereits einen Datensatz für diese E-Mail-Adresse - bitte versuchen Sie, sich mit dieser E-Mail-Adresse anzumelden. Wenn Sie diese Adresse nicht mehr verwenden, können Sie sie im Bereich Mein Konto korrigieren.');
+define('ENTRY_EMAIL_ADDRESS_ERROR_EXISTS', 'Ihre E-Mail Adresse ist bereits registriert. Bitte melden Sie sich an oder registrieren Sie sich mit einer anderen E-Mail Adresse.');
 define('ENTRY_EMAIL_ADDRESS_TEXT','*');
 define('ENTRY_EMAIL_CONTENT_CHECK_ERROR','Haben Sie Ihre Nachricht vergessen? Wir würden gerne von Ihnen hören. Sie können Ihre Kommentare in das Textfeld unten eingeben.');
 define('ENTRY_EMAIL_HTML_DISPLAY','HTML');
