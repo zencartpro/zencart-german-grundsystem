@@ -6,7 +6,7 @@
 * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: german.php 2023-11-23 12:08:32Z webchills $
+* @version $Id: german.php 2023-11-23 14:05:32Z webchills $
 */
 // -----
 // Since the languages are now loaded via classes, the $locales definition
@@ -57,7 +57,6 @@ define('BOX_HEADING_SEARCH','Suche');
 define('BOX_HEADING_SHOPPING_CART','Warenkorb');
 define('BOX_HEADING_SPECIALS','Sonderangebote');
 define('BOX_HEADING_WHATS_NEW','Neue Artikel');
-
 define('BOX_INFORMATION_CONDITIONS','AGB');
 define('BOX_INFORMATION_WIDERRUFSRECHT', 'Widerrufsrecht');
 define('BOX_INFORMATION_ZAHLUNGSARTEN', 'Zahlungsarten');
@@ -313,7 +312,6 @@ define('PAYMENT_JAVASCRIPT_DISABLED', 'Die Bestellung konnte nicht fortgesetzt w
 define('PAYMENT_METHOD_GV', 'Geschenkgutschein /Aktionskupon');
 define('PAYMENT_MODULE_GV', 'GS/AK');
 define('PLEASE_SELECT','Bitte wählen Sie ...');
-
 define('PREVNEXT_BUTTON_NEXT', '[Nächste&nbsp;&raquo;]');
 define('PREVNEXT_BUTTON_PREV', '[&laquo;&nbsp;Vorherige]');
 define('PREVNEXT_TITLE_NEXT_PAGE','Nächste Seite');
@@ -403,7 +401,7 @@ define('TEXT_CCVAL_ERROR_UNKNOWN_CARD','Die Kreditkartennummer, die mit %s begin
 define('TEXT_CHARGES_LETTERS', 'Kalkulierte Gebühr:');
 define('TEXT_CHARGES_WORD', 'Kalkulierte Gebühr:');
 define('TEXT_CLICK_TO_ENLARGE','größeres Bild');
-define('TEXT_CLOSE_WINDOW', ' - zum Schließen ins Bild klicken');
+define('TEXT_CLOSE_WINDOW_IMAGE', ' - zum Schließen ins Bild klicken');
 define('TEXT_COUPON_GV_RESTRICTION_ZONES','Es gelten Einschränkungen für die Rechnungsadresse.');
 define('TEXT_COUPON_HELP_DATE','Der Coupon ist gültig zwischen %s und %s');
 define('TEXT_COUPON_HELP_HEADER','Der von Ihnen eingegebene Rabattcoupon-Einlösecode ist für ');
