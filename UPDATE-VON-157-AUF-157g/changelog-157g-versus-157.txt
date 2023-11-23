@@ -547,6 +547,7 @@ includes\classes\order_total.php
 includes\classes\payment.php
 includes\classes\products.php
 includes\classes\query_cache.php
+includes\classes\rss_feed.php
 includes\classes\shipping.php
 includes\classes\shopping_cart.php
 includes\classes\site_map.php

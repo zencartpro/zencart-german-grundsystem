@@ -3,10 +3,10 @@
  * Zen Cart German Spefific
  * @package rss feed
  * @copyright Copyright 2004-2008 Andrew Berezin eCommerce-Service.com
- * @copyright Portions Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Portions Copyright 2003-2023 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: rss_feed.php 2019-10-21 07:57:14 webchills $
+ * @version $Id: rss_feed.php 2023-11-23 21:49:14 webchills $
  */
 
 class rss_feed extends base {
@@ -132,6 +132,9 @@ class rss_feed extends base {
   }
 
   function rss_feed_image($title, $link, $url, $width=0, $height=0, $description=false) {
+  	if (!is_array($this->image)){
+    $this->image = array();
+    }
     $this->image['title'] = $title;
     $this->image['link'] = $link;
     $this->image['url'] = $url;
