@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_sessions.php 2023-10-23 14:29:16Z webchills $
+ * @version $Id: init_sessions.php 2023-11-25 20:25:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -62,9 +62,8 @@ if (isset($_POST[zen_session_name()])) {
 /**
  * Sanitize the IP address, and resolve any proxies.
  */
-$ipAddressArray = explode(',', zen_get_ip_address());
-$ipAddress = (sizeof($ipAddressArray) > 0) ? $ipAddressArray[0] : '.';
-$_SERVER['REMOTE_ADDR'] = $ipAddress;
+$_SERVER['REMOTE_ADDR'] = zen_get_ip_address();
+
 /**
  * start the session
  */
