@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_email.php 2023-10-23 13:35:16Z webchills $
+ * @version $Id: functions_email.php 2023-11-25 20:30:16Z webchills $
  */
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -761,7 +761,7 @@ use PHPMailer\PHPMailer\SMTP;
         $email_host_address = '';
         // get host_address from either session or one time for both email types to save server load
         if (empty($_SESSION['customers_host_address'])) {
-            if (SESSION_IP_TO_HOST_ADDRESS === 'true') {
+            if (SESSION_IP_TO_HOST_ADDRESS === 'true' && !empty(trim($_SERVER['REMOTE_ADDR'], '.'))) {
                 $email_host_address = gethostbyaddr($_SERVER['REMOTE_ADDR']);
             }
         } else {
