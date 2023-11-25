@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_general_shared.php 2023-10-29 14:32:14Z webchills $
+ * @version $Id: functions_general_shared.php 2023-11-25 20:13:14Z webchills $
  */ 
 function zen_get_zcversion()
 {
@@ -122,26 +122,25 @@ function zen_limit_image_filename($filename, $table_name, $field_name, $extensio
 }
 
 
-// function to return field type
-// uses $tbl = table name, $fld = field name
-
-function zen_field_type($tbl, $fld)
+/**
+ * Get field type from database
+ */
+function zen_field_type(string $table_name, string $field_name): string
 {
     global $db;
-    $rs = $db->MetaColumns($tbl);
-    $type = $rs[strtoupper($fld)]->type;
-    return $type;
+    $query = $db->MetaColumns($table_name);
+    return $query[strtoupper($field_name)]->type;
 }
 
 
-// function to return field length
-// uses $tbl = table name, $fld = field name
-function zen_field_length($tbl, $fld)
+/**
+ * Get field length from database
+ */
+function zen_field_length(string $table_name, string $field_name): int
 {
     global $db;
-    $rs = $db->MetaColumns($tbl);
-    $length = $rs[strtoupper($fld)]->max_length;
-    return $length;
+    $query = $db->MetaColumns($table_name);
+    return (int)$query[strtoupper($field_name)]->max_length;
 }
 
 

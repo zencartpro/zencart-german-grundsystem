@@ -9,7 +9,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions adapted from http://www.data-diggers.com/
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: query_factory.php 2023-11-17 16:47:16Z webchills $
+ * @version $Id: query_factory.php 2023-11-25 20:13:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -1010,7 +1010,7 @@ class queryFactoryMeta extends base
         $type = $field['Type'];
         $rgx = preg_match('/^[a-z]*/', $type, $matches);
         $this->type = $matches[0];
-        $this->max_length = preg_replace('/[a-z\(\)]/', '', $type);
+        $this->max_length = (int)preg_replace('/[a-z\(\)]/', '', $type);
         if (empty($this->max_length)) {
            switch (strtoupper($type)) {
               case 'DATE':
