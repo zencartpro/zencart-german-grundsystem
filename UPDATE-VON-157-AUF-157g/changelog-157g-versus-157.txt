@@ -827,6 +827,7 @@ includes\modules\shipping_estimator.php
 includes\modules\specials_index.php
 includes\templates\classic\jscript\jquery.min.js
 includes\templates\classic\jscript\jquery.min.map
+includes\templates\classic\templates\super_data_head.php
 includes\templates\responsive_classic\common\html_header.php
 includes\templates\responsive_classic\common\main_template_vars.php
 includes\templates\responsive_classic\common\tpl_columnar_display.php
@@ -837,6 +838,7 @@ includes\templates\responsive_classic\css\jquery.mmenu.all.css
 includes\templates\responsive_classic\jscript\jquery.min.js
 includes\templates\responsive_classic\jscript\jquery.min.map
 includes\templates\responsive_classic\jscript\jscript_responsive_framework.php
+includes\templates\responsive_classic\templates\super_data_head.php
 includes\templates\responsive_classic\templates\tpl_checkout_payment_address_default.php
 includes\templates\responsive_classic\templates\tpl_checkout_shipping_address_default.php
 includes\templates\responsive_classic\templates\tpl_document_general_info_display.php
@@ -870,6 +872,7 @@ includes\templates\template_default\sideboxes\tpl_manufacturers_select.php
 includes\templates\template_default\sideboxes\tpl_music_genres_select.php
 includes\templates\template_default\sideboxes\tpl_record_company_select.php
 includes\templates\template_default\sideboxes\tpl_shopping_cart.php
+includes\templates\template_default\templates\super_data_head.php
 includes\templates\template_default\templates\tpl_account_edit_default.php
 includes\templates\template_default\templates\tpl_account_history_default.php
 includes\templates\template_default\templates\tpl_account_history_info_default.php

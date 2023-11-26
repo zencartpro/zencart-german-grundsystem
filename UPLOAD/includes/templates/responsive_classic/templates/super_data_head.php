@@ -2,11 +2,11 @@
 /**  
  * Zen Cart German Specific
  * @package open graph/microdata 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: super_data_head.php 2022-11-09 20:00:41Z webchills $
+ * @version $Id: super_data_head.php 2023-11-26 07:56:41Z webchills $
  */
 if (FACEBOOK_OPEN_GRAPH_STATUS == 'true') { ?>
 <script type="application/ld+json">
@@ -45,7 +45,11 @@ if (FACEBOOK_OPEN_GRAPH_STATUS == 'true') { ?>
 <?php
   if (isset($_GET['products_id'])) { // use products_image if products_id exists
   	$facebook_image = $db->Execute("select p.products_image from " . TABLE_PRODUCTS . " p where products_id='" . (int)$_GET['products_id'] . "'");
+  	if ($facebook_image->fields['products_image'] != ''){
     $fb_image = HTTP_SERVER . DIR_WS_CATALOG . DIR_WS_IMAGES . $facebook_image->fields['products_image'];
+  } else {
+  	$fb_image = HTTP_SERVER . DIR_WS_CATALOG . DIR_WS_IMAGES . PRODUCTS_IMAGE_NO_IMAGE;
+  }
     $products_image_extension = substr($fb_image, strrpos($fb_image, '.'));
 $products_image_base = preg_replace('/'.$products_image_extension . '$/', '', $fb_image);
 $products_image_medium = DIR_WS_IMAGES . 'medium/' . $products_image_base . IMAGE_SUFFIX_MEDIUM . $products_image_extension;
