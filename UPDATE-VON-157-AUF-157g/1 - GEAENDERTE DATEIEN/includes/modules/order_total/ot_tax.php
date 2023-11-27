@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_tax.php 2023-11-12 07:11:23Z webchills $
+ * @version $Id: ot_tax.php 2023-11-27 14:47:23Z webchills $
  */
     class ot_tax
     {
@@ -87,7 +87,7 @@
                     }
                 } else {
                     if ($value > 0 || (abs($value) < PHP_FLOAT_EPSILON && STORE_TAX_DISPLAY_STATUS === '1')) {
-                        $taxDescription .= ((is_numeric($key) && $key == 0) ? TEXT_UNKNOWN_TAX_RATE : $key) . ' + ';
+                      $taxDescription .= $this->description .' '.((is_numeric($key) && $key == 0) ? TEXT_UNKNOWN_TAX_RATE :  $key) . ' + ';
                         $taxValue += $value;
                     }
                 }
