@@ -783,6 +783,7 @@ includes\modules\pages\product_reviews_write\jscript_main.php
 includes\modules\pages\products_all\header_php.php
 includes\modules\pages\redirect\header_php.php
 includes\modules\pages\reviews\header_php.php
+includes\modules\pages\rss_feed\header_php.php
 includes\modules\pages\shopping_cart\jscript_main.php
 includes\modules\pages\time_out\header_php.php
 includes\modules\payment\authorizenet\authorizenet_admin_notification.php
