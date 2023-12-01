@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_taxes.php 2023-10-23 13:43:16Z webchills $
+ * @version $Id: functions_taxes.php 2023-12-01 10:28:16Z webchills $
  */
 
 /**
@@ -363,8 +363,8 @@ function zen_get_tax_locations($store_country = -1, $store_zone = -1)
     // If we're just starting the checkout process via the PPEC button, there's
     // no customer or shipping-address currently defined.  Use the store values for tax calculation.
     if (!zen_is_logged_in())  {
-        $tax_address['zone_id'] = (int)STORE_COUNTRY;
-        $tax_address['country_id'] = (int)STORE_ZONE;
+        $tax_address['zone_id'] = (int)STORE_ZONE;
+        $tax_address['country_id'] = (int)STORE_COUNTRY;
         return $tax_address;
     }
     switch (STORE_PRODUCT_TAX_BASIS) {
