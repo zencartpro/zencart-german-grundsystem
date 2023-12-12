@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: countries.php 2023-12-12 19:20:51Z webchills $
+ * @version $Id: countries.php 2023-12-12 21:25:51Z webchills $
  */
 
 require 'includes/application_top.php';
@@ -21,9 +21,9 @@ if (!empty($action)) {
         $countries_iso_code_2 = strtoupper(zen_db_prepare_input($_POST['countries_iso_code_2']));
         $countries_iso_code_3 = strtoupper(zen_db_prepare_input($_POST['countries_iso_code_3']));
         $address_format_id = zen_db_prepare_input($_POST['address_format_id']);
-        if (isset($_POST['status'])) {
+        
         $status = $_POST['status'] == 'on' ? 1 : 0;
-        }
+        
 //mehrsprachige Ländernamen
         $db->Execute("insert into " . TABLE_COUNTRIES . "
                     (countries_iso_code_2, countries_iso_code_3, status, address_format_id)
@@ -56,14 +56,15 @@ if (!empty($action)) {
         
         $countries_iso_code_2 = strtoupper(zen_db_prepare_input($_POST['countries_iso_code_2']));
         $countries_iso_code_3 = strtoupper(zen_db_prepare_input($_POST['countries_iso_code_3']));
-        $address_format_id = zen_db_prepare_input($_POST['address_format_id']);  
+        $address_format_id = zen_db_prepare_input($_POST['address_format_id']);
+	
         $status = $_POST['status'] == 'on' ? 1 : 0;   
        
         // mehrsprachige Ländernamen
         $db->Execute("update " . TABLE_COUNTRIES . "
                       set countries_iso_code_2 = '" . zen_db_input($countries_iso_code_2) . "',
                           countries_iso_code_3 = '" . zen_db_input($countries_iso_code_3) . "',
-                          address_format_id = '" . (int)$address_format_id . "',
+                        address_format_id = " . (int)$address_format_id . ",
                           status = " . (int)$status . "
                       where countries_id = '" . (int)$countries_id . "'");
 
@@ -95,7 +96,7 @@ if (!empty($action)) {
         zen_redirect(zen_href_link(FILENAME_COUNTRIES, 'page=' . $_GET['page']));
       break;
     case 'setstatus':
-        $countries_id = zen_db_prepare_input($_GET['cID']);
+      $countries_id = (int)$_POST['current_country'];
       if (isset($_POST['current_status']) && ($_POST['current_status'] == '0' || $_POST['current_status'] == '1')) {
         $sql = "UPDATE " . TABLE_COUNTRIES . "
                 SET status = " . ($_POST['current_status'] == 0 ? 1 : 0) . "
@@ -162,7 +163,7 @@ if (!empty($action)) {
                   <td class="dataTableContent text-center"><?php echo $country['countries_iso_code_2']; ?></td>
                   <td class="dataTableContent text-center"><?php echo $country['countries_iso_code_3']; ?></td>
                   <td class="dataTableContent text-center dataTableButtonCell">
-                    <?php echo zen_draw_form('setstatus', FILENAME_COUNTRIES, 'action=setstatus&cID=' . $country['countries_id'] . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '') . (isset($_GET['search']) ? '&search=' . $_GET['search'] : '')); ?>
+                    <?php echo zen_draw_form('setstatus_' . (int)$country['countries_id'], FILENAME_COUNTRIES, zen_get_all_get_params(['action']) . 'action=setstatus'); ?>
                     <button type="submit" class="btn btn-status">
                       <?php if ($country['status'] == '0') { ?>
                         <i class="fa-solid fa-square txt-status-off" title="<?php echo IMAGE_ICON_STATUS_OFF; ?>"></i>
@@ -180,7 +181,7 @@ if (!empty($action)) {
                     <?php if (isset($cInfo) && is_object($cInfo) && ($country['countries_id'] == $cInfo->countries_id)) {
                       echo zen_icon('caret-right', '', '2x', true);
                     } else { ?>
-                      <a href="<?php echo zen_href_link(FILENAME_COUNTRIES, $page_parameter . 'cID=' . $country['countries_id']); ?>" title="<?php echo IMAGE_ICON_INFO; ?>" role="button">
+                      <a href="<?php echo zen_href_link(FILENAME_COUNTRIES, 'page=' . $_GET['page'] . '&cID=' . $country['countries_id']); ?>" title="<?php echo IMAGE_ICON_INFO; ?>" role="button">
                         <?php echo zen_icon('circle-info', '', '2x', true, false) ?>
                       </a>
                     <?php } ?>
