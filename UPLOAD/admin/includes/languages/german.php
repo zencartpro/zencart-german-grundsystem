@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2023-11-22 20:10:04Z webchills $
+ * @version $Id: german.php 2023-12-12 18:21:04Z webchills $
  */
 
 // important line - do NOT change
@@ -601,7 +601,7 @@ define('TEXT_PRODUCT_POPUP_BUTTON','<i class="fa-solid fa-comment-dots"></i>');
 define('TEXT_PRODUCT_POPUP_TITLE','bestellte Artikel');
 define('TEXT_PRODUCT_TO_VIEW','Wählen Sie einen Artikel und clicken Sie auf Anzeigen ...');
 define('TEXT_PRODUCT_WEIGHT_UNIT','kg');
-define('TEXT_RESULT_PAGE','Seite %s vonf %d');
+define('TEXT_RESULT_PAGE','Seite %s von %d');
 define('TEXT_SALEMAKER_IMMEDIATELY','Sofort');
 define('TEXT_SALEMAKER_NEVER','Nie');
 define('TEXT_SET_DEFAULT','Als Standard setzen');
@@ -660,7 +660,7 @@ define('WARNING_DATABASE_VERSION_OUT_OF_DATE','Ihre Datenbank scheint einen Patc
 define('WARNING_DOWNLOAD_DIRECTORY_NON_EXISTENT','WARNUNG: Das Verzeichnis für Downloads existiert nicht: ' . DIR_FS_DOWNLOAD . '. Downloadartikel werden nicht funktionieren, solange dieses Verzeichnis nicht existiert.');
 define('WARNING_EMAIL_SYSTEM_DEVELOPER_EMAIL','WARNUNG: ALLE Emails werden gesandt an %1$s (wie definiert in "DEVELOPER_OVERRIDE_EMAIL_ADDRESS") mit EMAIL_TRANSPORT=%2$s.');
 define('WARNING_EMAIL_SYSTEM_DEVELOPER_OVERRIDE','WARNUNG: Der Versand von E-Mails wurde deaktiviert, da der Entwicklerschalter "DEVELOPER_OVERRIDE_EMAIL_STATUS" auf "false" gesetzt ist.');
-define('WARNING_EMAIL_SYSTEM_DISABLED','WARNUNG: Das Emailsystem ist abgeschaltet. Es werden keine Emails versandt, solange Sie das nich untet Konfiguration > Email Optionen aktivieren.');
+define('WARNING_EMAIL_SYSTEM_DISABLED','WARNUNG: Das Emailsystem ist abgeschaltet. Es werden keine Emails versandt, solange Sie das nicht unter Konfiguration > Email Optionen aktivieren.');
 define('WARNING_FILE_UPLOADS_DISABLED','WARNUNG: Datei Uploads sin in der php.ini Konfiguration deaktiviert.');
 define('WARNING_INSTALL_DIRECTORY_EXISTS','SICHERHEITSWARNUNG: Installationsverzeichnis existiert in: %s. Bitte entfernen Sie diesen Ordner aus Sicherheitsgründen.');
 define('WARNING_NO_FILE_UPLOADED','WARNUNG: keine Date hochgeladen.');

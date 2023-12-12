@@ -1,7 +1,7 @@
 1.5.7g deutsch ist ein sehr umfangreicher Service Pack für 1.5.7f deutsch
 Es integriert die fast vollständige Codebasis der aktuellen amerikanischen Version 1.5.8 in die deutsche Zen Cart Version
 Damit wird PHP 8.1.x vollständig unterstützt.
-Die integrierten Module und 3rd Party Komponenten werden auf den Stand von November 2023 gebracht.
+Die integrierten Module und 3rd Party Komponenten werden auf den Stand von Dezember 2023 gebracht.
 
 Die Umstellung der Sprachdateien, die die amerikanische Version 1.5.8 bereits mitbringt, wird in einer für Herbst 2024 geplanten deutschen Zen Cart Version 1.5.8/2.0.0 mit vollständiger PHP 8.2 Unterstützung nachgezogen.
 Dadurch kann in 1.5.7g weiterhin mit den gewohnten Sprachdefinitionen gearbeitet werden. 
@@ -9,7 +9,7 @@ Dadurch kann in 1.5.7g weiterhin mit den gewohnten Sprachdefinitionen gearbeitet
 1.5.7g behebt auch alle Fehler die seit Erscheinen von 1.5.7f aug Github gemeldet wurden
 
 Aktualisierte Komponenten:
-- PHP Mailer Update auf 6.8.1
+- PHP Mailer Update auf 6.9.1
 - MobileDetect Update auf 3.74.3
 - CKEditor Update auf 4.22.1
 - TinyMCE Editor Update auf 6.7.2
@@ -41,7 +41,7 @@ Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157f-AUF-157g
 
 ---------------------------------------------------------------------------------------------
 Changelog Zen Cart 1.5.7g deutsch gegenüber 1.5.7g deutsch
-2023-11-18
+2023-12-12
 ---------------------------------------------------------------------------------------------
 
 ---------------------------------------------------------------------------------------------

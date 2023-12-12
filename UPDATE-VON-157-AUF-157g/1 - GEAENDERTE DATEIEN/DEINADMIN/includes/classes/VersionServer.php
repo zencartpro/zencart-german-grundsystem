@@ -5,16 +5,16 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: VersionServer.php 2023-11-17 10:14:16Z webchills $
+ * @version $Id: VersionServer.php 2023-12-12 18:35:16Z webchills $
  */
 
 class VersionServer
 {
     protected $projectVersionServer = 'https://www.zen-cart-pro.at';
     protected $pluginVersionServer = 'https://ping.zen-cart.com/plugincheck';
-    const TIMEOUT = 3;
+    protected const TIMEOUT = 3;
 
-    const CONNECTTIMEOUT = 1;
+    protected const CONNECTTIMEOUT = 1;
 
     public function __construct()
     {

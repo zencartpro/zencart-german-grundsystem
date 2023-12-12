@@ -1,6 +1,6 @@
 Zen Cart 1.5.7g deutsch 
 
-Version vom 18.11.2023
+Version vom 12.12.2023
 
 #####################################################################################################################################
 
@@ -12,10 +12,10 @@ Die integrierten Module und 3rd Party Komponenten werden auf den Stand von Novem
 Die Umstellung der Sprachdateien, die die amerikanische Version 1.5.8 bereits mitbringt, wird in einer für Herbst 2024 geplanten deutschen Zen Cart Version 1.5.8/2.0.0 mit vollständiger PHP 8.2 Unterstützung nachgezogen.
 Dadurch kann in 1.5.7g weiterhin mit den gewohnten Sprachdefinitionen gearbeitet werden. 
 
-1.5.7g behebt auch alle Fehler die seit Erscheinen von 1.5.7f aug Github gemeldet wurden.
+1.5.7g behebt auch alle Fehler die seit Erscheinen von 1.5.7f auf Github gemeldet wurden.
 
 Aktualisierte Komponenten:
-- PHP Mailer Update auf 6.8.1
+- PHP Mailer Update auf 6.9.1
 - MobileDetect Update auf 3.74.3
 - CKEditor Update auf 4.22.1
 - TinyMCE Editor Update auf 6.7.2
