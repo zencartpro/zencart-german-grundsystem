@@ -6,7 +6,7 @@
  * @author inspired from sales_report_graphs.php,v 0.01 2002/11/27 19:02:22 cwi Exp  Released under the GNU General Public License $
  
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: stats_sales_report_graphs.php 2023-10-29 15:21:51Z webchills $
+ * @version $Id: stats_sales_report_graphs.php 2023-12-12 19:21:51Z webchills $
  */
 require 'includes/application_top.php';
 
@@ -310,16 +310,16 @@ for ($i = 0; $i < $report->size; $i++) {
                 $tmp = zen_href_link(FILENAME_STATS_SALES_REPORT_GRAPHS, $report->filter_link . "&filter=" . $tmp);
                 ?>
                 <td class="dataTableContent text-right col-sm-12">
-                  <?php echo zen_image(DIR_WS_IMAGES . 'icon_status_green.gif', IMAGE_ICON_STATUS_GREEN, 10, 10) ?>&nbsp;
-                  <a href="<?php echo $tmp; ?>"><?php echo zen_image(DIR_WS_IMAGES . 'icon_status_red_light.gif', IMAGE_ICON_STATUS_RED_LIGHT, 10, 10) ?></a></td>
+                  <?php echo zen_icon('status-green', IMAGE_ICON_STATUS_GREEN) ?>&nbsp;
+                  <a href="<?php echo $tmp; ?>"><?php echo zen_icon('status-red-light', IMAGE_ICON_STATUS_RED_LIGHT) ?></a></td>
                 <?php
               } else {
                 $tmp = substr($sales_report_filter, 0, $i) . "0" . substr($sales_report_filter, $i + 1);
                 $tmp = zen_href_link(FILENAME_STATS_SALES_REPORT_GRAPHS, $report->filter_link . "&filter=" . $tmp);
                 ?>
                 <td class="dataTableContent text-right col-sm-12">
-                  <a href="<?php echo $tmp; ?>"><?php echo zen_image(DIR_WS_IMAGES . 'icon_status_green_light.gif', IMAGE_ICON_STATUS_GREEN, 10, 10) ?></a>
-                  &nbsp;<?php echo zen_image(DIR_WS_IMAGES . 'icon_status_red.gif', IMAGE_ICON_STATUS_RED_LIGHT, 10, 10) ?></td>
+                  <a href="<?php echo $tmp; ?>"><?php echo zen_icon('status-green-light', IMAGE_ICON_STATUS_GREEN) ?></a>
+                  &nbsp;<?php echo zen_icon('status-red', IMAGE_ICON_STATUS_RED_LIGHT) ?></td>
                 <?php
               }
               ?>

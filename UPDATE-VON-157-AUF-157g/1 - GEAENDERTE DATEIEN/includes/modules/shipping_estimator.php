@@ -12,7 +12,7 @@
  * @copyright Portions Copyright 2003 osCommerce
  * portions Copyright (c) 2003 Edwin Bekaert (edwin@ednique.com)
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: shipping_estimator.php 2023-10-29 15:28:24Z webchills $
+ * @version $Id: shipping_estimator.php 2023-12-12 19:04:24Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -41,8 +41,14 @@ if ($_SESSION['cart']->count_contents() > 0) {
     $state_zone_id = (isset($_SESSION['cart_zone'])) ? (int)$_SESSION['cart_zone'] : '';
     if (ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN === 'true') {
         $state_zone_id = (isset($_POST['zone_id'])) ? (int)$_POST['zone_id'] : $state_zone_id;
-    } elseif (isset($_POST['zone_country_id']) and isset($_POST['state'])) {
-        $state_value_id = $db->Execute('SELECT zone_id FROM ' . TABLE_ZONES . ' WHERE zone_country_id = '. (int)$_POST['zone_country_id'] . ' AND (zone_name = "' . $_POST['state'] . '" OR zone_code = "' . $_POST['state'] . '") LIMIT 1');
+    } elseif (isset($_POST['zone_country_id'], $_POST['state'])) {
+        $state_value_sql =
+            'SELECT zone_id
+               FROM ' . TABLE_ZONES . '
+              WHERE zone_country_id = '. (int)$_POST['zone_country_id'] . '
+                AND (zone_name = :state OR zone_code = :state) LIMIT 1';
+        $state_value_sql = $db->bindVars($state_value_sql, ':state', $_POST['state'], 'stringIgnoreNull');
+        $state_value_id = $db->Execute($state_value_sql);
         $state_zone_id = (isset($state_value_id->fields['zone_id'])) ? (int)$state_value_id->fields['zone_id'] : $state_zone_id;
     }
     $selectedState = (isset($_POST['state']) ? zen_output_string_protected($_POST['state']) : '');

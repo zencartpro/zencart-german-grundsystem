@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: media_types.php 2023-10-29 15:49:16Z webchills $
+ * @version $Id: media_types.php 2023-12-12 19:49:16Z webchills $
  */
 require('includes/application_top.php');
 
@@ -103,9 +103,9 @@ if (!empty($action)) {
                         <td class="dataTableContent text-right">
                             <?php
                             if (isset($mInfo) && is_object($mInfo) && ($media_type['type_id'] == $mInfo->type_id)) {
-                                echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', '');
+                                echo zen_icon('caret-right', '', '2x', true);;
                             } else {
-                                echo '<a href="' . zen_href_link(FILENAME_MEDIA_TYPES, zen_get_all_get_params(['mID']) . 'mID=' . $media_type['type_id']) . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>';
+                                echo '<a href="' . zen_href_link(FILENAME_MEDIA_TYPES, zen_get_all_get_params(['mID']) . 'mID=' . $media_type['type_id']) . '" data-toggle="tooltip" title="' . IMAGE_ICON_INFO . '" role="button">' . zen_icon('circle-info', '', '2x', true, false) . '</a>';
                             }
                             ?>
                         </td>

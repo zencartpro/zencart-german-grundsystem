@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: media_manager.php 2023-10-29 16:44:42Z webchills $
+ * @version $Id: media_manager.php 2023-12-12 19:44:42Z webchills $
  */
 
   require('includes/application_top.php');
@@ -174,10 +174,16 @@
     }
 ?>
                 <td class="dataTableContent"><?php echo $media->fields['media_name']; ?></td>
-                <td class="dataTableContent text-right">
-                  <?php echo '<a href="' . zen_href_link(FILENAME_MEDIA_MANAGER, 'page=' . $_GET['page'] . '&mID=' . $media->fields['media_id'] . '&action=edit') . '">' . zen_image(DIR_WS_IMAGES . 'icon_edit.gif', ICON_EDIT) . '</a>'; ?>
-                  <?php echo '<a href="' . zen_href_link(FILENAME_MEDIA_MANAGER, 'page=' . $_GET['page'] . '&mID=' . $media->fields['media_id'] . '&action=delete') . '">' . zen_image(DIR_WS_IMAGES . 'icon_delete.gif', ICON_DELETE) . '</a>'; ?>
-                  <?php if (isset($mInfo) && is_object($mInfo) && ($media->fields['media_id'] == $mInfo->media_id)) { echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', ''); } else { echo '<a href="' . zen_href_link(FILENAME_MEDIA_MANAGER, zen_get_all_get_params(array('mID')) . 'mID=' . $media->fields['media_id']) . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>'; } ?>
+                <td class="dataTableContent text-right actions">
+                  <div class="btn-group">
+                  <?php echo '<a href="' . zen_href_link(FILENAME_MEDIA_MANAGER, 'page=' . $_GET['page'] . '&mID=' . $media->fields['media_id'] . '&action=edit') . '" class="btn btn-sm btn-default btn-edit" role="button">' . zen_icon('pencil', ICON_EDIT, hidden: true). '</a>'; ?>
+                  <?php echo '<a href="' . zen_href_link(FILENAME_MEDIA_MANAGER, 'page=' . $_GET['page'] . '&mID=' . $media->fields['media_id'] . '&action=delete') . '" class="btn btn-sm btn-default btn-delete" role="button">' . zen_icon('trash', ICON_DELETE, hidden: true). '</a>'; ?>
+                  </div>
+                  <?php if (isset($mInfo) && is_object($mInfo) && ($media->fields['media_id'] == $mInfo->media_id)) {
+                    echo zen_icon('caret-right', '', '2x', true);
+                  } else {
+                    echo '<a href="' . zen_href_link(FILENAME_MEDIA_MANAGER, zen_get_all_get_params(array('mID')) . 'mID=' . $media->fields['media_id']) . '">' . zen_icon('circle-info', IMAGE_ICON_INFO, '2x', true, false) . '</a>';
+                  } ?>
                 </td>
               </tr>
 <?php

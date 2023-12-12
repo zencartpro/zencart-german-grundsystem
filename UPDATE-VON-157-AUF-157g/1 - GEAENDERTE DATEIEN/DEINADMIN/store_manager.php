@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: store_manager.php 2023-10-23 18:23:16Z webchills $
+ * @version $Id: store_manager.php 2023-12-12 19:23:16Z webchills $
  */
 
   require 'includes/application_top.php';
@@ -205,7 +205,7 @@
 if ($processing_message != '') {
 ?>
   <tr><td><?php echo $processing_message; ?></td></tr>
-  <tr><td class="text-center"><?php echo zen_image(DIR_WS_IMAGES . 'loadingsmall.gif'); ?></td></tr>
+  <tr><td class="text-center"><?php echo zen_icon('loading', '', '2x'); ?></td></tr>
 <?php
 } else {
 ?>

@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * $Id: featured.php 2023-11-14 20:13:16Z webchills $
+ * $Id: featured.php 2023-12-12 18:54:16Z webchills $
  * structurally identical to specials.php, modifications should be replicated
  */
 require 'includes/application_top.php';
@@ -305,7 +305,7 @@ if (!empty($action)) {
             <div class="form-group">
               <?php echo zen_draw_label(TEXT_FEATURED_PRODUCT, 'products_id', 'class="col-sm-3 control-label"'); ?>
               <div class="col-sm-9 col-md-6">
-                <?= zen_draw_pulldown_products('products_id', 'required size="15" class="form-control" id="products_id"', $featured_array, true, (!empty($_GET['add_products_id']) ? $_GET['add_products_id'] : ''), true); ?>
+                <?php echo zen_draw_pulldown_products('products_id', 'required size="15" class="form-control" id="products_id"', $featured_array, true, (!empty($_GET['add_products_id']) ? $_GET['add_products_id'] : ''), true); ?>
               </div>
             </div>
           <?php } ?>
@@ -315,7 +315,7 @@ if (!empty($action)) {
             <div class="col-sm-9 col-md-6">
               <div class="date input-group" id="datepicker_featured_date_available">
                 <span class="input-group-addon datepicker_icon">
-                  <i class="fa-regular fa-calendar-days fa-lg"></i>
+                  <?php echo zen_icon('calendar-days', size: 'lg') ?>
                 </span>
                 <?php echo zen_draw_input_field('featured_date_available', (($fInfo->featured_date_available == '0001-01-01') ? '' : $fInfo->featured_date_available), 'class="form-control" id="featured_date_available"'); ?>
               </div>
@@ -327,7 +327,7 @@ if (!empty($action)) {
             <div class="col-sm-9 col-md-6">
               <div class="date input-group" id="datepicker_expires_date">
                 <span class="input-group-addon datepicker_icon">
-                  <i class="fa-regular fa-calendar-days fa-lg"></i>
+                  <?php echo zen_icon('calendar-days', size: 'lg') ?>
                 </span>
                 <?php echo zen_draw_input_field('expires_date', (($fInfo->expires_date == '0001-01-01') ? '' : $fInfo->expires_date), 'class="form-control" id="expires_date"'); ?>
               </div>
@@ -349,11 +349,11 @@ if (!empty($action)) {
         </div>
       <?php } else { ?>
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-sm-8">
             <a href="<?php echo zen_href_link(FILENAME_FEATURED, ($currentPage != 0 ? 'page=' . $currentPage . '&' : '') . 'action=new'); ?>" class="btn btn-primary" role="button"><?php echo TEXT_ADD_FEATURED_SELECT; ?></a>
             <a href="<?php echo zen_href_link(FILENAME_FEATURED, ($currentPage != 0 ? 'page=' . $currentPage . '&' : '') . (isset($_GET['search']) ? 'search=' . $_GET['search'] . '&' : '') . 'action=pre_add'); ?>" class="btn btn-primary" role="button" title="<?php echo TEXT_INFO_PRE_ADD_INTRO; ?>"><?php echo TEXT_ADD_FEATURED_PID; ?></a>
           </div>
-          <div class="col-sm-offset-2 col-sm-4">
+          <div class="col-sm-4">
           <?php require DIR_WS_MODULES . 'search_box.php'; ?>
           </div>
         </div>
@@ -484,24 +484,20 @@ if (!empty($action)) {
                         <?php echo '</form>'; ?>
                       <?php } ?>
                     </td>
-                    <td class="dataTableContent text-right">
-                      <a href="<?php echo zen_href_link(FILENAME_FEATURED, ($currentPage != 0 ? 'page=' . $currentPage . '&' : '') . (isset($_GET['search']) ? 'search=' . $_GET['search'] . '&' : '') . 'action=edit' . '&fID=' . $featured['featured_id']); ?>" title="<?php echo ICON_EDIT; ?>" role="button">
-                        <div class="fa-stack fa-fw">
-                          <i class="fa-solid fa-circle fa-stack-2x txt-status-on"></i>
-                          <i class="fa-solid fa-pencil fa-stack-1x fa-inverse"></i>
-                        </div>
+                    <td class="dataTableContent text-right actions">
+                      <div class="btn-group">
+                      <a href="<?php echo zen_href_link(FILENAME_FEATURED, ($currentPage != 0 ? 'page=' . $currentPage . '&' : '') . (isset($_GET['search']) ? 'search=' . $_GET['search'] . '&' : '') . 'action=edit' . '&fID=' . $featured['featured_id']); ?>" class="btn btn-sm btn-default btn-edit" role="button">
+                        <?php echo zen_icon('pencil', ICON_EDIT) ?>
                       </a>
-                      <a href="<?php echo zen_href_link(FILENAME_FEATURED, ($currentPage != 0 ? 'page=' . $currentPage . '&' : '') . (isset($_GET['search']) ? 'search=' . $_GET['search'] . '&' : '') . 'action=delete' . '&fID=' . $featured['featured_id']); ?>" title="<?php echo ICON_DELETE; ?>" role="button">
-                        <div class="fa-stack fa-fw">
-                          <i class="fa-solid fa-circle fa-stack-2x txt-status-off"></i>
-                          <i class="fa-solid fa-trash fa-stack-1x fa-inverse"></i>
-                        </div>
+                      <a href="<?php echo zen_href_link(FILENAME_FEATURED, ($currentPage != 0 ? 'page=' . $currentPage . '&' : '') . (isset($_GET['search']) ? 'search=' . $_GET['search'] . '&' : '') . 'action=delete' . '&fID=' . $featured['featured_id']); ?>" class="btn btn-sm btn-default btn-delete" role="button">
+                        <?php echo zen_icon('trash', ICON_DELETE) ?>
                       </a>
-                      <?php if (isset($fInfo) && is_object($fInfo) && ($featured['featured_id'] === $fInfo->featured_id)) { ?>
-                        <i class="fa-solid fa-caret-right fa-2x fa-fw txt-navy align-middle"></i>
-                      <?php } else { ?>
-                        <a href="<?php echo zen_href_link(FILENAME_FEATURED, zen_get_all_get_params(['fID']) . 'fID=' . $featured['featured_id']); ?>" title="<?php echo IMAGE_ICON_INFO; ?>" role="button">
-                          <i class="fa-solid fa-circle-info fa-2x fa-fw txt-black align-middle"></i>
+                      </div>
+                      <?php if (isset($fInfo) && is_object($fInfo) && ($featured['featured_id'] === $fInfo->featured_id)) {
+                        echo zen_icon('caret-right', '', '2x', true);
+                      } else { ?>
+                        <a href="<?php echo zen_href_link(FILENAME_FEATURED, zen_get_all_get_params(['fID']) . 'fID=' . $featured['featured_id']); ?>" role="button">
+                          <?php echo zen_icon('circle-info', IMAGE_ICON_INFO, '2x', true, true) ?>
                         </a>
                       <?php } ?>
                     </td>

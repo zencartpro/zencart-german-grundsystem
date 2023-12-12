@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_price_manager.php 2023-10-23 18:49:16Z webchills $
+ * @version $Id: products_price_manager.php 2023-12-12 19:49:16Z webchills $
  */
 require 'includes/application_top.php';
 
@@ -642,7 +642,7 @@ if (!empty($action)) {
                 <div class="col-sm-9 col-md-6">
                   <div class="date input-group" id="datepicker_products_date_available">
                     <span class="input-group-addon datepicker_icon">
-                      <i class="fa-regular fa-calendar-days fa-lg"></i>
+                      <?php echo zen_icon('calendar-days', size: 'lg') ?>
                     </span>
                     <?php echo zen_draw_input_field('products_date_available', (($pInfo->products_date_available == '0001-01-01') ? '' : $pInfo->products_date_available), 'class="form-control" id="products_date_available" autocomplete="off"' . $readonly); ?>
                   </div>
@@ -759,7 +759,7 @@ if (!empty($action)) {
                   <div class="col-sm-9 col-md-6">
                     <div class="date input-group" id="datepicker_specials_date_available">
                       <span class="input-group-addon datepicker_icon">
-                        <i class="fa-regular fa-calendar-days fa-lg"></i>
+                        <?php echo zen_icon('calendar-days', size: 'lg') ?>
                       </span>
                       <?php echo zen_draw_input_field('specials_date_available', (($sInfo->specials_date_available == '0001-01-01') ? '' : $sInfo->specials_date_available), 'class="form-control" id="specials_date_available" autocomplete="off"' . $readonly); ?>
                     </div>
@@ -771,7 +771,7 @@ if (!empty($action)) {
                   <div class="col-sm-9 col-md-6">
                     <div class="date input-group" id="datepicker_specials_expires_date">
                       <span class="input-group-addon datepicker_icon">
-                        <i class="fa-regular fa-calendar-days fa-lg"></i>
+                        <?php echo zen_icon('calendar-days', size: 'lg') ?>
                       </span>
                       <?php echo zen_draw_input_field('specials_expires_date', (($sInfo->expires_date == '0001-01-01') ? '' : $sInfo->expires_date), 'class="form-control" id="specials_expires_date" autocomplete="off"' . $readonly); ?>
                     </div>
@@ -827,7 +827,7 @@ if (!empty($action)) {
                   <div class="col-sm-9 col-md-6">
                     <div class="date input-group" id="datepicker_featured_date_available">
                       <span class="input-group-addon datepicker_icon">
-                        <i class="fa-regular fa-calendar-days fa-lg"></i>
+                        <?php echo zen_icon('calendar-days', size: 'lg') ?>
                       </span>
                       <?php echo zen_draw_input_field('featured_date_available', (($fInfo->featured_date_available == '0001-01-01') ? '' : $fInfo->featured_date_available), 'class="form-control" id="featured_date_available" autocomplete="off"' . $readonly); ?>
                     </div>
@@ -839,7 +839,7 @@ if (!empty($action)) {
                   <div class="col-sm-9 col-md-6">
                     <div class="date input-group" id="datepicker_expires_date">
                       <span class="input-group-addon datepicker_icon">
-                        <i class="fa-regular fa-calendar-days fa-lg"></i>
+                        <?php echo zen_icon('calendar-days', size: 'lg') ?>
                       </span>
                       <?php echo zen_draw_input_field('featured_expires_date', (($fInfo->expires_date == '0001-01-01') ? '' : $fInfo->expires_date), 'class="form-control" id="featured_expires_date" autocomplete="off"' . $readonly); ?>
                     </div>
@@ -1086,6 +1086,12 @@ if (!empty($action)) {
     <!-- footer //-->
     <?php require DIR_WS_INCLUDES . 'footer.php'; ?>
     <!-- footer_eof //-->
+    <script>
+        $('[data-toggle="popover"]').popover();
+        $('a.pop-help').click(function(e) {
+            e.preventDefault();
+        });
+    </script>
   </body>
 </html>
 <?php

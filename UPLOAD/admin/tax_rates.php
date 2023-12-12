@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tax_rates.php 2023-10-29 16:09:51Z webchills $
+ * @version $Id: tax_rates.php 2023-12-12 19:09:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -118,9 +118,9 @@ if (!empty($action)) {
               <td class="dataTableContent"><?php echo $rate['tax_description']; ?></td>
               <td class="dataTableContent text-right"><?php
                   if (isset($trInfo) && is_object($trInfo) && ($rate['tax_rates_id'] == $trInfo->tax_rates_id)) {
-                    echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', '');
+                    echo zen_icon('caret-right', '', '2x', true);
                   } else {
-                    echo '<a href="' . zen_href_link(FILENAME_TAX_RATES, 'page=' . $_GET['page'] . '&tID=' . $rate['tax_rates_id']) . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>';
+                    echo '<a href="' . zen_href_link(FILENAME_TAX_RATES, 'page=' . $_GET['page'] . '&tID=' . $rate['tax_rates_id']) . '" data-toggle="tooltip" title="' . IMAGE_ICON_INFO . '" role="button">' . zen_icon('circle-info', '', '2x', true, false) . '</a>';
                   }
                   ?>&nbsp;</td>
               </tr>

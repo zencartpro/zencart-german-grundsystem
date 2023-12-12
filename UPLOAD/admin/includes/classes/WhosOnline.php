@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: WhosOnline.php 2023-10-23 17:14:16Z webchills $
+ * @version $Id: WhosOnline.php 2023-12-12 19:14:16Z webchills $
  */
 
 class WhosOnline extends base
@@ -194,14 +194,14 @@ class WhosOnline extends base
     {
         switch ($status_code) {
             case 3:
-                return zen_image(DIR_WS_IMAGES . 'icon_status_red_light.gif');
+                return zen_icon('status-red-light');
             case 2:
-                return zen_image(DIR_WS_IMAGES . 'icon_status_red.gif');
+                return zen_icon('status-red');
             case 1:
-                return zen_image(DIR_WS_IMAGES . 'icon_status_yellow.gif');
+                return zen_icon('status-yellow');
             default:
             case 0:
-                return zen_image(DIR_WS_IMAGES . 'icon_status_green.gif');
+                return zen_icon('status-green');
         }
     }
 

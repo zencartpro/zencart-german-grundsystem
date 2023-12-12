@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: products_expected.php 2023-10-29 15:49:16Z webchills $
+ * @version $Id: products_expected.php 2023-12-12 19:49:16Z webchills $
  */
 require('includes/application_top.php');
 
@@ -58,9 +58,9 @@ $db->Execute("UPDATE " . TABLE_PRODUCTS . "
               <td class="dataTableContent text-center"><?php echo zen_date_short($product['products_date_available']); ?></td>
               <td class="dataTableContent text-right"><?php
                   if (isset($pInfo) && is_object($pInfo) && ($product['products_id'] == $pInfo->products_id)) {
-                    echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif');
+                    echo zen_icon('caret-right', '', '2x', true);
                   } else {
-                    echo '<a href="' . zen_href_link(FILENAME_PRODUCTS_EXPECTED, 'page=' . $_GET['page'] . '&pID=' . $product['products_id']) . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>';
+                    echo '<a href="' . zen_href_link(FILENAME_PRODUCTS_EXPECTED, 'page=' . $_GET['page'] . '&pID=' . $product['products_id']) . '" data-toggle="tooltip" title="' . IMAGE_ICON_INFO . '" role="button">' . zen_icon('circle-info', '', '2x', true, false) . '</a>';
                   }
                   ?>&nbsp;</td>
               </tr>

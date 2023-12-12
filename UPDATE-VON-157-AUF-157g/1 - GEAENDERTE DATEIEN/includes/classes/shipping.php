@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: shipping.php 2023-10-25 20:25:16Z webchills $
+ * @version $Id: shipping.php 2023-12-12 19:10:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -218,12 +218,13 @@ class shipping extends base
         if (!is_array($this->modules)) {
             return false;
         }
-        $rates = [];
 
-        foreach($this->modules as $value) {
+        $rates = [];
+        $exclude_storepickup_module = false;
+        foreach ($this->modules as $value) {
             $class = substr($value, 0, strrpos($value, '.'));
             if (isset($GLOBALS[$class]) && is_object($GLOBALS[$class]) && $GLOBALS[$class]->enabled) {
-                $quotes = isset($GLOBALS[$class]->quotes) ? $GLOBALS[$class]->quotes : null;
+                $quotes = $GLOBALS[$class]->quotes ?? null;
                 if (empty($quotes['methods']) || isset($quotes['error'])) {
                     continue;
                 }
@@ -236,34 +237,41 @@ class shipping extends base
                             'cost' => $quotes['methods'][$i]['cost'],
                             'module' => $quotes['id']
                         ];
-            }
-          }
-        }
-      }
 
-      $cheapest = false;
-        $size = count($rates);
-        for ($i = 0; $i < $size; $i++) {
+                        if ($quotes['id'] !== 'storepickup') {
+                            $exclude_storepickup_module = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        $cheapest = false;
+        foreach ($rates as $rate) {
             if ($cheapest !== false) {
-                // never quote storepickup as lowest - needs to be configured in shipping module
-                if ($rates[$i]['cost'] < $cheapest['cost'] && $rates[$i]['module'] !== 'storepickup') {
+                // never quote storepickup as lowest, unless it's the only active module - needs to be configured in shipping module
+                if ($rate['cost'] < $cheapest['cost']) {
+                    if ($exclude_storepickup_module === true && $rate['module'] === 'storepickup') {
+                        continue;
+                    }
+
                     // -----
                     // Give a customized shipping module the opportunity to exclude itself from being quoted
                     // as the cheapest.  The observer must set the $exclude_from_cheapest to specifically
                     // (bool)true to be excluded.
                     //
                     $exclude_from_cheapest = false;
-                    $this->notify('NOTIFY_SHIPPING_EXCLUDE_FROM_CHEAPEST', $rates[$i]['module'], $exclude_from_cheapest);
+                    $this->notify('NOTIFY_SHIPPING_EXCLUDE_FROM_CHEAPEST', $rate['module'], $exclude_from_cheapest);
                     if ($exclude_from_cheapest === true) {
                         continue;
                     }
-                    $cheapest = $rates[$i];
+                    $cheapest = $rate;
                 }
-            } elseif ($size === 1 || $rates[$i]['module'] !== 'storepickup') {
-            $cheapest = $rates[$i];
-          }
+            } elseif ($exclude_storepickup_module === false || $rate['module'] !== 'storepickup') {
+                $cheapest = $rate;
+            }
         }
-      $this->notify('NOTIFY_SHIPPING_MODULE_CALCULATE_CHEAPEST', $cheapest, $cheapest, $rates);
-      return $cheapest;
-  }
+        $this->notify('NOTIFY_SHIPPING_MODULE_CALCULATE_CHEAPEST', $cheapest, $cheapest, $rates);
+        return $cheapest;
+    }
 }

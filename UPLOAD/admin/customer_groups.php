@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: customer_groups.php 2023-10-29 15:49:16Z webchills $
+ * @version $Id: customer_groups.php 2023-12-12 19:49:16Z webchills $
 
  */
 require('includes/application_top.php');
@@ -125,27 +125,26 @@ if (!empty($action)) {
                         <td class="dataTableContent"><?php echo $group['group_name']; ?></td>
                         <td class="dataTableContent text-center"><?php echo $group['customer_count']; ?></td>
                         <td class="dataTableContent"><?php echo $group['group_comment']; ?></td>
-                        <td class="dataTableContent text-right"><div>
-                            <a href="<?php echo zen_href_link(FILENAME_CUSTOMER_GROUPS, $href_page_param . 'gID=' . $group['group_id'] . '&action=edit')?>" role="button" title="<?php echo ICON_EDIT; ?>">
-                                <i class="fa-solid fa-pencil fa-2x fa-fw txt-blue align-middle"></i>
+                        <td class="dataTableContent text-right actions">
+                            <div class="btn-group">
+                            <a href="<?php echo zen_href_link(FILENAME_CUSTOMER_GROUPS, $href_page_param . 'gID=' . $group['group_id'] . '&action=edit')?>" class="btn btn-sm btn-default btn-edit" role="button" data-toggle="tooltip" title="<?php echo ICON_EDIT; ?>">
+                                <?php echo zen_icon('pencil', hidden: true) ?>
                             </a>
-                            <a href="<?php echo zen_href_link(FILENAME_CUSTOMER_GROUPS, $href_page_param . 'gID=' . $group['group_id'] . '&action=delete')?>" role="button" title="<?php echo ICON_DELETE;?>">
-                                <i class="fa-solid fa-trash-can fa-2x fa-fw txt-red align-middle"></i>
+                            <a href="<?php echo zen_href_link(FILENAME_CUSTOMER_GROUPS, $href_page_param . 'gID=' . $group['group_id'] . '&action=delete')?>" class="btn btn-sm btn-default btn-delete" role="button" data-toggle="tooltip" title="<?php echo ICON_DELETE;?>">
+                                <?php echo zen_icon('trash') ?>
                             </a>
+                            </div>
 <?php 
                     if (isset($gInfo) && is_object($gInfo) && ($group['group_id'] == $gInfo->group_id)) {
-?>
-                            <i class="fa-solid fa-caret-right fa-2x fa-fw txt-navy align-middle" title="<?php echo ICON_SELECTED;?>"></i>
-<?php
+                        echo zen_icon('caret-right', ICON_SELECTED, '2x', true);
                     } else {
 ?>
                             <a href="<?php echo zen_href_link(FILENAME_CUSTOMER_GROUPS,  $href_page_param . 'gID=' . $group['group_id']);?>" role="button" title="<?php echo IMAGE_ICON_INFO;?>">
-                                <i class="fa-solid fa-circle-info fa-2x fa-fw txt-black align-middle"></i>
+                                <?php echo zen_icon('circle-info', '', '2x', true, false) ?>
                             </a>
 <?php
                     }
 ?>
-                            </div>
                         </td>
                     </tr>
                     <?php

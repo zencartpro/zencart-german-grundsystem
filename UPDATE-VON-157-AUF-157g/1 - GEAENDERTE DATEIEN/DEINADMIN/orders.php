@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: orders.php 2023-11-17 14:58:51Z webchills $
+ * @version $Id: orders.php 2023-12-12 19:58:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -914,11 +914,11 @@ if (!empty($action) && $order_exists === true) {
                     <td class="text-center hidden-xs">
                         <?php
                         if ($item['customer_notified'] == '1') {
-                          echo zen_image(DIR_WS_ICONS . 'tick.gif', TEXT_YES);
+                          echo zen_icon('tick', TEXT_YES, 'lg');
                         } elseif ($item['customer_notified'] == '-1') {
-                          echo zen_image(DIR_WS_ICONS . 'locked.gif', TEXT_HIDDEN);
+                          echo zen_icon('locked', TEXT_HIDDEN, 'lg');
                         } else {
-                          echo zen_image(DIR_WS_ICONS . 'unlocked.gif', TEXT_VISIBLE);
+                          echo zen_icon('unlocked', TEXT_VISIBLE, 'lg');
                         }
                         ?>
                     </td>
@@ -1101,7 +1101,7 @@ if (!empty($action) && $order_exists === true) {
         $extra_legends = '';
         $zco_notifier->notify('NOTIFY_ADMIN_ORDERS_MENU_LEGEND', [], $extra_legends);
 ?>
-        <div class="row"><?php echo TEXT_LEGEND . ' ' . zen_image(DIR_WS_IMAGES . 'icon_status_red.gif', TEXT_BILLING_SHIPPING_MISMATCH, 10, 10) . ' ' . TEXT_BILLING_SHIPPING_MISMATCH . $extra_legends; ?></div>
+        <div class="row"><?php echo TEXT_LEGEND . ' ' . zen_icon('status-red', TEXT_BILLING_SHIPPING_MISMATCH) . ' ' . TEXT_BILLING_SHIPPING_MISMATCH . $extra_legends; ?></div>
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 configurationColumnLeft">
             <table id="orders-table" class="table table-hover">
@@ -1284,10 +1284,10 @@ if (!empty($action) && $order_exists === true) {
 
                     $show_difference = '';
                     if (!empty($orders->fields['delivery_name']) && (strtoupper($orders->fields['delivery_name']) !== strtoupper($orders->fields['billing_name']))) {
-                      $show_difference = zen_image(DIR_WS_IMAGES . 'icon_status_red.gif', TEXT_BILLING_SHIPPING_MISMATCH, 10, 10) . '&nbsp;';
+                      $show_difference = zen_icon('status-red', TEXT_BILLING_SHIPPING_MISMATCH) . '&nbsp;';
                     }
                     if (!empty($orders->fields['delivery_street_address']) && (strtoupper($orders->fields['delivery_street_address']) !== strtoupper($orders->fields['billing_street_address']))) {
-                      $show_difference = zen_image(DIR_WS_IMAGES . 'icon_status_red.gif', TEXT_BILLING_SHIPPING_MISMATCH, 10, 10) . '&nbsp;';
+                      $show_difference = zen_icon('status-red', TEXT_BILLING_SHIPPING_MISMATCH) . '&nbsp;';
                     }
                     //-Additional "difference" icons can be added on a per-order basis and/or additional icons to be added to the "action" column.
                     $extra_action_icons = '';
@@ -1323,7 +1323,7 @@ if (!empty($action) && $order_exists === true) {
                     ?>
                 <td class="dataTableContent text-center"><?php echo $show_difference . $orders->fields['orders_id']; ?></td>
                 <td class="dataTableContent"><?php echo $show_payment_type; ?></td>
-                <td class="dataTableContent"><?php echo '<a href="' . zen_href_link(FILENAME_CUSTOMERS, 'cID=' . $orders->fields['customers_id'], 'NONSSL') . '">' . zen_image(DIR_WS_ICONS . 'preview.gif', ICON_PREVIEW . ' ' . TABLE_HEADING_CUSTOMERS) . '</a>&nbsp;' . $orders->fields['customers_name'] . ($orders->fields['customers_company'] !== '' ? '<br>' . $orders->fields['customers_company'] : ''); ?></td>
+                <td class="dataTableContent"><?php echo '<a href="' . zen_href_link(FILENAME_CUSTOMERS, 'cID=' . $orders->fields['customers_id'], 'NONSSL') . '"><i class="fa-solid fa-magnifying-glass"></i></a>&nbsp;' . $orders->fields['customers_name'] . ($orders->fields['customers_company'] !== '' ? '<br>' . $orders->fields['customers_company'] : ''); ?></td>
 <?php if ($show_zone_info) { ?>
                 <td class="dataTableContent text-left">
 <?php echo $orders->fields['delivery_country']; ?>
@@ -1394,16 +1394,19 @@ if (!empty($action) && $order_exists === true) {
   }
 ?>
 
-                <td class="dataTableContent noprint text-right dataTableButtonCell">
+                <td class="dataTableContent noprint text-right actions dataTableButtonCell">
+                  <div class="btn-group">
                     <?php
-                    echo '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(['oID', 'action']) . 'oID=' . $orders->fields['orders_id'] . '&action=edit', 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_edit.gif', ICON_EDIT) . '</a>' . $extra_action_icons;
+                    echo '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(['oID', 'action']) . 'oID=' . $orders->fields['orders_id'] . '&action=edit', 'NONSSL') . '" class="btn btn-sm btn-default btn-edit" data-toggle="tooltip" title="' . ICON_EDIT . '">' .
+                      zen_icon('pencil', hidden: true) .
+                    '</a>' . $extra_action_icons;
                     ?>
-                    &nbsp;
+                    </div>
                     <?php
                     if (isset($oInfo) && is_object($oInfo) && ($orders->fields['orders_id'] == $oInfo->orders_id)) {
-                      echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif');
+                      echo zen_icon('caret-right', '', '2x', true);
                     } else {
-                      echo '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(['oID']) . 'oID=' . $orders->fields['orders_id'], 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>';
+                      echo '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(['oID']) . 'oID=' . $orders->fields['orders_id'], 'NONSSL') . '" data-toggle="tooltip" title="' . IMAGE_ICON_INFO . '" role="button">' . zen_icon('circle-info', '', '2x', true, false) . '</a>';
                     }
                     ?>&nbsp;</td>
                 </tr>
@@ -1475,7 +1478,8 @@ if (!empty($action) && $order_exists === true) {
                         '</fieldset></form>' . "\n"];
 
                     $contents[] = ['text' => '<br>' . TEXT_DATE_ORDER_CREATED . ' ' . zen_date_short($oInfo->date_purchased)];
-                    $contents[] = ['text' => '<br>' . $oInfo->customers_email_address];
+                    $contents[] = ['text' => '<br>' . '<a href="' . zen_href_link(FILENAME_CUSTOMERS, 'cID=' . $oInfo->customers_id, 'NONSSL') . '">' . $oInfo->customers_email_address . '</a>' ];
+                   
                     
                     if (zen_not_null($oInfo->last_modified)) {
                       $contents[] = ['text' => TEXT_DATE_ORDER_LAST_MODIFIED . ' ' . zen_date_short($oInfo->last_modified)];

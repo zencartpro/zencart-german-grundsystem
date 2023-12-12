@@ -475,6 +475,7 @@ admin\image_handler.php
 admin\index.php
 admin\index_setup_wizard.php
 admin\invoice.php
+admin\languages.php
 admin\layout_controller.php
 admin\login.php
 admin\mail.php

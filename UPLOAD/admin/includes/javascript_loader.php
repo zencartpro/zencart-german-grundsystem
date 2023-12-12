@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: javascript_loader.php 2023-11-18 08:27:32Z webchills $
+ * @version $Id: javascript_loader.php 2023-12-12 19:27:32Z webchills $
  */
 ?>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha384-1H217gwSVyLSIfaLxHbE7dRb3v4mYCKbpQvzx0cegeju1MVsGrX5xXxAvs/HgeFs" crossorigin="anonymous"></script>
@@ -28,6 +28,10 @@
       selectOtherMonths: true,
       showButtonPanel: true
     }));
+    jQuery('[data-toggle="tooltip"]').tooltip({
+        html: true,
+        container: 'body'
+    });
   });
 </script>
 <?php

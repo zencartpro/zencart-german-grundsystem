@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: stats_products_viewed.php 2023-10-23 18:44:51Z webchills $
+ * @version $Id: stats_products_viewed.php 2023-12-12 19:44:51Z webchills $
  */
 
 require 'includes/application_top.php';
@@ -69,7 +69,7 @@ $products = $db->Execute($sql);
                 <div class="col-sm-4 col-md-3">
                     <div class="date input-group" id="datepicker_start_date">
                 <span class="input-group-addon datepicker_icon">
-                  <i class="fa-regular fa-calendar-days fa-lg"></i>
+                  <?php echo zen_icon('calendar-days', size: 'lg') ?>
                 </span>
                         <?php echo zen_draw_input_field('start_date', $startdate, 'class="form-control" id="start_date"'); ?>
                     </div>
@@ -81,7 +81,7 @@ $products = $db->Execute($sql);
                 <div class="col-sm-4 col-md-3">
                     <div class="date input-group" id="datepicker_end_date">
                 <span class="input-group-addon datepicker_icon">
-                  <i class="fa-regular fa-calendar-days fa-lg"></i>
+                  <?php echo zen_icon('calendar-days', size: 'lg') ?>
                 </span>
                         <?php echo zen_draw_input_field('end_date', $enddate, 'class="form-control" id="end_date"'); ?>
                     </div>

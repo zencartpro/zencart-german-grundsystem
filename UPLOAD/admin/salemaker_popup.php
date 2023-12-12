@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: salemaker_popup.php 2023-10-23 18:49:16Z webchills $
+ * @version $Id: salemaker_popup.php 2023-12-12 19:49:16Z webchills $
  */
 //
 require("includes/application_top.php");
@@ -58,9 +58,9 @@ $deduction_type_array = array(
               <td  class="dataTableContent text-center">
                   <?php
                   if ($salemaker_sale['sale_status'] == '1') {
-                    echo zen_image(DIR_WS_IMAGES . 'icon_status_green.gif', IMAGE_ICON_STATUS_GREEN, 10, 10);
+                    echo zen_icon('status-green', IMAGE_ICON_STATUS_GREEN);
                   } else {
-                    echo zen_image(DIR_WS_IMAGES . 'icon_status_red.gif', IMAGE_ICON_STATUS_RED, 10, 10);
+                    echo zen_icon('status-red', IMAGE_ICON_STATUS_RED);
                   }
                   ?>
               </td>

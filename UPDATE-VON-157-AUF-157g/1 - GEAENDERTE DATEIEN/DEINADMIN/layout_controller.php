@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: layout_controller.php 2023-10-23 15:39:11Z webchills $
+ * @version $Id: layout_controller.php 2023-12-12 19:39:11Z webchills $
  */
 
 use Zencart\FileSystem\FileSystem;
@@ -238,9 +238,9 @@ if (!empty($_GET['action'])) {
 
               <td class="dataTableContent text-right"><?php echo ($boxDirectory != '') ? TEXT_GOOD_BOX : TEXT_BAD_BOX; ?><?php
                   if (isset($bInfo) && is_object($bInfo) && ($layoutBox['layout_id'] == $bInfo->layout_id)) {
-                    echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', '');
+                    echo zen_icon('caret-right', '', '2x', true);
                   } else {
-                    echo '<a href="' . zen_href_link(FILENAME_LAYOUT_CONTROLLER, $cur_page . '&cID=' . $layoutBox['layout_id']) . '" class="btn btn-sm" role="button"><i class="fa-solid fa-circle-info"></i></a>';
+                    echo '<a href="' . zen_href_link(FILENAME_LAYOUT_CONTROLLER, $cur_page . '&cID=' . $layoutBox['layout_id']) . '" class="btn btn-sm" role="button">' . zen_icon('circle-info', '', '2x', true, false) . '</a>';
                   }
                   ?>
               </td>

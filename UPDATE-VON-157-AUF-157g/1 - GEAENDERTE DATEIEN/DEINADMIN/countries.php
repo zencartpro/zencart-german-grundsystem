@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: countries.php 2023-11-01 17:20:51Z webchills $
+ * @version $Id: countries.php 2023-12-12 19:20:51Z webchills $
  */
 
 require 'includes/application_top.php';
@@ -177,11 +177,11 @@ if (!empty($action)) {
                     ?>
                   </td>
                   <td class="dataTableContent text-right">
-                    <?php if (isset($cInfo) && is_object($cInfo) && ($country['countries_id'] == $cInfo->countries_id)) { ?>
-                      <i class="fa-solid fa-caret-right fa-2x fa-fw txt-navy align-middle"></i>
-                    <?php } else { ?>
-                      <a href="<?php echo zen_href_link(FILENAME_COUNTRIES, 'page=' . $_GET['page'] . '&cID=' . $country['countries_id']); ?>" title="<?php echo IMAGE_ICON_INFO; ?>" role="button">
-                        <i class="fa-solid fa-circle-info fa-2x fa-fw txt-black align-middle"></i>
+                    <?php if (isset($cInfo) && is_object($cInfo) && ($country['countries_id'] == $cInfo->countries_id)) {
+                      echo zen_icon('caret-right', '', '2x', true);
+                    } else { ?>
+                      <a href="<?php echo zen_href_link(FILENAME_COUNTRIES, $page_parameter . 'cID=' . $country['countries_id']); ?>" title="<?php echo IMAGE_ICON_INFO; ?>" role="button">
+                        <?php echo zen_icon('circle-info', '', '2x', true, false) ?>
                       </a>
                     <?php } ?>
                   </td>

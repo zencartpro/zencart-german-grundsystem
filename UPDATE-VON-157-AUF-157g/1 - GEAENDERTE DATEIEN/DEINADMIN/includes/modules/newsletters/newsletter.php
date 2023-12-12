@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: newsletter.php 2023-10-30 14:01:16Z webchills $
+ * @version $Id: newsletter.php 2023-12-12 19:01:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -127,7 +127,7 @@ class newsletter {
       $html_msg['EMAIL_LAST_NAME'] = $item['customers_lastname'];
       $html_msg['EMAIL_MESSAGE_HTML'] = $this->content_html;
       zen_mail($item['customers_firstname'] . ' ' . $item['customers_lastname'], $item['customers_email_address'], $this->title, $this->content, STORE_NAME, EMAIL_FROM, $html_msg, 'newsletters');
-      echo zen_image(DIR_WS_ICONS . 'tick.gif', $item['customers_email_address']);
+      echo zen_icon('tick', $item['customers_email_address'], 'lg');
 
       //force output to the screen to show status indicator each time a message is sent...
       if (function_exists('ob_flush')) {

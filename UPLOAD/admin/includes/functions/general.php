@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: general.php 2023-11-25 20:13:33Z webchills $
+ * @version $Id: general.php 2023-12-12 19:13:33Z webchills $
  */
 
 
@@ -261,7 +261,7 @@ function zen_cfg_password_input($value, $key = '')
     if (function_exists('dbenc_is_encrypted_value_key') && dbenc_is_encrypted_value_key($key)) {
         $value = dbenc_decrypt($value);
     }
-    return zen_draw_password_field('configuration[' . $key . ']', $value, 'class="form-control"');
+    return zen_draw_password_field('configuration[' . $key . ']', $value, false, 'class="form-control"');
 }
 
 function zen_cfg_password_display($value)

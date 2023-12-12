@@ -6,7 +6,7 @@
  
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: coupon_restrict.php 2023-10-23 19:46:16Z webchills $
+ * @version $Id: coupon_restrict.php 2023-12-12 19:21:16Z webchills $
  */
 
 require('includes/application_top.php');
@@ -390,8 +390,8 @@ if ($pr_list->EOF) {
             </tr>
 <?php
 } else {
-    $products_status_disabled = zen_image(DIR_WS_IMAGES . 'icon_red_on.gif', IMAGE_ICON_STATUS_OFF);
-    $products_status_enabled = zen_image(DIR_WS_IMAGES . 'icon_green_on.gif', IMAGE_ICON_STATUS_ON);
+    $products_status_disabled = zen_icon('disabled', IMAGE_ICON_STATUS_OFF);
+    $products_status_enabled = zen_icon('enabled', IMAGE_ICON_STATUS_ON);
     while (!$pr_list->EOF) {
         $prArrayList[] = $pr_list->fields['product_id'];
         $products_id = $pr_list->fields['product_id'];

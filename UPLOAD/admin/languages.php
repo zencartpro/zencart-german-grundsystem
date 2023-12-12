@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: languages.php 2022-02-27 19:41:51Z webchills $
+ * @version $Id: languages.php 2023-12-12 19:41:51Z webchills $
  */
 require('includes/application_top.php');
 $action = (isset($_GET['action']) ? $_GET['action'] : '');
@@ -309,7 +309,7 @@ if (!empty($action)) {
       <div class="row">
         <!-- body_text //-->
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 configurationColumnLeft">
-          <table class="table table-hover">
+          <table class="table table-hover" role="listbox">
             <thead>
               <tr class="dataTableHeadingRow">
                 <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_LANGUAGE_NAME; ?></th>
@@ -329,9 +329,9 @@ if (!empty($action)) {
                     $lInfo = new objectInfo($language);
                   }
                   if (isset($lInfo) && is_object($lInfo) && ($language['languages_id'] == $lInfo->languages_id)) {
-                    echo '                  <tr id="defaultSelected" class="dataTableRowSelected" onclick="document.location.href=\'' . zen_href_link(FILENAME_LANGUAGES, 'page=' . $_GET['page'] . '&lID=' . $lInfo->languages_id . '&action=edit') . '\'" role="button">' . "\n";
+                    echo '                  <tr id="defaultSelected" class="dataTableRowSelected" onclick="document.location.href=\'' . zen_href_link(FILENAME_LANGUAGES, 'page=' . $_GET['page'] . '&lID=' . $lInfo->languages_id . '&action=edit') . '\'" role="option" aria-selected="true">' . "\n";
                   } else {
-                    echo '                  <tr class="dataTableRow" onclick="document.location.href=\'' . zen_href_link(FILENAME_LANGUAGES, 'page=' . $_GET['page'] . '&lID=' . $language['languages_id']) . '\'" role="button">' . "\n";
+                    echo '                  <tr class="dataTableRow" onclick="document.location.href=\'' . zen_href_link(FILENAME_LANGUAGES, 'page=' . $_GET['page'] . '&lID=' . $language['languages_id']) . '\'" role="option" aria-selected="false">' . "\n";
                   }
                   if (DEFAULT_LANGUAGE == $language['code']) {
                     echo '                <td class="dataTableContent"><strong>' . $language['name'] . ' (' . TEXT_DEFAULT . ')</strong></td>' . "\n";
@@ -342,9 +342,9 @@ if (!empty($action)) {
               <td class="dataTableContent"><?php echo $language['code']; ?></td>
               <td class="dataTableContent text-right"><?php
                   if (isset($lInfo) && is_object($lInfo) && ($language['languages_id'] == $lInfo->languages_id)) {
-                    echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif');
+                    echo zen_icon('caret-right', '', '2x', true);
                   } else {
-                    echo '<a href="' . zen_href_link(FILENAME_LANGUAGES, 'page=' . $_GET['page'] . '&lID=' . $language['languages_id']) . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>';
+                    echo '<a href="' . zen_href_link(FILENAME_LANGUAGES, 'page=' . $_GET['page'] . '&lID=' . $language['languages_id']) . '" data-toggle="tooltip" title="' . IMAGE_ICON_INFO . '">' . zen_icon('circle-info', '', '2x', true, true) . '</a>';
                   }
                   ?>&nbsp;</td>
               </tr>

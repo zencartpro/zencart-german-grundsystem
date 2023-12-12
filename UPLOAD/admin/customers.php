@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: customers.php 2023-11-11 15:00:51Z webchills $
+ * @version $Id: customers.php 2023-12-12 19:00:51Z webchills $
  */
 require 'includes/application_top.php';
 
@@ -1714,9 +1714,7 @@ if ($action === 'edit' || $action === 'update') {
                                 <td class="dataTableContent text-right">
 <?php
         if (isset($cInfo) && is_object($cInfo) && ($customer['customers_id'] === (int)$cInfo->customers_id)) {
-?>
-                                    <i class="fa-solid fa-caret-right fa-2x fa-fw txt-navy align-middle"></i>
-<?php
+                                    echo zen_icon('caret-right', '', '2x', true);
         } else {
 ?>
                                     <a href="<?php
@@ -1725,7 +1723,7 @@ if ($action === 'edit' || $action === 'update') {
                                                 zen_get_all_get_params(['cID']) . 'cID=' . $customer['customers_id'],
                                                 'NONSSL'
                                         ); ?>" title="<?php echo IMAGE_ICON_INFO; ?>" role="button">
-                                        <i class="fa-solid fa-circle-info fa-2x fa-fw txt-black align-middle"></i>
+                                        <?php echo zen_icon('circle-info', '', '2x', true, false) ?>
                                     </a>
 <?php
         }
@@ -1854,6 +1852,7 @@ if ($action === 'edit' || $action === 'update') {
             ];
             break;
         default:
+            $customer = new Customer($cInfo->customers_id);
             if (isset($_GET['search'])) {
                 $_GET['search'] = zen_output_string_protected($_GET['search']);
             }
@@ -2017,11 +2016,25 @@ if ($action === 'edit' || $action === 'update') {
                         $currencies->format($cInfo->gv_balance)
                 ];
 
+                $text = '<br>' .
+                    TEXT_INFO_NUMBER_OF_ORDERS . ' ' .
+                    $cInfo->number_of_orders;
+                if ($cInfo->number_of_orders > 0) {
+                    $text .= ' [ ';
+                    foreach ($customer->getOrderHistory(5) as $order) {
+                        $text .= '<a href="' . zen_href_link(
+                            FILENAME_ORDERS,
+                            'cID=' . $cInfo->customers_id . '&oID=' . $order['orders_id'] . '&action=edit',
+                            'NONSSL'
+                        ) . '" title="Purchased: ' . zen_date_short($order['date_purchased']) . ', status ' . $order['orders_status_name'] . '">' . $order['orders_id'] . '</a> ';
+                    }
+                    if ($cInfo->number_of_orders > 5) {
+                        $text .= ' ... ';
+                    }
+                    $text .= ' ]';
+                }
                 $contents[] = [
-                    'text' =>
-                        '<br>' .
-                        TEXT_INFO_NUMBER_OF_ORDERS . ' ' .
-                        $cInfo->number_of_orders
+                    'text' => $text
                 ];
 
                 if (!empty($cInfo->lifetime_value)) {

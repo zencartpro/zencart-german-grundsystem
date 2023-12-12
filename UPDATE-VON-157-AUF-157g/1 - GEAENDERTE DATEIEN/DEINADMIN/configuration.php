@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: configuration.php 2023-11-08 20:57:51Z webchills $
+ * @version $Id: configuration.php 2023-12-12 19:57:51Z webchills $
  */
 function getConfigLanguage($cKey){
      global $db;
@@ -209,9 +209,9 @@ if ($gID == 7) {
               <td class="dataTableContent text-right">
                   <?php
                   if ((isset($cInfo) && is_object($cInfo)) && ($item['configuration_id'] == $cInfo->configuration_id)) {
-                    echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', '');
+                    echo zen_icon('caret-right', '', '2x', true);
                   } else {
-                    echo '<a href="' . zen_href_link(FILENAME_CONFIGURATION, 'gID=' . $_GET['gID'] . '&cID=' . $item['configuration_id']) . '" id="link_' . $item['configuration_key'] . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>';
+                    echo '<a href="' . zen_href_link(FILENAME_CONFIGURATION, 'gID=' . $_GET['gID'] . '&cID=' . $item['configuration_id']) . '" id="link_' . $item['configuration_key'] . '">' . zen_icon('circle-info', IMAGE_ICON_INFO, '2x', true, false) . '</a>';
                   }
                   ?>&nbsp;</td>
               </tr>
@@ -250,7 +250,7 @@ if ($gID == 7) {
               }
               $contents[] = array('text' => TEXT_INFO_EDIT_INTRO);
               $contents[] = array('text' => '<br><strong>' . $cInfo->configuration_title . '</strong><br>' . $cInfo->configuration_description . '<br>' . $value_field);
-              $contents[] = array('align' => 'text-center', 'text' => '<br>' . '<button type="submit" name="submit' . $cInfo->configuration_key . '" class="btn btn-primary">' . IMAGE_UPDATE . '</button>' . '&nbsp;<a href="' . zen_href_link(FILENAME_CONFIGURATION, 'gID=' . $_GET['gID'] . '&cID=' . $cInfo->configuration_id) . '" class="btn btn-default" role="button">' . IMAGE_CANCEL . '</a>');
+              $contents[] = array('align' => 'text-center', 'text' => '<br>' . '<button type="submit" name="submit' . $cInfo->configuration_key . '" class="btn btn-primary"><i class="fa-solid fa-check"></i> ' . IMAGE_UPDATE . '</button>' . '&nbsp;<a href="' . zen_href_link(FILENAME_CONFIGURATION, 'gID=' . $_GET['gID'] . '&cID=' . $cInfo->configuration_id) . '" class="btn btn-default" role="button"><i class="fa-solid fa-xmark"></i> ' . IMAGE_CANCEL . '</a>');
               break;
             default:
               if (isset($cInfo) && is_object($cInfo)) {

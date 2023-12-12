@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: Customer.php 2023-10-29 16:06:39Z webchills $
+ * @version $Id: Customer.php 2023-12-12 19:06:39Z webchills $
  */
 
 class Customer extends base
@@ -574,14 +574,16 @@ class Customer extends base
                     )
                 AND s.language_id = :languagesID
               ORDER BY orders_id DESC";
- 
+
         $sql = $db->bindVars($sql, ':customersID', $this->customer_id, 'integer');
         $sql = $db->bindVars($sql, ':languagesID', $language, 'integer');
-        $history_split = new splitPageResults($sql, $max_number_to_return);
         if ($returned_history_split !== null) {
+            $history_split = new splitPageResults($sql, $max_number_to_return);
             $returned_history_split = $history_split;
+            $results = $db->Execute($history_split->sql_query);
+        } else {
+            $results = $db->Execute($sql, $max_number_to_return);
         }
-        $results = $db->Execute($history_split->sql_query);
 
         $ordersArray = [];
         foreach ($results as $result) {
@@ -609,7 +611,7 @@ class Customer extends base
                 'order_name' => $order_name,
                 'order_country' => $order_country,
                 'orders_status_name' => $result['orders_status_name'],
-                'order_total' => $currencies->format($result['order_total'], false, $result['currency'], $result['currency_value']),
+                'order_total' => $currencies->format($result['order_total'], true, $result['currency'], $result['currency_value']),
                 'order_total_raw' => $result['order_total'],
                 'currency' => $result['currency'],
                 'currency_value' => $result['currency_value'],

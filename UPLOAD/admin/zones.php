@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: zones.php 2023-10-29 16:11:51Z webchills $
+ * @version $Id: zones.php 2023-12-12 19:11:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -100,9 +100,9 @@ if (!empty($action)) {
               <td class="dataTableContent text-right">
                   <?php
                   if (isset($cInfo) && is_object($cInfo) && ($zone['zone_id'] == $cInfo->zone_id)) {
-                    echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif', '');
+                    echo zen_icon('caret-right', '', '2x', true);
                   } else {
-                    echo '<a href="' . zen_href_link(FILENAME_ZONES, 'zone_page=' . $_GET['zone_page'] . '&cID=' . $zone['zone_id']) . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>';
+                    echo '<a href="' . zen_href_link(FILENAME_ZONES, 'zone_page=' . $_GET['zone_page'] . '&cID=' . $zone['zone_id']) . '" data-toggle="tooltip" title="' . IMAGE_ICON_INFO . '" role="button">' . zen_icon('circle-info', '', '2x', true, false) . '</a>';
                   }
                   ?>
                 &nbsp;</td>

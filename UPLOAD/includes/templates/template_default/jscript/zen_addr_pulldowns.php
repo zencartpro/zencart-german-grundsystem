@@ -10,7 +10,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: zen_addr_pulldowns.php 2023-10-28 15:12:57Z webchills $
+ * @version $Id: zen_addr_pulldowns.php 2023-12-12 19:06:57Z webchills $
  */
 // -----
 // If the site does NOT require a 'State' entry in an address, nothing to be done here!
@@ -107,7 +107,7 @@ jQuery(document).ready(function() {
             }
         });
         if (countryHasZones) {
-            var split = countryZones.split('<option');
+            var split = countryZones.split('<option').filter(function(el) {return el.length != 0});
             var sorted = split.sort();
             countryZones = '<option selected="selected" value="0"><?php echo addslashes(PLEASE_SELECT); ?><' + '/option><option' + sorted.join('<option');
             jQuery('#state').hide();

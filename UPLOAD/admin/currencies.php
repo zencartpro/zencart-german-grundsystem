@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: currencies.php 2023-10-29 15:33:51Z webchills $
+ * @version $Id: currencies.php 2023-12-12 19:33:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -162,9 +162,9 @@ if (!empty($action)) {
               <td class="dataTableContent text-center"><?php echo zen_datetime_short($currency['last_updated']); ?></td>
               <td class="dataTableContent text-right"><?php
                   if (isset($cInfo) && is_object($cInfo) && ($currency['currencies_id'] == $cInfo->currencies_id)) {
-                    echo zen_image(DIR_WS_IMAGES . 'icon_arrow_right.gif');
+                    echo zen_icon('caret-right', '', '2x', true);
                   } else {
-                    echo '<a href="' . zen_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $currency['currencies_id']) . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>';
+                    echo '<a href="' . zen_href_link(FILENAME_CURRENCIES, 'page=' . $_GET['page'] . '&cID=' . $currency['currencies_id']) . '">' . zen_icon('circle-info', IMAGE_ICON_INFO, '2x', true) . '</a>';
                   }
                   ?>&nbsp;</td>
               </tr>
