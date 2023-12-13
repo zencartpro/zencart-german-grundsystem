@@ -562,6 +562,7 @@ includes\functions\extra_functions\rss_feed.php
 includes\functions\audience.php
 includes\functions\database.php
 includes\functions\featured.php
+includes\functions\functions_attributes.php
 includes\functions\functions_categories.php
 includes\functions\functions_customers.php
 includes\functions\functions_email.php
