@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: order_total.php 2023-10-25 20:09:16Z webchills $
+ * @version $Id: order_total.php 2023-12-18 19:35:16Z webchills $
  */
 /**
  * order-total class
@@ -67,10 +67,12 @@ class order_total extends base
         global $order;
         $order_total_array = [];
         if (is_array($this->modules)) {
+            $this->notify('NOTIFY_ORDER_TOTAL_PROCESS_STARTS', ['order_info' => $order->info]);
             foreach ($this->modules as $value) {
                 $class = substr($value, 0, strrpos($value, '.'));
                 if (!isset($GLOBALS[$class])) continue;
                 $GLOBALS[$class]->process();
+                $this->notify('NOTIFY_ORDER_TOTAL_PROCESS_NEXT', ['class' => $class, 'order_info' => $order->info, 'ot_output' => $GLOBALS[$class]->output]);
                 if (empty($GLOBALS[$class]->output)) {
                     continue;
                 }
@@ -191,9 +193,11 @@ class order_total extends base
         global $order, $credit_covers;
         if (MODULE_ORDER_TOTAL_INSTALLED) {
             $orderInfoSaved = $order->info;
+            $this->notify('NOTIFY_ORDER_TOTAL_PRE_CONFIRMATION_CHECK_STARTS', ['order_info' => $orderInfoSaved]);
             foreach ($this->modules as $value) {
                 $class = substr($value, 0, strrpos($value, '.'));
                 $GLOBALS[$class]->process();
+                $this->notify('NOTIFY_ORDER_TOTAL_PRE_CONFIRMATION_CHECK_NEXT', ['class' => $class, 'order_info' => $order->info, 'ot_output' => $GLOBALS[$class]->output]);
                 $GLOBALS[$class]->output = [];
             }
             $reCalculatedOrderTotal = $order->info['total'];
