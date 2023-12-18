@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: whos_online.php 2023-12-12 19:51:16Z webchills $
+ * @version $Id: whos_online.php 2023-12-18 09:12:16Z webchills $
  */
 // Default refresh interval (0=off).  NOTE: Using automated refresh may put you in breach of PCI Compliance
 $defaultRefreshInterval = 0;
@@ -56,7 +56,7 @@ $whos_online = $wo->retrieve($selectedView, (empty($_GET['inspect']) ? '' : $_GE
 if (!defined('WHOIS_SHOW_HOST')) define('WHOIS_SHOW_HOST', '1');
 
 $optURL = zen_href_link(FILENAME_WHOS_ONLINE, zen_get_all_get_params(['t', 'na', 'ns']));
-$listingURL = zen_href_link(FILENAME_WHOS_ONLINE, zen_get_all_get_params(['q', 't', 'na', 'ns']));
+$listingURL = FILENAME_WHOS_ONLINE . '.php?' . zen_get_all_get_params(['q', 't', 'na', 'ns']);
 ?>
 <!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
