@@ -3,11 +3,11 @@
  * Zen Cart German Specific
  * Constants used by the zen_update_orders_history function.
  * 
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: orders_status_updates_admin.php 2023-12-18 15:39:14Z webchills $
+ * @version $Id: orders_status_updates_admin.php 2023-12-18 16:31:14Z webchills $
  */
 define('OSH_EMAIL_SEPARATOR', '------------------------------------------------------');
 define('OSH_EMAIL_TEXT_SUBJECT', 'Bestellstatus aktualisiert');
