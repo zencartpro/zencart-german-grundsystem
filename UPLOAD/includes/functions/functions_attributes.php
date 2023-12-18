@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_attributes.php 2023-12-13 21:09:16Z webchills $
+ * @version $Id: functions_attributes.php 2023-12-18 20:02:16Z webchills $
  */
 /*
  * Query a 'known' (i.e. by the attributes_id) attribute's details,
@@ -513,7 +513,7 @@ function zen_copy_products_attributes($products_id_from, $products_id_to)
         // New attribute - insert it
         if ($add_attribute === true) {
             $db->Execute("INSERT INTO " . TABLE_PRODUCTS_ATTRIBUTES . "
-              (products_id, options_id, options_values_id, options_values_price, options_values_price_w, price_prefix, products_options_sort_order,
+              (products_id, options_id, options_values_id, options_values_price, price_prefix, products_options_sort_order,
               product_attribute_is_free, products_attributes_weight, products_attributes_weight_prefix, attributes_display_only,
               attributes_default, attributes_discounted, attributes_image, attributes_price_base_included,
               attributes_price_onetime, attributes_price_factor, attributes_price_factor_offset, attributes_price_factor_onetime,
