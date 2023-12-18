@@ -6,7 +6,7 @@ Die integrierten Module und 3rd Party Komponenten werden auf den Stand von Dezem
 Die Umstellung der Sprachdateien, die die amerikanische Version 1.5.8 bereits mitbringt, wird in einer für Herbst 2024 geplanten deutschen Zen Cart Version 1.5.8/2.0.0 mit vollständiger PHP 8.2 Unterstützung nachgezogen.
 Dadurch kann in 1.5.7g weiterhin mit den gewohnten Sprachdefinitionen gearbeitet werden. 
 
-1.5.7g behebt auch alle Fehler die seit Erscheinen von 1.5.7f aug Github gemeldet wurden
+1.5.7g behebt auch alle Fehler die seit Erscheinen von 1.5.7f auf Github gemeldet wurden.
 
 Aktualisierte Komponenten:
 - PHP Mailer Update auf 6.9.1
@@ -47,6 +47,7 @@ Changelog Zen Cart 1.5.7g deutsch gegenüber 1.5.7g deutsch
 ---------------------------------------------------------------------------------------------
 NEUE DATEIEN
 ---------------------------------------------------------------------------------------------
+admin\images\small_zen_logo.gif
 admin\includes\auto_loaders\config.log_manager.php
 admin\includes\auto_loaders\config.pulldowns.php
 admin\includes\classes\observers\auto.search_box.php
@@ -302,6 +303,7 @@ admin\includes\languages\english\users.php
 admin\includes\languages\english\whos_online.php
 admin\includes\languages\english\zones.php
 admin\includes\languages\german\extra_definitions\document_general.php
+admin\includes\languages\german\extra_definitions\orders_status_updates_admin.php
 admin\includes\languages\german\modules\newsletters\newsletter.php
 admin\includes\languages\german\modules\newsletters\product_notification.php
 admin\includes\languages\german\adresskorrektur.php
