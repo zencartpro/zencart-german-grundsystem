@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: category_product_listing.php 2023-12-12 19:17:16Z webchills $
+ * @version $Id: category_product_listing.php 2023-12-18 10:11:16Z webchills $
  */
 require 'includes/application_top.php';
 $languages = zen_get_languages();
@@ -986,7 +986,7 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
                     echo zen_icon('linked', IMAGE_ICON_LINKED, 'lg');
                     // TODO remove the following.. check alignment.consider align-middle on all zen_icon output.
                     ?>
-                    <i class="fa-solid fa-square fa-lg txt-linked" aria-hidden="true" title="<?php echo IMAGE_ICON_LINKED; ?>"></i>
+                   
                   <?php } else { ?>
                     <i class="fa-solid fa-square fa-lg txt-transparent"></i> <!-- blank icon to preserve vertical alignment with additional icons -->
                     <?php
