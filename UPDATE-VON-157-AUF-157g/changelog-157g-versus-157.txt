@@ -521,6 +521,7 @@ admin\tax_classes.php
 admin\tax_rates.php
 admin\template_select.php
 admin\whos_online.php
+admin\xsell.php
 admin\zones.php
 extras\plugins\riCjLoader\lib\BrowserDetection.php
 images\.htaccess
