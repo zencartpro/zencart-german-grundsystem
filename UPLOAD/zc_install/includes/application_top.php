@@ -5,11 +5,19 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: application_top.php 2023-10-31 16:43:53Z webchills $
+ * @version $Id: application_top.php 2023-12-20 10:43:53Z webchills $
  */
 
 @ini_set("arg_separator.output", "&");
 @set_time_limit(250);
+
+/*
+ * Check for a valid system locale, and override if invalid or set to 'C' which means 'unconfigured'
+ */
+$detected_locale = setlocale(LC_TIME, 0);
+if ($detected_locale === false || $detected_locale === 'C') {
+    setlocale(LC_TIME, ['de_DE', 'de_DE.UTF-8', 'de-DE', 'de']);
+}
 
 // define the project version
 require DIR_FS_INSTALL . 'includes/version.php';

@@ -10,7 +10,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: application_top.php 2023-10-30 14:58:24Z webchills $
+ * @version $Id: application_top.php 2023-12-20 10:43:24Z webchills $
  */
 
 use App\Models\PluginControl;
@@ -114,7 +114,16 @@ if (DEBUG_AUTOLOAD || (defined('STRICT_ERROR_REPORTING') && STRICT_ERROR_REPORTI
     error_reporting(0);
 }
 
-@date_default_timezone_set(date_default_timezone_get());
+date_default_timezone_set(date_default_timezone_get());
+
+/*
+ * Check for a valid system locale, and override if invalid or set to 'C' which means 'unconfigured'
+ * It will be overridden later via language-selection operations anyway, but a valid default must be set for zcDate class methods to work
+ */
+$detected_locale = setlocale(LC_TIME, 0);
+if ($detected_locale === false || $detected_locale === 'C') {
+    setlocale(LC_TIME, ['de_DE', 'de_DE.UTF-8', 'de-DE', 'de']);
+}
 require('includes/application_testing.php');
 /**
  * check for and include load application parameters

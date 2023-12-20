@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: application_bootstrap.php 2023-10-30 14:41:36Z webchills $
+ * @version $Id: application_bootstrap.php 2023-12-20 10:41:36Z webchills $
  */
 use App\Models\PluginControl;
 use App\Models\PluginControlVersion;
@@ -38,7 +38,16 @@ $_SERVER['SCRIPT_NAME'] = str_replace($serverScript, '', $_SERVER['SCRIPT_NAME']
 /*
  * Get time zone info from PHP config
 */
-@date_default_timezone_set(date_default_timezone_get());
+date_default_timezone_set(date_default_timezone_get());
+
+/*
+ * Check for a valid system locale, and override if invalid or set to 'C' which means 'unconfigured'
+ * It will be overridden later via language-selection operations anyway, but a valid default must be set for zcDate class methods to work
+ */
+$detected_locale = setlocale(LC_TIME, 0);
+if ($detected_locale === false || $detected_locale === 'C') {
+    setlocale(LC_TIME, ['de_DE', 'de_DE.UTF-8', 'de-DE', 'de']);
+}
 
 if (!defined('DIR_FS_ADMIN')) define('DIR_FS_ADMIN', preg_replace('#/includes/$#', '/', realpath(__DIR__ . '/../') . '/'));
 
