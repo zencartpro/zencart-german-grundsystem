@@ -523,6 +523,7 @@ admin\template_select.php
 admin\whos_online.php
 admin\xsell.php
 admin\zones.php
+ext\modules\payment\sofort\services\Communication.php
 extras\plugins\riCjLoader\lib\BrowserDetection.php
 images\.htaccess
 includes\auto_loaders\config.core.php
