@@ -967,4 +967,3 @@ includes\languages\german\icon_names.php
 includes\languages\german\other_images_names.php
 includes\modules\pages\advanced_search_result\jscript_onload_helper.php
 includes\modules\pages\advanced_search_result\on_load_focus.js
-includes\templates\responsive_classic\templates\tpl_advanced_search_result_default.php
