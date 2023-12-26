@@ -4,7 +4,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main.php 2023-11-18 16:09:29Z webchills $
+ * @version $Id: main.php 2023-12-26 14:09:29Z webchills $
  */
 
 return [
@@ -134,7 +134,7 @@ return [
 'TEXT_ERROR_PHP_VERSION_RECOMMENDED' => '<p>For maximum security and compatibility you should be using PHP 8.0.x or PHP %s . This installation can proceed, but note that your site will not be PCI Compliant when running out-of-date software.</p></p>',
 'TEXT_ERROR_PHP_VERSION_MIN' => 'PHP Version should be greater than or equal to %s',
 'TEXT_ERROR_PHP_VERSION_MAX' => 'PHP Version should be less than or equal to %s',
-'TEXT_ERROR_MYSQL_SUPPORT' => 'Problems with your MySQL (mysqli) support. Your server appears to be missing the mysqli extension for PHP, and without it we cannot connect to your database. Talk to your hosting company for assistance.',
+'TEXT_ERROR_MYSQL_SUPPORT' => 'Problems with your MySQL (mysqli) support. Your server appears to be missing the mysqli extension for PHP, which we use to connect to your database. Talk to your hosting company for assistance if you encounter database errors when proceeding.',
 'TEXT_ERROR_PDOMYSQL_SUPPORT' => 'Problems with your MySQL (pdo_mysql) support. Your server appears to be missing the pdo_mysql extension for PHP, and without it we cannot connect to your database. Talk to your hosting company for assistance.',
 'TEXT_ERROR_PDOSQLITE_SUPPORT' => 'Your server appears to be missing the pdo_sqlite extension for PHP which is used for small temporary storage and for application testing. Talk to your hosting company for assistance.',
 'TEXT_ERROR_PHPZIP_SUPPORT' => 'Your server appears to be missing the php-zip extension for PHP which is used for unpacking zip files when installing the Demo data Images. Talk to your hosting company for assistance.',
@@ -171,6 +171,7 @@ return [
 'TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE_NO_UPDATE' => 'An existing configure.php file was found. However, your database seems to be current. This suggests you are on a live site. Proceeding with Install will delete the current database contents! Are you sure you want to continue with Install?',
 'TEXT_ERROR_MULTIPLE_ADMINS_NONE_SELECTED' => 'Multiple Admin directories seem to exist. Either remove the duplicate admin directories and click Refresh or select the correct admin directory below and click Refresh.',
 'TEXT_ERROR_MULTIPLE_ADMINS_SELECTED' => 'Multiple Admin directories seem to exist. If the selected directory below is incorrect, please choose another and click Refresh.',
+'TEXT_ERROR_MYSQL_VERSION' => 'The server database does not meet the minimum version. MySQL: %s or MariaDB: %s',
 'TEXT_ERROR_SUCCESS_NO_ERRORS' => 'No errors were detected on your system. You may continue with the installation.',
 'TEXT_UPGRADE_INFO' => '%%TEXT_UPGRADE%%: will inspect your database and subsequently offer the steps required to upgrade to the current version (adding new fields/modifying existing fields). This is intended to be a non-destructive process, but as with all modifications you must ensure you have a verified backup of your database available before proceeding.',
 'TEXT_CLEAN_INSTALL_INFO' => '%%TEXT_CLEAN_INSTALL%%: will revert the database to a new state, deleting all data. Optionally, the demonstration data may be loaded as part of this process.',

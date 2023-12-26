@@ -2,7 +2,7 @@
 # Zen Cart German Version - www.zen-cart-pro.at
 # @copyright Copyright 2003-2023 Zen Cart Development Team
 # @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# @version $Id: systemChecks.yml 2023-10-21 14:37:53Z webchills $
+# @version $Id: systemChecks.yml 2023-12-26 14:16:53Z webchills $
 #
 
 systemChecks:
@@ -67,7 +67,7 @@ systemChecks:
       checkIsZCVersionCurrent:
   mysqlExt:
     runLevel: always
-    errorLevel: FAIL
+    errorLevel: WARN
     criticalError: true
     mainErrorText: <?php echo TEXT_ERROR_MYSQL_SUPPORT .PHP_EOL; ?>
     methods:

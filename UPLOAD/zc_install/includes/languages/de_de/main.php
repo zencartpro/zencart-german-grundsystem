@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main.php 2023-11-18 16:15:29Z webchills $
+ * @version $Id: main.php 2023-12-26 14:15:29Z webchills $
  */
 
 
@@ -72,6 +72,7 @@ return [
 'TEXT_LOADING_CHARSET_SPECIFIC' => 'Lade spezifische Daten für Ihr Character Set',
 'TEXT_LOADING_DEMO_DATA' => 'Lade Demodaten',
 'TEXT_LOADING_PLUGIN_DATA' => 'Lade SQL für vorinstallierte Plugins',
+'TEXT_LOADING_PLUGIN_UPGRADES' => 'Loading SQL for Plugin upgrades',
 'TEXT_COULD_NOT_UPDATE_BECAUSE_ANOTHER_VERSION_REQUIRED' => 'Konnte nicht auf version %s. aktualisieren. Wir haben festgestellt, dass Sie derzeit Version v%s verwenden. Sie müssen erst die Updates durchführen um auf Version %s kommen.',
 'TEXT_PAGE_HEADING_ADMIN_SETUP' => 'Admin Setup',
 'TEXT_ADMIN_SETUP_USER_SETTINGS' => 'Admin User Einstellungen',
@@ -86,9 +87,6 @@ return [
 'TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_DEFAULT' => 'Wir konnten Ihr Admin Verzeichnis nicht automatisch umbenennen. Sie müssen es selbst umbenennen bevor Sie in den Adminbereich einloggen können.',
 'TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_NOT_ADMIN_CHANGED' => 'Wir haben Ihr Adminverzeichnis nicht umbenannt, da es offensichtlich bereits umbenannt wurde.',
 'TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_CHANGED' => 'Wir haben das Verzeichnis admin automatisch umbenannt. Der neue Name Ihres admin Verzeichnisses steht unten, NOTIEREN SIE SICH DIESEN NAMEN!',
-'TEXT_ADMIN_SETUP_NEWSLETTER_SETTINGS' => 'Newsletter',
-'TEXT_ADMIN_SETUP_NEWSLETTER_EMAIL' => 'Newsletter Email: ',
-'TEXT_ADMIN_SETUP_NEWSLETTER_OPTIN' => 'Newsletter bestellen: ',
 'TEXT_PAGE_HEADING_COMPLETION' => 'Setup abgeschlossen',
 'TEXT_COMPLETION_HEADER_MAIN' => '',
 'TEXT_COMPLETION_INSTALL_COMPLETE' => 'Die Installation ist jetzt abgeschlossen',
@@ -129,7 +127,7 @@ return [
 'TEXT_NAVBAR_DATABASE_SETUP' => 'Datenbank Setup',
 'TEXT_NAVBAR_ADMIN_SETUP' => 'Admin Setup',
 'TEXT_NAVBAR_COMPLETION' => 'Fertig',
-'TEXT_NAVBAR_PAYMENT_PROVIDERS' => 'Zahlungsanbieter',
+
 'TEXT_INDEX_ALERTS' => 'Alerts',
 'TEXT_ERROR_PROBLEMS_WRITING_CONFIGUREPHP_FILES' => 'Die configure.php konnten nicht vorbereitet und gespeichert werden. IHRE INSTALLATION IST NICHT KORREKT VOLLSTÄNDIG ABGESCHLOSSEN!<br>Details dazu sollten Sie in den Logdateien im Ordner /logs/ finden.',
 'TEXT_ERROR_COULD_NOT_READ_CFGFILE_TEMPLATE' => 'Kann die Vorlage für die Konfigurationsdatei nicht lesen: %s. Stellen Sie sicher, dass diese Datei existiert und lesbar ist.',
@@ -140,13 +138,17 @@ return [
 'TEXT_ERROR_PHP_VERSION_RECOMMENDED' => '<p>Ihre verwendete PHP Version ist veraltet. Für maximale Sicherheit und Kompatibilität sollten Sie mindestens PHP 8.0.x oder PHP %s verwenden. Wir können mit der Installation trotzdem weitermachen, weisen aber darauf hin, dass Sie in Ihrem eigenen Interesse keine solch veraltete PHP Version verwenden sollten.</p>',
 'TEXT_ERROR_PHP_VERSION_MIN' => 'Die PHP Version sollte höher sein als %s',
 'TEXT_ERROR_PHP_VERSION_MAX' => 'Die PHP Version sollte niedriger sein als %s',
-'TEXT_ERROR_MYSQL_SUPPORT' => 'Probleme mit Ihrer MySQL (mysqli) Unterstützung',
+'TEXT_ERROR_MYSQL_SUPPORT' => 'Probleme mit Ihrer MySQL (mysqli) Unterstützung. Ihrem Server scheint die mysqli-Erweiterung für PHP zu fehlen, die wir für die Verbindung mit Ihrer Datenbank verwenden. Wenden Sie sich an Ihr Hosting-Unternehmen, wenn Sie beim Fortfahren Datenbankfehler feststellen.',
+'TEXT_ERROR_PDOMYSQL_SUPPORT' => 'Probleme mit Ihrer MySQL (pdo_mysql) Unterstützung. Ihrem Server scheint die pdo_mysql-Erweiterung für PHP zu fehlen, und ohne sie können wir keine Verbindung zu Ihrer Datenbank herstellen. Wenden Sie sich an Ihr Hosting-Unternehmen, um Hilfe zu erhalten.',
+'TEXT_ERROR_PDOSQLITE_SUPPORT' => 'Ihrem Server scheint die pdo_sqlite-Erweiterung für PHP zu fehlen, die für kleine Zwischenspeicher und zum Testen von Anwendungen verwendet wird. Wenden Sie sich an Ihr Hosting-Unternehmen, um Hilfe zu erhalten.',
+'TEXT_ERROR_PHPZIP_SUPPORT' => 'Ihrem Server scheint die php-zip-Erweiterung für PHP zu fehlen, die zum Entpacken von Zip-Dateien bei der Installation der Demo-Datenbilder verwendet wird. Wenden Sie sich an Ihr Hosting-Unternehmen, um Hilfe zu erhalten.',
 'TEXT_ERROR_LOG_FOLDER' => DIR_FS_LOGS . ' Verzeichnis ist nicht beschreibbar',
 'TEXT_ERROR_CACHE_FOLDER' => DIR_FS_SQL_CACHE . ' Verzeichnis ist nicht beschreibbar',
 'TEXT_ERROR_IMAGES_FOLDER' => '/images/ Verzeichnis ist nicht beschreibbar',
 'TEXT_ERROR_DEFINEPAGES_FOLDER' => '/includes/languages/german/html_includes/ Verzeichnis ist nicht beschreibbar',
 'TEXT_ERROR_MEDIA_FOLDER' => '/media/ Verzeichnis ist nicht beschreibbar',
 'TEXT_ERROR_PUB_FOLDER' => DIR_FS_DOWNLOAD_PUBLIC . ' Verzeichnis ist nicht beschreibbar',
+'TEXT_ERROR_NGINX_FOLDER' => '/zc_install/includes/nginx_conf/ folder is not writeable',
 'TEXT_ERROR_CONFIGURE_REQUIRES_UPDATE' => 'Ihre configure.php Datei stammt aus einer alten Zen Cart Version und muss aktualisiert werden, bevor wir weitermachen.',
 'TEXT_ERROR_HTACCESS_SUPPORT' => 'Unterstützung für ".htaccess" Dateien ist nicht aktiviert.<br>[ <i><b>HINWEIS:</b> Falls Sie Nginx verwenden, finden Sie am <u>ENDE</u> dieses Installationsassistenten Informationen zur Verwendung von .htaccess Dateien in Nginx.<i> ]',
 'TEXT_ERROR_SESSION_SUPPORT' => 'Probleme mit session Unterstützung',
@@ -157,6 +159,8 @@ return [
 'TEXT_ERROR_DB_CONNECTION_UPGRADE' => 'Probleme mit der Datenbankverbindung mit den in Ihrer configure.php eingetragenen Datenbankzugangsdaten',
 'TEXT_ERROR_SET_TIME_LIMIT' => 'max_execution_time setting deaktiviert',
 'TEXT_ERROR_GD' => 'GD Extension nicht aktiviert',
+'TEXT_ERROR_JSON' => 'JSON Extension not enabled. Required for parsing data in many parts of the application.',
+'TEXT_ERROR_FILEINFO' => 'Fileinfo extension not enabled. Used for calculating file sizes.',
 'TEXT_ERROR_ZLIB' => 'Zlib Extension nicht aktiviert',
 'TEXT_ERROR_OPENSSL' => 'Openssl Extension nicht aktiviert',
 'TEXT_ERROR_CURL' => 'Probleme mit der CURL Extension - PHP meldet, dass CURL nicht verfügbar ist.',
@@ -171,6 +175,7 @@ return [
 'TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE_NO_UPDATE' => 'Es wurde eine vorhandene Datei configure.php gefunden. Ihre Datenbank scheint jedoch aktuell zu sein. Dies deutet darauf hin, dass Sie sich auf einer Live-Site befinden. Wenn Sie mit der Installation fortfahren, wird der Inhalt der aktuellen Datenbank gelöscht! Sind Sie sicher, dass Sie mit der Installation fortfahren möchten?',
 'TEXT_ERROR_MULTIPLE_ADMINS_NONE_SELECTED' => 'Es scheinen mehrere Admin-Verzeichnisse zu existieren. Entfernen Sie entweder die doppelten Admin-Verzeichnisse und klicken Sie auf Aktualisieren oder wählen Sie unten das richtige Admin-Verzeichnis und klicken Sie auf Aktualisieren.',
 'TEXT_ERROR_MULTIPLE_ADMINS_SELECTED' => 'Es scheinen mehrere Admin-Verzeichnisse zu existieren. Wenn das unten ausgewählte Verzeichnis falsch ist, wählen Sie bitte ein anderes und klicken Sie auf Aktualisieren.',
+'TEXT_ERROR_MYSQL_VERSION' => 'Die Datenbank am Server hat nicht die erforderliche minimale Version. MySQL: %s oder MariaDB: %s',
 'TEXT_ERROR_SUCCESS_NO_ERRORS' => 'Auf Ihrem System wurden keine Fehler festgestellt. Sie können mit der Installation fortfahren.',
 'TEXT_UPGRADE_INFO' => '%%TEXT_UPGRADE%%: prüft Ihre Datenbank und bietet anschließend die erforderlichen Schritte für ein Upgrade auf die aktuelle Version an (Hinzufügen neuer Felder/Ändern bestehender Felder). Dies ist ein nicht-destruktiver Prozess, aber wie bei allen Änderungen müssen Sie sicherstellen, dass Sie ein verifiziertes Backup Ihrer Datenbank zur Verfügung haben, bevor Sie fortfahren.',
 'TEXT_CLEAN_INSTALL_INFO' => '%%TEXT_CLEAN_INSTALL%%: setzt die Datenbank in einen neuen Zustand zurück und löscht alle Daten. Optional können die Demodaten als Teil dieses Prozesses geladen werden.',
@@ -179,7 +184,7 @@ return [
 'TEXT_FORM_VALIDATION_CATALOG_HTTPS_URL' => 'Hier ist eine URL erforderlich, auch wenn Sie SSL vorübergehend noch nicht aktiviert haben. Versuchen Sie, Ihren normalen Domänennamen zu verwenden.',
 'TEXT_NAVBAR_INSTALLATION_INSTRUCTIONS' => 'Installationsanleitung',
 'TEXT_NAVBAR_FORUM_LINK' => 'Forum',
-'TEXT_NAVBAR_WIKI_LINK' => 'FAQ/Tutorials',
+
 'TEXT_HELP_TITLE_HTACCESSSUPPORT' => '.htaccess Unterstützung',
 'TEXT_HELP_CONTENT_HTACCESSSUPPORT' => 'Es scheint ein Problem mit der Unterstützung von ".htaccess"-Dateien zu geben.<br>Sensible Dateien und Ordner auf Ihrer Website, die normalerweise durch Sicherheitsregeln in den integrierten ".htaccess"-Dateien, die mit Zen Cart geliefert werden, blockiert werden sollten, sind derzeit zugänglich.<br><br>Mögliche Ursachen:
 <ul style="list-style-type:square"><li>Sie verwenden möglicherweise nicht Apache als Webserver ("htaccess"-Dateien sind nur für den Apache-Webserver verfügbar), oder,</li><li>Die Unterstützung für ".htaccess" ist deaktiviert oder falsch konfiguriert, oder,</li><li>Die ".htaccess"-Dateien, die mit Zen Cart geliefert werden, wurden nicht auf Ihre Website hochgeladen. <br><strong><i>Dateien, die mit "." beginnen, wie z.B. ".htaccess"-Dateien, werden in der Regel als "versteckte" Dateien behandelt, und Ihr FTP-Programm hat es möglicherweise versäumt, diese hochzuladen, wenn Sie die Anzeige und/oder Übertragung solcher versteckten Dateien in seinen Einstellungen deaktiviert haben.</i></strong></li></ul><br>
