@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: Customer.php 2023-12-12 19:06:39Z webchills $
+ * @version $Id: Customer.php 2023-12-26 22:06:39Z webchills $
  */
 
 class Customer extends base
@@ -225,6 +225,7 @@ class Customer extends base
 
         $sql =
             "SELECT c.*,
+                    CONCAT(customers_firstname,' ',LEFT(customers_lastname,1),'.') as name_with_initial,
                     cgc.amount as gv_balance,
                     customers_info_date_account_created AS date_account_created,
                     customers_info_date_account_last_modified AS date_account_last_modified,
