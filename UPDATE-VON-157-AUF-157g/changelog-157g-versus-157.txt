@@ -862,6 +862,7 @@ includes\templates\responsive_classic\templates\tpl_product_info_display.php
 includes\templates\responsive_classic\templates\tpl_product_music_info_display.php
 includes\templates\responsive_classic\templates\tpl_product_reviews_default.php
 includes\templates\responsive_classic\templates\tpl_product_reviews_info_default.php
+includes\templates\responsive_classic\templates\tpl_product_reviews_write_default.php
 includes\templates\responsive_classic\templates\tpl_shopping_cart_default.php
 includes\templates\responsive_classic\template_info.php
 includes\templates\template_default\common\html_header.php
