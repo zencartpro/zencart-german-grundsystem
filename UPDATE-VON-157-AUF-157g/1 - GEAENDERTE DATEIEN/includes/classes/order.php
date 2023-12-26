@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: order.php 2023-10-31 16:42:25Z webchills $
+ * @version $Id: order.php 2023-12-26 14:30:25Z webchills $
  */
 /**
  * order class
@@ -182,6 +182,7 @@ class order extends base
                      ORDER BY sort_order";
 
     $totals = $db->Execute($totals_query);
+        $precision = QUANTITY_DECIMALS > 0 ? (int)QUANTITY_DECIMALS : 0;
 
     while (!$totals->EOF) {
       if ($totals->fields['class'] == 'ot_coupon') {
@@ -293,7 +294,7 @@ class order extends base
 
     while (!$orders_products->EOF) {
       // convert quantity to proper decimals - account history
-      if (QUANTITY_DECIMALS != 0) {
+            if ($precision !== 0) {
         $fix_qty = $orders_products->fields['products_quantity'];
         switch (true) {
           case (false === strpos($fix_qty, '.')):
@@ -307,7 +308,7 @@ class order extends base
         $new_qty = $orders_products->fields['products_quantity'];
       }
 
-      $new_qty = round($new_qty, QUANTITY_DECIMALS);
+            $new_qty = round($new_qty, $precision);
 
       if ($new_qty == (int)$new_qty) {
         $new_qty = (int)$new_qty;
