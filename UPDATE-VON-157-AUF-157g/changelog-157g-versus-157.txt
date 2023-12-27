@@ -799,6 +799,7 @@ includes\modules\payment\authorizenet.php
 includes\modules\payment\authorizenet_aim.php
 includes\modules\payment\braintree_api.php
 includes\modules\payment\paypalwpp.php
+includes\modules\payment\sofort_su.php
 includes\modules\responsive_classic\product_listing.php
 includes\modules\shipping\freeoptions.php
 includes\modules\shipping\freeshipper.php
