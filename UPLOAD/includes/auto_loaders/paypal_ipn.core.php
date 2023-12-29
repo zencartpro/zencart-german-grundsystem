@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypal_ipn.core.php 2023-10-21 15:18:16Z webchills $
+ * @version $Id: paypal_ipn.core.php 2023-12-29 11:42:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
  die('Illegal Access');
@@ -37,6 +37,8 @@ if (!defined('IS_ADMIN_FLAG')) {
                                 'loadFile'=>'message_stack.php');
   $autoLoadConfig[0][] = array('autoType'=>'class',
                                 'loadFile'=>'breadcrumb.php');
+  $autoLoadConfig[0][] = array('autoType'=>'class',
+                               'loadFile'=>'Customer.php');
   $autoLoadConfig[0][] = ['autoType' => 'class', 'loadFile' => 'zcDate.php'];
 /**
  * Breakpoint 5.
