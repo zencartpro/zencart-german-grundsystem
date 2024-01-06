@@ -758,6 +758,7 @@ includes\modules\pages\document_general_info\jscript_main.php
 includes\modules\pages\document_general_info\main_template_vars.php
 includes\modules\pages\document_product_info\jscript_main.php
 includes\modules\pages\document_product_info\main_template_vars.php
+includes\modules\pages\featured_products\header_php.php
 includes\modules\pages\gv_faq\header_php.php
 includes\modules\pages\gv_redeem\header_php.php
 includes\modules\pages\login\header_php.php
