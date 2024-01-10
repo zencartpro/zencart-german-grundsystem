@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_general_shared.php 2023-11-25 20:13:14Z webchills $
+ * @version $Id: functions_general_shared.php 2024-01-10 08:20:14Z webchills $
  */ 
 function zen_get_zcversion()
 {
@@ -141,6 +141,30 @@ function zen_field_length(string $table_name, string $field_name): int
     global $db;
     $query = $db->MetaColumns($table_name);
     return (int)$query[strtoupper($field_name)]->max_length;
+}
+
+/**
+ * Generate HTML FORM attributes for size="foo" maxlength="bar" based on maximum size (default 50)
+ * example: zen_set_field_length(TABLE_CATEGORIES_DESCRIPTION, 'categories_name')
+ */
+function zen_set_field_length(string $table_name, string $field_name, $max = null, bool $override = false): string
+{
+    if (is_null($max)) {
+        $max = 70;
+        if (IS_ADMIN_FLAG === true) {
+            $max = 50;
+        }
+    }
+    $max = (int)$max;
+
+    $field_length = zen_field_length($table_name, $field_name);
+    $size = $field_length + 1;
+
+    if ($override !== true && $field_length > $max) {
+        $size = $max + 1;
+    }
+
+    return 'size="' . $size . '" maxlength="' . $field_length . '"';
 }
 
 
@@ -416,23 +440,23 @@ function zen_get_admin_name($id = null)
     return $result->RecordCount() ? $result->fields['admin_name'] : null;
 }
 
-// Compatibility 
+// Compatibility
 
 function zen_draw_products_pull_down($field_name, $parameters = '', $exclude = [], $show_id = false, $set_selected = 0, $show_model = false, $show_current_category = false, $order_by = '', $filter_by_option_name = null)
 {
    trigger_error('Call to deprecated function; please use new names', E_USER_DEPRECATED);
-   return zen_draw_pulldown_products($field_name, $parameters, $exclude, $show_id, $set_selected, $show_model, $show_current_category, $order_by, $filter_by_option_name); 
+   return zen_draw_pulldown_products($field_name, $parameters, $exclude, $show_id, $set_selected, $show_model, $show_current_category, $order_by, $filter_by_option_name);
 }
 
 function zen_draw_products_pull_down_attributes($field_name, $parameters = '', $exclude = [], $order_by = 'name', $filter_by_option_name = null)
 {
    trigger_error('Call to deprecated function; please use new names', E_USER_DEPRECATED);
-   return zen_draw_pulldown_products_having_attributes($field_name, $parameters, $exclude, $order_by, $filter_by_option_name); 
+   return zen_draw_pulldown_products_having_attributes($field_name, $parameters, $exclude, $order_by, $filter_by_option_name);
 }
- 
+
 function zen_draw_products_pull_down_categories($field_name, $parameters = '', $exclude = [], $show_id = false, $show_parent = false) {
    trigger_error('Call to deprecated function; please use new names', E_USER_DEPRECATED);
-   return zen_draw_pulldown_categories_having_products($field_name, $parameters, $exclude, $show_id, $show_parent); 
+   return zen_draw_pulldown_categories_having_products($field_name, $parameters, $exclude, $show_id, $show_parent);
 }
 
 function zen_draw_products_pull_down_categories_attributes($field_name, $parameters = '', $exclude = [], $show_full_path = false, $filter_by_option_name = null){
@@ -440,9 +464,9 @@ function zen_draw_products_pull_down_categories_attributes($field_name, $paramet
    return zen_draw_pulldown_categories_having_products_with_attributes($field_name, $parameters, $exclude, $show_full_path, $filter_by_option_name);
 }
 
-function zen_get_orders_status() 
+function zen_get_orders_status()
 {
    trigger_error('Call to deprecated function; please use new names', E_USER_DEPRECATED);
-   return zen_get_orders_status_pulldown_array(); 
+   return zen_get_orders_status_pulldown_array();
 }
 

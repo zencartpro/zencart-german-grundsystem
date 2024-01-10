@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: general.php 2023-12-12 19:13:33Z webchills $
+ * @version $Id: general.php 2024-01-10 08:18:33Z webchills $
  */
 
 
@@ -528,24 +528,6 @@ function zen_draw_order_status_dropdown($field_name, $default_value, $first_sele
     return zen_draw_pull_down_menu($field_name, $statuses_array, $default_value, $parms);
 }
 
-
-/**
- * Generate form attributes for size="foo" maxlength="bar" based on maximum size (default 50)
- * example: zen_set_field_length(TABLE_CATEGORIES_DESCRIPTION, 'categories_name')
- */
-function zen_set_field_length(string $table_name, string $field_name, $max = 50, bool $override = false): string
-{
-    $max = (int)$max;
-
-    $field_length = zen_field_length($table_name, $field_name);
-    $size = $field_length + 1;
-
-    if ($override !== true && $field_length > $max) {
-        $size = $max + 1;
-    }
-
-    return 'size="' . $size . '" maxlength="' . $field_length . '"';
-}
 
 /**
  * @TODO - move to language class
