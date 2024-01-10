@@ -6,11 +6,11 @@
  * Displays listing of Featured Products
  *
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_products_featured_listing.php 2023-10-26 18:13:16Z webchills $
+ * @version $Id: tpl_modules_products_featured_listing.php 2024-01-10 07:36:16Z webchills $
  */
 ?>
 <table class="products-listing productsFeaturedListing">
@@ -104,7 +104,7 @@
         $link = '<a href="' . zen_href_link(zen_get_info_page($featured_products->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($featured_products->fields['master_categories_id']) . '&products_id=' . $featured_products->fields['products_id']) . '" title="' . $featured_products->fields['products_id'] . '">' . MORE_INFO_TEXT . '</a>';
         $the_button = $link;
         $products_link = '<a href="' . zen_href_link(zen_get_info_page($featured_products->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($featured_products->fields['master_categories_id']) . '&products_id=' . $featured_products->fields['products_id']) . '" title="' . $featured_products->fields['products_id'] . '">' . MORE_INFO_TEXT . '</a>';
-        $display_products_button = zen_get_buy_now_button($featured_products->fields['products_id'], $the_button, $products_link) . '<br>' . zen_get_products_quantity_min_units_display($featured_products->fields['products_id']) . str_repeat('<br class="clearBoth">', substr(PRODUCT_FEATURED_BUY_NOW, 3, 1));
+        $display_products_button = zen_get_buy_now_button($featured_products->fields['products_id'], $the_button, $products_link) . '<br>' . zen_get_products_quantity_min_units_display($featured_products->fields['products_id']) . '<br class="clearBoth">';
       }
 
       if (PRODUCT_FEATURED_LIST_DESCRIPTION > '0') {

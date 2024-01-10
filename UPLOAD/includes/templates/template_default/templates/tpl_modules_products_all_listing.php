@@ -6,11 +6,11 @@
  * Displays listing of All Products
  *
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_products_all_listing.php 2023-10-26 16:49:16Z webchills $
+ * @version $Id: tpl_modules_products_all_listing.php 2024-01-10 07:35:16Z webchills $
  */
 ?>
 <table class="products-listing productsAllListing">
@@ -64,7 +64,7 @@
       }
 
       if (PRODUCT_ALL_LIST_DATE_ADDED != '0' and zen_get_show_product_switch($products_all->fields['products_id'], 'date_added')) {
-        $display_products_date_added = TEXT_DATE_ADDED . ' ' . zen_date_long($products_all->fields['products_date_added']) . str_repeat('<br class="clearBoth">', substr(PRODUCT_ALL_LIST_DATE_ADDED, 3, 1));
+        $display_products_date_added = TEXT_DATE_ADDED_LISTING . ' ' . zen_date_long($products_all->fields['products_date_added']) . str_repeat('<br class="clearBoth">', substr(PRODUCT_ALL_LIST_DATE_ADDED, 3, 1));
       } else {
         $display_products_date_added = '';
       }
@@ -103,7 +103,7 @@
         $link = '<a href="' . zen_href_link(zen_get_info_page($products_all->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_all->fields['master_categories_id']) . '&products_id=' . $products_all->fields['products_id']) . '">' . MORE_INFO_TEXT . '</a>';
         $the_button = $link;
         $products_link = '<a href="' . zen_href_link(zen_get_info_page($products_all->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_all->fields['master_categories_id']) . '&products_id=' . $products_all->fields['products_id']) . '" title="' . $products_all->fields['products_id'] . '">' . MORE_INFO_TEXT . '</a>';
-        $display_products_button = zen_get_buy_now_button($products_all->fields['products_id'], $the_button, $products_link) . '<br>' . zen_get_products_quantity_min_units_display($products_all->fields['products_id']) . str_repeat('<br class="clearBoth">', substr(PRODUCT_ALL_BUY_NOW, 3, 1));
+        $display_products_button = zen_get_buy_now_button($products_all->fields['products_id'], $the_button, $products_link) . '<br>' . zen_get_products_quantity_min_units_display($products_all->fields['products_id']) . '<br class="clearBoth">';
       }
 
       if (PRODUCT_ALL_LIST_DESCRIPTION > '0') {
