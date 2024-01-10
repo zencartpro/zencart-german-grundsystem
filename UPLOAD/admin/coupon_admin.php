@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: coupon_admin.php 2023-12-12 19:04:51Z webchills $
+ * @version $Id: coupon_admin.php 2024-01-10 07:41:51Z webchills $
  */
 require 'includes/application_top.php';
 require DIR_WS_CLASSES . 'currencies.php';
@@ -333,9 +333,9 @@ switch ($_GET['action']) {
     foreach ($new_coupon_descriptions as $new_coupon_description) {
       $sql_mdata_array = [
         'coupon_id' => (int)$cid,
-        'language_id' => (int)$new_coupon_descriptions->fields['language_id'],
-        'coupon_name' => zen_db_prepare_input('COPY: ' . $new_coupon_descriptions->fields['coupon_name']),
-        'coupon_description' => zen_db_prepare_input($new_coupon_descriptions->fields['coupon_description'])
+        'language_id' => (int)$new_coupon_description['language_id'],
+        'coupon_name' => zen_db_prepare_input('COPY: ' . $new_coupon_description['coupon_name']),
+        'coupon_description' => zen_db_prepare_input($new_coupon_description['coupon_description'])
       ];
       zen_db_perform(TABLE_COUPONS_DESCRIPTION, $sql_mdata_array);
     }
@@ -349,9 +349,9 @@ switch ($_GET['action']) {
     foreach ($copy_coupon_restrictions as $copy_coupon_restriction) {
       $sql_rdata_array = [
         'coupon_id' => (int)$cid,
-        'product_id' => (int)$copy_coupon_restrictions->fields['product_id'],
-        'category_id' => zen_db_prepare_input($copy_coupon_restrictions->fields['category_id']),
-        'coupon_restrict' => zen_db_prepare_input($copy_coupon_restrictions->fields['coupon_restrict'])
+        'product_id' => (int)$copy_coupon_restriction['product_id'],
+        'category_id' => zen_db_prepare_input($copy_coupon_restriction['category_id']),
+        'coupon_restrict' => zen_db_prepare_input($copy_coupon_restriction['coupon_restrict'])
       ];
       zen_db_perform(TABLE_COUPON_RESTRICT, $sql_rdata_array);
     }
