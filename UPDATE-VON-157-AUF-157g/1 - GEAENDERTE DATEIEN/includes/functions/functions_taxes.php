@@ -3,11 +3,11 @@
  * functions_taxes
  *
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_taxes.php 2023-12-01 10:28:16Z webchills $
+ * @version $Id: functions_taxes.php 2024-01-12 14:28:16Z webchills $
  */
 
 /**
@@ -402,9 +402,10 @@ function zen_get_tax_locations($store_country = -1, $store_zone = -1)
                                       AND ab.address_book_id = " . (int)$_SESSION['sendto'];
                 $tax_address_result = $db->Execute($tax_address_query);
             }
+            break;
     }
-    $tax_address['zone_id'] = $tax_address_result->fields['entry_zone_id'];
-    $tax_address['country_id'] = $tax_address_result->fields['entry_country_id'];
+    $tax_address['zone_id'] = $tax_address_result->fields['entry_zone_id'] ?? '0';
+    $tax_address['country_id'] = $tax_address_result->fields['entry_country_id'] ?? '0';
     return $tax_address;
 }
 
