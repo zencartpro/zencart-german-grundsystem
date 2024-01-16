@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: configuration.php 2023-12-12 19:57:51Z webchills $
+ * @version $Id: configuration.php 2024-01-16 12:40:51Z webchills $
  */
 function getConfigLanguage($cKey){
      global $db;
@@ -244,7 +244,7 @@ if ($gID == 7) {
                 $value_field = zen_draw_input_field('configuration_value', htmlspecialchars($cInfo->configuration_value, ENT_COMPAT, CHARSET, TRUE), 'size="60" class="cfgInput form-control" autofocus');
               }
 
-              $contents = array('form' => zen_draw_form('configuration', FILENAME_CONFIGURATION, 'gID=' . $_GET['gID'] . '&cID=' . $cInfo->configuration_id . '&action=save', 'post', 'class="from-horizontal"'));
+              $contents = array('form' => zen_draw_form('configuration', FILENAME_CONFIGURATION, 'gID=' . $_GET['gID'] . '&cID=' . $cInfo->configuration_id . '&action=save', 'post', 'class="form-horizontal"'));
               if (ADMIN_CONFIGURATION_KEY_ON == 1) {
                 $contents[] = array('text' => '<strong>Key: ' . $cInfo->configuration_key . '</strong><br>');
               }
