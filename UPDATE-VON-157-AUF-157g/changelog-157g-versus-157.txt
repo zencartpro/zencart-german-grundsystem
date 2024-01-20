@@ -466,6 +466,7 @@ admin\downloads_manager.php
 admin\dsgvo_kundenexport.php
 admin\ezpages.php
 admin\featured.php
+admin\finddupmodels.php
 admin\geo_zones.php
 admin\german_help.php
 admin\group_pricing.php
