@@ -1,16 +1,16 @@
 <?php
 /**
  * Page Template
- * Zen Cart German Specific (zencartpro adaptations)
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  * Loaded automatically by index.php?main_page=checkout_confirmation.
  * Displays final checkout details, cart, payment and shipping info details.
  *
- * @package templateSystem
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ 
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_ajax_checkout_confirmation_default.php 2022-04-24 14:56:16Z webchills $
+ * @version $Id: tpl_ajax_checkout_confirmation_default.php 2024-01-20 10:56:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="checkoutConfirmDefault">
@@ -144,7 +144,7 @@
           	<br><?php echo $order->products[$i]['merkmale']; ?>
        
 
-          <?php  echo $stock_check[$i]; ?>
+          <?php echo (!empty($stock_check[$i])) ? $stock_check[$i] : ''; ?>
 
 <?php // if there are attributes, loop thru them and display one per line
     if (isset($order->products[$i]['attributes']) && sizeof($order->products[$i]['attributes']) > 0 ) {

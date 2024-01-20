@@ -848,6 +848,7 @@ includes\templates\responsive_classic\jscript\jquery.min.js
 includes\templates\responsive_classic\jscript\jquery.min.map
 includes\templates\responsive_classic\jscript\jscript_responsive_framework.php
 includes\templates\responsive_classic\templates\super_data_head.php
+includes\templates\responsive_classic\templates\tpl_ajax_checkout_confirmation_default.php
 includes\templates\responsive_classic\templates\tpl_checkout_payment_address_default.php
 includes\templates\responsive_classic\templates\tpl_checkout_shipping_address_default.php
 includes\templates\responsive_classic\templates\tpl_document_general_info_display.php
