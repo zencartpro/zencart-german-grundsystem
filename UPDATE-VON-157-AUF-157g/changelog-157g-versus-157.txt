@@ -479,6 +479,7 @@ admin\image_handler.php
 admin\index.php
 admin\index_setup_wizard.php
 admin\invoice.php
+admin\it_recht_kanzlei.php
 admin\languages.php
 admin\layout_controller.php
 admin\login.php
