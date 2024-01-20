@@ -1,11 +1,11 @@
 <?php
 /** 
  * Zen Cart German Specific
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: dsgvo_kundenxport.php 2023-11-03 16:24:51Z webchills $
+ * @version $Id: dsgvo_kundenxport.php 2024-01-20 18:24:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -247,15 +247,10 @@ while (!$attribute_query->EOF) {
 <!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
   <head>
-    <meta charset="<?php echo CHARSET; ?>">
-    <title><?php echo TITLE; ?></title>
-    <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-    <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-    <script src="includes/menu.js"></script>
-    <script src="includes/general.js"></script>
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
 
 </head>
-<body onLoad="init()">
+<body>
     <!-- header //-->
     <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
     <!-- header_eof //-->
@@ -533,8 +528,7 @@ while (!$attribute_query->EOF) {
     <!-- body_eof //-->
 
     <!-- footer //-->
-    <?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
-    <!-- footer_eof //-->
-  </body>
+<?php require DIR_WS_INCLUDES . 'footer.php'; ?>
+</body>
 </html>
-<?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>
+<?php require DIR_WS_INCLUDES . 'application_bottom.php'; ?>
