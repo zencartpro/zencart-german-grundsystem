@@ -2,11 +2,11 @@
 /**
  * ot_coupon order-total module
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_coupon.php 2023-10-26 19:33:16Z webchills $
+ * @version $Id: ot_coupon.php 2024-01-20 10:33:16Z webchills $
  */
 /*
  * NOTE: Notifier NOTIFY_OT_COUPON_CALCS_FINISHED formerly had its first parameter return an array with a 'coupon' entry which was a queryFactoryResult. It is now just an array of the ->fields values
@@ -133,6 +133,9 @@ class ot_coupon extends base
     function process()
     {
         global $order, $currencies;
+        if (empty($_SESSION['cc_id'])) {
+            return;
+        }
         $od_amount = ['tax' => 0, 'total' => 0];
 
         $order_total = $this->get_order_total(isset($_SESSION['cc_id']) ? $_SESSION['cc_id'] : '');
@@ -209,6 +212,11 @@ class ot_coupon extends base
     function credit_selection()
     {
         global $discount_coupon;
+        $valid = true;
+        $this->notify('NOTIFY_OT_COUPON_CREDIT_SELECTION', true, $valid);
+        if (!$valid) {
+            return;
+        }
 
         $couponLink = '';
         if (!empty($discount_coupon->fields['coupon_code']) && !empty($_SESSION['cc_id'])) {
@@ -508,7 +516,7 @@ class ot_coupon extends base
                     $products = $_SESSION['cart']->get_products();
                     $coupon_product_count = 0;
                     foreach ($products as $product) {
-                        if (is_product_valid($product['id'], $coupon_details['coupon_id'])) {
+                        if (CouponValidation::is_product_valid($product['id'], $coupon_details['coupon_id'])) {
                             $coupon_product_count += $_SESSION['cart']->get_quantity($product['id']);
                         }
                     }
@@ -637,7 +645,7 @@ class ot_coupon extends base
         $i = 0;
         foreach ($products as $product) {
             $i++;
-            $is_product_valid = (is_product_valid($product['id'], $coupon_id) && is_coupon_valid_for_sales($product['id'], $coupon_id));
+            $is_product_valid = (CouponValidation::is_product_valid($product['id'], $coupon_id) && CouponValidation::is_coupon_valid_for_sales($product['id'], $coupon_id));
 
             $this->notify('NOTIFY_OT_COUPON_PRODUCT_VALIDITY', ['is_product_valid' => $is_product_valid, 'i' => $i]);
 
@@ -648,10 +656,7 @@ class ot_coupon extends base
 
                 $orderTotal -= $product['final_price'] * $product['quantity'];
 
-                if ($this->include_tax == 'true') {
-                    $orderTotal -= $productsTaxAmount;
-                }
-                if (DISPLAY_PRICE_WITH_TAX == 'true') {
+                if ($this->include_tax === 'true' || DISPLAY_PRICE_WITH_TAX === 'true') {
                     $orderTotal -= $productsTaxAmount;
                 }
                 $orderTotalTax -= $productsTaxAmount;
@@ -815,7 +820,7 @@ class ot_coupon extends base
 
         $found_valid = false;
         foreach ($products as $product) {
-            if (is_product_valid($product['id'], $coupon_id) && is_coupon_valid_for_sales($product['id'], $coupon_id)) {
+            if (CouponValidation::is_product_valid($product['id'], $coupon_id) && CouponValidation::is_coupon_valid_for_sales($product['id'], $coupon_id)) {
                 $found_valid = true;
                 break;
             }
