@@ -511,6 +511,7 @@ admin\salemaker.php
 admin\salemaker_info.php
 admin\salemaker_popup.php
 admin\server_info.php
+admin\shopvote.php
 admin\specials.php
 admin\sqlpatch.php
 admin\stats_customers_referrals.php
