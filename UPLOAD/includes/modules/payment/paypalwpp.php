@@ -3,11 +3,11 @@
  * paypalwpp.php payment module class for PayPal Express Checkout payment method
  * Zen Cart German Specific (zencartpro adaptations / 158 code in 157)
  *
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypalwpp.php 2023-10-26 19:04:14Z webchills $
+ * @version $Id: paypalwpp.php 2024-01-21 11:36:14Z webchills $
  */
 /**
  * load the communications layer code
@@ -123,9 +123,9 @@ class paypalwpp extends base {
   protected $reasoncode;
   protected $numitems;
   protected $amt;
-  public $auth_code; // used in order class 
+  public $auth_code; // used in order class
   protected $responsedata;
-  public $transaction_id; // used in order class 
+  public $transaction_id; // used in order class
   public $ot_merge;     //-Public, since might be referenced by an observer.
   protected $requestPrefix;
   protected $infoPrefix;
@@ -212,8 +212,6 @@ class paypalwpp extends base {
     $this->new_acct_notify = MODULE_PAYMENT_PAYPALWPP_NEW_ACCT_NOTIFY;
     $this->zone = (int)MODULE_PAYMENT_PAYPALWPP_ZONE;
     if (is_object($order)) $this->update_status();
-
-    if (PROJECT_VERSION_MAJOR != '1' && substr(PROJECT_VERSION_MINOR, 0, 3) != '5.6') $this->enabled = false;
 
     // if operating in markflow mode, start EC process when submitting order
     if (!$this->in_special_checkout()) {
@@ -445,6 +443,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
 
       // in case of funding error, set the redirect URL which is used by the _errorHandler
       $this->ec_redirect_url = $this->getPayPalLoginServer() . "?cmd=_express-checkout&token=" . $_SESSION['paypal_ec_token'] . "&useraction=continue";
+
       $response = $doPayPal->DoExpressCheckoutPayment($_SESSION['paypal_ec_token'],
                                                       $_SESSION['paypal_ec_payer_id'],
                                                       $options);
@@ -461,6 +460,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
       // SUCCESS
       $this->payment_type = MODULE_PAYMENT_PAYPALWPP_EC_TEXT_TYPE;
       $this->responsedata = $response;
+
       // -----
       // Note that variable names are 'prefixed', based on the NVP/PAYFLOW mode currently in use.  Those
       // prefixes are set by the paypal_init method.
@@ -539,12 +539,12 @@ if (false) { // disabled until clarification is received about coupons in PayPal
                           'address_city' => $_SESSION['paypal_ec_payer_info']['ship_city'],
                           'address_state' => $_SESSION['paypal_ec_payer_info']['ship_state'],
                           'address_zip' => $_SESSION['paypal_ec_payer_info']['ship_postal_code'],
-                          'address_country' => $_SESSION['paypal_ec_payer_info']['ship_country_code'],
+                          'address_country' => $_SESSION['paypal_ec_payer_info']['ship_country_name'],
                           'address_status' => $_SESSION['paypal_ec_payer_info']['ship_address_status'],
                           'payer_email' => $_SESSION['paypal_ec_payer_info']['payer_email'],
                           'payer_id' => $_SESSION['paypal_ec_payer_id'],
                           'payer_status' => $_SESSION['paypal_ec_payer_info']['payer_status'],
-                          'payment_date' => trim(preg_replace('/[^0-9-:]/', ' ', $this->payment_time)),
+                          'payment_date' => convertToLocalTimeZone(trim(preg_replace('/[^0-9-:]/', ' ', $this->payment_time))),
                           'business' => '',
                           'receiver_email' => (substr(MODULE_PAYMENT_PAYPALWPP_MODULE_MODE,0,7) == 'Payflow' ? MODULE_PAYMENT_PAYPALWPP_PFVENDOR : str_replace('_api1', '', MODULE_PAYMENT_PAYPALWPP_APIUSERNAME)),
                           'receiver_id' => '',
@@ -592,11 +592,9 @@ if (false) { // disabled until clarification is received about coupons in PayPal
             ORDER BY paypal_ipn_id DESC LIMIT 1";
     $sql = $db->bindVars($sql, ':orderID', $zf_order_id, 'integer');
     $ipn = $db->Execute($sql);
-    if ($ipn->EOF) {
-      $ipn = new stdClass;
-      $ipn->fields = array();
+    if ($ipn->EOF && file_exists(DIR_FS_CATALOG . DIR_WS_MODULES . 'payment/paypal/paypalwpp_admin_notification.php')) {
+        require(DIR_FS_CATALOG . DIR_WS_MODULES . 'payment/paypal/paypalwpp_admin_notification.php');
     }
-    if (file_exists(DIR_FS_CATALOG . DIR_WS_MODULES . 'payment/paypal/paypalwpp_admin_notification.php')) require(DIR_FS_CATALOG . DIR_WS_MODULES . 'payment/paypal/paypalwpp_admin_notification.php');
     return $output;
   }
   /**
@@ -2868,7 +2866,8 @@ if (false) { // disabled until clarification is received about coupons in PayPal
                     zen_redirect(zen_href_link(FILENAME_SHOPPING_CART, '', 'NONSSL'));
                 }
             }
-          }
+        }
+
         // -----
         // If the cart contents are unchanged, i.e. no saved products were added via the
         // cart's restore_contents method, save the cart's cartID value (a random number
