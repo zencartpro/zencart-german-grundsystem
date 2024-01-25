@@ -2,11 +2,11 @@
 /**
  * Address functions
  * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_addresses.php 2023-11-13 11:43:16Z webchills $
+ * @version $Id: functions_addresses.php 2024-01-25 22:48:16Z webchills $
  */
 
 /**
@@ -108,7 +108,7 @@ function zen_get_countries(int $country_id = 0, bool $with_iso_codes = false, bo
 function zen_get_country_name($country_id, $activeOnly = true)
 {
     $country_array = zen_get_countries((int)$country_id, false, $activeOnly);
-    return $country_array['countries_name'];
+    return $country_array['countries_name'] ?? '';
 }
 
 
