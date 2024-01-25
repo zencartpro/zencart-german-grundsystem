@@ -713,6 +713,7 @@ includes\languages\german.php
 includes\modules\order_total\ot_cod_fee.php
 includes\modules\order_total\ot_coupon.php
 includes\modules\order_total\ot_group_pricing.php
+includes\modules\order_total\ot_loworderfee.php
 includes\modules\order_total\ot_shipping.php
 includes\modules\order_total\ot_tax.php
 includes\modules\pages\account\header_php.php
