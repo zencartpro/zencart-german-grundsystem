@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: categories.php 2023-10-23 19:26:51Z webchills $
+ * @version $Id: categories.php 2024-02-01 11:52:51Z webchills $
  */
 require('includes/application_top.php');
 
@@ -115,8 +115,7 @@ if (!empty($action)) {
                 WHERE categories_id = '" . (int)$categories_id . "'";
 
         $parent_cat = $db->Execute($sql);
-        // @TODO - should this be checking against TOPMOST_CATEGORY_PARENT_ID?
-        if ($parent_cat->fields['parent_id'] != '0') {
+        if ($parent_cat->fields['parent_id'] != TOPMOST_CATEGORY_PARENT_ID) {
           $sql = "SELECT *
                   FROM " . TABLE_PRODUCT_TYPES_TO_CATEGORY . "
                   WHERE category_id = '" . $parent_cat->fields['parent_id'] . "'";
