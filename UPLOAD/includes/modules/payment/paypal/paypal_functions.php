@@ -3,12 +3,12 @@
  * functions used by payment module class for Paypal IPN payment method
  *
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright 2004 DevosC.com
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypal_functions.php 2023-11-25 19:56:16Z webchills $
+ * @version $Id: paypal_functions.php 2024-02-01 11:39:16Z webchills $
  */
 
 // Functions for paypal processing
@@ -55,7 +55,7 @@ if (!function_exists('convertToLocalTimeZone')) {
 
   function ipn_get_stored_session($session_stuff) {
     global $db;
-    if (!is_array($session_stuff)) {
+    if (!is_array($session_stuff) || !isset($session_stuff[1])) {
       ipn_debug_email('IPN FATAL ERROR :: Could not find Zen Cart custom variable in POST, cannot validate or re-create session as a transaction initiated from this store. Might be from another source such as eBay or another PayPal store using this PayPal account.');
       return false;
     }
