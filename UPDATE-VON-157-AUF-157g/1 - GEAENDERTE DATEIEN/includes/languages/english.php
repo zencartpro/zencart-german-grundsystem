@@ -2,11 +2,11 @@
 /**
 * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
 * 
-* @copyright Copyright 2003-2023 Zen Cart Development Team
+* @copyright Copyright 2003-2024 Zen Cart Development Team
 * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: english.php 2023-11-18 15:18:32Z webchills $
+* @version $Id: english.php 2024-02-01 11:16:32Z webchills $
 */
 // -----
 // Since the languages are now loaded via classes, the $locales definition
@@ -441,7 +441,7 @@ define('TEXT_HEADER_DISCOUNTS_OFF','Qty Discounts Unavailable ...');
 define('TEXT_HEADER_DISCOUNT_PRICES_ACTUAL_PRICE','Qty Discounts New Price');
 define('TEXT_HEADER_DISCOUNT_PRICES_AMOUNT_OFF','Qty Discounts Off Price');
 define('TEXT_HEADER_DISCOUNT_PRICES_PERCENTAGE','Qty Discounts Off Price');
-define('TEXT_INFO_SORT_BY','Sort by: ');
+define('TEXT_INFO_SORT_BY','Sort by:');
 define('TEXT_INFO_SORT_BY_PRODUCTS_DATE','Date Added - Old to New');
 define('TEXT_INFO_SORT_BY_PRODUCTS_DATE_DESC','Date Added - New to Old');
 define('TEXT_INFO_SORT_BY_PRODUCTS_MODEL','Model');
