@@ -1,18 +1,18 @@
 <?php
 /**
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_special_funcs.php 2023-10-29 16:49:16Z webchills $
+ * @version $Id: init_special_funcs.php 2024-02-01 11:20:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
 }
 
 // set a default time limit
-zen_set_time_limit(GLOBAL_SET_TIME_LIMIT);
+zen_set_time_limit((int)GLOBAL_SET_TIME_LIMIT);
 
 // -----
 // Load required sales/specials/etc function-files for core use, in preparation to
