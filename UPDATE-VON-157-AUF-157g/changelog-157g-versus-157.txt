@@ -760,8 +760,10 @@ includes\modules\pages\create_account\jscript_form_check.php
 includes\modules\pages\create_account\on_load_main.js
 includes\modules\pages\create_account_success\header_php.php
 includes\modules\pages\discount_coupon\header_php.php
+includes\modules\pages\document_general_info\header_php.php
 includes\modules\pages\document_general_info\jscript_main.php
 includes\modules\pages\document_general_info\main_template_vars.php
+includes\modules\pages\document_product_info\header_php.php
 includes\modules\pages\document_product_info\jscript_main.php
 includes\modules\pages\document_product_info\main_template_vars.php
 includes\modules\pages\featured_products\header_php.php
@@ -782,10 +784,13 @@ includes\modules\pages\popup_image_additional\header_php.php
 includes\modules\pages\popup_image_additional\jscript_main.php
 includes\modules\pages\popup_search_help\jscript_main.php
 includes\modules\pages\popup_shipping_estimator\jscript_addr_pulldowns.php
+includes\modules\pages\product_free_shipping_info\header_php.php
 includes\modules\pages\product_free_shipping_info\jscript_main.php
 includes\modules\pages\product_free_shipping_info\main_template_vars.php
+includes\modules\pages\product_info\header_php.php
 includes\modules\pages\product_info\jscript_main.php
 includes\modules\pages\product_info\main_template_vars.php
+includes\modules\pages\product_music_info\header_php.php
 includes\modules\pages\product_music_info\jscript_main.php
 includes\modules\pages\product_music_info\main_template_vars.php
 includes\modules\pages\product_reviews\header_php.php
