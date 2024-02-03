@@ -1,14 +1,14 @@
 <?php
 /**
- * @package Braintree SCA for Zen Cart German 1.5.7 and PHP 8
+ * @package Braintree SCA for Zen Cart German 1.5.7h and PHP 8.2.x
  * Zen Cart German Specific
- * based on braintree_web 3.97.2 and braintree_php 6.14.0 (October 2023)
+ * based on braintree_web 3.99.2 and braintree_php 6.16.0 (February 2024)
  * @copyright Copyright 2018-2021 Numinix
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: braintree_api.php 2024-02-03 12:49:14 webchills $
+ * @version $Id: braintree_api.php 2024-02-03 13:40:14 webchills $
 */
 use Braintree\Gateway;
 use Braintree\Transaction;
@@ -21,10 +21,13 @@ class braintree_api extends base {
      */
     protected $_check;
     /**
-     * $code determines the internal 'code' name used to designate "this" payment module
+     * name of this module
+     *
      * @var string
      */
     public $code;
+    public $codeTitle;
+    public $codeVersion;
     /**
      * $description is a soft name for this payment method
      * @var string 
@@ -56,29 +59,51 @@ class braintree_api extends base {
      */
     public $sort_order;
     
+   /**
+   * order status setting for pending orders
+   *
+   * @var int
+   */
+   public $order_pending_status = 1;  
+    
     /**
      * $zone is used for zone restrictions
      * @var int
      */
     public $zone;
+     /**
+     * $emailAlerts is a debugging setting
+     * @var string 
+     */
+    public $emailAlerts;
+    
+  /**
+   * Variables used in processing transaction request/response values for internal use.
+   */
+  protected $transaction_id;
+  protected $payment_status;
+  protected $payment_type;
+  protected $avs;
+  protected $cvv2;  
+  protected $payment_time; 
+  protected $amt;
+  protected $transactiontype;
+  protected $numitems; 
 
     /**
      * set other module specific specific vars
-     * tbd
+     * 
      */    
-    
-    var $codeVersion = '';
-    var $cc_type_check = '';
-    var $enableDebugging = false;
-    
-    var $order_pending_status = 1;
-   
-    var $_logLevel = 0;
+    public $enableDebugging = false;    
+    public $cc_type_check = '';
+    public $_logLevel = 0;
+    public $version = '';
+    public $nonce = '';
 
     /**
      * this module collects card-info onsite
      */
-    var $collectsCardDataOnsite = TRUE;
+    public $collectsCardDataOnsite = TRUE;
     private $cards;
 
 // class constructor
@@ -339,9 +364,9 @@ class braintree_api extends base {
                 <input type='text' class='hide_field' name='braintree_3ds_auth_id' id='braintree_3ds_auth_id'>
                 <input type='text' class='hide_field' name='braintree_card_type' id='braintree_card_type'>
                 
-                <script src='https://js.braintreegateway.com/web/3.97.2/js/client.min.js'></script>
-                <script src='https://js.braintreegateway.com/web/3.97.2/js/three-d-secure.min.js'></script>
-                <script src='https://js.braintreegateway.com/web/3.97.2/js/hosted-fields.min.js'></script> 
+                <script src='https://js.braintreegateway.com/web/3.99.2/js/client.min.js'></script>
+                <script src='https://js.braintreegateway.com/web/3.99.2/js/three-d-secure.min.js'></script>
+                <script src='https://js.braintreegateway.com/web/3.99.2/js/hosted-fields.min.js'></script> 
                 <script>
                     let hf, threeDS;
                     function braintreeCheck(){
@@ -574,9 +599,9 @@ class braintree_api extends base {
                 <input type='text' class='hide_field' name='braintree_3ds_auth_id' id='braintree_3ds_auth_id'>
                 <input type='text' class='hide_field' name='braintree_card_type' id='braintree_card_type'>
                 
-                <script src='https://js.braintreegateway.com/web/3.97.2/js/client.min.js'></script>
-                <script src='https://js.braintreegateway.com/web/3.97.2/js/three-d-secure.min.js'></script>
-                <script src='https://js.braintreegateway.com/web/3.97.2/js/hosted-fields.min.js'></script> 
+                <script src='https://js.braintreegateway.com/web/3.99.2/js/client.min.js'></script>
+                <script src='https://js.braintreegateway.com/web/3.99.2/js/three-d-secure.min.js'></script>
+                <script src='https://js.braintreegateway.com/web/3.99.2/js/hosted-fields.min.js'></script> 
                 <script>
                     let hf, threeDS;
                     function braintreeCheck(){
@@ -1168,7 +1193,7 @@ class braintree_api extends base {
             'num_cart_items' => (float) $this->numitems,
             'settle_amount' => (float) urldecode($_SESSION['bt_AMT']),
             'settle_currency' => $_SESSION['bt_CURRENCY'],
-            'exchange_rate' => (urldecode($_SESSION['bt_EXCHANGERATE']) > 0 ? urldecode($_SESSION['bt_EXCHANGERATE']) : 1.0),
+            'exchange_rate' => (isset($_SESSION['bt_EXCHANGERATE']) && urldecode($_SESSION['bt_EXCHANGERATE']) > 0) ? urldecode($_SESSION['bt_EXCHANGERATE']) : 1.0,           
             'date_added' => 'now()'
         );
 
@@ -1298,8 +1323,8 @@ class braintree_api extends base {
         }
 
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable this Payment Module', 'MODULE_PAYMENT_BRAINTREE_STATUS', 'True', 'Do you want to enable this payment module?', '6', '1', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
-        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, set_function) values ('Version', 'MODULE_PAYMENT_BRAINTREE_VERSION', '2.3.2', 'Version installed', '6', '2', now(), 'zen_cfg_read_only(')");
-        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Merchant Key', 'MODULE_PAYMENT_BRAINTREE_MERCHANTID', '', 'Your Merchant ID provided under the API Keys section.', '6', '3', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, set_function) values ('Version', 'MODULE_PAYMENT_BRAINTREE_VERSION', '2.5.0', 'Version installed', '6', '2', now(), 'zen_cfg_read_only(')");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Merchant ID', 'MODULE_PAYMENT_BRAINTREE_MERCHANTID', '', 'Your Merchant ID provided under the API Keys section.', '6', '3', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Public Key', 'MODULE_PAYMENT_BRAINTREE_PUBLICKEY', '', 'Your Public Key provided under the API Keys section.', '6', '4', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Private Key', 'MODULE_PAYMENT_BRAINTREE_PRIVATEKEY', '', 'Your Private Key provided under the API Keys section.', '6', '5', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Merchant Account ID', 'MODULE_PAYMENT_BRAINTREE_MERCHANT_ACCOUNT_ID', '', 'Your Merchant Account ID, this should contain your <strong>Merchant Account Name</strong>.<br>Example: myaccountUSD', '6', '6', now())");
@@ -1315,7 +1340,7 @@ class braintree_api extends base {
         // www.zen-cart-pro.at german admin settings languages_id==43
         $db->Execute("replace into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Kreditkartenzahlung via Braintree anbieten?', 'MODULE_PAYMENT_BRAINTREE_STATUS', '43', 'Wollen Sie Kreditkartenzahlung via Braintree aktivieren?', now())");
         $db->Execute("replace into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Modulversion', 'MODULE_PAYMENT_BRAINTREE_VERSION', '43', 'Read Only Einstellung. Zeigt die Version des installierten Braintree Moduls an.', now())");
-        $db->Execute("replace into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Merchant Key ID', 'MODULE_PAYMENT_BRAINTREE_MERCHANTID', '43', 'Tragen Sie hier die Merchant ID ein, die in Ihren Braintree API Keys Einstellungen angezeigt wird.', now())");
+        $db->Execute("replace into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Merchant ID', 'MODULE_PAYMENT_BRAINTREE_MERCHANTID', '43', 'Tragen Sie hier die Merchant ID ein, die in Ihren Braintree API Keys Einstellungen angezeigt wird.', now())");
         $db->Execute("replace into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Public Key', 'MODULE_PAYMENT_BRAINTREE_PUBLICKEY', '43', 'Tragen Sie hier den Public Key ein, der in Ihren Braintree API Keys Einstellungen angezeigt wird.', now())");
         $db->Execute("replace into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Private Key', 'MODULE_PAYMENT_BRAINTREE_PRIVATEKEY', '43', 'Tragen Sie hier den Private Key ein, der in Ihren Braintree API Keys Einstellungen angezeigt wird.', now())");
         $db->Execute("replace into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Merchant Account ID', 'MODULE_PAYMENT_BRAINTREE_MERCHANT_ACCOUNT_ID', '43', 'Tragen Sie hier Ihre Merchant Account ID ein, sie enthält normalerweise Ihren <strong>Merchant Account Namen</strong>.<br>Beispiel: myaccountEUR', now())");
