@@ -1,17 +1,17 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2021-11-28 17:51:25Z webchills $
+ * @version $Id: header_php.php 2024-02-02 13:29:25Z webchills $
  */
 
 $systemChecker = new systemChecker();
 $dbVersion = $systemChecker->findCurrentDbVersion();
 logDetails($dbVersion, 'Version detected in database_upgrade/header_php.php');
 
-$versionArray = array();
+$versionArray = [];
 $versionArray[] = '1.2.6';
 $versionArray[] = '1.2.7';
 $versionArray[] = '1.3.0';
@@ -30,7 +30,7 @@ $versionArray[] = '1.5.6';
 $versionArray[] = '1.5.7';
 
 //print_r($versionArray);
-$key = array_search($dbVersion, $versionArray);
+$key = array_search($dbVersion, $versionArray, true);
 $newArray = array_slice($versionArray, $key + 1);
 //print_r($newArray);
 

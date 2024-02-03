@@ -1,13 +1,13 @@
 #
-# * This SQL script upgrades the core Zen Cart database structure from v1.5.6 to v1.5.7g
+# * This SQL script upgrades the core Zen Cart database structure from v1.5.6 to v1.5.7h
 # *
 # * @access private
 # * Zen Cart German Specific
-# * @copyright Copyright 2003-2023 Zen Cart Development Team
+# * @copyright Copyright 2003-2024 Zen Cart Development Team
 # * Zen Cart German Version - www.zen-cart-pro.at
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_upgrade_zencart_157.sql 2023-12-12 18:09:59Z webchills $
+# * @version $Id: mysql_upgrade_zencart_157.sql 2024-02-03 11:09:59Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -1457,7 +1457,7 @@ INSERT INTO product_type_layout_language (configuration_title, configuration_key
 #############
 
 REPLACE INTO product_type_layout_language (configuration_title , configuration_key , languages_id, configuration_description, last_modified, date_added) VALUES 
-('20231212', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Uebersetzungen', now(), now());
+('20240202', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Uebersetzungen', now(), now());
 
 #############
 
@@ -1470,7 +1470,7 @@ SELECT project_version_key, project_version_major, project_version_minor, projec
 FROM project_version;
 
 ## Now set to new version
-UPDATE project_version SET project_version_major='1', project_version_minor='5.7g', project_version_patch1='', project_version_patch1_source='', project_version_patch2='', project_version_patch2_source='', project_version_comment='Version Update 1.5.6->1.5.7g', project_version_date_applied=now() WHERE project_version_key = 'Zen-Cart Main';
-UPDATE project_version SET project_version_major='1', project_version_minor='5.7', project_version_patch1='', project_version_patch1_source='', project_version_patch2='', project_version_patch2_source='', project_version_comment='Version Update 1.5.6->1.5.7g', project_version_date_applied=now() WHERE project_version_key = 'Zen-Cart Database';
+UPDATE project_version SET project_version_major='1', project_version_minor='5.7h', project_version_patch1='', project_version_patch1_source='', project_version_patch2='', project_version_patch2_source='', project_version_comment='Version Update 1.5.6->1.5.7h', project_version_date_applied=now() WHERE project_version_key = 'Zen-Cart Main';
+UPDATE project_version SET project_version_major='1', project_version_minor='5.7', project_version_patch1='', project_version_patch1_source='', project_version_patch2='', project_version_patch2_source='', project_version_comment='Version Update 1.5.6->1.5.7h', project_version_date_applied=now() WHERE project_version_key = 'Zen-Cart Database';
 
 ##### END OF UPGRADE SCRIPT

@@ -1,10 +1,10 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
 
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: index_default.php 2021-11-28 17:59:53Z webchills $
+ * @version $Id: index_default.php 2024-02-02 13:59:53Z webchills $
  */
 require(DIR_FS_INSTALL . DIR_WS_INSTALL_TEMPLATE . 'partials/partial_modal_help.php');
 $adjustWarnIssues = false;
@@ -14,7 +14,7 @@ $adjustWarnIssues = false;
 <?php if ($hasMultipleAdmins) { ?>
 	<?php $adjustWarnIssues = True ?>
     <div class="alert-box alert">
-    <?php if ($selectedAdminDir != '') { ?>
+    <?php if ($selectedAdminDir !== '') { ?>
     <?php  echo TEXT_ERROR_MULTIPLE_ADMINS_SELECTED; ?>
     <?php } else { ?>
     <?php  echo TEXT_ERROR_MULTIPLE_ADMINS_NONE_SELECTED; ?>
@@ -24,7 +24,7 @@ $adjustWarnIssues = false;
 <?php } else { ?>
 <input type="hidden" name="adminDir" value="<?php echo $selectedAdminDir; ?>" >
 <?php } ?>
-<?php if ($selectedAdminDir != '') { ?>
+<?php if ($selectedAdminDir !== '') { ?>
 <?php if ($hasSaneConfigFile && !$isCurrentDb && !$otherConfigErrors && $hasUpdatedConfigFile) { ?>
 	<?php $adjustWarnIssues = True ?>
     <div class="alert-box success">

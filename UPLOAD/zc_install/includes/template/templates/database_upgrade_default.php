@@ -1,17 +1,17 @@
 <?php
 /**
- * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: database_upgrade_default.php 2021-11-28 17:52:53Z webchills $
+ * @version $Id: database_upgrade_default.php 2024-02-02 13:52:53Z webchills $
  */
 ?>
 <?php require(DIR_FS_INSTALL . DIR_WS_INSTALL_TEMPLATE . 'partials/partial_modal_admin_validation_errors.php'); ?>
 
 <?php require(DIR_FS_INSTALL . DIR_WS_INSTALL_TEMPLATE . 'partials/partial_modal_help.php'); ?>
 
-<?php if (sizeof($newArray)) { ?>
+<?php if (count($newArray)) { ?>
 <div class="upgrade-progress-area">
   <div class="alert-box" id="upgradeHeaderMessage"><?php echo TEXT_DATABASE_UPGRADE_STEPS_DETECTED; ?></div>
 </div>
@@ -21,7 +21,7 @@
 <form id="db_upgrade<?php echo (count($newArray)) ? '' : '_done'; ?>" name="db_upgrade" method="post" action="index.php?main_page=completion" data-abide="ajax">
   <input type="hidden" name="lng" value="<?php echo $installer_lng; ?>" >
   <input type="hidden" name="action" value="process">
-<?php if (sizeof($newArray)) { ?>
+<?php if (count($newArray)) { ?>
   <input type="hidden" name="upgrade_mode" value="yes">
   <fieldset id="availableUpgradeSteps">
     <legend><?php echo TEXT_DATABASE_UPGRADE_LEGEND_UPGRADE_STEPS; ?></legend>
@@ -29,7 +29,7 @@
 
     <div class="small-12 columns">
     <?php foreach ($newArray as $key => $value)  { ?>
-      <?php $from = ($key == 0) ? $dbVersion : $newArray[($key - 1)]; ?>
+      <?php $from = ($key === 0) ? $dbVersion : $newArray[($key - 1)]; ?>
       <?php $to = $newArray[$key]; ?>
        <div id="label-version-<?php echo str_replace('.', '_', $newArray[$key]); ?>" class="checkbox-wrapper">
           <label for="version-<?php echo str_replace('.', '_', $newArray[$key]); ?>">
@@ -97,6 +97,8 @@ $().ready(function() {
           $('#upgradeHeaderMessage').addClass('secondary');
           $('.upgrade-hide-area').hide();
           $('.upgrade-continue-button').hide();
+          $("#progress-bar-dialog").foundation('reveal', 'open', {close_on_background_click:false});
+          t = setTimeout("updateStatus()", 10);
           doAjaxUpdateSql(myform);
         }
       }
@@ -153,7 +155,7 @@ function doAjaxUpdateSql(form)
   promise.done(function(response) {
     $('.upgrade-progress-area').hide();
     var length = $('input[type=checkbox]:not(:checked)').length;
-    console.log('DB Upgrade progress. Remaining checkboxes: '+length);
+    //console.log('DB Upgrade progress. Remaining checkboxes: '+length);
     if (length == 0) {
       $('#availableUpgradeSteps').hide();
       $('.upgrade-continue-button').show();
@@ -201,4 +203,43 @@ $(function()
       e.preventDefault();
     })
   });
+function updateStatus() {
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        cache : false,
+        url: '<?php echo "ajaxGetProgressValues.php"; ?>',
+        success: function(data) {
+            if (data.progress)
+            {
+                if(data.progressFeedback)
+                {
+                    writeProgressInfo(data.progressFeedback)
+                } else {
+                    writeProgressInfo('')
+                }
+                if (data.message)
+                {
+                    $('#dialog-title').html(data.message + ' ' + data.progress.toFixed( 0 ) + '%');
+                }
+                if (data.progress >= 0 && data.progress < 99) {
+                    $("#progress-bar").html('<span class="meter" style="width:'+data.progress+'%;"></span>');
+                    t = setTimeout("updateStatus()", 10);
+                }
+            } else
+            {
+                t = setTimeout("updateStatus()", 10);
+            }
+        },
+        error: function(data) {
+            t = setTimeout("updateStatus()", 10);
+        }
+    });
+}
+
+function writeProgressInfo(text) {
+    $('#progress-info').text(text);
+    $('#progress-container').scrollTop($('#progress-info').height());
+}
+
 </script>

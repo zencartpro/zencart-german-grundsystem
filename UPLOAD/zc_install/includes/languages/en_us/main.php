@@ -1,10 +1,10 @@
 <?php
 /**
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main.php 2023-12-26 14:09:29Z webchills $
+ * @version $Id: main.php 2024-02-02 13:09:29Z webchills $
  */
 
 return [
@@ -130,7 +130,7 @@ return [
 'TEXT_ERROR_COULD_NOT_WRITE_CONFIGFILE' => 'Could not write the generated config file: %s. Please ensure the file exists and is writable.',
 'TEXT_ERROR_STORE_CONFIGURE' => 'Catalog /includes/configure.php file either does not exist, is not readable or is not writeable',
 'TEXT_ERROR_ADMIN_CONFIGURE' => 'Admin /admin/includes/configure.php file either does not exist, is not readable or is not writeable',
-'TEXT_ERROR_PHP_VERSION' => str_replace(["\n", "\r"], '', 'Incorrect PHP Version.<p>The PHP version you are using (' . PHP_VERSION . ') is not suitable.</p><p>The German Zen Cart Version 1.5.7g is compatible with PHP versions 7.4.x to 8.1.x, although 8.0.x or 8.1.x is recommended.</p>'),
+'TEXT_ERROR_PHP_VERSION' => str_replace(["\n", "\r"], '', 'Incorrect PHP Version.<p>The PHP version you are using (' . PHP_VERSION . ') is not suitable.</p><p>The German Zen Cart Version 1.5.7g is compatible with PHP versions 8.0.x to 8.2.x, although 8.1.x or 8.2.x is recommended.</p>'),
 'TEXT_ERROR_PHP_VERSION_RECOMMENDED' => '<p>For maximum security and compatibility you should be using PHP 8.0.x or PHP %s . This installation can proceed, but note that your site will not be PCI Compliant when running out-of-date software.</p></p>',
 'TEXT_ERROR_PHP_VERSION_MIN' => 'PHP Version should be greater than or equal to %s',
 'TEXT_ERROR_PHP_VERSION_MAX' => 'PHP Version should be less than or equal to %s',
@@ -367,4 +367,6 @@ See below to implement a similar set of measures for the Nginx Webserver.</p>
 <p><strong>11</strong>. BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.</p>
 <p><strong>12</strong>. IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR REDISTRIBUTE THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
 <p><strong>END OF TERMS AND CONDITIONS</strong></p>',
+    'TEXT_UPGRADING_TO_VERSION' => 'Upgrading to version %s',
+    'TEXT_PROGRESS_FINISHED' => 'Finished',
 ];

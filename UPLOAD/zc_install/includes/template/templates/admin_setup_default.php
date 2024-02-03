@@ -1,10 +1,10 @@
 <?php
 /**
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: admin_setup_default.php 2022-12-14 17:59:53Z webchills $
+ * @version $Id: admin_setup_default.php 2024-02-02 13:59:53Z webchills $
  */
 ?>
 
@@ -25,7 +25,7 @@
   <input type="hidden" name="action" value="process">
   <input type="hidden" name="lng" value="<?php echo $installer_lng; ?>">
   <?php foreach ($_POST as $key=>$value) {  ?>
-    <?php if ($key != 'action') { ?>
+    <?php if ($key !== 'action') { ?>
     <input type="hidden" name="<?php echo $key; ?>" value="<?php echo $value; ?>">
     <?php }?>
   <?php }?>
@@ -72,7 +72,7 @@
     <div class="row">
       <?php if ($changedDir) { ?>
         <div class="alert-box"><?php echo TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_CHANGED; ?></div>
-      <?php } elseif (!$changedDir && $adminNewDir == 'admin') { ?>
+      <?php } elseif (!$changedDir && $adminNewDir === 'admin') { ?>
         <div class="alert-box alert"><?php echo TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_DEFAULT; ?></div>
       <?php } else { ?>
         <div class="alert-box "><?php echo TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_NOT_ADMIN_CHANGED; ?></div>

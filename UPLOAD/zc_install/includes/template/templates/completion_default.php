@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: completion_default.php 2021-11-28 17:59:53Z webchills $ */
+ * @version $Id: completion_default.php 2024-02-02 13:59:53Z webchills $ */
 ?>
 <?php require(DIR_FS_INSTALL . DIR_WS_INSTALL_TEMPLATE . 'partials/partial_modal_help.php'); ?>
 
@@ -12,7 +12,7 @@
 			<h6><?php echo TEXT_COMPLETION_NGINX_TEXT; ?></h6>
 		</div>
 
-<?php if ($adminDir == 'admin' && !defined('DEVELOPER_MODE')) { ?>
+<?php if ($adminDir === 'admin' && !defined('DEVELOPER_MODE')) { ?>
 		<br><br>
 		<div class="alert-box  secondary">
 			<h6><?php echo TEXT_COMPLETION_ADMIN_DIRECTORY_WARNING; ?></h6>
@@ -37,11 +37,11 @@
 		<?php echo TEXT_COMPLETION_INSTALL_COMPLETE; ?>
 
 		<br>
-	<?php if ($catalogLink != '#') echo TEXT_COMPLETION_INSTALL_LINKS_BELOW; ?>
+	<?php if ($catalogLink !== '#') echo TEXT_COMPLETION_INSTALL_LINKS_BELOW; ?>
 <?php } ?>
 
 		</h5>
-<?php if (!$isUpgrade && $catalogLink != '#') { ?>
+<?php if (!$isUpgrade && $catalogLink !== '#') { ?>
 
 		<div class="text-center">
 			<a class="radius button" href="<?php echo $adminLink; ?>" rel="noopener" target="_blank" tabindex="1">

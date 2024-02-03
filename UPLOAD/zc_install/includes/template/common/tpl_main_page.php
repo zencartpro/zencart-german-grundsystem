@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_main_page.php 2022-02-12 18:03:16Z webchills $
+ * @version $Id: tpl_main_page.php 2024-02-02 13:31:16Z webchills $
  */
 ?>
 <body id="<?php echo $body_id; ?>">
@@ -22,7 +22,7 @@
       <div class="small-12 columns small-centered">
         <div class="mainContent">
         <?php require(DIR_FS_INSTALL . DIR_WS_INSTALL_TEMPLATE . 'partials/partial_breadcrumb.php'); ?>
-        <?php if (!isset($_GET['main_page']) || $_GET['main_page'] == 'index' && count($languagesInstalled) > 1) { ?>
+        <?php if (!isset($_GET['main_page']) || $_GET['main_page'] === 'index' && count($languagesInstalled) > 1) { ?>
         <form name="language_select" id="language_select" method="GET">
           <fieldset>
            <div class="row">
@@ -38,10 +38,10 @@
         <?php } ?>
         <h1><?php echo constant('TEXT_PAGE_HEADING_' . strtoupper($_GET['main_page'])); ?></h1>
         <?php if (defined('TEXT_' . strtoupper($_GET['main_page'] . '_HEADER_MAIN'))) {
-                if (constant('TEXT_' . strtoupper($_GET['main_page'] . '_HEADER_MAIN')) != '') { ?>
+                if (constant('TEXT_' . strtoupper($_GET['main_page'] . '_HEADER_MAIN')) !== '') { ?>
         <div class="alert-box"><?php echo constant('TEXT_' . strtoupper($_GET['main_page'] . '_HEADER_MAIN')); ?></div>
         <?php  }
-             } elseif (TEXT_HEADER_MAIN != '') { ?>
+             } elseif (TEXT_HEADER_MAIN !== '') { ?>
           <div class="alert-box"><?php echo TEXT_HEADER_MAIN; ?></div>
         <?php } ?>
         <?php require($body_code); ?>

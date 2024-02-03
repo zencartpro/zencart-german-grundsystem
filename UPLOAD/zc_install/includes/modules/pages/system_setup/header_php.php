@@ -1,14 +1,25 @@
 <?php
 /**
- * @package Installer
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2015-12-29 19:49:16Z webchills $
+ * @version $Id: header_php.php 2024-02-02 13:30:16Z webchills $
  */
-list($adminDir, $documentRoot, $adminServer, $catalogHttpServer, $catalogHttpUrl, $catalogHttpsServer, $catalogHttpsUrl, $dir_ws_http_catalog, $dir_ws_https_catalog) = getDetectedURIs();
+[
+    $adminDir,
+    $documentRoot,
+    $adminServer,
+    $catalogHttpServer,
+    $catalogHttpUrl,
+    $catalogHttpsServer,
+    $catalogHttpsUrl,
+    $dir_ws_http_catalog,
+    $dir_ws_https_catalog,
+] = getDetectedURIs();
+
 $db_type = 'mysql';
+
 $enableSslCatalog = '';
-if ($request_type == 'SSL') {
+if ($request_type === 'SSL') {
     $enableSslCatalog = 'checked = checked';
 }

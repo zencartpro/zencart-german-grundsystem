@@ -1,8 +1,7 @@
 /**
- * @package Installer
  * @access private
- * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157)
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  
@@ -132,5 +131,18 @@ ul.breadcrumbs li.current a:after {
     border-left-color: #3A87AD;
 }
 
+#progress-container {
+    width: 80%;
+    max-width: 600px;
+    height: 80px;
+    background-color: #fff;
+    border: 2px solid #000;
+    overflow-y: auto;
+    padding: 10px;
+    box-sizing: border-box;
+}
 
+#progress-info {
+    white-space: pre-line;
+}
 

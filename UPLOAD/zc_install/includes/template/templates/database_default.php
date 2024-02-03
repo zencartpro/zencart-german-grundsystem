@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: database_default.php 2021-11-28 17:51:53Z webchills $ 
+ * @version $Id: database_default.php 2024-02-02 13:51:53Z webchills $ 
  */
 ?>
 <?php require(DIR_FS_INSTALL . DIR_WS_INSTALL_TEMPLATE . 'partials/partial_modal_progress_bar.php'); ?>
@@ -18,7 +18,7 @@
   <input type="hidden" name="action" value="process" >
   <input type="hidden" name="lng" value="<?php echo $installer_lng; ?>" >
   <?php foreach ($_POST as $key=>$value) {  ?>
-  <?php if ($key != 'action') { ?>
+  <?php if ($key !== 'action') { ?>
     <input type="hidden" name="<?php echo $key; ?>" value="<?php echo $value; ?>" >
   <?php }?>
   <?php }?>
@@ -124,7 +124,7 @@ function ajaxTestDBConnection(form) {
       } else
       {
         $("#progress-bar-dialog").foundation('reveal', 'open', {close_on_background_click:false});
-        t = setTimeout("updateStatus()", 300);
+        t = setTimeout("updateStatus()", 10);
         $.ajax({
           type: "POST",
           timeout: 0,
@@ -184,9 +184,15 @@ function updateStatus() {
     success: function(data) {
       if (data.progress)
       {
+          if(data.progressFeedback)
+          {
+              writeProgressInfo(data.progressFeedback)
+          } else {
+              writeProgressInfo('')
+          }
         if (data.message)
         {
-          $('#dialog-title').html(data.message + ' ' + data.progress.toFixed( 0 ) + '%');
+          $('#dialog-title').html(' ' + data.message + ' ' + data.progress.toFixed( 0 ) + '%');
         }
         if (data.progress >= 0 && data.progress < 99) {
           $("#progress-bar").html('<span class="meter" style="width:'+data.progress+'%;"></span>');
@@ -227,4 +233,8 @@ $(function()
         e.preventDefault();
       })
     });
+    function writeProgressInfo(text) {
+        $('#progress-info').text(text);
+        $('#progress-container').scrollTop($('#progress-info').height());
+    }
 </script>

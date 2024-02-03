@@ -1,24 +1,24 @@
-Zen Cart 1.5.7g deutsch 
+Zen Cart 1.5.7h deutsch 
 
-Version vom 12.12.2023
+Version vom xx.02.2024
 
 #####################################################################################################################################
 
-1.5.7g deutsch ist ein sehr umfangreicher Service Pack für 1.5.7 deutsch
-Es integriert die fast vollständige Codebasis der aktuellen amerikanischen Version 1.5.8 in die deutsche Zen Cart Version
-Damit wird PHP 8.1.x vollständig unterstützt.
-Die integrierten Module und 3rd Party Komponenten werden auf den Stand von November 2023 gebracht.
+1.5.7h deutsch ist ein sehr umfangreicher Service Pack für 1.5.7 deutsch
+Es integriert die fast vollständige Codebasis der aktuellen amerikanischen Version 1.5.8/2.0.0 in die deutsche Zen Cart Version
+Damit wird PHP 8.2.x vollständig unterstützt.
+Die integrierten Module und 3rd Party Komponenten werden auf den Stand von Februar 2024 gebracht.
 
-Die Umstellung der Sprachdateien, die die amerikanische Version 1.5.8 bereits mitbringt, wird in einer für Herbst 2024 geplanten deutschen Zen Cart Version 1.5.8/2.0.0 mit vollständiger PHP 8.2 Unterstützung nachgezogen.
+Die Umstellung der Sprachdateien, die die amerikanische Version 1.5.8 bereits mitbringt, wird in einer für Herbst 2024 geplanten deutschen Zen Cart Version 1.5.8/2.0.0 mit vollständiger PHP 8.3 Unterstützung nachgezogen.
 Dadurch kann in 1.5.7g weiterhin mit den gewohnten Sprachdefinitionen gearbeitet werden. 
 
-1.5.7g behebt auch alle Fehler die seit Erscheinen von 1.5.7f auf Github gemeldet wurden.
+1.5.7h behebt auch alle Fehler die seit Erscheinen von 1.5.7g auf Github gemeldet wurden.
 
 Aktualisierte Komponenten:
 - PHP Mailer Update auf 6.9.1
 - MobileDetect Update auf 3.74.3
 - CKEditor Update auf 4.22.1
-- TinyMCE Editor Update auf 6.7.2
+- TinyMCE Editor Update auf 6.8.2
 - braintree_web Update auf 3.97.2, braintree_php Update auf 6.14.0 
 - FontAwesome Update auf 6.4.0
 - jQuery Update auf 3.7.1
@@ -31,7 +31,7 @@ Neue Funktionalitäten:
 - Logfilemanager integriert (automatisches Löschen von Logfiles nach einem bestimmten Zeitraum)
 
 Verbesserungen:
-- Vollständige Unterstützung von PHP 8.1
+- Vollständige Unterstützung von PHP 8.1 und PHP 8.2
 - Neustrukturierung wichtiger Funktionsdateien
 - Performanceoptimierung durch Zentralisierung von Klassen und Funktionen 
 - Admin Layout durchgehend augenfreundlich und mobilefreundlich
@@ -43,8 +43,10 @@ Verbesserungen:
 - Neue Zusatzinformationen auf der Adminseite Bestellungen
 
 
-Wer bereits 1.5.7, 1.5.7e oder 1.5.7f verwendet kann mit dem speziellen Updatepaket in UPDATE-VON-157-AUF-157g auf 1.5.7g aktualisieren.
-Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157-AUF-157g
+Wer bereits 1.5.7, 1.5.7e oder 1.5.7f verwendet kann mit dem speziellen Updatepaket in UPDATE-VON-157-AUF-157g auf 1.5.7h aktualisieren.
+Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157-AUF-157h
+Wer bereits 1.5.7g verwendet kann mit dem speziellen Updatepaket in UPDATE-VON-157g-AUF-157h sehr leicht auf 1.5.7h aktualisieren.
+Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157g-AUF-157h
 
 #####################################################################################################################################
 
@@ -55,8 +57,8 @@ Bei Nginx müssen die bei Apache durch .htaccess Unterstützung gewährleisteten
 Windows Server/IIS werden nicht unterstützt
 
 PHP
-mindestens: PHP 7.4.x
-höchstens: PHP 8.1.x
+mindestens: PHP 8.0.x
+höchstens: PHP 8.2.x
 
 MySQL oder MariaDB
 MySQL mindestens 5.7.8
@@ -66,7 +68,7 @@ MariaDB höchstens 10.5
 
 Empfohlen:
 Apache 2.4
-PHP 8.1.x
+PHP 8.2.x
 MySQL 8.0.x
 
 #####################################################################################################################################
