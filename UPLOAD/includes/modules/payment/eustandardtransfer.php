@@ -154,12 +154,8 @@ function check() {
 
 
     function install() {
-      global $db, $messageStack;
-      if (defined('MODULE_PAYMENT_EUTRANSFER_STATUS')) {
-        $messageStack->add_session('eustandardtransfer module already installed.', 'error');
-        zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=eustandardtransfer', 'NONSSL'));
-        return 'failed';
-      }
+      global $db;
+      
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Allow Bank Transfer Payment', 'MODULE_PAYMENT_EUTRANSFER_STATUS', 'True', 'Do you want to accept bank transfer order payments?', '6', '1', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now());");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Bank Name', 'MODULE_PAYMENT_EUTRANSFER_BANKNAM', '---', 'Your full bank name', '6', '2', now());");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Bank Account Name', 'MODULE_PAYMENT_EUTRANSFER_ACCNAM', '---', 'The name associated with the account.', '6', '3', now());");

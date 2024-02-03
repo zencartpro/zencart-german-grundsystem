@@ -126,12 +126,8 @@
     }
 
     function install() {
-      global $db, $messageStack;
-      if (defined('MODULE_PAYMENT_BAR_STATUS')) {
-        $messageStack->add_session('bar module already installed.', 'error');
-        zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=bar', 'NONSSL'));
-        return 'failed';
-      }
+      global $db;
+      
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Cash by fetch Module', 'MODULE_PAYMENT_BAR_STATUS', 'True', 'Do you want to accept Cash by fetch payments?<br><br>Note: This module is coded to be shown only if storepickup has been selected as sghipping method before.', '6', '1', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now());");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort order of display.', 'MODULE_PAYMENT_BAR_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '2', now())");
 

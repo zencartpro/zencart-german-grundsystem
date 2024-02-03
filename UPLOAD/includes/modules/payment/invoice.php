@@ -152,12 +152,8 @@
     
     
     function install() {
-      global $db, $messageStack;
-      if (defined('MODULE_PAYMENT_INVOICE_STATUS')) {
-        $messageStack->add_session('invoice module already installed.', 'error');
-        zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=invoice', 'NONSSL'));
-        return 'failed';
-      }
+      global $db;
+      
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Payment by invoice', 'MODULE_PAYMENT_INVOICE_STATUS', 'True', 'Do you want to enable payment by invoice?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now());");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Bank Name:', 'MODULE_PAYMENT_INVOICE_BANKNAM', '---', 'Your full bank name', '6', '1', now());");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Account Holder:', 'MODULE_PAYMENT_INVOICE_ACCNAM', '---', 'The name associated with the account.', '6', '1', now());");
