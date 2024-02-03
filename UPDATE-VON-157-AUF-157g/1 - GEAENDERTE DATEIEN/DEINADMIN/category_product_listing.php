@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: category_product_listing.php 2023-12-18 10:11:16Z webchills $
+ * @version $Id: category_product_listing.php 2024-02-03 11:55:16Z webchills $
  */
 require 'includes/application_top.php';
 $languages = zen_get_languages();
@@ -58,18 +58,22 @@ if (isset($current_category_id) && isset($_GET['pID'])) {
   }
 }
 
-if (!isset($_SESSION['categories_products_sort_order'])) {
-  $_SESSION['categories_products_sort_order'] = CATEGORIES_PRODUCTS_SORT_ORDER;
+if (!isset($_SESSION['categories_sort_order'])) {
+  $_SESSION['categories_sort_order'] = CATEGORIES_PRODUCTS_SORT_ORDER;
 }
-
-if (!isset($_GET['reset_categories_products_sort_order'])) {
-  $reset_categories_products_sort_order = $_SESSION['categories_products_sort_order'];
+if (!isset($_SESSION['products_sort_order'])) {
+  $_SESSION['products_sort_order'] = CATEGORIES_PRODUCTS_SORT_ORDER;
 }
 
 if (!empty($action)) {
   switch ($action) {
-    case 'set_categories_products_sort_order':
-      $_SESSION['categories_products_sort_order'] = $_GET['reset_categories_products_sort_order'];
+    case 'set_categories_sort_order':
+      $_SESSION['categories_sort_order'] = $_GET['reset_categories_products_sort_order'];
+      $action = '';
+      zen_redirect(zen_href_link(FILENAME_CATEGORY_PRODUCT_LISTING, 'cPath=' . $_GET['cPath'] . ((isset($_GET['pID']) && !empty($_GET['pID'])) ? '&pID=' . $_GET['pID'] : '') .  $search_parameter . ((isset($_GET['page']) && !empty($_GET['page'])) ? '&page=' . $_GET['page'] : '')));
+      break;
+    case 'set_products_sort_order':
+      $_SESSION['products_sort_order'] = $_GET['reset_categories_products_sort_order'];
       $action = '';
       zen_redirect(zen_href_link(FILENAME_CATEGORY_PRODUCT_LISTING, 'cPath=' . $_GET['cPath'] . ((isset($_GET['pID']) && !empty($_GET['pID'])) ? '&pID=' . $_GET['pID'] : '') .  $search_parameter . ((isset($_GET['page']) && !empty($_GET['page'])) ? '&page=' . $_GET['page'] : '')));
       break;
@@ -406,6 +410,8 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
                     ['id' => '4', 'text' => TEXT_SORT_CATEGORIES_STATUS],
                     ['id' => '5', 'text' => TEXT_SORT_CATEGORIES_STATUS_DESC]
                 ];
+                $reset_categories_products_sort_order = $_SESSION['categories_sort_order'];
+                $form_action = 'set_categories_sort_order';
             } else {
                 // toggle switch for product display sort order
                 $categories_products_sort_order_array = [
@@ -422,6 +428,8 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
                     ['id' => '10', 'text' => TEXT_SORT_PRODUCTS_ID],
                     ['id' => '11', 'text' => TEXT_SORT_PRODUCTS_WEIGHT]
                 ];
+                $reset_categories_products_sort_order = $_SESSION['products_sort_order'];
+                $form_action = 'set_products_sort_order';
             }
             echo zen_draw_form('set_categories_products_sort_order_form', FILENAME_CATEGORY_PRODUCT_LISTING, '', 'get', 'class="form-horizontal"');
             ?>
@@ -437,7 +445,7 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
               echo (isset($_GET['pID']) ? zen_draw_hidden_field('pID', $_GET['pID']) : '');
               echo (isset($_GET['page']) ? zen_draw_hidden_field('page', $_GET['page']) : '');
               echo (isset($_GET['search']) ? zen_draw_hidden_field('search', $_GET['search']) : '');
-              echo zen_draw_hidden_field('action', 'set_categories_products_sort_order');
+              echo zen_draw_hidden_field('action', $form_action);
               ?>
             </div>
             <?php
@@ -482,7 +490,7 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
       <div class="row">
         <div<?php echo (empty($action)) ? '' : ' class="col-xs-12 col-sm-12 col-md-9 col-lg-9 configurationColumnLeft"'; ?>>
           <?php
-          switch ($_SESSION['categories_products_sort_order']) {
+          switch ($_SESSION['categories_sort_order']) {
               case (0):
                   $order_by = " ORDER BY c.sort_order, cd.categories_name";
                   break;
@@ -782,7 +790,7 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
               <?php
             }
 
-            switch ($_SESSION['categories_products_sort_order']) {
+            switch ($_SESSION['products_sort_order']) {
                 case (0):
                     $order_by = " ORDER BY p.products_sort_order, pd.products_name";
                     break;
@@ -984,10 +992,7 @@ if (is_dir(DIR_FS_CATALOG_IMAGES)) {
                   ?>
                   <?php if (zen_get_product_is_linked($product['products_id']) === 'true') {
                     echo zen_icon('linked', IMAGE_ICON_LINKED, 'lg');
-                    // TODO remove the following.. check alignment.consider align-middle on all zen_icon output.
-                    ?>
-                   
-                  <?php } else { ?>
+                  } else { ?>
                     <i class="fa-solid fa-square fa-lg txt-transparent"></i> <!-- blank icon to preserve vertical alignment with additional icons -->
                     <?php
                   }
