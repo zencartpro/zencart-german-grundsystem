@@ -2,11 +2,11 @@
 /**
  * @package pdf Rechnung
  * @copyright Copyright 2005-2012 langheiter.com 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: rl_invoice3_admin.php 2016-06-19 07:19:17Z webchills $
+ * @version $Id: rl_invoice3_admin.php 2024-02-03 16:19:17Z webchills $
  */
 
 require_once('includes/application_top.php');
@@ -65,44 +65,18 @@ require(DIR_WS_INCLUDES . 'header.php');
   
   
 ?>
-<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>">
-<title><?php echo TITLE; ?></title>
-<link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-<link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-<script language="javascript" src="includes/menu.js"></script>
-<script language="javascript" src="includes/general.js"></script>
-<link rel="stylesheet" type="text/css" href="includes/javascript/spiffyCal/spiffyCal_v2_1.css">
-<script language="JavaScript" src="includes/javascript/spiffyCal/spiffyCal_v2_1.js"></script>
-
-<script type="text/javascript">
-  <!--
-  function init()
-  {
-    cssjsmenu('navbar');
-    if (document.getElementById)
-    {
-      var kill = document.getElementById('hoverJS');
-      kill.disabled = true;
-    }
-  }
-
-   function popupWindow(url) {
-  		window.open(url,'popupWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=yes,copyhistory=no,width=600,height=460,screenX=150,screenY=150,top=150,left=150')
-	}
-
-  // -->
-</script>
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
 
 
 
 </head>
-<body onload="init()">
-<div id="spiffycalendar" class="text"></div>
+  <body>
+
 <!-- header //-->
-<?php require(DIR_WS_INCLUDES . 'header.php'); ?>
+    <?php require DIR_WS_INCLUDES . 'header.php'; ?>
 <!-- header_eof //-->
 
 <!-- body //-->
@@ -757,13 +731,11 @@ if ($products_filter == '') {
 
 
 ?>
-<!-- body_eof //-->
-<!-- footer //-->
-<?php
-	require(DIR_WS_INCLUDES . 'footer.php');
-?>
-<!-- footer_eof //-->
-</body>
+    <!-- body_eof //-->
+    <!-- footer //-->
+    <?php require DIR_WS_INCLUDES . 'footer.php'; ?>
+    <!-- footer_eof //-->
+  </body>
 </html>
 <?php
-	require(DIR_WS_INCLUDES . 'application_bottom.php');
+require DIR_WS_INCLUDES . 'application_bottom.php';

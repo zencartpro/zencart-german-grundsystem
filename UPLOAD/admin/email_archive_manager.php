@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: email_archive_manager.php 2024-01-20 18:52:16Z webchills $
+ * @version $Id: email_archive_manager.php 2024-02-03 16:52:16Z webchills $
  */
   require('includes/application_top.php');
 
@@ -134,7 +134,7 @@ border-width:3px;
 <body marginwidth="0" marginheight="0" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFFF">
 <?php }
       if ($isForDisplay) { ?>
-<body onload="init()">
+<body>
 <div id="spiffycalendar" class="text"></div>
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>    
 <script language="javascript">
@@ -539,6 +539,7 @@ if ($isForDisplay) {
   }
 }
 ?>
-</body>
+  </body>
 </html>
-<?php require DIR_WS_INCLUDES . 'application_bottom.php'; ?>
+<?php
+require DIR_WS_INCLUDES . 'application_bottom.php';

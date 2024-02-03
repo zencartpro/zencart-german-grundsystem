@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: adresskorrektur.php 2023-11-13 19:34:51Z webchills $
+ * @version $Id: adresskorrektur.php 2024-02-03 16:34:51Z webchills $
  */
   
 require 'includes/application_top.php';
@@ -18,7 +18,7 @@ $oID = zen_db_prepare_input($_GET['oID']);
 
   $action = (isset($_GET['action']) ? $_GET['action'] : 'edit');
 
-  if (zen_not_null($action)) {
+  if (!empty($action)) {
     
 
     switch ($action) {
@@ -104,22 +104,17 @@ $order_updated = true;
 <!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
   <head>
-    <meta charset="<?php echo CHARSET; ?>">
-    <title><?php echo TITLE; ?></title>
-    <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-    <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-    <script src="includes/menu.js"></script>
-    <script src="includes/general.js"></script>
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
+    
 <style>
 .eo-label { font-weight: bold; text-align:right;margin-right:3px;white-space: nowrap; }
 </style>
 </head>
-<body onLoad="init()">
+  <body>
 <!-- header //-->
 <div class="header-area">
-<?php
-    require DIR_WS_INCLUDES . 'header.php';
-?>
+    <?php require DIR_WS_INCLUDES . 'header.php'; ?>
+
 </div>
 <!-- header_eof //-->
 
@@ -299,18 +294,17 @@ $order_updated = true;
 
 
     </table></td>
-<!-- body_text_eof //-->
+
   </tr>
 </table>
 </div>
 <?php } ?>
+      <!-- body_text_eof //-->
 <!-- body_eof //-->
 
-<!-- footer //-->
-<?php 
-require DIR_WS_INCLUDES . 'footer.php'; 
-?>
-<!-- footer_eof //-->
+    <!-- footer //-->
+    <?php require DIR_WS_INCLUDES . 'footer.php'; ?>
+    <!-- footer_eof //-->
 <br>
 </body>
 </html>
