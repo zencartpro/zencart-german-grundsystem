@@ -1,14 +1,54 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: invoice.php 2022-10-20 20:10:14 webchills $
+ * @version $Id: invoice.php 2024-02-03 12:35:14 webchills $
 */
-
   class invoice {
-    var $code, $title, $description, $enabled;
+
+      /**
+     * $_check is used to check the configuration key set up
+     * @var int
+     */
+    protected $_check;
+    /**
+     * $code determines the internal 'code' name used to designate "this" payment module
+     * @var string
+     */
+    public $code;
+    /**
+     * $description is a soft name for this payment method
+     * @var string 
+     */
+    public $description;
+    /**
+     * $email_footer is the text to me placed in the footer of the email
+     * @var string
+     */
+    public $email_footer;
+    /**
+     * $enabled determines whether this module shows or not... during checkout.
+     * @var boolean
+     */
+    public $enabled;
+    /**
+     * $order_status is the order status to set after processing the payment
+     * @var int
+     */
+    public $order_status;
+    /**
+     * $title is the displayed name for this order total method
+     * @var string
+     */
+    public $title;
+    /**
+     * $sort_order is the order priority of this payment module when displayed
+     * @var int
+     */
+    public $sort_order;
 
 // class constructor
     function __construct() {
@@ -66,7 +106,7 @@
     }
 	
 
-// class methods
+
     function javascript_validation() {
       return false;
     }
@@ -112,8 +152,12 @@
     
     
     function install() {
-	    global $db;
-      
+      global $db, $messageStack;
+      if (defined('MODULE_PAYMENT_INVOICE_STATUS')) {
+        $messageStack->add_session('invoice module already installed.', 'error');
+        zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=invoice', 'NONSSL'));
+        return 'failed';
+      }
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Payment by invoice', 'MODULE_PAYMENT_INVOICE_STATUS', 'True', 'Do you want to enable payment by invoice?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now());");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Bank Name:', 'MODULE_PAYMENT_INVOICE_BANKNAM', '---', 'Your full bank name', '6', '1', now());");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Account Holder:', 'MODULE_PAYMENT_INVOICE_ACCNAM', '---', 'The name associated with the account.', '6', '1', now());");

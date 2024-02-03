@@ -1,15 +1,54 @@
 <?php
 /**
- * @package paymentMethod 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: eustandardtransfer.php 2022-02-04 19:52:14 webchills $
+ * @version $Id: eustandardtransfer.php 2024-02-03 12:10:14 webchills $
 */
-
   class eustandardtransfer {
-    var $code, $title, $description, $enabled;
+
+      /**
+     * $_check is used to check the configuration key set up
+     * @var int
+     */
+    protected $_check;
+    /**
+     * $code determines the internal 'code' name used to designate "this" payment module
+     * @var string
+     */
+    public $code;
+    /**
+     * $description is a soft name for this payment method
+     * @var string 
+     */
+    public $description;
+    /**
+     * $email_footer is the text to me placed in the footer of the email
+     * @var string
+     */
+    public $email_footer;
+    /**
+     * $enabled determines whether this module shows or not... during checkout.
+     * @var boolean
+     */
+    public $enabled;
+    /**
+     * $order_status is the order status to set after processing the payment
+     * @var int
+     */
+    public $order_status;
+    /**
+     * $title is the displayed name for this order total method
+     * @var string
+     */
+    public $title;
+    /**
+     * $sort_order is the order priority of this payment module when displayed
+     * @var int
+     */
+    public $sort_order;
 
 // class constructor
     function __construct() {
@@ -17,15 +56,17 @@
       $this->code = 'eustandardtransfer';
       $this->title = MODULE_PAYMENT_EUTRANSFER_TEXT_TITLE;
       $this->description = MODULE_PAYMENT_EUTRANSFER_TEXT_DESCRIPTION;
-      $this->sort_order = MODULE_PAYMENT_EUTRANSFER_SORT_ORDER;
-      $this->email_footer = MODULE_PAYMENT_EUTRANSFER_TEXT_EMAIL_FOOTER;
-      $this->enabled = ((MODULE_PAYMENT_EUTRANSFER_STATUS == 'True') ? true : false);  	 
+      $this->sort_order = defined('MODULE_PAYMENT_EUTRANSFER_SORT_ORDER') ? MODULE_PAYMENT_EUTRANSFER_SORT_ORDER : null;
+      
+      $this->enabled = (defined('MODULE_PAYMENT_EUTRANSFER_STATUS') && MODULE_PAYMENT_EUTRANSFER_STATUS == 'True');
 
+      if (null === $this->sort_order) return false;
       if ((int)MODULE_PAYMENT_EUTRANSFER_ORDER_STATUS_ID > 0) {
         $this->order_status = MODULE_PAYMENT_EUTRANSFER_ORDER_STATUS_ID;
       }
       
       if (is_object($order)) $this->update_status();             
+  $this->email_footer = MODULE_PAYMENT_EUTRANSFER_TEXT_EMAIL_FOOTER;
     } 
 
 // class methods
@@ -43,7 +84,7 @@
             $this->enabled = false;
         }
 
-      if ( ($this->enabled == true) && ((int)MODULE_PAYMENT_EUTRANSFER_ZONE > 0) ) {
+      if ($this->enabled && (int)MODULE_PAYMENT_EUTRANSFER_ZONE > 0 && isset($order->billing['country']['id'])) {
         $check_flag = false;
         $check = $db->Execute("select zone_id from " . TABLE_ZONES_TO_GEO_ZONES . " where geo_zone_id = '" . MODULE_PAYMENT_EUTRANSFER_ZONE . "' and zone_country_id = '" . $order->billing['country']['id'] . "' order by zone_id");
         while (!$check->EOF) {
@@ -61,8 +102,11 @@
           $this->enabled = false;
         }
       }
+      // other status checks?
+      if ($this->enabled) {
+        // other checks here
+      }
     }
-    
     
     
    
@@ -96,7 +140,7 @@
       return false;
     }
 
-    function output_error() {
+    function get_error() {
       return false;
     }
 function check() {
@@ -110,8 +154,12 @@ function check() {
 
 
     function install() {
-	global $db;
-	
+      global $db, $messageStack;
+      if (defined('MODULE_PAYMENT_EUTRANSFER_STATUS')) {
+        $messageStack->add_session('eustandardtransfer module already installed.', 'error');
+        zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=eustandardtransfer', 'NONSSL'));
+        return 'failed';
+      }
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Allow Bank Transfer Payment', 'MODULE_PAYMENT_EUTRANSFER_STATUS', 'True', 'Do you want to accept bank transfer order payments?', '6', '1', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now());");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Bank Name', 'MODULE_PAYMENT_EUTRANSFER_BANKNAM', '---', 'Your full bank name', '6', '2', now());");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Bank Account Name', 'MODULE_PAYMENT_EUTRANSFER_ACCNAM', '---', 'The name associated with the account.', '6', '3', now());");
@@ -120,9 +168,9 @@ function check() {
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Module Sort order of display.', 'MODULE_PAYMENT_EUTRANSFER_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '8', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Payment Zone', 'MODULE_PAYMENT_EUTRANSFER_ZONE', '0', 'If a zone is selected, only enable this payment method for that zone.', '6', '9', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set Order Status', 'MODULE_PAYMENT_EUTRANSFER_ORDER_STATUS_ID', '0', 'Set the status of orders made with this payment module to this value', '6', '10', 'zen_cfg_pull_down_order_statuses(', 'zen_get_order_status_name', now())");
-      // EURO-Länder Stand Juni 2010: Belgien, Deutschland, Estland, Finnland, Frankreich, Griechenland, Irland, Italien, Luxemburg, Malta, Niederlande, Österreich, Portugal, Slowakei, Slowenien, Spanien, Zypern
+      // EURO-Länder Stand Februar 2024: Belgien, Deutschland, Estland, Finnland, Frankreich, Griechenland, Irland, Italien, Luxemburg, Malta, Niederlande, Österreich, Portugal, Slowakei, Slowenien, Spanien, Zypern
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Countries', 'MODULE_PAYMENT_EUTRANSFER_COUNTRIES', 'BE,DE,EE,FI,FR,GR,IE,IT,LU,NL,AT,PT,SK,SI,ES', 'Enter the countries for which you want to offer moneyorder. Two digit ISO codes, comma separated.', '6', '11', now());");
-			// www.zen-cart-pro.at german admin languages_id==43 START
+      // www.zen-cart-pro.at german admin languages_id==43 START
       $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Vorauskasse per Banküberweisung anbieten?', 'MODULE_PAYMENT_EUTRANSFER_STATUS', '43', 'Wollen Sie Vorauskasse per Banküberweisung aktivieren?', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Bank Name', 'MODULE_PAYMENT_EUTRANSFER_BANKNAM', '43', 'Tragen Sie hier den Namen Ihrer Bank ein', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Kontoinhaber', 'MODULE_PAYMENT_EUTRANSFER_ACCNAM', '43', 'Tragen Sie hier den Namen des Kontoinhabers ein.', now())");
@@ -132,7 +180,7 @@ function check() {
       $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Bestellstatus', 'MODULE_PAYMENT_EUTRANSFER_ORDER_STATUS_ID', '43', 'Welchen Bestellstatus sollen Bestellungen bekommen, die mit Banküberweisung bezahlt werden?', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Zone', 'MODULE_PAYMENT_EUTRANSFER_ZONE', '43', 'Wenn Sie hier eine Zone angeben, ist Banküberweisung nur für Kunden mit Rechnungsadresse in dieser Zone möglich.', now())"); 
       $db->Execute("insert into " . TABLE_CONFIGURATION_LANGUAGE   . " (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) values ('Länder', 'MODULE_PAYMENT_EUTRANSFER_COUNTRIES', '43', 'Geben Sie hier die Länder an, für die Banküberweisung möglich sein soll. Es empfiehlt sich hier nur Länder einzutragen, die den EURO haben, so dass eine EU-Standardüberweisung möglich ist.<br>Zweistellige ISO-Codes durch Komma getrennt!', now())");   
-			// www.zen-cart-pro.at german admin languages_id==43  END
+      // www.zen-cart-pro.at german admin languages_id==43  END
    }
   function remove() {
       global $db;
@@ -142,11 +190,9 @@ function check() {
     }
 	
     function keys() {
-      $keys = array('MODULE_PAYMENT_EUTRANSFER_STATUS', 'MODULE_PAYMENT_EUTRANSFER_BANKNAM', 'MODULE_PAYMENT_EUTRANSFER_ACCNAM',  'MODULE_PAYMENT_EUTRANSFER_ACCIBAN', 
-					'MODULE_PAYMENT_EUTRANSFER_BANKBIC', 'MODULE_PAYMENT_EUTRANSFER_SORT_ORDER' , 'MODULE_PAYMENT_EUTRANSFER_ORDER_STATUS_ID' , 'MODULE_PAYMENT_EUTRANSFER_ZONE',
-                    'MODULE_PAYMENT_EUTRANSFER_COUNTRIES');
+     return array('MODULE_PAYMENT_EUTRANSFER_STATUS', 'MODULE_PAYMENT_EUTRANSFER_BANKNAM', 'MODULE_PAYMENT_EUTRANSFER_ACCNAM',  'MODULE_PAYMENT_EUTRANSFER_ACCIBAN', 
+					'MODULE_PAYMENT_EUTRANSFER_BANKBIC', 'MODULE_PAYMENT_EUTRANSFER_SORT_ORDER' , 'MODULE_PAYMENT_EUTRANSFER_ORDER_STATUS_ID' , 'MODULE_PAYMENT_EUTRANSFER_ZONE', 'MODULE_PAYMENT_EUTRANSFER_COUNTRIES');
 
-      return $keys;
+      
     }
   }
-?>

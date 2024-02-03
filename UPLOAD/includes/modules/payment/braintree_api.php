@@ -4,28 +4,75 @@
  * Zen Cart German Specific
  * based on braintree_web 3.97.2 and braintree_php 6.14.0 (October 2023)
  * @copyright Copyright 2018-2021 Numinix
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: braintree_api.php 2023-10-29 10:56:14 webchills $
+ * @version $Id: braintree_api.php 2024-02-03 12:49:14 webchills $
 */
 use Braintree\Gateway;
 use Braintree\Transaction;
 require_once(DIR_FS_CATALOG . DIR_WS_MODULES . 'payment/braintree/lib/Braintree.php');
 
 class braintree_api extends base {
+      /**
+     * $_check is used to check the configuration key set up
+     * @var int
+     */
+    protected $_check;
+    /**
+     * $code determines the internal 'code' name used to designate "this" payment module
+     * @var string
+     */
+    public $code;
+    /**
+     * $description is a soft name for this payment method
+     * @var string 
+     */
+    public $description;
+    /**
+     * $email_footer is the text to me placed in the footer of the email
+     * @var string
+     */
+    public $email_footer;
+    /**
+     * $enabled determines whether this module shows or not... during checkout.
+     * @var boolean
+     */
+    public $enabled;
+    /**
+     * $order_status is the order status to set after processing the payment
+     * @var int
+     */
+    public $order_status;
+    /**
+     * $title is the displayed name for this order total method
+     * @var string
+     */
+    public $title;
+    /**
+     * $sort_order is the order priority of this payment module when displayed
+     * @var int
+     */
+    public $sort_order;
+    
+    /**
+     * $zone is used for zone restrictions
+     * @var int
+     */
+    public $zone;
 
-    var $code;
-    var $title;
-    var $description;
-    var $enabled;
-    var $zone;
+    /**
+     * set other module specific specific vars
+     * tbd
+     */    
+    
+    var $codeVersion = '';
     var $cc_type_check = '';
     var $enableDebugging = false;
-    var $sort_order = 0;
+    
     var $order_pending_status = 1;
-    var $order_status = DEFAULT_ORDERS_STATUS_ID;
+   
     var $_logLevel = 0;
 
     /**
@@ -34,16 +81,14 @@ class braintree_api extends base {
     var $collectsCardDataOnsite = TRUE;
     private $cards;
 
-    /**
-     * class constructor
-     */
+// class constructor
     function __construct() {        
         global $order;
         $this->code = 'braintree_api';
         $this->title = MODULE_PAYMENT_BRAINTREE_TEXT_ADMIN_TITLE;
         $this->codeVersion = defined('MODULE_PAYMENT_BRAINTREE_VERSION') ? MODULE_PAYMENT_BRAINTREE_VERSION : null;     
         $this->enabled = (defined('MODULE_PAYMENT_BRAINTREE_STATUS') && MODULE_PAYMENT_BRAINTREE_STATUS == 'True');  
-
+        if (null === $this->codeVersion) return false;
         // Set the title & description text based on the mode we're in
         if (IS_ADMIN_FLAG === true) {
             
@@ -71,7 +116,8 @@ class braintree_api extends base {
         $this->emailAlerts = (defined('MODULE_PAYMENT_BRAINTREE_DEBUGGING') && MODULE_PAYMENT_BRAINTREE_DEBUGGING == 'Log and Email');        
         $this->sort_order = defined('MODULE_PAYMENT_BRAINTREE_SORT_ORDER') ? MODULE_PAYMENT_BRAINTREE_SORT_ORDER : null;
         $this->order_pending_status = defined('MODULE_PAYMENT_BRAINTREE_ORDER_PENDING_STATUS_ID') ? MODULE_PAYMENT_BRAINTREE_ORDER_PENDING_STATUS_ID : null;    
-
+        if (null === $this->sort_order) return false;
+	if (null === $this->codeVersion) return false;
         if (defined('MODULE_PAYMENT_BRAINTREE_ORDER_STATUS_ID') && (int)MODULE_PAYMENT_BRAINTREE_ORDER_STATUS_ID > 0) {
         $this->order_status = MODULE_PAYMENT_BRAINTREE_ORDER_STATUS_ID;            
         }  
