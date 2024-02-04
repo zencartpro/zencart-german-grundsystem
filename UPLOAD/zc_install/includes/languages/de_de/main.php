@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main.php 2024-02-02 13:15:29Z webchills $
+ * @version $Id: main.php 2024-02-04 14:53:29Z webchills $
  */
 
 
@@ -135,7 +135,7 @@ return [
 'TEXT_ERROR_STORE_CONFIGURE' => 'Frontend Konfigurationsdatei /includes/configure.php existiert nicht, ist nicht lesbar oder ist nicht beschreibbar',
 'TEXT_ERROR_ADMIN_CONFIGURE' => 'Admin Konfigurationsdatei /admin/includes/configure.php existiert nicht, ist nicht lesbar oder ist nicht beschreibbar',
 'TEXT_ERROR_PHP_VERSION' => str_replace(["\n", "\r"], '', 'Ungeeignete PHP Version.<p>Ihre verwendete PHP Version (' . PHP_VERSION . ') ist ungeeignet. Die deutsche Zen Cart Version 1.5.7h kann damit NICHT verwendet werden</p><p>Diese Version von Zen Cart deutsch ist kompatibel mit PHP Versionen von 8.0.x bis 8.2.x, wobei 8.1.x oder 8.2.x empfohlen sind.</p>'),
-'TEXT_ERROR_PHP_VERSION_RECOMMENDED' => '<p>Ihre verwendete PHP Version ist veraltet. Für maximale Sicherheit und Kompatibilität sollten Sie mindestens PHP 8.0.x oder PHP %s verwenden. Wir können mit der Installation trotzdem weitermachen, weisen aber darauf hin, dass Sie in Ihrem eigenen Interesse keine solch veraltete PHP Version verwenden sollten.</p>',
+'TEXT_ERROR_PHP_VERSION_RECOMMENDED' => '<p>Ihre verwendete PHP Version ist veraltet. Für maximale Sicherheit und Kompatibilität sollten Sie mindestens PHP 8.1.x oder PHP %s verwenden. Wir können mit der Installation trotzdem weitermachen, weisen aber darauf hin, dass Sie in Ihrem eigenen Interesse keine solch veraltete PHP Version verwenden sollten.</p>',
 'TEXT_ERROR_PHP_VERSION_MIN' => 'Die PHP Version sollte höher sein als %s',
 'TEXT_ERROR_PHP_VERSION_MAX' => 'Die PHP Version sollte niedriger sein als %s',
 'TEXT_ERROR_MYSQL_SUPPORT' => 'Probleme mit Ihrer MySQL (mysqli) Unterstützung. Ihrem Server scheint die mysqli-Erweiterung für PHP zu fehlen, die wir für die Verbindung mit Ihrer Datenbank verwenden. Wenden Sie sich an Ihr Hosting-Unternehmen, wenn Sie beim Fortfahren Datenbankfehler feststellen.',

@@ -4,7 +4,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main.php 2024-02-02 13:09:29Z webchills $
+ * @version $Id: main.php 2024-02-04 14:54:29Z webchills $
  */
 
 return [
@@ -131,7 +131,7 @@ return [
 'TEXT_ERROR_STORE_CONFIGURE' => 'Catalog /includes/configure.php file either does not exist, is not readable or is not writeable',
 'TEXT_ERROR_ADMIN_CONFIGURE' => 'Admin /admin/includes/configure.php file either does not exist, is not readable or is not writeable',
 'TEXT_ERROR_PHP_VERSION' => str_replace(["\n", "\r"], '', 'Incorrect PHP Version.<p>The PHP version you are using (' . PHP_VERSION . ') is not suitable.</p><p>The German Zen Cart Version 1.5.7g is compatible with PHP versions 8.0.x to 8.2.x, although 8.1.x or 8.2.x is recommended.</p>'),
-'TEXT_ERROR_PHP_VERSION_RECOMMENDED' => '<p>For maximum security and compatibility you should be using PHP 8.0.x or PHP %s . This installation can proceed, but note that your site will not be PCI Compliant when running out-of-date software.</p></p>',
+'TEXT_ERROR_PHP_VERSION_RECOMMENDED' => '<p>For maximum security and compatibility you should be using PHP 8.1.x or PHP %s . This installation can proceed, but note that your site will not be PCI Compliant when running out-of-date software.</p></p>',
 'TEXT_ERROR_PHP_VERSION_MIN' => 'PHP Version should be greater than or equal to %s',
 'TEXT_ERROR_PHP_VERSION_MAX' => 'PHP Version should be less than or equal to %s',
 'TEXT_ERROR_MYSQL_SUPPORT' => 'Problems with your MySQL (mysqli) support. Your server appears to be missing the mysqli extension for PHP, which we use to connect to your database. Talk to your hosting company for assistance if you encounter database errors when proceeding.',
