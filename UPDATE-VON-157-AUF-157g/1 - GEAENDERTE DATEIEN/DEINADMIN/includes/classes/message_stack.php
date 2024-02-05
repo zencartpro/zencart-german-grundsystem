@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: message_stack.php 2023-10-23 17:18:16Z webchills $
+ * @version $Id: message_stack.php 2024-02-05 13:50:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -34,7 +34,7 @@ if (!defined('IS_ADMIN_FLAG')) {
       } elseif ($type == 'success') {
         $this->errors[] = array('params' => 'messageStackAlert alert alert-success', 'text' => '<i class="fa-solid fa-2x fa-circle-check"></i> ' . $message);
       } elseif ($type == 'caution') {
-        $this->errors[] = array('params' => 'messageStackAlert alert alert-warning', 'text' => '<i class="fa-solid fa-2x fa-hand-stop-o"></i> ' . $message);
+        $this->errors[] = array('params' => 'messageStackAlert alert alert-warning', 'text' => '<i class="fa-solid fa-2x fa-hand"></i> ' . $message);
       } else {
         $this->errors[] = array('params' => 'messageStackAlert alert alert-danger', 'text' => $message);
       }
