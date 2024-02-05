@@ -5,29 +5,43 @@
 * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: german_help.php 2024-01-10 07:16:16Z webchills $
+* @version $Id: german_help.php 2024-02-05 15:37:16Z webchills $
 */
 require('includes/application_top.php');
+$current = PROJECT_VERSION_NAME . ' - deutsche Version v' . PROJECT_VERSION_MAJOR . '.' . PROJECT_VERSION_MINOR . '';
 ?>
 <!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
 <head>
-      <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
-
+<?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
 <style>
 .card-text {
-font-size: 13px;
+font-size: 14px;
 padding: 8px;
 text-align:justify;
 } 
 .card-text a {
-font-size: 13px;
+font-size: 14px;
+font-weight:bold;
+text-decoration:underline;
+color:#E67A39;
 }  
+.table {
+font-size: 14px;
+padding: 8px;
+}
+
+.table a {
+font-size: 14px;
+text-decoration:underline;
+font-weight:bold;
+color:#E67A39;
+}
 #zencartprologo{
-width:281px;
-height:63px;
+width:380px;
 float:right;
-margin:5px 5px 5px 40px;
+margin:5px 5px 5px 120px;
+font-size:14px;
 } 
 </style>
 
@@ -41,12 +55,12 @@ margin:5px 5px 5px 40px;
     <!-- body //-->
     <div class="container-fluid">
       <!-- body_text //-->
-<h1 class="pageHeading">Hilfe zur deutschen Zen Cart Version 1.5.7g</h1>
+<h1 class="pageHeading">Hilfe zur deutschen Zen Cart Version 1.5.7h</h1>
 <div class="card-text">
-<span id="zencartprologo"><a href="https://www.zen-cart-pro.at" target="_blank"><img src="images/zencartpro-logo.jpg" alt="www.zen-cart-pro.at - Die deutsche Zen Cart Version" title="www.zen-cart-pro.at - Die deutsche Zen Cart Version"/></a></span>Die deutsche Zen-Cart Version 1.5.7g ist eine Modifikation der amerikanischen Version 1.5.7d/1.5.8 von <a href="https://www.zen-cart.com" target="_blank">zen-cart.com</a>.<br>
+<span id="zencartprologo"><a href="https://www.zen-cart-pro.at" target="_blank"><img src="images/zencartpro-logo.jpg" alt="www.zen-cart-pro.at - Die deutsche Zen Cart Version" title="www.zen-cart-pro.at - Die deutsche Zen Cart Version"/></a><br><br>Ihre derzeit installierte Zen Cart Version:<br><b><?php echo  $current;?></b><br/><a href="https://ping.zen-cart-pro.at" target="_blank">auf Updates prüfen</a><br><br><?php echo 'Ihre derzeit aktive PHP Version:<b> ' . phpversion();?></b><br>Für diese Zen Cart Version empfohlen: <b>8.2.x</b></span><b>the art of e-commerce<br>übersetzt, angepasst und erweitert zur Verwendung im deutschsprachigen Raum</b><br><br>Die deutsche Zen-Cart Version 1.5.7h ist eine Modifikation der amerikanischen Version 1.5.7d/1.5.8/2.0.0 von <a href="https://www.zen-cart.com" target="_blank">zen-cart.com</a>.<br>
 Sie wurde nicht nur einfach ins Deutsche übersetzt, sondern auch funktional auf die Anforderungen, die an Onlineshops in Deutschland, Österreich und der Schweiz gestellt werden, angepasst und mit zahlreichen Erweiterungen ausgestattet.<br>
-Die deutsche Zen Cart Version wird seit 2003 von einem Team von Entwicklern in Österreich und Deutschland betreut und weiterentwickelt.<br><br>
-Website des Projekts: <a href="https://www.zen-cart-pro.at" target="_blank">www.zen-cart-pro.at</a>
+<br>Die deutsche Zen Cart Version wird seit 2003 von einem Team von Entwicklern in Österreich und Deutschland betreut und weiterentwickelt.<br><br>
+<b>Website des Projekts:</b><br><a href="https://www.zen-cart-pro.at" target="_blank">www.zen-cart-pro.at</a>
 <br><br>
 Hier finden Sie eine Übersicht hilfreicher Seiten zu Bedienung, Konfiguration, Sicherheit und Erweiterung Ihres Onlineshop Systems:
 <br><br>
