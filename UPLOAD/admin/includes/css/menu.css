@@ -1,16 +1,16 @@
 
 .headerBar {
-    background-color: #333;
+    background-color: #006080;
     color: #fff;
 }
 .headerBar select {
-    color: #333;
+    color: #006080;
     background-color: #fff;
 }
 
 .headerBarContent {
     color: #ffffff;
-    font-weight: bold;
+    font-weight: 700;
     padding: 2px;
 }
 
@@ -20,12 +20,12 @@
 }
 
 .headerBar div ul li a {
-    padding: 3px;
-    margin-top: 3px;
+    padding: 3px 3px 3px 0;
+    margin-top: 6px;
 }
 
 .headerBar div ul li a:hover {
-    color: #333;
+    color: #006080;
 }
 
 .upperMenu{
@@ -47,20 +47,15 @@
     background-color: #d7d6cc;
 }
 .navbar-nav li>a.dropdown-toggle {
-    font-size: 1.2em;
-    color: #333;
+    font-size: 14px;
+    color: #000000;
 }
 
-/* for help button placement */
+
 .navbar {
   margin-bottom: 8px;
 }
-.btn-help {
-  margin-right: 4px;
-  margin-bottom: 8px;
-  background-color: #337ab7; 
-  color: white; 
-}
+
 
 @media (min-width: 768px) {
     .navbar-nav>li>a {

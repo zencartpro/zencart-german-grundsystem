@@ -11,9 +11,34 @@
 // important line - do NOT change
 @setlocale(LC_TIME, ['de_DE.UTF-8', 'de_AT.UTF-8', 'de_CH.UTF-8', 'de_DE.ISO_8859-1','de_DE@euro', 'de_DE', 'de', 'ge', 'deu.deu']);
 //
-
+// texts for admin header
 define('TEXT_PASSWORD_LAST_CHANGE', 'Passwort zuletzt geändert:&nbsp;');
 define('TEXT_LAST_LOGIN_INFO', 'Letztes Login [IP]:&nbsp;');
+define('ADMIN_HEADER_USEFUL_LINK_1_TEXT', 'Link 1');
+define('ADMIN_HEADER_USEFUL_LINK_1_URL', 'https://www.google.at');
+define('ADMIN_HEADER_USEFUL_LINK_2_TEXT', 'Link 2');
+define('ADMIN_HEADER_USEFUL_LINK_2_URL', 'https://www.google.at');
+define('ADMIN_HEADER_USEFUL_LINK_3_TEXT', 'Link 3');
+define('ADMIN_HEADER_USEFUL_LINK_3_URL', 'https://www.google.at');
+define('ADMIN_HEADER_USEFUL_LINK_4_TEXT', 'Link 4');
+define('ADMIN_HEADER_USEFUL_LINK_4_URL', 'https://www.google.at');
+define('ADMIN_HEADER_USEFUL_LINK_5_TEXT', 'Link 5');
+define('ADMIN_HEADER_USEFUL_LINK_5_URL', 'https://www.google.at');
+define('ADMIN_HEADER_USEFUL_LINK_6_TEXT', 'Link 6');
+define('ADMIN_HEADER_USEFUL_LINK_6_URL', 'https://www.google.at');
+define('ADMIN_HEADER_USEFUL_LINK_7_TEXT', 'Link 7');
+define('ADMIN_HEADER_USEFUL_LINK_7_URL', 'https://www.google.at');
+define('ADMIN_HEADER_USEFUL_LINK_8_TEXT', 'Link 8');
+define('ADMIN_HEADER_USEFUL_LINK_8_URL', 'https://www.google.at');
+define('ADMIN_HEADER_USEFUL_LINK_9_TEXT', 'Link 9');
+define('ADMIN_HEADER_USEFUL_LINK_9_URL', 'https://www.google.at');
+define('ADMIN_HEADER_USEFUL_LINK_10_TEXT', 'Link 10');
+define('ADMIN_HEADER_USEFUL_LINK_10_URL', 'https://www.google.at');
+define('HEADER_ALT_TEXT','Admin Powered by Zen Cart 1.5.7h - deutsche Version');
+define('HEADER_LOGO_IMAGE','logo.gif');
+define('HEADER_LOGO_WIDTH','240');
+define('HEADER_LOGO_HEIGHT','54');
+//
 define('ADMIN_NAV_DATE_TIME_FORMAT','%A %d %b %Y %X');
 define('ARIA_PAGINATION_','');
 define('ARIA_PAGINATION_CURRENTLY_ON','); jetzt auf Seite %s');
@@ -260,10 +285,6 @@ define('ERROR_TOKEN_EXPIRED_PLEASE_RESUBMIT','FEHLER: Leider ist bei der Verarbe
 define('ERROR_UNABLE_TO_DISPLAY_SERVER_INFORMATION','Leider kann Ihre PHP-Konfiguration nicht angezeigt werden, da Ihr Hosting-Unternehmen festgelegt hat, dass [phpinfo] als Teil von [disable_functions] in den php.ini-Einstellungen deaktiviert werden soll.');
 define('ERROR_USPS_STATUS','<strong>WARNUNG:</strong> Dem USPS-Versandmodul fehlt entweder der Benutzername, oder es ist auf TEST statt auf PRODUKTION eingestellt und funktioniert nicht.<br>Wenn Sie keine USPS-Versandangebote abrufen können, wenden Sie sich an USPS, um Ihr Web Tools-Konto auf dem Produktionsserver zu aktivieren. 1-800-344-7779 oder icustomercare@usps.com.');
 define('FEMALE','Frau');
-define('HEADER_ALT_TEXT','Admin Powered by Zen Cart 1.5.7g - deutsche Version');
-define('HEADER_LOGO_IMAGE','logo.gif');
-define('HEADER_LOGO_WIDTH','240');
-define('HEADER_LOGO_HEIGHT','70');
 define('HEADER_TITLE_ACCOUNT','Account');
 define('HEADER_TITLE_LOGOFF','Abmelden');
 define('HEADER_TITLE_ONLINE_CATALOG','Shop Startseite');

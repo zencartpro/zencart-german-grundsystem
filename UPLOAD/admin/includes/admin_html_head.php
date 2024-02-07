@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
   * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: admin_html_head.php 2023-10-21 18:44:16Z webchills $
+ * @version $Id: admin_html_head.php 2024-02-05 18:44:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -15,6 +15,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?php echo TITLE; ?></title>
+<link href="assets/inter/inter.css" rel="stylesheet" type="text/css"/>
 <?php if (file_exists($value = DIR_WS_INCLUDES . 'css/bootstrap.min.css')) { ?>
     <link rel="stylesheet" href="<?php echo $value; ?>">
 <?php } else { ?>

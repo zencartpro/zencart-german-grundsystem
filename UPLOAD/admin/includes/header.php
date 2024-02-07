@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header.php 2023-10-21 14:37:51Z webchills $
+ * @version $Id: header.php 2024-02-06 21:25:51Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -19,8 +19,6 @@ if (defined('STRICT_ERROR_REPORTING') && STRICT_ERROR_REPORTING == true) {
  * Left here for legacy pages that do not use the new admin_html_head.php file
  */
 require_once DIR_WS_INCLUDES . 'javascript_loader.php';
-
-$version_check_requested = (isset($_GET['vcheck']) && $_GET['vcheck'] != '') ? true : false;
 
 // Show Languages Dropdown for convenience only if main filename and directory exists
 if (empty($action)) {
@@ -71,78 +69,6 @@ if ($messageStack->size > 0) {
     </div>
     <?php
 }
-
-// check version with zen-cart server
-// ignore version-check if INI file setting has been set
-$version_from_ini = '';
-$version_ini_sysinfo = '';
-$version_ini_index_sysinfo = '';
-if (!isset($version_check_sysinfo)) $version_check_sysinfo = false;
-if (!isset($version_check_index)) $version_check_index = false;
-
-$skip_file = DIR_FS_ADMIN . 'includes/local/skip_version_check.ini';
-if (file_exists($skip_file) && $lines = @file($skip_file)) {
-    foreach ($lines as $line) {
-        if (substr(trim($line), 0, 14) == 'version_check=') $version_from_ini = substr(trim(strtolower(str_replace('version_check=', '', $line))), 0, 3);
-        if (substr(trim($line), 0, 41) == 'display_update_link_only_on_sysinfo_page=') $version_ini_sysinfo = trim(strtolower(str_replace('display_update_link_only_on_sysinfo_page=', '', $line)));
-        if (substr(trim($line), 0, 46) == 'display_update_link_on_index_and_sysinfo_page=') $version_ini_index_sysinfo = trim(strtolower(str_replace('display_update_link_only_on_sysinfo_page=', '', $line)));
-    }
-}
-
-$doVersionCheck = false;
-$versionCheckError = false;
-
-// ignore version check if not enabled or if not on main page or sysinfo page
-if ((SHOW_VERSION_UPDATE_IN_HEADER == 'true' && $version_from_ini != 'off' && ($version_check_sysinfo == true || $version_check_index == true) && $zv_db_patch_ok == true) || $version_check_requested == true) {
-    $doVersionCheck = true;
-    $versionServer = new VersionServer();
-    $newinfo = $versionServer->getProjectVersion();
-    $new_version = TEXT_VERSION_CHECK_CURRENT; //set to "current" by default
-    if (empty($newinfo) || isset($newinfo['error'])) {
-        $isCurrent = true;
-        $versionCheckError = true;
-    } else {
-        $isCurrent = $versionServer->isProjectCurrent($newinfo);
-    }
-
-    $hasPatches = 0;
-
-    if (!$isCurrent) {
-        $new_version = TEXT_VERSION_CHECK_NEW_VER . trim($newinfo['versionMajor']) . '.' . trim($newinfo['versionMinor']) . ' :: ' . $newinfo['versionDetail'];
-    }
-    if ($isCurrent) {
-        $hasPatches = $versionServer->hasProjectPatches($newinfo);
-    }
-
-    if ($isCurrent && $hasPatches && $new_version == TEXT_VERSION_CHECK_CURRENT) {
-        $new_version = '';
-    }
-
-    if ($isCurrent && $hasPatches != 2 && $hasPatches) {
-        $new_version .= (($new_version != '') ? '<br>' : '') . '<span class="alert">' . TEXT_VERSION_CHECK_NEW_PATCH . trim($newinfo['versionMajor']) . '.' . trim($newinfo['versionMinor']) . ' - ' . TEXT_VERSION_CHECK_PATCH . ': [' . trim($newinfo['versionPatch1']) . '] :: ' . $newinfo['versionPatchDetail'] . '</span>';
-    }
-
-    if ($isCurrent && $hasPatches > 1) {
-        $new_version .= (($new_version != '') ? '<br>' : '') . '<span class="alert">' . TEXT_VERSION_CHECK_NEW_PATCH . trim($newinfo['versionMajor']) . '.' . trim($newinfo['versionMinor']) . ' - ' . TEXT_VERSION_CHECK_PATCH . ': [' . trim($newinfo['versionPatch2']) . '] :: ' . $newinfo['versionPatchDetail'] . '</span>';
-    }
-
-    // display download link
-    if ($new_version != '' && $new_version != TEXT_VERSION_CHECK_CURRENT) $new_version .= '<br><a href="' . $newinfo['versionDownloadURI'] . '" rel="noopener" target="_blank"><input type="button" class="btn btn-success" value="' . TEXT_VERSION_CHECK_DOWNLOAD . '"/></a>';
-}
-
-if (!$doVersionCheck || $versionCheckError) {
-    $new_version = '';
-    if ($versionCheckError) {
-        $new_version = ERROR_CONTACTING_PROJECT_VERSION_SERVER . '<br>';
-    }
-    // display the "check for updated version" button.  The button link should be the current page and all params
-    $url = zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('vcheck')), 'SSL');
-    $url .= (strpos($url, '?') !== false ? '&amp;' : '?') . 'vcheck=yes';
-    if ($zv_db_patch_ok == true || $version_check_sysinfo == true) $new_version .= '<a href="' . $url . '" role="button" class="btn btn-link">' . TEXT_VERSION_CHECK_BUTTON . '</a>';
-}
-/////////////////
-
-
 // check GV release queue and alert store owner
 if (defined('MODULE_ORDER_TOTAL_GV_SHOW_QUEUE_IN_ADMIN') && MODULE_ORDER_TOTAL_GV_SHOW_QUEUE_IN_ADMIN == 'true') {
     $new_gv_queue = $db->Execute("select * from " . TABLE_COUPON_GV_QUEUE . " where release_flag='N'");
@@ -153,17 +79,47 @@ if (defined('MODULE_ORDER_TOTAL_GV_SHOW_QUEUE_IN_ADMIN') && MODULE_ORDER_TOTAL_G
     }
 }
 ?>
-<!-- All HEADER_ definitions in the columns below are defined in includes/languages/english.php //-->
+<!-- All HEADER_ definitions in the columns below are defined in includes/languages/german.php //-->
+<div id="help">
+ <div class="helpicon hidden-xs noprint">
+     <a title="Hilfe zur deutschen Zen Cart Version" href="<?php echo zen_href_link(FILENAME_GERMAN_HELP, '', 'NONSSL'); ?>"><i class="fa-solid fa-question fa-lg" style="color: #006080;"></i></a>
+  </div>
+  <br>
+  <div class="logout noprint">
+  <a title="Logout" href="<?php echo zen_href_link(FILENAME_LOGOFF, '', 'NONSSL'); ?>"><i class="fa-solid fa-arrow-right-from-bracket fa-lg" style="color: #E47B3A;"></i></a>
+  </div>
+</div>
   <div class="row">
     <div class="col-xs-8 col-sm-3" id="adminHeaderLogo">
         <?php echo '<a href="' . zen_href_link(FILENAME_DEFAULT) . '">' . zen_image(DIR_WS_IMAGES . HEADER_LOGO_IMAGE, HEADER_ALT_TEXT, HEADER_LOGO_WIDTH, HEADER_LOGO_HEIGHT) . '</a>'; ?>
     </div>
 
     <div class="hidden-xs col-sm-3 col-sm-push-6 noprint adminHeaderAlerts">
-        <?php if ($new_version) { ?>
-            <?php echo $new_version; ?><br>
-            <?php echo '(' . TEXT_CURRENT_VER_IS . ' v' . PROJECT_VERSION_MAJOR . '.' . PROJECT_VERSION_MINOR . (PROJECT_VERSION_PATCH1 != '' ? 'p' . PROJECT_VERSION_PATCH1 : '') . ')'; ?>
-        <?php } ?>
+    	<span class="admininfosmall">
+     <?php
+     $admname = '' . preg_replace('/[^\w]/', '*', zen_get_admin_name()) . ''; 
+    $adminInfo = zen_read_user(zen_get_admin_name($_SESSION['admin_id']));
+    $uhrzeit = date('H');    
+    if($uhrzeit >= 3 && $uhrzeit < 12){
+          echo 'Guten Morgen ';}
+    elseif($uhrzeit >= 12 && $uhrzeit < 18){ 
+          echo 'Guten Tag ';}
+    elseif($uhrzeit >= 18 && $uhrzeit < 22) { 
+          echo 'Guten Abend '; 
+    }
+    else
+    { 
+          echo 'Gute Nacht ';   
+    }
+    echo '<b><a href="' . zen_href_link(FILENAME_ADMIN_ACCOUNT, '', 'NONSSL') .'">' . $admname . '</b></a> am ';
+    setlocale(LC_TIME, 'de_DE.UTF8');
+    echo $zcDate->output('%A').', '.date('d.m.Y H:i').' Uhr';
+    echo '<br>';
+    echo TEXT_PASSWORD_LAST_CHANGE . $adminInfo['pwd_last_change_date'];
+    echo '<br>';
+    echo '' . TEXT_LAST_LOGIN_INFO . $_SESSION['last_login_date'] . ' [' . $_SESSION['last_login_ip'] . ']';
+    ?>
+      </span>
     </div>
 
     <div class="hidden-sm hidden-md hidden-lg col-xs-4 noprint adminHeaderAlerts">
@@ -187,7 +143,7 @@ if (defined('MODULE_ORDER_TOTAL_GV_SHOW_QUEUE_IN_ADMIN') && MODULE_ORDER_TOTAL_G
 
   </div>
   <div class="row headerBar">
-    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+    <div id="langswitch" class="hidden-xs">
         <?php
         if (!$hide_languages) {
             echo zen_draw_form('languages', basename($PHP_SELF), '', 'get');
@@ -200,32 +156,22 @@ if (defined('MODULE_ORDER_TOTAL_GV_SHOW_QUEUE_IN_ADMIN') && MODULE_ORDER_TOTAL_G
         }
         ?>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-        <?php
-        $adminInfo = zen_read_user(zen_get_admin_name($_SESSION['admin_id']));
-        echo((strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') ? iconv('ISO-8859-1', 'UTF-8', $zcDate->output(ADMIN_NAV_DATE_TIME_FORMAT, time())) : $zcDate->output(ADMIN_NAV_DATE_TIME_FORMAT, time())); //windows does not "do" UTF-8...so a manual conversion is necessary
-        echo '&nbsp;' . date("O", time()) . ' GMT';  // time zone
-        echo '&nbsp;[' . $_SERVER['REMOTE_ADDR'] . ']'; // current admin user's IP address
-        echo '<br>';
-        echo gethostname(); 
-        echo ' - ' . date_default_timezone_get(); //what is the PHP timezone set to?
-        $loc = setlocale(LC_TIME, 0);
-        if ($loc !== FALSE) echo ' - ' . $loc; //what is the locale in use?
-        echo '<br>';
-        echo TEXT_PASSWORD_LAST_CHANGE . $adminInfo['pwd_last_change_date'];
-        echo '&nbsp;&nbsp;&nbsp;' . TEXT_LAST_LOGIN_INFO . $_SESSION['last_login_date'] . ' [' . $_SESSION['last_login_ip'] . ']';
-        ?>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 noprint">
-        <ul class="nav nav-pills upperMenu">
-            <li><a href="<?php echo zen_href_link(FILENAME_DEFAULT, '', 'NONSSL'); ?>" class="headerLink"><?php echo HEADER_TITLE_TOP; ?></a></li>
+    <div id="usefuladminlinks">       
+    <div>
+        <ul class="nav nav-pills upperMenu">           
             <li><a href="<?php echo zen_catalog_href_link(FILENAME_DEFAULT); ?>" class="headerLink" rel="noopener" target="_blank"><?php echo HEADER_TITLE_ONLINE_CATALOG; ?></a></li>
-            <li><a href="<?php echo zen_href_link(FILENAME_GERMAN_HELP, '', 'NONSSL'); ?>" class="headerLink"><?php echo HEADER_TITLE_GERMAN_HELP; ?></a></li>           
-            <li><a href="<?php echo zen_href_link(FILENAME_SERVER_INFO, '', 'NONSSL'); ?>" class="headerLink"><?php echo HEADER_TITLE_VERSION; ?></a></li>
-            <li><a href="<?php echo zen_href_link(FILENAME_ADMIN_ACCOUNT, '', 'NONSSL'); ?>" class="headerLink"><?php echo HEADER_TITLE_ACCOUNT; ?></a></li>
-            <li><a href="<?php echo zen_href_link(FILENAME_LOGOFF, '', 'NONSSL'); ?>" class="headerLink"><?php echo HEADER_TITLE_LOGOFF; ?></a></li>
+            <li><a class="headerLink" href="<?php echo ADMIN_HEADER_USEFUL_LINK_1_URL;?>" target="_blank"><?php echo ADMIN_HEADER_USEFUL_LINK_1_TEXT;?></a></li>
+            <li><a class="headerLink" href="<?php echo ADMIN_HEADER_USEFUL_LINK_2_URL;?>" target="_blank"><?php echo ADMIN_HEADER_USEFUL_LINK_2_TEXT;?></a></li>
+    	      <li><a class="headerLink" href="<?php echo ADMIN_HEADER_USEFUL_LINK_3_URL;?>" target="_blank"><?php echo ADMIN_HEADER_USEFUL_LINK_3_TEXT;?></a></li>
+    	      <li><a class="headerLink" href="<?php echo ADMIN_HEADER_USEFUL_LINK_4_URL;?>" target="_blank"><?php echo ADMIN_HEADER_USEFUL_LINK_4_TEXT;?></a></li>
+    	      <li><a class="headerLink" href="<?php echo ADMIN_HEADER_USEFUL_LINK_5_URL;?>" target="_blank"><?php echo ADMIN_HEADER_USEFUL_LINK_5_TEXT;?></a></li>
+            <li><a class="headerLink" href="<?php echo ADMIN_HEADER_USEFUL_LINK_6_URL;?>" target="_blank"><?php echo ADMIN_HEADER_USEFUL_LINK_6_TEXT;?></a></li>
+            <li><a class="headerLink" href="<?php echo ADMIN_HEADER_USEFUL_LINK_7_URL;?>" target="_blank"><?php echo ADMIN_HEADER_USEFUL_LINK_7_TEXT;?></a></li>
+            <li><a class="headerLink" href="<?php echo ADMIN_HEADER_USEFUL_LINK_8_URL;?>" target="_blank"><?php echo ADMIN_HEADER_USEFUL_LINK_8_TEXT;?></a></li>
+            <li><a class="headerLink" href="<?php echo ADMIN_HEADER_USEFUL_LINK_9_URL;?>" target="_blank"><?php echo ADMIN_HEADER_USEFUL_LINK_9_TEXT;?></a></li>
+            <li><a class="headerLink" href="<?php echo ADMIN_HEADER_USEFUL_LINK_10_URL;?>" target="_blank"><?php echo ADMIN_HEADER_USEFUL_LINK_10_TEXT;?></a></li>            
         </ul>
     </div>
   </div>
+  </div>
 <?php require DIR_WS_INCLUDES . 'header_navigation.php'; ?>
-
