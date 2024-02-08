@@ -4,7 +4,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: stylesheet.css 2024-02-05 18:27:04 webchills $
+ * @version $Id: stylesheet.css 2024-02-08 12:27:04 webchills $
  */
 :root { font-family: 'Inter', sans-serif; }
        @supports (font-variation-settings: normal) {
@@ -40,10 +40,14 @@ a, body, html, table {
 	color:#E47B3A;
 }
 
+#topright{
+	position:relative;
+}
+
 #help {
 	position:absolute;
-	right:10px;
-	top:10px;	
+	right:5px;
+	top:5px;	
 	z-index:99999999;
 	
 }

@@ -80,6 +80,7 @@ if (defined('MODULE_ORDER_TOTAL_GV_SHOW_QUEUE_IN_ADMIN') && MODULE_ORDER_TOTAL_G
 }
 ?>
 <!-- All HEADER_ definitions in the columns below are defined in includes/languages/german.php //-->
+<div id="topright">
 <div id="help">
  <div class="helpicon hidden-xs noprint">
      <a title="Hilfe zur deutschen Zen Cart Version" href="<?php echo zen_href_link(FILENAME_GERMAN_HELP, '', 'NONSSL'); ?>"><i class="fa-solid fa-question fa-lg" style="color: #006080;"></i></a>
@@ -88,6 +89,7 @@ if (defined('MODULE_ORDER_TOTAL_GV_SHOW_QUEUE_IN_ADMIN') && MODULE_ORDER_TOTAL_G
   <div class="logout noprint">
   <a title="Logout" href="<?php echo zen_href_link(FILENAME_LOGOFF, '', 'NONSSL'); ?>"><i class="fa-solid fa-arrow-right-from-bracket fa-lg" style="color: #E47B3A;"></i></a>
   </div>
+</div>
 </div>
   <div class="row">
     <div class="col-xs-8 col-sm-3" id="adminHeaderLogo">
