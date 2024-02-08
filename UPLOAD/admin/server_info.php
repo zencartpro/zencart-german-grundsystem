@@ -1,12 +1,12 @@
 <?php
 /**
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * additional database info by lat9
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: server_info.php 2022-12-17 21:12:16Z webchills $
+ * @version $Id: server_info.php 2024-02-08 12:29:16Z webchills $
  */
 
   require('includes/application_top.php');
@@ -16,7 +16,7 @@
 
 // the following is for display later
   $sinfo =  '<div class="sysinfo wrapper">' .
-            '  <div class="center"><h2> ' . PROJECT_VERSION_NAME . ' ' . PROJECT_VERSION_MAJOR . '.' . PROJECT_VERSION_MINOR . '</h2>' .
+            '  <div class="center"><h2> ' . PROJECT_VERSION_NAME . ' ' . PROJECT_VERSION_MAJOR . '.' . PROJECT_VERSION_MINOR . '</h2><a class="versioncheck" href="https://ping.zen-cart-pro.at" target="_blank">auf Updates prüfen</a>' .
                ((PROJECT_VERSION_PATCH1 =='') ? '' : '<h3>Patch: ' . PROJECT_VERSION_PATCH1 . '::' . PROJECT_VERSION_PATCH1_SOURCE . '</h3>') .
                ((PROJECT_VERSION_PATCH2 =='') ? '' : '<h3>Patch: ' . PROJECT_VERSION_PATCH2 . '::' . PROJECT_VERSION_PATCH2_SOURCE . '</h3>') .
          '     <h2> ' . PROJECT_DATABASE_LABEL . ' ' . PROJECT_DB_VERSION_MAJOR . '.' . PROJECT_DB_VERSION_MINOR . '</h2>' .
@@ -58,7 +58,7 @@
 <div class="serverInfo">
       <div class="infocell"><strong><?php echo TITLE_SERVER_HOST; ?></strong> <?php echo $system['host'] . ' (' . $system['ip'] . ')'; ?></div>
       <div class="infocell"><strong><?php echo TITLE_DATABASE; ?></strong> <?php echo zen_output_string_protected(DB_DATABASE); ?></div>
-      <div class="infocell"><strong><?php echo STORE_HOME; ?></strong> <?php echo zen_output_string_protected(DIR_FS_CATALOG); ?></div>
+      <div class="infocell"><strong><?php echo TITLE_SERVER_HOME; ?></strong> <?php echo zen_output_string_protected(DIR_FS_CATALOG); ?></div>
       <div class="infocell"><strong><?php echo TITLE_SERVER_OS; ?></strong> <?php echo $system['system'] . ' ' . $system['kernel']; ?> </div>
       <div class="infocell"><strong><?php echo TITLE_SERVER_DATE; ?></strong> <?php echo $system['date']; ?> &nbsp;</div>
       <div class="infocell"><strong><?php echo TITLE_SERVER_UP_TIME; ?></strong> <?php echo $system['uptime']; ?></div>
@@ -111,6 +111,7 @@ if (strpos($disabled_functions,"phpinfo") === false) {
     <tr class="db-row">
         <th class="db-name db-head db-info"><?php echo HEADING_DATABASE_VARIABLE; ?></th>
         <th class="db-value db-head db-info"><?php echo HEADING_DATABASE_VALUE; ?></th>
+        
     </tr>
     <?php
     $show_variables = $db->Execute("SHOW VARIABLES");
