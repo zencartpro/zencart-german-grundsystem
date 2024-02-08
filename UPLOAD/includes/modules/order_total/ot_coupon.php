@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_coupon.php 2024-01-20 10:33:16Z webchills $
+ * @version $Id: ot_coupon.php 2024-02-08 11:33:16Z webchills $
  */
 /*
  * NOTE: Notifier NOTIFY_OT_COUPON_CALCS_FINISHED formerly had its first parameter return an array with a 'coupon' entry which was a queryFactoryResult. It is now just an array of the ->fields values
@@ -516,7 +516,7 @@ class ot_coupon extends base
                     $products = $_SESSION['cart']->get_products();
                     $coupon_product_count = 0;
                     foreach ($products as $product) {
-                        if (CouponValidation::is_product_valid($product['id'], $coupon_details['coupon_id'])) {
+                        if (CouponValidation::is_product_valid((int)$product['id'], (int)$coupon_details['coupon_id'])) {
                             $coupon_product_count += $_SESSION['cart']->get_quantity($product['id']);
                         }
                     }
@@ -640,12 +640,13 @@ class ot_coupon extends base
         $orderTotalTax = $order->info['tax'];
         $orderTotal = $order->info['total'];
 
+        $coupon_id = (int)$coupon_id;
         // for products which are not applicable for this coupon, calculate their value in the cart and reduce it from the final order-total that the coupon's discounts will apply to
         $products = $_SESSION['cart']->get_products();
         $i = 0;
         foreach ($products as $product) {
             $i++;
-            $is_product_valid = (CouponValidation::is_product_valid($product['id'], $coupon_id) && CouponValidation::is_coupon_valid_for_sales($product['id'], $coupon_id));
+            $is_product_valid = (CouponValidation::is_product_valid((int)$product['id'], $coupon_id) && CouponValidation::is_coupon_valid_for_sales((int)$product['id'], $coupon_id));
 
             $this->notify('NOTIFY_OT_COUPON_PRODUCT_VALIDITY', ['is_product_valid' => $is_product_valid, 'i' => $i]);
 
@@ -817,10 +818,11 @@ class ot_coupon extends base
         if ($found_valid !== null) {
             return $found_valid;
         }
+        $coupon_id = (int)$coupon_id;
 
         $found_valid = false;
         foreach ($products as $product) {
-            if (CouponValidation::is_product_valid($product['id'], $coupon_id) && CouponValidation::is_coupon_valid_for_sales($product['id'], $coupon_id)) {
+            if (CouponValidation::is_product_valid((int)$product['id'], $coupon_id) && CouponValidation::is_coupon_valid_for_sales((int)$product['id'], $coupon_id)) {
                 $found_valid = true;
                 break;
             }
