@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: button_names.php 2023-10-26 19:11:14Z webchills $
+ * @version $Id: button_names.php 2024-02-08 10:45:14Z webchills $
  */
 
 /**
@@ -44,6 +44,8 @@ define('BUTTON_IMAGE_SEND_ANOTHER', 'button_send_another.gif');
 define('BUTTON_IMAGE_SHIPPING_ESTIMATOR', 'button_shipping_estimator.gif');
 define('BUTTON_IMAGE_SOLD_OUT','button_sold_out.gif');
 define('BUTTON_IMAGE_SOLD_OUT_SMALL','button_sold_out_sm.gif');
+define('BUTTON_IMAGE_DROPSHIPPING','button_sold_out.gif');
+define('BUTTON_IMAGE_DROPSHIPPING_SMALL','button_sold_out_sm.gif');
 define('BUTTON_IMAGE_SUBMIT', 'button_submit.gif');
 define('BUTTON_IMAGE_UNSUBSCRIBE', 'button_unsubscribe.gif');
 define('BUTTON_IMAGE_UPDATE', 'button_update.gif');
@@ -78,6 +80,8 @@ define('BUTTON_CONTINUE_SHOPPING_ALT', 'Weiter einkaufen');
 define('BUTTON_DELETE_ALT', 'Löschen');
 define('BUTTON_DELETE_SMALL_ALT', 'Löschen');
 define('BUTTON_DOWNLOAD_ALT', 'Download');
+define('BUTTON_DROPSHIPPING_ALT', 'Sonderbestellung');
+define('BUTTON_DROPSHIPPING_SMALL_ALT', 'Sonderbestellung');
 define('BUTTON_EDIT_SMALL_ALT', 'Bearbeiten');
 define('BUTTON_IN_CART_ALT', 'In den Warenkorb ');
 define('BUTTON_LOGIN_ALT', 'Anmelden');
