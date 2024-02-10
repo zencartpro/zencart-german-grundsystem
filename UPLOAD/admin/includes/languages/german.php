@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2023-12-12 18:21:04Z webchills $
+ * @version $Id: german.php 2024-02-10 15:21:04Z webchills $
  */
 
 // important line - do NOT change
@@ -670,7 +670,7 @@ define('TEXT_WORDS_FREE',' Wort(e) frei ');
 define('TEXT_YES','Ja');
 define('WARNING_ADMIN_ACTIVITY_LOG_DATE','WARNUNG: Die Admin Aktivitäten Log Tabelle hat mehr als 2 Monate alte Einträge und sollte archiviert werden, um Speicherplatz zu sparen ...  ');
 define('WARNING_ADMIN_ACTIVITY_LOG_RECORDS','WARNUNG: Die Admin Aktivitäten Log Tabelle hat mehr als 50000 Einträge und sollte archiviert werden, um Speicherplatz zu sparen ... ');
-define('WARNING_ADMIN_DOWN_FOR_MAINTENANCE','<strong>WARNUNG:</strong> Der Shop ist derzeit im Wartungsmodus ...<br>HINWEIS: Sie können die meisten Zahlungs- und Versandmodule im Wartungsmodus nicht testen.');
+define('WARNING_ADMIN_DOWN_FOR_MAINTENANCE','WARNUNG: Der Shop ist derzeit im Wartungsmodus. HINWEIS: Sie können die meisten Zahlungs- und Versandmodule im Wartungsmodus nicht testen.');
 define('WARNING_ATTRIBUTE_COPY_INVALID_ID','WARNUNG: Attribute Kopieren zu Artikel ID#%u abgebrochen. Ungültige ID');
 define('WARNING_ATTRIBUTE_COPY_NO_ATTRIBUTES','WARNUNG: Attribute Kopieren abgebrochen. Keine Attribute gefunden für Quell Artikel ID#%u, "%s".');
 define('WARNING_ATTRIBUTE_COPY_SAME_ID','WARNUNG: Attribute Kopieren abgebrochen. Kann nicht kopieren von Artikel ID#%u zu Artikel ID#%u (gleiche ID).');

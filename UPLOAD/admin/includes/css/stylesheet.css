@@ -4,7 +4,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: stylesheet.css 2024-02-08 12:27:04 webchills $
+ * @version $Id: stylesheet.css 2024-02-10 15:27:04 webchills $
  */
 :root { font-family: 'Inter', sans-serif; }
        @supports (font-variation-settings: normal) {
@@ -72,7 +72,10 @@ a, body, html, table {
 	font-size:14px;
 	color:#006080;
 	text-decoration:underline;
-	
+}
+
+.messageStackAlert{
+	font-size:12px;
 }
 
 #imagepreview img{
@@ -228,7 +231,7 @@ a.splitPageLink:link {
  border:6px solid #006080;
     color: #FFFFFF;
     text-decoration: none;
-    font-size:12px;
+    font-size:13px;
 }
 
 a.splitPageLink:visited {
@@ -236,7 +239,7 @@ background-color: #006080;
  border:6px solid #006080;
     color: #FFFFFF;
     text-decoration: none;
-    font-size:12px;
+    font-size:13px;
 }
 
 a.splitPageLink:hover {
@@ -244,20 +247,24 @@ a.splitPageLink:hover {
     border:6px solid #577994;
     color: #FFFFFF;
     text-decoration: underline;
-    font-size:12px;
+    font-size:13px;
 }
 
 a.splitPageLink:active {
     color: #0000ff;
     text-decoration: none;
-    font-size:12px;
+    font-size:13px;
 }
 
 a.splitPageLinkCurrent {
     font-weight: bold;
     border: 1px solid #0000FF;
     padding: 2px;
-    font-size:12px;
+    font-size:13px;
+}
+
+.row select{
+	font-size:13px;
 }
 
 body {
@@ -578,11 +585,15 @@ tr.attributeBoxContent {
 div.copyrightrow {
     background: #ffffff;
     clear: both;
-    font-size: 9px;
+    font-size: 11px;
     padding: 25px;
     text-align: center;
 }
 
+div.copyrightrow a {
+    color:#E26E26;
+    font-size: 11px;
+}
 div.reportBox a {
     color: #006080;
 }
@@ -605,12 +616,13 @@ div.header {
 div.warrantyrow {
     background: #ffffff;
     clear: both;
-    font-size: 0.9em;
+    font-size: 11px;
     text-align: center;
 }
 
 div.warrantyrow a {
-    font-size: 0.9em;
+    font-size: 11px;
+    color:#E26E26;
     
 }
 
@@ -619,7 +631,7 @@ div.warrantyrow a {
 }
 
 .smallText {
-    font-size: 9px;
+    font-size: 11px;
 }
 
 .smallText a img {
@@ -909,6 +921,7 @@ footer {
 
 #footer a:hover{
    text-decoration:underline !important; 
+   color:#E47B3A;
 }
 
 /*

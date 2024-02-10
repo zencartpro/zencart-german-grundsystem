@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: english.php 2024-02-07 15:37:32Z webchills $
+ * @version $Id: english.php 2024-02-10 15:37:32Z webchills $
  */
  
 // important line - do NOT change
@@ -39,8 +39,6 @@ define('HEADER_LOGO_IMAGE','logo.gif');
 define('HEADER_LOGO_WIDTH','240');
 define('HEADER_LOGO_HEIGHT','54');
 //
-define('TEXT_PASSWORD_LAST_CHANGE', 'Password last changed:&nbsp;');
-define('TEXT_LAST_LOGIN_INFO', 'Last Login [IP]:&nbsp;');
 define('ADMIN_NAV_DATE_TIME_FORMAT','%A %d %b %Y %X');
 define('ARIA_PAGINATION_','');
 define('ARIA_PAGINATION_CURRENTLY_ON','); now on page %s');
@@ -287,10 +285,6 @@ define('ERROR_TOKEN_EXPIRED_PLEASE_RESUBMIT','ERROR: Sorry, there was an error p
 define('ERROR_UNABLE_TO_DISPLAY_SERVER_INFORMATION','Sorry, your PHP configuration cannot be displayed because your hosting company has specified that [phpinfo] should be disabled as part of [disable_functions] in php.ini settings.');
 define('ERROR_USPS_STATUS','<strong>Warning:</strong> USPS shipping module is either missing the username, or it is set to TEST rather than PRODUCTION and will not work.<br>If you cannot retrieve USPS Shipping Quotes, contact USPS to activate your Web Tools account on their production server. 1-800-344-7779 or icustomercare@usps.com');
 define('FEMALE','Female');
-define('HEADER_ALT_TEXT','Admin Powered by Zen Cart :: The Art of E-Commerce');
-define('HEADER_LOGO_IMAGE','logo.gif');
-define('HEADER_LOGO_WIDTH','240');
-define('HEADER_LOGO_HEIGHT','70');
 define('HEADER_TITLE_ACCOUNT','Account');
 define('HEADER_TITLE_LOGOFF','Logoff');
 define('HEADER_TITLE_ONLINE_CATALOG','Storefront');
