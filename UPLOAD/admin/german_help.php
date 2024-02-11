@@ -5,46 +5,27 @@
 * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: german_help.php 2024-02-05 15:37:16Z webchills $
+* @version $Id: german_help.php 2024-02-11 14:47:16Z webchills $
 */
 require('includes/application_top.php');
 $current = PROJECT_VERSION_NAME . ' - deutsche Version v' . PROJECT_VERSION_MAJOR . '.' . PROJECT_VERSION_MINOR . '';
+// get release date
+global $db;
+    $check_releasedate = $db->Execute("SELECT configuration_title, configuration_key FROM " . TABLE_PRODUCT_TYPE_LAYOUT_LANGUAGE . "
+        WHERE
+        configuration_key = 'LANGUAGE_VERSION'       
+        LIMIT 1");
+
+    if ($check_releasedate->EOF) {
+        $releasedate='';
+    }
+    $releasedate= $check_releasedate->fields['configuration_title'];
+
 ?>
 <!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
 <head>
 <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
-<style>
-.card-text {
-font-size: 14px;
-padding: 8px;
-text-align:justify;
-} 
-.card-text a {
-font-size: 14px;
-font-weight:bold;
-text-decoration:underline;
-color:#E67A39;
-}  
-.table {
-font-size: 14px;
-padding: 8px;
-}
-
-.table a {
-font-size: 14px;
-text-decoration:underline;
-font-weight:bold;
-color:#E67A39;
-}
-#zencartprologo{
-width:380px;
-float:right;
-margin:5px 5px 5px 120px;
-font-size:14px;
-} 
-</style>
-
 </head>
   <body>
 <!-- header //-->
@@ -57,7 +38,7 @@ font-size:14px;
       <!-- body_text //-->
 <h1 class="pageHeading">Hilfe zur deutschen Zen Cart Version 1.5.7h</h1>
 <div class="card-text">
-<span id="zencartprologo"><a href="https://www.zen-cart-pro.at" target="_blank"><img src="images/zencartpro-logo.jpg" alt="www.zen-cart-pro.at - Die deutsche Zen Cart Version" title="www.zen-cart-pro.at - Die deutsche Zen Cart Version"/></a><br><br>Ihre derzeit installierte Zen Cart Version:<br><b><?php echo  $current;?></b><br/><a href="https://ping.zen-cart-pro.at" target="_blank">auf Updates prüfen</a><br><br><?php echo 'Ihre derzeit aktive PHP Version:<b> ' . phpversion();?></b><br>Für diese Zen Cart Version empfohlen: <b>8.2.x</b></span><b>the art of e-commerce<br>übersetzt, angepasst und erweitert zur Verwendung im deutschsprachigen Raum</b><br><br>Die deutsche Zen-Cart Version 1.5.7h ist eine Modifikation der amerikanischen Version 1.5.7d/1.5.8/2.0.0 von <a href="https://www.zen-cart.com" target="_blank">zen-cart.com</a>.<br>
+<span id="zencartprologo"><a href="https://www.zen-cart-pro.at" target="_blank"><img src="images/zencartpro-logo.jpg" alt="www.zen-cart-pro.at - Die deutsche Zen Cart Version" title="www.zen-cart-pro.at - Die deutsche Zen Cart Version"/></a><br><br>Ihre derzeit installierte Zen Cart Version:<br><b><?php echo  $current;?></b><br>Releasedatum: <b><?php echo $releasedate;?></b><br><br/><a class="versioncheck" href="https://ping.zen-cart-pro.at" target="_blank">auf Updates prüfen</a><br><br><?php echo 'Ihre derzeit aktive PHP Version:<b> ' . phpversion();?></b><br>Für diese Zen Cart Version empfohlen: <b>8.2.x</b></span><b>the art of e-commerce<br>übersetzt, angepasst und erweitert zur Verwendung im deutschsprachigen Raum</b><br><br>Die deutsche Zen-Cart Version 1.5.7h ist eine Modifikation der amerikanischen Version 1.5.7d/1.5.8/2.0.0 von <a href="https://www.zen-cart.com" target="_blank">zen-cart.com</a>.<br>
 Sie wurde nicht nur einfach ins Deutsche übersetzt, sondern auch funktional auf die Anforderungen, die an Onlineshops in Deutschland, Österreich und der Schweiz gestellt werden, angepasst und mit zahlreichen Erweiterungen ausgestattet.<br>
 <br>Die deutsche Zen Cart Version wird seit 2003 von einem Team von Entwicklern in Österreich und Deutschland betreut und weiterentwickelt.<br><br>
 <b>Website des Projekts:</b><br><a href="https://www.zen-cart-pro.at" target="_blank">www.zen-cart-pro.at</a>
@@ -74,14 +55,6 @@ Hier finden Sie eine Übersicht hilfreicher Seiten zu Bedienung, Konfiguration, 
 </thead>
 <tbody>
 <tr class="dataTableRow" >
-<td class="dataTableContent"><a href="https://github.com/zencartpro" target="_blank">Source Code auf GitHub</a></td>
-<td class="dataTableContent">Der Source Code des Grundsystems und der Module steht auf GitHub zur Verfügung.<br>Du bist Entwickler und willst mithelfen, die deutsche Zen Cart Version noch besser zu machen?<br>Beteilige Dich auf Github!</td>
-</tr>
-<tr class="dataTableRow" >
-<td class="dataTableContent"><a href="https://github.com/zencartpro/zencart-german-grundsystem/issues" target="_blank">Issues auf GitHub</a></td>
-<td class="dataTableContent">Du hast einen Fehler in der deutschen Zen Cart Version 1.5.7 gefunden?<br>Melde ihn auf Github!<br>Für Fehler in Zusatzmodulen bitte die Issues im jeweiligen Modul Repository verwenden.</td>
-</tr>
-<tr class="dataTableRow" >
 <td class="dataTableContent"><a href="https://www.zen-cart-pro.at" target="_blank">Knowledgebase/Onlinedokumentation</a></td>
 <td class="dataTableContent">Umfangreiche Knowledgebase und Onlinedokumentation zu Installation/Update/Konfiguration der deutschen Zen Cart Version</td>
 </tr>
@@ -90,12 +63,20 @@ Hier finden Sie eine Übersicht hilfreicher Seiten zu Bedienung, Konfiguration, 
 <td class="dataTableContent">In unserem Downloadbereich auf der zen-cart-pro.at Website finden Sie zahlreiche gut getestete und dokumentierte Module,<br>mit denen Sie in der Grundinstallation nicht enthaltene Funktionalitäten hinzufügen können.</td>
 </tr>
 <tr class="dataTableRow" >
-<td class="dataTableContent"><a href="https://bsky.app/profile/zencartpro.bsky.social" target="_blank">@zencartpro.bsky.social</a></td>
-<td class="dataTableContent">Folgen Sie uns auf Bluesky für aktuelle GitHub und Knowledgebase Updates</td>
+<td class="dataTableContent"><a href="https://github.com/zencartpro" target="_blank">Source Code auf GitHub</a></td>
+<td class="dataTableContent">Der Source Code des Grundsystems und der Module steht auf GitHub zur Verfügung.<br>Du bist Entwickler und willst mithelfen, die deutsche Zen Cart Version noch besser zu machen?<br>Beteilige Dich auf Github!</td>
+</tr>
+<tr class="dataTableRow" >
+<td class="dataTableContent"><a href="https://github.com/zencartpro/zencart-german-grundsystem/issues" target="_blank">Issues auf GitHub</a></td>
+<td class="dataTableContent">Du hast einen Fehler in der deutschen Zen Cart Version 1.5.7 gefunden?<br>Melde ihn auf Github!<br>Für Fehler in Zusatzmodulen bitte die Issues im jeweiligen Modul Repository verwenden.</td>
 </tr>
 <tr class="dataTableRow" >
 <td class="dataTableContent"><a href="https://links.zen-cart-pro.at" target="_blank">Links</a></td>
 <td class="dataTableContent">Nützliche andere Websites rund um Zen Cart</td>
+</tr>
+<tr class="dataTableRow" >
+<td class="dataTableContent"><a href="https://bsky.app/profile/zencartpro.bsky.social" target="_blank">@zencartpro.bsky.social</a></td>
+<td class="dataTableContent">Folgen Sie uns auf Bluesky für aktuelle GitHub und Knowledgebase Updates</td>
 </tr>
 <tr class="dataTableRow" >
 <td class="dataTableContent"><a href="https://newsletter.zen-cart-pro.at" target="_blank">Newsletter</a></td>

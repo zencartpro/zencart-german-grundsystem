@@ -1,0 +1,52 @@
+.card-text {
+font-size: 15px;
+padding: 8px;
+text-align:justify;
+} 
+.card-text a {
+font-size: 15px;
+font-weight:700;
+text-decoration:underline;
+color:#006680;
+}  
+
+.card-text a:hover {
+font-size: 15px;
+font-weight:700;
+text-decoration:underline;
+color:#E67A39;
+}  
+
+.table {
+font-size: 15px;
+padding: 8px;
+}
+
+.table a {
+font-size: 15px;
+text-decoration:underline;
+font-weight:700;
+color:#006680;
+}
+
+.table a:hover {
+font-size: 15px;
+text-decoration:underline;
+font-weight:700;
+color:#E67A39;
+}
+
+.versioncheck {
+font-size: 17px;
+text-transform:uppercase;
+text-decoration:none;
+font-weight:900;
+color:#E67A39 !important;
+}
+
+#zencartprologo{
+width:380px;
+float:right;
+margin:5px 5px 5px 120px;
+font-size:14px;
+} 
