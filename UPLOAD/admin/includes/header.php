@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header.php 2024-02-06 21:25:51Z webchills $
+ * @version $Id: header.php 2024-02-14 17:54:51Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -162,16 +162,16 @@ if (defined('MODULE_ORDER_TOTAL_GV_SHOW_QUEUE_IN_ADMIN') && MODULE_ORDER_TOTAL_G
     <div>
         <ul class="nav nav-pills upperMenu">           
             <li><a href="<?php echo zen_catalog_href_link(FILENAME_DEFAULT); ?>" class="headerLink" rel="noopener" target="_blank"><?php echo HEADER_TITLE_ONLINE_CATALOG; ?></a></li>
-            <li><a class="headerLink" href="<?php echo ADMIN_HEADER_USEFUL_LINK_1_URL;?>" target="_blank"><?php echo ADMIN_HEADER_USEFUL_LINK_1_TEXT;?></a></li>
-            <li><a class="headerLink" href="<?php echo ADMIN_HEADER_USEFUL_LINK_2_URL;?>" target="_blank"><?php echo ADMIN_HEADER_USEFUL_LINK_2_TEXT;?></a></li>
-    	      <li><a class="headerLink" href="<?php echo ADMIN_HEADER_USEFUL_LINK_3_URL;?>" target="_blank"><?php echo ADMIN_HEADER_USEFUL_LINK_3_TEXT;?></a></li>
-    	      <li><a class="headerLink" href="<?php echo ADMIN_HEADER_USEFUL_LINK_4_URL;?>" target="_blank"><?php echo ADMIN_HEADER_USEFUL_LINK_4_TEXT;?></a></li>
-    	      <li><a class="headerLink" href="<?php echo ADMIN_HEADER_USEFUL_LINK_5_URL;?>" target="_blank"><?php echo ADMIN_HEADER_USEFUL_LINK_5_TEXT;?></a></li>
-            <li><a class="headerLink" href="<?php echo ADMIN_HEADER_USEFUL_LINK_6_URL;?>" target="_blank"><?php echo ADMIN_HEADER_USEFUL_LINK_6_TEXT;?></a></li>
-            <li><a class="headerLink" href="<?php echo ADMIN_HEADER_USEFUL_LINK_7_URL;?>" target="_blank"><?php echo ADMIN_HEADER_USEFUL_LINK_7_TEXT;?></a></li>
-            <li><a class="headerLink" href="<?php echo ADMIN_HEADER_USEFUL_LINK_8_URL;?>" target="_blank"><?php echo ADMIN_HEADER_USEFUL_LINK_8_TEXT;?></a></li>
-            <li><a class="headerLink" href="<?php echo ADMIN_HEADER_USEFUL_LINK_9_URL;?>" target="_blank"><?php echo ADMIN_HEADER_USEFUL_LINK_9_TEXT;?></a></li>
-            <li><a class="headerLink" href="<?php echo ADMIN_HEADER_USEFUL_LINK_10_URL;?>" target="_blank"><?php echo ADMIN_HEADER_USEFUL_LINK_10_TEXT;?></a></li>            
+            <li><a class="headerLink" href="<?php echo ADMIN_LAYOUT_USEFUL_LINK_1_URL;?>" target="_blank"><?php echo ADMIN_LAYOUT_USEFUL_LINK_1_TEXT;?></a></li>
+            <li><a class="headerLink" href="<?php echo ADMIN_LAYOUT_USEFUL_LINK_2_URL;?>" target="_blank"><?php echo ADMIN_LAYOUT_USEFUL_LINK_2_TEXT;?></a></li>
+    	      <li><a class="headerLink" href="<?php echo ADMIN_LAYOUT_USEFUL_LINK_3_URL;?>" target="_blank"><?php echo ADMIN_LAYOUT_USEFUL_LINK_3_TEXT;?></a></li>
+    	      <li><a class="headerLink" href="<?php echo ADMIN_LAYOUT_USEFUL_LINK_4_URL;?>" target="_blank"><?php echo ADMIN_LAYOUT_USEFUL_LINK_4_TEXT;?></a></li>
+    	      <li><a class="headerLink" href="<?php echo ADMIN_LAYOUT_USEFUL_LINK_5_URL;?>" target="_blank"><?php echo ADMIN_LAYOUT_USEFUL_LINK_5_TEXT;?></a></li>
+            <li><a class="headerLink" href="<?php echo ADMIN_LAYOUT_USEFUL_LINK_6_URL;?>" target="_blank"><?php echo ADMIN_LAYOUT_USEFUL_LINK_6_TEXT;?></a></li>
+            <li><a class="headerLink" href="<?php echo ADMIN_LAYOUT_USEFUL_LINK_7_URL;?>" target="_blank"><?php echo ADMIN_LAYOUT_USEFUL_LINK_7_TEXT;?></a></li>
+            <li><a class="headerLink" href="<?php echo ADMIN_LAYOUT_USEFUL_LINK_8_URL;?>" target="_blank"><?php echo ADMIN_LAYOUT_USEFUL_LINK_8_TEXT;?></a></li>
+            <li><a class="headerLink" href="<?php echo ADMIN_LAYOUT_USEFUL_LINK_9_URL;?>" target="_blank"><?php echo ADMIN_LAYOUT_USEFUL_LINK_9_TEXT;?></a></li>
+            <li><a class="headerLink" href="<?php echo ADMIN_LAYOUT_USEFUL_LINK_10_URL;?>" target="_blank"><?php echo ADMIN_LAYOUT_USEFUL_LINK_10_TEXT;?></a></li>            
         </ul>
     </div>
   </div>

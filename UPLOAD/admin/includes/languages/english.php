@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: english.php 2024-02-10 15:37:32Z webchills $
+ * @version $Id: english.php 2024-02-14 17:57:32Z webchills $
  */
  
 // important line - do NOT change
@@ -14,26 +14,6 @@
 // texts for admin header
 define('TEXT_PASSWORD_LAST_CHANGE', 'Passwort zuletzt geändert:&nbsp;');
 define('TEXT_LAST_LOGIN_INFO', 'Letztes Login [IP]:&nbsp;');
-define('ADMIN_HEADER_USEFUL_LINK_1_TEXT', 'Link 1');
-define('ADMIN_HEADER_USEFUL_LINK_1_URL', 'https://www.google.at');
-define('ADMIN_HEADER_USEFUL_LINK_2_TEXT', 'Link 2');
-define('ADMIN_HEADER_USEFUL_LINK_2_URL', 'https://www.google.at');
-define('ADMIN_HEADER_USEFUL_LINK_3_TEXT', 'Link 3');
-define('ADMIN_HEADER_USEFUL_LINK_3_URL', 'https://www.google.at');
-define('ADMIN_HEADER_USEFUL_LINK_4_TEXT', 'Link 4');
-define('ADMIN_HEADER_USEFUL_LINK_4_URL', 'https://www.google.at');
-define('ADMIN_HEADER_USEFUL_LINK_5_TEXT', 'Link 5');
-define('ADMIN_HEADER_USEFUL_LINK_5_URL', 'https://www.google.at');
-define('ADMIN_HEADER_USEFUL_LINK_6_TEXT', 'Link 6');
-define('ADMIN_HEADER_USEFUL_LINK_6_URL', 'https://www.google.at');
-define('ADMIN_HEADER_USEFUL_LINK_7_TEXT', 'Link 7');
-define('ADMIN_HEADER_USEFUL_LINK_7_URL', 'https://www.google.at');
-define('ADMIN_HEADER_USEFUL_LINK_8_TEXT', 'Link 8');
-define('ADMIN_HEADER_USEFUL_LINK_8_URL', 'https://www.google.at');
-define('ADMIN_HEADER_USEFUL_LINK_9_TEXT', 'Link 9');
-define('ADMIN_HEADER_USEFUL_LINK_9_URL', 'https://www.google.at');
-define('ADMIN_HEADER_USEFUL_LINK_10_TEXT', 'Link 10');
-define('ADMIN_HEADER_USEFUL_LINK_10_URL', 'https://www.google.at');
 define('HEADER_ALT_TEXT','Admin Powered by Zen Cart 1.5.7h - deutsche Version');
 define('HEADER_LOGO_IMAGE','logo.gif');
 define('HEADER_LOGO_WIDTH','240');
