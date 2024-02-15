@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header.php 2024-02-14 17:54:51Z webchills $
+ * @version $Id: header.php 2024-02-15 16:54:51Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -86,7 +86,7 @@ if (defined('MODULE_ORDER_TOTAL_GV_SHOW_QUEUE_IN_ADMIN') && MODULE_ORDER_TOTAL_G
      <a title="Hilfe zur deutschen Zen Cart Version" href="<?php echo zen_href_link(FILENAME_GERMAN_HELP, '', 'NONSSL'); ?>"><i class="fa-solid fa-question fa-lg" style="color: #006080;"></i></a>
   </div>
   <br>
-  <div class="logout noprint">
+  <div class="logout hidden-xs noprint">
   <a title="Logout" href="<?php echo zen_href_link(FILENAME_LOGOFF, '', 'NONSSL'); ?>"><i class="fa-solid fa-arrow-right-from-bracket fa-lg" style="color: #E47B3A;"></i></a>
   </div>
 </div>
