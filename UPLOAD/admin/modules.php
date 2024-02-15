@@ -2,11 +2,11 @@
 /**
  * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: modules.php 2023-12-12 19:46:51Z webchills $
+ * @version $Id: modules.php 2024-02-15 15:46:51Z webchills $
  */
 function getConfigLanguage($cKey){
      global $db;
@@ -59,9 +59,6 @@ if (!empty($set)) {
       }
       if (zen_get_configuration_key_value('ORDER_WEIGHT_ZERO_STATUS') == '1' && (!defined('MODULE_SHIPPING_FREESHIPPER_STATUS') || MODULE_SHIPPING_FREESHIPPER_STATUS != 'True')) {
         $shipping_errors .= '<br>' . ERROR_ORDER_WEIGHT_ZERO_STATUS;
-      }
-      if (defined('MODULE_SHIPPING_USPS_STATUS') && ( MODULE_SHIPPING_USPS_USERID == 'NONE' || MODULE_SHIPPING_USPS_SERVER == 'test')) {
-        $shipping_errors .= '<br>' . ERROR_USPS_STATUS;
       }
       if ($shipping_errors != '') {
         $messageStack->add(ERROR_SHIPPING_CONFIGURATION . $shipping_errors, 'caution');

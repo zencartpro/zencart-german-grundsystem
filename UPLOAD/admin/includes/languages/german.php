@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2024-02-14 17:57:04Z webchills $
+ * @version $Id: german.php 2024-02-15 15:57:04Z webchills $
  */
 
 // important line - do NOT change
@@ -263,7 +263,7 @@ define('ERROR_SHIPPING_MODULES_NOT_DEFINED','HINWEIS: Sie haben keine Versandart
 define('ERROR_SHIPPING_ORIGIN_ZIP','<strong>WARNUNG:</strong> PLZ des Shops nicht definiert. Stellen Sie sie unter Konfiguration > Versandoptionen entsprechend ein.');
 define('ERROR_TOKEN_EXPIRED_PLEASE_RESUBMIT','FEHLER: Leider ist bei der Verarbeitung Ihrer Daten ein Fehler aufgetreten. Bitte geben Sie die Informationen erneut ein.');
 define('ERROR_UNABLE_TO_DISPLAY_SERVER_INFORMATION','Leider kann Ihre PHP-Konfiguration nicht angezeigt werden, da Ihr Hosting-Unternehmen festgelegt hat, dass [phpinfo] als Teil von [disable_functions] in den php.ini-Einstellungen deaktiviert werden soll.');
-define('ERROR_USPS_STATUS','<strong>WARNUNG:</strong> Dem USPS-Versandmodul fehlt entweder der Benutzername, oder es ist auf TEST statt auf PRODUKTION eingestellt und funktioniert nicht.<br>Wenn Sie keine USPS-Versandangebote abrufen können, wenden Sie sich an USPS, um Ihr Web Tools-Konto auf dem Produktionsserver zu aktivieren. 1-800-344-7779 oder icustomercare@usps.com.');
+
 define('FEMALE','Frau');
 define('HEADER_TITLE_ACCOUNT','Account');
 define('HEADER_TITLE_LOGOFF','Abmelden');

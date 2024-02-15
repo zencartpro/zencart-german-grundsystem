@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: english.php 2024-02-14 17:57:32Z webchills $
+ * @version $Id: english.php 2024-02-15 15:57:32Z webchills $
  */
  
 // important line - do NOT change
@@ -263,7 +263,7 @@ define('ERROR_SHIPPING_MODULES_NOT_DEFINED','NOTE: You have no shipping modules 
 define('ERROR_SHIPPING_ORIGIN_ZIP','<strong>Warning:</strong> Store Zip Code is not defined. See Configuration | Shipping/Packaging to set it.');
 define('ERROR_TOKEN_EXPIRED_PLEASE_RESUBMIT','ERROR: Sorry, there was an error processing your data. Please re-submit the information again.');
 define('ERROR_UNABLE_TO_DISPLAY_SERVER_INFORMATION','Sorry, your PHP configuration cannot be displayed because your hosting company has specified that [phpinfo] should be disabled as part of [disable_functions] in php.ini settings.');
-define('ERROR_USPS_STATUS','<strong>Warning:</strong> USPS shipping module is either missing the username, or it is set to TEST rather than PRODUCTION and will not work.<br>If you cannot retrieve USPS Shipping Quotes, contact USPS to activate your Web Tools account on their production server. 1-800-344-7779 or icustomercare@usps.com');
+
 define('FEMALE','Female');
 define('HEADER_TITLE_ACCOUNT','Account');
 define('HEADER_TITLE_LOGOFF','Logoff');

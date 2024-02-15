@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: configuration.php 2024-01-16 12:40:51Z webchills $
+ * @version $Id: configuration.php 2024-02-15 15:16:51Z webchills $
  */
 function getConfigLanguage($cKey){
      global $db;
@@ -92,9 +92,6 @@ if ($gID == 7) {
   }
   if (zen_get_configuration_key_value('ORDER_WEIGHT_ZERO_STATUS') == '1' && (!defined('MODULE_SHIPPING_FREESHIPPER_STATUS') || MODULE_SHIPPING_FREESHIPPER_STATUS != 'True')) {
     $shipping_errors .= '<br>' . ERROR_ORDER_WEIGHT_ZERO_STATUS;
-  }
-  if (defined('MODULE_SHIPPING_USPS_STATUS') and ( MODULE_SHIPPING_USPS_USERID == 'NONE' or MODULE_SHIPPING_USPS_SERVER == 'test')) {
-    $shipping_errors .= '<br>' . ERROR_USPS_STATUS;
   }
   if ($shipping_errors != '') {
     $messageStack->add(ERROR_SHIPPING_CONFIGURATION . $shipping_errors, 'caution');
