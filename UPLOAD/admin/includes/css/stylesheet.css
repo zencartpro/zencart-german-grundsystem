@@ -1,11 +1,3 @@
-/**
- * Zen Cart German Specific (zencartpro adaptations)
- * @copyright Copyright 2003-2024 Zen Cart Development Team
- * Zen Cart German Version - www.zen-cart-pro.at
- * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: stylesheet.css 2024-02-10 15:27:04 webchills $
- */
 :root { font-family: 'Inter', sans-serif; }
        @supports (font-variation-settings: normal) {
          :root { font-family: 'Inter var', sans-serif; }
@@ -72,6 +64,26 @@ a, body, html, table {
 	font-size:14px;
 	color:#006080;
 	text-decoration:underline;
+}
+
+.back-to-top {
+  background: none; 
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 1em;
+  z-index: 100;
+  width:20px;
+  height:20px;
+}
+
+.backtotopicon{
+color:#E47B3A;
+}
+
+.backtotopicon :hover{
+color:#006080;
+
 }
 
 .messageStackAlert{
