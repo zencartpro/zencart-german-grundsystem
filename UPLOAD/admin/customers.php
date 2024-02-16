@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: customers.php 2023-12-12 19:00:51Z webchills $
+ * @version $Id: customers.php 2024-02-16 17:29:51Z webchills $
  */
 require 'includes/application_top.php';
 
@@ -2026,7 +2026,7 @@ if ($action === 'edit' || $action === 'update') {
                             FILENAME_ORDERS,
                             'cID=' . $cInfo->customers_id . '&oID=' . $order['orders_id'] . '&action=edit',
                             'NONSSL'
-                        ) . '" title="Purchased: ' . zen_date_short($order['date_purchased']) . ', status ' . $order['orders_status_name'] . '">' . $order['orders_id'] . '</a> ';
+                        ) . '" title="' . TEXT_PURCHASED . ' ' . zen_date_short($order['date_purchased']) . ' / ' . TEXT_ORDER_STATUS . ' ' . $order['orders_status_name'] . '">' . $order['orders_id'] . '</a> ';
                     }
                     if ($cInfo->number_of_orders > 5) {
                         $text .= ' ... ';

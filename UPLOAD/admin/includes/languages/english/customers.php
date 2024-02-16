@@ -1,11 +1,11 @@
 <?php
 /** 
  * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: customers.php 2023-10-26 10:49:16Z webchills $
+ * @version $Id: customers.php 2024-02-16 17:49:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Customers');
@@ -18,6 +18,8 @@ define('TABLE_HEADING_REGISTRATION_IP','Registration IP');
 define('TABLE_HEADING_PRICING_GROUP', 'Pricing Group');
 define('TABLE_HEADING_AUTHORIZATION_APPROVAL', 'Authorized');
 define('TABLE_HEADING_GV_AMOUNT', 'GV Balance');
+define('TEXT_PURCHASED', 'Order Date:');
+define('TEXT_ORDER_STATUS', 'Order Status:');
 
 define('TEXT_DATE_ACCOUNT_CREATED', 'Account Created:');
 define('TEXT_DATE_ACCOUNT_LAST_MODIFIED', 'Last Modified:');
