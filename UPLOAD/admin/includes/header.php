@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header.php 2024-02-15 16:54:51Z webchills $
+ * @version $Id: header.php 2024-02-19 11:36:51Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -58,6 +58,18 @@ if (empty($action)) {
     $hide_languages = true;
 } // hide when other language dropdown is used
 
+// -----
+// If the current page-load did not use the admin_html_head.php for the CSS files'
+// loading, let the admin know via message and log a PHP Deprecated issue ... once for
+// each page during an admin's session.
+//
+// Note: This section will be removed in a future version of Zen Cart!
+//
+if (!isset($zen_admin_html_head_loaded) && !isset($_SESSION['pages_needing_update'][$current_page])) {
+    $_SESSION['pages_needing_update'][$current_page] = true;
+    $messageStack->add(WARNING_PAGE_REQUIRES_UPDATE, 'warning');
+    trigger_error(WARNING_PAGE_REQUIRES_UPDATE, E_USER_DEPRECATED);
+}
 
 // display alerts/error messages, if any
 if ($messageStack->size > 0) {
@@ -71,7 +83,7 @@ if ($messageStack->size > 0) {
 }
 // check GV release queue and alert store owner
 if (defined('MODULE_ORDER_TOTAL_GV_SHOW_QUEUE_IN_ADMIN') && MODULE_ORDER_TOTAL_GV_SHOW_QUEUE_IN_ADMIN == 'true') {
-    $new_gv_queue = $db->Execute("select * from " . TABLE_COUPON_GV_QUEUE . " where release_flag='N'");
+    $new_gv_queue = $db->Execute("SELECT * FROM " . TABLE_COUPON_GV_QUEUE . " WHERE release_flag='N'");
     $new_gv_queue_cnt = 0;
     if ($new_gv_queue->RecordCount() > 0) {
         $new_gv_queue_cnt = $new_gv_queue->RecordCount();
@@ -160,13 +172,13 @@ if (defined('MODULE_ORDER_TOTAL_GV_SHOW_QUEUE_IN_ADMIN') && MODULE_ORDER_TOTAL_G
     </div>
     <div id="usefuladminlinks">       
     <div>
-        <ul class="nav nav-pills upperMenu">           
+        <ul class="nav nav-pills upperMenu">          
             <li><a href="<?php echo zen_catalog_href_link(FILENAME_DEFAULT); ?>" class="headerLink" rel="noopener" target="_blank"><?php echo HEADER_TITLE_ONLINE_CATALOG; ?></a></li>
             <li><a class="headerLink" href="<?php echo ADMIN_LAYOUT_USEFUL_LINK_1_URL;?>" target="_blank"><?php echo ADMIN_LAYOUT_USEFUL_LINK_1_TEXT;?></a></li>
             <li><a class="headerLink" href="<?php echo ADMIN_LAYOUT_USEFUL_LINK_2_URL;?>" target="_blank"><?php echo ADMIN_LAYOUT_USEFUL_LINK_2_TEXT;?></a></li>
-    	      <li><a class="headerLink" href="<?php echo ADMIN_LAYOUT_USEFUL_LINK_3_URL;?>" target="_blank"><?php echo ADMIN_LAYOUT_USEFUL_LINK_3_TEXT;?></a></li>
-    	      <li><a class="headerLink" href="<?php echo ADMIN_LAYOUT_USEFUL_LINK_4_URL;?>" target="_blank"><?php echo ADMIN_LAYOUT_USEFUL_LINK_4_TEXT;?></a></li>
-    	      <li><a class="headerLink" href="<?php echo ADMIN_LAYOUT_USEFUL_LINK_5_URL;?>" target="_blank"><?php echo ADMIN_LAYOUT_USEFUL_LINK_5_TEXT;?></a></li>
+    	    <li><a class="headerLink" href="<?php echo ADMIN_LAYOUT_USEFUL_LINK_3_URL;?>" target="_blank"><?php echo ADMIN_LAYOUT_USEFUL_LINK_3_TEXT;?></a></li>
+    	    <li><a class="headerLink" href="<?php echo ADMIN_LAYOUT_USEFUL_LINK_4_URL;?>" target="_blank"><?php echo ADMIN_LAYOUT_USEFUL_LINK_4_TEXT;?></a></li>
+    	    <li><a class="headerLink" href="<?php echo ADMIN_LAYOUT_USEFUL_LINK_5_URL;?>" target="_blank"><?php echo ADMIN_LAYOUT_USEFUL_LINK_5_TEXT;?></a></li>
             <li><a class="headerLink" href="<?php echo ADMIN_LAYOUT_USEFUL_LINK_6_URL;?>" target="_blank"><?php echo ADMIN_LAYOUT_USEFUL_LINK_6_TEXT;?></a></li>
             <li><a class="headerLink" href="<?php echo ADMIN_LAYOUT_USEFUL_LINK_7_URL;?>" target="_blank"><?php echo ADMIN_LAYOUT_USEFUL_LINK_7_TEXT;?></a></li>
             <li><a class="headerLink" href="<?php echo ADMIN_LAYOUT_USEFUL_LINK_8_URL;?>" target="_blank"><?php echo ADMIN_LAYOUT_USEFUL_LINK_8_TEXT;?></a></li>

@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: english.php 2024-02-15 15:57:32Z webchills $
+ * @version $Id: english.php 2024-02-19 11:37:32Z webchills $
  */
  
 // important line - do NOT change
@@ -655,6 +655,7 @@ define('WARNING_EMAIL_SYSTEM_DISABLED','WARNING: The email subsystem is disabled
 define('WARNING_FILE_UPLOADS_DISABLED','Warning: File uploads are disabled in the php.ini configuration file.');
 define('WARNING_INSTALL_DIRECTORY_EXISTS','SECURITY WARNING: Installation directory exists at: %s. Please remove this directory for security reasons.');
 define('WARNING_NO_FILE_UPLOADED','Warning: No file uploaded.');
+define('WARNING_PAGE_REQUIRES_UPDATE','This page requires updates for the next Zen Cart version.  Please refer your site developer or plugin author to <a href="https://docs.zen-cart.com/dev/plugins/admin_head_content/" rel="noopener noreferrer" target="_blank">this</a> documentation.');
 define('WARNING_PRIMARY_SERVER_FAILED','Warning: The primary exchange rate server (%s) failed for %s (%s) - trying the secondary exchange rate server.');
 define('WARNING_REVIEW_ROGUE_ACTIVITY','ALERT: Please review for possible XSS activity:');
 define('WARNING_SESSION_AUTO_START','Warning: session.auto_start is enabled - please disable this PHP feature in php.ini (restarting your webserver may be necessary to activate the change).');

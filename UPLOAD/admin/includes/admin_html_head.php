@@ -5,11 +5,19 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
   * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: admin_html_head.php 2024-02-05 18:44:16Z webchills $
+ * @version $Id: admin_html_head.php 2024-02-19 11:35:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
-  die('Illegal Access');
+    die('Illegal Access');
 }
+
+// -----
+// Set a processing flag that indicates that this file has been loaded.  The
+// flag is used by /admin/includes/header.php to warn admins and developers
+// if the legacy stylesheet loading is currently in effect.  That legacy-loading
+// (and this section) will be removed in a subsequent release of Zen Cart.
+//
+$zen_admin_html_head_loaded = true;
 ?>
 <meta charset="<?php echo CHARSET; ?>">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
