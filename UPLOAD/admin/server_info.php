@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: server_info.php 2024-02-08 12:29:16Z webchills $
+ * @version $Id: server_info.php 2024-02-19 09:19:16Z webchills $
  */
 
   require('includes/application_top.php');
@@ -111,15 +111,14 @@ if (strpos($disabled_functions,"phpinfo") === false) {
     <tr class="db-row">
         <th class="db-name db-head db-info"><?php echo HEADING_DATABASE_VARIABLE; ?></th>
         <th class="db-value db-head db-info"><?php echo HEADING_DATABASE_VALUE; ?></th>
-        
     </tr>
     <?php
     $show_variables = $db->Execute("SHOW VARIABLES");
     foreach ($show_variables as $variable) {
         ?>
         <tr class="db-row">
-            <td class="db-info db-name"><?php echo $variable['Variable_name']; ?></td>
-            <td class="db-info db-value"><?php echo empty($variable['Value']) ? '&nbsp;' : htmlspecialchars($variable['Value']); ?></td>
+            <td class="db-info db-name"><?= $variable['Variable_name'] ?></td>
+            <td class="db-info db-value"><?= htmlspecialchars($variable['Value']) ?></td>
         </tr>
         <?php
     }
