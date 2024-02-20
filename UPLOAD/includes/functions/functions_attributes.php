@@ -2,11 +2,11 @@
 /**
  * Attribute functions
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_attributes.php 2023-12-18 20:02:16Z webchills $
+ * @version $Id: functions_attributes.php 2024-02-20 20:19:16Z webchills $
  */
 /*
  * Query a 'known' (i.e. by the attributes_id) attribute's details,
@@ -375,17 +375,20 @@ function zen_options_name($options_id)
 
 /**
  * Return Options_values_name from value-ID
- * @param int $values_id
+ * @param  int|string  $values_id
+ * @param  int  $languages_id
  * @return string
  */
-function zen_values_name($values_id)
+function zen_values_name(int|string $values_id, int $languages_id = 0): string
 {
     global $db;
-
+    if ($languages_id === 0) {
+        $languages_id = (int)$_SESSION['languages_id'];
+    }
     $values_values = $db->Execute("SELECT products_options_values_name
                                    FROM " . TABLE_PRODUCTS_OPTIONS_VALUES . "
                                    WHERE products_options_values_id = " . (int)$values_id . "
-                                   AND language_id = " . (int)$_SESSION['languages_id'], 1);
+                                   AND language_id = " . $languages_id, 1);
     return ($values_values->EOF) ? '' : $values_values->fields['products_options_values_name'];
 }
 
