@@ -6,11 +6,11 @@
  * Initializes common classes & methods. Controlled by an array which describes
  * the elements to be initialised and the order in which that happens.
  * see  {@link  https://docs.zen-cart.com/dev/code/init_system/} for more details.
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: application_top.php 2023-12-20 10:43:24Z webchills $
+ * @version $Id: application_top.php 2024-02-20 09:56:24Z webchills $
  */
 
 use App\Models\PluginControl;
@@ -84,7 +84,7 @@ define('PAGE_PARSE_START_TIME', microtime());
  * This is intended to run before any dependencies are required
  * See https://www.zen-cart.com/requirements or run zc_install to see actual requirements!
  */
-if (!defined('PHP_VERSION_ID') || PHP_VERSION_ID < 70205) {
+if (PHP_VERSION_ID < 80002) {
     require 'includes/templates/template_default/templates/tpl_zc_phpupgrade_default.php';
     exit(0);
 }
@@ -124,7 +124,9 @@ $detected_locale = setlocale(LC_TIME, 0);
 if ($detected_locale === false || $detected_locale === 'C') {
     setlocale(LC_TIME, ['de_DE', 'de_DE.UTF-8', 'de-DE', 'de']);
 }
+if (file_exists('includes/application_testing.php')) {
 require('includes/application_testing.php');
+}
 /**
  * check for and include load application parameters
  */
@@ -144,10 +146,12 @@ if (!defined('ZENCART_TESTFRAMEWORK_RUNNING')) {
  * if main configure file doesn't contain valid info (ie: is dummy or doesn't match filestructure, display assistance page to suggest running the installer)
  */
 if (!defined('DIR_FS_CATALOG') || !is_dir(DIR_FS_CATALOG.'/includes/classes')) {
-  $problemString = 'includes/configure.php file contents invalid.  ie: DIR_FS_CATALOG not valid or not set';
+
+    $problemString = 'includes/configure.php file contents invalid.  ie: DIR_FS_CATALOG not valid or not set';
   require('includes/templates/template_default/templates/tpl_zc_install_suggested_default.php');
   exit;
 }
+
 /**
  * check for and load system defined path constants
  */

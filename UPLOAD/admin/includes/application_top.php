@@ -1,17 +1,19 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: application_top.php 2023-10-23 15:04:36Z webchills $
+ * @version $Id: application_top.php 2024-02-20 09:56:36Z webchills $
  */
-if (PHP_VERSION_ID < 70205) {
-    die('Sorry, this version of Zen Cart requires PHP 7.2.5 or greater. <a href="https://www.zen-cart.com/requirements" rel="noopener" target="_blank">Please refer to our website</a> for the PHP versions supported.');
+
+if (PHP_VERSION_ID < 80002) {
+    die('Sorry, this version of Zen Cart German requires PHP 8.0.2 or greater.');
 }
+
 /**
- * File contains just application_top code
+ * Bootstrap file contains former application_top code
  *
  * Initializes common classes & methods. Controlled by an array which describes
  * the elements to be initialised and the order in which that happens.

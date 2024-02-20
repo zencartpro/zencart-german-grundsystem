@@ -1,12 +1,13 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: application_bootstrap.php 2023-12-20 10:41:36Z webchills $
+ * @version $Id: application_bootstrap.php 2024-02-20 09:53:36Z webchills $
  */
+
 use App\Models\PluginControl;
 use App\Models\PluginControlVersion;
 use Zencart\FileSystem\FileSystem;
@@ -72,7 +73,8 @@ if ((defined('DEBUG_AUTOLOAD') && DEBUG_AUTOLOAD === true) || (defined('STRICT_E
  * This is intended to run before any dependencies are required
  * See https://www.zen-cart.com/requirements or run zc_install to see actual requirements!
  */
-if (!defined('PHP_VERSION_ID') || PHP_VERSION_ID < 70205) {
+if (PHP_VERSION_ID < 80002) {
+    // redirect to catalog to display the PHP version compatibility message
     chdir(realpath(__DIR__ . '/../'));
     require 'includes/application_top.php';
     exit(0);
@@ -87,7 +89,9 @@ if (file_exists('includes/local/configure.php')) {
     include('includes/local/configure.php');
 }
 
+if (file_exists('../includes/application_testing.php')) {
 require('../includes/application_testing.php');
+}
 /**
  * check for and load application configuration parameters
  */
