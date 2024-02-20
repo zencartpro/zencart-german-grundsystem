@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: productPulldown.php 2023-10-24 20:31:16Z webchills $
+ * @version $Id: productPulldown.php 2024-02-20 20:14:16Z webchills $
  */
 
     /**
@@ -25,10 +25,10 @@
             'products_sort_order' => 'p',
         ];
 
-        private $categories_join;
-        private $output_string;
-        private $show_model;
-        private $show_price;
+        protected $categories_join;
+        protected $output_string;
+        protected $show_model;
+        protected $show_price;
 
         /**
          *
