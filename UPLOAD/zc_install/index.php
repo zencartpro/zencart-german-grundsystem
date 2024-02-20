@@ -1,15 +1,15 @@
 <?php
 /**
- * Zen Cart German Specific
+ * Zen Cart German Specific (158 code in 157)
  * index.php -- This is the main controller file for the Zen Cart installer
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: index.php 2024-02-02 13:24:41Z webchills $
+ * @version $Id: index.php 2024-02-20 09:59:41Z webchills $
  */
 
-if (PHP_VERSION_ID < 80030) {
-    die('Sorry, requires minimum PHP 8.0');
+if (PHP_VERSION_ID < 80002) {
+    die('Sorry, requires minimum PHP 8.0.2');
 }
 
 define('IS_ADMIN_FLAG', false);
@@ -43,4 +43,4 @@ if (isset($controller) && $controller === 'cli') {
     require DIR_FS_INSTALL . DIR_WS_INSTALL_TEMPLATE . 'common/html_header.php';
     require DIR_FS_INSTALL . DIR_WS_INSTALL_TEMPLATE . 'common/main_template_vars.php';
     require DIR_FS_INSTALL . DIR_WS_INSTALL_TEMPLATE . 'common/tpl_main_page.php';
-  }
+}
