@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: option_values.php 2024-02-20 20:17:16Z webchills $
+ * @version $Id: option_values.php 2024-02-23 10:30:16Z webchills $
  */
 require('includes/application_top.php');
 
@@ -26,6 +26,7 @@ if (!isset($_GET['action'])) {
 }
 
 switch ($_GET['action']) {
+
     //Update by Option Name
     case ('update_sort_order'):
 
@@ -57,6 +58,7 @@ switch ($_GET['action']) {
     $_GET['action'] = '';
     zen_redirect(zen_href_link(FILENAME_PRODUCTS_OPTIONS_VALUES));
     break;
+
 // update by product
   case ('update_product'):
     $messageStack->add_session(SUCCESS_PRODUCT_UPDATE_SORT . $_POST['products_update_id'] . ' ' . zen_get_products_name($_POST['products_update_id'], $_SESSION['languages_id']), 'success');
@@ -72,7 +74,6 @@ switch ($_GET['action']) {
                                              WHERE ptoc.categories_id = " . (int)$_POST['categories_update_id'] . "
                                              AND pa.products_id = ptoc.products_id");
     foreach ($all_products_attributes as $products_attribute) {
-      $product_id_updated .= ' - ' . $products_attribute['products_id'] . ':' . $products_attribute['products_attributes_id'];
       zen_update_attributes_products_option_values_sort_order($products_attribute);
     }
     $messageStack->add_session(SUCCESS_CATEGORIES_UPDATE_SORT . (int)$_POST['categories_update_id'] . ' ' . zen_get_category_name($_POST['categories_update_id'], $_SESSION['languages_id']), 'success');
