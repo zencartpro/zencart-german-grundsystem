@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: html_output.php 2023-12-12 18:51:42Z webchills $
+ * @version $Id: html_output.php 2024-02-25 08:51:42Z webchills $
  */
 
 ////
@@ -467,6 +467,9 @@ function zen_draw_input_field($name, $value = '~*~*#', $parameters = '', $requir
 
     if (!empty($parameters)) $field .= ' ' . $parameters;
 
+    if (!str_contains($parameters, 'id="')) {
+        $field .= ' id="' . zen_output_string(str_replace(['[', ']'], '-', $name)) . '"';
+    }
     $field .= '>';
 
     if ($text == '~*~*#' && (isset($GLOBALS[$name]) && is_string($GLOBALS[$name])) && ($reinsert_value == true) ) {
