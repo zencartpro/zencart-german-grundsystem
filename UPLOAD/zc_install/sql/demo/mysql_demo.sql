@@ -1,8 +1,9 @@
 # MySQL file for Zen Cart Demo Products load
 # Zen Cart German Specific
-# $Id: mysql_demo.sql 2023-08-11 19:14:04Z webchills $
+# $Id: mysql_demo.sql 2024-02-27 19:40:04Z webchills $
 #
 
+#PROGRESS_FEEDBACK:!TEXT=Running Demo Seeder
 # Configuration Settings:
 UPDATE configuration SET configuration_value='true' WHERE configuration_key='DOWNLOAD_ENABLED';
 

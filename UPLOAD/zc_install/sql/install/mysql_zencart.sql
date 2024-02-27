@@ -6,7 +6,7 @@
 # * Zen Cart German Version - www.zen-cart-pro.at
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_zencart.sql 2024-02-14 18:00:16Z webchills $
+# * @version $Id: mysql_zencart.sql 2024-02-27 19:36:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -20,6 +20,7 @@
 #
 #####################################################
 
+#PROGRESS_FEEDBACK:!TEXT=Running Table Creation
 
 # --------------------------------------------------------
 #
@@ -2337,6 +2338,7 @@ CREATE TABLE zones_to_geo_zones (
 
 
 # default data
+#PROGRESS_FEEDBACK:!TEXT=Running Initial Seeders
 
 INSERT INTO template_select (template_id, template_dir, template_language) VALUES (1, 'responsive_classic', '0');
 
@@ -4209,10 +4211,10 @@ INSERT INTO get_terms_to_filter VALUES ('record_company_id', 'TABLE_RECORD_COMPA
 # Dumping data for table project_version
 #
 
-INSERT INTO project_version (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch1, project_version_patch1_source, project_version_patch2, project_version_patch2_source, project_version_comment, project_version_date_applied) VALUES (1, 'Zen-Cart Main', '1', '5.7g', '', '', '', '', 'New Installation-v157g', now());
-INSERT INTO project_version (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch1, project_version_patch1_source, project_version_patch2, project_version_patch2_source, project_version_comment, project_version_date_applied) VALUES (2, 'Zen-Cart Database', '1', '5.7', '', '', '', '', 'New Installation-v157g', now());
-INSERT INTO project_version_history (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_comment, project_version_date_applied) VALUES (1, 'Zen-Cart Main', '1', '5.7g', '', 'New Installation-v157g', now());
-INSERT INTO project_version_history (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_comment, project_version_date_applied) VALUES (2, 'Zen-Cart Database', '1', '5.7g', '', 'New Installation-v157g', now());
+INSERT INTO project_version (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch1, project_version_patch1_source, project_version_patch2, project_version_patch2_source, project_version_comment, project_version_date_applied) VALUES (1, 'Zen-Cart Main', '1', '5.7h', '', '', '', '', 'New Installation-v157h', now());
+INSERT INTO project_version (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch1, project_version_patch1_source, project_version_patch2, project_version_patch2_source, project_version_comment, project_version_date_applied) VALUES (2, 'Zen-Cart Database', '1', '5.7', '', '', '', '', 'New Installation-v157h', now());
+INSERT INTO project_version_history (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_comment, project_version_date_applied) VALUES (1, 'Zen-Cart Main', '1', '5.7h', '', 'New Installation-v157h', now());
+INSERT INTO project_version_history (project_version_id, project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_comment, project_version_date_applied) VALUES (2, 'Zen-Cart Database', '1', '5.7h', '', 'New Installation-v157h', now());
 
 #
 # German Version Special Definitions
@@ -5364,5 +5366,5 @@ INSERT INTO configuration_language (configuration_title, configuration_key, conf
 
 
 REPLACE INTO product_type_layout_language (configuration_title , configuration_key , languages_id, configuration_description, last_modified, date_added)
-VALUES ('20240214', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Übersetzungen', now(), now());
+VALUES ('20240227', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Übersetzungen', now(), now());
 ##### End of SQL setup for Zen Cart German.

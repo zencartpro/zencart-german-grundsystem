@@ -1528,7 +1528,7 @@ INSERT INTO product_type_layout_language (configuration_title, configuration_key
 #############
 
 REPLACE INTO product_type_layout_language (configuration_title , configuration_key , languages_id, configuration_description, last_modified, date_added) VALUES 
-('20240214', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Uebersetzungen', now(), now());
+('20240227', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Uebersetzungen', now(), now());
 
 #############
 
