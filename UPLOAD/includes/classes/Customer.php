@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: Customer.php 2024-02-20 20:12:39Z webchills $
+ * @version $Id: Customer.php 2024-03-01 15:02:39Z webchills $
  */
 
 class Customer extends base
@@ -513,7 +513,7 @@ class Customer extends base
         }
 
         $sql =
-            "SELECT address_book_id,
+            "SELECT ab.*,
                     entry_firstname AS firstname, entry_lastname AS lastname,
                     entry_company AS company, entry_street_address AS street_address,
                     entry_suburb AS suburb, entry_city AS city, entry_postcode AS postcode,
