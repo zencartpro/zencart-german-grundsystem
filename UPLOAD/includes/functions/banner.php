@@ -3,11 +3,11 @@
  * banner functions
  *
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: banner.php 2022-11-16 11:49:16Z webchills $
+ * @version $Id: banner.php 2024-03-01 15:05:16Z webchills $
  */
 
   /**
@@ -146,7 +146,7 @@
         if ($banner->fields['banners_open_new_windows'] == '1') {
           $target = ' rel="noopener" target="_blank"';
         }
-        $banner_string = '<a href="' . zen_href_link(FILENAME_REDIRECT, 'action=banner&goto=' . $banner->fields['banners_id']) . '"' . $target . '>' . zen_image(DIR_WS_IMAGES . $banner->fields['banners_image'], $banner->fields['banners_title']) . '</a>';
+        $banner_string = '<a href="' . zen_href_link(FILENAME_REDIRECT, 'action=banner&goto=' . $banner->fields['banners_id']) . '"' . $target . ' aria-label="' . $banner->fields['banners_title'] . '">' . zen_image(DIR_WS_IMAGES . $banner->fields['banners_image'], $banner->fields['banners_title']) . '</a>';
       }
     }
 
