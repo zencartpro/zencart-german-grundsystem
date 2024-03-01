@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: zcDate.php 2023-11-14 20:37:39Z webchills $
+ * @version $Id: zcDate.php 2024-03-01 15:07:39Z webchills $
  */
 class zcDate extends base
 {
@@ -70,6 +70,8 @@ class zcDate extends base
             '%X' => 'H:i:s',
             '%y' => 'y',
             '%Y' => 'Y',
+            '%z' => 'ZZZZ',
+            '%Z' => 'ZZZZ',
         ];
         $this->strftime2date = [
             'from' => array_keys($strftime2date),
@@ -116,6 +118,8 @@ class zcDate extends base
                 '%X' => $time_short,
                 '%y' => 'yy',
                 '%Y' => 'y',
+                '%z' => 'ZZZZ',
+                '%Z' => 'ZZZZ',
             ];
             $this->strftime2intl = [
                 'from' => array_keys($strftime2intl),
@@ -141,10 +145,11 @@ class zcDate extends base
     /**
      * @param string $format  output method should start with a strftime-format string
      * @param int    $timestamp
+     * @param string|null $calendar_locale Optional calendar-related locale. eg: 'ja_JP@calendar=japanese'
      *
      * @return false|string
      */
-    public function output(string $format, int $timestamp = 0)
+    public function output(string $format, int $timestamp = 0, ?string $calendar_locale = null)
     {
         if ($timestamp === 0) {
             $timestamp = time();
@@ -174,13 +179,18 @@ class zcDate extends base
                 $this->initializeConversionArrays();
             }
 
+            $calendar = IntlDateFormatter::GREGORIAN;
+            if (!empty($calendar_locale)) {
+                $calendar = IntlCalendar::createInstance(null, $calendar_locale);
+            }
+
             $converted_format = $this->convertFormat($format, $this->strftime2intl);
             $this->dateObject = datefmt_create(
                 $this->locale,
                 IntlDateFormatter::FULL,
                 IntlDateFormatter::FULL,
                 date_default_timezone_get(),
-                IntlDateFormatter::GREGORIAN,
+                $calendar,
                 $converted_format
             );
             $output = $this->dateObject->format($timestamp);
