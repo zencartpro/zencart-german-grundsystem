@@ -2,11 +2,11 @@
 /**
  * ot_netto order-total module
  * Zen Cart German Specific 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_netto.php 2022-02-11 18:46:16Z webchills $
+ * @version $Id: ot_netto.php 2024-03-07 10:08:16Z webchills $
  */
 class ot_netto extends base
 {
@@ -14,7 +14,8 @@ class ot_netto extends base
               $title,
               $description,
               $sort_order,
-              $output;
+              $output,
+              $enabled;
     protected $_check;
 
     public function __construct() 
