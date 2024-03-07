@@ -2,11 +2,11 @@
 /**
  * ipn_main_handler.php callback handler for PayPal IPN notifications
  * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ipn_main_handler.php 2022-11-14 15:51:29Z webchills $
+ * @version $Id: ipn_main_handler.php 2024-03-07 14:42:29Z webchills $
  */
 if (!defined('TEXT_RESELECT_SHIPPING')) define('TEXT_RESELECT_SHIPPING', 'You have changed the items in your cart since shipping was last calculated, and costs may have changed. Please verify/re-select your shipping method.');
 
@@ -131,10 +131,9 @@ Processing...
     $logdir = defined('DIR_FS_LOGS') ? DIR_FS_LOGS : 'includes/modules/payment/paypal/logs';
     if ($debug_logfile_path == '') $debug_logfile_path = $logdir . '/ipn_debug_php_errors-'.time().'.log';
     @ini_set('log_errors', 1);
-    @ini_set('log_errors_max_len', 0);
     @ini_set('display_errors', 0); // do not output errors to screen/browser/client (only to log file)
     @ini_set('error_log', DIR_FS_CATALOG . $debug_logfile_path);
-    error_reporting(version_compare(PHP_VERSION, 5.3, '>=') ? E_ALL & ~E_DEPRECATED & ~E_NOTICE : (version_compare(PHP_VERSION, 5.4, '>=') ? E_ALL & ~E_DEPRECATED & ~E_NOTICE & ~E_STRICT : E_ALL & ~E_NOTICE));
+    error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
   }
 
   ipn_debug_email('Breakpoint: Flag Status:' . "\nisECtransaction = " . (int)$isECtransaction . "\nisDPtransaction = " . (int)$isDPtransaction);
