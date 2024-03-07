@@ -1,0 +1,167 @@
+1.5.7h deutsch ist ein Service Pack für 1.5.7g deutsch
+Damit wird PHP 8.2.x vollständig unterstützt.
+Die integrierten Module und 3rd Party Komponenten werden auf den Stand von März 2024 gebracht.
+1.5.7h behebt auch alle Fehler die seit Erscheinen von 1.5.7g auf Github gemeldet wurden.
+Der Adminbereich wird mit dieser Version auf ein modernes, einheitliche Layout gebracht.
+Das bislang in der Grundinstallation enthaltene Zahlungsmodul Sofortüberweisung (sofort_su) wurde entfernt, da es veraltet ist und von dem neuen Sofort Eigentümer Klarna nicht mehr unterstützt wird.
+
+Aktualisierte Komponenten:
+- Laravel Paket
+- Braintree Zahlungsart
+
+Neue Funktionalitäten:
+In der Shopadministration können unter Konfiguration > Admin Layout bis zu 10 verschiedene externe Links für die tägliche Arbeit definiert werden, die dann im Adminmenü erscheinen.
+Gedacht ist das für Links, die man ständig im Shopalltag braucht, z.B. Links zu den Administrationsoberflächen Ihrer Payment Provider oder Versanddienstleister.
+
+Verbesserungen:
+- Vollständige Unterstützung von PHP 8.2.x
+- Diese Version sollte auch mit PHP 8.3.x kompatibel sein, wurde damit aber nicht getestet
+- Modernisiertes Admin Layout
+- Updatecheck zur englischen Version entfernt
+- back to top Pfeil bei Scrollen im Adminbereich
+
+---------------------------------------------------------------------------------------------
+Changelog Zen Cart 1.5.7h deutsch gegenüber 1.5.7g deutsch
+2024-03-07
+---------------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------------
+NEUE DATEIEN
+---------------------------------------------------------------------------------------------
+admin\assets (gesamter Ordner)
+admin\images\small_zen_logo.gif
+admin\includes\css\german_help.css
+admin\includes\javascript\backtotop.js
+admin\includes\languages\english\extra_definitions\admin_layout.php
+admin\includes\languages\german\extra_definitions\admin_layout.php
+laravel (gesamter Ordner)
+includes\modules\payment\braintree (gesamter Ordner)
+
+
+---------------------------------------------------------------------------------------------
+GEÄNDERTE DATEIEN
+---------------------------------------------------------------------------------------------
+admin\images\logo.gif
+admin\includes\auto_loaders\currency_cron.core.php
+admin\includes\classes\message_stack.php
+admin\includes\classes\split_page_results.php
+admin\includes\css\login.css
+admin\includes\css\menu.css
+admin\includes\css\server_info.css
+admin\includes\css\stylesheet.css
+admin\includes\css\whos_online.css
+admin\includes\functions\general.php
+admin\includes\functions\html_output.php
+admin\includes\init_includes\init_special_funcs.php
+admin\includes\languages\english\customers.php
+admin\includes\languages\english\option_values.php
+admin\includes\languages\english\server_info.php
+admin\includes\languages\german\extra_definitions\orders_status_updates_admin.php
+admin\includes\languages\german\customers.php
+admin\includes\languages\german\option_values.php
+admin\includes\languages\german\server_info.php
+admin\includes\languages\english.php
+admin\includes\languages\german.php
+admin\includes\modules\xsell\category_product_selection.php
+admin\includes\admin_html_head.php
+admin\includes\application_bootstrap.php
+admin\includes\application_top.php
+admin\includes\footer.php
+admin\includes\header.php
+admin\includes\javascript_loader.php
+admin\includes\menu.css
+admin\includes\menu.js
+admin\includes\stylesheet.css
+admin\adresskorrektur.php
+admin\backup_mysql.php
+admin\categories.php
+admin\category_product_listing.php
+admin\configuration.php
+admin\coupon_admin.php
+admin\customers.php
+admin\dsgvo_kundenexport.php
+admin\email_archive_manager.php
+admin\email_export.php
+admin\finddupmodels.php
+admin\german_help.php
+admin\home.php
+admin\it_recht_kanzlei.php
+admin\modules.php
+admin\option_values.php
+admin\orders.php
+admin\rl_invoice3_admin.php
+admin\rl_invoice3_header.php
+admin\server_info.php
+admin\shopvote.php
+admin\whos_online.php
+admin\xsell.php
+includes\auto_loaders\paypal_ipn.core.php
+includes\classes\Customer.php
+includes\classes\order.php
+includes\classes\order_total.php
+includes\classes\productPulldown.php
+includes\classes\shipping.php
+includes\classes\shopping_cart.php
+includes\classes\sniffer.php
+includes\classes\zcDate.php
+includes\functions\banner.php
+includes\functions\functions_addresses.php
+includes\functions\functions_attributes.php
+includes\functions\functions_categories.php
+includes\functions\functions_email.php
+includes\functions\functions_general.php
+includes\functions\functions_general_shared.php
+includes\functions\functions_products.php
+includes\functions\functions_strings.php
+includes\functions\functions_taxes.php
+includes\init_includes\init_sessions.php
+includes\languages\english\button_names.php
+includes\languages\english\checkout_shipping.php
+includes\languages\german\button_names.php
+includes\languages\german\checkout_shipping.php
+includes\languages\english.php
+includes\languages\german.php
+includes\modules\order_total\ot_coupon.php
+includes\modules\order_total\ot_loworderfee.php
+includes\modules\order_total\ot_netto.php
+includes\modules\pages\checkout_shipping\header_php.php
+includes\modules\pages\document_general_info\header_php.php
+includes\modules\pages\document_product_info\header_php.php
+includes\modules\pages\featured_products\header_php.php
+includes\modules\pages\gv_redeem\header_php.php
+includes\modules\pages\product_free_shipping_info\header_php.php
+includes\modules\pages\product_info\header_php.php
+includes\modules\pages\product_music_info\header_php.php
+includes\modules\payment\paypal\paypal_functions.php
+includes\modules\payment\bar.php
+includes\modules\payment\braintree_api.php
+includes\modules\payment\eustandardtransfer.php
+includes\modules\payment\invoice.php
+includes\modules\payment\paypalwpp.php
+includes\templates\responsive_classic\templates\tpl_ajax_checkout_confirmation_default.php
+includes\templates\responsive_classic\templates\tpl_document_general_info_display.php
+includes\templates\responsive_classic\templates\tpl_modules_products_all_listing.php
+includes\templates\responsive_classic\templates\tpl_modules_products_featured_listing.php
+includes\templates\responsive_classic\templates\tpl_modules_products_new_listing.php
+includes\templates\responsive_classic\templates\tpl_product_reviews_write_default.php
+includes\templates\template_default\sideboxes\tpl_currencies.php
+includes\templates\template_default\templates\tpl_ajax_checkout_confirmation_default.php
+includes\templates\template_default\templates\tpl_modules_products_all_listing.php
+includes\templates\template_default\templates\tpl_modules_products_featured_listing.php
+includes\templates\template_default\templates\tpl_modules_products_new_listing.php
+includes\application_top.php
+includes\version.php
+ipn_main_handler.php
+
+
+---------------------------------------------------------------------------------------------
+NICHT MEHR ENTHALTEN
+---------------------------------------------------------------------------------------------
+
+Die folgenden Dateien sind in 1.5.7h nicht mehr enthalten und müssen nach der Aktualisierung vom Server gelöscht werden:
+ext/modules/payment/sofort (gesamter Ordner)
+includes/modules/payment/sofort_su.php
+includes/sofort_states.php
+includes/languages/german/modules/payment/sofort_su.php
+includes/languages/english/modules/payment/sofort_su.php
+includes/modules/pages/sofort_notification (gesamter Ordner)
