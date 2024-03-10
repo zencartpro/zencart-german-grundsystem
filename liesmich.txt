@@ -46,9 +46,12 @@ Verbesserungen:
 Wer bereits 1.5.7g verwendet kann mit dem speziellen Updatepaket in UPDATE-VON-157g-AUF-157h sehr leicht auf 1.5.7h aktualisieren.
 Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157g-AUF-157h
 
-Für das Update einer älteren deutschen Zen Cart Version als 1.5.7 (Sie verwenden z.B. derzeit 1.5.6 oder 1.5.5), führen Sie bitte ein normales Update mit dem kompletten 1.5.7h Paket durch!
-
 Falls Sie bereits Version 1.5.7 deutsch verwenden, aber noch nie auf 1.5.7g aktualisiert haben, dann verwenden Sie das spezielle Updatepaket UPDATE-VON-157-AUF-157h.
+Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157-AUF-157h
+
+Für das Update einer älteren deutschen Zen Cart Version als 1.5.7 (Sie verwenden z.B. derzeit 1.5.6 oder 1.5.5), führen Sie bitte ein normales Update mit dem kompletten 1.5.7h Paket durch!
+Detaillierte Updateanleitung für das Update solch älterer Versionen:
+* https://updateanleitung.zen-cart-pro.at
 
 #####################################################################################################################################
 
