@@ -1,10 +1,12 @@
-1.5.7g deutsch ist ein sehr umfangreicher Service Pack für 1.5.7f deutsch
-Es integriert die fast vollständige Codebasis der aktuellen amerikanischen Version 1.5.8 in die deutsche Zen Cart Version
-Damit wird PHP 8.1.x vollständig unterstützt.
-Die integrierten Module und 3rd Party Komponenten werden auf den Stand von Dezember 2023 gebracht.
+1.5.7h deutsch ist ein sehr umfangreicher Service Pack für 1.5.7 deutsch
+Es integriert die fast vollständige Codebasis der aktuellen amerikanischen Version 1.5.8 und ein Großteil der amerikanischen Version 2.0.0 in die deutsche Zen Cart Version 1.5.7.
+Damit wird PHP 8.2.x vollständig unterstützt.
+Die integrierten Module und 3rd Party Komponenten werden auf den Stand von März 2024 gebracht.
+Der Adminbereich wird mit dieser Version auf ein modernes, einheitliche Layout gebracht.
+Das bislang in der Grundinstallation enthaltene Zahlungsmodul Sofortüberweisung (sofort_su) wurde entfernt, da es veraltet ist und von dem neuen Sofort Eigentümer Klarna nicht mehr unterstützt wird.
 
-Die Umstellung der Sprachdateien, die die amerikanische Version 1.5.8 bereits mitbringt, wird in einer für Herbst 2024 geplanten deutschen Zen Cart Version 1.5.8/2.0.0 mit vollständiger PHP 8.2 Unterstützung nachgezogen.
-Dadurch kann in 1.5.7g weiterhin mit den gewohnten Sprachdefinitionen gearbeitet werden. 
+Die Umstellung der Sprachdateien, die die amerikanische Version 1.5.8 bereits mitbringt, wird in einer für Herbst 2024 geplanten deutschen Zen Cart Version 2.0.0 mit vollständiger PHP 8.3/8.4 Unterstützung nachgezogen.
+Dadurch kann in 1.5.7h weiterhin mit den gewohnten Sprachdefinitionen gearbeitet werden. 
 
 1.5.7g behebt auch alle Fehler die seit Erscheinen von 1.5.7f auf Github gemeldet wurden.
 
@@ -12,8 +14,8 @@ Aktualisierte Komponenten:
 - PHP Mailer Update auf 6.9.1
 - MobileDetect Update auf 3.74.3
 - CKEditor Update auf 4.22.1
-- TinyMCE Editor Update auf 6.7.2
-- braintree_web Update auf 3.97.2, braintree_php Update auf 6.14.0 
+- TinyMCE Editor Update auf 6.8.2
+- braintree_web Update auf 3.100.1, braintree_php Update auf 6.16.0 
 - FontAwesome Update auf 6.4.0
 - jQuery Update auf 3.7.1
 - Image Handler Update auf 5.3.4 mit webp Unterstützung
@@ -23,9 +25,11 @@ Neue Funktionalitäten:
 - Unterstützung des Plugin Managers für Module, die bereits dieses Format nutzen
 - Beim Löschen eines Kunden kann entweder der gesamte Kundeneintrag gelöscht werden (Standard) oder mit "Nur vergessen" nur die persönlichen Daten anonymisiert werden.
 - Logfilemanager integriert (automatisches Löschen von Logfiles nach einem bestimmten Zeitraum)
+- In der Shopadministration können unter Konfiguration > Admin Layout bis zu 10 verschiedene externe Links für die tägliche Arbeit definiert werden, die dann im Adminmenü erscheinen.
+- Gedacht ist das für Links, die man ständig im Shopalltag braucht, z.B. Links zu den Administrationsoberflächen Ihrer Payment Provider oder Versanddienstleister.
 
 Verbesserungen:
-- Vollständige Unterstützung von PHP 8.1
+- Vollständige Unterstützung von PHP 8.2.x
 - Neustrukturierung wichtiger Funktionsdateien
 - Performanceoptimierung durch Zentralisierung von Klassen und Funktionen 
 - Admin Layout durchgehend augenfreundlich und mobilefreundlich
@@ -35,9 +39,18 @@ Verbesserungen:
 - Steuersatz der Versandkosten wird nun in der Datenbank bei der Bestellung gespeichert
 - Performanceverbesserungen für Shops mit großen Datenbanken
 - Neue Zusatzinformationen auf der Adminseite Bestellungen
+- Updatecheck zur englischen Version im Header entfernt, der Updatecheck befindet sich nun unter Tools > Serverinfo und auf der Hilfeseite
+- back to top Pfeil bei Scrollen im Adminbereich
 
-Wer bereits 1.5.7f verwendet kann mit dem speziellen Updatepaket in UPDATE-VON-157f-AUF-157g auf 1.5.7g aktualisieren.
-Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157f-AUF-157g
+Wer bereits 1.5.7g verwendet kann mit dem speziellen Updatepaket in UPDATE-VON-157g-AUF-157h sehr leicht auf 1.5.7h aktualisieren.
+Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157g-AUF-157g
+
+Falls Sie bereits Version 1.5.7 deutsch verwenden, aber noch nie auf 1.5.7g aktualisiert haben, dann verwenden Sie das spezielle Updatepaket UPDATE-VON-157-AUF-157h.
+Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157-AUF-157h
+
+Für das Update einer älteren deutschen Zen Cart Version als 1.5.7 (Sie verwenden z.B. derzeit 1.5.6 oder 1.5.5), führen Sie bitte ein normales Update mit dem kompletten 1.5.7h Paket durch!
+Detaillierte Updateanleitung für das Update solch älterer Versionen:
+* https://updateanleitung.zen-cart-pro.at
 
 ---------------------------------------------------------------------------------------------
 Changelog Zen Cart 1.5.7g deutsch gegenüber 1.5.7 deutsch
@@ -165,6 +178,7 @@ zc_plugins (gesamter Ordner)
 ---------------------------------------------------------------------------------------------
 GEÄNDERTE DATEIEN
 ---------------------------------------------------------------------------------------------
+admin\images\logo.gif
 admin\includes\auto_loaders\config.core.php
 admin\includes\auto_loaders\currency_cron.core.php
 admin\includes\classes\AdminNotifications.php
