@@ -5,9 +5,10 @@ Die integrierten Module und 3rd Party Komponenten werden auf den Stand von März
 Der Adminbereich wird mit dieser Version auf ein modernes, einheitliche Layout gebracht.
 Das bislang in der Grundinstallation enthaltene Zahlungsmodul Sofortüberweisung (sofort_su) wurde entfernt, da es veraltet ist und von dem neuen Sofort Eigentümer Klarna nicht mehr unterstützt wird.
 
-Aktualisierte Komponenten:
+Aktualisierte Komponenten gegenüber 1.5.7g:
 - Laravel Paket
 - Braintree Zahlungsart
+- Tiny MCE Editor
 
 Neue Funktionalitäten:
 In der Shopadministration können unter Konfiguration > Admin Layout bis zu 10 verschiedene externe Links für die tägliche Arbeit definiert werden, die dann im Adminmenü erscheinen.
@@ -15,14 +16,14 @@ Gedacht ist das für Links, die man ständig im Shopalltag braucht, z.B. Links z
 
 Verbesserungen:
 - Vollständige Unterstützung von PHP 8.2.x
-- Diese Version sollte auch mit PHP 8.3.x kompatibel sein, wurde damit aber nicht getestet
+- Diese Version sollte auch mit PHP 8.3.x kompatibel sein, wurde damit aber nicht getestet, bitte verwenden Sie maximal PHP 8.2.x
 - Modernisiertes Admin Layout
-- Updatecheck zur englischen Version entfernt
+- Updatecheck zur englischen Version im Header entfernt, der Updatecheck befindet sich nun unter Tools > Serverinfo und auf der Hilfeseite
 - back to top Pfeil bei Scrollen im Adminbereich
 
 ---------------------------------------------------------------------------------------------
 Changelog Zen Cart 1.5.7h deutsch gegenüber 1.5.7g deutsch
-2024-03-07
+2024-03-29
 ---------------------------------------------------------------------------------------------
 
 ---------------------------------------------------------------------------------------------
@@ -108,6 +109,7 @@ includes\functions\banner.php
 includes\functions\functions_addresses.php
 includes\functions\functions_attributes.php
 includes\functions\functions_categories.php
+includes\functions\functions_dates.php
 includes\functions\functions_email.php
 includes\functions\functions_general.php
 includes\functions\functions_general_shared.php
@@ -145,6 +147,7 @@ includes\templates\responsive_classic\templates\tpl_modules_products_featured_li
 includes\templates\responsive_classic\templates\tpl_modules_products_new_listing.php
 includes\templates\responsive_classic\templates\tpl_product_reviews_write_default.php
 includes\templates\template_default\sideboxes\tpl_currencies.php
+includes\templates\template_default\sideboxes\tpl_manufacturers_select.php
 includes\templates\template_default\templates\tpl_ajax_checkout_confirmation_default.php
 includes\templates\template_default\templates\tpl_modules_products_all_listing.php
 includes\templates\template_default\templates\tpl_modules_products_featured_listing.php

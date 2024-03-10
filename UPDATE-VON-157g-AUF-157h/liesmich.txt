@@ -2,7 +2,7 @@ Updatepaket für Zen Cart 1.5.7g deutsch auf 1.5.7h deutsch
 
 Dieses Paket enthält alle geänderten und neuen Dateien um eine bestehende 1.5.7g Installation leicht auf 1.5.7h aktualisieren zu können.
 
-NUR GEEIGNET WENN SIE BEREIS 1.5.7g VERWENDEN
+NUR GEEIGNET WENN SIE BEREITS 1.5.7g VERWENDEN
 
 Für das Update einer älteren deutschen Zen Cart Version als 1.5.7 (Sie verwenden z.B. derzeit 1.5.6 oder 1.5.5), führen Sie bitte ein normales Update mit dem kompletten 1.5.7h Paket durch!
 Falls Sie bereits Version 1.5.7 deutsch verwenden, aber noch nie auf 1.5.7g aktualisiert haben, dann verwenden Sie das spezielle Updatepaket UPDATE-VON-157-AUF-157h.
@@ -24,9 +24,10 @@ Die allermeisten dieser Dateien werden Sie wahrscheinlich noch nie geändert hab
 
 2) NEUE DATEIEN
 
-Im Ordner 2 - NEUE DATEIEN befinden sich ein aktualisiertes Laravel Paket und eine aktualisierte Braintree PHP Komponente. Sowie einige neue Dateien für 1.5.7h.
+Im Ordner 2 - NEUE DATEIEN befinden sich ein aktualisiertes Laravel Paket, ein aktualisierter TinyMCE Editoe und eine aktualisierte Braintree PHP Komponente. Sowie einige neue Dateien für 1.5.7h.
 Benennen Sie den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses um.
 Statt hier mühsame Dateivergleiche durchzuführen, können Sie die bestehenden Pakete einfach komplett mit den neuen ersetzen.
+Löschen Sie den kompletten Ordner editors/tiny_mce vom Server
 Löschen Sie den kompletten Ordner laravel vom Server
 Löschen Sie den kompletten Ordner includes/modules/payment/braintree vom Server
 Laden Sie dann den Inhalt des Ordners 2 - NEUEDATEIEN in der vorgegebenen Struktur ins Shopverzeichnis hoch.
@@ -53,7 +54,12 @@ Bevor Sie nun irgendetwas anclicken oder tun, löschen Sie erst sofort die beide
 DEINADMIN/includes/auto_loaders/config.157h_update.php
 DEINADMIN/includes/init_includes/init_157ghupdate.php
 
+Nachdem Sie die beiden Dateien gelöscht haben, laden Sie den Adminbereich neu. Leeren Sie nun zusätzlich Ihren Browsercache.
+Der Adminbereich hat in 1.5.7h ein geändertes Layout bekommen.
+
 Prüfen Sie nun, ob Ihr Adminbereich und ihr Frontend problemlos funktionieren.
+
+Sollten Ihnen Logfiles mit Hinweisen auf ADMIN_LAYOUT_USEFUL_LINK angezeigt werden, können Sie diese einfach löschen, diese Links wurden durch das Aufrufen des Updates erst angelegt und waren zuvor nicht vorhanden.
 
 Dann schalten Sie den Wartungsmodus unter Konfiguration > Shopwartung wieder aus.
 
