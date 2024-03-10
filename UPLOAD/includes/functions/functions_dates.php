@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_dates.php 2023-10-30 14:57:16Z webchills $
+ * @version $Id: functions_dates.php 2024-03-10 07:34:16Z webchills $
  */
 
 // Normally this zen_date_raw function will ONLY be defined here.
@@ -88,13 +88,7 @@ function zen_date_short($raw_date)
     $minute = (int)substr($raw_date, 14, 2);
     $second = (int)substr($raw_date, 17, 2);
 
-// error on 1969 only allows for leap year
-    if ($year != 1969 && @date('Y', mktime($hour, $minute, $second, $month, $day, $year)) == $year) {
-        return date(DATE_FORMAT, mktime($hour, $minute, $second, $month, $day, $year));
-    } else {
-        return preg_replace('/2037$/', $year, date(DATE_FORMAT, mktime($hour, $minute, $second, $month, $day, 2037)));
-    }
-
+    return date(DATE_FORMAT, mktime($hour, $minute, $second, $month, $day, $year));
 }
 
 
