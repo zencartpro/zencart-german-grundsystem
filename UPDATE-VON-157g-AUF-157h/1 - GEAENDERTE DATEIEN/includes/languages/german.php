@@ -6,7 +6,7 @@
 * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: german.php 2024-01-02 11:17:32Z webchills $
+* @version $Id: german.php 2024-03-11 16:22:32Z webchills $
 */
 // -----
 // Since the languages are now loaded via classes, the $locales definition
@@ -255,7 +255,7 @@ define('ICON_IMAGE_WARNING','warning.png');
 define('ICON_SUCCESS_ALT','Erfolg');
 define('ICON_TINYCART_ALT','Legen Sie dieses Produkt in Ihren Warenkorb, indem Sie hier klicken.');
 define('ICON_TRASH_ALT','Löschen');
-define('ICON_UPDATE_ALT','Aktualiseren');
+define('ICON_UPDATE_ALT','Aktualisieren');
 define('ICON_WARNING_ALT','Warnung');
 define('IMAGE_ALT_PREFIX','(Bild für)');
 define('IMAGE_ALT_TEXT_NO_TITLE','Ein allgemeines Bild');
@@ -294,7 +294,7 @@ define('OTHER_REVIEWS_RATING_STARS_ONE_ALT','Ein Stern');
 define('OTHER_REVIEWS_RATING_STARS_THREE_ALT','Drei Sterne');
 define('OTHER_REVIEWS_RATING_STARS_TWO_ALT','Zwei Sterne');
 define('OUT_OF_STOCK_CANT_CHECKOUT', 'Mit ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' gekennzeichnete Artikel sind derzeit nicht in ausreichender Menge lagernd.<br>Bitte ändern Sie die Menge bei den mit (' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ') gekennzeichneten Artikeln. Danke.');
-define('OUT_OF_STOCK_CAN_CHECKOUT','Products marked with ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' are out of stock.<br>Items not in stock will be placed on backorder.');
+define('OUT_OF_STOCK_CAN_CHECKOUT','Mit ' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . ' gekennzeichnete Artikel sind derzeit nicht lagernd.<br>Diese Artikel werden nachgeliefert.');
 define('PAGE_ACCOUNT','Mein Konto');
 define('PAGE_ACCOUNT_EDIT','Kontoinformationen');
 define('PAGE_ACCOUNT_HISTORY','Bestellhistorie');
