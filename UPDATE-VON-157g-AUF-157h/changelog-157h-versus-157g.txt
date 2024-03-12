@@ -124,6 +124,7 @@ includes\languages\german\checkout_shipping.php
 includes\languages\english.php
 includes\languages\german.php
 includes\modules\order_total\ot_coupon.php
+includes\modules\order_total\ot_gv.php
 includes\modules\order_total\ot_loworderfee.php
 includes\modules\order_total\ot_netto.php
 includes\modules\pages\checkout_shipping\header_php.php

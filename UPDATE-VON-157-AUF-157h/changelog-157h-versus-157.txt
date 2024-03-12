@@ -737,6 +737,7 @@ includes\languages\german.php
 includes\modules\order_total\ot_cod_fee.php
 includes\modules\order_total\ot_coupon.php
 includes\modules\order_total\ot_group_pricing.php
+includes\modules\order_total\ot_gv.php
 includes\modules\order_total\ot_loworderfee.php
 includes\modules\order_total\ot_netto.php
 includes\modules\order_total\ot_shipping.php
