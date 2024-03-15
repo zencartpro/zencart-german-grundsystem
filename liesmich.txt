@@ -19,7 +19,7 @@ Aktualisierte Komponenten:
 - MobileDetect Update auf 3.74.3
 - CKEditor Update auf 4.22.1
 - TinyMCE Editor Update auf 6.8.2
-- braintree_web Update auf 3.100.0, braintree_php Update auf 6.16.0 
+- braintree_web Update auf 3.100.0, braintree_php Update auf 6.17.0 
 - FontAwesome Update auf 6.4.0
 - jQuery Update auf 3.7.1
 - Image Handler Update auf 5.3.4 mit webp Unterstützung

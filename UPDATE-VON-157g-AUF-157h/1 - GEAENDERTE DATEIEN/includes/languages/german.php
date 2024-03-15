@@ -203,7 +203,7 @@ define('ERROR_INVALID_FROM_DATE','Ungültiges Startdatum');
 define('ERROR_INVALID_KEYWORDS','Ungültige Schlüsselwörter.');
 define('ERROR_INVALID_TO_DATE','Ungültiges Bis-Datum.');
 define('ERROR_MAXIMUM_QTY','Stückzahl angepasst - maximale Stückzahl wurde in den Warenkorb gelegt');
-define('ERROR_MISSING_SEARCH_OPTIONS','Fehlenede Suchparameter');
+define('ERROR_MISSING_SEARCH_OPTIONS','Fehlende Suchparameter');
 define('ERROR_NO_PAYMENT_MODULE_SELECTED','Bitte wählen Sie eine Zahlungsart aus.');
 define('ERROR_PRICE_FROM_MUST_BE_NUM','Der Preis von muss eine Zahl sein.');
 define('ERROR_PRICE_TO_LESS_THAN_PRICE_FROM','Der Preis bis muss höher oder gleich Preis von sein.');

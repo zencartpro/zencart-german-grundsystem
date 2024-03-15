@@ -1,6 +1,6 @@
 Zen Cart 1.5.7h deutsch 
 
-Version vom xx.02.2024
+Version vom 29.03.2024
 
 #####################################################################################################################################
 
@@ -9,8 +9,8 @@ Es integriert die fast vollständige Codebasis der aktuellen amerikanischen Vers
 Damit wird PHP 8.2.x vollständig unterstützt.
 Die integrierten Module und 3rd Party Komponenten werden auf den Stand von Februar 2024 gebracht.
 
-Die Umstellung der Sprachdateien, die die amerikanische Version 1.5.8 bereits mitbringt, wird in einer für Herbst 2024 geplanten deutschen Zen Cart Version 1.5.8/2.0.0 mit vollständiger PHP 8.3 Unterstützung nachgezogen.
-Dadurch kann in 1.5.7g weiterhin mit den gewohnten Sprachdefinitionen gearbeitet werden. 
+Die Umstellung der Sprachdateien, die die amerikanische Version 1.5.8 bereits mitbringt, wird in einer für Herbst 2024 geplanten deutschen Zen Cart Version 2.0.0 mit vollständiger PHP 8.3/8.4 Unterstützung nachgezogen.
+Dadurch kann in 1.5.7h weiterhin mit den gewohnten Sprachdefinitionen gearbeitet werden. 
 
 1.5.7h behebt auch alle Fehler die seit Erscheinen von 1.5.7g auf Github gemeldet wurden.
 
@@ -19,7 +19,7 @@ Aktualisierte Komponenten:
 - MobileDetect Update auf 3.74.3
 - CKEditor Update auf 4.22.1
 - TinyMCE Editor Update auf 6.8.2
-- braintree_web Update auf 3.97.2, braintree_php Update auf 6.14.0 
+- braintree_web Update auf 3.100.0, braintree_php Update auf 6.17.0 
 - FontAwesome Update auf 6.4.0
 - jQuery Update auf 3.7.1
 - Image Handler Update auf 5.3.4 mit webp Unterstützung
@@ -29,9 +29,10 @@ Neue Funktionalitäten:
 - Unterstützung des Plugin Managers für Module, die bereits dieses Format nutzen
 - Beim Löschen eines Kunden kann entweder der gesamte Kundeneintrag gelöscht werden (Standard) oder mit "Nur vergessen" nur die persönlichen Daten anonymisiert werden.
 - Logfilemanager integriert (automatisches Löschen von Logfiles nach einem bestimmten Zeitraum)
+- Modernisiertes Admin Layout mit der Möglichkeit bis zu 10 externe nützliche Links für die tägliche Arbeit in die Administration zu integrieren (z.B. Links zu den Adminportalen Ihrer Versand- und Payment Dienstleister)
 
 Verbesserungen:
-- Vollständige Unterstützung von PHP 8.1 und PHP 8.2
+- Vollständige Unterstützung von PHP 8.2.x
 - Neustrukturierung wichtiger Funktionsdateien
 - Performanceoptimierung durch Zentralisierung von Klassen und Funktionen 
 - Admin Layout durchgehend augenfreundlich und mobilefreundlich
@@ -42,11 +43,15 @@ Verbesserungen:
 - Performanceverbesserungen für Shops mit großen Datenbanken
 - Neue Zusatzinformationen auf der Adminseite Bestellungen
 
-
-Wer bereits 1.5.7, 1.5.7e oder 1.5.7f verwendet kann mit dem speziellen Updatepaket in UPDATE-VON-157-AUF-157g auf 1.5.7h aktualisieren.
-Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157-AUF-157h
 Wer bereits 1.5.7g verwendet kann mit dem speziellen Updatepaket in UPDATE-VON-157g-AUF-157h sehr leicht auf 1.5.7h aktualisieren.
 Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157g-AUF-157h
+
+Falls Sie bereits Version 1.5.7 deutsch verwenden, aber noch nie auf 1.5.7g aktualisiert haben, dann verwenden Sie das spezielle Updatepaket UPDATE-VON-157-AUF-157h.
+Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157-AUF-157h
+
+Für das Update einer älteren deutschen Zen Cart Version als 1.5.7 (Sie verwenden z.B. derzeit 1.5.6 oder 1.5.5), führen Sie bitte ein normales Update mit dem kompletten 1.5.7h Paket durch!
+Detaillierte Updateanleitung für das Update solch älterer Versionen:
+* https://updateanleitung.zen-cart-pro.at
 
 #####################################################################################################################################
 
