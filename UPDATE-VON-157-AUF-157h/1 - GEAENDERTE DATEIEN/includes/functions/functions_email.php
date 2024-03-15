@@ -4,11 +4,11 @@
  * Processes all outbound email from Zen Cart
  * Hooks into phpMailer class for actual email encoding and sending
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_email.php 2023-12-26 20:30:16Z webchills $
+ * @version $Id: functions_email.php 2024-03-15 19:17:16Z webchills $
  */
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -490,7 +490,10 @@ use PHPMailer\PHPMailer\SMTP;
             if ($ErrorInfo !== '') {
                 $mail_langs = $mail->getTranslations();
                 if (strpos($ErrorInfo, $mail_langs['recipients_failed']) === false) {
-                    trigger_error('Email Error: ' . $ErrorInfo);
+                   // Don't log SMTP rejected spam; log others
+                   if (!str_contains($ErrorInfo, 'spam content')) {
+                       trigger_error('Email Error: ' . $ErrorInfo);
+                   }
                 } else {
                     $log_prefix = (IS_ADMIN_FLAG === true) ? '/myDEBUG-bounced-email-adm-' : '/myDEBUG-bounced-email-';
                     $log_date = new DateTime();
