@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_shipping_estimator.php 2023-10-30 15:31:16Z webchills $
+ * @version $Id: tpl_modules_shipping_estimator.php 2024-03-15 14:49:16Z webchills $
  */
 ?>
 <div id="shippingEstimatorContent">
@@ -169,7 +169,14 @@
       }
 ?>
 </table>
-<?php
+<?php 
+      if (empty($quotes)) { 
+?>
+      <div id="noShippingAvailable" class="alert important">
+         <?php echo TEXT_NO_SHIPPING_AVAILABLE_ESTIMATOR; ?>
+      </div>
+<?php 
+      } 
    }
   }
 echo '</form>'; ?>

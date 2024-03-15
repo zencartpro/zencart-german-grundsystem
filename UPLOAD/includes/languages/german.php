@@ -6,7 +6,7 @@
 * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: german.php 2024-03-11 16:22:32Z webchills $
+* @version $Id: german.php 2024-03-15 14:5:32Z webchills $
 */
 // -----
 // Since the languages are now loaded via classes, the $locales definition
@@ -57,6 +57,7 @@ define('BOX_HEADING_SEARCH','Suche');
 define('BOX_HEADING_SHOPPING_CART','Warenkorb');
 define('BOX_HEADING_SPECIALS','Sonderangebote');
 define('BOX_HEADING_WHATS_NEW','Neue Artikel');
+define('BOX_INFORMATION_ABOUT_US','Über uns');
 define('BOX_INFORMATION_CONDITIONS','AGB');
 define('BOX_INFORMATION_WIDERRUFSRECHT', 'Widerrufsrecht');
 define('BOX_INFORMATION_ZAHLUNGSARTEN', 'Zahlungsarten');
@@ -202,6 +203,7 @@ define('ERROR_INVALID_FROM_DATE','Ungültiges Startdatum');
 define('ERROR_INVALID_KEYWORDS','Ungültige Schlüsselwörter.');
 define('ERROR_INVALID_TO_DATE','Ungültiges Bis-Datum.');
 define('ERROR_MAXIMUM_QTY','Stückzahl angepasst - maximale Stückzahl wurde in den Warenkorb gelegt');
+define('ERROR_MISSING_SEARCH_OPTIONS','Fehlenede Suchparameter');
 define('ERROR_NO_PAYMENT_MODULE_SELECTED','Bitte wählen Sie eine Zahlungsart aus.');
 define('ERROR_PRICE_FROM_MUST_BE_NUM','Der Preis von muss eine Zahl sein.');
 define('ERROR_PRICE_TO_LESS_THAN_PRICE_FROM','Der Preis bis muss höher oder gleich Preis von sein.');
@@ -474,6 +476,7 @@ define('TEXT_NO_FEATURED_PRODUCTS','Weitere empfohlene Artikel werden bald hinzu
 define('TEXT_NO_NEW_PRODUCTS','Weitere neue Produkte werden in Kürze hinzugefügt. Bitte schauen Sie später noch einmal vorbei.');
 define('TEXT_NO_PROD_RESTRICTIONS','Dieser Coupon ist für alle Produkte gültig.');
 define('TEXT_NO_PROD_SALES','Dieser Gutschein ist nicht gültig für Produkte im Verkauf.');
+define('TEXT_NO_SHIPPING_AVAILABLE_ESTIMATOR', 'Für die gewählte Adresse haben wir leider keine Versandmöglichkeit verfügbar.<br><br>Bitte loggen Sie sich ein oder ändern Sie die gewünschte Versandadresse, um eine Versandkostenschätzung zu erhalten.<br><br>Falls auch dann keine Versandkosten ersichtlich sind, kontaktieren Sie uns, um Alternativen zu finden!');
 define('TEXT_NO_REVIEWS', 'Derzeit gibt es keine Bewertungen.');
 define('TEXT_NUMBER_SYMBOL','# ');
 define('TEXT_OF_5_STARS','');

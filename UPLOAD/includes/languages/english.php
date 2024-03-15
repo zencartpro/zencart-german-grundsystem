@@ -6,7 +6,7 @@
 * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: english.php 2024-02-01 11:16:32Z webchills $
+* @version $Id: english.php 2024-03-15 14:50:32Z webchills $
 */
 // -----
 // Since the languages are now loaded via classes, the $locales definition
@@ -203,6 +203,7 @@ define('ERROR_INVALID_FROM_DATE','Invalid From Date.');
 define('ERROR_INVALID_KEYWORDS','Invalid keywords.');
 define('ERROR_INVALID_TO_DATE','Invalid To Date.');
 define('ERROR_MAXIMUM_QTY','The quantity added to your cart has been adjusted because of a restriction on maximum you are allowed. See this item:<br>');
+define('ERROR_MISSING_SEARCH_OPTIONS','Missing search options');
 define('ERROR_NO_PAYMENT_MODULE_SELECTED','Please select a payment method for your order.');
 define('ERROR_PRICE_FROM_MUST_BE_NUM','Price From must be a number.');
 define('ERROR_PRICE_TO_LESS_THAN_PRICE_FROM','Price To must be greater than or equal to Price From.');
@@ -475,6 +476,7 @@ define('TEXT_NO_FEATURED_PRODUCTS','More featured products will be added soon. P
 define('TEXT_NO_NEW_PRODUCTS','More new products will be added soon. Please check back later.');
 define('TEXT_NO_PROD_RESTRICTIONS','This coupon is valid for all products.');
 define('TEXT_NO_PROD_SALES','This coupon is not valid for products on sale.');
+define('TEXT_NO_SHIPPING_AVAILABLE_ESTIMATOR', 'Sorry, we have no online options for shipping this order to the address selected.<br><br>Please login, or edit your desired shipping address to get updated quotes.<br><br>If quotes are still not available, please contact us to make alternate arrangements!');
 define('TEXT_NO_REVIEWS','There are currently no product reviews.');
 define('TEXT_NUMBER_SYMBOL','# ');
 define('TEXT_OF_5_STARS','');
