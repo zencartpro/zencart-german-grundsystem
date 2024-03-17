@@ -10,7 +10,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_products_new_listing.php 2024-01-10 07:33:58Z webchills $
+ * @version $Id: tpl_modules_products_new_listing.php 2024-03-17 18:40:58Z webchills $
 
  */
 ?>
@@ -116,7 +116,7 @@
         $link = '<a class="list-more" href="' . zen_href_link(zen_get_info_page($products_new->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_new->fields['master_categories_id']) . '&products_id=' . $products_new->fields['products_id']) . '" title="' . $products_new->fields['products_id'] . '">' . MORE_INFO_TEXT . '</a>';
         $the_button = $link;
         $products_link = '<a class="list-more" href="' . zen_href_link(zen_get_info_page($products_new->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($products_new->fields['master_categories_id']) . '&products_id=' . $products_new->fields['products_id']) . '" title="' . $products_new->fields['products_id'] . '">' . MORE_INFO_TEXT . '</a>';
-        $display_products_button = zen_get_buy_now_button($products_new->fields['products_id'], $the_button, $products_link) . '<br>' . zen_get_products_quantity_min_units_display($products_new->fields['products_id']) . str_repeat('<br class="clearBoth">', substr(PRODUCT_NEW_BUY_NOW, 3, 1));
+        $display_products_button = zen_get_buy_now_button($products_new->fields['products_id'], $the_button, $products_link) . '<br>' . zen_get_products_quantity_min_units_display($products_new->fields['products_id']) . '<br class="clearBoth">';
       }
 
       if (PRODUCT_NEW_LIST_DESCRIPTION > '0') {
