@@ -2,7 +2,7 @@
 # Zen Cart German Version - www.zen-cart-pro.at
 # @copyright Copyright 2003-2024 Zen Cart Development Team
 # @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# @version $Id: systemChecks.yml 2024-02-02 13:16:53Z webchills $
+# @version $Id: systemChecks.yml 2024-03-25 09:16:53Z webchills $
 #
 
 systemChecks:
@@ -173,6 +173,22 @@ systemChecks:
     mainErrorText: <?php echo TEXT_ERROR_DB_CONNECTION_DEFAULT .PHP_EOL; ?>
     methods:
       checkDBConnection:
+  checkintl:
+    runLevel: always
+    errorLevel: WARN
+    mainErrorText: <?php echo TEXT_ERROR_INTL .PHP_EOL; ?>
+    methods:
+      checkExtension:
+        parameters:
+          extension: intl
+  checkjson:
+    runLevel: always
+    errorLevel: FAIL
+    mainErrorText: <?php echo TEXT_ERROR_JSON .PHP_EOL; ?>
+    methods:
+      checkExtension:
+        parameters:
+          extension: json
   checkGD:
     runLevel: always
     errorLevel: WARN

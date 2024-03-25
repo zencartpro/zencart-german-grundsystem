@@ -4,11 +4,11 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main.php 2024-02-04 14:54:29Z webchills $
+ * @version $Id: main.php 2024-03-25 09:54:29Z webchills $
  */
 
 return [
-'META_TAG_TITLE' => 'Zen Cart 1.5.7g German - Installer',
+'META_TAG_TITLE' => 'Zen Cart 1.5.7h German - Installer',
 'HTML_PARAMS' => 'dir="ltr" lang="en"',
 'ZC_VERSION_STRING' => '%s v%s',
 'TEXT_PAGE_HEADING_INDEX' => 'System Inspection',
@@ -155,6 +155,7 @@ return [
 'TEXT_ERROR_DB_CONNECTION_UPGRADE' => 'Problems with database connection based on the entries in your current configure.php',
 'TEXT_ERROR_SET_TIME_LIMIT' => 'max_execution_time setting disabled',
 'TEXT_ERROR_GD' => 'GD Extension not enabled',
+'TEXT_ERROR_INTL' => 'INTL Extension not enabled. Required for date-handling and locale support.',
 'TEXT_ERROR_JSON' => 'JSON Extension not enabled. Required for parsing data in many parts of the application.',
 'TEXT_ERROR_FILEINFO' => 'Fileinfo extension not enabled. Used for calculating file sizes.',
 'TEXT_ERROR_ZLIB' => 'Zlib Extension not enabled',

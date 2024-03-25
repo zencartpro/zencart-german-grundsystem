@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main.php 2024-02-04 14:53:29Z webchills $
+ * @version $Id: main.php 2024-03-25 09:53:29Z webchills $
  */
 
 
@@ -159,8 +159,9 @@ return [
 'TEXT_ERROR_DB_CONNECTION_UPGRADE' => 'Probleme mit der Datenbankverbindung mit den in Ihrer configure.php eingetragenen Datenbankzugangsdaten',
 'TEXT_ERROR_SET_TIME_LIMIT' => 'max_execution_time setting deaktiviert',
 'TEXT_ERROR_GD' => 'GD Extension nicht aktiviert',
-'TEXT_ERROR_JSON' => 'JSON Extension not enabled. Required for parsing data in many parts of the application.',
-'TEXT_ERROR_FILEINFO' => 'Fileinfo extension not enabled. Used for calculating file sizes.',
+'TEXT_ERROR_INTL' => 'INTL Extension nicht aktiviert. Erforderlich zum Handling von Datumsangaben und locale Support.',
+'TEXT_ERROR_JSON' => 'JSON Extension nicht aktiviert. Erforderlich zum Parsen von Daten.',
+'TEXT_ERROR_FILEINFO' => 'Fileinfo extension nicht aktiviert. Erforderlich zum Ermitteln von Dateigroessen.',
 'TEXT_ERROR_ZLIB' => 'Zlib Extension nicht aktiviert',
 'TEXT_ERROR_OPENSSL' => 'Openssl Extension nicht aktiviert',
 'TEXT_ERROR_CURL' => 'Probleme mit der CURL Extension - PHP meldet, dass CURL nicht verfügbar ist.',
