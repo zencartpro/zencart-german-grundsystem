@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2024-02-19 11:40:04Z webchills $
+ * @version $Id: german.php 2024-03-25 11:40:04Z webchills $
  */
 
 // important line - do NOT change
@@ -665,7 +665,7 @@ define('WARNING_EMAIL_SYSTEM_DISABLED','WARNUNG: Das Emailsystem ist abgeschalte
 define('WARNING_FILE_UPLOADS_DISABLED','WARNUNG: Datei Uploads sin in der php.ini Konfiguration deaktiviert.');
 define('WARNING_INSTALL_DIRECTORY_EXISTS','SICHERHEITSWARNUNG: Installationsverzeichnis existiert in: %s. Bitte entfernen Sie diesen Ordner aus Sicherheitsgründen.');
 define('WARNING_NO_FILE_UPLOADED','WARNUNG: keine Date hochgeladen.');
-define('WARNING_PAGE_REQUIRES_UPDATE','Diese Seite verwendet nicht includes/admin_html_head.php. Sie muss für die nächste Zen Cart Version aktualisiert werden. Bitte verweisen Sie Ihren Shopbetreuer oder Modulautor auf die folgende <a href="https://docs.zen-cart.com/dev/plugins/admin_head_content/" rel="noopener noreferrer" target="_blank">Dokumentation</aY.');
+define('WARNING_PAGE_REQUIRES_UPDATE','Diese Seite verwendet nicht includes/admin_html_head.php. Sie muss für die nächste Zen Cart Version aktualisiert werden. Bitte verweisen Sie Ihren Shopbetreuer oder Modulautor auf die folgende <a href="https://www.zen-cart-pro.at/knowledgebase/verwendung-von-admin_html_head-seit-1-5-7/" rel="noopener noreferrer" target="_blank">Dokumentation</aY.');
 define('WARNING_PRIMARY_SERVER_FAILED','WARNUNG: Der primäre Wechselkurs Server (%s) schlägt fehl für %s (%s) - versuche den sekundären Wechselkurs Server.');
 define('WARNING_REVIEW_ROGUE_ACTIVITY','ALARM: Bitte auf mögliche XSS Aktivität prüfen:');
 define('WARNING_SESSION_AUTO_START','WARNUNG: session.auto_start ist aktiviert - bitte deaktivieren Sie diese PHP Einstellung in Ihrer php.ini (ein Neustart Ihres Webservers kann danach erforderlich sein).');
