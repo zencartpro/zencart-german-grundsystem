@@ -528,6 +528,7 @@ admin\product_types.php
 admin\products_expected.php
 admin\products_price_manager.php
 admin\products_to_categories.php
+admin\profiles.php
 admin\record_artists.php
 admin\record_company.php
 admin\reviews.php

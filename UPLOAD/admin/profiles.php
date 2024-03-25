@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: profiles.php 2022-02-27 19:59:23Z webchills $
+ * @version $Id: profiles.php 2024-03-25 09:59:23Z webchills $
  */
 require('includes/application_top.php');
 
@@ -47,7 +47,7 @@ switch ($action) {
       zen_redirect(zen_href_link(FILENAME_PROFILES));
     } else {
       $messageStack->add(SUCCESS_PROFILE_DELETED, 'success');
-      unset($action);
+      $action = '';
       $profileList = zen_get_profiles(TRUE);
     }
     break;
