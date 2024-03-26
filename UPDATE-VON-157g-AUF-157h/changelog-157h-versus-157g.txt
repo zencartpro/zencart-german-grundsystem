@@ -103,6 +103,7 @@ includes\classes\Customer.php
 includes\classes\order.php
 includes\classes\order_total.php
 includes\classes\productPulldown.php
+includes\classes\rss_feed.php
 includes\classes\shipping.php
 includes\classes\shopping_cart.php
 includes\classes\sniffer.php
