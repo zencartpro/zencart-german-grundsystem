@@ -5,7 +5,7 @@
 * @copyright Portions Copyright 2003 osCommerce
 * Zen Cart German Version - www.zen-cart-pro.at
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: init_157h_update.php 2024-03-10 15:19:51Z webchills $
+* @version $Id: init_157h_update.php 2024-03-26 15:49:51Z webchills $
 */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -84,6 +84,9 @@ $db->Execute("REPLACE INTO ".TABLE_CONFIGURATION_LANGUAGE." (configuration_title
 
 $db->Execute("INSERT INTO admin_pages (page_key,language_key,main_page,page_params,menu_key,display_on_menu,sort_order)
 VALUES ('configAdminLayout','BOX_CONFIGURATION_ADMIN_LAYOUT','FILENAME_CONFIGURATION',CONCAT('gID=',@gid),'configuration','Y',@gid);");
+
+$db->Execute("INSERT IGNORE INTO admin_pages (page_key,language_key,main_page,page_params,menu_key,display_on_menu,sort_order)
+VALUES ('GermanHelpPage','GERMAN_HELP_PAGE','FILENAME_GERMAN_HELP','','extras','N',99);");
 
 
 $messageStack->add('Admin Layout erfolgreich aktualisiert', 'success');

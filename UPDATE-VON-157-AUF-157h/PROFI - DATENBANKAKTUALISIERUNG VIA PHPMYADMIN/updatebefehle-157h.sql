@@ -209,6 +209,9 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 INSERT INTO admin_pages (page_key,language_key,main_page,page_params,menu_key,display_on_menu,sort_order)
 VALUES ('configAdminLayout','BOX_CONFIGURATION_ADMIN_LAYOUT','FILENAME_CONFIGURATION',CONCAT('gID=',@gid),'configuration','Y',@gid);
 
+INSERT INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order) VALUES
+('GermanHelpPage', 'GERMAN_HELP_PAGE', 'FILENAME_GERMAN_HELP', '', 'extras', 'N', 99);
+
 # New Plugin tables
 # New since 157g
 

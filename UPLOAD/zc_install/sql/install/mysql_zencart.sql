@@ -6,7 +6,7 @@
 # * Zen Cart German Version - www.zen-cart-pro.at
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-# * @version $Id: mysql_zencart.sql 2024-03-10 16:36:16Z webchills $
+# * @version $Id: mysql_zencart.sql 2024-03-26 16:36:16Z webchills $
 #
 
 ############ IMPORTANT INSTRUCTIONS ###############
@@ -4334,8 +4334,11 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 # Register for Admin Access Control
 ###################################
 
-INSERT INTO admin_pages (page_key,language_key,main_page,page_params,menu_key,display_on_menu,sort_order)
-VALUES ('configAdminLayout','BOX_CONFIGURATION_ADMIN_LAYOUT','FILENAME_CONFIGURATION',CONCAT('gID=',@gid),'configuration','Y',@gid);
+INSERT INTO admin_pages (page_key,language_key,main_page,page_params,menu_key,display_on_menu,sort_order) VALUES 
+('configAdminLayout','BOX_CONFIGURATION_ADMIN_LAYOUT','FILENAME_CONFIGURATION',CONCAT('gID=',@gid),'configuration','Y',@gid);
+
+INSERT INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order) VALUES
+('GermanHelpPage', 'GERMAN_HELP_PAGE', 'FILENAME_GERMAN_HELP', '', 'extras', 'N', 99);
 
 
 ###################################
