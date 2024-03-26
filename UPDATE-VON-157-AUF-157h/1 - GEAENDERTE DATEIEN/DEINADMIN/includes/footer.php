@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: footer.php 2024-02-10 14:24:50Z webchills $
+ * @version $Id: footer.php 2024-03-26 10:40:50Z webchills $
  */
 
 // check and display zen cart version and history version in footer
@@ -25,8 +25,9 @@ define('MH_DIR_FS_CATALOG', (substr(DIR_FS_CATALOG, -1) != '/') ? DIR_FS_CATALOG
 ?>
 <footer>
 <div id="footer">
-E-Commerce Engine Copyright &copy; 2003-<?php echo date('Y'); ?> <?php echo '<a href="' . zen_href_link(FILENAME_GERMAN_HELP) . '">Zen Cart - deutsche Version</a>'; ?><br><br>
-<?php echo 'Version Info: <a href="' . zen_href_link(FILENAME_SERVER_INFO) . '">' . $current_sinfo . '</a>'; ?>
+E-Commerce Engine Copyright &copy; 2003-<?php echo date('Y'); ?> <?php echo '<a href="' . zen_href_link(FILENAME_GERMAN_HELP) . '">Zen Cart - deutsche Version</a>'; ?>
+<br><br>
+<?php if (zen_is_superuser()) echo 'Version Info: <a href="' . zen_href_link(FILENAME_SERVER_INFO) . '">' . $current_sinfo . '</a>'; ?>
 </div>
 </footer>
 <?php
