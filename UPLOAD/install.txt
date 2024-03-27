@@ -5,9 +5,9 @@ Version vom 29.03.2024
 #####################################################################################################################################
 
 1.5.7h deutsch ist ein sehr umfangreicher Service Pack für 1.5.7 deutsch
-Es integriert die fast vollständige Codebasis der aktuellen amerikanischen Version 1.5.8/2.0.0 in die deutsche Zen Cart Version
+Es integriert die fast vollständige Codebasis der aktuellen amerikanischen Version 1.5.8 und ein Großteil der amerikanischen Version 2.0.0 in die deutsche Zen Cart Version 1.5.7.
 Damit wird PHP 8.2.x vollständig unterstützt.
-Die integrierten Module und 3rd Party Komponenten werden auf den Stand von Februar 2024 gebracht.
+Die integrierten Module und 3rd Party Komponenten werden auf den Stand von März 2024 gebracht.
 
 Die Umstellung der Sprachdateien, die die amerikanische Version 1.5.8 bereits mitbringt, wird in einer für Herbst 2024 geplanten deutschen Zen Cart Version 2.0.0 mit vollständiger PHP 8.3/8.4 Unterstützung nachgezogen.
 Dadurch kann in 1.5.7h weiterhin mit den gewohnten Sprachdefinitionen gearbeitet werden. 
