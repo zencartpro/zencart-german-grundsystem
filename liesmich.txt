@@ -12,7 +12,7 @@ Die integrierten Module und 3rd Party Komponenten werden auf den Stand von März
 Die Umstellung der Sprachdateien, die die amerikanische Version 1.5.8 bereits mitbringt, wird in einer für Herbst 2024 geplanten deutschen Zen Cart Version 2.0.0 mit vollständiger PHP 8.3/8.4 Unterstützung nachgezogen.
 Dadurch kann in 1.5.7h weiterhin mit den gewohnten Sprachdefinitionen gearbeitet werden. 
 
-1.5.7h behebt auch alle Fehler die seit Erscheinen von 1.5.7h auf Github gemeldet wurden.
+1.5.7h behebt auch alle Fehler die seit Erscheinen von 1.5.7g auf Github gemeldet wurden.
 
 Aktualisierte Komponenten:
 - PHP Mailer Update auf 6.9.1
