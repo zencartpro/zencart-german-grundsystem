@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
+ * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ezpages.php 2023-12-12 19:37:51Z webchills $
+ * @version $Id: ezpages.php 2024-04-01 18:13:51Z webchills $
  */
 require 'includes/application_top.php';
 
@@ -55,6 +55,7 @@ if (!empty($action)) {
       $pages_toc_sort_order = (int)$_POST['toc_sort_order'];
 
       $toc_chapter = (int)$_POST['toc_chapter'];
+      $page_key = zen_db_prepare_input($_POST['page_key']);
 
       $status_header = ($pages_header_sort_order == 0 ? 0 : (int)$_POST['status_header']);
       $status_sidebox = ($pages_sidebox_sort_order == 0 ? 0 : (int)$_POST['status_sidebox']);
@@ -123,6 +124,7 @@ if (!empty($action)) {
           'footer_sort_order' => $pages_footer_sort_order,
           'toc_sort_order' => $pages_toc_sort_order,
           'toc_chapter' => $toc_chapter,
+	  'page_key' => $page_key,
         ];
 
         if ($action == 'insert') {
@@ -266,6 +268,7 @@ if (!empty($action)) {
           'status_toc' => 1,
           'page_open_new_window' => 0,
           'page_is_ssl' => 1,
+          'page_key' => '',
         ];
 
         $zco_notifier->notify('NOTIFY_ADMIN_EZPAGES_NEW', '', $parameters);
@@ -502,6 +505,13 @@ if (!empty($action)) {
             <span class="help-block"><?php echo TEXT_ALT_URL_EXTERNAL_EXPLAIN; ?></span>
           </div>
         </div>
+	<div class="form-group">
+            <?php echo zen_draw_label(TEXT_ALT_PAGE_KEY, 'page_key', 'class="col-sm-3 control-label"'); ?>
+          <div class="col-sm-9 col-md-6">
+          <?php echo zen_draw_input_field('page_key', $ezInfo->page_key, 'size="100" class="form-control"'); ?>
+            <span class="help-block"><?php echo TEXT_ALT_PAGE_KEY_EXPLAIN; ?></span>
+          </div>
+        </div>
         <div class="form-group">
           <div class="col-sm-12"><?php echo (($form_action == 'insert') ? '<button type="submit" class="btn btn-primary">' . IMAGE_INSERT . '</button>' : '<button type="submit" class="btn btn-primary">' . IMAGE_UPDATE . '</button>') . ' <a href="' . zen_href_link(FILENAME_EZPAGES_ADMIN, ($currentPage != 0 ? 'page=' . $currentPage . '&' : '') . (isset($_GET['ezID']) ? 'ezID=' . $_GET['ezID'] : '')) . '" class="btn btn-default" role="button">' . IMAGE_CANCEL . '</a>'; ?></div>
         </div>
@@ -521,6 +531,7 @@ if (!empty($action)) {
                 <tr class="dataTableHeadingRow">
                   <th class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_ID; ?></th>
                   <th class="dataTableHeadingContent"><?php echo TABLE_HEADING_PAGES; ?></th>
+		  <th class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_PAGE_KEY; ?></th>
                   <th class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_PAGE_OPEN_NEW_WINDOW; ?></th>
                   <th class="dataTableHeadingContent text-center"><?php echo TABLE_HEADING_PAGE_IS_SSL; ?></th>
                   <th class="dataTableHeadingContent text-right"><?php echo TABLE_HEADING_STATUS_HEADER; ?></th>
@@ -609,6 +620,7 @@ if (!empty($action)) {
                     <?php } ?>
                     <td class="dataTableContent text-right"><?php echo ($zv_link_method_cnt > 1 ? zen_icon('status-red', IMAGE_ICON_STATUS_RED_EZPAGES) : '') . '&nbsp;' . $page['pages_id']; ?></td>
                     <td class="dataTableContent"><?php echo $page['pages_title']; ?></td>
+		    <td class="dataTableContent text-center"><?php echo $pages->fields['page_key']; ?></td>
                     <td class="dataTableContent text-center">
                       <?php echo zen_draw_form('page_open_new_window', FILENAME_EZPAGES_ADMIN, 'action=update_status'); ?>
                       <button type="submit" class="btn btn-status">

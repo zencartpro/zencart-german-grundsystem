@@ -84,6 +84,7 @@ admin\currencies.php
 admin\dsgvo_kundenexport.php
 admin\email_archive_manager.php
 admin\email_export.php
+admin\ezpages.php
 admin\finddupmodels.php
 admin\german_help.php
 admin\home.php
