@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: customers.php 2024-02-22 14:45:51Z webchills $
+ * @version $Id: customers.php 2024-04-04 17:28:51Z webchills $
  */
 require 'includes/application_top.php';
 
@@ -990,7 +990,7 @@ if ($action === 'edit' || $action === 'update') {
                 <div class="col-sm-9 col-md-6">
 <?php
     if ($processed === true) {
-        if ($cInfo->customers_newsletter === '1') {
+        if ($cInfo->customers_newsletter === 1) {
             echo ENTRY_NEWSLETTER_YES;
         } else {
             echo ENTRY_NEWSLETTER_NO;
@@ -1000,7 +1000,7 @@ if ($action === 'edit' || $action === 'update') {
         echo zen_draw_pull_down_menu(
             'customers_newsletter',
             $newsletter_array,
-            ($cInfo->customers_newsletter === '1') ? '1' : '0',
+            ($cInfo->customers_newsletter === 1) ? '1' : '0',
             'class="form-control" id="customers_newsletter"'
         );
     }

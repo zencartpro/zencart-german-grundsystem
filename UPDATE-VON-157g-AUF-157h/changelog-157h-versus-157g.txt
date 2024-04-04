@@ -80,6 +80,7 @@ admin\category_product_listing.php
 admin\configuration.php
 admin\coupon_admin.php
 admin\customers.php
+admin\customers_without_order.php
 admin\currencies.php
 admin\dsgvo_kundenexport.php
 admin\email_archive_manager.php

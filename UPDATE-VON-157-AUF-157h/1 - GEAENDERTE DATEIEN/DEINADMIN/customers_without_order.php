@@ -1,11 +1,11 @@
 <?php
 /** 
  * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: customers_without_order.php 2023-11-11 15:00:51Z webchills $
+ * @version $Id: customers_without_order.php 2024-04-04 17:32:51Z webchills $
  */
 require 'includes/application_top.php';
 
@@ -990,7 +990,7 @@ if ($action === 'edit' || $action === 'update') {
                 <div class="col-sm-9 col-md-6">
 <?php
     if ($processed === true) {
-        if ($cInfo->customers_newsletter === '1') {
+        if ($cInfo->customers_newsletter === 1) {
             echo ENTRY_NEWSLETTER_YES;
         } else {
             echo ENTRY_NEWSLETTER_NO;
@@ -1000,7 +1000,7 @@ if ($action === 'edit' || $action === 'update') {
         echo zen_draw_pull_down_menu(
             'customers_newsletter',
             $newsletter_array,
-            ($cInfo->customers_newsletter === '1') ? '1' : '0',
+            ($cInfo->customers_newsletter === 1) ? '1' : '0',
             'class="form-control" id="customers_newsletter"'
         );
     }
@@ -1716,9 +1716,7 @@ if ($action === 'edit' || $action === 'update') {
                                 <td class="dataTableContent text-right">
 <?php
         if (isset($cInfo) && is_object($cInfo) && ($customer['customers_id'] === (int)$cInfo->customers_id)) {
-?>
-                                    <i class="fa-solid fa-caret-right fa-2x fa-fw txt-navy align-middle"></i>
-<?php
+                                    echo zen_icon('caret-right', '', '2x', true);
         } else {
 ?>
                                     <a href="<?php
@@ -1727,7 +1725,7 @@ if ($action === 'edit' || $action === 'update') {
                                                 zen_get_all_get_params(['cID']) . 'cID=' . $customer['customers_id'],
                                                 'NONSSL'
                                         ); ?>" title="<?php echo IMAGE_ICON_INFO; ?>" role="button">
-                                        <i class="fa-solid fa-circle-info fa-2x fa-fw txt-black align-middle"></i>
+                                        <?php echo zen_icon('circle-info', '', '2x', true, false) ?>
                                     </a>
 <?php
         }
@@ -1860,10 +1858,12 @@ if ($action === 'edit' || $action === 'update') {
                 $_GET['search'] = zen_output_string_protected($_GET['search']);
             }
             if (isset($cInfo) && is_object($cInfo)) {
+                $customer = new Customer($cInfo->customers_id);
+
                 $heading[] = [
                     'text' =>
                         '<h4>' .
-                            TABLE_HEADING_ID . $cInfo->customers_id . ' ' .
+                            TABLE_HEADING_ID . ' ' . $cInfo->customers_id . ' ' .
                             $cInfo->customers_firstname . ' ' . $cInfo->customers_lastname .
                         '</h4>' .
                         '<br>' .
