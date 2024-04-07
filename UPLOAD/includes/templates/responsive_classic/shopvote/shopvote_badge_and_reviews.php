@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: shopvote_badge_and_reviews.php 2019-08-06 07:39:51Z webchills $
+ * @version $Id: shopvote_badge_and_reviews.php 2024-04-07 13:35:51Z webchills $
  */
 if ($_SESSION['language']=='german') {
 $SHOPVOTE_LANG = 'DE';
@@ -48,6 +48,7 @@ createVBadge(myShopID, myBadgetType, mySrc);
 </script>
 <?php } ?>
 <?php	if ($_GET['main_page'] == FILENAME_CHECKOUT_SUCCESS) { ?>
+<?php if (!empty($order_summary)) { ?>
 <div id="srt-customer-data" style="display:none;">
 <span id="srt-customer-email"><?php echo $order->customer['email_address'];?></span>
 <span id="srt-customer-reference"><?php echo $order_summary['order_number']; ?></span>
@@ -59,4 +60,5 @@ var mySrc = ('https:' === document.location.protocol ? 'https' : 'http');
 var myLanguage = '<?php echo $SHOPVOTE_LANG;?>';
 loadSRT(myToken, mySrc);
 </script>
+<?php } ?>
 <?php } ?>
