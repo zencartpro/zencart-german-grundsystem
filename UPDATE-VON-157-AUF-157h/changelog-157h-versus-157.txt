@@ -81,10 +81,12 @@ admin\includes\javascript\dateChecker.php
 admin\includes\languages\english\extra_definitions\admin_layout.php
 admin\includes\languages\english\extra_definitions\log_manager_messages.php
 admin\includes\languages\english\customer_groups.php
+admin\includes\languages\english\email_archive_manager.php
 admin\includes\languages\english\plugin_manager.php
 admin\includes\languages\german\extra_definitions\admin_layout.php
 admin\includes\languages\german\extra_definitions\log_manager_messages.php
 admin\includes\languages\german\customer_groups.php
+admin\includes\languages\german\email_archive_manager.php
 admin\includes\languages\german\plugin_manager.php
 admin\includes\modules\search_box.php
 admin\includes\templates\partials\tableview_rowactions.php

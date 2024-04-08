@@ -55,10 +55,12 @@ admin\includes\functions\general.php
 admin\includes\functions\html_output.php
 admin\includes\init_includes\init_special_funcs.php
 admin\includes\languages\english\customers.php
+admin\includes\languages\english\email_archive_manager.php
 admin\includes\languages\english\option_values.php
 admin\includes\languages\english\server_info.php
 admin\includes\languages\german\extra_definitions\orders_status_updates_admin.php
 admin\includes\languages\german\customers.php
+admin\includes\languages\german\email_archive_manager.php
 admin\includes\languages\german\option_values.php
 admin\includes\languages\german\server_info.php
 admin\includes\languages\english.php
