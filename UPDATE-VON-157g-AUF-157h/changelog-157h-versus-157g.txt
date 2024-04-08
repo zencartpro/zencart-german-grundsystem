@@ -37,12 +37,16 @@ admin\includes\languages\english\extra_definitions\admin_layout.php
 admin\includes\languages\german\extra_definitions\admin_layout.php
 laravel (gesamter Ordner)
 includes\modules\payment\braintree (gesamter Ordner)
+includes\classes\Coupon.php
+includes\classes\CouponValidation.php
+includes\init_includes\init_coupons.php
 
 
 ---------------------------------------------------------------------------------------------
 GEÄNDERTE DATEIEN
 ---------------------------------------------------------------------------------------------
 admin\images\logo.gif
+admin\includes\auto_loaders\config.core.php
 admin\includes\auto_loaders\currency_cron.core.php
 admin\includes\classes\message_stack.php
 admin\includes\classes\split_page_results.php
@@ -102,6 +106,7 @@ admin\server_info.php
 admin\shopvote.php
 admin\whos_online.php
 admin\xsell.php
+includes\auto_loaders\config.core.php
 includes\auto_loaders\paypal_ipn.core.php
 includes\classes\Customer.php
 includes\classes\order.php
@@ -121,6 +126,7 @@ includes\functions\functions_dates.php
 includes\functions\functions_email.php
 includes\functions\functions_general.php
 includes\functions\functions_general_shared.php
+includes\functions\functions_gvcoupons.php
 includes\functions\functions_products.php
 includes\functions\functions_strings.php
 includes\functions\functions_taxes.php

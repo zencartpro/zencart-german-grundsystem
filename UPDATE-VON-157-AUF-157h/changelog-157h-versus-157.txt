@@ -99,6 +99,8 @@ cache\images\.htaccess
 editors\ckeditor (gesamter Ordner)
 editors\tiny_mce (gesamter Ordner)
 extras\fontawesome\6.4.0\ (gesamter Ordner)
+includes\classes\Coupon.php
+includes\classes\CouponValidation.php
 includes\classes\ajax\zcAjaxAdminSessionChange.php
 includes\classes\ajax\zcAjaxAdminDatePickerDateCheck.php
 includes\classes\Exceptions\PluginInstallerException.php
@@ -162,6 +164,7 @@ includes\functions\functions_urls.php
 includes\functions\zen_define_default.php
 includes\init_includes\dist-init_site_specific_non_db_settings.php
 includes\init_includes\init_common_elements.php
+includes\init_includes\init_coupons.php
 includes\init_includes\init_non_db_settings.php
 includes\modules\pages\contact_us\jscript_main.js
 includes\modules\pages\popup_attributes_qty_prices\jscript_main.php
