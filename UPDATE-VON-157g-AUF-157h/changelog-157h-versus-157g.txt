@@ -111,6 +111,7 @@ includes\classes\shopping_cart.php
 includes\classes\sniffer.php
 includes\classes\zcDate.php
 includes\functions\banner.php
+includes\functions\database.php
 includes\functions\functions_addresses.php
 includes\functions\functions_attributes.php
 includes\functions\functions_categories.php

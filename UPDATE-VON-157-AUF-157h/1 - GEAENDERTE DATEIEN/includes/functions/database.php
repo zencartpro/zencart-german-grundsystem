@@ -3,11 +3,11 @@
  * database functions and aliases into the $db queryFactory class
  *
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: database.php 2023-10-23 13:05:16Z webchills $
+ * @version $Id: database.php 2024-04-08 07:56:16Z webchills $
  */
 
 /**
@@ -57,6 +57,10 @@ function zen_db_output(string $string)
  */
 function zen_db_prepare_input($string, bool $trimspace = true)
 {
+
+    if (!IS_ADMIN_FLAG && is_string($string)) {
+        $string = zen_sanitize_string($string);
+    }
     if (is_string($string)) {
         if ($trimspace == true) {
             return trim(stripslashes($string));
