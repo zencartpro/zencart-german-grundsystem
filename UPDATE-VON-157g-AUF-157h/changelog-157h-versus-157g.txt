@@ -79,6 +79,7 @@ admin\includes\javascript_loader.php
 admin\includes\menu.css
 admin\includes\menu.js
 admin\includes\stylesheet.css
+admin\includes\tinymce.php
 admin\adresskorrektur.php
 admin\backup_mysql.php
 admin\categories.php

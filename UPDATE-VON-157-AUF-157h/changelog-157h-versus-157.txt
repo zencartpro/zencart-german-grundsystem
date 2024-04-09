@@ -14,7 +14,7 @@ Aktualisierte Komponenten:
 - PHP Mailer Update auf 6.9.1
 - MobileDetect Update auf 3.74.3
 - CKEditor Update auf 4.22.1
-- TinyMCE Editor Update auf 6.8.2
+- TinyMCE Editor Update auf 7.0.0
 - braintree_web Update auf 3.101.1, braintree_php Update auf 6.18.0 
 - FontAwesome Update auf 6.4.0
 - jQuery Update auf 3.7.1
@@ -468,6 +468,7 @@ admin\includes\keepalive_module.php
 admin\includes\menu.css
 admin\includes\menu.js
 admin\includes\stylesheet.css
+admin\includes\tinymce.php
 admin\admin_activity.php
 admin\admin_page_registration.php
 admin\adresskorrektur.php
