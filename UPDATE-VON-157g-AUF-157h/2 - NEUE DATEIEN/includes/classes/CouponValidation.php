@@ -1,9 +1,14 @@
 <?php
 /**
+ * Class CouponValidation
+ *
+ * Zen Cart German Specific (200 code in 157)
  * @copyright Copyright 2003-2024 Zen Cart Development Team
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: DrByte 2024 Apr 03 Modified in v2.0.0 $
- */
+ * Zen Cart German Version - www.zen-cart-pro.at
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
+ * @version $Id: CouponValidation.php 2024-04-08 22:00:12Z webchills $
+*/
 
 class CouponValidation
 {
@@ -185,30 +190,4 @@ class CouponValidation
         return 'none';
     }
 
-    /**
-     * Check if a referrer is already assigned to a coupon.
-     * Because only one coupon can be active at a time, we can only support
-     * a one-to-one relationship between coupons and referrers.
-     * e.g. referrer 'abc.com' may only be assigned to one coupon, not two or more.
-     *
-     * @param string $referrer The domain to check e.g. 'abc.com'
-     * @param int $exclude_coupon_id Optional coupon_id to exclude/ignore (ie: "self" record)
-     * @return ?array
-     */
-    public static function referrer_already_assigned(string $referrer, ?int $exclude_coupon_id = null): ?array
-    {
-        global $db;
-        $sql = "SELECT c.coupon_id, coupon_code
-                FROM " . TABLE_COUPONS . " c
-                LEFT JOIN " . TABLE_COUPON_REFERRERS . " r ON (c.coupon_id = r.coupon_id)
-                WHERE referrer_domain = :referrer";
-        $sql = $db->bindVars($sql, ':referrer', $referrer, 'string');
-        if (!empty($exclude_coupon_id)) {
-            $sql .= " AND c.coupon_id <> $exclude_coupon_id";
-        }
-
-        $result = $db->Execute($sql);
-
-        return $result->RecordCount() !== 0 ? $result->fields : null;
-    }
 }

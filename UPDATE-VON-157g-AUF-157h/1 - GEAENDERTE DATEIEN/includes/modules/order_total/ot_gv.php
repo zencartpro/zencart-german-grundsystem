@@ -2,12 +2,12 @@
 /**
  * ot_gv order-total module
  
- * Zen Cart German Specific (158 code in 157)
+ * Zen Cart German Specific (200 code in 157)
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_gv.php 2024-04-02 09:04:16Z webchills $
+ * @version $Id: ot_gv.php 2024-04-08 22:55:16Z webchills $
  */
 /**
  * Enter description here...
@@ -52,11 +52,11 @@ class ot_gv {
     protected $deduction;
     /**
      * $description is a soft name for this order total method
-     * @var string 
+     * @var string
      */
     public $description;
     /**
-     * $header the module box header 
+     * $header the module box header
      * @var string
      */
     public $header;
@@ -100,7 +100,7 @@ class ot_gv {
      * @var array
      */
     protected $validation_errors = [];
-  
+
   /**
    * process gift vouchers
    *
@@ -150,10 +150,16 @@ class ot_gv {
             $tax += $od_amount['tax_groups'][$key];
           }
         }
-        $order->info['total'] = $order->info['total'] - $od_amount['total'];
-        if ($this->calculate_tax == "Standard") $order->info['total'] -= $tax;
-        if ($order->info['total'] < 0) $order->info['total'] = 0;
-        $order->info['tax'] = $order->info['tax'] - $od_amount['tax'];
+		$order->info['total'] = DISPLAY_PRICE_WITH_TAX == 'true' ? $order->info['total'] - $od_amount['total'] : $order->info['total'] - $od_amount['total'] - $od_amount['tax'];
+		$order->info['tax'] -= $tax;
+		$order->info['option_modules']['gv_amount'] = - $od_amount['total'];
+        if ($order->info['total'] < 0) {
+			$order->info['total'] = 0;
+			$order->info['tax'] = 0;
+			foreach ($order->info['tax_groups'] as $key => $value) {
+				$order->info['tax_groups'][$key] = 0;
+			}
+		}
         // prepare order-total output for display and storing to invoice
         $this->output[] = array('title' => $this->title . ':',
                                 'text' => '-' . $currencies->format($od_amount['total']),
@@ -263,9 +269,10 @@ class ot_gv {
       }
     }
   }
-  /**
-   * check system to see if GVs should be made available or not. If true, then supply GV-selection fields on checkout pages
-   */
+
+    /**
+    * check system to see if GVs should be made available or not. If true, then supply GV-selection fields on checkout pages
+    */
     function credit_selection()
     {
         global $db, $order;
@@ -301,9 +308,10 @@ class ot_gv {
                     ],
                 ],
             ];
+        }
+        return $selection;
     }
-    return $selection;
-  }
+
   /**
    * Verify that the customer has entered a valid redemption amount, and return the amount that can be applied to this order
    */
@@ -425,7 +433,11 @@ class ot_gv {
       if ($od_amount['total'] >= $order_total) {
         $ratio = 1;
       } else {
-        $ratio = ($od_amount['total'] / ($order_total - $order->info['tax']));
+		if ($order->info['shipping_tax'] == 0) {
+			$ratio = $od_amount['total'] / ($order_total - $order->info['shipping_cost']);
+		} else {
+            $ratio = $od_amount['total'] / $order_total;
+		}
       }
       $tax_deduct = 0;
       foreach ($order->info['tax_groups'] as $key=>$value) {
@@ -433,10 +445,11 @@ class ot_gv {
         $tax_deduct += $od_amount['tax_groups'][$key];
       }
       $od_amount['tax'] = $tax_deduct;
+	  $od_amount['total'] = DISPLAY_PRICE_WITH_TAX == 'true' ? $od_amount['total'] : $od_amount['total'] - $od_amount['tax'];
       break;
       case 'Credit Note':
-        $od_amount['total'] = $deduction;
         $tax_rate = zen_get_tax_rate($this->tax_class);
+        $od_amount['total'] = DISPLAY_PRICE_WITH_TAX == 'true' ? zen_add_tax($deduction, $tax_rate) : $deduction;
         $od_amount['tax'] = zen_calculate_tax($deduction, $tax_rate);
         $tax_description = zen_get_tax_description($this->tax_class);
         $od_amount['tax_groups'][$tax_description] = $od_amount['tax'];
@@ -464,10 +477,9 @@ class ot_gv {
     global $order;
     $order_total = $order->info['total'];
     // if we are not supposed to include tax in credit calculations, subtract it out
-    if ($this->include_tax != 'true') $order_total -= $order->info['tax'];
+    if ($this->include_tax != 'true' && $this->calculate_tax == "None") $order_total -= $order->info['tax'];
     // if we are not supposed to include shipping amount in credit calcs, subtract it out
     if ($this->include_shipping != 'true') $order_total -= $order->info['shipping_cost'];
-    $order_total = $order->info['total'];
 
     // check gv_amount in cart and do not allow GVs to pay for GVs
     $chk_gv_amount = 0;
@@ -537,6 +549,7 @@ class ot_gv {
     $db->Execute("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) VALUES ('Set Order Status', 'MODULE_ORDER_TOTAL_GV_ORDER_STATUS_ID', '0', 'Set the status of orders made where GV covers full payment', '6', '0', 'zen_cfg_pull_down_order_statuses(', 'zen_get_order_status_name', now())");
     $db->Execute("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Allow Gift Voucher Specials', 'MODULE_ORDER_TOTAL_GV_SPECIAL', 'false', 'Do you want to allow Gift Voucher to be placed on Special?', '6', '3','zen_cfg_select_option(array(\'true\', \'false\'), ', now())");
   }
+
 
   /**
    * Enter description here...
