@@ -79,6 +79,10 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
   <?php echo (($flag_show_product_info_weight == 1 and $products_weight !=0) ? '<li>' . TEXT_PRODUCT_WEIGHT .  $products_weight . TEXT_PRODUCT_WEIGHT_UNIT . '</li>'  : '') . "\n"; ?>
   <?php echo (($flag_show_product_info_quantity == 1) ? '<li>' . $products_quantity . TEXT_PRODUCT_QUANTITY . '</li>'  : '') . "\n"; ?>
   <?php echo (($flag_show_product_info_manufacturer == 1 and !empty($manufacturers_name)) ? '<li>' . TEXT_PRODUCT_MANUFACTURER . $manufacturers_name . '</li>' : '') . "\n"; ?>
+<!-- BOF uncomment to display manufacturer image -->
+<!--  <?php $manufacturers_image = zen_get_products_manufacturers_image($_GET['products_id']); ?>-->
+  <!--<?php echo '<div class="manufacturer-product-info-display">' . zen_image(DIR_WS_IMAGES . $manufacturers_image, $manufacturers_name, SMALL_IMAGE_HEIGHT, SMALL_IMAGE_WIDTH) . '</div>' ; ?>-->
+<!-- EOF uncomment to display manufacturer image -->                                                                                                                                                                                                                                                                           
 </ul>
 <?php
   }
