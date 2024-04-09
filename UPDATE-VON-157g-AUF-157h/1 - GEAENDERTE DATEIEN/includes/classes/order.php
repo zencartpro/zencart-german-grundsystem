@@ -1,10 +1,10 @@
 <?php
 /**
  * Zen Cart German Specific (zencartpro adaptations / 158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: order.php 2023-12-26 14:30:25Z webchills $
+ * @version $Id: order.php 2024-04-09 19:19:25Z webchills $
  */
 /**
  * order class
@@ -657,7 +657,8 @@ class order extends base
     $index = 0;
     $products = $_SESSION['cart']->get_products();
         for ($i = 0, $n = count($products); $i < $n; $i++) {
-      $rowClass = ($i / 2) == floor($i / 2) ? "rowEven" : "rowOdd";
+            $rowClass = ($i / 2) == floor($i / 2) ? 'rowEven' : 'rowOdd';
+            $products_final_price_without_tax = $products[$i]['price'] + $_SESSION['cart']->attributes_price($products[$i]['id']);
             $this->products[$index] = [
                 'qty' => $products[$i]['quantity'],
                                       'name' => $products[$i]['name'],
@@ -667,9 +668,7 @@ class order extends base
                                       'price' => $products[$i]['price'],
                                       'tax' => null, // calculated later
                                       'tax_groups' => null, // calculated later
-                                      // Falls Sie Rundungsabweichungen bei der Zwischensumme feststellen kommentieren Sie Zeile 448 mit // aus und entkommentieren Sie Zeile 449
-                                      'final_price' => $products[$i]['price'] + $_SESSION['cart']->attributes_price($products[$i]['id']),
-                                      //'final_price' => zen_round($products[$i]['price'] + $_SESSION['cart']->attributes_price($products[$i]['id']), $decimals),
+                                      'final_price' => (DISPLAY_PRICE_WITH_TAX === 'true') ? $products_final_price_without_tax : zen_round($products_final_price_without_tax, $decimals),
                                       'onetime_charges' => $_SESSION['cart']->attributes_price_onetime_charges($products[$i]['id'], $products[$i]['quantity']),
                                       'weight' => $products[$i]['weight'],
                                       'products_priced_by_attribute' => $products[$i]['products_priced_by_attribute'],
@@ -842,26 +841,49 @@ class order extends base
           return;
       }
 
-      $product_tax_rate = $this->products[$index]['tax'];
+        global $currencies;
 
-      $shown_price = (zen_add_tax($this->products[$index]['final_price'] * $this->products[$index]['qty'], $product_tax_rate))
-          + zen_add_tax($this->products[$index]['onetime_charges'], $product_tax_rate);
-      $this->info['subtotal'] += $shown_price;
+        $product_tax_rate = $this->products[$index]['tax'];
+        $product_final_price = $this->products[$index]['final_price'];
+        $product_qty = $this->products[$index]['qty'];
+        $product_onetime_charges = $this->products[$index]['onetime_charges'];
+
+        // ----
+        // Pricing calculations are different when a store displays prices with tax.
+        //
+        if (DISPLAY_PRICE_WITH_TAX === 'true') {
+            $shown_price =
+                $currencies->value(zen_add_tax($product_final_price, $product_tax_rate)) * $product_qty
+                    + $currencies->value(zen_add_tax($product_onetime_charges, $product_tax_rate));
+
+            // -----
+            // Calculate the amount of tax included in the price when tax-in pricing is enabled.
+            //
+            $tax_add =
+                $currencies->value(zen_calculate_tax($product_final_price, $product_tax_rate)) * $product_qty
+                    + $currencies->value(zen_calculate_tax($product_onetime_charges, $product_tax_rate));
+        } else {
+            $shown_price =
+                zen_add_tax($product_final_price * $product_qty, $product_tax_rate)
+                    + zen_add_tax($product_onetime_charges, $product_tax_rate);
+
+            // -----
+            // Calculate the amount of tax for this product when tax is NOT included in the price.
+            //
+            $tax_add = zen_calculate_tax($shown_price, $product_tax_rate);
+        }
+
+        $this->info['subtotal'] += $shown_price;
         $this->notify('NOTIFY_ORDER_CART_SUBTOTAL_CALCULATE', ['shown_price' => $shown_price]);
 
-      if (DISPLAY_PRICE_WITH_TAX == 'true') {
-          // calculate the amount of tax "inc"luded in price (used if tax-in pricing is enabled)
-          $tax_add = $shown_price - ($shown_price / (($product_tax_rate < 10) ? "1.0" . str_replace('.', '', $product_tax_rate) : "1." . str_replace('.', '', $product_tax_rate)));
-      } else {
-          // calculate the amount of tax for this product (assuming tax is NOT included in the price)
-//        $tax_add = zen_round(($product_tax_rate / 100) * $shown_price, $currencies->currencies[$this->info['currency']]['decimal_places']);
-          $tax_add = ($product_tax_rate/100) * $shown_price;
-      }
-      $this->info['tax'] += $tax_add;
+        $this->info['tax'] += $tax_add;
 
         foreach ($taxRates as $taxDescription => $taxRate) {
-            $taxAdd = zen_calculate_tax($this->products[$index]['final_price'] * $this->products[$index]['qty'], $taxRate)
-                    + zen_calculate_tax($this->products[$index]['onetime_charges'], $taxRate);
+            if (DISPLAY_PRICE_WITH_TAX === 'true') {
+                $taxAdd = $currencies->value(zen_calculate_tax($product_final_price * $product_qty, $taxRate)) + $currencies->value(zen_calculate_tax($product_onetime_charges, $taxRate));
+            } else {
+                $taxAdd = zen_calculate_tax($product_final_price * $product_qty, $taxRate) + zen_calculate_tax($product_onetime_charges, $taxRate);
+            }
 
             if (isset($this->info['tax_groups'][$taxDescription])) {
                 $this->info['tax_groups'][$taxDescription] += $taxAdd;

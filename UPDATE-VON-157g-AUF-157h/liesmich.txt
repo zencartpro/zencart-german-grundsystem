@@ -52,7 +52,7 @@ Aktualisierung auf 1.5.7h deutsch erfolgreich abgeschlossen
 WICHTIG WICHTIG WICHTIG:
 Bevor Sie nun irgendetwas anclicken oder tun, löschen Sie erst sofort die beiden folgenden hochgeladenen Dateien wieder vom Server:
 DEINADMIN/includes/auto_loaders/config.157h_update.php
-DEINADMIN/includes/init_includes/init_157ghupdate.php
+DEINADMIN/includes/init_includes/init_157h_update.php
 
 Nachdem Sie die beiden Dateien gelöscht haben, laden Sie den Adminbereich neu. Leeren Sie nun zusätzlich Ihren Browsercache.
 Der Adminbereich hat in 1.5.7h ein geändertes Layout bekommen.
