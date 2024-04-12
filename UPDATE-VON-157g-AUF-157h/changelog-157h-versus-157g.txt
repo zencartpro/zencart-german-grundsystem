@@ -136,6 +136,7 @@ includes\languages\english\button_names.php
 includes\languages\english\checkout_shipping.php
 includes\languages\german\button_names.php
 includes\languages\german\checkout_shipping.php
+includes\languages\german\gv_send.php
 includes\languages\english.php
 includes\languages\german.php
 includes\modules\order_total\ot_coupon.php
