@@ -957,6 +957,7 @@ includes\templates\template_default\templates\tpl_modules_products_all_listing.p
 includes\templates\template_default\templates\tpl_modules_products_featured_listing.php
 includes\templates\template_default\templates\tpl_modules_products_new_listing.php
 includes\templates\template_default\templates\tpl_modules_shipping_estimator.php
+includes\templates\template_default\templates\tpl_modules_upcoming_products.php
 includes\templates\template_default\templates\tpl_page_default.php
 includes\templates\template_default\templates\tpl_privacy_default.php
 includes\templates\template_default\templates\tpl_product_free_shipping_info_display.php
