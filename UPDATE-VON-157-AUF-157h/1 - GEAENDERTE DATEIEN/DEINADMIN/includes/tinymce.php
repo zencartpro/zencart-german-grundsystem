@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tinymce.php 2024-04-09 21:32:09Z webchills $
+ * @version $Id: tinymce.php 2024-04-12 12:30:09Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -34,6 +34,9 @@ $(document).ready(function() {
           license_key: 'gpl',
           promotion: false,
           menubar: false,
+          min_height: 300,
+          quickbars_insert_toolbar: '',
+          quickbars_selection_toolbar: '',
           entity_encoding : 'raw',
           browser_spellcheck: true,
           advcode_inline: true,
