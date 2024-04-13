@@ -636,6 +636,7 @@ includes\languages\english\extra_definitions\product_free_shipping.php
 includes\languages\english\modules\order_total\ot_coupon.php
 includes\languages\english\modules\order_total\ot_gv.php
 includes\languages\english\modules\payment\braintree_api.php
+includes\languages\english\modules\payment\eustandardtransfer.php
 includes\languages\english\modules\shipping\storepickup.php
 includes\languages\english\modules\shipping\zones.php
 includes\languages\english\responsive_classic\index.php
@@ -690,6 +691,7 @@ includes\languages\german\extra_definitions\product_free_shipping.php
 includes\languages\german\modules\order_total\ot_coupon.php
 includes\languages\german\modules\order_total\ot_gv.php
 includes\languages\german\modules\payment\braintree_api.php
+includes\languages\german\modules\payment\eustandardtransfer.php
 includes\languages\german\modules\shipping\storepickup.php
 includes\languages\german\responsive_classic\index.php
 includes\languages\german\account_history_info.php
