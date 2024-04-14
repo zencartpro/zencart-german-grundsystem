@@ -72,9 +72,12 @@
 <label class="inputLabel" for="telephone"><?php echo ENTRY_TELEPHONE_NUMBER; ?></label>
 <?php echo zen_draw_input_field('telephone', ($telephone), ' size="20" id="telephone" autocomplete="off"', 'tel'); ?>
 <br class="clearBoth">
+
+<div class="contact">
 <label for="enquiry"><?php echo ENTRY_ENQUIRY; ?></label>
 <?php echo zen_draw_textarea_field('enquiry', '30', '7', $enquiry, 'id="enquiry" placeholder="' . ENTRY_REQUIRED_SYMBOL . '" required'); ?>
-
+<div>
+    
 <div class="email-pot">
 <label for="email-us"></label>
 <?php echo zen_draw_input_field(SPAM_TEST_TEXT, '', ' id="email-us" title="do not fill in!" placeholder="do not fill in!" autocomplete="off"', 'email'); ?>
