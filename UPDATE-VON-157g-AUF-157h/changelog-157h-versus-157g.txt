@@ -23,7 +23,7 @@ Verbesserungen:
 
 ---------------------------------------------------------------------------------------------
 Changelog Zen Cart 1.5.7h deutsch gegenüber 1.5.7g deutsch
-2024-04-08
+2024-04-15
 ---------------------------------------------------------------------------------------------
 
 ---------------------------------------------------------------------------------------------
@@ -170,6 +170,8 @@ includes\templates\template_default\sideboxes\tpl_currencies.php
 includes\templates\template_default\sideboxes\tpl_manufacturers_select.php
 includes\templates\template_default\shopvote\shopvote_badge_and_reviews.php
 includes\templates\template_default\templates\tpl_ajax_checkout_confirmation_default.php
+includes\templates\template_default\templates\tpl_ask_a_question_default.php
+includes\templates\template_default\templates\tpl_contact_us_default.php
 includes\templates\template_default\templates\tpl_modules_products_all_listing.php
 includes\templates\template_default\templates\tpl_modules_products_featured_listing.php
 includes\templates\template_default\templates\tpl_modules_products_new_listing.php
