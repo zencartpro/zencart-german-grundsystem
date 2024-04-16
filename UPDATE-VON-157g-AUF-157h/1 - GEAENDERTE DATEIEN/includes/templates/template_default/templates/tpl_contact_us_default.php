@@ -9,7 +9,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_contact_us_default.php 2023-10-26 16:49:16Z webchills $
+ * @version $Id: tpl_contact_us_default.php 2024-04-16 16:47:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="contactUsDefault">
@@ -76,7 +76,7 @@
 <div class="contact">
 <label for="enquiry"><?php echo ENTRY_ENQUIRY; ?></label>
 <?php echo zen_draw_textarea_field('enquiry', '30', '7', $enquiry, 'id="enquiry" placeholder="' . ENTRY_REQUIRED_SYMBOL . '" required'); ?>
-<div>
+</div>
     
 <div class="email-pot">
 <label for="email-us"></label>
