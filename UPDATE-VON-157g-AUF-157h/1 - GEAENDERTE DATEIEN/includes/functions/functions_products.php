@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_products.php 2024-02-01 11:29:14Z webchills $
+ * @version $Id: functions_products.php 2024-04-17 11:30:14Z webchills $
  */
 
 /**
@@ -183,10 +183,10 @@ function zen_get_new_date_range($time_limit = false)
 
     $zc_new_date = date('Ymd', $date_range);
     switch (true) {
-        case (SHOW_NEW_PRODUCTS_LIMIT === '0'):
+        case (SHOW_NEW_PRODUCTS_LIMIT === 0):
             $new_range = '';
             break;
-        case (SHOW_NEW_PRODUCTS_LIMIT === '1'):
+        case (SHOW_NEW_PRODUCTS_LIMIT === 1):
             $zc_new_date = date('Ym', time()) . '01';
             $new_range = ' AND p.products_date_added >= ' . $zc_new_date;
             break;
@@ -1007,6 +1007,8 @@ function zen_copy_discounts_to_product($copy_from, $copy_to)
         );
         $cnt_discount++;
     }
+
+    return true;
 }
 
 function zen_products_sort_order($includeOrderBy = true): string
