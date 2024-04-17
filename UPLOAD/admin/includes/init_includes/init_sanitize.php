@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_sanitize.php 2023-10-27 16:38:16Z webchills $
+ * @version $Id: init_sanitize.php 2024-04-17 23:03:16Z webchills $
  */
 use Zencart\Request\Request;
 
@@ -238,7 +238,7 @@ $sanitizer->addSimpleSanitization('FILE_PATH_OR_URL', $group);
 $group = ['coupon_min_order'];
 $sanitizer->addSimpleSanitization('CURRENCY_VALUE_REGEX', $group);
 
-$group = ['categories_name', 'products_name', 'orders_status_name', 'configuration'];
+$group = ['categories_name', 'products_name', 'orders_status_name', 'option_name', 'value_name', 'configuration'];
 $sanitizer->addSimpleSanitization('PRODUCT_NAME_DEEP_REGEX', $group);
 
 $group = ['configuration_key', 'query_string'];

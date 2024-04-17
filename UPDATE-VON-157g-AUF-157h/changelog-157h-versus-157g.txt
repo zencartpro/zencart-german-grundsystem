@@ -58,6 +58,7 @@ admin\includes\css\whos_online.css
 admin\includes\functions\general.php
 admin\includes\functions\html_output.php
 admin\includes\init_includes\init_special_funcs.php
+admin\includes\init_includes\init_sanitize.php
 admin\includes\languages\english\customers.php
 admin\includes\languages\english\email_archive_manager.php
 admin\includes\languages\english\option_values.php
