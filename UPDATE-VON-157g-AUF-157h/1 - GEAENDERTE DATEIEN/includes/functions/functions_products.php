@@ -1,14 +1,12 @@
 <?php
-/**
- 
+/** 
  * Functions related to products
  * Note: Several product-related lookup functions are located in functions_lookups.php
  * Zen Cart German Specific (158 code in 157)
  * @copyright Copyright 2003-2024 Zen Cart Development Team
- * Zen Cart German Version - www.zen-cart-pro.at
- 
+ * Zen Cart German Version - www.zen-cart-pro.at 
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_products.php 2024-04-17 11:30:14Z webchills $
+ * @version $Id: functions_products.php 2024-04-17 11:57:14Z webchills $
  */
 
 /**
@@ -1001,9 +999,9 @@ function zen_copy_discounts_to_product($copy_from, $copy_to)
     foreach ($results as $result) {
         $db->Execute(
             "INSERT INTO " . TABLE_PRODUCTS_DISCOUNT_QUANTITY . "
-                (discount_id, products_id, discount_qty, discount_price, discount_price_w)
+                (discount_id, products_id, discount_qty, discount_price)
              VALUES
-                ($cnt_discount, $copy_to, " . $result['discount_qty'] . ", " . $result['discount_price'] . ", '" . $result['discount_price_w'] . "')"
+                ($cnt_discount, $copy_to, " . $result['discount_qty'] . ", " . $result['discount_price'] . ")"
         );
         $cnt_discount++;
     }
