@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: attributes_controller.php 2023-12-12 19:02:16Z webchills $
+ * @version $Id: attributes_controller.php 2024-04-18 17:13:16Z webchills $
  */
 require('includes/application_top.php');
 
@@ -635,6 +635,7 @@ function zen_js_option_values_list($selectedName, $fieldName)
     $products_options_values_name = str_replace('"', '\"', $products_options_values_name);
     $products_options_values_name = str_replace('&quot;', '\"', $products_options_values_name);
     $products_options_values_name = str_replace('&frac12;', '1/2', $products_options_values_name);
+    $products_options_values_name = str_replace('&amp;', '&', $products_options_values_name);
 
     if ($counter == 1) {
       $value_string .= '  if (' . $selectedName . ' == "' . $attribute['products_options_id'] . '") {' . "\n";
