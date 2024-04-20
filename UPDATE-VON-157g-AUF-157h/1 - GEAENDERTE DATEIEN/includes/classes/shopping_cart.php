@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: shopping_cart.php 2024-04-20 15:19:29Z webchills $
+ * @version $Id: shopping_cart.php 2024-04-20 15:29:29Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -1790,7 +1790,7 @@ class shoppingCart extends base
         for ($i = 0, $n = count($_POST['products_id']); $i < $n; $i++) {
             $adjust_max = 'false';
             $products_id = $_POST['products_id'][$i];
-            if ($_POST['cart_quantity'][$i] == '') {
+            if (empty($_POST['cart_quantity'][$i])) {
                 $_POST['cart_quantity'][$i] = 0;
             }
             if (!is_numeric($_POST['cart_quantity'][$i]) || $_POST['cart_quantity'][$i] < 0) {
@@ -1808,7 +1808,7 @@ class shoppingCart extends base
                 $_POST['cart_quantity'][$i] = $this->get_quantity($products_id);
                 continue;
             }
-            if (in_array($products_id, $cart_delete) || $_POST['cart_quantity'][$i] == 0) {
+            if (in_array($products_id, $cart_delete, false) || empty($_POST['cart_quantity'][$i])) {
                 $this->remove($products_id);
             } else {
                 $add_max = zen_get_products_quantity_order_max($products_id); // maximum allowed
@@ -2211,7 +2211,7 @@ class shoppingCart extends base
         if (!empty($_POST['products_id']) && is_array($_POST['products_id'])) {
             $products_list = $_POST['products_id'];
             foreach ($products_list as $key => $val) {
-                $prodId = preg_replace('/[^0-9a-f:.]/', '', $key);
+                $prodId = preg_replace('/[^0-9a-f:.]/', '', (string)$key);
                 if (is_numeric($val) && $val > 0) {
                     $adjust_max = false;
                     $qty = $val;
@@ -2546,7 +2546,7 @@ class shoppingCart extends base
      * USAGE:  $chk_category_cart_total_price_cat = $_SESSION['cart']->in_cart_product_total_price_category(9);
      *
      * @param int $category_id
-     * @return float
+     * @return float|int
      */
     public function in_cart_product_total_price_category($category_id)
     {
@@ -2554,7 +2554,7 @@ class shoppingCart extends base
         $in_cart_product_price = 0;
 
         foreach ($products as $key => $val) {
-            if ($val['category'] == $category_id) {
+            if ((int)$val['category'] === (int)$category_id) {
                 $in_cart_product_price += ($val['final_price'] * $val['quantity']) + $val['onetime_charges'];
             }
         }
@@ -2575,7 +2575,7 @@ class shoppingCart extends base
 
         $in_cart_product_quantity = 0;
         foreach ($products as $key => $val) {
-            if ($val['category'] == $category_id) {
+            if ((int)$val['category'] === (int)$category_id) {
                 $in_cart_product_quantity += $val['quantity'];
             }
         }
@@ -2676,7 +2676,7 @@ class shoppingCart extends base
         $product = zen_get_product_details((int)$pr_id);
 
         // if mixed attributes is off identify that this product is the last of its kind (which is also the first of its kind).
-        if ($product->fields['products_quantity_mixed'] === '0') {
+        if (empty($product->fields['products_quantity_mixed'])) {
             return true;
         }
 
@@ -2748,7 +2748,7 @@ class shoppingCart extends base
         ];
 
         if (array_key_exists($product_id, $product_changed)) {
-            if ($product_total_change[$pr_id] == '0') {
+            if ($product_total_change[$pr_id] == 0) {
                 $changed_array['state'] = 'netzero';
                 return $changed_array;
             }
