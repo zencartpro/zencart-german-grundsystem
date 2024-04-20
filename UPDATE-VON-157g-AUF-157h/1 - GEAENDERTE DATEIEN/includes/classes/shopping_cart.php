@@ -2,11 +2,11 @@
 /**
  * Class for managing the Shopping Cart
  * Zen Cart German Specific (158 code in 157 /zencartpro adaptations)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: shopping_cart.php 2023-12-26 14:32:29Z webchills $
+ * @version $Id: shopping_cart.php 2024-04-20 15:19:29Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -221,7 +221,7 @@ class shoppingCart extends base
     $this->free_shipping_price = 0;
     $this->free_shipping_weight = 0;
 
-    if (zen_is_logged_in() && $reset_database == true) {
+        if (zen_is_logged_in() && $reset_database) {
       $sql = "DELETE FROM " . TABLE_CUSTOMERS_BASKET . " WHERE customers_id = " . (int)$_SESSION['customer_id'];
       $db->Execute($sql);
       $sql = "DELETE FROM " . TABLE_CUSTOMERS_BASKET_ATTRIBUTES . " WHERE customers_id = " . (int)$_SESSION['customer_id'];
@@ -247,7 +247,7 @@ class shoppingCart extends base
      * @param bool $notify whether to add the product to the notify list
    * @return void
    */
-    public function add_cart($product_id, $qty = '1', $attributes = [], $notify = true)
+    public function add_cart($product_id, $qty = 1, $attributes = [], $notify = true)
     {
     global $db, $messageStack;
         if ($this->display_debug_messages) {
@@ -313,11 +313,11 @@ class shoppingCart extends base
                     //add htmlspecialchars processing.  This handles quotes and other special chars in the user input.
                     $attr_value = null;
                     $blank_value = false;
-                    if (strpos($option, TEXT_PREFIX) === 0) {
+                    if (is_string($option) && str_starts_with($option, TEXT_PREFIX)) {
                         if (trim($value) === '') {
-              $blank_value = TRUE;
-            } else {
-              $option = substr($option, strlen(TEXT_PREFIX));
+                            $blank_value = true;
+                        } else {
+                            $option = substr((string)$option, strlen(TEXT_PREFIX));
               $attr_value = stripslashes($value);
               $value = PRODUCTS_OPTIONS_VALUES_TEXT_ID;
 
@@ -391,7 +391,7 @@ class shoppingCart extends base
      * @param array $attributes product attributes attached to the item
      * @return bool
      */
-    function update_quantity($uprid, $quantity = '', $attributes = [])
+    function update_quantity($uprid, $quantity = 0, $attributes = [])
     {
         global $db, $messageStack;
         if ($this->display_debug_messages) {
@@ -441,7 +441,7 @@ class shoppingCart extends base
                 //add htmlspecialchars processing.  This handles quotes and other special chars in the user input.
                 $attr_value = null;
                 $blank_value = false;
-                if (strpos($option, TEXT_PREFIX) === 0) {
+                if (is_string($option) && str_starts_with($option, TEXT_PREFIX)) {
                     if (trim($value) === '') {
                         $blank_value = true;
                     } else {
@@ -833,7 +833,7 @@ class shoppingCart extends base
                     $chk_price = zen_get_products_base_price($uprid);
                     $chk_special = zen_get_products_special_price($uprid, false);
                     // products_options_value_text
-                    if (ATTRIBUTES_ENABLED_TEXT_PRICES === 'true' && zen_get_attributes_type($attributes_id) == PRODUCTS_OPTIONS_TYPE_TEXT) {
+                    if (ATTRIBUTES_ENABLED_TEXT_PRICES === 'true' && (string)zen_get_attributes_type($attributes_id) === (string)PRODUCTS_OPTIONS_TYPE_TEXT) {
                         $text_words = zen_get_word_count_price(
                             $this->contents[$uprid]['attributes_values'][$attribute_price->fields['options_id']],
                             $attribute_price->fields['attributes_price_words_free'],
@@ -962,7 +962,7 @@ class shoppingCart extends base
 
                     // shipping adjustments for Attributes
                     if ($is_free_shipping === true) {
-                        if ($attribute_weight->fields['products_attributes_weight_prefix'] == '-') {
+                        if ($attribute_weight->fields['products_attributes_weight_prefix'] === '-') {
                             $this->free_shipping_weight -= ($qty * $attribute_weight->fields['products_attributes_weight']);
                         } else {
                             $this->free_shipping_weight += ($qty * $attribute_weight->fields['products_attributes_weight']);
@@ -1706,7 +1706,7 @@ class shoppingCart extends base
         foreach ($this->contents as $uprid => $data) {
             // check if field it true
             $product_check = zen_get_product_details(zen_get_prid($uprid));
-            if (array_key_exists($check_value, $product_check->fields) && $product_check->fields[$check_what] == $check_value) {
+            if (array_key_exists($check_what, $product_check->fields) && (string)$product_check->fields[$check_what] === (string)$check_value) {
                 $in_cart_check_qty += $data['qty'];
             }
         }
