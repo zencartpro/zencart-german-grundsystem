@@ -2,11 +2,11 @@
 /**  
  * Zen Cart German Specific
  * @package open graph/microdata 
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: super_data_head.php 2023-11-26 07:56:41Z webchills $
+ * @version $Id: super_data_head.php 2024-04-21 18:31:41Z webchills $
  */
 if (FACEBOOK_OPEN_GRAPH_STATUS == 'true') { ?>
 <script type="application/ld+json">
@@ -44,7 +44,9 @@ if (FACEBOOK_OPEN_GRAPH_STATUS == 'true') { ?>
 <meta property="og:url" content="<?php echo $canonicalLink; ?>" />
 <?php
   if (isset($_GET['products_id'])) { // use products_image if products_id exists
+  	$fb_image = '';
   	$facebook_image = $db->Execute("select p.products_image from " . TABLE_PRODUCTS . " p where products_id='" . (int)$_GET['products_id'] . "'");
+  	if (!$facebook_image->EOF) {
   	if ($facebook_image->fields['products_image'] != ''){
     $fb_image = HTTP_SERVER . DIR_WS_CATALOG . DIR_WS_IMAGES . $facebook_image->fields['products_image'];
   } else {
@@ -54,6 +56,7 @@ if (FACEBOOK_OPEN_GRAPH_STATUS == 'true') { ?>
 $products_image_base = preg_replace('/'.$products_image_extension . '$/', '', $fb_image);
 $products_image_medium = DIR_WS_IMAGES . 'medium/' . $products_image_base . IMAGE_SUFFIX_MEDIUM . $products_image_extension;
 $products_image_large  = DIR_WS_IMAGES . 'large/' . $products_image_base . IMAGE_SUFFIX_LARGE .  $products_image_extension;
+}
   } elseif (isset($_GET['cPath'])) {  	
     $fb_cPath_array = explode('_', $_GET['cPath']);
     $fb_cPath_size = sizeof($fb_cPath_array);
@@ -203,7 +206,7 @@ $categoriesname = isset ($categories->fields['categories_name']) ? $categories->
     "@type" : "Offer",
     "url": "<?php echo $canonicalLink; ?>",
     "availability" : "<?php if ($products_quantity > 0) { ?>http://schema.org/InStock<?php } ?><?php if ($products_quantity == 0) { ?>http://schema.org/OutOfStock<?php }?>",
-    "price" : "<?php echo $specials_new_products_price = (round(zen_add_tax(zen_get_products_actual_price($product_info_metatags->fields['products_id']),zen_get_tax_rate($product_info_metatags->fields['products_tax_class_id'])),2)); ?>",
+    "price" : "<?php if (!empty($product_info_metatags->fields['products_id'])) { echo $specials_new_products_price = (round(zen_add_tax(zen_get_products_actual_price($product_info_metatags->fields['products_id']),zen_get_tax_rate($product_info_metatags->fields['products_tax_class_id'])),2));}?>",
     "priceValidUntil": "<?php echo date("Y-m-d",strtotime("tomorrow"));?>",
     "priceCurrency" : "<?php if (FACEBOOK_OPEN_GRAPH_CUR != '') { ?><?php echo FACEBOOK_OPEN_GRAPH_CUR; ?><?php } ?>",
     "seller" : "<?php echo STORE_NAME; ?>",
@@ -223,7 +226,7 @@ $categoriesname = isset ($categories->fields['categories_name']) ? $categories->
 <?php if (FACEBOOK_OPEN_GRAPH_CUR != '') { ?><meta property="product:price:currency" content="<?php echo FACEBOOK_OPEN_GRAPH_CUR; ?>"/><?php }?>
 <meta property="product:retailer_part_no" content="<?php echo $products_model; ?>"/>
 <meta property="og:category" content="<?php echo $categoriesname; ?>" />
-<meta property="og:price:amount" content="<?php echo $specials_new_products_price = (round(zen_get_products_actual_price($product_info_metatags->fields['products_id']),2)); ?>" />
+<meta property="og:price:amount" content="<?php if (!empty($product_info_metatags->fields['products_id'])) { echo $specials_new_products_price = (round(zen_get_products_actual_price($product_info_metatags->fields['products_id']),2));} ?>" />
 <meta property="og:availability" content="<?php if ($products_quantity > 0) { ?>InStock<?php } ?><?php if ($products_quantity == 0) { ?>OutOfStock<?php }?>" />
 <meta property="og:brand" content="<?php echo $manufacturers_name; ?>" />
 <meta name="twitter:card" content="product">

@@ -161,7 +161,9 @@ includes\modules\payment\braintree_api.php
 includes\modules\payment\eustandardtransfer.php
 includes\modules\payment\invoice.php
 includes\modules\payment\paypalwpp.php
+includes\templates\classic\templates\super_data_head.php
 includes\templates\responsive_classic\shopvote\shopvote_badge_and_reviews.php
+includes\templates\responsive_classic\templates\super_data_head.php
 includes\templates\responsive_classic\templates\tpl_ajax_checkout_confirmation_default.php
 includes\templates\responsive_classic\templates\tpl_document_general_info_display.php
 includes\templates\responsive_classic\templates\tpl_modules_products_all_listing.php
@@ -171,6 +173,7 @@ includes\templates\responsive_classic\templates\tpl_product_reviews_write_defaul
 includes\templates\template_default\sideboxes\tpl_currencies.php
 includes\templates\template_default\sideboxes\tpl_manufacturers_select.php
 includes\templates\template_default\shopvote\shopvote_badge_and_reviews.php
+includes\templates\template_default\templates\super_data_head.php
 includes\templates\template_default\templates\tpl_ajax_checkout_confirmation_default.php
 includes\templates\template_default\templates\tpl_ask_a_question_default.php
 includes\templates\template_default\templates\tpl_contact_us_default.php
