@@ -156,6 +156,7 @@ includes\modules\pages\gv_redeem\header_php.php
 includes\modules\pages\product_free_shipping_info\header_php.php
 includes\modules\pages\product_info\header_php.php
 includes\modules\pages\product_music_info\header_php.php
+includes\modules\pages\product_reviews\header_php.php
 includes\modules\payment\paypal\paypal_functions.php
 includes\modules\payment\bar.php
 includes\modules\payment\braintree_api.php
