@@ -1,7 +1,7 @@
 <?php
 /**
  * Cross Sell Advanced
- * Zen Cart German Specific
+ *
  * Derived from:
  * Original Idea From Isaac Mualem im@imwebdesigning.com
  * Portions Copyright (c) 2002 osCommerce
@@ -15,7 +15,7 @@
  * @copyright Portions Copyright 2003-2023 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: xsell.php  2023-12-19 12:16:51 webchills $
+ * @version $Id: xsell.php  2024-04-24 11:34:51 webchills $
  */
 require 'includes/application_top.php';
 
@@ -26,16 +26,12 @@ require 'includes/application_top.php';
 require DIR_WS_CLASSES . 'currencies.php';
 $currencies = new currencies();
 
-$action = (isset($_GET['action']) ? $_GET['action'] : '');
-$currentPage = (isset($_GET['page']) && $_GET['page'] != '' ? (int)$_GET['page'] : 0);
-
 // -----
 // Initialize the languages-id in use and determine the action/next-action to be performed.
 //
 $languages_id = $_SESSION['languages_id'];
 $action = (isset($_POST['action'])) ? $_POST['action'] : (isset($_GET['action']) ? $_GET['action'] : '');
 $next_action = (isset($_POST['next_action'])) ? $_POST['next_action'] : (isset($_GET['next_action']) ? $_GET['next_action'] : '');
-
 
 // -----
 // Initialize variables used by the forms present in /includes/modules/xsell/category_product_selection.php
@@ -73,7 +69,13 @@ if ($xsell_category_id === 0) {
     $_GET['xsell_category_id'] = $xsell_category_id;
 }
 
-
+// -----
+// Handle the main products' pagination.
+//
+$xsell_page = (isset($_GET['page']) && ctype_digit($_GET['page'])) ? (int)$_GET['page'] : 1;
+if ($xsell_page < 1) {
+    $xsell_page = 1;
+}
 
 switch ($action){
     // -----
@@ -353,7 +355,7 @@ switch ($action){
 // Entry for overall display of current cross-sells with the option to create a new cross-sell ...
 //
 if ($action !== 'new_xsell') {
-    $xsells_query_raw =
+    $current_xsells_raw =
         "SELECT DISTINCT p.products_id, p.products_image, p.products_model, pd.products_name, p.master_categories_id
            FROM " . TABLE_PRODUCTS . " p
                 INNER JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd
@@ -361,35 +363,13 @@ if ($action !== 'new_xsell') {
                    AND pd.language_id = $languages_id
                 INNER JOIN " . TABLE_PRODUCTS_XSELL . " x
                     ON x.products_id = p.products_id
-          ORDER BY p.products_id";   
-          
-          // Split Page
-                // reset page when page is unknown
-                if ((empty($_GET['page']) || $_GET['page'] == '1') && !empty($_GET['xsell_main_pid'])) {
-                    $check_page = $db->Execute($xsells_query_raw);
-                    if ($check_page->RecordCount() > MAX_DISPLAY_SEARCH_RESULTS) {
-                        $check_count = 0;
-                        foreach ($check_page as $item) {
-                            if ((int)$item['xsell_main_pid'] === (int)$_GET['xsell_main_pid']) {
-                                break;
-                            }
-                            $check_count++;
-                        }
-                        $_GET['page'] = round((($check_count / MAX_DISPLAY_SEARCH_RESULTS) + (fmod_round($check_count, MAX_DISPLAY_SEARCH_RESULTS) !== 0 ? .5 : 0)));
-                        $page = $_GET['page'];
-                    } else {
-                        $_GET['page'] = 1;
-                    }
-                }
-          
-     $xsells_split = new splitPageResults($_GET['page'], MAX_DISPLAY_SEARCH_RESULTS, $xsells_query_raw, $xsells_query_numrows);
-
-    
-     $current_xsells = $db->Execute($xsells_query_raw);
+          ORDER BY p.products_id";
+    $xsells_split = new splitPageResults($xsell_page, MAX_DISPLAY_SEARCH_RESULTS, $current_xsells_raw, $xsells_query_numrows);
+    $current_xsells = $db->Execute($current_xsells_raw);
 
     $no_xsells = $current_xsells->EOF;
 
-
+    $all_get_params = zen_get_all_get_params(['page', 'x', 'y', 'action', 'next_action', 'xsell_main_pid']);
     $next_action = '';
 ?>
     <p><?php echo TEXT_MAIN_INSTRUCTIONS; ?></p>
@@ -397,11 +377,19 @@ if ($action !== 'new_xsell') {
 <?php
     require DIR_WS_MODULES . 'xsell/category_product_selection.php';
 
-    echo zen_draw_form('delete', FILENAME_XSELL, zen_get_all_get_params(['action', 'next_action']) . 'action=delete&page=' . $currentPage, 'post', 'id="delete-form"');
+    echo zen_draw_form('delete', FILENAME_XSELL, zen_get_all_get_params(['action', 'next_action']) . 'action=delete&page=' . $xsell_page, 'post', 'id="delete-form"');
     echo zen_draw_hidden_field('xsell_main_delete', '', 'id="main_delete"');
 ?>
-    <h2><?php echo SUBHEADING_MAIN_TITLE; ?></h2>   
-    
+    <h2><?php echo SUBHEADING_MAIN_TITLE; ?></h2>
+
+    <div class="row mb-3">
+        <div class="col-sm-6">
+            <?php echo $xsells_split->display_count($xsells_query_numrows, MAX_DISPLAY_SEARCH_RESULTS, $xsell_page, TEXT_DISPLAY_NUMBER_OF_PRODUCTS); ?>
+        </div>
+        <div class="col-sm-6 text-right">
+            <?php echo $xsells_split->display_links($xsells_query_numrows, MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS, $xsell_page); ?>
+        </div>
+    </div>
 
     <table class="table table-striped table-hover">
         <thead>
@@ -437,7 +425,7 @@ if ($action !== 'new_xsell') {
                 <td class="dataTableContent"><?php echo zen_output_string_protected($xsell['products_model']); ?></td>
                 <td class="dataTableContent text-center"><?php echo $current_xsells->fields['count']; ?></td>
                 <td class="dataTableContent">
-                    <a href="<?php echo zen_href_link(FILENAME_XSELL, 'page=' . $currentPage . '&action=new_xsell&xsell_main_pid=' . $xsell['products_id']); ?>" role="button" class="btn btn-primary"><?php echo IMAGE_EDIT; ?></a>
+                    <a href="<?php echo zen_href_link(FILENAME_XSELL, 'page=' . $xsell_page . '&action=new_xsell&xsell_main_pid=' . $xsell['products_id']); ?>" role="button" class="btn btn-primary"><?php echo IMAGE_EDIT; ?></a>
                     <button type="submit" data-pid="<?php echo $xsell['products_id']; ?>" class="btn btn-danger xsell-main-delete"><?php echo IMAGE_DELETE; ?></button>
                 </td>
             </tr>
@@ -447,20 +435,17 @@ if ($action !== 'new_xsell') {
 ?>
         </tbody>
     </table>
-    <?php
-    echo '</form>';?>
-<div class="row">
+
+    <div class="row">
         <div class="col-sm-6">
-            <?php echo $xsells_split->display_count($xsells_query_numrows, MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'], TEXT_DISPLAY_NUMBER_OF_PRODUCTS); ?>
+            <?php echo $xsells_split->display_count($xsells_query_numrows, MAX_DISPLAY_SEARCH_RESULTS, $xsell_page, TEXT_DISPLAY_NUMBER_OF_PRODUCTS); ?>
         </div>
         <div class="col-sm-6 text-right">
-            <?php echo $xsells_split->display_links($xsells_query_numrows, MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS, $_GET['page']); ?>
+            <?php echo $xsells_split->display_links($xsells_query_numrows, MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS, $xsell_page); ?>
         </div>
     </div>
-    
-    
 <?php
-    
+    echo '</form>';
 // -----
 // Rendering starts to gather information for a new/edited cross-sell product.
 //
@@ -493,7 +478,7 @@ if ($action !== 'new_xsell') {
     //
 ?>
     <h3><?php echo SUBHEADING_MULTI_ADD; ?></h3>
-    <?php echo zen_draw_form('multi', FILENAME_XSELL, 'action=multi_xsell', 'post', 'class="form-horizontal"') . zen_draw_hidden_field('xsell_main_pid', $xsell_main_pid) . zen_draw_hidden_field('page', $currentPage); ?>
+    <?php echo zen_draw_form('multi', FILENAME_XSELL, 'action=multi_xsell', 'post', 'class="form-horizontal"') . zen_draw_hidden_field('xsell_main_pid', $xsell_main_pid) . zen_draw_hidden_field('page', $xsell_page); ?>
     <div class="row mb-3">
 <?php
     for ($i = 1; $i <= 6; $i++) {
@@ -521,7 +506,7 @@ if ($action !== 'new_xsell') {
     // or their sort-orders updated.
     //
     echo zen_draw_form('update', FILENAME_XSELL, zen_get_all_get_params(['action', 'next_action']) . 'action=update', 'post');
-    echo zen_draw_hidden_field('xsell_main_pid', $xsell_main_pid) . zen_draw_hidden_field('page', $currentPage);
+    echo zen_draw_hidden_field('xsell_main_pid', $xsell_main_pid) . zen_draw_hidden_field('page', $xsell_page);
 ?>
     <h3><?php echo SUBHEADING_MANAGE_EXISTING; ?></h3>
 
@@ -566,7 +551,7 @@ if ($action !== 'new_xsell') {
 
     <div class="row">
         <div class="col-md-6">
-            <a href="<?php echo zen_href_link(FILENAME_XSELL, 'page=' . $currentPage); ?>" role="button" class="btn btn-default"><?php echo IMAGE_BACK; ?></a>
+            <a href="<?php echo zen_href_link(FILENAME_XSELL, 'page=' . $xsell_page); ?>" role="button" class="btn btn-default"><?php echo IMAGE_BACK; ?></a>
         </div>
         <div class="col-md-6 text-right">
             <button class="btn btn-info" type="submit"><?php echo IMAGE_UPDATE; ?></button>
