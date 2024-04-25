@@ -110,6 +110,7 @@ admin\server_info.php
 admin\shopvote.php
 admin\whos_online.php
 admin\xsell.php
+extras\plugins\riCjLoader\RiCjLoaderPlugin.php
 includes\auto_loaders\config.core.php
 includes\auto_loaders\paypal_ipn.core.php
 includes\classes\Customer.php

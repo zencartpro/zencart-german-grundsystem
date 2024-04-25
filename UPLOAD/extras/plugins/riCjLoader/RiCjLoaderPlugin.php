@@ -7,6 +7,7 @@
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
  * modified for Zen Cart German PHP 7.4/8 2021-12-28 webchills
  * changed browser detection to Wolfcast 2022-01-04 webchills
+ * modified for Zen Cart German PHP 8.2 2024-04-25 webchills
  * NOTES:
  * All .php files can be manipulated by PHP when they're called, and are copied in-full to the browser page
  */
@@ -85,7 +86,7 @@ class RiCjLoaderPlugin
 		else 
 			return;
 		
-		if(is_array($loaders) && count($loaders) > 0)	$this->addLoaders($loaders, true);
+		if(!empty($loaders))	$this->addLoaders($loaders, true);
 	}
 	
 	function set($options){
