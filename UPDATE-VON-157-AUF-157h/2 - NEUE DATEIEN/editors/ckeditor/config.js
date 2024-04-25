@@ -1,7 +1,7 @@
 /**
  * @license Copyright (c) 2003-2023, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see https://ckeditor.com/legal/ckeditor-oss-license
- * modified for Zen Cart German - 2023-10-31 webchills
+ * modified for Zen Cart German - 2024-04-25 webchills
  */
 
 CKEDITOR.editorConfig = function( config ) {
@@ -13,7 +13,13 @@ CKEDITOR.editorConfig = function( config ) {
 	config.height = 200;
 	// if you prefer 400px set to 400 instead
 	//config.height = 400;
+	CKEDITOR.plugins.addExternal('youtube', '/plugins/youtube/');
 
+   config.extraPlugins = 'youtube';
+   config.youtube_responsive = true;
+   config.youtube_related = false;
+   config.youtube_privacy = true;
+   config.youtube_autoplay = false;
 
 	config.uiColor = '#D8D6CD';
 
@@ -43,7 +49,10 @@ CKEDITOR.editorConfig = function( config ) {
 	// List of font-sizes to appear in the font combo box
 	config.fontSize_sizes =  '8/8px;9/9px;10/10px;11/11px;12/12px;13/13px;14/14px;15/15px;16/16px;17/17px;18/18px;19/19px;20/20px;22/22px;24/24px;26/26px;28/28px;36/36px;48/48px;72/72px';
 
-
+	
+   config.iframe_attributes = {	
+    sandbox: 'allow-scripts allow-same-origin'	
+  }
 
   config.allowedContent = true;
 	config.extraAllowedContent = '*(*)';
