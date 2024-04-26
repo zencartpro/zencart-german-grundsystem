@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_email.php 2024-03-15 19:17:16Z webchills $
+ * @version $Id: functions_email.php 2024-04-26 08:22:16Z webchills $
  */
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -588,6 +588,9 @@ use PHPMailer\PHPMailer\SMTP;
         if (is_array($content)) {
             $block = $content;
         } else {
+            if ($content === '' || $content === 'none') {
+               return '';
+            }
             $block['EMAIL_MESSAGE_HTML'] = $content;
         }
 
