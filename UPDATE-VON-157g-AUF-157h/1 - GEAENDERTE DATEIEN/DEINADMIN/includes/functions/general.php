@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: general.php 2024-01-10 08:18:33Z webchills $
+ * @version $Id: general.php 2024-04-26 08:18:33Z webchills $
  */
 
 
@@ -365,7 +365,7 @@ function zen_get_system_information($privacy = false)
         $output = '';
         if (DISPLAY_SERVER_UPTIME == 'true') {
             @exec('uptime 2>&1', $output, $errnum);
-            if ($errnum == 0) {
+            if ($errnum == 0 && isset($output[0])) {
                 $uptime = $output[0];
             }
         }
