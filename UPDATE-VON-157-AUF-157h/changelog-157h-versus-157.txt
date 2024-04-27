@@ -841,6 +841,7 @@ includes\modules\pages\shopping_cart\jscript_main.php
 includes\modules\pages\time_out\header_php.php
 includes\modules\payment\authorizenet\authorizenet_admin_notification.php
 includes\modules\payment\paypal\paypal_functions.php
+includes\modules\payment\paypal\paypalwpp_admin_notification.php
 includes\modules\payment\paypal\tpl_ec_button.php
 includes\modules\payment\authorizenet.php
 includes\modules\payment\authorizenet_aim.php
