@@ -5,15 +5,15 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: english.php 2024-02-19 11:37:32Z webchills $
+ * @version $Id: english.php 2024-04-29 16:37:32Z webchills $
  */
  
 // important line - do NOT change
-@setlocale(LC_TIME, ['en_US', 'en_US.utf8', 'en', 'English_United States.1252']);
+@setlocale(LC_TIME, ['en_US.utf8', 'en_US', 'en']);
 //
 // texts for admin header
-define('TEXT_PASSWORD_LAST_CHANGE', 'Passwort zuletzt geändert:&nbsp;');
-define('TEXT_LAST_LOGIN_INFO', 'Letztes Login [IP]:&nbsp;');
+define('TEXT_PASSWORD_LAST_CHANGE', 'Password last changed:&nbsp;');
+define('TEXT_LAST_LOGIN_INFO', 'Last Login [IP]:&nbsp;');
 define('HEADER_ALT_TEXT','Admin Powered by Zen Cart 1.5.7h - deutsche Version');
 define('HEADER_LOGO_IMAGE','logo.gif');
 define('HEADER_LOGO_WIDTH','240');
@@ -169,12 +169,12 @@ define('CATEGORY_PERSONAL','Personal');
 define('CHARSET','utf-8');
 define('CONFIGURATION_MENU_ENTRIES_TO_SORT_BY_NAME','1');
 define('CONNECTION_TYPE_UNKNOWN','not valid');
-define('DATE_FORMAT','m/d/Y');
-define('DATE_FORMAT_DATE_PICKER','yy-mm-dd');
-define('DATE_FORMAT_LONG','%A %d %B, %Y');
-define('DATE_FORMAT_SHORT','%m/%d/%Y');
+define('DATE_FORMAT','d.m.Y');
+define('DATE_FORMAT_DATE_PICKER','dd-mm-yy');
+define('DATE_FORMAT_SHORT', '%d.%m.%Y');
+define('DATE_FORMAT_LONG', '%A, %d. %B %Y');
 define('DATE_FORMAT_SPIFFYCAL','MM/dd/yyyy');
-define('DATE_TIME_FORMAT','%%DATE_FORMAT_SHORT%%' . ' %H:%M:%S');
+define('DATE_TIME_FORMAT', DATE_FORMAT_SHORT . ' %H:%M:%S'); 
 define('DEDUCTION_TYPE_DROPDOWN_0','Deduct amount');
 define('DEDUCTION_TYPE_DROPDOWN_1','Percent');
 define('DEDUCTION_TYPE_DROPDOWN_2','New Price');
