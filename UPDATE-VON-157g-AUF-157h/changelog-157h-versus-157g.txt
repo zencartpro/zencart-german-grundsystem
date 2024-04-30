@@ -33,8 +33,13 @@ admin\assets (gesamter Ordner)
 admin\images\small_zen_logo.gif
 admin\includes\css\german_help.css
 admin\includes\javascript\backtotop.js
+admin\includes\languages\english\uploads.php
 admin\includes\languages\english\extra_definitions\admin_layout.php
+admin\includes\languages\english\extra_definitions\uploads.php
+admin\includes\languages\german\uploads.php
 admin\includes\languages\german\extra_definitions\admin_layout.php
+admin\includes\languages\german\extra_definitions\uploads.php
+admin\uploads.php
 laravel (gesamter Ordner)
 includes\modules\payment\braintree (gesamter Ordner)
 includes\classes\Coupon.php
