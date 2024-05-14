@@ -105,6 +105,7 @@ admin\finddupmodels.php
 admin\german_help.php
 admin\home.php
 admin\it_recht_kanzlei.php
+admin\languages.php
 admin\modules.php
 admin\option_values.php
 admin\orders.php

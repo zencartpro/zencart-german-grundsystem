@@ -2,11 +2,11 @@
 /**
  * Zen Cart German Specific
  
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: languages.php 2023-12-12 19:41:51Z webchills $
+ * @version $Id: languages.php 2024-05-14 19:35:51Z webchills $
  */
 require('includes/application_top.php');
 $action = (isset($_GET['action']) ? $_GET['action'] : '');
@@ -182,8 +182,6 @@ if (!empty($action)) {
             $countries_name->MoveNext();
           }
 // EOF Mehrsprachige Ländernamen 1 of 2
-          zen_redirect(zen_href_link(FILENAME_LANGUAGES, (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'lID=' . $insert_id));
-        }
 	        // create additional ez-page_description records
         $ezpages = $db->Execute("SELECT pages_id, pages_title, pages_html_text
                                  FROM " . TABLE_EZPAGES_CONTENT . "
@@ -199,7 +197,7 @@ if (!empty($action)) {
 
         $zco_notifier->notify('NOTIFY_ADMIN_LANGUAGE_INSERT', (int)$insert_id);
         zen_redirect(zen_href_link(FILENAME_LANGUAGES, (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'lID=' . $insert_id));
-      
+      }
 
         break;
       case 'save':
