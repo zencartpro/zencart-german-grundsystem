@@ -151,6 +151,7 @@ includes\languages\german\gv_send.php
 includes\languages\german\modules\payment\eustandardtransfer.php
 includes\languages\english.php
 includes\languages\german.php
+includes\modules\featured_products.php
 includes\modules\order_total\ot_coupon.php
 includes\modules\order_total\ot_gv.php
 includes\modules\order_total\ot_loworderfee.php
