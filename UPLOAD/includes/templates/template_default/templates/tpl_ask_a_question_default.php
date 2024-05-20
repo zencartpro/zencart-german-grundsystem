@@ -30,8 +30,10 @@
   } else {
 ?>
 
+<div id="aaq">
 <?php echo '<a href="' . zen_href_link(zen_get_info_page((int)$_GET['pid']), 'products_id=' . (int)$_GET['pid'], 'SSL') . '">' . zen_image(DIR_WS_IMAGES . $product_details['products_image'], $product_details['products_name'], IMAGE_PRODUCT_LISTING_WIDTH, IMAGE_PRODUCT_LISTING_HEIGHT) . '</a>'; ?>
-
+</div>
+    
 <div id="contactUsNoticeContent" class="content">
 <?php
 /**
