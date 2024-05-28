@@ -151,6 +151,7 @@ includes\classes\productPulldown.php
 includes\classes\pulldown.php
 includes\classes\Request.php
 includes\classes\zcDate.php
+includes\classes\observers\auto.prioritize_search_match_in_name.php
 includes\extra_configures\log_files.php
 includes\extra_configures\robots_pages_to_skip.php
 includes\functions\extra_functions\functions_music_products.php
