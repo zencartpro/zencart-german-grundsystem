@@ -587,6 +587,7 @@ includes\classes\class.rl_invoice3.php
 includes\classes\currencies.php
 includes\classes\FileSystem.php
 includes\classes\InitSystem.php
+includes\classes\it_recht_kanzlei_api.php
 includes\classes\message_stack.php
 includes\classes\navigation_history.php
 includes\classes\order.php

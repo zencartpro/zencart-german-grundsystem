@@ -120,6 +120,7 @@ extras\plugins\riCjLoader\RiCjLoaderPlugin.php
 includes\auto_loaders\config.core.php
 includes\auto_loaders\paypal_ipn.core.php
 includes\classes\Customer.php
+includes\classes\it_recht_kanzlei_api.php
 includes\classes\order.php
 includes\classes\order_total.php
 includes\classes\productPulldown.php
