@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_dates.php 2024-03-10 07:34:16Z webchills $
+ * @version $Id: functions_dates.php 2024-06-17 12:10:16Z webchills $
  */
 
 // Normally this zen_date_raw function will ONLY be defined here.
@@ -21,7 +21,9 @@ if (!function_exists('zen_date_raw')) {
      * @param string $date
      * @param bool $reverse
      * @return string
-     */
+     */   
+
+     
     function zen_date_raw($date, $reverse = false) {
         // sometimes zen_date_short is called with a zero-date value which returns false, which is then passed to $date here, so this just reformats to avoid confusion.
         if (empty($date) || strpos($date, '0001') || strpos($date, '0000')) {
@@ -43,7 +45,7 @@ if (!function_exists('zen_date_raw')) {
         } elseif ($reverse) {
             return substr($date, 3, 2) . substr($date, 0, 2) . substr($date, 6, 4);
         } else {
-            return substr($date, 6, 4) . substr($date, 0, 2) . substr($date, 3, 2);
+            return substr($date, 6, 4) . substr($date, 3, 2) . substr($date, 0, 2);
         }
     }
 }
