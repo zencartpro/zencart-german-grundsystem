@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: braintree_api.php 2024-05-28 20:47:14 webchills $
+ * @version $Id: braintree_api.php 2024-06-19 09:53:14 webchills $
 */
 use Braintree\Gateway;
 use Braintree\Transaction;
@@ -289,6 +289,11 @@ class braintree_api extends base {
             $fieldsArray[] = array('title' => MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_TYPE,
                 'field' => zen_draw_pull_down_menu('braintree_cc_type', $this->cards, '', 'onchange="braintree_cc_type_check();" onblur="braintree_cc_type_check();"' . 'id="' . $this->code . '-cc-type"' . $onFocus),
                 'tag' => $this->code . '-cc-type');
+         $fieldsArray[] = [
+            'title' => MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_OWNER,
+            'field' => '<div id="braintree_api-cc-owner-hosted"></div>'
+        ];
+        
         $fieldsArray[] = [
             'title' => MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_NUMBER,
             'field' => '<div id="braintree_api-cc-number-hosted"></div>'
@@ -313,6 +318,7 @@ class braintree_api extends base {
         // prevent the data passed in verifyCard did not pass validation error
         // total gets refused if 4 decimals, so we use 2 only
         $amount = zen_round($order->info['total'], 2);
+        $ip_address = zen_get_ip_address(); 
         // various fields get refused if more than 50 characters, so we limit to 49 before we pass them to verifyCard
         $streetAddress = substr($order->billing['street_address'],0,49);
         $streetAddressShipping = substr($order->delivery['street_address'],0,49);
@@ -320,11 +326,13 @@ class braintree_api extends base {
         $surName = substr($order->billing['lastname'],0,49);
         $givenNameShipping = substr($order->delivery['firstname'],0,49);
         $surNameShipping = substr($order->delivery['lastname'],0,49);
+        $cardholderName = $givenName . ' ' . $surName;
         
         if ($_SESSION['language']=='german') {
         $fieldsArray[] = [
             'field' => "
                 <style>
+                    #braintree_api-cc-owner-hosted iframe,
                     #braintree_api-cc-number-hosted iframe,
                     #braintree_expiry-hosted iframe,
                     #braintree_api-cc-cvv-hosted iframe
@@ -332,6 +340,7 @@ class braintree_api extends base {
                         float:none !important;
                         height:35px !important;
                     }
+                    #braintree_api-cc-owner-hosted,
                     #braintree_api-cc-number-hosted,
                     #braintree_expiry-hosted,
                     #braintree_api-cc-cvv-hosted
@@ -347,6 +356,7 @@ class braintree_api extends base {
                         display:none;
                     }
                 </style>
+                <input type='text' class='hide_field' name='braintree_cc_owner' id='braintree_cc_owner'>
                 <input type='text' class='hide_field' name='braintree_cc_number' id='braintree_cc_number'>
                 <input type='text' class='hide_field' name='braintree_cc_expires_month' id='braintree_cc_expires_month'>
                 <input type='text' class='hide_field' name='braintree_cc_expires_year' id='braintree_cc_expires_year'>
@@ -386,6 +396,9 @@ class braintree_api extends base {
                                 amount: '".$amount."',
                                 nonce: payload.nonce,
                                 bin:payload.details.bin,
+                                collectDeviceData:true,
+                                ipAddress: '".$ip_address."',
+                                mobilePhoneNumber: '".$order->customer['telephone']."',
                                 email: '".$order->customer['email_address']."',
                                 billingAddress: {
                                     givenName: '".$givenName."',
@@ -523,6 +536,10 @@ class braintree_api extends base {
                                   }
                               },
                               fields: {
+                              	cardholderName: {
+                                  selector: '#braintree_api-cc-owner-hosted',
+                                  placeholder: '$cardholderName'
+                                },
                                 number: {
                                   selector: '#braintree_api-cc-number-hosted',
                                   placeholder: '0000-0000-0000-0000'
@@ -560,6 +577,7 @@ class braintree_api extends base {
               $fieldsArray[] = [
             'field' => "
                 <style>
+                    #braintree_api-cc-owner-hosted iframe,
                     #braintree_api-cc-number-hosted iframe,
                     #braintree_expiry-hosted iframe,
                     #braintree_api-cc-cvv-hosted iframe
@@ -567,6 +585,7 @@ class braintree_api extends base {
                         float:none !important;
                         height:35px !important;
                     }
+                    #braintree_api-cc-owner-hosted,
                     #braintree_api-cc-number-hosted,
                     #braintree_expiry-hosted,
                     #braintree_api-cc-cvv-hosted
@@ -582,6 +601,7 @@ class braintree_api extends base {
                         display:none;
                     }
                 </style>
+                <input type='text' class='hide_field' name='braintree_cc_owner' id='braintree_cc_owner'>
                 <input type='text' class='hide_field' name='braintree_cc_number' id='braintree_cc_number'>
                 <input type='text' class='hide_field' name='braintree_cc_expires_month' id='braintree_cc_expires_month'>
                 <input type='text' class='hide_field' name='braintree_cc_expires_year' id='braintree_cc_expires_year'>
@@ -621,6 +641,9 @@ class braintree_api extends base {
                                 amount: '".$amount."',
                                 nonce: payload.nonce,
                                 bin:payload.details.bin,
+                                collectDeviceData:true,
+                                ipAddress: '".$ip_address."',
+                                mobilePhoneNumber: '".$order->customer['telephone']."',
                                 email: '".$order->customer['email_address']."',
                                 billingAddress: {
                                     givenName: '".$givenName."',
@@ -758,6 +781,10 @@ class braintree_api extends base {
                                   }
                               },
                               fields: {
+                              	cardholderName: {
+                                  selector: '#braintree_api-cc-owner-hosted',
+                                  placeholder: '$cardholderName'
+                                },
                                 number: {
                                   selector: '#braintree_api-cc-number-hosted',
                                   placeholder: '0000-0000-0000-0000'
@@ -823,18 +850,13 @@ class braintree_api extends base {
     function confirmation(){
     	global $messageStack;
         $confirmation = ['title' => '', 'fields' => []];
-        if(!empty($_POST['braintree_cc_firstname'])){
+        if(!empty($_POST['braintree_cc_owner'])){
+        	$cc_owner = $_POST['braintree_cc_owner'];
             $confirmation['fields'][] = [
-                'title' => MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_FIRSTNAME,
-                'field' => $_POST['braintree_cc_firstname']
+                'title' => MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_OWNER,
+                'field' => $cc_owner
             ];
-        }
-        if(!empty($_POST['braintree_cc_lastname'])){
-            $confirmation['fields'][] = [
-                'title' => MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_LASTNAME,
-                'field' => $_POST['braintree_cc_lastname']
-            ];
-        }
+        }     
         if(!empty($this->cc_card_type)){
             $confirmation['fields'][] = [
                 'title' => MODULE_PAYMENT_BRAINTREE_TEXT_CREDIT_CARD_TYPE,
@@ -896,12 +918,9 @@ class braintree_api extends base {
         if(isset($_POST['braintree_cc_checkcode']) && !empty($_POST['braintree_cc_checkcode'])){ 
         $process_button_string .= "\n" . zen_draw_hidden_field('bt_cc_checkcode', $_POST['braintree_cc_checkcode']);
         }
-        if(isset($_POST['braintree_cc_firstname']) && !empty($_POST['braintree_cc_firstname'])){ 
-        $process_button_string .= "\n" . zen_draw_hidden_field('bt_payer_firstname', $_POST['braintree_cc_firstname']);
-        }
-        if(isset($_POST['braintree_cc_lastname']) && !empty($_POST['braintree_cc_lastname'])){
-        $process_button_string .= "\n" . zen_draw_hidden_field('bt_payer_lastname', $_POST['braintree_cc_lastname']);  
-        }      
+        if(isset($_POST['braintree_cc_owner']) && !empty($_POST['braintree_cc_owner'])){ 
+        $process_button_string .= "\n" . zen_draw_hidden_field('bt_cc_owner', $_POST['braintree_cc_owner']);
+        }             
         $process_button_string .= "\n" . zen_draw_hidden_field('bt_nonce', $_POST['braintree_nonce']);
         $process_button_string .= "\n" . zen_draw_hidden_field('bt_liability_shift_possible', $_POST['braintree_liability_shift_possible']);
         $process_button_string .= "\n" . zen_draw_hidden_field('bt_liability_shifted', $_POST['braintree_liability_shifted']);
@@ -931,8 +950,7 @@ class braintree_api extends base {
                 'bt_cc_issuenumber' => 'braintree_cc_issuenumber',
                 'bt_cc_number' => 'braintree_cc_number',
                 'bt_cc_checkcode' => 'braintree_cc_checkcode',
-                'bt_payer_firstname' => 'braintree_cc_firstname',
-                'bt_payer_lastname' => 'braintree_cc_lastname',
+                'bt_cc_owner' => 'braintree_cc_owner',                
                 'bt_nonce' => 'braintree_nonce',
                 'bt_liability_shift_possible' => 'braintree_liability_shift_possible',
                 'bt_liability_shifted' => 'braintree_liability_shifted',
@@ -964,7 +982,7 @@ class braintree_api extends base {
                 $cc_data = $this->retrieveValidatedCCData();
                 $order->info['cc_type']     = $cc_data->cc_type;
                 $order->info['cc_number']   = substr($cc_data->cc_number, 0, 4) . str_repeat('X', (strlen($cc_data->cc_number) - 8)) . substr($cc_data->cc_number, -4);
-                $order->info['cc_owner']    = $_SESSION['customer_first_name'] . ' ' . $_SESSION['customer_last_name'];
+                $order->info['cc_owner']    = $_POST['braintree_cc_owner'];
                 $order->info['cc_expires']  = $cc_data->cc_expiry_month . substr($cc_data->cc_expiry_year, -2);
                 $order->info['ip_address']  = current(explode(':', str_replace(',', ':', zen_get_ip_address())));
                 $cc_checkcode = (is_numeric($_POST['bt_cc_checkcode']) ? $_POST['bt_cc_checkcode'] : 0);
@@ -1323,7 +1341,7 @@ class braintree_api extends base {
         }
 
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable this Payment Module', 'MODULE_PAYMENT_BRAINTREE_STATUS', 'True', 'Do you want to enable this payment module?', '6', '1', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
-        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, set_function) values ('Version', 'MODULE_PAYMENT_BRAINTREE_VERSION', '2.5.0', 'Version installed', '6', '2', now(), 'zen_cfg_read_only(')");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, set_function) values ('Version', 'MODULE_PAYMENT_BRAINTREE_VERSION', '3.0.0', 'Version installed', '6', '2', now(), 'zen_cfg_read_only(')");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Merchant ID', 'MODULE_PAYMENT_BRAINTREE_MERCHANTID', '', 'Your Merchant ID provided under the API Keys section.', '6', '3', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Public Key', 'MODULE_PAYMENT_BRAINTREE_PUBLICKEY', '', 'Your Public Key provided under the API Keys section.', '6', '4', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Private Key', 'MODULE_PAYMENT_BRAINTREE_PRIVATEKEY', '', 'Your Private Key provided under the API Keys section.', '6', '5', now())");
