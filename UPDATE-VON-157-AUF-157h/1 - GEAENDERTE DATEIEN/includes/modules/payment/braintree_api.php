@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: braintree_api.php 2024-06-19 09:53:14 webchills $
+ * @version $Id: braintree_api.php 2024-06-19 22:26:14 webchills $
 */
 use Braintree\Gateway;
 use Braintree\Transaction;
@@ -538,7 +538,7 @@ class braintree_api extends base {
                               fields: {
                               	cardholderName: {
                                   selector: '#braintree_api-cc-owner-hosted',
-                                  placeholder: '$cardholderName'
+                                  placeholder: 'Vorname Nachname'
                                 },
                                 number: {
                                   selector: '#braintree_api-cc-number-hosted',
@@ -783,7 +783,7 @@ class braintree_api extends base {
                               fields: {
                               	cardholderName: {
                                   selector: '#braintree_api-cc-owner-hosted',
-                                  placeholder: '$cardholderName'
+                                  placeholder: 'Full Name'
                                 },
                                 number: {
                                   selector: '#braintree_api-cc-number-hosted',
