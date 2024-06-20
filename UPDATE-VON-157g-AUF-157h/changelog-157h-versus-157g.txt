@@ -75,6 +75,7 @@ admin\includes\languages\german\option_values.php
 admin\includes\languages\german\server_info.php
 admin\includes\languages\english.php
 admin\includes\languages\german.php
+admin\includes\modules\product\collect_info.php
 admin\includes\modules\search_box.php
 admin\includes\modules\xsell\category_product_selection.php
 admin\includes\admin_html_head.php
