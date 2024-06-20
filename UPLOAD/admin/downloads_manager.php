@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * Zen Cart German Specific (200 code in 157)
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: downloads_manager.php 2023-12-12 19:35:16Z webchills $
+ * @version $Id: downloads_manager.php 2024-06-20 15:05:16Z webchills $
  */
 
 require 'includes/application_top.php';
@@ -28,10 +28,10 @@ if (!empty($action)) {
     case 'save':
       $db_filename = zen_limit_image_filename($_POST['products_attributes_filename'], TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD, 'products_attributes_filename');
       $sql = "UPDATE " . TABLE_PRODUCTS_ATTRIBUTES_DOWNLOAD . "
-                SET products_attributes_filename=:filename:,
-                    products_attributes_maxdays=:maxdays:,
-                    products_attributes_maxcount=:maxcount:
-                WHERE products_attributes_id = " . (int)$_GET['padID'];
+              SET products_attributes_filename=:filename:,
+                  products_attributes_maxdays=:maxdays:,
+                  products_attributes_maxcount=:maxcount:
+              WHERE products_attributes_id = " . (int)$_GET['padID'];
       $sql = $db->bindVars($sql, ':filename:', $db_filename, 'string');
       $sql = $db->bindVars($sql, ':maxdays:', $_POST['products_attributes_maxdays'], 'string');
       $sql = $db->bindVars($sql, ':maxcount:', $_POST['products_attributes_maxcount'], 'string');
@@ -65,8 +65,6 @@ if (!empty($action)) {
             <i class="fa-regular fa-circle fa-stack-1x txt-black"></i>
           </div>
           <?php echo TEXT_WARNING_PRODUCT_MISCONFIGURED_SHORT; ?>
-        </div>
-        <div class="col-sm-6">
           <div class="fa-stack fa-fw">
             <i class="fa-solid fa-circle fa-stack-1x txt-red"></i>
             <i class="fa-regular fa-circle fa-stack-1x txt-black"></i>

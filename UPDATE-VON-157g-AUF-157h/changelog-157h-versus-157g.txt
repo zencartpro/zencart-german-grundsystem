@@ -97,6 +97,7 @@ admin\coupon_admin.php
 admin\customers.php
 admin\customers_without_order.php
 admin\currencies.php
+admin\downloads_manager.php
 admin\dsgvo_kundenexport.php
 admin\email_archive_manager.php
 admin\email_export.php
