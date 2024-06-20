@@ -1,15 +1,15 @@
 <?php
 /**
  * Page Template
- * Zen Cart German Specific (zencartpro adaptations)
+ * Zen Cart German Specific (zencartpro adaptations / 200 code in 157)
  * Loaded automatically by index.php?main_page=product_info.
  * Displays details of a typical product
  *
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_product_info_display.php 2023-10-28 16:26:36Z webchills $
+ * @version $Id: tpl_product_info_display.php 2024-06-20 16:26:36Z webchills $
  */
 
 //require(DIR_WS_MODULES . '/debug_blocks/product_info_prices.php');
@@ -66,10 +66,10 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
  */
   require($template->get_template_dir('/tpl_modules_additional_images.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_additional_images.php'); ?>
 <!--eof Additional Product Images -->
-</div>
 <?php
   }
 ?>
+</div>
 <div id="pinfo-right" class="group grids">
 <!--bof Product Price block -->
 <!--bof Product details list  -->
@@ -99,6 +99,7 @@ if ($flag_show_ask_a_question) {
 <?php
 }
 ?>
+
 <!--bof free ship icon  -->
 <?php if(zen_get_product_is_always_free_shipping($products_id_current) && $flag_show_product_info_free_shipping) { ?>
 <div id="freeShippingIcon"><?php echo TEXT_PRODUCT_FREE_SHIPPING_ICON; ?></div>

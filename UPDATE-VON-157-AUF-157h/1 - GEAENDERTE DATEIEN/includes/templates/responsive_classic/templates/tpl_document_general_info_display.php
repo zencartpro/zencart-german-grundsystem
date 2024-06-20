@@ -1,15 +1,15 @@
 <?php
 /**
  * Page Template
- * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
+ * Zen Cart German Specific (200 code in 157 / zencartpro adaptations)
  * Loaded automatically by index.php?main_page=document_general_info.
  * Displays template according to "document-general" product-type needs
  * 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_document_general_info_display.php 2023-12-15 19:19:58Z webchills $
+ * @version $Id: tpl_document_general_info_display.php 2024-06-20 16:17:58Z webchills $
  */
 ?>
 <div class="centerColumn" id="docGeneralDisplay">
@@ -42,7 +42,7 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
 
 <div id="prod-info-top" class="group">
 <!--bof Product Name-->
-<h1 id="productName" class="docGeneral" ><?php echo $products_name; ?></h1>
+<h1 id="productName" class="docGeneral"><?php echo $products_name; ?></h1>
 <!--eof Product Name-->
 
 <div id="pinfo-left">
@@ -64,10 +64,10 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
  */
   require($template->get_template_dir('/tpl_modules_additional_images.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_additional_images.php'); ?>
 <!--eof Additional Product Images -->
-</div>
 <?php
   }
 ?>
+</div>
 <div id="pinfo-right">
 <!--bof Product details list  -->
 <?php if ( (($flag_show_product_info_model == 1 and $products_model != '') or ($flag_show_product_info_weight == 1 and $products_weight !=0) or ($flag_show_product_info_quantity == 1) or ($flag_show_product_info_manufacturer == 1 and !empty($manufacturers_name))) ) { ?>
@@ -96,6 +96,7 @@ if ($flag_show_ask_a_question) {
 <?php
 }
 ?>
+
 <!--bof free ship icon  -->
 <?php if(zen_get_product_is_always_free_shipping($products_id_current) && $flag_show_product_info_free_shipping) { ?>
 <div id="freeShippingIcon"><?php echo TEXT_PRODUCT_FREE_SHIPPING_ICON; ?></div>

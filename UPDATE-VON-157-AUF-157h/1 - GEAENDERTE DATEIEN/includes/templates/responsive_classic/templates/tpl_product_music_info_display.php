@@ -1,15 +1,15 @@
 <?php
 /**
  * Page Template
- * Zen Cart German Specific (zencartpro adaptations)
+ * Zen Cart German Specific (zencartpro adaptations / 200 code in 157)
  * Loaded automatically by index.php?main_page=product_music_info.
  * Displays details of a music product
  * 
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_product_music_info_display.php 2023-10-28 20:03:58Z webchills $
+ * @version $Id: tpl_product_music_info_display.php 2024-06-20 16:03:58Z webchills $
  */
 ?>
 <div class="centerColumn" id="productMusicDisplay">
@@ -64,10 +64,10 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
  */
   require($template->get_template_dir('/tpl_modules_additional_images.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_additional_images.php'); ?>
 <!--eof Additional Product Images -->
-</div>
 <?php
   }
 ?>
+</div>
 <div id="pinfo-right">
 <!--bof Media Manager -->
 <div id="mediaManager" class="productMusic group"><?php
