@@ -1,15 +1,15 @@
 <?php
 /**
  * Page Template
- * Zen Cart German Specific
+ * Zen Cart German Specific (200 code in 157)
  * Displays the FAQ pages for the Gift-Certificate/Voucher system.
  *
  
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_gv_faq_default.php 2022-04-09 08:03:16Z webchills $
+ * @version $Id: tpl_gv_faq_default.php 2024-06-20 15:48:16Z webchills $
  */
 ?>
 <div class="centerColumn" id="gvFaqDefault">
@@ -36,6 +36,7 @@
 
 <div class="buttonRow back"><?php echo zen_back_link() . zen_image_button(BUTTON_IMAGE_BACK, BUTTON_BACK_ALT) . '</a>'; ?></div>
 <br class="clearBoth">
+<br class="clearBoth">
 
 
 <form action="<?php echo zen_href_link(FILENAME_GV_REDEEM, '', 'NONSSL', false); ?>" method="get">
@@ -43,7 +44,7 @@
 <fieldset>
 <legend><?php echo TEXT_GV_REDEEM_INFO; ?></legend>
 <label class="inputLabel" for="lookup-gv-redeem"><?php echo TEXT_GV_REDEEM_ID; ?></label>
-<?php echo zen_draw_input_field('gv_no', $gv_faq_item, 'size="18" id="lookup-gv-redeem"');?>
+<?php echo zen_draw_input_field('gv_no', '', 'size="18" id="lookup-gv-redeem"');?>
 </fieldset>
 <div class="buttonRow forward"><?php echo zen_image_submit(BUTTON_IMAGE_REDEEM, BUTTON_REDEEM_ALT); ?></div>
 </form>

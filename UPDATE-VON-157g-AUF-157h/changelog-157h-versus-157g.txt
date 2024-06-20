@@ -193,6 +193,7 @@ includes\templates\template_default\templates\super_data_head.php
 includes\templates\template_default\templates\tpl_ajax_checkout_confirmation_default.php
 includes\templates\template_default\templates\tpl_ask_a_question_default.php
 includes\templates\template_default\templates\tpl_contact_us_default.php
+includes\templates\template_default\templates\tpl_gv_faq_default.php
 includes\templates\template_default\templates\tpl_modules_products_all_listing.php
 includes\templates\template_default\templates\tpl_modules_products_featured_listing.php
 includes\templates\template_default\templates\tpl_modules_products_new_listing.php
