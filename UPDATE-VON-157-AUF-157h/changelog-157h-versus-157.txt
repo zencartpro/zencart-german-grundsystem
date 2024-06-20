@@ -513,6 +513,7 @@ admin\gv_sent.php
 admin\home.php
 admin\image_handler.php
 admin\index.php
+admin\index_dashboard.php
 admin\index_setup_wizard.php
 admin\invoice.php
 admin\it_recht_kanzlei.php
