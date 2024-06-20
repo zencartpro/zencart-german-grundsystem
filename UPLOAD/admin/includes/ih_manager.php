@@ -1,13 +1,13 @@
 <?php
 /**
- * @package Image Handler 5.3.0
+ * @package Image Handler 5.3.5
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
- * @copyright Copyright 2018-2022 lat 9 - Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2018-2024 lat 9 - Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ih_manager.php 2022-09-06 09:13:51Z webchills $
+ * @version $Id: ih_manager.php 2024-06-20 16:53:51Z webchills $
  */
 if ($action === 'new_cat') {
     $current_category_id = (isset($_GET['current_category_id'])) ? (int)$_GET['current_category_id'] : $current_category_id;
@@ -27,7 +27,9 @@ if ($action === 'new_cat') {
 if ($products_filter == '' && $current_category_id > 0) {
     $new_product_query = $db->Execute(
         "SELECT ptc.products_id FROM " . TABLE_PRODUCTS_TO_CATEGORIES . " ptc
-            LEFT JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd
+            INNER JOIN " . TABLE_PRODUCTS . " p
+                ON p.products_id = ptc.products_id
+            INNER JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd
                 ON ptc.products_id = pd.products_id
                AND pd.language_id = " . (int)$_SESSION['languages_id'] . "
           WHERE ptc.categories_id = " . (int)$current_category_id . "
@@ -43,7 +45,9 @@ if ($products_filter == '' && $current_category_id > 0) {
         $current_category_id = $reset_categories_id[0]['id'];
         $new_product_query = $db->Execute(
             "SELECT ptc.products_id FROM " . TABLE_PRODUCTS_TO_CATEGORIES . " ptc
-                LEFT JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd
+                INNER JOIN " . TABLE_PRODUCTS . " p
+                    ON p.products_id = ptc.products_id
+                INNER JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd
                     ON ptc.products_id = pd.products_id
                    AND pd.language_id = " . (int)$_SESSION['languages_id'] . "
               WHERE ptc.categories_id = " . (int)$current_category_id . "

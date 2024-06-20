@@ -469,6 +469,7 @@ admin\includes\footer.php
 admin\includes\header.php
 admin\includes\header_navigation.php
 admin\includes\header-rl_invoice3.php
+admin\includes\ih_manager.php
 admin\includes\javascript_loader.php
 admin\includes\keepalive_module.php
 admin\includes\menu.css
