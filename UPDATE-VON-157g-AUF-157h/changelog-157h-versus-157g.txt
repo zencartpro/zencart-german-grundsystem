@@ -117,6 +117,7 @@ admin\rl_invoice3_admin.php
 admin\rl_invoice3_header.php
 admin\server_info.php
 admin\shopvote.php
+admin\sqlpatch.php
 admin\whos_online.php
 admin\xsell.php
 extras\plugins\riCjLoader\RiCjLoaderPlugin.php

@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * Zen Cart German Specific (200 code in 157)
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: sqlpatch.php 2023-10-23 09:03:50Z webchills $
+ * @version $Id: sqlpatch.php 2024-06-20 15:57:50Z webchills $
  */
 require('includes/application_top.php');
 
@@ -252,6 +252,9 @@ function executeSql($lines, $database, $table_prefix = '') {
           break;
         case (substr($line_upper, 0, 7) == 'SELECT ' && substr_count($line_upper, 'FROM ') > 0):
           $line = str_ireplace('FROM ', 'FROM ' . $table_prefix, $line);
+          break;
+        case (substr($line_upper, 0, 10) == 'INNER JOIN '):
+          $line = 'INNER JOIN ' . $table_prefix . ltrim(substr($line, 11));
           break;
         case (substr($line_upper, 0, 10) == 'LEFT JOIN '):
           $line = 'LEFT JOIN ' . $table_prefix . ltrim(substr($line, 10));
@@ -519,7 +522,7 @@ function zen_check_alter_command($param) {
       if (strtoupper($param[4]) == 'INDEX') {
         // check that the index to be added doesn't already exist
         $index = $param[5];
-        $sql = "SHOW FIELDS FROM " . DB_PREFIX . $param[2];
+        $sql = "SHOW INDEX FROM " . DB_PREFIX . $param[2];
         $results = $db->Execute($sql);
         foreach ($results as $result) {
           if (ZC_UPG_DEBUG3 == true) {
@@ -592,7 +595,7 @@ function zen_check_alter_command($param) {
       if (strtoupper($param[4]) == 'INDEX') {
         // check that the index to be dropped exists
         $index = $param[5];
-        $sql = "SHOW FIELDS FROM " . DB_PREFIX . $param[2];
+        $sql = "SHOW INDEX FROM " . DB_PREFIX . $param[2];
         $results = $db->Execute($sql);
         foreach ($results as $result) {
           if (ZC_UPG_DEBUG3 == true) {
