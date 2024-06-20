@@ -1,10 +1,10 @@
 <?php
 /**
- * Zen Cart German Specific (zencartpro adaptations / 158 code in 157)
+ * Zen Cart German Specific (zencartpro adaptations / 200 code in 157)
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: order.php 2024-04-09 19:19:25Z webchills $
+ * @version $Id: order.php 2024-06-20 15:19:25Z webchills $
  */
 /**
  * order class
@@ -558,7 +558,7 @@ class order extends base
                         'currency_value' => $currencies->currencies[$_SESSION['currency']]['value'],
                         'payment_method' => (isset($GLOBALS[$paymentModule]) && is_object($GLOBALS[$paymentModule])) ? $GLOBALS[$paymentModule]->title : '',
                         'payment_module_code' => (isset($GLOBALS[$paymentModule]) && is_object($GLOBALS[$paymentModule])) ? $GLOBALS[$paymentModule]->code : '',
-                        'coupon_code' => isset($coupon_code) && is_object($coupon_code) ? $coupon_code->fields['coupon_code'] : '',    
+                        'coupon_code' => $coupon_code->fields['coupon_code'] ?? '',
                         'shipping_method' => (isset($_SESSION['shipping']['title'])) ? $_SESSION['shipping']['title'] : '',
                         'shipping_module_code' => $shipping_module_code,
                         'shipping_cost' => !empty($_SESSION['shipping']['cost']) ? $_SESSION['shipping']['cost'] : 0,
