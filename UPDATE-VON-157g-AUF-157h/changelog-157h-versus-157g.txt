@@ -144,6 +144,7 @@ includes\functions\functions_email.php
 includes\functions\functions_general.php
 includes\functions\functions_general_shared.php
 includes\functions\functions_gvcoupons.php
+includes\functions\functions_prices.php
 includes\functions\functions_products.php
 includes\functions\functions_strings.php
 includes\functions\functions_taxes.php

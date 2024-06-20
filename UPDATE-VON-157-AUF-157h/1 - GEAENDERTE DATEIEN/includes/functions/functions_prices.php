@@ -1,12 +1,12 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157 / zencartpro adaptations) 
+ * Zen Cart German Specific (200 code in 157 / zencartpro adaptations) 
  * 
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_prices.php 2023-10-29 20:12:24Z webchills $
+ * @version $Id: functions_prices.php 2024-06-20 16:06:24Z webchills $
  */
 
 /**
@@ -147,27 +147,27 @@ function zen_get_products_display_price($product_id)
         // 2 = Can browse but no prices
         // verify whether to display prices
         switch (true) {
-            case (CUSTOMERS_APPROVAL == '1' && !zen_is_logged_in()):
+            case (CUSTOMERS_APPROVAL === '1' && !zen_is_logged_in()):
                 // customer must be logged in to browse
                 return '';
                 break;
-            case (CUSTOMERS_APPROVAL == '2' && !zen_is_logged_in()):
+            case (CUSTOMERS_APPROVAL === '2' && !zen_is_logged_in()):
                 // customer may browse but no prices
                 return TEXT_LOGIN_FOR_PRICE_PRICE;
                 break;
-            case (CUSTOMERS_APPROVAL == '3' && TEXT_LOGIN_FOR_PRICE_PRICE_SHOWROOM != ''):
+            case (CUSTOMERS_APPROVAL === '3' && TEXT_LOGIN_FOR_PRICE_PRICE_SHOWROOM !== ''):
                 // customer may browse but no prices
                 return TEXT_LOGIN_FOR_PRICE_PRICE_SHOWROOM;
                 break;
-            case (CUSTOMERS_APPROVAL_AUTHORIZATION != '0' && CUSTOMERS_APPROVAL_AUTHORIZATION != '3' && !zen_is_logged_in()):
+            case (CUSTOMERS_APPROVAL_AUTHORIZATION !== '0' && CUSTOMERS_APPROVAL_AUTHORIZATION !== '3' && !zen_is_logged_in()):
                 // customer must be logged in to browse
                 return TEXT_AUTHORIZATION_PENDING_PRICE;
                 break;
-            case (CUSTOMERS_APPROVAL_AUTHORIZATION != '0' && CUSTOMERS_APPROVAL_AUTHORIZATION != '3' && (int)$_SESSION['customers_authorization'] > 0):
+            case (CUSTOMERS_APPROVAL_AUTHORIZATION !== '0' && CUSTOMERS_APPROVAL_AUTHORIZATION !== '3' && (int)$_SESSION['customers_authorization'] > 0):
                 // customer must be logged in to browse
                 return TEXT_AUTHORIZATION_PENDING_PRICE;
                 break;
-            case (isset($_SESSION['customers_authorization']) && (int)$_SESSION['customers_authorization'] == 2):
+            case (isset($_SESSION['customers_authorization']) && (int)$_SESSION['customers_authorization'] === 2):
                 // customer is logged in and was changed to must be approved to see prices
                 return TEXT_AUTHORIZATION_PENDING_PRICE;
                 break;
@@ -177,7 +177,7 @@ function zen_get_products_display_price($product_id)
         }
 
         // no prices when showcase only
-        if (STORE_STATUS == '1') {
+        if (STORE_STATUS === '1') {
             return '';
         }
     }
@@ -220,9 +220,9 @@ function zen_get_products_display_price($product_id)
         );
         if (!$pricing_handled) {
             if ($display_sale_price) {
-                if (SHOW_SALE_DISCOUNT == 1) {
+                if (SHOW_SALE_DISCOUNT === '1') {
                     if ($display_normal_price != 0) {
-                        $show_discount_amount = number_format(100 - (($display_sale_price / $display_normal_price) * 100), SHOW_SALE_DISCOUNT_DECIMALS);
+                        $show_discount_amount = number_format(100 - (($display_sale_price / $display_normal_price) * 100), (int)SHOW_SALE_DISCOUNT_DECIMALS);
                     } else {
                         $show_discount_amount = '';
                     }
