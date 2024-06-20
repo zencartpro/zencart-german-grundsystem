@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: coupon_admin.php 2024-04-08 17:20:51Z webchills $
+ * @version $Id: coupon_admin.php 2024-06-20 15:14:51Z webchills $
  */
 require 'includes/application_top.php';
 require DIR_WS_CLASSES . 'currencies.php';
@@ -718,12 +718,12 @@ switch ($_GET['action']) {
               </tr>
               <tr>
                 <td><?php echo COUPON_STARTDATE; ?></td>
-                <?php $start_date = date(DATE_FORMAT, mktime(0, 0, 0, $_POST['coupon_startdate_month'], $_POST['coupon_startdate_day'], $_POST['coupon_startdate_year'])); ?>
+                <?php $start_date = date(DATE_FORMAT, mktime(0, 0, 0, (int)$_POST['coupon_startdate_month'], (int)$_POST['coupon_startdate_day'], (int)$_POST['coupon_startdate_year'])); ?>
                 <td><?php echo $start_date; ?></td>
               </tr>
               <tr>
                 <td><?php echo COUPON_FINISHDATE; ?></td>
-                <?php $finish_date = date(DATE_FORMAT, mktime(0, 0, 0, $_POST['coupon_finishdate_month'], $_POST['coupon_finishdate_day'], $_POST['coupon_finishdate_year'])); ?>
+                <?php $finish_date = date(DATE_FORMAT, mktime(0, 0, 0, (int)$_POST['coupon_finishdate_month'], (int)$_POST['coupon_finishdate_day'], (int)$_POST['coupon_finishdate_year'])); ?>
                 <td><?php echo $finish_date; ?></td>
               </tr>
               <?php
@@ -742,8 +742,8 @@ switch ($_GET['action']) {
               echo zen_draw_hidden_field('coupon_uses_user', $_POST['coupon_uses_user']);
               echo zen_draw_hidden_field('coupon_products', (!empty($_POST['coupon_products']) ? $_POST['coupon_products'] : ''));
               echo zen_draw_hidden_field('coupon_categories', (!empty($_POST['coupon_categories']) ? $_POST['coupon_categories'] : ''));
-              echo zen_draw_hidden_field('coupon_startdate', date('Y-m-d', mktime(0, 0, 0, $_POST['coupon_startdate_month'], $_POST['coupon_startdate_day'], $_POST['coupon_startdate_year'])));
-              echo zen_draw_hidden_field('coupon_finishdate', date('Y-m-d', mktime(0, 0, 0, $_POST['coupon_finishdate_month'], $_POST['coupon_finishdate_day'], $_POST['coupon_finishdate_year'])));
+              echo zen_draw_hidden_field('coupon_startdate', date('Y-m-d', mktime(0, 0, 0, (int)$_POST['coupon_startdate_month'], (int)$_POST['coupon_startdate_day'], (int)$_POST['coupon_startdate_year'])));
+              echo zen_draw_hidden_field('coupon_finishdate', date('Y-m-d', mktime(0, 0, 0, (int)$_POST['coupon_finishdate_month'], (int)$_POST['coupon_finishdate_day'], (int)$_POST['coupon_finishdate_year'])));
               echo zen_draw_hidden_field('coupon_zone_restriction', $_POST['coupon_zone_restriction']);
               echo zen_draw_hidden_field('coupon_order_limit', $_POST['coupon_order_limit']);
               echo zen_draw_hidden_field('coupon_calc_base', (int)$_POST['coupon_calc_base']);
@@ -951,7 +951,7 @@ switch ($_GET['action']) {
             <div class="form-group">
               <p class="control-label col-sm-3"><?php echo COUPON_STARTDATE; ?></p>
               <div class="col-sm-9 col-md-6">
-                <div class="input-group"><?php echo zen_draw_date_selector('coupon_startdate', mktime(0, 0, 0, $coupon_startdate[1], (int)$coupon_startdate[2], $coupon_startdate[0])); ?>
+                <div class="input-group"><?php echo zen_draw_date_selector('coupon_startdate', mktime(0, 0, 0, (int)$coupon_startdate[1], (int)$coupon_startdate[2], (int)$coupon_startdate[0])); ?>
                   <span class="input-group-addon">
                     <i class="fa-solid fa-circle-info fa-lg" data-toggle="tooltip" title="<?php echo COUPON_STARTDATE_HELP; ?>"></i>
                   </span>
@@ -961,7 +961,7 @@ switch ($_GET['action']) {
             <div class="form-group">
               <p class="control-label col-sm-3"><?php echo COUPON_FINISHDATE; ?></p>
               <div class="col-sm-9 col-md-6">
-                <div class="input-group"><?php echo zen_draw_date_selector('coupon_finishdate', mktime(0, 0, 0, $coupon_finishdate[1], (int)$coupon_finishdate[2], $coupon_finishdate[0])); ?>
+                <div class="input-group"><?php echo zen_draw_date_selector('coupon_finishdate', mktime(0, 0, 0, (int)$coupon_finishdate[1], (int)$coupon_finishdate[2], (int)$coupon_finishdate[0])); ?>
                   <span class="input-group-addon">
                     <i class="fa-solid fa-circle-info fa-lg" data-toggle="tooltip" title="<?php echo COUPON_FINISHDATE_HELP; ?>"></i>
                   </span>
