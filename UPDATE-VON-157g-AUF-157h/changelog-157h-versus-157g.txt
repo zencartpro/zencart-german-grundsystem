@@ -89,6 +89,7 @@ admin\includes\stylesheet.css
 admin\includes\tinymce.php
 admin\adresskorrektur.php
 admin\attributes_controller.php
+admin\banner_manager.php
 admin\backup_mysql.php
 admin\categories.php
 admin\category_product_listing.php

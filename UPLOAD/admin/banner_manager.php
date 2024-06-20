@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * Zen Cart German Specific (200 code in 157)
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: banner_manager.php 2023-12-12 19:28:51Z webchills $
+ * @version $Id: banner_manager.php 2024-06-20 15:18:51Z webchills $
  */
 require 'includes/application_top.php';
 require 'includes/functions/functions_banner_graphs.php';
@@ -82,6 +82,7 @@ if (!empty($action)) {
       $banners_image_local = zen_db_prepare_input($_POST['banners_image_local']);
       $banners_image_target = zen_db_prepare_input($_POST['banners_image_target']);
       $db_image_location = '';
+
       $banner_error = false;
 
       $expires_date_raw = zen_db_prepare_input($_POST['expires_date']);
@@ -111,13 +112,13 @@ if (!empty($action)) {
           $date_scheduled = 'null';
       } else {
           if (DATE_FORMAT_DATE_PICKER !== 'yy-mm-dd' && !empty($date_scheduled_raw)) {
-        $local_fmt = zen_datepicker_format_fordate();
-        $dt = DateTime::createFromFormat($local_fmt, $date_scheduled_raw);
-        $date_scheduled_raw = 'null';
-        if (!empty($dt)) {
-          $date_scheduled_raw = $dt->format('Y-m-d');
-        }
-      }
+            $local_fmt = zen_datepicker_format_fordate();
+            $dt = DateTime::createFromFormat($local_fmt, $date_scheduled_raw);
+            $date_scheduled_raw = 'null';
+            if (!empty($dt)) {
+              $date_scheduled_raw = $dt->format('Y-m-d');
+            }
+          }
           if (zcDate::validateDate($date_scheduled_raw) === true) {
             $date_scheduled = $date_scheduled_raw;
           } else {
@@ -347,9 +348,9 @@ if (!empty($action)) {
           <?php
           echo zen_draw_form('new_banner', FILENAME_BANNER_MANAGER, (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'action=' . $form_action, 'post', 'enctype="multipart/form-data" class="form-horizontal"');
           if ($form_action == 'upd') {
-              echo zen_draw_hidden_field('banners_id', $bID);
-            }
-            ?>
+            echo zen_draw_hidden_field('banners_id', $bID);
+          }
+          ?>
           <div class="form-group">
             <div class="col-sm-3">
               <p class="control-label"><?php echo TEXT_BANNERS_STATUS; ?></p>
@@ -381,7 +382,7 @@ if (!empty($action)) {
             </div>
           </div>
           <div class="form-group">
-              <?php echo zen_draw_label(TEXT_BANNERS_TITLE, 'banners_title', 'class="col-sm-3 control-label"'); ?>
+            <?php echo zen_draw_label(TEXT_BANNERS_TITLE, 'banners_title', 'class="col-sm-3 control-label"'); ?>
             <div class="col-sm-9 col-md-6">
               <?php echo zen_draw_input_field('banners_title', htmlspecialchars($bInfo->banners_title, ENT_COMPAT, CHARSET), zen_set_field_length(TABLE_BANNERS, 'banners_title') . ' class="form-control" id="banners_title"', true); ?>
             </div>
@@ -409,29 +410,29 @@ if (!empty($action)) {
             </div>
           </div>
           <div class="form-group">
-              <?php echo zen_draw_label(TEXT_BANNERS_IMAGE_TARGET, 'banners_image_target', 'class="col-sm-3 control-label"'); ?>
+            <?php echo zen_draw_label(TEXT_BANNERS_IMAGE_TARGET, 'banners_image_target', 'class="col-sm-3 control-label"'); ?>
             <div class="col-sm-9 col-md-6">
               <?php echo zen_draw_input_field('banners_image_target', '', 'class="form-control" id="banners_image_target"'); ?>
               <span class="help-block"><?php echo DIR_FS_CATALOG_IMAGES; ?></span>
               <div>
-                  <?php echo TEXT_BANNER_IMAGE_TARGET_INFO; ?>
+                <?php echo TEXT_BANNER_IMAGE_TARGET_INFO; ?>
               </div>
             </div>
           </div>
           <div class="form-group">
-              <?php echo zen_draw_label(TEXT_BANNERS_HTML_TEXT, 'banners_html_text', 'class="col-sm-3 control-label"'); ?>
+            <?php echo zen_draw_label(TEXT_BANNERS_HTML_TEXT, 'banners_html_text', 'class="col-sm-3 control-label"'); ?>
             <div class="col-sm-9 col-md-6">
               <?php echo '<p>' . TEXT_BANNERS_HTML_TEXT_INFO . '</p>' . zen_draw_textarea_field('banners_html_text', 'soft', '80', '10', htmlspecialchars($bInfo->banners_html_text, ENT_COMPAT, CHARSET), 'class="editorHook form-control" id="banners_html_text"'); ?>
             </div>
           </div>
           <div class="form-group">
-              <?php echo zen_draw_label(TEXT_BANNERS_ALL_SORT_ORDER, 'banners_sort_order', 'class="col-sm-3 control-label"'); ?>
+            <?php echo zen_draw_label(TEXT_BANNERS_ALL_SORT_ORDER, 'banners_sort_order', 'class="col-sm-3 control-label"'); ?>
             <div class="col-sm-9 col-md-6">
               <?php echo TEXT_BANNERS_ALL_SORT_ORDER_INFO . '<br>' . zen_draw_input_field('banners_sort_order', $bInfo->banners_sort_order, zen_set_field_length(TABLE_BANNERS, 'banners_sort_order') . ' class="form-control" id="banners_sort_order"'); ?>
             </div>
           </div>
           <div class="form-group">
-              <?php echo zen_draw_label(TEXT_BANNERS_SCHEDULED_AT, 'date_scheduled', 'class="col-sm-3 control-label"'); ?>
+            <?php echo zen_draw_label(TEXT_BANNERS_SCHEDULED_AT, 'date_scheduled', 'class="col-sm-3 control-label"'); ?>
             <div class="col-sm-9 col-md-6">
               <div class="date input-group" id="datepicker_date_scheduled">
                 <span class="input-group-addon datepicker_icon">
@@ -443,7 +444,7 @@ if (!empty($action)) {
             </div>
           </div>
           <div class="form-group">
-              <?php echo zen_draw_label(TEXT_BANNERS_EXPIRES_ON, 'expires_date', 'class="col-sm-3 control-label"'); ?>
+            <?php echo zen_draw_label(TEXT_BANNERS_EXPIRES_ON, 'expires_date', 'class="col-sm-3 control-label"'); ?>
             <div class="col-sm-9 col-md-6">
               <div class="date input-group" id="datepicker_expires_date">
                 <span class="input-group-addon datepicker_icon">
@@ -469,7 +470,7 @@ if (!empty($action)) {
           </div>
           <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9 col-md-6">
-                <?php echo TEXT_BANNERS_BANNER_NOTE . '<br>' . TEXT_BANNERS_INSERT_NOTE . '<br>' . TEXT_BANNERS_EXPIRY_NOTE . '<br>' . TEXT_BANNERS_SCHEDULE_NOTE; ?>
+              <?php echo TEXT_BANNERS_BANNER_NOTE . '<br>' . TEXT_BANNERS_INSERT_NOTE . '<br>' . TEXT_BANNERS_EXPIRY_NOTE . '<br>' . TEXT_BANNERS_SCHEDULE_NOTE; ?>
             </div>
           </div>
           <?php echo '</form>'; ?>
@@ -493,55 +494,55 @@ if (!empty($action)) {
                 </tr>
               </thead>
               <tbody>
-                  <?php
-                  $banners_query_raw = "SELECT banners_id, banners_title, banners_image, banners_group, status,
-                                               expires_date, expires_impressions, date_status_change, date_scheduled,
-                                               date_added, banners_open_new_windows, banners_on_ssl, banners_sort_order
-                                        FROM " . TABLE_BANNERS . "
-                                        ORDER BY banners_title, banners_group";
+                <?php
+                $banners_query_raw = "SELECT banners_id, banners_title, banners_image, banners_group, status,
+                                             expires_date, expires_impressions, date_status_change, date_scheduled,
+                                             date_added, banners_open_new_windows, banners_on_ssl, banners_sort_order
+                                      FROM " . TABLE_BANNERS . "
+                                      ORDER BY banners_title, banners_group";
 // Split Page
 // reset page when page is unknown
-                  if ((empty($_GET['page']) || $_GET['page'] == '1') && !empty($_GET['bID'])) {
-                    $check_page = $db->Execute($banners_query_raw);
+                if ((empty($_GET['page']) || $_GET['page'] == '1') && !empty($_GET['bID'])) {
+                  $check_page = $db->Execute($banners_query_raw);
                   $check_count = 0;
-                    if ($check_page->RecordCount() > MAX_DISPLAY_SEARCH_RESULTS) {
-                      foreach ($check_page as $item) {
-                        if ($item['banners_id'] == (int)$_GET['bID']) {
-                          break;
-                        }
-                        $check_count++;
+                  if ($check_page->RecordCount() > MAX_DISPLAY_SEARCH_RESULTS) {
+                    foreach ($check_page as $item) {
+                      if ($item['banners_id'] == (int)$_GET['bID']) {
+                        break;
                       }
+                      $check_count++;
+                    }
                     $_GET['page'] = round((($check_count / MAX_DISPLAY_SEARCH_RESULTS) + (fmod_round($check_count, MAX_DISPLAY_SEARCH_RESULTS) != 0 ? .5 : 0)));
-                    } else {
-                      $_GET['page'] = 1;
-                    }
+                  } else {
+                    $_GET['page'] = 1;
                   }
-                  $banners_split = new splitPageResults($_GET['page'], MAX_DISPLAY_SEARCH_RESULTS, $banners_query_raw, $banners_query_numrows);
-                  $banners = $db->Execute($banners_query_raw);
-                  foreach ($banners as $banner) {
-                    $info = $db->Execute("SELECT SUM(banners_shown) AS banners_shown,
-                                                 SUM(banners_clicked) AS banners_clicked
-                                          FROM " . TABLE_BANNERS_HISTORY . "
-                                          WHERE banners_id = " . (int)$banner['banners_id']);
+                }
+                $banners_split = new splitPageResults($_GET['page'], MAX_DISPLAY_SEARCH_RESULTS, $banners_query_raw, $banners_query_numrows);
+                $banners = $db->Execute($banners_query_raw);
+                foreach ($banners as $banner) {
+                  $info = $db->Execute("SELECT SUM(banners_shown) AS banners_shown,
+                                               SUM(banners_clicked) AS banners_clicked
+                                        FROM " . TABLE_BANNERS_HISTORY . "
+                                        WHERE banners_id = " . (int)$banner['banners_id']);
 
-                    if ((empty($_GET['bID']) || $_GET['bID'] == $banner['banners_id']) && empty($bInfo) && substr($action, 0, 3) != 'new') {
-                      $bInfo_array = array_merge($banner, $info->fields);
-                      $bInfo = new objectInfo($bInfo_array);
-                    }
+                  if ((empty($_GET['bID']) || $_GET['bID'] == $banner['banners_id']) && empty($bInfo) && substr($action, 0, 3) != 'new') {
+                    $bInfo_array = array_merge($banner, $info->fields);
+                    $bInfo = new objectInfo($bInfo_array);
+                  }
 
-                    $banners_shown = ($info->fields['banners_shown'] != '') ? $info->fields['banners_shown'] : '0';
-                    $banners_clicked = ($info->fields['banners_clicked'] != '') ? $info->fields['banners_clicked'] : '0';
+                  $banners_shown = ($info->fields['banners_shown'] != '') ? $info->fields['banners_shown'] : '0';
+                  $banners_clicked = ($info->fields['banners_clicked'] != '') ? $info->fields['banners_clicked'] : '0';
 
-                    if (isset($bInfo) && is_object($bInfo) && ($banner['banners_id'] == $bInfo->banners_id)) {
-                      ?>
+                  if (isset($bInfo) && is_object($bInfo) && ($banner['banners_id'] == $bInfo->banners_id)) {
+                    ?>
                     <tr id="defaultSelected" class="dataTableRowSelected" onclick="document.location.href = '<?php echo zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $bInfo->banners_id . '&action=new'); ?>'">
-                        <?php
-                      } else {
-                        ?>
-                    <tr class="dataTableRow" onclick="document.location.href = '<?php echo zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $banner['banners_id']); ?>'">
-                        <?php
-                      }
+                      <?php
+                    } else {
                       ?>
+                    <tr class="dataTableRow" onclick="document.location.href = '<?php echo zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $banner['banners_id']); ?>'">
+                      <?php
+                    }
+                    ?>
                     <td class="dataTableContent">
                       <a href="javascript:popupImageWindow('<?php echo zen_href_link(FILENAME_POPUP_IMAGE, 'banner=' . $banner['banners_id']); ?>')" title="View Banner"><i class="fa-regular fa-window-restore fa-lg txt-black" aria-hidden="true"></i></a>&nbsp;<?php echo $banner['banners_title']; ?></td>
                     <td class="dataTableContent text-right"><?php echo $banner['banners_group']; ?></td>
@@ -571,7 +572,7 @@ if (!empty($action)) {
                         </a>
                       <?php } else { ?>
                         <a href="<?php echo zen_href_link(FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&bID=' . $banner['banners_id'] . '&action=setbanners_on_ssl&flagbanners_on_ssl=1'); ?>" data-toggle="tooltip" title="<?php echo IMAGE_ICON_BANNER_ON_SSL_OFF; ?>">
-                          <?php echo zen_icon('ssl-off', '2x', false, true) ?>
+                          <?php echo zen_icon('ssl-off', '', '2x', false, true) ?>
                         </a>
                       <?php } ?>
                     </td>
@@ -595,9 +596,9 @@ if (!empty($action)) {
             <?php
             $heading = [];
             $contents = [];
-              switch ($action) {
-                case 'delete': // deprecated
-                case 'del':
+            switch ($action) {
+              case 'delete': // deprecated
+              case 'del':
                 $heading[] = ['text' => '<h4>' . $bInfo->banners_title . '</h4>'];
 
                 $contents = ['form' => zen_draw_form('banners', FILENAME_BANNER_MANAGER, 'page=' . $_GET['page'] . '&action=deleteconfirm') . zen_draw_hidden_field('bID', $bInfo->banners_id)];
