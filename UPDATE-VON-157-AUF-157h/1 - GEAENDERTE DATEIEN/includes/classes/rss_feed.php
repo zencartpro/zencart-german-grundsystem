@@ -6,7 +6,7 @@
  * @copyright Portions Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: rss_feed.php 2024-03-26 11:53:14 webchills $
+ * @version $Id: rss_feed.php 2024-06-21 14:01:14 webchills $
  */
 
 class rss_feed extends base {
@@ -139,9 +139,9 @@ class rss_feed extends base {
     $this->image['title'] = $title;
     $this->image['link'] = $link;
     $this->image['url'] = $url;
-    $this->width['width'] = $width;
-    $this->width['height'] = $height;
-    $this->width['description'] = $description;
+    $this->image['width'] = $width;
+    $this->image['height'] = $height;
+    $this->image['description'] = $description;
   }
 
   function rss_feed_textInput($title, $link, $description, $name) {
