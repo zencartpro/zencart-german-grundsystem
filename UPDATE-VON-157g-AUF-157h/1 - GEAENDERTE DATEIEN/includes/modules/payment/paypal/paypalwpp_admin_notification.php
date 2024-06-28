@@ -2,13 +2,13 @@
 /**
  * paypalwpp_admin_notification.php admin display component
  *
- * Zen Cart German Specific (200 code in 157)
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright 2004 DevosC.com
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypalwpp_admin_notification.php 2024-04-27 07:38:16Z webchills $
+ * @version $Id: paypalwpp_admin_notification.php 2024-06-28 18:13:16Z webchills $
  */
 if (!defined('TEXT_MAXIMUM_CHARACTERS_ALLOWED')) {
     define('TEXT_MAXIMUM_CHARACTERS_ALLOWED', ' chars allowed');
@@ -170,25 +170,25 @@ if (!empty($response['RESPMSG'])) {
     $outputPayPal .= '</td><td>'."\n";
     $outputPayPal .= urldecode($response['SHIPTONAME']) ."\n";
     $outputPayPal .= '</td></tr>'."\n";
-    
+
     $outputPayPal .= '<tr><td>'."\n";
     $outputPayPal .= MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_STREET."\n";
     $outputPayPal .= '</td><td>'."\n";
     $outputPayPal .= urldecode($response['SHIPTOSTREET']) . ' ' . (!empty($response['SHIPTOSTREET2']) ? urldecode($response['SHIPTOSTREET2']) : '') ."\n";
     $outputPayPal .= '</td></tr>'."\n";
-    
+
     $outputPayPal .= '<tr><td>'."\n";
     $outputPayPal .= MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_CITY."\n";
     $outputPayPal .= '</td><td>'."\n";
     $outputPayPal .= urldecode($response['SHIPTOCITY']) ."\n";
     $outputPayPal .= '</td></tr>'."\n";
-    
+
     $outputPayPal .= '<tr><td>'."\n";
     $outputPayPal .= MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_STATE."\n";
     $outputPayPal .= '</td><td>'."\n";
     $outputPayPal .= urldecode($response['SHIPTOSTATE']) . ' ' . urldecode($response['SHIPTOZIP']) ."\n";
     $outputPayPal .= '</td></tr>'."\n";
-    
+
     $outputPayPal .= '<tr><td>'."\n";
     $outputPayPal .= MODULE_PAYMENT_PAYPAL_ENTRY_ADDRESS_COUNTRY."\n";
     $outputPayPal .= '</td><td>'."\n";
@@ -244,7 +244,7 @@ if (!empty($response['RESPMSG'])) {
     $outputPayPal .= '</td><td>'."\n";
     $outputPayPal .= (!empty($response['PARENTTRANSACTIONID']) ? urldecode($response['PARENTTRANSACTIONID']) : '') ."\n";
     $outputPayPal .= '</td></tr>'."\n";
-    
+
     if (defined('MODULE_PAYMENT_PAYPALWPP_ENTRY_PROTECTIONELIG') && !empty($response['PROTECTIONELIGIBILITY'])) {
         $outputPayPal .= '<tr><td>'."\n";
         $outputPayPal .= MODULE_PAYMENT_PAYPALWPP_ENTRY_PROTECTIONELIG."\n";
@@ -284,7 +284,7 @@ if (!empty($response['RESPMSG'])) {
 
     $outputPayPal .= '<tr><td>'."\n";
     $outputPayPal .= MODULE_PAYMENT_PAYPAL_ENTRY_PENDING_REASON."\n";
-    $outputPayPal .= '</td><td>'."\n";
+    $outputPayPal .= '</td><td>'."\n"; 
     if (isset($response['PENDINGREASON'])) { 
        $outputPayPal .= urldecode($response['PENDINGREASON']) . (empty($response['REASONCODE']) || $response['REASONCODE'] == 'None' ? '' : urldecode($response['PENDINGREASON'])) ."\n";
     } else {
