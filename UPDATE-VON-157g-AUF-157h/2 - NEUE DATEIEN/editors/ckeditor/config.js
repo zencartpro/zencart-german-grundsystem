@@ -1,7 +1,7 @@
 /**
  * @license Copyright (c) 2003-2023, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see https://ckeditor.com/legal/ckeditor-oss-license
- * modified for Zen Cart German - 2024-04-25 webchills
+ * modified for Zen Cart German - 2024-07-01 webchills
  */
 
 CKEDITOR.editorConfig = function( config ) {
@@ -21,7 +21,7 @@ CKEDITOR.editorConfig = function( config ) {
    config.youtube_privacy = true;
    config.youtube_autoplay = false;
 
-	config.uiColor = '#D8D6CD';
+	config.uiColor = '#EEEEEE';
 
 	// The toolbar button arrangement, optimized for two toolbar rows.
 	config.toolbar = [
@@ -59,6 +59,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// we want utf-8
 	config.entities_latin = false;
 	config.entities = false;  
+	config.versionCheck = false;
 
 };
 CKEDITOR.on( 'instanceReady', function( ev ) {
