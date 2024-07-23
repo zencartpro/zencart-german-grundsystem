@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ipn_main_handler.php 2024-03-15 14:44:29Z webchills $
+ * @version $Id: ipn_main_handler.php 2024-07-23 15:25:29Z webchills $
  *
  * @var $currencies currencies
  * @var $db queryFactoryResult|queryFactory
@@ -263,7 +263,7 @@ Processing...
     $txn_type = ipn_determine_txn_type($_POST, $txn_type);
     ipn_debug_email('Breakpoint: 5 - Transaction type (txn_type) = ' . $txn_type . '   [parentLookup=' . $parentLookup . ']');
 
-    if ($_POST['payment_type'] === 'instant' && $isDPtransaction && ((isset($_POST['auth_status']) && $_POST['auth_status'] === 'Completed') || $_POST['payment_status'] === 'Completed')) {
+    if (!empty($_POST['payment_type']) && $_POST['payment_type'] === 'instant' && $isDPtransaction && ((isset($_POST['auth_status']) && $_POST['auth_status'] === 'Completed') || $_POST['payment_status'] === 'Completed')) {
     ipn_debug_email('IPN NOTICE :: DP/Website Payments Pro notice -- IPN Ignored');
     die();
   }
