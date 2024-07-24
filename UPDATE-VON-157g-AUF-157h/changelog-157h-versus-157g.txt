@@ -135,6 +135,7 @@ includes\classes\shipping.php
 includes\classes\shopping_cart.php
 includes\classes\sniffer.php
 includes\classes\zcDate.php
+includes\classes\ajax\zcAjaxPayment.php
 includes\classes\observers\auto.prioritize_search_match_in_name.php
 includes\classes\ResourceLoaders\PageLoader.php
 includes\functions\banner.php

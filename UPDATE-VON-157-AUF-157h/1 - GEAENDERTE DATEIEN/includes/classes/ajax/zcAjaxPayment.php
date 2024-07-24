@@ -1,12 +1,12 @@
 <?php
 /**
  * zcAjaxPayment
- * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
+ * Zen Cart German Specific (200 code in 157 / zencartpro adaptations)
  
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: zcAjaxPayment.php 2023-10-24 19:29:58Z webchills $
+ * @version $Id: zcAjaxPayment.php 2024-07-24 17:32:58Z webchills $
  */
 use Zencart\LanguageLoader\LanguageLoaderFactory;
 class zcAjaxPayment extends base
@@ -76,9 +76,7 @@ class zcAjaxPayment extends base
     $_SESSION['comments'] = $_POST['comments'];
 
     if (DISPLAY_CONDITIONS_ON_CHECKOUT=='true') {
-      if (!isset ($_POST['conditions'])||($_POST['conditions']!='1')) {
-        $messageStack->add_session ('checkout_payment', ERROR_CONDITIONS_NOT_ACCEPTED, 'error');
-      }
+        $_SESSION['conditions'] = $_POST['conditions'] ?? NULL;
     }
     // load the selected payment module
     require (DIR_WS_CLASSES.'payment.php');
