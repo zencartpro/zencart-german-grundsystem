@@ -203,6 +203,7 @@ includes\templates\template_default\shopvote\shopvote_badge_and_reviews.php
 includes\templates\template_default\templates\super_data_head.php
 includes\templates\template_default\templates\tpl_ajax_checkout_confirmation_default.php
 includes\templates\template_default\templates\tpl_ask_a_question_default.php
+includes\templates\template_default\templates\tpl_checkout_shipping_default.php
 includes\templates\template_default\templates\tpl_contact_us_default.php
 includes\templates\template_default\templates\tpl_discount_coupon_default.php
 includes\templates\template_default\templates\tpl_gv_faq_default.php
