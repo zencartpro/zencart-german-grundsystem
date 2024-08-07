@@ -1,11 +1,11 @@
 <?php
 /** 
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_ask_a_question.php 2023-10-26 16:51:51Z webchills $
+ * @version $Id: tpl_ask_a_question.php 2024-08-07 15:32:51Z webchills $
  */
 ?>
 <div class="centerColumn" id="askAQuestion">
@@ -30,7 +30,9 @@
   } else {
 ?>
 
+<div id="aaq">
 <?php echo '<a href="' . zen_href_link(zen_get_info_page((int)$_GET['pid']), 'products_id=' . (int)$_GET['pid'], 'SSL') . '">' . zen_image(DIR_WS_IMAGES . $product_details['products_image'], $product_details['products_name'], IMAGE_PRODUCT_LISTING_WIDTH, IMAGE_PRODUCT_LISTING_HEIGHT) . '</a>'; ?>
+</div>
 
 <div id="contactUsNoticeContent" class="content">
 <?php
