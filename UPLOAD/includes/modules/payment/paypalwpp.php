@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypalwpp.php 2024-07-23 15:26:14Z webchills $
+ * @version $Id: paypalwpp.php 2024-08-08 08:54:14Z webchills $
  */
 /**
  * load the communications layer code
@@ -2101,7 +2101,7 @@ if (false) { // disabled until clarification is received about coupons in PayPal
     // delivery
     if (strtoupper($_SESSION['paypal_ec_payer_info']['ship_address_status']) != 'NONE') {
       $order->delivery['name']          = $paypal_ec_payer_info['ship_name'];
-      $order->delivery['company']       = $paypal_ec_payer_info['payer_business'];
+      $order->delivery['company']       = trim($paypal_ec_payer_info['ship_name'] . ' ' . $paypal_ec_payer_info['payer_business']);
       $order->delivery['street_address']= $paypal_ec_payer_info['ship_street_1'];
       $order->delivery['suburb']        = $paypal_ec_payer_info['ship_street_2'];
       $order->delivery['city']          = $paypal_ec_payer_info['ship_city'];
