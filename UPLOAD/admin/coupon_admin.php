@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: coupon_admin.php 2024-06-20 15:14:51Z webchills $
+ * @version $Id: coupon_admin.php 2024-08-17 06:57:51Z webchills $
  */
 require 'includes/application_top.php';
 require DIR_WS_CLASSES . 'currencies.php';
@@ -223,7 +223,7 @@ switch ($_GET['action']) {
       $update_errors = 1;
       $messageStack->add(ERROR_NO_COUPON_NAME, 'error');
     }
-    if ((!$_POST['coupon_amount']) && (!$_POST['coupon_free_ship'])) {
+    if ((!$_POST['coupon_amount']) && (empty($_POST['coupon_free_ship']))) {
       $update_errors = 1;
       $messageStack->add(ERROR_NO_COUPON_AMOUNT, 'error');
     }
@@ -1074,12 +1074,13 @@ switch ($_GET['action']) {
                   if (isset($_GET['cid']) && empty($inSearch)) {
                       $cc_query_raw = "SELECT *
                                      FROM " . TABLE_COUPONS . "
-                                     WHERE coupon_type != 'G'";
-                  } else {
+                                     WHERE coupon_id = " . (int)$_GET['cid'];
+                      $cc_query = $db->Execute($cc_query_raw, 1);
+                      $cInfo = new objectInfo($cc_query->fields);
+                  }
                       $cc_query_raw = "SELECT *
                                      FROM " . TABLE_COUPONS . "
                                      WHERE coupon_type != 'G'" . $mysqlSearch . $mysqlActive;
-                  }
                   $maxDisplaySearchResults = ((defined('MAX_DISPLAY_SEARCH_RESULTS_DISCOUNT_COUPONS') && (int)MAX_DISPLAY_SEARCH_RESULTS_DISCOUNT_COUPONS > 0) ? (int)MAX_DISPLAY_SEARCH_RESULTS_DISCOUNT_COUPONS : 20);
 
                   $cc_split = new splitPageResults($_GET['page'], $maxDisplaySearchResults, $cc_query_raw, $cc_query_numrows);

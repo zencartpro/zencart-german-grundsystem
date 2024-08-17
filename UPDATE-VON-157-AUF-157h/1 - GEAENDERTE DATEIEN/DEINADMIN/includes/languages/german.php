@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2024-03-25 11:40:04Z webchills $
+ * @version $Id: german.php 2024-08-15 14:40:04Z webchills $
  */
 
 // important line - do NOT change
@@ -215,8 +215,8 @@ define('ENTRY_PASSWORD_CHANGE_ERROR','<strong>Sorry, Ihr neues Passwort wurde ni
 define('ENTRY_POST_CODE','PLZ:');
 define('ENTRY_POST_CODE_ERROR','&nbsp;<span class="errorText">min ' . ENTRY_POSTCODE_MIN_LENGTH . ' Zeichen</span>');
 define('ENTRY_PRICING_GROUP','Preisermäßigungsgruppe');
-define('ENTRY_SHIP_TO','VERSANDT AN:');
-define('ENTRY_SOLD_TO','VERKAUFT AN:');
+define('ENTRY_SHIP_TO','Lieferadresse:');
+define('ENTRY_SOLD_TO','Rechnungsadresse:');
 define('ENTRY_STATE','Bundesland:');
 define('ENTRY_STATE_ERROR','&nbsp;<span class="errorText">Pflichtfeld</span>');
 define('ENTRY_STREET_ADDRESS','Strasse:');
