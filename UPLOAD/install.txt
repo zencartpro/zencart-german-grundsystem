@@ -1,25 +1,25 @@
-Zen Cart 1.5.7h deutsch 
+Zen Cart 1.5.7i deutsch 
 
-Version vom 15.04.2024
+Version vom 18.08.2024
 
 #####################################################################################################################################
 
-1.5.7h deutsch ist ein sehr umfangreicher Service Pack für 1.5.7 deutsch
-Es integriert die fast vollständige Codebasis der aktuellen amerikanischen Version 1.5.8 und ein Großteil der amerikanischen Version 2.0.0 in die deutsche Zen Cart Version 1.5.7.
-Damit wird PHP 8.2.x vollständig unterstützt.
-Die integrierten Module und 3rd Party Komponenten werden auf den Stand von April 2024 gebracht.
+1.5.7i deutsch ist ein sehr umfangreicher Service Pack für 1.5.7 deutsch
+Es integriert die fast vollständige Codebasis der aktuellen amerikanischen Version 1.5.8 und ein Großteil der amerikanischen Version 2.0.0/2.1.0 in die deutsche Zen Cart Version 1.5.7.
+Damit wird PHP 8.3.x vollständig unterstützt.
+Die integrierten Module und 3rd Party Komponenten werden auf den Stand von August 2024 gebracht.
 
-Die Umstellung der Sprachdateien, die die amerikanische Version 1.5.8 bereits mitbringt, wird in einer für Herbst 2024 geplanten deutschen Zen Cart Version 2.0.0 mit vollständiger PHP 8.3/8.4 Unterstützung nachgezogen.
-Dadurch kann in 1.5.7h weiterhin mit den gewohnten Sprachdefinitionen gearbeitet werden. 
+Die Umstellung der Sprachdateien, die die amerikanische Version 1.5.8/2.0.0/2.1.0 bereits mitbringt, wird in einer für 2025 geplanten deutschen Zen Cart Version 2.1.0 mit vollständiger PHP 8.4 Unterstützung nachgezogen.
+Dadurch kann in 1.5.7i weiterhin mit den gewohnten Sprachdefinitionen gearbeitet werden. 
 
-1.5.7h behebt auch alle Fehler die seit Erscheinen von 1.5.7g auf Github gemeldet wurden.
+1.5.7i behebt auch alle Fehler die seit Erscheinen von 1.5.7h auf Github gemeldet wurden.
 
 Aktualisierte Komponenten:
 - PHP Mailer Update auf 6.9.1
 - MobileDetect Update auf 3.74.3
 - CKEditor Update auf 4.22.1
 - TinyMCE Editor Update auf 7.0.0
-- braintree_web Update auf 3.101.2, braintree_php Update auf 6.18.0 
+- braintree_web Update auf 3.106.0, braintree_php Update auf 6.19.0 
 - FontAwesome Update auf 6.4.0
 - jQuery Update auf 3.7.1
 - Image Handler Update auf 5.3.4 mit webp Unterstützung
@@ -32,7 +32,7 @@ Neue Funktionalitäten:
 - Modernisiertes Admin Layout mit der Möglichkeit bis zu 10 externe nützliche Links für die tägliche Arbeit in die Administration zu integrieren (z.B. Links zu den Adminportalen Ihrer Versand- und Payment Dienstleister)
 
 Verbesserungen:
-- Vollständige Unterstützung von PHP 8.2.x
+- Vollständige Unterstützung von PHP 8.3.x
 - Neustrukturierung wichtiger Funktionsdateien
 - Performanceoptimierung durch Zentralisierung von Klassen und Funktionen 
 - Admin Layout durchgehend augenfreundlich und mobilefreundlich
@@ -43,13 +43,13 @@ Verbesserungen:
 - Performanceverbesserungen für Shops mit großen Datenbanken
 - Neue Zusatzinformationen auf der Adminseite Bestellungen
 
-Wer bereits 1.5.7g verwendet kann mit dem speziellen Updatepaket in UPDATE-VON-157g-AUF-157h sehr leicht auf 1.5.7h aktualisieren.
-Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157g-AUF-157h
+Wer bereits 1.5.7h verwendet kann mit dem speziellen Updatepaket in UPDATE-VON-157h-AUF-157i sehr leicht auf 1.5.7i aktualisieren.
+Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157h-AUF-157i
 
-Falls Sie bereits Version 1.5.7 deutsch verwenden, aber noch nie auf 1.5.7g aktualisiert haben, dann verwenden Sie das spezielle Updatepaket UPDATE-VON-157-AUF-157h.
-Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157-AUF-157h
+Falls Sie bereits Version 1.5.7 deutsch verwenden, aber noch nie auf 1.5.7h aktualisiert haben, dann verwenden Sie das spezielle Updatepaket UPDATE-VON-157-AUF-157i.
+Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157-AUF-157i
 
-Für das Update einer älteren deutschen Zen Cart Version als 1.5.7 (Sie verwenden z.B. derzeit 1.5.6 oder 1.5.5), führen Sie bitte ein normales Update mit dem kompletten 1.5.7h Paket durch!
+Für das Update einer älteren deutschen Zen Cart Version als 1.5.7 (Sie verwenden z.B. derzeit 1.5.6 oder 1.5.5), führen Sie bitte ein normales Update mit dem kompletten 1.5.7i Paket durch!
 Detaillierte Updateanleitung für das Update solch älterer Versionen:
 * https://updateanleitung.zen-cart-pro.at
 
@@ -63,7 +63,7 @@ Windows Server/IIS werden nicht unterstützt
 
 PHP
 mindestens: PHP 8.0.x
-höchstens: PHP 8.2.x
+höchstens: PHP 8.3.x
 
 MySQL oder MariaDB
 MySQL mindestens 5.7.8
@@ -73,7 +73,7 @@ MariaDB höchstens 10.5
 
 Empfohlen:
 Apache 2.4
-PHP 8.2.x
+PHP 8.3.x
 MySQL 8.0.x
 
 #####################################################################################################################################

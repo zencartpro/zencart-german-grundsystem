@@ -1,0 +1,82 @@
+1.5.7i deutsch ist ein Service Pack für 1.5.7h deutsch
+Damit wird PHP 8.3.x vollständig unterstützt.
+Die integrierten Module und 3rd Party Komponenten werden auf den Stand von August 2024 gebracht.
+1.5.7i behebt auch alle Fehler die seit Erscheinen von 1.5.7h auf Github gemeldet wurden.
+
+Aktualisierte Komponenten gegenüber 1.5.7h:
+- Braintree Zahlungsart
+- CKEditor
+
+---------------------------------------------------------------------------------------------
+Changelog Zen Cart 1.5.7i deutsch gegenüber 1.5.7h deutsch
+2024-08-18
+---------------------------------------------------------------------------------------------
+
+NEUE DATEIEN
+------------------------------------------------------------------------------------------
+admin\includes\languages\english\extra_definitions\uploads.php
+admin\includes\languages\english\uploads.php
+admin\includes\languages\german\extra_definitions\uploads.php
+admin\includes\languages\german\uploads.php
+admin\uploads.php
+includes\templates\template_default\images\icons\error.png
+includes\templates\template_default\images\icons\small_delete.png
+includes\templates\template_default\images\icons\success.png
+includes\templates\template_default\images\icons\warning.png
+
+
+GEAENDERTE DATEIEN
+------------------------------------------------------------------------------------------
+admin\includes\functions\general.php
+admin\includes\init_includes\init_sanitize.php
+admin\includes\languages\german\orders_status.php
+admin\includes\languages\english.php
+admin\includes\languages\german.php
+admin\includes\modules\product\collect_info.php
+admin\includes\modules\xsell\category_product_selection.php
+admin\includes\modules\search_box.php
+admin\includes\ih_manager.php
+admin\attributes_controller.php
+admin\banner_manager.php
+admin\coupon_admin.php
+admin\downloads_manager.php
+admin\german_help.php
+admin\index_dashboard.php
+admin\languages.php
+admin\sqlpatch.php
+admin\xsell.php
+extras\plugins\riCjLoader\RiCjLoaderPlugin.php
+includes\classes\ajax\zcAjaxPayment.php
+includes\classes\observers\auto.prioritize_search_match_in_name.php
+includes\classes\ResourceLoaders\PageLoader.php
+includes\classes\order.php
+includes\classes\rss_feed.php
+includes\classes\shopping_cart.php
+includes\functions\functions_dates.php
+includes\functions\functions_email.php
+includes\functions\functions_prices.php
+includes\functions\functions_products.php
+includes\init_includes\init_sessions.php
+includes\languages\german\time_out.php
+includes\languages\german.php
+includes\modules\pages\product_reviews\header_php.php
+includes\modules\payment\paypal\paypalwpp_admin_notification.php
+includes\modules\payment\braintree_api.php
+includes\modules\payment\paypalwpp.php
+includes\modules\featured_products.php
+includes\templates\classic\templates\super_data_head.php
+includes\templates\responsive_classic\templates\super_data_head.php
+includes\templates\responsive_classic\templates\tpl_document_general_info_display.php
+includes\templates\responsive_classic\templates\tpl_document_product_info_display.php
+includes\templates\responsive_classic\templates\tpl_product_free_shipping_info_display.php
+includes\templates\responsive_classic\templates\tpl_product_info_display.php
+includes\templates\responsive_classic\templates\tpl_product_music_info_display.php
+includes\templates\template_default\templates\super_data_head.php
+includes\templates\template_default\templates\tpl_ask_a_question_default.php
+includes\templates\template_default\templates\tpl_checkout_shipping_default.php
+includes\templates\template_default\templates\tpl_contact_us_default.php
+includes\templates\template_default\templates\tpl_discount_coupon_default.php
+includes\templates\template_default\templates\tpl_gv_faq_default.php
+includes\templates\template_default\templates\tpl_zc_phpupgrade_default.php
+includes\version.php
+ipn_main_handler.php
