@@ -76,10 +76,11 @@ class zcObserverInstantSearchObserver extends base
     public function updateNotifyModuleMetaTagsUnspecifiedpage(&$class, $eventID, $p1, &$p2, &$p3, &$p4, &$p5, &$p6)
     {
         global $current_page_base;
-
+        if (defined('INSTANT_SEARCH_DROPDOWN_ENABLED') && INSTANT_SEARCH_DROPDOWN_ENABLED === 'true') {
         if ($current_page_base === FILENAME_INSTANT_SEARCH_RESULT && !empty($_GET['keyword'])) {
             $p3 = true;
             $p4 = NAVBAR_TITLE . ' -> ' . zen_output_string_protected($_GET['keyword']) . ' ' . PRIMARY_SECTION . TITLE . TAGLINE;
         }
+      }
     }
 }
