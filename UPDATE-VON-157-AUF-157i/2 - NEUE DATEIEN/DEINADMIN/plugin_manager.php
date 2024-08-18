@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: plugin_manager.php 2023-10-23 08:54:16Z webchills $
+ * @version $Id: plugin_manager.php 2024-08-18 14:54:16Z webchills $
  */
 
 use Zencart\PluginSupport\SqlPatchInstaller;
@@ -35,7 +35,7 @@ $installerFactory = new InstallerFactory($db, $pluginInstaller, $errorContainer)
 // define the table definition. Just using an array here, but could have used the fluent interface
 $tableDefinition = [
     'colKey' => 'unique_key',
-    'maxRowCount' => 5,
+    'maxRowCount' => 20,
     'defaultRowAction' => '',
     'columns' => [
         'name' => ['title' => TABLE_HEADING_NAME],

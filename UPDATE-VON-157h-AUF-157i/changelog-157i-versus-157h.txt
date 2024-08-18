@@ -24,6 +24,31 @@ includes\templates\template_default\images\icons\small_delete.png
 includes\templates\template_default\images\icons\success.png
 includes\templates\template_default\images\icons\warning.png
 
+NEUE DATEIEN DES PLUGINS SOFORTSUCHE (INSTANT SEARCH)
+
+1.5.7i bringt als Beispiel für ein via Plugin Manager installierbares Modul das Modul Sofortsuche (Instant Search) in der Version 4.0.3 mit.
+Infos zu diesem Modul hier:
+https://www.zen-cart-pro.at/knowledgebase/sofortsuche-instant-search-fuer-zen-cart-1-5-7-deutsch/
+Sie können es unter Module > Plugin Manager installieren und aktivieren, wenn Sie es in Ihrem Shop nutzen wollen.
+Falls Sie dieses Modul bereits in Ihrem 1.5.7h Shop nutzen, dann müssen Sie die folgenden neuen Dateien oder Ordner nicht hochladen, da sie bereits vorhanden sind.
+
+includes\classes\ajax\zcAjaxInstantSearch.php
+includes\classes\observers\auto.instant_search_observer.php
+includes\functions\extra_functions\instant_search_functions.php
+includes\languages\english\instant_search_result.php
+includes\languages\english\extra_definitions\instant_search.php
+includes\languages\german\instant_search_result.php
+includes\languages\german\extra_definitions\instant_search.php
+include\modules\product_listing_instant_search.php
+includes\modules\pages\instant_search_result
+includes\templates\template_default\css\stylesheet_instant_search.css
+includes\templates\template_default\jscript\instant_search_dropdown.min.js
+includes\templates\template_default\jscript\instant_search_results.min.js
+includes\templates\template_default\templates\tpl_ajax_instant_search_results_dropdown.php
+includes\templates\template_default\templates\tpl_ajax_instant_search_results_listing.php
+includes\templates\template_default\templates\tpl_instant_search_result_default.php
+zc_plugins\InstantSearch
+
 
 GEAENDERTE DATEIEN
 ------------------------------------------------------------------------------------------
@@ -43,6 +68,7 @@ admin\downloads_manager.php
 admin\german_help.php
 admin\index_dashboard.php
 admin\languages.php
+admin\plugin_manager.php
 admin\sqlpatch.php
 admin\xsell.php
 extras\plugins\riCjLoader\RiCjLoaderPlugin.php
@@ -50,6 +76,7 @@ includes\classes\ajax\zcAjaxPayment.php
 includes\classes\observers\auto.prioritize_search_match_in_name.php
 includes\classes\ResourceLoaders\PageLoader.php
 includes\classes\order.php
+includes\classes\PluginManager.php
 includes\classes\rss_feed.php
 includes\classes\shopping_cart.php
 includes\functions\functions_dates.php
@@ -80,3 +107,4 @@ includes\templates\template_default\templates\tpl_gv_faq_default.php
 includes\templates\template_default\templates\tpl_zc_phpupgrade_default.php
 includes\version.php
 ipn_main_handler.php
+
