@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_addresses.php 2024-03-04 15:23:16Z webchills $
+ * @version $Id: functions_addresses.php 2024-03-28 15:36:16Z webchills $
  */
 
 /**
@@ -331,7 +331,8 @@ function zen_address_format($address_format_id = 1, $incoming = array(), $html =
     array_multisort($tmp, SORT_DESC, $address);
 
     // store translated values into original array, just for the sake of the notifier
-    $incoming = array_merge($incoming, $address);
+    // $incoming = array_merge($incoming, $address);
+    $incoming = $address;
 
     // convert into $-prefixed keys
     foreach ($address as $key => $value) {

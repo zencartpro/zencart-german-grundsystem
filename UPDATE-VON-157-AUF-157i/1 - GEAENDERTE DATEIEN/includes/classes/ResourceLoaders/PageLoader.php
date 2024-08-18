@@ -1,12 +1,12 @@
 <?php
 /**
  
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * Zen Cart German Specific (200 code in 157)
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: PageLoader.php 2023-10-23 14:14:24Z webchills $
+ * @version $Id: PageLoader.php 2024-06-20 16:11:24Z webchills $
  */
 
 namespace Zencart\PageLoader;
@@ -100,7 +100,7 @@ class PageLoader
     {
         foreach ($this->installedPlugins as $plugin) {
             $checkDir = 'zc_plugins/' . $plugin['unique_key'] . '/' . $plugin['version'] . '/catalog/includes/templates/default/' . $templateDir . '/';
-            if (file_exists($checkDir . $templateCode )) {
+            if ($this->fileSystem->fileExistsInDirectory($checkDir, preg_replace('/\//', '', $templateCode))) {
                 return $checkDir;
             }
         }

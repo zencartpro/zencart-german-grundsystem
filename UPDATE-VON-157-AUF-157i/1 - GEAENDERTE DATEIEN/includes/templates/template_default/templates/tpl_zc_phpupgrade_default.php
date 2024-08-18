@@ -8,10 +8,10 @@
  * This way someone installing Zen Cart on an ancient PHP version will at least
  * know this basic need and be able to make the change before proceeding.
  * For the German Zen Cart Version we force at least PHP 7.4.x
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_zc_phpupgrade_default.php  2023-10-26 18:28:17 webchills $
+ * @version $Id: tpl_zc_phpupgrade_default.php  2024-08-18 07:11:17 webchills $
  */
 $relPath = (file_exists('includes/templates/template_default/images/logo.gif')) ? '' : '../';
 include 'includes/version.php';
@@ -224,12 +224,12 @@ include 'includes/version.php';
       <h2>Wir würden uns sehr freuen, wenn Sie die deutsche Zen Cart Version einsetzen, allerdings ist Ihr Server nicht mit unserer Software kompatibel.</h2>
         <p>Ihre PHP Version (<?php echo PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION;?>) ist zu alt, enthält Sicherheitslücken und unterstützt moderne PHP Syntax nicht.</p>
         <p>Sie wollen die deutsche Zen Cart Version <?php echo PROJECT_VERSION_MAJOR . '.' . PROJECT_VERSION_MINOR; ?> installieren oder auf diese Version aktualisieren oder haben diese Version auf Ihren Server hochgeladen.</p>
-        <p>Für die deutsche Zen Cart Version 1.5.7 ist mindestens PHP 7.4.0 erforderlich.</p>
-        <p>Geeignete PHP Versionen für diese Zen Cart Version sind PHP 8.1.x, PHP 8.0.x oder PHP 7.4.x</p>
+        <p>Für die deutsche Zen Cart Version 1.5.7i ist mindestens PHP 8.0.x erforderlich.</p>
+        <p>Geeignete PHP Versionen für diese Zen Cart Version sind PHP 8.3.x, PHP 8.2.x oder PHP 8.0.x</p>
         <p>Um Zen Cart auf diesem Server weiterverwenden zu können, müssen Sie Ihre PHP Version aktualisieren.</p>
-        <p>Wir empfehlen PHP 8.1.x zu verwenden. Die PHP Version können Sie normalerweise in der Serveradministration Ihres Providers umstellen.</p>
+        <p>Wir empfehlen PHP 8.3.x zu verwenden. Die PHP Version können Sie normalerweise in der Serveradministration Ihres Providers umstellen.</p>
         <p>Bei den meisten Providern ist es auch möglich, für bestimmte Unterverzeichnisse bestimmte PHP Versionen zu aktivieren.</p>
-        <p>Wenn Ihre Haupt PHP Version z.B. PHP 7.3 ist und die aus irgendeinem Grund für eine bestehende Applikation auch unbedingt erforderlich ist, dann laden Sie die deutsche Zen Cart Version in ein Unterverzeichnis und stellen nur für dieses Unterverzeichnis PHP 8.0.x ein.</p>
+        <p>Wenn Ihre Haupt PHP Version z.B. PHP 8.0 ist und die aus irgendeinem Grund für eine bestehende Applikation auch unbedingt erforderlich ist, dann laden Sie die deutsche Zen Cart Version in ein Unterverzeichnis und stellen nur für dieses Unterverzeichnis PHP 8.0.x ein.</p>
         <p>Bitte wenden Sie sich an Ihren Provider, wenn Sie Fragen dazu haben.</p>
         <br><br>
     </div>

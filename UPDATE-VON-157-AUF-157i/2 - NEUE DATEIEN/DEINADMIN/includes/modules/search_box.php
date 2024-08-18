@@ -1,11 +1,11 @@
 <?php
 /*
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: search_box.php 2024-04-22 09:41:12Z webchills $
+ * @version $Id: search_box.php 2024-08-17 06:44:12Z webchills $
  */
 ?>
 <?php echo zen_draw_form('searchForm', basename($PHP_SELF, '.php'), '', 'get', 'class="form-horizontal"', true); ?>
@@ -13,7 +13,7 @@
   <?php echo zen_draw_label(HEADING_TITLE_SEARCH_DETAIL, 'search', 'class="control-label col-sm-3"'); ?>
   <div class="col-sm-9">
     <div class="input-group">
-      <?php echo zen_draw_input_field('search', '', ($action == '' ? 'autofocus="autofocus"' : '') . 'class="form-control" id="search"', false, 'search'); ?>
+      <?php echo zen_draw_input_field('search', '', 'class="form-control" id="search"', false, 'search'); ?>
       <span class="input-group-btn">
         <button type="submit" class="btn btn-info"><i class="fa-solid fa-magnifying-glass fa-lg"></i></button>
       </span>
