@@ -26,4 +26,4 @@ define('TEXT_CONTINUE_CHECKOUT_PROCEDURE', '- continue to confirm your order. Th
 define('TABLE_HEADING_SINGLEPRICE','Price');
 define('TABLE_HEADING_PRODUCTIMAGE','Image');
 define('TEXT_CONDITIONS_ACCEPTED_IN_LAST_STEP','I have read and agreed to the <a href="' . zen_href_link(FILENAME_CONDITIONS, '', 'SSL') . '" target="_blank"><u>terms and conditions</u></a> bound to this order.');
-define('TEXT_NON_EU_COUNTRIES','Note:<br>Your order will be shipped to a country outside the European Union. Your packages may be subject to the customs fees and import duties of the country to which you have your order shipped. These charges are always the recipient\'s responsibility.');
+define('TEXT_NON_EU_COUNTRIES','Note:<br>If your order is being shipped to a country outside the European Union, your packages may be subject to customs fees and import duties of the destination country. These charges are always the recipient\'s responsibility.');
