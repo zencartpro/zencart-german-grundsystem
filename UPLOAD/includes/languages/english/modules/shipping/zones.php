@@ -8,7 +8,7 @@
  * @version $Id: zones.php 2023-10-29 08:45:57Z webchills $
  */
 
-define('MODULE_SHIPPING_ZONES_TEXT_TITLE', 'Zone Rates');
+define('MODULE_SHIPPING_ZONES_TEXT_TITLE', 'Packaging and Shipping');
 define('MODULE_SHIPPING_ZONES_TEXT_DESCRIPTION', 'Zone Based Rates');
 define('MODULE_SHIPPING_ZONES_TEXT_WAY', 'Shipping to');
 
