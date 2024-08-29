@@ -64,6 +64,7 @@ admin\includes\ih_manager.php
 admin\attributes_controller.php
 admin\banner_manager.php
 admin\coupon_admin.php
+admin\customers_without_order.php
 admin\downloads_manager.php
 admin\german_help.php
 admin\index_dashboard.php

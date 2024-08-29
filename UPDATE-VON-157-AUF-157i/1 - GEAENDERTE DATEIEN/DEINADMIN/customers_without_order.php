@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: customers_without_order.php 2024-04-04 17:32:51Z webchills $
+ * @version $Id: customers_without_order.php 2024-08-29 11:32:51Z webchills $
  */
 require 'includes/application_top.php';
 
@@ -1505,23 +1505,29 @@ if ($action === 'edit' || $action === 'update') {
                         </thead>
                         <tbody>
 <?php
-    $search = '';
-    if (!empty($_GET['search'])) {
-        $keywords = zen_db_input(zen_db_prepare_input($_GET['search']));
-        $keyword_search_fields = [
-            'c.customers_lastname',
-            'c.customers_firstname',
-            'c.customers_email_address',
-            'c.customers_telephone',
-            'c.customers_id',
-            'a.entry_company',
-            'a.entry_street_address',
-            'a.entry_city',
-            'a.entry_postcode',
-        ];
-        $search = zen_build_keyword_where_clause($keyword_search_fields, trim($keywords), true);
-    }
-    $new_fields = '';
+                  $search = 'where o.date_purchased IS NULL';
+                  if (isset($_GET['search']) && zen_not_null($_GET['search'])) {
+                    $keywords = zen_db_input(zen_db_prepare_input($_GET['search']));
+                    $parts = explode(" ", trim($keywords));
+                    $search = 'where (o.date_purchased IS NULL) and ';
+                    foreach ($parts as $k => $v) {
+                      $sql_add = " (c.customers_lastname like '%:part%'
+                         or c.customers_firstname like '%:part%'
+                         or c.customers_email_address like '%:part%'
+                         or c.customers_telephone rlike ':keywords:'
+                         or a.entry_company rlike ':keywords:'
+                         or a.entry_street_address rlike ':keywords:'
+                         or a.entry_city rlike ':keywords:'
+                         or a.entry_postcode rlike ':keywords:')";
+                      if ($k != 0) {
+                        $sql_add = ' and ' . $sql_add;
+                      }
+                      $sql_add = $db->bindVars($sql_add, ':part', $v, 'noquotestring');
+                      $sql_add = $db->bindVars($sql_add, ':keywords:', $v, 'regexp');
+                      $search .= $sql_add;
+                    }
+                  }
+                  $new_fields = '';
 
     $zco_notifier->notify(
         'NOTIFY_ADMIN_CUSTOMERS_LISTING_NEW_FIELDS',
@@ -1530,14 +1536,18 @@ if ($action === 'edit' || $action === 'update') {
         $disp_order
     );
 
-    $customers_query_raw =
-        "SELECT c.customers_id " . $new_fields . ", cgc.amount
-           FROM " . TABLE_CUSTOMERS . " c
-           LEFT JOIN " . TABLE_ORDERS . " o  on c.customers_id = o.customers_id  
-                LEFT JOIN " . TABLE_CUSTOMERS_INFO . " ci ON c.customers_id= ci.customers_info_id
-                LEFT JOIN " . TABLE_ADDRESS_BOOK . " a ON c.customers_id = a.customers_id AND c.customers_default_address_id = a.address_book_id
+                      $customers_query_raw = "select c.customers_id, c.customers_lastname, c.customers_firstname, c.customers_email_address, c.customers_group_pricing, c.customers_telephone, c.customers_authorization, c.customers_referral, c.customers_secret, c.customers_paypal_ec,
+                                           a.entry_country_id, a.entry_company, a.entry_street_address, a.entry_city, a.entry_postcode,
+                                           ci.customers_info_date_of_last_logon, ci.customers_info_date_account_created, o.date_purchased
+                                           " . $new_fields . ",
+                                           cgc.amount
+                                    from " . TABLE_CUSTOMERS . " c
+                                    left join " . TABLE_ORDERS . " o on c.customers_id= o.customers_id
+                                    left join " . TABLE_CUSTOMERS_INFO . " ci on c.customers_id= ci.customers_info_id
+                                    left join " . TABLE_ADDRESS_BOOK . " a on c.customers_id = a.customers_id and c.customers_default_address_id = a.address_book_id " . "
                 LEFT JOIN " . TABLE_COUPON_GV_CUSTOMER . " cgc ON c.customers_id = cgc.customer_id
-                WHERE o.date_purchased IS NULL
+                
+
                     " . $search . "
           ORDER BY " . $disp_order;
 
