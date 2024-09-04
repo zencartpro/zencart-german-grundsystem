@@ -7,7 +7,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypalwpp.php 2024-08-08 08:54:14Z webchills $
+ * @version $Id: paypalwpp.php 2024-09-04 18:05:14Z webchills $
  */
 /**
  * load the communications layer code
@@ -2211,17 +2211,18 @@ if (false) { // disabled until clarification is received about coupons in PayPal
 
       if (!$check_customer->EOF) {
         $acct_exists = true;
-
-        // see if this was only a temp account -- if so, remove it
-        if ($check_customer->fields['customers_paypal_ec'] == '1') {
-          // Delete the existing temporary account
-          $this->ec_delete_user($check_customer->fields['customers_id']);
-          $acct_exists = false;
-
-          // debug
-          $this->zcLog('ec_step2_finish - 5', 'Found temporary account - deleting it.');
-
-        }
+        // DONT REMOVE ACCOUNTS WITH customers_paypal_ec = 1 AS OTHERWISE EVERY TIME THE SAME EMAIL LOGS IN VIA PAYPAL EXPRESS A NEW ACCOUNT IS CREATED IN SOME SCENARIOS
+	// IF YOU REALLY WANT TO DELETE THESE ACCOUNTS UNCOMMENT LINES 2217 TO 2225
+	// see if this was only a temp account -- if so, remove it
+//        if ($check_customer->fields['customers_paypal_ec'] == '1') {
+//          // Delete the existing temporary account
+//          $this->ec_delete_user($check_customer->fields['customers_id']);
+//          $acct_exists = false;
+//
+//          // debug
+//          $this->zcLog('ec_step2_finish - 5', 'Found temporary account - deleting it.');
+//
+//        }
       }
 
       // Create an account, if the account does not exist
