@@ -6,6 +6,7 @@ Die integrierten Module und 3rd Party Komponenten werden auf den Stand von Augus
 Aktualisierte Komponenten gegenüber 1.5.7h:
 - Braintree Zahlungsart
 - CKEditor
+- PHP Mailer
 
 ---------------------------------------------------------------------------------------------
 Changelog Zen Cart 1.5.7i deutsch gegenüber 1.5.7h deutsch

@@ -24,11 +24,12 @@ Die allermeisten dieser Dateien werden Sie wahrscheinlich noch nie geändert hab
 
 2) NEUE DATEIEN
 
-Im Ordner 2 - NEUE DATEIEN befinden sich ein ein aktualisierter CKEditor und eine aktualisierte Braintree PHP Komponente. Sowie einige neue Dateien für 1.5.7i.
+Im Ordner 2 - NEUE DATEIEN befinden sich ein ein aktualisierter CKEditor, eine aktualisierte Braintree PHP Komponente und eine aktualisierte Version des PHP Mailers. Sowie einige neue Dateien für 1.5.7i.
 Benennen Sie den Ordner DEINADMIN auf den Namen Ihres Adminverzeichnisses um.
 Statt hier mühsame Dateivergleiche durchzuführen, können Sie die bestehenden Pakete einfach komplett mit den neuen ersetzen.
 Löschen Sie den kompletten Ordner editors/ckeditor vom Server
 Löschen Sie den kompletten Ordner includes/modules/payment/braintree vom Server
+Löschen Sie den kompletten Ordner includes/classes/vendors/PHPMailer vom Server
 Laden Sie dann den Inhalt des Ordners 2 - NEUEDATEIEN in der vorgegebenen Struktur ins Shopverzeichnis hoch.
 
 
