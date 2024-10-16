@@ -104,6 +104,7 @@ cache\images\.htaccess
 editors\ckeditor (gesamter Ordner)
 editors\tiny_mce (gesamter Ordner)
 extras\fontawesome\6.4.0\ (gesamter Ordner)
+includes\classes\class.search.php
 includes\classes\Coupon.php
 includes\classes\CouponValidation.php
 includes\classes\ajax\zcAjaxAdminSessionChange.php

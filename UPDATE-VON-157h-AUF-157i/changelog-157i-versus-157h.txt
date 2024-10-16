@@ -20,6 +20,7 @@ admin\includes\languages\english\uploads.php
 admin\includes\languages\german\extra_definitions\uploads.php
 admin\includes\languages\german\uploads.php
 admin\uploads.php
+includes\classes\class.search.php
 includes\templates\template_default\images\icons\error.png
 includes\templates\template_default\images\icons\small_delete.png
 includes\templates\template_default\images\icons\success.png
@@ -74,6 +75,7 @@ admin\plugin_manager.php
 admin\sqlpatch.php
 admin\xsell.php
 extras\plugins\riCjLoader\RiCjLoaderPlugin.php
+includes\classes\psr4Autoload.php
 includes\classes\ajax\zcAjaxPayment.php
 includes\classes\observers\auto.prioritize_search_match_in_name.php
 includes\classes\ResourceLoaders\PageLoader.php
