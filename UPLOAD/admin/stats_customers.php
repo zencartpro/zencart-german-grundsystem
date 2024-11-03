@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: stats_customers.php 2022-02-27 20:04:16Z webchills $
+ * @version $Id: stats_customers.php 2024-11-03 20:04:16Z webchills $
  */
 require('includes/application_top.php');
 
@@ -56,7 +56,8 @@ $currencies = new currencies();
             <tr class="dataTableRow" onclick="document.location.href = '<?php echo zen_href_link(FILENAME_CUSTOMERS, 'cID=' . $customer['customers_id'], 'NONSSL'); ?>'">
               <td class="dataTableContent text-right"><?php echo $customer['customers_id']; ?>&nbsp;&nbsp;</td>
               <td class="dataTableContent"><a href="<?php echo zen_href_link(FILENAME_CUSTOMERS, 'cID=' . $customer['customers_id'], 'NONSSL'); ?>"><?php echo $customer['customers_firstname'] . ' ' . $customers->fields['customers_lastname']; ?></a></td>
-              <td class="dataTableContent text-right"><?php echo $currencies->format($customer['ordersum']); ?></td>
+              
+	      <td class="dataTableContent text-right"><a href="<?php echo zen_href_link(FILENAME_STATS_PER_CUSTOMER, 'cid=' . $customer['customers_id']); ?>"><?php echo $currencies->format($customer['ordersum']); ?></a></td>
             </tr>
             <?php } ?>
         </tbody>

@@ -70,6 +70,7 @@ admin\includes\css\display_logs.css
 admin\includes\css\dist-site-specific-styles.php
 admin\includes\css\german_help.css
 admin\includes\css\stats_sales_report.css
+admin\includes\extra_datafiles\stats_per_customer.php
 admin\includes\fontawesome (gesamter Ordner)
 admin\includes\functions\extra_functions\multilanguage_country_names_functions.php
 admin\includes\functions\datepicker.php
@@ -80,17 +81,21 @@ admin\includes\javascript\searchBox.js
 admin\includes\javascript\dateChecker.php
 admin\includes\languages\english\extra_definitions\admin_layout.php
 admin\includes\languages\english\extra_definitions\log_manager_messages.php
+admin\includes\languages\english\extra_definitions\stats_per_customer.php
 admin\includes\languages\english\extra_definitions\uploads.php
 admin\includes\languages\english\customer_groups.php
 admin\includes\languages\english\email_archive_manager.php
 admin\includes\languages\english\plugin_manager.php
+admin\includes\languages\english\stats_by_customer.php
 admin\includes\languages\english\uploads.php
 admin\includes\languages\german\extra_definitions\admin_layout.php
 admin\includes\languages\german\extra_definitions\log_manager_messages.php
+admin\includes\languages\german\extra_definitions\stats_per_customer.php
 admin\includes\languages\german\extra_definitions\uploads.php
 admin\includes\languages\german\customer_groups.php
 admin\includes\languages\german\email_archive_manager.php
 admin\includes\languages\german\plugin_manager.php
+admin\includes\languages\german\stats_by_customer.php
 admin\includes\languages\german\uploads.php
 admin\includes\modules\search_box.php
 admin\includes\templates\partials\tableview_rowactions.php
@@ -99,6 +104,7 @@ admin\includes\templates\views\layouts\app.blade.php
 admin\includes\templates\views\admin.blade.php
 admin\customer_groups.php
 admin\plugin_manager.php
+admin\stats_by_customer.php
 admin\uploads.php
 cache\images\.htaccess
 editors\ckeditor (gesamter Ordner)
@@ -579,6 +585,7 @@ admin\server_info.php
 admin\shopvote.php
 admin\specials.php
 admin\sqlpatch.php
+admin\stats_customers.php
 admin\stats_customers_referrals.php
 admin\stats_products_lowstock.php
 admin\stats_products_purchased.php

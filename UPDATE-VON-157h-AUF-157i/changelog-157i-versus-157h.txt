@@ -15,10 +15,16 @@ Changelog Zen Cart 1.5.7i deutsch gegenüber 1.5.7h deutsch
 
 NEUE DATEIEN
 ------------------------------------------------------------------------------------------
+admin\includes\extra_datafiles\stats_by_customer.php
+admin\includes\languages\english\extra_definitions\stats_per_customer.php
 admin\includes\languages\english\extra_definitions\uploads.php
 admin\includes\languages\english\uploads.php
+admin\includes\languages\english\stats_by_customer.php
+admin\includes\languages\german\extra_definitions\stats_per_customer.php
 admin\includes\languages\german\extra_definitions\uploads.php
+admin\includes\languages\english\stats_by_customer.php
 admin\includes\languages\german\uploads.php
+admin\stats_by_customer.php
 admin\uploads.php
 includes\classes\class.search.php
 includes\templates\template_default\images\icons\error.png
@@ -66,6 +72,7 @@ admin\includes\ih_manager.php
 admin\attributes_controller.php
 admin\banner_manager.php
 admin\coupon_admin.php
+admin\customers.php
 admin\customers_without_order.php
 admin\downloads_manager.php
 admin\german_help.php
@@ -73,6 +80,7 @@ admin\index_dashboard.php
 admin\languages.php
 admin\plugin_manager.php
 admin\sqlpatch.php
+admin\stats_customers.php
 admin\xsell.php
 extras\plugins\riCjLoader\RiCjLoaderPlugin.php
 includes\classes\psr4Autoload.php
