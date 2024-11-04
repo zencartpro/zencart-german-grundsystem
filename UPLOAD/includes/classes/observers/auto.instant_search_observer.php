@@ -6,7 +6,7 @@
  * @see      https://github.com/marco-pm/zencart_instantsearch
  * @license  GNU Public License V2.0
  * modified for Zen Cart German Preintegration
- * 2024-10-16 webchills
+ * 2024-11-04 webchills
  */
 
 declare(strict_types=1);
@@ -36,7 +36,8 @@ class zcObserverInstantSearchObserver extends base
                 <script src=\"" . DIR_WS_TEMPLATE . "jscript/" . "instant_search_dropdown.min.js\"></script>
             ";
         }
-
+        
+        if (defined('INSTANT_SEARCH_DROPDOWN_ENABLED') && INSTANT_SEARCH_DROPDOWN_ENABLED === 'true') {
         if ($current_page_base === FILENAME_INSTANT_SEARCH_RESULT) {
             echo "
                 <script>
@@ -47,6 +48,7 @@ class zcObserverInstantSearchObserver extends base
             ";
             echo "<script src=\"" . DIR_WS_TEMPLATE . "jscript/" . "instant_search_results.min.js\"></script>";
         }
+      }
      
 
         if (defined('INSTANT_SEARCH_PAGE_ENABLED') && INSTANT_SEARCH_PAGE_ENABLED === 'true') {
