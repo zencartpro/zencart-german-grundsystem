@@ -16,7 +16,7 @@ Aktualisierte Komponenten:
 - CKEditor Update auf 4.22.1
 - TinyMCE Editor Update auf 7.0.0
 - braintree_web Update auf 3.106.0, braintree_php Update auf 6.19.0 
-- FontAwesome Update auf 6.4.0
+- FontAwesome Update auf 6.7.0
 - jQuery Update auf 3.7.1
 - Image Handler Update auf 5.3.4 mit webp Unterstützung
 
@@ -109,7 +109,7 @@ admin\uploads.php
 cache\images\.htaccess
 editors\ckeditor (gesamter Ordner)
 editors\tiny_mce (gesamter Ordner)
-extras\fontawesome\6.4.0\ (gesamter Ordner)
+extras\fontawesome\6.7.0\ (gesamter Ordner)
 includes\classes\class.search.php
 includes\classes\Coupon.php
 includes\classes\CouponValidation.php
@@ -1048,6 +1048,7 @@ admin\includes\languages\german\uploads.php
 admin\includes\psr4Autoload.php
 admin\uploads.php
 extras\fontawesome\6.2.1 (gesamter Ordner)
+extras\fontawesome\6.4.0 (gesamter Ordner)
 includes\classes\TableViewControllers\BaseController.php
 includes\classes\TableViewControllers\TableViewController.php
 includes\classes\traits\EventManager.php

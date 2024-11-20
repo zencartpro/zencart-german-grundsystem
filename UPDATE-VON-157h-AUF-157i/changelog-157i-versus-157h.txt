@@ -7,6 +7,7 @@ Aktualisierte Komponenten gegenüber 1.5.7h:
 - Braintree Zahlungsart
 - CKEditor
 - PHP Mailer
+- Font Awesome
 
 ---------------------------------------------------------------------------------------------
 Changelog Zen Cart 1.5.7i deutsch gegenüber 1.5.7h deutsch
@@ -26,6 +27,7 @@ admin\includes\languages\english\stats_by_customer.php
 admin\includes\languages\german\uploads.php
 admin\stats_by_customer.php
 admin\uploads.php
+extras\fontawesome\6.7.0 (gesamter Ordner)
 includes\classes\class.search.php
 includes\templates\template_default\images\icons\error.png
 includes\templates\template_default\images\icons\small_delete.png
@@ -104,6 +106,7 @@ includes\modules\payment\braintree_api.php
 includes\modules\payment\paypalwpp.php
 includes\modules\featured_products.php
 includes\templates\classic\templates\super_data_head.php
+includes\templates\responsive_classic\common\html_header.php
 includes\templates\responsive_classic\templates\super_data_head.php
 includes\templates\responsive_classic\templates\tpl_document_general_info_display.php
 includes\templates\responsive_classic\templates\tpl_document_product_info_display.php
@@ -119,4 +122,3 @@ includes\templates\template_default\templates\tpl_gv_faq_default.php
 includes\templates\template_default\templates\tpl_zc_phpupgrade_default.php
 includes\version.php
 ipn_main_handler.php
-
