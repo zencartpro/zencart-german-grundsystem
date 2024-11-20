@@ -5,7 +5,7 @@
 * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: german_help.php 2024-08-17 06:49:16Z webchills $
+* @version $Id: german_help.php 2024-11-20 19:29:16Z webchills $
 */
 require('includes/application_top.php');
 $current = PROJECT_VERSION_NAME . ' - deutsche Version v' . PROJECT_VERSION_MAJOR . '.' . PROJECT_VERSION_MINOR . '';
@@ -75,7 +75,7 @@ Hier finden Sie eine Übersicht hilfreicher Seiten zu Bedienung, Konfiguration, 
 <td class="dataTableContent">Nützliche andere Websites rund um Zen Cart</td>
 </tr>
 <tr class="dataTableRow" >
-<td class="dataTableContent"><a href="https://bsky.app/profile/zencartpro.bsky.social" target="_blank">@zencartpro.bsky.social</a></td>
+<td class="dataTableContent"><a href="https://bsky.app/profile/zen-cart-pro.at" target="_blank">@zen-cart-pro.at</a></td>
 <td class="dataTableContent">Folgen Sie uns auf Bluesky für aktuelle GitHub und Knowledgebase Updates</td>
 </tr>
 <tr class="dataTableRow" >
