@@ -99,6 +99,8 @@ includes\functions\functions_prices.php
 includes\functions\functions_products.php
 includes\init_includes\init_sessions.php
 includes\languages\german\time_out.php
+includes\languages\german\modules\payment\eustandardtransfer.php
+includes\languages\english\modules\payment\eustandardtransfer.php
 includes\languages\german.php
 includes\modules\pages\product_reviews\header_php.php
 includes\modules\payment\paypal\paypalwpp_admin_notification.php

@@ -4,7 +4,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: eustandardtransfer.php 2024-04-13 16:51:14 webchills $
+ * @version $Id: eustandardtransfer.php 2024-12-02 16:59:14 webchills $
 */
 
 // do not remove the following lines
@@ -18,12 +18,12 @@ if (!defined('MODULE_PAYMENT_EUTRANSFER_BANKBIC')) define('MODULE_PAYMENT_EUTRAN
 define('MODULE_PAYMENT_EUTRANSFER_TEXT_TITLE', 'Moneyorder');
 
 define('MODULE_PAYMENT_EUTRANSFER_TEXT_DESCRIPTION', 
-'<div class="eustandardtransferdescription">Please use the following details to transfer your total order value:<br>' .
+'<div class="eustandardtransferdescription">Please complete the order by clicking on Buy below and then use the following information to transfer the total amount:<br>' .
 '<br>Bank name:  ' . nl2br(MODULE_PAYMENT_EUTRANSFER_BANKNAM) .
 '<br>Account Name: ' . nl2br(MODULE_PAYMENT_EUTRANSFER_ACCNAM) . 
 '<br>IBAN:    ' . nl2br(MODULE_PAYMENT_EUTRANSFER_ACCIBAN) .
 '<br>BIC/SWIFT:   ' . nl2br(MODULE_PAYMENT_EUTRANSFER_BANKBIC) .
-'<br>Your order will be processed as soon as we received the payment.</div>');
+'<br>You will also find these bank details in the order confirmation email that you receive after placing your order.<br>Your order will only be processed once the amount has been credited to our account.</div>');
    
 define('MODULE_PAYMENT_EUTRANSFER_TEXT_EMAIL_FOOTER', 
 "Please use the following details to transfer your total order value:\n" .
