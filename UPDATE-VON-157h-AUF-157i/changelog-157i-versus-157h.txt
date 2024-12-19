@@ -85,6 +85,7 @@ admin\sqlpatch.php
 admin\stats_customers.php
 admin\xsell.php
 extras\plugins\riCjLoader\RiCjLoaderPlugin.php
+includes\classes\it_recht_kanzlei_api.php
 includes\classes\psr4Autoload.php
 includes\classes\ajax\zcAjaxPayment.php
 includes\classes\observers\auto.prioritize_search_match_in_name.php
