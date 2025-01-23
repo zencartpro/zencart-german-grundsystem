@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
- * @copyright Copyright 2003-2024 Zen Cart Development Team
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2024-08-18 07:49:04Z webchills $
+ * @version $Id: german.php 2025-01-23 08:28:04Z webchills $
  */
 
 // important line - do NOT change
@@ -470,7 +470,7 @@ define('TEXT_AVAILABLE_DATE','Erscheinungsdatum:');
 define('TEXT_BANNERS_BANNER_CLICKS','Banner Clicks');
 define('TEXT_BANNERS_BANNER_VIEWS','Banner Impressionen');
 define('TEXT_BOOLEAN_VALIDATE','Der Wert muss ein boolescher Wert oder gleichwertig sein.');
-define('TEXT_BUTTON_RESET_ACTIVITY_LOG','Zeige Aktivitäteny Log');
+define('TEXT_BUTTON_RESET_ACTIVITY_LOG','Zeige Aktivitäten Log');
 define('TEXT_CALL_FOR_PRICE','für Preis anrufen');
 define('TEXT_CANCEL','Abbrechen');
 define('TEXT_CATEGORIES_PRODUCTS','Kategorie mit Artikeln wählen (mit * gekennzeichnet) / Zwischen Artikeln wechseln');
