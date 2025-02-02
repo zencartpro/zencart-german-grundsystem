@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * Zen Cart German Specific (210 code in 157)
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: salemaker.php 2023-12-12 19:44:51Z webchills $
+ * @version $Id: salemaker.php 2025-02-02 17:05:51Z webchills $
  */
 //
 define('AUTOCHECK', 'False');
@@ -475,23 +475,17 @@ if (!empty($action)) {
                   <td  class="dataTableContent text-center"><?php echo (($salemaker_sale['sale_date_start'] == '0001-01-01') ? TEXT_SALEMAKER_IMMEDIATELY : zen_date_short($salemaker_sale['sale_date_start'])); ?></td>
                   <td  class="dataTableContent text-center"><?php echo (($salemaker_sale['sale_date_end'] == '0001-01-01') ? TEXT_SALEMAKER_NEVER : zen_date_short($salemaker_sale['sale_date_end'])); ?></td>
                   <td  class="dataTableContent text-center">
+                      <?php echo zen_draw_form('setflag_products', FILENAME_SALEMAKER, 'action=setflag&sID=' . $salemaker_sale['sale_id'] . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '') . (isset($_GET['search']) ? '&search=' . $_GET['search'] : ''));
+                      ?>
+                      <button type="submit" class="btn btn-status">
                       <?php
                       if ($salemaker_sale['sale_status'] == '1') {
-                        echo zen_draw_form('setflag_products', FILENAME_SALEMAKER, 'action=setflag&sID=' . $salemaker_sale['sale_id'] . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '') . (isset($_GET['search']) ? '&search=' . $_GET['search'] : ''));
-                        ?>
-                      <?php echo zen_icon('enabled', IMAGE_ICON_STATUS_ON, 'lg', true); ?>
-                      <input type="hidden" name="flag" value="0">
-                      <?php echo '</form>'; ?>
-                      <?php
-                    } else {
-                      echo zen_draw_form('setflag_products', FILENAME_SALEMAKER, 'action=setflag&sID=' . $salemaker_sale['sale_id'] . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '') . (isset($_GET['search']) ? '&search=' . $_GET['search'] : ''));
+                          echo zen_icon('enabled', IMAGE_ICON_STATUS_ON, 'lg', true) . ' </button> <input type="hidden" name="flag" value="0">';
+                      } else {
+                          echo zen_icon('disabled', IMAGE_ICON_STATUS_OFF, 'lg', true) . ' </button> <input type="hidden" name="flag" value="1">';
+                      }
                       ?>
-                      <?php echo zen_icon('disabled', IMAGE_ICON_STATUS_OFF, 'lg', true); ?>
-                      <input type="hidden" name="flag" value="1">
-                      <?php echo '</form>'; ?>
-                      <?php
-                    }
-                    ?>
+                      </form>
                   </td>
                   <td class="dataTableContent text-right"><?php
                       if (!empty($sInfo) && (is_object($sInfo)) && !empty($salemaker_sale) && isset($salemaker_sale['sale_id']) && ($salemaker_sale['sale_id'] == $sInfo->sale_id)) {

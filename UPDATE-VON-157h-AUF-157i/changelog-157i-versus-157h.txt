@@ -25,6 +25,7 @@ admin\includes\languages\german\extra_definitions\stats_per_customer.php
 admin\includes\languages\german\extra_definitions\uploads.php
 admin\includes\languages\english\stats_by_customer.php
 admin\includes\languages\german\uploads.php
+admin\salemaker.php
 admin\stats_by_customer.php
 admin\uploads.php
 extras\fontawesome\6.7.0 (gesamter Ordner)
