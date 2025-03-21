@@ -94,6 +94,15 @@ class Gateway
 
     /**
      *
+     * @return CustomerSessionGateway
+     */
+    public function customerSession()
+    {
+        return new CustomerSessionGateway($this->graphQLClient);
+    }
+
+    /**
+     *
      * @return DiscountGateway
      */
     public function discount()
@@ -180,6 +189,15 @@ class Gateway
     public function payPalAccount()
     {
         return new PayPalAccountGateway($this);
+    }
+
+    /**
+     *
+     * @return PayPalPaymentResourceGateway
+     */
+    public function payPalPaymentResource()
+    {
+        return new PayPalPaymentResourceGateway($this);
     }
 
     /**
