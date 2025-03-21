@@ -168,6 +168,7 @@ includes\functions\functions_customer_groups.php
 includes\functions\functions_dates.php
 includes\functions\functions_error_handling.php
 includes\functions\functions_exchange_rates.php
+includes\functions\functions_exchange_rates.php
 includes\functions\functions_files.php
 includes\functions\functions_search.php
 includes\functions\functions_strings.php

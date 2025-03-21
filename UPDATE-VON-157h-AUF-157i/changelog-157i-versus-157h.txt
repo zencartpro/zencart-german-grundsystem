@@ -97,6 +97,7 @@ includes\classes\rss_feed.php
 includes\classes\shopping_cart.php
 includes\functions\functions_dates.php
 includes\functions\functions_email.php
+includes\functions\functions_exchange_rates.php
 includes\functions\functions_prices.php
 includes\functions\functions_products.php
 includes\init_includes\init_sessions.php
