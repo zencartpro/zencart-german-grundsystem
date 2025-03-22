@@ -3,7 +3,7 @@ Wenn Sie mit phpMyAdmin vertraut sind, können Sie die Schritte 3 - DATENBANKAKT
 Nach den Schritten 1 und 2 gehen Sie dazu in phpMyAdmin in Ihre Datenbank.
 Machen Sie erst eine komplette Sicherung der Datenbank
 
-Dann öffnen Sie die Datei updatebefehle-157i.sql mit einem Texteditor und kopieren Sie den Inhalt ins Eingabefeld unter SQL.
+Dann öffnen Sie die Datei updatebefehle-157j.sql mit einem Texteditor und kopieren Sie den Inhalt ins Eingabefeld unter SQL.
 Oder importieren Sie die Datei unter Importieren.
 
 Nach erfolgreichem Import loggen Sie sich in Ihre Zen Cart Administration ein.
