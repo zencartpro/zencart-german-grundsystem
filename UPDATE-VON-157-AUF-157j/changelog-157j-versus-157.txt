@@ -1,14 +1,14 @@
-1.5.7i deutsch ist ein sehr umfangreicher Service Pack für 1.5.7 deutsch
-Es integriert die fast vollständige Codebasis der aktuellen amerikanischen Version 1.5.8 und ein Großteil der amerikanischen Version 2.0.0 in die deutsche Zen Cart Version 1.5.7.
+1.5.7j deutsch ist ein sehr umfangreicher Service Pack für 1.5.7 deutsch
+Es integriert die fast vollständige Codebasis der aktuellen amerikanischen Version 1.5.8 und ein Großteil der amerikanischen Version 2.0.0/2.1.0 in die deutsche Zen Cart Version 1.5.7.
 Damit wird PHP 8.3.x vollständig unterstützt.
-Die integrierten Module und 3rd Party Komponenten werden auf den Stand von August 2024 gebracht.
+Die integrierten Module und 3rd Party Komponenten werden auf den Stand von März 2025 gebracht.
 Der Adminbereich wird mit dieser Version auf ein modernes, einheitliche Layout gebracht.
 Das bislang in der Grundinstallation enthaltene Zahlungsmodul Sofortüberweisung (sofort_su) wurde entfernt, da es veraltet ist und von dem neuen Sofort Eigentümer Klarna nicht mehr unterstützt wird.
 
-Die Umstellung der Sprachdateien, die die amerikanische Version 1.5.8/2.0.0/2.1.0 bereits mitbringt, wird in einer für 2025 geplanten deutschen Zen Cart Version 2.1.0 mit vollständiger PHP 8.4 Unterstützung nachgezogen.
-Dadurch kann in 1.5.7i weiterhin mit den gewohnten Sprachdefinitionen gearbeitet werden. 
+Die Umstellung der Sprachdateien, die die amerikanische Version 1.5.8/2.0.0/2.1.0 bereits mitbringt, wird in einer für Ende 2025 geplanten deutschen Zen Cart Version 2.1.0 mit vollständiger PHP 8.4 Unterstützung nachgezogen.
+Dadurch kann in 1.5.7j weiterhin mit den gewohnten Sprachdefinitionen gearbeitet werden. 
 
-1.5.7i behebt auch alle Fehler die seit Erscheinen von 1.5.7h auf Github gemeldet wurden.
+1.5.7j behebt auch alle Fehler die seit Erscheinen von 1.5.7i auf Github gemeldet wurden.
 
 Aktualisierte Komponenten:
 - PHP Mailer Update auf 6.9.3
@@ -60,6 +60,7 @@ Changelog Zen Cart 1.5.7j deutsch gegenüber 1.5.7 deutsch
 ---------------------------------------------------------------------------------------------
 NEUE DATEIEN
 ---------------------------------------------------------------------------------------------
+admin\assets (gesamter Ordner)
 admin\images\small_zen_logo.gif
 admin\includes\auto_loaders\config.log_manager.php
 admin\includes\auto_loaders\config.pulldowns.php
@@ -109,7 +110,7 @@ admin\uploads.php
 cache\images\.htaccess
 editors\ckeditor (gesamter Ordner)
 editors\tiny_mce (gesamter Ordner)
-extras\fontawesome\6.7.0\ (gesamter Ordner)
+extras\fontawesome\6.7.2\ (gesamter Ordner)
 includes\classes\class.search.php
 includes\classes\Coupon.php
 includes\classes\CouponValidation.php
@@ -195,7 +196,7 @@ zc_plugins (gesamter Ordner)
 
 NEUE DATEIEN DES PLUGINS SOFORTSUCHE (INSTANT SEARCH)
 
-1.5.7i bringt als Beispiel für ein via Plugin Manager installierbares Modul das Modul Sofortsuche (Instant Search) in der Version 4.0.3 mit.
+1.5.7j bringt als Beispiel für ein via Plugin Manager installierbares Modul das Modul Sofortsuche (Instant Search) in der Version 4.0.3 mit.
 Infos zu diesem Modul hier:
 https://www.zen-cart-pro.at/knowledgebase/sofortsuche-instant-search-fuer-zen-cart-1-5-7-deutsch/
 Sie können es unter Module > Plugin Manager installieren und aktivieren, wenn Sie es in Ihrem Shop nutzen wollen.
