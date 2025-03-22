@@ -27,10 +27,12 @@ includes\classes\class.search.php
 
 GEAENDERTE DATEIEN
 ------------------------------------------------------------------------------------------
+admin\includes\classes\stats_sales_report_graph.php
 admin\includes\languages\german.php
 admin\customers_without_order.php
 admin\german_help.php
 admin\salemaker.php
+admin\stats_sales_report_graphs.php
 admin\stats_customers.php
 includes\classes\observers\auto.instant_search_observer.php
 includes\classes\observers\auto.prioritize_search_match_in_name.php

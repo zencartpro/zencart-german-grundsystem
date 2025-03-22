@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * Zen Cart German Specific (210 code in 157)
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @author inspired from sales_report_graphs.php,v 0.01 2002/11/27 19:02:22 cwi Exp  Released under the GNU General Public License $
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-  * @version $Id: stats_sales_report_graph.php 2023-10-30 13:56:29Z webchills $
+  * @version $Id: stats_sales_report_graph.php 2025-03-22 19:16:29Z webchills $
  */
 
 class statsSalesReportGraph
@@ -196,7 +196,7 @@ class statsSalesReportGraph
                 break;
         }
 
-        if (in_array((int)$this->mode, [self::HOURLY_VIEW, self::DAILY_VIEW, self::WEEKLY_VIEW, self::MONTHLY_VIEW], false)) {
+        if (in_array((int)$this->mode, [self::HOURLY_VIEW, self::DAILY_VIEW, self::WEEKLY_VIEW], false)) {
             // set previous to start - diff
             $tmpDiff = $this->endDate - $this->startDate;
             if ($this->size == 0) {
@@ -215,9 +215,6 @@ class statsSalesReportGraph
                 case self::WEEKLY_VIEW:
                     $tmp1 = 30 * 24 * 60 * 60;
                     break;
-                case self::MONTHLY_VIEW:
-                    $tmp1 = 365 * 24 * 60 * 60;
-                    break;
             }
             $tmp = ceil($tmpDiff / $tmp1);
             if ($tmp > 1) {
@@ -228,7 +225,7 @@ class statsSalesReportGraph
 
             $tmpStart = $this->startDate - $tmpShift + $tmpUnit;
             $tmpEnd = $this->startDate - $tmpUnit;
-            if ($tmpStart >= $this->globalStartDate || $this->mode == self::MONTHLY_VIEW) {
+            if ($tmpStart >= $this->globalStartDate) {
                 $this->previous = "report=" . $this->mode . "&startDate=" . $tmpStart . "&endDate=" . $tmpEnd;
             }
             $tmpStart = $this->endDate;
@@ -240,6 +237,22 @@ class statsSalesReportGraph
                     $tmpEnd = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
                     $this->next = "report=" . $this->mode . "&startDate=" . $tmpStart . "&endDate=" . $tmpEnd;
                 }
+            }
+        } elseif ((int)$this->mode == self::MONTHLY_VIEW) { 
+            // compute previous link if data is there 
+            $year = date('Y', $this->startDate) - 1; 
+            $tmpStart = mktime(0,0,0,1,1,$year); 
+            $tmpEnd = mktime(0,0,0,12,1,$year); 
+            if (date('Y', $tmpStart) >= date('Y', $this->globalStartDate)) {
+               $this->previous = "report=" . $this->mode . "&startDate=" . $tmpStart . "&endDate=" . $tmpEnd;
+            }
+
+            // compute next link if data is there 
+            $year = date('Y', $this->startDate) + 1; 
+            $tmpStart = mktime(0,0,0,1,1,$year); 
+            $tmpEnd = mktime(0,0,0,12,1,$year); 
+            if (date('Y', $tmpEnd) <= date('Y')) {
+               $this->next= "report=" . $this->mode . "&startDate=" . $tmpStart . "&endDate=" . $tmpEnd;
             }
         }
 
@@ -306,11 +319,11 @@ class statsSalesReportGraph
                     $this->info[$i]['link'] = '';
                     break;
                 case self::DAILY_VIEW:
-                    $this->info[$i]['text'] = $zcDate->output('%x', $this->startDates[$i]);
+                    $this->info[$i]['text'] = $zcDate->output(DATE_FORMAT_SHORT, $this->startDates[$i]);
                     $this->info[$i]['link'] = "report=" . self::HOURLY_VIEW . "&startDate=" . $this->startDates[$i] . "&endDate=" . mktime(0, 0, 0, date('m', $this->endDates[$i]), date('d', $this->endDates[$i]) + 1, date('Y', $this->endDates[$i]));
                     break;
                 case self::WEEKLY_VIEW:
-                    $this->info[$i]['text'] = $zcDate->output('%x', $this->startDates[$i]) . " - " . $zcDate->output('%x', mktime(0, 0, 0, date('m', $this->endDates[$i]), date('d', $this->endDates[$i]) - 1, date('Y', $this->endDates[$i])));
+                    $this->info[$i]['text'] = $zcDate->output(DATE_FORMAT_SHORT, $this->startDates[$i]) . " - " . $zcDate->output(DATE_FORMAT_SHORT, mktime(0, 0, 0, date('m', $this->endDates[$i]), date('d', $this->endDates[$i]) - 1, date('Y', $this->endDates[$i])));
                     $this->info[$i]['link'] = "report=" . self::DAILY_VIEW . "&startDate=" . $this->startDates[$i] . "&endDate=" . mktime(0, 0, 0, date('m', $this->endDates[$i]), date('d', $this->endDates[$i]) - 1, date('Y', $this->endDates[$i]));
                     break;
                 case self::MONTHLY_VIEW:

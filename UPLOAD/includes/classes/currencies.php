@@ -1,12 +1,12 @@
 <?php
 /**
  * currencies class
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * Zen Cart German Specific (210 code in 157)
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: currencies.php 2023-10-30 15:05:16Z webchills $
+ * @version $Id: currencies.php 2025-03-22 19:18:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -124,10 +124,10 @@ class currencies extends base
      * @param string $currencyCode
      * @return string
      */
-    public function normalizeValue($valueIn, $currencyCode = null)
+    public function normalizeValue($valueIn, ?string $currencyCode = null)
     {
         $currency_info = $this->getCurrencyInfo($currencyCode);
-        return str_replace($currency_info['decimal_point'], '.', $valueIn);
+        return str_replace($currency_info['decimal_point'], '.', (string)$valueIn);
     }
 
     public function is_set($code)
@@ -181,10 +181,10 @@ class currencies extends base
      * Protected function that returns an array of 'currency' settings for the specified
      * currency_code.
      *
-     * @param null|string $currency_code The currency 'code' information to be returned.
+     * @param string|null $currency_code The currency 'code' information to be returned.
      * @return array 
      */
-    protected function getCurrencyInfo($currency_code)
+    protected function getCurrencyInfo(?string $currency_code): array
     {
         // -----
         // If the submitted currency-code is 'empty' (i.e. '' or null), default the
