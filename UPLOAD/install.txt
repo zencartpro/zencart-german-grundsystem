@@ -18,7 +18,7 @@ Aktualisierte Komponenten:
 - PHP Mailer Update auf 6.9.3
 - MobileDetect Update auf 3.74.3
 - CKEditor Update auf 4.22.1
-- TinyMCE Editor Update auf 7.0.0
+- TinyMCE Editor Update auf 7.7.2
 - braintree_web Update auf 3.116.2, braintree_php Update auf 6.24.0 
 - FontAwesome Update auf 6.7.2
 - jQuery Update auf 3.7.1
