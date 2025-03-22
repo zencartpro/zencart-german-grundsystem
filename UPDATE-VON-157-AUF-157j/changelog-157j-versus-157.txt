@@ -11,12 +11,12 @@ Dadurch kann in 1.5.7i weiterhin mit den gewohnten Sprachdefinitionen gearbeitet
 1.5.7i behebt auch alle Fehler die seit Erscheinen von 1.5.7h auf Github gemeldet wurden.
 
 Aktualisierte Komponenten:
-- PHP Mailer Update auf 6.9.1
+- PHP Mailer Update auf 6.9.3
 - MobileDetect Update auf 3.74.3
 - CKEditor Update auf 4.22.1
-- TinyMCE Editor Update auf 7.0.0
-- braintree_web Update auf 3.106.0, braintree_php Update auf 6.19.0 
-- FontAwesome Update auf 6.7.0
+- TinyMCE Editor Update auf 7.7.2
+- braintree_web Update auf 3.116.2, braintree_php Update auf 6.24.0 
+- FontAwesome Update auf 6.7.2
 - jQuery Update auf 3.7.1
 - Image Handler Update auf 5.3.4 mit webp Unterstützung
 
@@ -42,19 +42,19 @@ Verbesserungen:
 - Updatecheck zur englischen Version im Header entfernt, der Updatecheck befindet sich nun unter Tools > Serverinfo und auf der Hilfeseite
 - back to top Pfeil bei Scrollen im Adminbereich
 
-Wer bereits 1.5.7h verwendet kann mit dem speziellen Updatepaket in UPDATE-VON-157h-AUF-157i sehr leicht auf 1.5.7i aktualisieren.
-Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157h-AUF-157i
+Wer bereits 1.5.7i verwendet kann mit dem speziellen Updatepaket in UPDATE-VON-157i-AUF-157j sehr leicht auf 1.5.7j aktualisieren.
+Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157i-AUF-157j
 
-Falls Sie bereits Version 1.5.7 deutsch verwenden, aber noch nie auf 1.5.7h aktualisiert haben, dann verwenden Sie das spezielle Updatepaket UPDATE-VON-157-AUF-157i.
-Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157-AUF-157i
+Falls Sie bereits Version 1.5.7 deutsch verwenden, aber noch nie auf 1.5.7i aktualisiert haben, dann verwenden Sie das spezielle Updatepaket UPDATE-VON-157-AUF-157j.
+Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157-AUF-157j
 
-Für das Update einer älteren deutschen Zen Cart Version als 1.5.7 (Sie verwenden z.B. derzeit 1.5.6 oder 1.5.5), führen Sie bitte ein normales Update mit dem kompletten 1.5.7i Paket durch!
+Für das Update einer älteren deutschen Zen Cart Version als 1.5.7 (Sie verwenden z.B. derzeit 1.5.6 oder 1.5.5), führen Sie bitte ein normales Update mit dem kompletten 1.5.7j Paket durch!
 Detaillierte Updateanleitung für das Update solch älterer Versionen:
 * https://updateanleitung.zen-cart-pro.at
 
 ---------------------------------------------------------------------------------------------
-Changelog Zen Cart 1.5.7i deutsch gegenüber 1.5.7 deutsch
-2024-08-18
+Changelog Zen Cart 1.5.7j deutsch gegenüber 1.5.7 deutsch
+2025-03-23
 ---------------------------------------------------------------------------------------------
 
 ---------------------------------------------------------------------------------------------

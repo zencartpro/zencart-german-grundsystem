@@ -129,6 +129,7 @@ admin\includes\languages\german\uploads.php
 admin\includes\psr4Autoload.php
 admin\uploads.php
 extras\fontawesome\6.2.1 (gesamter Ordner)
+extras\fontawesome\6.4.0 (gesamter Ordner)
 includes\classes\TableViewControllers\BaseController.php
 includes\classes\TableViewControllers\TableViewController.php
 includes\classes\traits\EventManager.php
