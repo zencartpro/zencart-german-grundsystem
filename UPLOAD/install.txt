@@ -26,6 +26,7 @@ Aktualisierte Komponenten:
 
 Neue Funktionalitäten:
 - Kunden können Kundengruppen zugeordnet werden. Plugins könnten bestimmte Funktionen nur für bestimmte Kundengruppen bereitstellen.
+- Unter Kunden > Kunden können die Bestellsummen der Kunden nach Jahr angezeigt werden.
 - Unterstützung des Plugin Managers für Module, die bereits dieses Format nutzen (Das Modul Sofortsuche ist bereits zum Aktivieren hinterlegt.)
 - Beim Löschen eines Kunden kann entweder der gesamte Kundeneintrag gelöscht werden (Standard) oder mit "Nur vergessen" nur die persönlichen Daten anonymisiert werden.
 - Logfilemanager integriert (automatisches Löschen von Logfiles nach einem bestimmten Zeitraum)
@@ -69,7 +70,7 @@ MySQL oder MariaDB
 MySQL mindestens 5.7.8
 MySQL höchstens: 8.0.x
 MariaDB mindestens 10.2.7
-MariaDB höchstens 10.5
+MariaDB höchstens 10.10.x
 
 Empfohlen:
 Apache 2.4
