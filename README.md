@@ -65,3 +65,5 @@ Spende für die Weiterentwicklung der deutschen Zen Cart Version:
 
 Du bist Entwickler und möchtest helfen, die deutsche Zen Cart Version noch besser zu machen?
 Beteilige Dich auf Github.
+
+This project is tested with BrowserStack
