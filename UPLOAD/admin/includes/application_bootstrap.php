@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * Zen Cart German Specific (210 code in 157 / zencartpro adaptations)
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: application_bootstrap.php 2024-02-20 09:53:36Z webchills $
+ * @version $Id: application_bootstrap.php for newer plugins 2025-09-12 13:53:36Z webchills $
  */
 
 use App\Models\PluginControl;
@@ -126,6 +126,9 @@ if (file_exists('includes/defined_paths.php')) {
     die('ERROR: /includes/defined_paths.php file not found. Cannot continue.');
     exit;
 }
+if (file_exists($file = DIR_FS_CATALOG . 'laravel/vendor/symfony/polyfill-mbstring/bootstrap80.php')) {
+    include $file;
+}
 require DIR_FS_CATALOG . DIR_WS_FUNCTIONS . 'php_polyfills.php';
 require DIR_FS_CATALOG . DIR_WS_FUNCTIONS . 'zen_define_default.php';
 /**
@@ -174,21 +177,23 @@ require (DIR_FS_CATALOG . 'includes/application_laravel.php');
 
 $pluginManager = new PluginManager(new PluginControl, new PluginControlVersion);
 $installedPlugins = $pluginManager->getInstalledPlugins();
-$pluginManager = new PluginManager(new App\Models\PluginControl, new App\Models\PluginControlVersion);
+
 $pageLoader = PageLoader::getInstance();
 $pageLoader->init($installedPlugins, $PHP_SELF, new FileSystem);
 
 $fs = new FileSystem;
 $fs->loadFilesFromPluginsDirectory($installedPlugins, 'admin/includes/extra_configures', '~^[^\._].*\.php$~i');
 $fs->loadFilesFromPluginsDirectory($installedPlugins, 'admin/includes/extra_datafiles', '~^[^\._].*\.php$~i');
+$fs->loadFilesFromPluginsDirectory($installedPlugins, '', '~^database_tables\.php$~i');
+$fs->loadFilesFromPluginsDirectory($installedPlugins, '', '~^filenames\.php$~i');
 $fs->loadFilesFromPluginsDirectory($installedPlugins, 'admin/includes/functions/extra_functions', '~^[^\._].*\.php$~i');
 
 foreach ($installedPlugins as $plugin) {
     $namespaceAdmin = 'Zencart\\Plugins\\Admin\\' . ucfirst($plugin['unique_key']);
     $namespaceCatalog = 'Zencart\\Plugins\\Catalog\\' . ucfirst($plugin['unique_key']);
     $filePath = DIR_FS_CATALOG . 'zc_plugins/' . $plugin['unique_key'] . '/' . $plugin['version'] . '/';
-    $filePathAdmin = $filePath . 'classes/admin';
-    $filePathCatalog = $filePath . 'classes/';
+    $filePathAdmin = $filePath . 'admin/includes/classes/';
+    $filePathCatalog = $filePath . 'catalog/includes/classes/';
     $psr4Autoloader->addPrefix($namespaceAdmin, $filePathAdmin);
     $psr4Autoloader->addPrefix($namespaceCatalog, $filePathCatalog);
 }

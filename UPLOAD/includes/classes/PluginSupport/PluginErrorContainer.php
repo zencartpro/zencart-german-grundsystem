@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * Zen Cart German Specific (210 code in 157)
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: PluginErrorContainer.php 2023-10-23 15:54:16Z webchills $
+ * @version $Id: PluginErrorContainer.php for newer plugins 2025-09-12 15:54:16Z webchills $
  */
 
 namespace Zencart\PluginSupport;
@@ -14,20 +14,18 @@ class PluginErrorContainer
 {
 
     /**
-     * $logger "null" the logger to used.
+     * $logger "null" the logger to use.
      * @var object
      */
     protected $logger;
     /**
      * $logErrors is an array of error messages
-     * @var array
      */
-    protected $logErrors = [];
+    protected array $logErrors = [];
     /**
-     * $friendlyErrors is a subset of $logErrors that have a friendly message (a know error with additional information)
-     * @var array
+     * $friendlyErrors is a subset of $logErrors that have a friendly message (a known error with additional information)
      */
-    protected $friendlyErrors = [];
+    protected array $friendlyErrors = [];
 
     public function __construct($logger = null)
     {
@@ -53,7 +51,7 @@ class PluginErrorContainer
         }
         $this->logErrors[] = $logMessage;
         if ($friendlyMessage === '') return;
-        $friendlyHash = md5($friendlyMessage);
+        $friendlyHash = hash('md5', $friendlyMessage);
         $this->friendlyErrors[$friendlyHash] = $friendlyMessage;
         if ($this->logger) {
             // do something here for external logging;
