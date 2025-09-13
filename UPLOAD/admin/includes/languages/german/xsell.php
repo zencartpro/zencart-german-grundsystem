@@ -11,7 +11,8 @@
  * Adapted to Zen Cart by Merlin - Spring 2005
  * Reworked for Zen Cart v1.3.0  03-30-2006
  * Reworked for Zen Cart 1.5.7+, lat9, December 2021
- * German t ranslation webchills, January 2022
+ * German translation webchills, January 2022
+ * search function by harryg September 2025
  */
 define('CROSS_SELL_SUCCESS', 'Cross-Sell Artikel erfolgreich aktualisiert für <em>%1$s [%2$u]</em>.');    //-%1$s (product's name), %2%u (product's id).
 define('MAIN_CROSS_SELL_REMOVED', 'Alle Cross-Sell-Artikel erfolgreich entfernt für <em>%s</em>.');  //-%s (product's name)
@@ -55,3 +56,9 @@ define('TEXT_NO_CROSS_SELL_PRODUCTS', 'Für das ausgewählte Produkt wurden kein
 define('TEXT_NO_CROSS_SELLS', 'Es wurden keine Cross-Sell-Produkte definiert.');
 
 define('TEXT_JS_MAIN_DELETE_CONFIRM', 'Sind Sie sicher, dass Sie die Cross-Sells für das oben genannte Produkt entfernen möchten?');
+
+define('TEXT_XSELL_SEARCH', 'Artikelsuche für Cross-Sell');
+define('TEXT_XSELL_SEARCH_PARAMETER', 'Artikelname oder Artikelnummer:');
+define('TEXT_XSELL_SEARCH_BUTTON', 'Suchen');
+define('TEXT_XSELL_SEARCH_TOOLTIP', 'Sucht nach Teilbegriffen in Artikelnamen oder Artikelnummer.<br>Groß-/Kleinschreibung wird ignoriert.<br>Mindestens 3 Zeichen empfohlen.<br> Es werden max. 20 Ergebnisse angezeigt.');
+define('TEXT_XSELL_SEARCH_NO_RESULT', 'kein Artikel gefunden');

@@ -12,10 +12,11 @@
  * Reworked for Zen Cart v1.3.0  03-30-2006
  * Reworked for ZenCart V1.5.2 by RodG Dec 2013
  * Reworked for Zen Cart v1.5.7+ by lat9, Dec. 2021
- * @copyright Portions Copyright 2003-2023 Zen Cart Development Team
+ * search function added by harryg, Sep. 2025
+ * @copyright Portions Copyright 2003-2025 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: xsell.php  2024-04-24 11:34:51 webchills $
+ * @version $Id: xsell.php  2025-09-13 08:34:51 webchills $
  */
 require 'includes/application_top.php';
 
@@ -376,7 +377,47 @@ if ($action !== 'new_xsell') {
     <h2><?php echo SUBHEADING_MAIN_ADD; ?></h2>
 <?php
     require DIR_WS_MODULES . 'xsell/category_product_selection.php';
+    ?>
+<div style="margin: 18px; border: 1px solid #ccc; padding: 1em; background: #f9f9f9; max-width: 900px;">
+<h3><?php echo TEXT_XSELL_SEARCH; ?></h3>
+<?php echo '<form method="get" action="' . zen_href_link(FILENAME_XSELL) . '">';?>
+<input type="hidden" name="cmd" value="xsell" />
+<label for="search_term"><strong><?php echo TEXT_XSELL_SEARCH_PARAMETER; ?></strong></label>
+<input type="text" name="search_term" id="search_term" size="30" />
+<input type="submit" value="<?php echo TEXT_XSELL_SEARCH_BUTTON; ?>" />
+<div class="tooltip-wrapper">
+<span class="tooltip-icon">??</span>
+<div class="tooltip-box"><?php echo TEXT_XSELL_SEARCH_TOOLTIP; ?></div>
+</div>
+<?php echo '</form>';
 
+if (isset($_GET['search_term']) && zen_not_null($_GET['search_term'])) {
+    $term = zen_db_input($_GET['search_term']);
+    $product_result = $db->Execute("
+        SELECT p.products_id, pd.products_name
+        FROM " . TABLE_PRODUCTS . " p
+        LEFT JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd ON p.products_id = pd.products_id
+        WHERE (pd.products_name LIKE '%" . $term . "%' OR p.products_model LIKE '%" . $term . "%')
+        AND pd.language_id = " . (int)$_SESSION['languages_id'] . "
+        LIMIT 20
+    ");
+
+    if (!$product_result->EOF) {
+        echo '<ul>';
+        while (!$product_result->EOF) {
+            $pid = (int)$product_result->fields['products_id'];
+            $pname = htmlspecialchars($product_result->fields['products_name']);
+            echo '<li><a href="' . zen_href_link(FILENAME_XSELL, 'action=new_xsell&xsell_main_pid=' . $pid) . '">' . $pname . '</a></li>';
+            $product_result->MoveNext();
+        }
+        echo '</ul>';
+    } else {
+        echo '<p><strong>' . TEXT_XSELL_SEARCH_NO_RESULT .' </strong></p>';
+    }
+}
+?>
+</div>
+<?php
     echo zen_draw_form('delete', FILENAME_XSELL, zen_get_all_get_params(['action', 'next_action']) . 'action=delete&page=' . $xsell_page, 'post', 'id="delete-form"');
     echo zen_draw_hidden_field('xsell_main_delete', '', 'id="main_delete"');
 ?>

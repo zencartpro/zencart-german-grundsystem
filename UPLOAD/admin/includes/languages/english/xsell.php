@@ -11,6 +11,7 @@
  * Adapted to Zen Cart by Merlin - Spring 2005
  * Reworked for Zen Cart v1.3.0  03-30-2006
  * Reworked for Zen Cart 1.5.7+, lat9, December 2021
+ * search function by harryg September 2025
  */
 define('CROSS_SELL_SUCCESS', 'Cross-sell items successfully updated for <em>%1$s [%2$u]</em>.');    //-%1$s (product's name), %2%u (product's id).
 define('MAIN_CROSS_SELL_REMOVED', 'All cross-sell items successfully removed for <em>%s</em>.');  //-%s (product's name)
@@ -55,3 +56,9 @@ define('TEXT_NO_CROSS_SELL_PRODUCTS', 'No cross-sells have been defined for the 
 define('TEXT_NO_CROSS_SELLS', 'No cross-sell products have been defined.');
 
 define('TEXT_JS_MAIN_DELETE_CONFIRM', 'Are you sure you want to remove the cross-sell(s) for the above product?');
+
+define('TEXT_XSELL_SEARCH', 'Product search for cross-sells');
+define('TEXT_XSELL_SEARCH_PARAMETER', 'Product name or product number:');
+define('TEXT_XSELL_SEARCH_BUTTON', 'Search');
+define('TEXT_XSELL_SEARCH_TOOLTIP', 'Searches for partial terms in item names or item numbers.<br>Uppercase/lowercase letters are ignored.<br>At least 3 characters are recommended.<br> A maximum of 20 results are displayed.');
+define('TEXT_XSELL_SEARCH_NO_RESULT', 'No items found');
