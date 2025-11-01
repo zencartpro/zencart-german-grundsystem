@@ -9,16 +9,39 @@
 
 namespace Zencart\Traits;
 
+/**
+ * @since ZC v1.5.7
+ */
 trait Singleton
 {
-    private static $instances = array();
-    protected function __construct() {}
-    protected function __clone() {}
+    private static array $instances = [];
+
+    protected function __construct() { }
+
+    /**
+     * @since ZC v1.5.7
+     */
+    protected function __clone() { }
+
+    /**
+     * @since ZC v2.2.0
+     */
+    public function __unserialize(array $data): void
+    {
+        throw new \BadMethodCallException("Cannot unserialize singleton");
+    }
+
+    /**
+     * @since ZC v1.5.7
+     */
     public function __wakeup()
     {
         throw new Exception("Cannot unserialize singleton");
     }
 
+    /**
+     * @since ZC v1.5.7
+     */
     public static function getInstance()
     {
         $cls = get_called_class(); // late-static-bound class name

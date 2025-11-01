@@ -1,14 +1,14 @@
 <?php
 /**
- * @copyright Copyright 2003-2024 Zen Cart Development Team
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main.php 2024-08-17 09:54:29Z webchills $
+ * @version $Id: main.php 2025-11-01 11:54:29Z webchills $
  */
 
 return [
-'META_TAG_TITLE' => 'Zen Cart 1.5.7i German - Installer',
+'META_TAG_TITLE' => 'Zen Cart 1.5.7j German - Installer',
 'HTML_PARAMS' => 'dir="ltr" lang="en"',
 'ZC_VERSION_STRING' => '%s v%s',
 'TEXT_PAGE_HEADING_INDEX' => 'System Inspection',

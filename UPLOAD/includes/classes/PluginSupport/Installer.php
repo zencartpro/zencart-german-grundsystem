@@ -10,6 +10,9 @@
 
 namespace Zencart\PluginSupport;
 
+/**
+ * @since ZC v1.5.7
+ */
 class Installer
 {
     protected string $pluginDir;
@@ -21,6 +24,9 @@ class Installer
     {
     }
 
+    /**
+     * @since ZC v2.1.0
+     */
     public function setVersions(string $pluginDir, string $pluginKey, string $version, ?string $oldVersion = null): void
     {
         $this->pluginDir = $pluginDir;
@@ -29,6 +35,9 @@ class Installer
         $this->oldVersion = $oldVersion;
     }
 
+    /**
+     * @since ZC v2.1.0
+     */
     public function getVersionInformation(): array
     {
         return [
@@ -39,6 +48,9 @@ class Installer
         ];
     }
 
+    /**
+     * @since ZC v1.5.7
+     */
     public function executeInstallers($pluginDir): void
     {
         $this->executePatchInstaller($pluginDir);
@@ -48,6 +60,9 @@ class Installer
         $this->executeScriptedInstaller($pluginDir);
     }
 
+    /**
+     * @since ZC v1.5.7
+     */
     public function executeUninstallers($pluginDir): void
     {
         $this->executePatchUninstaller($pluginDir);
@@ -57,23 +72,35 @@ class Installer
         $this->executeScriptedUninstaller($pluginDir);
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     public function executeUpgraders($pluginDir, $oldVersion): void
     {
         $this->executeScriptedUpgrader($pluginDir, $oldVersion);
     }
 
+    /**
+     * @since ZC v1.5.7
+     */
     protected function executePatchInstaller($pluginDir): void
     {
         $patchFile = 'install.sql';
         $this->executePatchFile($pluginDir, $patchFile);
     }
 
+    /**
+     * @since ZC v1.5.7
+     */
     protected function executePatchUninstaller($pluginDir): void
     {
         $patchFile = 'uninstall.sql';
         $this->executePatchFile($pluginDir, $patchFile);
     }
 
+    /**
+     * @since ZC v1.5.7
+     */
     protected function executePatchFile($pluginDir, $patchFile): void
     {
         if (!file_exists($pluginDir . '/Installer/' . $patchFile)) {
@@ -87,6 +114,9 @@ class Installer
         $this->patchInstaller->executePatchSql($paramLines);
     }
 
+    /**
+     * @since ZC v1.5.7
+     */
     protected function executeScriptedInstaller($pluginDir): void
     {
         if (!file_exists($pluginDir . '/Installer/ScriptedInstaller.php')) {
@@ -97,6 +127,9 @@ class Installer
         $scriptedInstaller->doInstall();
     }
 
+    /**
+     * @since ZC v1.5.7
+     */
     protected function executeScriptedUninstaller($pluginDir): void
     {
         if (!file_exists($pluginDir . '/Installer/ScriptedInstaller.php')) {
@@ -107,6 +140,9 @@ class Installer
         $scriptedInstaller->doUninstall();
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     protected function executeScriptedUpgrader($pluginDir, $oldVersion): void
     {
         if (!file_exists($pluginDir . '/Installer/ScriptedInstaller.php')) {
@@ -117,6 +153,9 @@ class Installer
         $scriptedInstaller->doUpgrade($oldVersion);
     }
 
+    /**
+     * @since ZC v1.5.8a
+     */
     public function getErrorContainer(): PluginErrorContainer
     {
         return $this->errorContainer;

@@ -15,6 +15,9 @@ use App\Models\PluginControlVersion;
 use Zencart\PageLoader\PageLoader;
 use Zencart\PluginManager\PluginManager;
 
+/**
+ * @since ZC v2.1.0
+ */
 trait InteractsWithPlugins
 {
     protected bool $isAZcPlugin = false;
@@ -37,6 +40,7 @@ trait InteractsWithPlugins
 
     /**
      * Determine the plugin's currently-installed zc_plugin directory.
+     * @since ZC v2.1.0
      */
     protected function detectZcPluginDetails(string $__dir__path): void
     {
@@ -76,6 +80,7 @@ trait InteractsWithPlugins
      *
      * @var \template_func $template
      * @var PageLoader $pageLoader
+     * @since ZC v2.1.0
      */
     protected function linkCatalogStylesheet(string $stylesheet_filename, ?string $current_page): bool
     {

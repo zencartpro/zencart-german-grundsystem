@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * Zen Cart German Specific (210 code in 157 / zencartpro adaptations)
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: FileSystem.php 2023-10-23 14:27:24Z webchills $
+ * @version $Id: FileSystem.php for newer plugins 2025-10-29 14:25:24Z webchills $
  */
 
 namespace Zencart\FileSystem;
@@ -14,10 +14,14 @@ use Illuminate\Filesystem\Filesystem as IlluminateFilesystem;
 
 class FileSystem extends IlluminateFilesystem
 {
-    public function loadFilesFromDirectory($rootDir, $fileRegx = '~^[^\._].*\.php$~i')
+    public function loadFilesFromDirectory(string $rootDir, string $fileRegx = '~^[^\._].*\.php$~i'): void
     {
-        if (!is_dir($rootDir)) return;
-        if (!$dir = @dir($rootDir)) return;
+        if (!is_dir($rootDir)) {
+            return;
+        }
+        if (!$dir = @dir($rootDir)) {
+            return;
+        }
         while ($file = $dir->read()) {
             if (preg_match($fileRegx, $file) > 0) {
                 require_once($rootDir . '/' . $file);
@@ -26,10 +30,14 @@ class FileSystem extends IlluminateFilesystem
         $dir->close();
     }
 
-    public function listFilesFromDirectory($rootDir, $fileRegx = '~^[^\._].*\.php$~i')
+    public function listFilesFromDirectory(string $rootDir, string $fileRegx = '~^[^\._].*\.php$~i'): array
     {
-        if (!is_dir($rootDir)) return [];
-        if (!$dir = @dir($rootDir)) return [];
+        if (!is_dir($rootDir)) {
+            return [];
+        }
+        if (!$dir = @dir($rootDir)) {
+            return [];
+        }
         $fileList = [];
         while ($file = $dir->read()) {
             if (preg_match($fileRegx, $file) > 0) {
@@ -40,14 +48,14 @@ class FileSystem extends IlluminateFilesystem
         return $fileList;
     }
 
-    public function listFilesFromDirectoryAlphaSorted($rootDir, $fileRegx = '~^[^\._].*\.php$~i')
+    public function listFilesFromDirectoryAlphaSorted(string $rootDir, string $fileRegx = '~^[^\._].*\.php$~i'): array
     {
         $fileList = $this->listFilesFromDirectory($rootDir, $fileRegx);
         sort($fileList);
         return $fileList;
     }
 
-    public function loadFilesFromPluginsDirectory($installedPlugins, $rootDir, $fileRegx = '~^[^\._].*\.php$~i')
+    public function loadFilesFromPluginsDirectory(array $installedPlugins, string $rootDir, string $fileRegx = '~^[^\._].*\.php$~i'): void
     {
         foreach ($installedPlugins as $plugin) {
             $pluginDir = DIR_FS_CATALOG . 'zc_plugins/' . $plugin['unique_key'] . '/' . $plugin['version'];
@@ -56,46 +64,65 @@ class FileSystem extends IlluminateFilesystem
         }
     }
 
-    public function findPluginAdminPage($installedPlugins, $page)
+    public function findPluginAdminPage(array $installedPlugins, string $page)
     {
         $found = null;
         foreach ($installedPlugins as $plugin) {
             $pluginDir = DIR_FS_CATALOG . 'zc_plugins/' . $plugin['unique_key'] . '/' . $plugin['version'];
             $adminFile = $pluginDir . '/admin/' . $page . '.php';
-            if (!file_exists($adminFile)) {
+            $adminFile = $this->realpath($adminFile);
+            $realPath = $this->realpath($adminFile);
+            if ($realPath === false || strpos($realPath, $pluginDir) !== 0) {
+                continue; // Skip this file if it's not under the intended directory
+            }
+            if (!file_exists($realPath)) {
                 continue;
             }
-            $found = $adminFile;
+            $found = $realPath;
         }
         return $found;
     }
 
-    public function isAdminDir($filePath)
+    public function isAdminDir(string $filePath): bool
     {
-        if (!defined('DIR_FS_ADMIN')) return false;
+        if (!defined('DIR_FS_ADMIN')) {
+            return false;
+        }
         $test = str_replace(DIR_FS_ADMIN, '', $filePath);
-        if ($test != $filePath) return false;
+        if ($test != $filePath) {
+            return false;
+        }
         return true;
     }
 
-    public function isCatalogDir($filePath)
+    public function isCatalogDir(string $filePath): bool
     {
-        if ($this->isAdminDir($filePath)) return false;
-        if (!defined('DIR_FS_CATALOG')) return false;
+        if ($this->isAdminDir($filePath)) {
+            return false;
+        }
+        if (!defined('DIR_FS_CATALOG')) {
+            return false;
+        }
         $test = str_replace(DIR_FS_CATALOG, '', $filePath);
-        if ($test != $filePath) return false;
+        if ($test !== $filePath) {
+            return false;
+        }
         return true;
 
     }
 
-    public function getRelativeDir($filePath)
+    public function getRelativeDir(string $filePath): string
     {
-        if ($this->isAdminDir($filePath)) return str_replace(DIR_FS_ADMIN, '', $filePath);
-        if ($this->isCatalogDir($filePath)) return str_replace(DIR_FS_CATALOG, '', $filePath);
+        if ($this->isAdminDir($filePath)) {
+            return str_replace(DIR_FS_ADMIN, '', $filePath);
+        }
+        if ($this->isCatalogDir($filePath)) {
+            return str_replace(DIR_FS_CATALOG, '', $filePath);
+        }
         return $filePath;
     }
 
-    public function getDirectorySize($path, $decimals = 2, $addSuffix = true)
+    public function getDirectorySize(string $path, $decimals = 2, bool $addSuffix = true): string
     {
         $bytes = 0;
         foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path)) as $file) {
@@ -104,15 +131,19 @@ class FileSystem extends IlluminateFilesystem
         $size = array('B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
         $factor = floor((strlen($bytes) - 1) / 3);
         $suffix = 'bloody huge!';
-        if (isset($size[$factor])) $suffix = $size[$factor];
-        return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . $suffix;
+        if (isset($size[$factor])) {
+            $suffix = $size[$factor];
+        }
+        return sprintf("%.{$decimals}f ", $bytes / pow(1024, $factor)) . $suffix;
     }
 
-    public function fileExistsInDirectory($fileDir, $filePattern)
+    public function fileExistsInDirectory(string $fileDir, string $filePattern): bool
     {
         $found = false;
         $filePattern = '/' . str_replace("/", "\/", $filePattern) . '$/';
-        if (!is_dir($fileDir)) return false;
+        if (!is_dir($fileDir)) {
+            return false;
+        }
         if ($mydir = @dir($fileDir)) {
             while ($file = $mydir->read()) {
                 if (preg_match($filePattern, $file)) {
@@ -125,7 +156,7 @@ class FileSystem extends IlluminateFilesystem
         return $found;
     }
 
-    public function setFileExtension($file, $extension = 'php')
+    public function setFileExtension(string $file, string $extension = 'php'): string
     {
         if (preg_match('~\.' . $extension . '~i', $file)) {
             return $file;
@@ -133,7 +164,7 @@ class FileSystem extends IlluminateFilesystem
         return $file . '.php';
     }
 
-    public function hasTemplateLanguageOverride($templateDir, $rootPath, $language, $file, $extraPath = '')
+    public function hasTemplateLanguageOverride(string $templateDir, string $rootPath, string $language, string $file, string $extraPath = ''): bool
     {
         $file = $this->setFileExtension($file);
         $fullPath = $rootPath . $language . $extraPath . '/' . $templateDir . '/' . $file;
@@ -143,12 +174,20 @@ class FileSystem extends IlluminateFilesystem
         return true;
     }
 
-    public function getExtraPathForTemplateOverrrideOrOriginal($templateDir, $rootPath, $language, $file, $extraPath = '')
+    public function getExtraPathForTemplateOverrrideOrOriginal(string $templateDir, string $rootPath, string $language, string $file, string $extraPath = ''): string
     {
         if (!$this->hasTemplateLanguageOverride($templateDir, $rootPath, $language, $file, $extraPath)) {
             return $extraPath;
         }
         $extraPath = $extraPath . '/' . $templateDir;
         return $extraPath;
+    }
+
+    protected function realpath(string $path): string
+    {
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+            return str_replace('\\', '/', realpath($path));
+        }
+        return realpath($path);
     }
 }

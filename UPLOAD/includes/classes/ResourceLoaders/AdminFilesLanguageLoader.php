@@ -1,19 +1,25 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * Zen Cart German Specific (210 code in 157)
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: AdminFilesLanguageLoader.php 2023-10-29 15:07:24Z webchills $
+ * @version $Id: AdminFilesLanguageLoader.php for newer plugins 2025-10-30 14:54:24Z webchills $
  */
 
 namespace Zencart\LanguageLoader;
 
 use Zencart\FileSystem\FileSystem;
 
+/**
+ * @since ZC v1.5.8
+ */
 class AdminFilesLanguageLoader extends FilesLanguageLoader
 {
+    /**
+     * @since ZC v1.5.8
+     */
     public function loadInitialLanguageDefines($mainLoader)
     {
         $this->mainLoader = $mainLoader;
@@ -22,6 +28,9 @@ class AdminFilesLanguageLoader extends FilesLanguageLoader
         $this->loadBaseLanguageFile();
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     protected function loadLanguageForView()
     {
         $this->loadFileDefineFile(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $this->currentPage);
@@ -31,7 +40,9 @@ class AdminFilesLanguageLoader extends FilesLanguageLoader
             $this->loadFileDefineFile($langFile);
         }
     }
-
+    /**
+     * @since ZC v1.5.8
+     */
     protected function loadLanguageExtraDefinitions()
     {
         $dirPath = DIR_WS_LANGUAGES . $_SESSION['language'] . '/extra_definitions';
@@ -48,13 +59,15 @@ class AdminFilesLanguageLoader extends FilesLanguageLoader
             }
         }
     }
-
+     /**
+     * @since ZC v1.5.8
+     */
     protected function loadBaseLanguageFile()
     {
         $this->loadFileDefineFile(DIR_WS_LANGUAGES . $_SESSION['language'] . '.php');
-        $this->loadFileDefineFile(DIR_WS_LANGUAGES . $_SESSION['language'] . "/" . FILENAME_EMAIL_EXTRAS);
+        $this->loadFileDefineFile(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . FILENAME_EMAIL_EXTRAS);
         $this->loadFileDefineFile(
-            zen_get_file_directory(
-                DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/', FILENAME_OTHER_IMAGES_NAMES));
+            zen_get_file_directory(DIR_FS_CATALOG_LANGUAGES . $_SESSION['language'] . '/', FILENAME_OTHER_IMAGES_NAMES)
+        );
     }
 }

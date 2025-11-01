@@ -1,13 +1,13 @@
 <?php
 /**
  * autoloader array for catalog application_top.php
- * Zen Cart German Specific (200 code in 157)
+ * Zen Cart German Specific (210 code in 157)
  *
  
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: config.core.php 2024-04-08 17:04:16Z webchills $
+ * @version $Id: config.core.php for newer plugins 2025-09-16 11:07:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -22,7 +22,6 @@ if (!defined('USE_PCONNECT')) {
  * require DIR_WS_CLASSES . 'class.notifier.php';
  * $zco_notifier = new notifier()'
  * require DIR_WS_CLASSES . 'class.phpmailer.php';
- * require DIR_WS_CLASSES . 'boxes.php';
  * require DIR_WS_CLASSES . 'category_tree.php';
  * require DIR_WS_CLASSES . 'cache.php';
  * require DIR_WS_CLASSES . 'sniffer.php';
@@ -31,9 +30,7 @@ if (!defined('USE_PCONNECT')) {
  * require DIR_WS_CLASSES . 'currencies.php';
  * require DIR_WS_CLASSES . 'message_stack.php';
  * require DIR_WS_CLASSES . 'template_func.php';
- * require DIR_WS_CLASSES . 'split_page_results.php';
  * require DIR_WS_CLASSES . 'breadcrumb.php';
- * require DIR_WS_CLASSES . 'language.php';
  * require DIR_WS_CLASSES . 'zcDate.php';
  *
  */
@@ -41,10 +38,8 @@ $autoLoadConfig[0][] = [
     'autoType' => 'include',
     'loadFile' => DIR_WS_INCLUDES . 'version.php',
 ];
-$autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'class.notifier.php',
-];
+
+//- notifier class loaded via psr4Autoload.php
 $autoLoadConfig[0][] = [
     'autoType' => 'classInstantiate',
     'className' => 'notifier',
@@ -54,88 +49,25 @@ $autoLoadConfig[0][] = [
     'autoType' => 'class',
     'loadFile' => 'class.phpmailer.php',
 ];
-$autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'boxes.php',
-];
-$autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'category_tree.php',
-];
-$autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'template_func.php',
-];
-  $autoLoadConfig[0][] = [
-  'autoType'=>'class',
-  'loadFile'=>'split_page_results.php',
-  ];
-  
- $autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'language.php',
-    ];  
-$autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'sniffer.php',
-];
-$autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'shopping_cart.php',
-];
-$autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'navigation_history.php',
-];
-$autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'currencies.php',
-];
-$autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'message_stack.php',
-];
-$autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'breadcrumb.php',
-];
-$autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'class.zcPassword.php',
-];
+
+//- zcPassword class loaded via psr4Autoload.php
 $autoLoadConfig[0][] = [
     'autoType' => 'classInstantiate',
     'className' => 'zcPassword',
     'objectName' => 'zcPassword',
 ];
-$autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'Customer.php',
-];
-  $autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'zcDate.php'
-  ];
-  $autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'Coupon.php',
-];
-$autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'CouponValidation.php',
-];
-
 /**
  * Breakpoint 5.
  *
  * $zcDate = new zcDate(); ... will be re-initialized when/if the require_languages.php module is run.
  *
  */
-  $autoLoadConfig[5][] = [
+//- zcDate class loaded via psr4Autoload.php
+$autoLoadConfig[5][] = [
     'autoType' => 'classInstantiate',
     'className' => 'zcDate',
     'objectName' => 'zcDate',
-  ];
+];
 
 /**
  * Breakpoint 30.
@@ -164,10 +96,10 @@ $autoLoadConfig[40][] = [
  * require 'includes/init_includes/init_non_db_settings.php';
  *
  */
-  $autoLoadConfig[45][] = [
+$autoLoadConfig[45][] = [
     'autoType' => 'init_script',
     'loadFile' => 'init_non_db_settings.php',
-  ];
+];
 /**
  * Breakpoint 50.
  *
@@ -175,6 +107,7 @@ $autoLoadConfig[40][] = [
  * require 'includes/init_includes/init_gzip.php';
  * require 'includes/init_includes/init_sefu.php';
  */
+//- sniffer class loaded via psr4Autoload.php
 $autoLoadConfig[50][] = [
     'autoType' => 'classInstantiate',
     'className' => 'sniffer',
@@ -232,6 +165,7 @@ $autoLoadConfig[70][] = [
  * if (!$_SESSION['cart']) $_SESSION['cart'] = new shoppingCart();
  *
  */
+//- shoppingCart class loaded via psr4Autoload.php
 $autoLoadConfig[80][] = [
     'autoType' => 'classInstantiate',
     'className' => 'shoppingCart',
@@ -239,16 +173,33 @@ $autoLoadConfig[80][] = [
     'checkInstantiated' => true,
     'classSession' => true,
 ];
+//- Zencart\Search\Search loaded via psr4Autoload.php
+$autoLoadConfig[80][] = [
+    'autoType' => 'classInstantiate',
+    'className' => 'Zencart\Search\Search',
+    'objectName' => 'search',
+];
 /**
  * Breakpoint 90.
  *
  * currencies = new currencies();
  *
  */
+//- currencies class loaded via psr4Autoload.php
 $autoLoadConfig[90][] = [
     'autoType' => 'classInstantiate',
     'className' => 'currencies',
     'objectName' => 'currencies',
+];
+/**
+ * Breakpoint 95.
+ *
+ * require 'includes/init_includes/init_languages.php';
+ *
+ */
+$autoLoadConfig[95][] = [
+    'autoType' => 'init_script',
+    'loadFile' => 'init_languages.php',
 ];
 /**
  * Breakpoint 96.
@@ -267,11 +218,13 @@ $autoLoadConfig[96][] = [
  * $template = new template_func();
  *
  */
+//- template_func class loaded via psr4Autoload.php
 $autoLoadConfig[100][] = [
     'autoType' => 'classInstantiate',
     'className' => 'template_func',
     'objectName' => 'template',
 ];
+//- navigationHistory class loaded via psr4Autoload.php
 $autoLoadConfig[100][] = [
     'autoType' => 'classInstantiate',
     'className' => 'navigationHistory',
@@ -282,17 +235,21 @@ $autoLoadConfig[100][] = [
 /**
  * Breakpoint 110.
  *
- * require 'includes/init_includes/init_languages.php';
  * require 'includes/init_includes/init_templates.php';
  *
  */
 $autoLoadConfig[110][] = [
     'autoType' => 'init_script',
-    'loadFile' => 'init_languages.php',
-];
-$autoLoadConfig[110][] = [
-    'autoType' => 'init_script',
     'loadFile' => 'init_templates.php',
+];
+/**
+ * Breakpoint 115
+ *
+ * require 'includes/init_includes/init_split_page_results.php';
+ */
+$autoLoadConfig[115][] = [
+    'autoType' => 'init_script',
+    'loadFile' => 'init_split_page_results.php',
 ];
 /**
  * Breakpoint 120.
@@ -316,6 +273,7 @@ $autoLoadConfig[120][] = [
  * messageStack = new messageStack();
  *
  */
+//- messageStack class loaded via psr4Autoload.php
 $autoLoadConfig[130][] = [
     'autoType' => 'classInstantiate',
     'className' => 'messageStack',
@@ -367,6 +325,7 @@ $autoLoadConfig[150][] = [
  * require 'includes/init_includes/init_category_path.php';
  * $breadcrumb = new breadcrumb();
  */
+//- breadcrumb class loaded via psr4Autoloader.php
 $autoLoadConfig[160][] = [
     'autoType' => 'classInstantiate',
     'className' => 'breadcrumb',

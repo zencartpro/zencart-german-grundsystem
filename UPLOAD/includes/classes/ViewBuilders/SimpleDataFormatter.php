@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: SimpleDataFormatter.php 2023-10-23 15:27:24Z webchills $
+ * @version $Id: SimpleDataFormatter.php 2025-10-30 15:27:24Z webchills $
  */
 
 namespace Zencart\ViewBuilders;
@@ -14,6 +14,9 @@ use Zencart\Request\Request;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use Illuminate\Support\Collection;
 
+/**
+ * @since ZC v1.5.8
+ */
 class SimpleDataFormatter
 {
     protected $request;
@@ -29,6 +32,9 @@ class SimpleDataFormatter
         $this->derivedItems = $derivedItems;
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     public function getTableHeaders(): Collection
     {
         $colHeaders = [];
@@ -40,6 +46,9 @@ class SimpleDataFormatter
         return collect($colHeaders);
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     public function getTableData()
     {
         $tableData = [];
@@ -49,13 +58,26 @@ class SimpleDataFormatter
         foreach ($this->resultSet as $result) {
             foreach ($fields as $field) {
                 $value = $this->derivedItems->process($result, $field, $columns[$field]);
-                $columnData[$field] = ['value' => $value, 'class' => '', 'original' => $result->$field];
+
+                $class = '';
+                // if column class is set as a closure, call it and pass in the value from $result->field; else assume it is a string
+                $classDef = $columns[$field]['class'] ?? null;
+                if ($classDef instanceof \Closure || is_callable($classDef)) {
+                    $class = $classDef($result->$field);
+                } elseif (is_string($classDef)) {
+                    $class = $classDef;
+                }
+
+                $columnData[$field] = ['value' => $value, 'class' => $class, 'original' => $result->$field];
             }
             $tableData[] = $columnData;
         }
         return collect($tableData);
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     public function isRowSelected(array $tableRow): bool
     {
         $colKeyFromRequest = $this->request->input($this->tableDefinition->colKeyName());
@@ -70,6 +92,9 @@ class SimpleDataFormatter
         return false;
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     public function currentRowFromRequest()
     {
         $colKeyFromRequest = $this->request->input($this->tableDefinition->colKeyName());
@@ -82,6 +107,9 @@ class SimpleDataFormatter
         return $result;
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     public function getSelectedRowLink(array $tableRow): string
     {
         $pagerVar = $this->tableDefinition->getParameter('pagerVariable');
@@ -90,6 +118,9 @@ class SimpleDataFormatter
         return zen_href_link($this->request->input('cmd'), $params);
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     public function getNotSelectedRowLink(array $tableRow): string
     {
         $pagerVar = $this->tableDefinition->getParameter('pagerVariable');
@@ -99,16 +130,25 @@ class SimpleDataFormatter
 
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     public function getResultSet()
     {
         return $this->resultSet;
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     public function hasRowActions()
     {
         return $this->tableDefinition->hasRowActions();
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     public function getRowActions($tableRow)
     {
         $rowActions = $this->tableDefinition->getRowActions();
@@ -119,6 +159,9 @@ class SimpleDataFormatter
         return $processed;
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     public function hasButtonActions()
     {
          $buttonActions = $this->getRawButtonActions();
@@ -128,6 +171,9 @@ class SimpleDataFormatter
          return (count($buttonActions) > 0);
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     public function getButtonActions()
     {
         $buttonActions = $this->getRawButtonActions();
@@ -139,6 +185,9 @@ class SimpleDataFormatter
         return $processed;
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     protected function getRawButtonActions()
     {
         $buttonActions = $this->tableDefinition->getButtonActions();
@@ -154,12 +203,18 @@ class SimpleDataFormatter
         return $processed;
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     protected function processButtonActionLink($buttonAction)
     {
         $link = 'action=' . $buttonAction['action'];
         return $link;
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     protected function buttonPassesWhiteList($buttonAction)
     {
         $action = $this->request->input('action');
@@ -172,6 +227,9 @@ class SimpleDataFormatter
         return false;
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     protected function buttonPassesBlackList($buttonAction)
     {
         $action = $this->request->input('action');
@@ -184,6 +242,9 @@ class SimpleDataFormatter
         return true;
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     protected function processRowAction($rowAction, $tableRow)
     {
         $processed = $rowAction;
@@ -192,6 +253,9 @@ class SimpleDataFormatter
         return $processed;
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     protected function buildRowActionLink($rowAction, $tableRow)
     {
         $pagerVar = $this->tableDefinition->getParameter('pagerVariable');
@@ -203,6 +267,9 @@ class SimpleDataFormatter
         return $link;
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     protected function processRowActionTableRowLink($rowAction, $tableRow)
     {
         $link = '';
@@ -216,6 +283,9 @@ class SimpleDataFormatter
         return $link;
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     protected function getColHeaderMainClass($colDef)
     {
         $mainClass = "dataTableHeadingContent";

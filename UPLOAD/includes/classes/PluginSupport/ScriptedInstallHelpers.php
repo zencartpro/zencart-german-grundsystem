@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ScriptedInstallHelpers.php for newer plugins 2025-09-12 15:54:16Z webchills $
+ * @version $Id: ScriptedInstallHelpers.php for newer plugins 2025-10-30 15:54:16Z webchills $
  */
 
 namespace Zencart\PluginSupport;
@@ -14,6 +14,9 @@ use App\Models\LayoutBox;
 use queryFactory;
 use queryFactoryResult;
 
+/**
+ * @since ZC v2.0.1
+ */
 trait ScriptedInstallHelpers
 {
     protected queryFactory $dbConn;
@@ -21,6 +24,7 @@ trait ScriptedInstallHelpers
     /**
      * Get details of current configuration record entry, false if not found.
      * Optional: when $only_check_existence is true, will simply return true/false.
+     * @since ZC v2.0.1
      */
     protected function getConfigurationKeyDetails(string $key_name, bool $only_check_existence = false): array|bool
     {
@@ -35,6 +39,9 @@ trait ScriptedInstallHelpers
         return $result->fields;
     }
 
+    /**
+     * @since ZC v2.0.1
+     */
     protected function addConfigurationKey(string $key_name, array $properties): int
     {
         $exists = $this->getConfigurationKeyDetails($key_name, true);
@@ -80,6 +87,9 @@ trait ScriptedInstallHelpers
         return $insert_id;
     }
 
+    /**
+     * @since ZC v2.0.1
+     */
     protected function updateConfigurationKey(string $key_name, array $properties): int
     {
         $fields = [
@@ -116,6 +126,9 @@ trait ScriptedInstallHelpers
         return $rows;
     }
 
+    /**
+     * @since ZC v2.0.1
+     */
     protected function deleteConfigurationKeys(array $key_names): int
     {
         if (empty($key_names)) {
@@ -135,7 +148,9 @@ trait ScriptedInstallHelpers
         return $rows;
     }
 
-
+    /**
+     * @since ZC v2.1.0
+     */
     protected function getOrCreateConfigGroupId(string $config_group_title, string $config_group_description, ?int $sort_order = 1): int
     {
         $config_group_title = $this->dbConn->prepare_input($config_group_title);
@@ -171,6 +186,9 @@ trait ScriptedInstallHelpers
         return $cgi;
     }
 
+    /**
+     * @since ZC v2.0.1
+     */
     protected function addConfigurationGroup(array $properties): int
     {
         $exists = $this->getConfigurationKeyDetails($this->dbConn->prepare_input($properties['configuration_group_title']));
@@ -214,6 +232,9 @@ trait ScriptedInstallHelpers
         return $insert_id;
     }
 
+    /**
+     * @since ZC v2.0.1
+     */
     protected function updateConfigurationGroup(int $group_id, array $properties): int
     {
         $fields = [
@@ -243,6 +264,9 @@ trait ScriptedInstallHelpers
         return $rows;
     }
 
+    /**
+     * @since ZC v2.0.1
+     */
     protected function deleteConfigurationGroup(int|string $group, bool $cascadeDeleteKeysToo = false): int
     {
         $rows = 0;
@@ -272,6 +296,9 @@ trait ScriptedInstallHelpers
         return $rows;
     }
 
+    /**
+     * @since ZC v2.0.1
+     */
     protected function getConfigurationGroupDetails(int|string $group, bool $only_check_existence = false): array|bool
     {
         $sql = "SELECT * FROM " . TABLE_CONFIGURATION_GROUP;
@@ -291,6 +318,9 @@ trait ScriptedInstallHelpers
         return $result->fields;
     }
 
+    /**
+     * @since ZC v2.1.0
+     */
     protected function executeInstallerSelectQuery(string $sql, ?int $limit = null): bool|queryFactoryResult
     {
         $this->dbConn->dieOnErrors = false;
@@ -305,6 +335,9 @@ trait ScriptedInstallHelpers
         return $result;
     }
 
+    /**
+     * @since ZC v2.1.0
+     */
     protected function executeInstallerDbPerform(string $table, array $sql_data_array, $performType = 'INSERT', string $whereCondition = '', $debug = false): bool
     {
         $this->dbConn->dieOnErrors = false;
@@ -323,6 +356,9 @@ trait ScriptedInstallHelpers
     // that are managed by core Zen Cart processes on the update of an encapsulated
     // plugin.
     //
+    /**
+     * @since ZC v2.2.0
+     */
     private function updateZenCoreDbFields(string $oldVersion): void
     {
         // -----
@@ -339,6 +375,9 @@ trait ScriptedInstallHelpers
     // that are managed by core Zen Cart processes on the uninstall of an encapsulated
     // plugin.
     //
+    /**
+     * @since ZC v2.2.0
+     */
     private function uninstallZenCoreDbFields(): void
     {
         // -----

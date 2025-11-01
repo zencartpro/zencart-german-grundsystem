@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 /**
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * Zen Cart German Specific (210 code in 157)
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: DerivedItemsManager.php 2023-10-23 15:27:24Z webchills $
+ * @version $Id: DerivedItemsManager.php 2025-10-29 15:27:24Z webchills $
  */
 
 namespace Zencart\ViewBuilders;
@@ -13,8 +13,14 @@ namespace Zencart\ViewBuilders;
 use Zencart\FileSystem\FileSystem;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @since ZC v1.5.8
+ */
 class DerivedItemsManager
 {
+    /**
+     * @since ZC v1.5.8
+     */
     public function process(Model $tableRow, string $colName, array $columnInfo) : string
     {
         if (!isset($columnInfo['derivedItem'])) {
@@ -24,6 +30,9 @@ class DerivedItemsManager
         return $colData;
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     protected function processDerivedItem(Model $tableRow, string $colName, array $columnInfo) : string
     {
         $type = $columnInfo['derivedItem']['type'];
@@ -39,6 +48,9 @@ class DerivedItemsManager
         }
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     protected function booleanReplace(Model $tableRow, string $colName, array $columnInfo) : string
     {
         $params = $columnInfo['derivedItem']['params'];
@@ -48,6 +60,9 @@ class DerivedItemsManager
         return $result;
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     protected function arrayReplace(Model $tableRow, string $colName, array $columnInfo) : string
     {
         $params = $columnInfo['derivedItem']['params'];
@@ -56,11 +71,22 @@ class DerivedItemsManager
         return $result;
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     protected function getPluginFileSize(Model $tableRow, string $colName, array $columnInfo) : string
     {
         $filePath = DIR_FS_CATALOG . 'zc_plugins/' . $tableRow['unique_key'] . '/';
         $fs = new FileSystem;
         $dirSize = $fs->getDirectorySize($filePath);
         return $dirSize;
+    }
+
+    /**
+     * @since ZC v2.1.0
+     */
+    protected function getLanguageTranslationForName(Model $tableRow, string $colName, array $columnInfo) : string
+    {
+        return zen_lookup_admin_menu_language_override('plugin_name', $tableRow['unique_key'], $tableRow['name']);
     }
 }

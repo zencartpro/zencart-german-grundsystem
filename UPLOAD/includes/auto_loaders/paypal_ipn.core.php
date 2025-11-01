@@ -1,25 +1,22 @@
 <?php
 /**
- * autoloader array for paypal
+ * autoloader array for paypal IPN
  *
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * Zen Cart German Specific (210 code in 157)
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: paypal_ipn.core.php 2023-12-30 17:53:16Z webchills $
+ * @version $Id: paypal_ipn.core.php for newer plugins 2025-09-16 11:09:16Z webchills $
  */
 if (!defined('IS_ADMIN_FLAG')) {
- die('Illegal Access');
+    die('Illegal Access');
 }
 
 $autoLoadConfig[0][] = [
     'autoType' => 'include',
     'loadFile' => DIR_WS_INCLUDES . 'version.php',
 ];
-$autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'class.notifier.php',
-];
+//- notifier class loaded via psr4Autoload.php
 $autoLoadConfig[0][] = [
     'autoType' => 'classInstantiate',
     'className' => 'notifier',
@@ -29,52 +26,13 @@ $autoLoadConfig[0][] = [
     'autoType' => 'class',
     'loadFile' => 'class.phpmailer.php',
 ];
-$autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'template_func.php',
-];
-$autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'language.php',
-];
-$autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'sniffer.php',
-];
-$autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'shopping_cart.php',
-];
-$autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'navigation_history.php',
-];
-$autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'currencies.php',
-];
-$autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'message_stack.php',
-];
-$autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'breadcrumb.php',
-];
-$autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'Customer.php',
-];
-$autoLoadConfig[0][] = [
-    'autoType' => 'class',
-    'loadFile' => 'zcDate.php',
-];
 /**
  * Breakpoint 5.
  *
  * $zcDate = new zcDate(); ... will be re-initialized when/if the require_languages.php module is run.
  *
  */
+//- zcDate class loaded via psr4Autoload.php
 $autoLoadConfig[5][] = [
     'autoType' => 'classInstantiate',
     'className' => 'zcDate',
@@ -107,6 +65,7 @@ $autoLoadConfig[40][] = [
  * $sniffer = new sniffer();
  * require('includes/init_includes/init_sefu.php');
  */
+//- sniffer class loaded via psr4Autoload.php
 $autoLoadConfig[50][] = [
     'autoType' => 'classInstantiate',
     'className' => 'sniffer',
@@ -163,6 +122,7 @@ $autoLoadConfig[71][] = [
  * if(!$_SESSION['cart']) $_SESSION['cart'] = new shoppingCart();
  *
  */
+//- shoppingCart class loaded via psr4Autoload.php
 $autoLoadConfig[80][] = [
     'autoType' => 'classInstantiate',
     'className' => 'shoppingCart',
@@ -176,10 +136,20 @@ $autoLoadConfig[80][] = [
  * currencies = new currencies();
  *
  */
+//- currencies class loaded via psr4Autoload.php
 $autoLoadConfig[90][] = [
     'autoType' => 'classInstantiate',
     'className' => 'currencies',
     'objectName' => 'currencies',
+];
+/**
+ * Breakpoint 95
+ *
+ * require('includes/init_includes/init_languages.php');
+ */
+$autoLoadConfig[95][] = [
+    'autoType' => 'init_script',
+    'loadFile' => 'init_languages.php',
 ];
 /**
  * Breakpoint 100.
@@ -188,6 +158,7 @@ $autoLoadConfig[90][] = [
  * $template = new template_func();
  *
  */
+//- template_func class loaded via psr4Autoload.php
 $autoLoadConfig[100][] = [
     'autoType' => 'classInstantiate',
     'className' => 'template_func',
@@ -200,14 +171,9 @@ $autoLoadConfig[100][] = [
 /**
  * Breakpoint 110.
  *
- * require('includes/init_includes/init_languages.php');
  * require('includes/init_includes/init_templates.php');
  *
  */
-$autoLoadConfig[110][] = [
-    'autoType' => 'init_script',
-    'loadFile' => 'init_languages.php',
-];
 $autoLoadConfig[110][] = [
     'autoType' => 'init_script',
     'loadFile' => 'init_templates.php',
@@ -228,6 +194,7 @@ $autoLoadConfig[120][] = [
  * messageStack = new messageStack();
  *
  */
+//- messageStack class loaded via psr4Autoload.php
 $autoLoadConfig[130][] = [
     'autoType' => 'classInstantiate',
     'className' => 'messageStack',

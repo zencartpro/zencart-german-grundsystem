@@ -37,6 +37,8 @@ define('TEXT_CLEANUP_SUCCESS' , 'Verzeichnisse erfolgreich entfernt');
 define('TEXT_CLEANUP_ERROR' , 'Bitte daterechte überprüfen (chmod). Einige Verzeichnisse wurden nicht entfernt');
 define('TEXT_UPGRADE_AVAILABLE', 'Update verfügbar');
 define('TEXT_VERSION_INSTALLED', 'Installierte Version: %s');
+define('TEXT_PLUGIN_AUTHOR' , '<strong>Autor:</strong> %s');
+define('TEXT_PLUGIN_DOWNLOAD_PAGE' , '<a target="_blank" rel="noreferrer" href="https://www.zen-cart.com/downloads.php?do=file&id=%s">Plugin Download Page</a>');
 define('TEXT_NEW_PLUGIN_DOWNLOAD_AVAILABLE' , 'Eine neue amerikanische Version %s ist zum Download verfügbar von der <a target="_blank" href="https://www.zen-cart.com/downloads.php?do=file&id=%s">amerikanischen Zen Cart Website</a>');
 define('TEXT_CONFIRM_UNINSTALL', 'Wollen Sie dieses Plugin wirklich deinstallieren?');
 define('TEXT_CONFIRM_UPGRADE', 'Wollen Sie dieses Plugin wirklich aktualisieren?');

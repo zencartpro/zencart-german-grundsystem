@@ -1,22 +1,24 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * Zen Cart German Specific (210 code in 157)
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: LanguageLoader.php 2023-05-20 13:27:24Z webchills $
+ * @version $Id: LanguageLoader.php for newer plugins 2025-10-30 08:27:24Z webchills $
  */
 
 namespace Zencart\LanguageLoader;
 
+/**
+ * @since ZC v1.5.7
+ */
 class LanguageLoader
 {
-    private
-        $languageFilesLoaded,
-        $arrayLoader,
-        $fileLoader;
-        
+    private array $languageFilesLoaded;
+    private $arrayLoader;
+    private $fileLoader;
+
     public function __construct($arraysLoader, $filesLoader)
     {
         $this->languageFilesLoaded = ['arrays' => [], 'legacy' => []];
@@ -25,41 +27,70 @@ class LanguageLoader
         $this->languageFilesLoaded = ['arrays' => [], 'legacy' => []];
     }
 
-    public function loadInitialLanguageDefines()
+    /**
+     * @since ZC v1.5.8
+     */
+    public function loadInitialLanguageDefines(): void
     {
         $this->arrayLoader->loadInitialLanguageDefines($this);
         $this->fileLoader->loadInitialLanguageDefines($this);
     }
 
-    public function finalizeLanguageDefines()
+    /**
+     * @since ZC v1.5.8
+     */
+    public function finalizeLanguageDefines(): void
     {
         $this->arrayLoader->makeConstants($this->arrayLoader->getLanguageDefines());
     }
 
-    public function getLanguageFilesLoaded()
+    /**
+     * @since ZC v1.5.8
+     */
+    public function getLanguageFilesLoaded(): array
     {
         return $this->languageFilesLoaded;
     }
 
-    public function addLanguageFilesLoaded($type, $defineFile)
+    /**
+     * @since ZC v1.5.8
+     */
+    public function addLanguageFilesLoaded(string $type, string $defineFile): void
     {
         $this->languageFilesLoaded[$type][] = $defineFile;
     }
 
-    public function loadDefinesFromFile($baseDirectory, $language, $languageFile)
+    /**
+     * @since ZC v1.5.8
+     */
+    public function loadDefinesFromFile(string $baseDirectory, string $language, string $languageFile): bool
     {
         $this->arrayLoader->loadDefinesFromArrayFile($baseDirectory, $language, $languageFile);
         $this->fileLoader->loadFileDefineFile(DIR_FS_CATALOG . DIR_WS_LANGUAGES . $language . $baseDirectory . '/' . $languageFile);
-        return true; 
+        return true;
     }
 
-    public function loadModuleDefinesFromFile($baseDirectory, $language, $module_type, $languageFile)
+    /**
+     * @since ZC v1.5.8
+     */
+    public function loadModuleDefinesFromFile(string $baseDirectory, string $language, string $module_type, string $languageFile): bool
     {
         $defs = $this->arrayLoader->loadModuleDefinesFromArrayFile(DIR_FS_CATALOG . 'includes/languages/', $language, $module_type, $languageFile);
 
-        $this->arrayLoader->makeConstants($defs); 
-        $this->fileLoader->loadFileDefineFile(DIR_FS_CATALOG . DIR_WS_LANGUAGES . $language . $baseDirectory . $module_type . '/' . $languageFile);
-        return true; 
+        $this->arrayLoader->makeConstants($defs);
+        if ($module_type !== '') {
+            $module_type .= '/';
+        }
+        $this->fileLoader->loadFileDefineFile(DIR_FS_CATALOG . DIR_WS_LANGUAGES . $language . $baseDirectory . $module_type . $languageFile);
+        return true;
+    }
+
+    /**
+     * @since ZC v2.1.0
+     */
+    public function makeCatalogArrayConstants(string $fileName, string $extraDir = ''): void
+    {
+        $this->arrayLoader->makeCatalogArrayConstants($fileName, $extraDir);
     }
 
     /**
@@ -68,26 +99,36 @@ class LanguageLoader
      *
      * @param string $currentPage
      * @return void
+     * @since ZC v1.5.8
      */
-    public function setCurrentPage($currentPage)
+    public function setCurrentPage(string $currentPage): void
     {
         $this->arrayLoader->currentPage = $currentPage;
         $this->fileLoader->currentPage = $currentPage;
     }
 
-    public function loadLanguageForView()
+    /**
+     * @since ZC v1.5.7
+     */
+    public function loadLanguageForView(): void
     {
         $this->arrayLoader->loadLanguageForView();
         $this->fileLoader->loadLanguageForView();
     }
 
-    public function loadExtraLanguageFiles($rootPath, $language, $fileName, $extraPath = '')
+    /**
+     * @since ZC v1.5.8
+     */
+    public function loadExtraLanguageFiles(string $rootPath, string $language, string $fileName, string $extraPath = ''): void
     {
         $this->arrayLoader->loadExtraLanguageFiles($rootPath, $language, $fileName, $extraPath);
         $this->fileLoader->loadExtraLanguageFiles($rootPath, $language, $fileName, $extraPath);
     }
 
-    public function hasLanguageFile($rootPath, $language, $fileName, $extraPath = '')
+    /**
+     * @since ZC v1.5.8
+     */
+    public function hasLanguageFile(string $rootPath, string $language, string $fileName, string $extraPath = ''): bool
     {
         if (is_file($rootPath . $language . $extraPath . '/' . $fileName)) {
             return true;
@@ -98,7 +139,33 @@ class LanguageLoader
         return false;
     }
 
-    public function isFileAlreadyLoaded($defineFile)
+    /**
+     * @since ZC v2.1.0
+     */
+    public function loadModuleLanguageFile(string $fileName, string $moduleType): bool
+    {
+        $this->arrayLoader->loadModuleLanguageFile($fileName, $moduleType);
+        $this->fileLoader->loadModuleLanguageFile($fileName, $moduleType);
+
+        $language_files_loaded = array_merge($this->languageFilesLoaded['arrays'], $this->languageFilesLoaded['legacy']);
+
+        if ($moduleType !== '') {
+            $moduleType .= '/';
+        }
+        $match_string = '~modules/' . $moduleType . '(lang\.)?' . $fileName . '$~';
+        $match_string_template = '~modules/' . $moduleType . $this->arrayLoader->getTemplateDir() . '/(lang\.)?' . $fileName . '$~';
+        foreach ($language_files_loaded as $next_file) {
+            if (preg_match($match_string, $next_file) || preg_match($match_string_template, $next_file)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @since ZC v1.5.8
+     */
+    public function isFileAlreadyLoaded(string $defineFile): bool
     {
         $fileInfo = pathinfo($defineFile);
         $searchFile = $fileInfo['basename'];

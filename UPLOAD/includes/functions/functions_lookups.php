@@ -1,14 +1,14 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
+ * Zen Cart German Specific (210 code in 157)
  * functions_lookups.php
  * Lookup Functions for various core activities related to countries, prices, products, product types, etc
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_lookups.php 2023-10-30 14:11:42Z webchills $
+ * @version $Id: functions_lookups.php 2025-10-30 14:11:42Z webchills $
  */
 
 
@@ -16,13 +16,20 @@
  * get the type_handler value for the specified product_type
  * @param int $product_type
  */
-function zen_get_handler_from_type($product_type)
+function zen_get_handler_from_type($product_type): string
 {
     global $db;
 
-    $sql = "select type_handler from " . TABLE_PRODUCT_TYPES . " where type_id = " . (int)$product_type;
+    // this is a fallback safety to protect against damaged (inaccessible) data caused by incorrect code in custom product types
+    if ((int)$product_type === 0) {
+        $product_type = 1;
+    }
+
+    $sql = "SELECT type_handler FROM " . TABLE_PRODUCT_TYPES . " WHERE type_id = " . (int)$product_type;
     $handler = $db->Execute($sql);
-    if ($handler->EOF) return 'ERROR: Invalid type_handler. Your product_type settings are wrong, incomplete, or damaged.';
+    if ($handler->EOF) {
+        throw new ValueError('ERROR: Invalid type_handler. Your product_type settings are wrong, incomplete, or damaged.');
+    }
     return $handler->fields['type_handler'];
 }
 
@@ -285,3 +292,50 @@ function zen_get_order_status_name(int $order_status_id, int $language_id = 0)
     return $result->fields['orders_status_name'] . ' [' . (int)$order_status_id . ']';
 }
 
+
+function zen_lookup_admin_menu_language_override(string $lookup_type, ?string $lookup_key, ?string $fallback): ?string
+{
+    switch ($lookup_type) {
+        case 'product_type_name':
+            $lookup = strtoupper('PRODUCT_TYPE_NAME_FOR_HANDLER_' . $lookup_key);
+            break;
+        case 'product_type_layout_title':
+            $lookup = strtoupper('PRODUCT_TYPE_LAYOUT_TITLE_FOR_' . $lookup_key);
+            break;
+        case 'product_type_layout_description':
+            $lookup = strtoupper('PRODUCT_TYPE_LAYOUT_DESC_FOR_' . $lookup_key);
+            break;
+        case 'configuration_key_title':
+            $lookup = strtoupper('CFGTITLE_' . $lookup_key);
+            break;
+        case 'configuration_key_description':
+            $lookup = strtoupper('CFGDESC_' . $lookup_key);
+            break;
+        case 'configuration_group_title':
+            $str = $lookup_key;
+            $str = preg_replace('/[\s ]+/', '_', $str);
+            $str = preg_replace('/[^a-zA-Z0-9_\x80-\xff]/', '', $str);
+            $lookup = strtoupper('CFG_GRP_TITLE_' . $str);
+            break;
+        case 'plugin_name':
+            $str = $lookup_key;
+            $str = preg_replace('/[\s -]+/', '_', $str);
+            $str = preg_replace('/[^a-zA-Z0-9_\x80-\xff]/', '', $str);
+            $str = preg_replace('/_+/', '_', $str);
+            $lookup = strtoupper('ADMIN_PLUGIN_MANAGER_NAME_FOR_' . $str);
+            break;
+        case 'plugin_description':
+            $str = $lookup_key;
+            $str = preg_replace('/[\s -]+/', '_', $str);
+            $str = preg_replace('/[^a-zA-Z0-9_\x80-\xff]/', '', $str);
+            $str = preg_replace('/_+/', '_', $str);
+            $lookup = strtoupper('ADMIN_PLUGIN_MANAGER_DESCRIPTION_FOR_' . $str);
+            break;
+    }
+
+    if (isset($lookup) && defined($lookup)) {
+        return constant($lookup);
+    }
+
+    return $fallback;
+}

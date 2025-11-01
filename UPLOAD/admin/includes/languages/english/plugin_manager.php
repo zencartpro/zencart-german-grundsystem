@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * Zen Cart German Specific (210 code in 157)
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: plugin_manager.php 2023-10-27 16:54:16Z webchills $
+ * @version $Id: plugin_manager.php 2025-10-30 16:54:16Z webchills $
  */
 define('HEADING_TITLE', 'Plugin Manager');
 
@@ -21,7 +21,7 @@ define('TEXT_ENABLE', 'Enable');
 define('TEXT_CLEANUP', 'Clean Up');
 define('TEXT_UPGRADE', 'Upgrade');
 define('TEXT_CONFIRM', 'Confirm');
-define('TEXT_INFO_DESCRIPTION', 'Plugin Description:');
+define('TEXT_INFO_DESCRIPTION', '<strong>Plugin Description:</strong>');
 define('TEXT_INFO_CLEANUP', 'Remove unwanted plugin version directories');
 define('TEXT_INFO_SELECT_CLEAN', 'Select versions you want to remove');
 define('TEXT_INSTALLED_ENABLED', 'Installed(Enabled)');
@@ -36,15 +36,17 @@ define('TEXT_ENABLE_SUCCESS', 'Plugin enabled successfully');
 define('TEXT_CLEANUP_SUCCESS' , 'Directories successfully removed');
 define('TEXT_CLEANUP_ERROR' , 'Please check file permissions. Some Directories not removed');
 define('TEXT_UPGRADE_AVAILABLE', 'Upgrade Available');
-define('TEXT_VERSION_INSTALLED', 'Version Installed: %s');
-define('TEXT_NEW_PLUGIN_DOWNLOAD_AVAILABLE' , 'A new version %s is available to download from the <a target="_blank" href="https://www.zen-cart.com/downloads.php?do=file&id=%s">support forum</a>');
+define('TEXT_VERSION_INSTALLED', '<strong>Version Installed:</strong> %s');
+define('TEXT_PLUGIN_AUTHOR' , '<strong>Author:</strong> %s');
+define('TEXT_PLUGIN_DOWNLOAD_PAGE' , '<a target="_blank" rel="noreferrer" href="https://www.zen-cart.com/downloads.php?do=file&id=%s">Plugin Download Page</a>');
+define('TEXT_NEW_PLUGIN_DOWNLOAD_AVAILABLE' , 'A new version %1s is available to download from the <a target="_blank" rel="noreferrer" href="https://www.zen-cart.com/downloads.php?do=file&id=%2s">support forum</a>');
 define('TEXT_CONFIRM_UNINSTALL', 'Are you sure you want to uninstall this plugin?');
 define('TEXT_CONFIRM_UPGRADE', 'Are you sure you want to upgrade this plugin?');
 define('TEXT_CONFIRM_DISABLE', 'Are you sure you want to disable this plugin?');
 define('TEXT_CONFIRM_ENABLE', 'Are you sure you want to enable this plugin?');
 define('TEXT_INFO_UPGRADE', 'Please select the version you want to upgrade to.');
 define('TEXT_INFO_UPGRADE_CONFIRM', 'Upgrade version %s');
-define('TEXT_INFO_UPGRADE_WARNING', 'Warning:');
+define('TEXT_INFO_UPGRADE_WARNING', '');
 define('TEXT_INFO_CONFIRM_CLEAN', 'Confirm version directories to clean/remove');
 define('TEXT_LABEL_STATUS', 'Status: ');
 define('ERROR_NOT_FOUND_IN_SQL_FUNCTIONS_MAP' , 'Check your sql statement. A sql function map cannot be found for : ');

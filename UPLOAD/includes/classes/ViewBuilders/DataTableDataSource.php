@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 /**
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * Zen Cart German Specific (210 code in 157)
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: DataTableDataSource.php 2023-10-23 15:27:24Z webchills $
+ * @version $Id: DataTableDataSource.php 2025-10-30 15:27:24Z webchills $
  */
 
 namespace Zencart\ViewBuilders;
@@ -15,6 +15,9 @@ use Zencart\Request\Request;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use Zencart\Traits\NotifierManager;
 
+/**
+ * @since ZC v1.5.8
+ */
 abstract class DataTableDataSource
 {
     use NotifierManager;
@@ -27,8 +30,14 @@ abstract class DataTableDataSource
         $this->notify('NOTIFY_DATASOURCE_CONSTRUCTOR_END');
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     abstract protected function buildInitialQuery() : Builder;
 
+    /**
+     * @since ZC v1.5.8
+     */
     public function processRequest(Request $request) : Builder
     {
         $query = $this->buildInitialQuery($request);
@@ -36,6 +45,9 @@ abstract class DataTableDataSource
         return $query;
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     public function processQuery(Builder $query) : Paginator
     {
         if ($this->tableDefinition->isPaginated())
@@ -49,11 +61,17 @@ abstract class DataTableDataSource
         return $results;
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     public function getTableDefinition(): TableViewDefinition
     {
         return $this->tableDefinition;
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     public function setTableDefinition(TableViewDefinition $tableDefinition)
     {
         $this->tableDefinition = $tableDefinition;

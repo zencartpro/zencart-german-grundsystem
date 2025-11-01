@@ -2,18 +2,30 @@
 /**
  * ajax front controller
  *
- * @package core
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+
+ * Zen Cart German Specific (210 code in 157)
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ajax.php 2023-10-30 15:32:29Z webchills $
+ * @version $Id: ajax.php for newer plugins 2025-09-12 15:43:29Z webchills $
  */
 // Abort if the request was not an AJAX call
-if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
+if (!isset($_SERVER['HTTP_X_REQUESTED_WITH'], $_SERVER['REMOTE_ADDR']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
     http_response_code(400); // "Bad Request"
     exit();
+}
+
+// -----
+// Ensure that the two required $_GET variables are (a) set and (b) reflect a valid PHP
+// class- or method-name. See https://www.php.net/manual/en/language.oop5.basic.php for
+// additional information.
+//
+// Note that as of PHP 8.4.0, a single '_' as a class name is deprecated, so it's not allowed.
+//
+$class_method_regex = '/^[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*$/';
+if (!isset($_GET['act'], $_GET['method']) || $_GET['act'] === '_' || !preg_match($class_method_regex, $_GET['act']) || !preg_match($class_method_regex, $_GET['method'])) {
+    ajaxAbort();
 }
 
 // -----
@@ -49,21 +61,22 @@ function ajaxAbort($status = 400, $msg = null)
 
 
 
-if (!isset($_GET['act']) || !isset($_GET['method'])) {
-    ajaxAbort();
-}
-
 $language_page_directory = DIR_WS_LANGUAGES . $_SESSION['language'] . '/';
 
 $className = 'zc' . ucfirst($_GET['act']);
-$classFile = $className . '.php';
-$basePath  = DIR_FS_CATALOG . DIR_WS_CLASSES;
-
-if (!file_exists(realpath($basePath . 'ajax/' . basename($classFile)))) {
-    ajaxAbort();
+$classFile = basename($className . '.php');
+$classPath = DIR_WS_CLASSES . 'ajax/';
+$basePath  = DIR_FS_CATALOG;
+$file = realpath($basePath . $classPath . $classFile);
+if (!empty($file) && file_exists($file)) {
+    require $file;
+} else {
+    $fs->loadFilesFromPluginsDirectory($installedPlugins, 'catalog/' . $classPath, '~^' . $classFile . '$~');
+    if (!class_exists($className)) {
+        ajaxAbort();
+    }
 }
 
-require realpath($basePath . 'ajax/' . basename($classFile));
 $class = new $className();
 if (!method_exists($class, $_GET['method'])) {
     ajaxAbort(400, 'class method error');

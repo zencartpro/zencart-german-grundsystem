@@ -6,7 +6,7 @@
  * @see      https://github.com/marco-pm/zencart_instantsearch
  * @license  GNU Public License V2.0
  * modified for Zen Cart German
- * 2024-04-05 webchills
+ * 2025-10-30 webchills
  */
 
 use Zencart\PluginSupport\ScriptedInstaller as ScriptedInstallBase;
@@ -26,7 +26,7 @@ class ScriptedInstaller extends ScriptedInstallBase
      * @param string $oldVersion
      * @return bool
      */
-    public function doUpgrade(string $oldVersion = ''): bool
+    public function doUpgrade($oldVersion = ''): bool
     {
         if ($oldVersion === '') {
             return false;

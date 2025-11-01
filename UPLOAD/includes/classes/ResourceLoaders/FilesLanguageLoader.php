@@ -1,22 +1,28 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * Zen Cart German Specific (210 code in 157)
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: FilesLanguageLoader.php 2023-10-23 15:27:24Z webchills $
+ * @version $Id: FilesLanguageLoader.php 2025-10-29 15:27:24Z webchills $
  */
 
 namespace Zencart\LanguageLoader;
 
 use Zencart\FileSystem\FileSystem;
 
+/**
+ * @since ZC v1.5.8
+ */
 class FilesLanguageLoader extends BaseLanguageLoader
 {
     protected $mainLoader;
-    
-    public function loadExtraLanguageFiles($rootPath, $language, $fileName, $extraPath = '')
+
+    /**
+     * @since ZC v1.5.8
+     */
+    public function loadExtraLanguageFiles(string $rootPath, string $language, string $fileName, string $extraPath = ''): void
     {
         if ($this->mainLoader->hasLanguageFile($rootPath, $language, $fileName, $extraPath .  '/' . $this->templateDir)) {
             $this->loadFileDefineFile($rootPath . $language . $extraPath . '/' . $this->templateDir . '/' . $fileName);
@@ -25,7 +31,28 @@ class FilesLanguageLoader extends BaseLanguageLoader
         }
     }
 
-    public function loadFileDefineFile($defineFile)
+    /**
+     * @since ZC v2.1.0
+     */
+    public function loadModuleLanguageFile(string $fileName, string $module_type): bool
+    {
+        $rootPath = DIR_FS_CATALOG . DIR_WS_LANGUAGES . $_SESSION['language'];
+        if ($module_type !== '') {
+            $module_type .= '/';
+        }
+        $extraPath = '/modules/' . $module_type;
+
+        if ($this->loadFileDefineFile($rootPath . $extraPath . $this->templateDir . '/' . $fileName) === true) {
+            return true;
+        }
+
+        return $this->loadFileDefineFile($rootPath . $extraPath . $fileName);
+    }
+
+    /**
+     * @since ZC v1.5.8
+     */
+    public function loadFileDefineFile(string $defineFile): bool
     {
         $pathInfo = pathinfo(($defineFile));
         if (preg_match('~^lang\.~i', $pathInfo['basename'])) {
@@ -38,7 +65,7 @@ class FilesLanguageLoader extends BaseLanguageLoader
             return false;
         }
         $this->mainLoader->addLanguageFilesLoaded('legacy', $defineFile);
-        include_once($defineFile);
+        include_once $defineFile;
         return true;
     }
 }
