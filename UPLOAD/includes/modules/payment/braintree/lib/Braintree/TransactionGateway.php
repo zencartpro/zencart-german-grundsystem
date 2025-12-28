@@ -83,6 +83,7 @@ class TransactionGateway
     public static function createSignature()
     {
         return [
+            'accountFundingTransaction',
             'amount',
             ['applePayCard' =>
                 [
@@ -235,7 +236,6 @@ class TransactionGateway
             ['options' =>
                 [
                     'addBillingAddressToPaymentMethod',
-                    'holdInEscrow',
                     'payeeId',
                     'payeeEmail',
                     'skipAdvancedFraudChecking',
@@ -294,6 +294,7 @@ class TransactionGateway
             'paymentMethodNonce',
             'paymentMethodToken',
             ['paypalAccount' => ['payeeId', 'payeeEmail', 'payerId', 'paymentId']],
+            'processingMerchantCategoryCode',
             'productSku',
             'purchaseOrderNumber',
             'recurring',
@@ -337,7 +338,97 @@ class TransactionGateway
             'threeDSecureAuthenticationId',
             'transactionSource',
             'type',
-            'venmoSdkPaymentMethodCode'  // Deprecated
+            ['usBankAccount' =>
+                [
+                    'achMandateText',
+                    'achMandateAcceptedAt'
+                ]
+            ],
+            'venmoSdkPaymentMethodCode',  // Deprecated
+            [
+                'paymentFacilitator' => [
+                    'paymentFacilitatorId',
+                    [
+                        'subMerchant' => [
+                            'referenceNumber',
+                            'taxId',
+                            'legalName',
+                            [
+                                'address' => [
+                                    'streetAddress',
+                                    'locality',
+                                    'region',
+                                    'countryCodeAlpha2',
+                                    'postalCode',
+                                    [
+                                        'internationalPhone' => [
+                                            'countryCode',
+                                            'nationalNumber',
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+
+             [
+                'transfer' => [
+                    'type',
+                    [
+                        'sender' => [
+                            'accountReferenceNumber',
+                            'dateOfBirth',
+                            'firstName',
+                            'lastName',
+                            'middleName',
+                            'taxId',
+                            [
+                                'address' => [
+                                    'streetAddress',
+                                    'extendedAddress',
+                                    'locality',
+                                    'region',
+                                    'countryCodeAlpha2',
+                                    'postalCode',
+                                    [
+                                        'internationalPhone' => [
+                                            'countryCode',
+                                            'nationalNumber',
+                                        ],
+                                    ]
+                                ]
+                            ]
+                        ],
+                    ],
+                    [
+                        'receiver' => [
+                            'accountReferenceNumber',
+                            'firstName',
+                            'lastName',
+                            'middleName',
+                            'taxId',
+                            [
+                                'address' => [
+                                    'streetAddress',
+                                    'extendedAddress',
+                                    'locality',
+                                    'region',
+                                    'countryCodeAlpha2',
+                                    'postalCode',
+                                    [
+                                        'internationalPhone' => [
+                                            'countryCode',
+                                            'nationalNumber',
+                                        ],
+                                    ]
+                                ]
+                            ]
+                        ],
+                    ]
+                ]
+            ]
         ];
     }
 
@@ -791,54 +882,6 @@ class TransactionGateway
 
         $path = $this->_config->merchantPath() . '/transactions/' . $transactionId . '/submit_for_partial_settlement';
         $response = $this->_http->post($path, ['transaction' => $attribs]);
-        return $this->_verifyGatewayResponse($response);
-    }
-
-    /**
-     * Specific to Marketplace merchants
-     *
-     * @param string $transactionId unque identifier of the transaction to be held in escrow
-     *
-     * @return Result\Successful|Exception\NotFound
-     */
-    public function holdInEscrow($transactionId)
-    {
-        $this->_validateId($transactionId);
-
-        $path = $this->_config->merchantPath() . '/transactions/' . $transactionId . '/hold_in_escrow';
-        $response = $this->_http->put($path, []);
-        return $this->_verifyGatewayResponse($response);
-    }
-
-    /**
-     * Specific to Marketplace merchants
-     *
-     * @param string $transactionId unque identifier of the transaction to be released from escrow
-     *
-     * @return Result\Successful|Exception\NotFound
-     */
-    public function releaseFromEscrow($transactionId)
-    {
-        $this->_validateId($transactionId);
-
-        $path = $this->_config->merchantPath() . '/transactions/' . $transactionId . '/release_from_escrow';
-        $response = $this->_http->put($path, []);
-        return $this->_verifyGatewayResponse($response);
-    }
-
-    /**
-     * Specific to Marketplace merchants
-     *
-     * @param string $transactionId unque identifier of the transaction whose escrow release is to be canceled
-     *
-     * @return Result\Successful|Exception\NotFound
-     */
-    public function cancelRelease($transactionId)
-    {
-        $this->_validateId($transactionId);
-
-        $path = $this->_config->merchantPath() . '/transactions/' . $transactionId . '/cancel_release';
-        $response = $this->_http->put($path, []);
         return $this->_verifyGatewayResponse($response);
     }
 
