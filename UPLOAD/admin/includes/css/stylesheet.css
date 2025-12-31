@@ -255,8 +255,8 @@ background-color: #006080;
 }
 
 a.splitPageLink:hover {
-    background-color: #577994;
-    border:6px solid #577994;
+    background-color: #006080;
+    border:6px solid #006080;
     color: #FFFFFF;
     text-decoration: underline;
     font-size:13px;
@@ -516,7 +516,7 @@ tr.attributeBoxContent {
 }
 
 .infoBoxContent .dataTableHeadingContent{
-	background:#577994;
+	background:#006080;
 }
 .infoBoxContent {
     background-color: #e7e6e0;
