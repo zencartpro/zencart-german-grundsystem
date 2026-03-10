@@ -1,16 +1,16 @@
 <?php
 /** 
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2024 Zen Cart Development Team
+ * Zen Cart German Specific (210 code in 157)
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_ask_a_question.php 2024-08-07 15:32:51Z webchills $
+ * @version $Id: tpl_ask_a_question.php 2026-03-10 18:32:51Z webchills $
  */
 ?>
 <div class="centerColumn" id="askAQuestion">
 
-<?php echo zen_draw_form('ask_a_question', zen_href_link(FILENAME_ASK_A_QUESTION, 'action=send&pid=' . (int)$_GET['pid'], 'SSL')); ?>
+<?php echo zen_draw_form('ask_a_question', zen_href_link(FILENAME_ASK_A_QUESTION, 'action=send&pID=' . (int)$pid, 'SSL')); ?>
 
 <?php if (CONTACT_US_STORE_NAME_ADDRESS== '1') { ?>
 <address><?php echo nl2br(STORE_NAME_ADDRESS); ?></address>
@@ -31,7 +31,7 @@
 ?>
 
 <div id="aaq">
-<?php echo '<a href="' . zen_href_link(zen_get_info_page((int)$_GET['pid']), 'products_id=' . (int)$_GET['pid'], 'SSL') . '">' . zen_image(DIR_WS_IMAGES . $product_details['products_image'], $product_details['products_name'], IMAGE_PRODUCT_LISTING_WIDTH, IMAGE_PRODUCT_LISTING_HEIGHT) . '</a>'; ?>
+<?php echo '<a href="' . zen_href_link(zen_get_info_page((int)$pid), 'products_id=' . (int)$pid, 'SSL') . '">' . zen_image(DIR_WS_IMAGES . $product_details['products_image'], $product_details['products_name'], IMAGE_PRODUCT_LISTING_WIDTH, IMAGE_PRODUCT_LISTING_HEIGHT) . '</a>'; ?>
 </div>
 
 <div id="contactUsNoticeContent" class="content">

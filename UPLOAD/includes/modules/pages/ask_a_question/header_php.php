@@ -1,16 +1,16 @@
 <?php
 /**
  * Ask a Question Page (based on Contact Us Page)
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * Zen Cart German Specific (210 code in 157)
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2023-10-28 14:50:16Z webchills $
+ * @version $Id: header_php.php 2026-03-10 18:01:16Z webchills $
  */
 $zco_notifier->notify('NOTIFY_HEADER_START_ASK_A_QUESTION');
 
-$pid = (isset($_GET['pid'])) ? (int)$_GET['pid'] : false;
+$pid = $_GET['pID'] ?? $_GET['pid'] ?? $_GET['products_id'] ?? $_GET['product_id'] ?? false;
 
 // -----
 // Redirect to the site's main page if no pid parameter supplied.
@@ -18,6 +18,7 @@ $pid = (isset($_GET['pid'])) ? (int)$_GET['pid'] : false;
 if ($pid === false) {
     zen_redirect(zen_href_link(FILENAME_DEFAULT));
 }
+$pid = (int)$pid;
 
 // -----
 // Check to see if the "Show Ask a Question" button is enabled for the product's
@@ -30,13 +31,13 @@ $show_info_page_ask_a_question = 'SHOW_' . strtoupper($info_page) . '_ASK_A_QUES
 $bypass_redirect = false;
 $zco_notifier->notify('NOTIFY_ASK_A_QUESTION_ALLOW_BYPASS_REDIRECT', ['products_id' => $pid, ], $bypass_redirect);
 if ($bypass_redirect === false && $call_for_price === false && (!defined($show_info_page_ask_a_question) || constant($show_info_page_ask_a_question) === '0')) {
-    zen_redirect(zen_href_link($info_page, 'products_id=' . $_GET['pid']));
+    zen_redirect(zen_href_link($info_page, 'products_id=' . $pid));
 }
 
 $sql = "SELECT pd.products_name, p.products_image, p.products_model
         FROM " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd
         WHERE p.products_id = pd.products_id
-        AND p.products_id = " . (int)$_GET['pid'] . "
+        AND p.products_id = " . (int)$pid . "
         AND pd.language_id = " . (int)$_SESSION['languages_id'] . "
         AND p.products_status = 1
         LIMIT 1";
@@ -71,12 +72,14 @@ $email_address = '';
 $telephone = '';
 
 if (isset($_GET['action']) && ($_GET['action'] == 'send')) {
-    $name = zen_db_prepare_input($_POST['contactname']);
-    $email_address = zen_db_prepare_input($_POST['email']);
-    $telephone = zen_db_prepare_input($_POST['telephone']);
-    $enquiry = zen_db_prepare_input(strip_tags($_POST['enquiry']));
+    $name = zen_db_prepare_input($_POST['contactname'] ?? '');
+    $email_address = zen_db_prepare_input($_POST['email'] ?? '');
+    $telephone = zen_db_prepare_input($_POST['telephone'] ?? '');
+    $enquiry = zen_db_prepare_input(strip_tags($_POST['enquiry'] ?? ''));
     $antiSpam = !empty($_POST[$antiSpamFieldName]) ? 'spam' : '';
-    if (!empty($_POST['contactname']) && preg_match('~https?://?~', $_POST['contactname'])) $antiSpam = 'spam';
+    if (!empty($_POST['contactname']) && preg_match('~https?://?~', $_POST['contactname'])) {
+        $antiSpam = 'spam';
+    }
 
     $zco_notifier->notify('NOTIFY_ASK_A_QUESTION_CAPTCHA_CHECK', $_POST);
 
@@ -98,7 +101,7 @@ if (isset($_GET['action']) && ($_GET['action'] == 'send')) {
                 $check_customer = $db->Execute($sql);
                 $customer_email = $check_customer->fields['customers_email_address'];
                 $customer_name = $check_customer->fields['customers_firstname'] . ' ' . $check_customer->fields['customers_lastname'];
-                $customer_telephone = $check_customer->fields['customers_telephone'];
+                $customer_telephone = zen_sanitize_string($check_customer->fields['customers_telephone']);
             } else {
                 $customer_email = NOT_LOGGED_IN_TEXT;
                 $customer_name = NOT_LOGGED_IN_TEXT;
@@ -134,9 +137,11 @@ if (isset($_GET['action']) && ($_GET['action'] == 'send')) {
             // Prepare Text-only portion of message
             $text_message = OFFICE_FROM . "\t" . $name . "\n" .
             OFFICE_EMAIL . "\t" . $email_address . "\n";
-            if (!empty($telephone)) $text_message .= OFFICE_LOGIN_PHONE . "\t" . $telephone . "\n";
+            if (!empty($telephone)) {
+                $text_message .= OFFICE_LOGIN_PHONE . "\t" . $telephone . "\n";
+            }
             $text_message .= TEXT_PRODUCT_NAME . "\t" . $product_details['products_name'] . "\n" .
-            zen_href_link(FILENAME_PRODUCT_INFO, 'products_id=' . (int)$_GET['pid']) .
+            zen_href_link(FILENAME_PRODUCT_INFO, 'products_id=' . (int)$pid) .
             "\n";
             $text_message .= "\n" .
             '------------------------------------------------------' . "\n\n" .
@@ -144,13 +149,14 @@ if (isset($_GET['action']) && ($_GET['action'] == 'send')) {
             '------------------------------------------------------' . "\n\n" .
             $extra_info['TEXT'];
             // Prepare HTML-portion of message
-            $html_msg['EMAIL_MESSAGE_HTML'] = '<b>' . TEXT_PRODUCT_NAME . '</b> <a href="' . zen_href_link(FILENAME_PRODUCT_INFO, 'products_id=' . (int)$_GET['pid']) . '">' . $product_details['products_name'] . '</a><br>' . strip_tags($_POST['enquiry']);
-            $html_msg['CONTACT_US_OFFICE_FROM'] = OFFICE_FROM . ' ' . $name . '<br>' . OFFICE_EMAIL . '(' . $email_address . ')';
+            $html_msg['EMAIL_MESSAGE_HTML'] = '<b>' . TEXT_PRODUCT_NAME . '</b> <a href="' . zen_href_link(FILENAME_PRODUCT_INFO, 'products_id=' . (int)$pid) . '">' . $product_details['products_name'] . '</a><br>' . strip_tags($_POST['enquiry']);
+            $html_msg['CONTACT_US_OFFICE_FROM'] = OFFICE_FROM . ' ' . $name . '<br>' . OFFICE_EMAIL . ' ' . $email_address .
+                (!empty($telephone) ? '<br>' . OFFICE_LOGIN_PHONE . ' ' . $telephone : '');
             $html_msg['EXTRA_INFO'] = $extra_info['HTML'];
             // Send message
             zen_mail($send_to_name, $send_to_email, $email_subject, $text_message, $name, $email_address, $html_msg,'ask_a_question');
         }
-        zen_redirect(zen_href_link(FILENAME_ASK_A_QUESTION, 'action=success&pid=' . (int)$_GET['pid'], 'SSL'));
+        zen_redirect(zen_href_link(FILENAME_ASK_A_QUESTION, 'action=success&pID=' . (int)$pid, 'SSL'));
     } else {
         $error = true;
         if (empty($name)) {
@@ -183,7 +189,7 @@ if (zen_is_logged_in() && !zen_in_guest_checkout()) {
     $check_customer = $db->Execute($sql);
     $email_address = $check_customer->fields['customers_email_address'];
     $name = $check_customer->fields['customers_firstname'] . ' ' . $check_customer->fields['customers_lastname'];
-    $telephone = $check_customer->fields['customers_telephone'];
+    $telephone = zen_sanitize_string($check_customer->fields['customers_telephone']);
 }
 
 $send_to_array = array();
