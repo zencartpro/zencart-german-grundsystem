@@ -5,8 +5,8 @@
  * @version  4.0.3
  * @see      https://github.com/marco-pm/zencart_instantsearch
  * @license  GNU Public License V2.0
- * modified for Zen Cart German
- * 2024-04-05 webchills
+ * modified for Zen Cart German and PHP 8.4.x
+ * 2026-04-02 webchills
  */
 
 declare(strict_types=1);
@@ -37,7 +37,7 @@ class InstantSearchLogger
      * @param Exception|null $e
      * @return void
      */
-    public function writeErrorLog(string $message, Exception $e = null): void
+    public function writeErrorLog(?string $message, ?Exception $e = null): void
     {
         $fullLogName = DIR_FS_LOGS . "/" . $this->logName . "-error-" . date('Y-m-d') . ".log";
         $logLine = date('Y-m-d H:i:s') . " [ERROR] $message" . PHP_EOL;

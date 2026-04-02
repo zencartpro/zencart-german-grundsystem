@@ -6,8 +6,8 @@
  * @see      https://github.com/marco-pm/zencart_instantsearch
  * @license  GNU Public License V2.0
  * Zen Cart German Specific
- * modified for Zen Cart German
- * 2024-04-05 webchills
+ * modified for Zen Cart German and PHP 8.4
+ * 2026-04-02 webchills
  */
 
 declare(strict_types=1);
@@ -57,7 +57,7 @@ class zcAjaxInstantSearch extends base
      *
      * @param InstantSearch|null $instantSearch
      */
-    public function __construct(InstantSearch $instantSearch = null)
+    public function __construct(?InstantSearch $instantSearch = null)
     {
         $this->results = [];
         $this->logger = new InstantSearchLogger('instantsearch-ajax');

@@ -5,8 +5,8 @@
  * @version  4.0.3
  * @see      https://github.com/marco-pm/zencart_instantsearch
  * @license  GNU Public License V2.0
- * modified for Zen Cart German
- * 2024-04-05 webchills
+ * modified for Zen Cart German and PHP 8.4
+ * 2026-04-02 webchills
  */
 
 declare(strict_types=1);
@@ -60,7 +60,7 @@ abstract class InstantSearch extends \base
         int $productsLimit,
         int $categoriesLimit = 0,
         int $manufacturersLimit = 0,
-        int $alphaFilter = null,
+        ?int $alphaFilter = null,
         bool $addToSearchLog = false,
         string $searchLogPrefix = ''
     ): array {

@@ -1,15 +1,18 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2024 Zen Cart Development Team
+ * Zen Cart German Specific (210 code in 157)
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: html_output.php 2024-02-25 08:51:42Z webchills $
+ * @version $Id: html_output.php 2026-04-02 15:51:42Z webchills $
  */
 
-////
-// The HTML href link wrapper function
+/**
+ * The HTML href link wrapper function
+ *
+ * @since ZC v1.0.3
+ */
 function zen_href_link($page = '', $parameters = '', $connection = 'SSL', $add_session_id = true) {
     global $zco_notifier, $session_started;
 
@@ -55,8 +58,8 @@ function zen_href_link($page = '', $parameters = '', $connection = 'SSL', $add_s
     $link = preg_replace('/(&amp;|&){2,}|&amp;/', '&', $link);
 
     // Add the session ID when moving from different HTTP and HTTPS servers, or when SID is defined
-    if ( ($add_session_id == true) && ($session_started == true) ) {
-        if (defined('SID') && constant('SID') != '') {
+    if ($add_session_id && $session_started) {
+        if (PHP_VERSION_ID < 80401 && defined('SID') && !empty(constant('SID'))) {
             $link .= $separator . zen_output_string(constant('SID'));
         }
     }
@@ -67,6 +70,9 @@ function zen_href_link($page = '', $parameters = '', $connection = 'SSL', $add_s
     return $link;
 }
 
+/**
+   * @since ZC v1.0.3
+ */
   function zen_catalog_href_link($page = '', $parameters = '', $connection = 'NONSSL') {
     global $zco_notifier;
     $link = null;
@@ -82,7 +88,7 @@ function zen_href_link($page = '', $parameters = '', $connection = 'SSL', $add_s
         $link = HTTP_CATALOG_SERVER . DIR_WS_CATALOG;
       }
     } else {
-      trigger_error("zen_catalog_href_link($page, $parameters, $connection), Unable to determine connection method on a link! Known methods: NONSSL SSL", E_USER_ERROR);
+      trigger_error("FATAL ERROR: zen_catalog_href_link($page, $parameters, $connection), Unable to determine connection method on a link! Known methods: NONSSL SSL", E_USER_WARNING);
       die('</td></tr></table></td></tr></table><br><br><font color="#ff0000"><b>Error!</b></font><br><br><b>Unable to determine connection method on a link!<br><br>Known methods: NONSSL SSL<br><br>Function used:<br><br>zen_catalog_href_link(\'' . $page . '\', \'' . $parameters . '\', \'' . $connection . '\')</b>');
     }
     if ($parameters == '') {
@@ -129,8 +135,10 @@ function zen_catalog_base_link($connection = '')
     return $link;
 }
 
-////
-// The HTML image wrapper function
+/**
+ * HTML image wrapper function
+ * @since ZC v1.0.3
+ */
   function zen_image($src, $alt = '', $width = '', $height = '', $params = '') {
     if ($src === DIR_WS_CATALOG_IMAGES) {
       return '';
@@ -141,14 +149,28 @@ function zen_catalog_base_link($connection = '')
     if ($alt) {
       $image .= ' title="' . zen_output_string($alt) . '"';
     }
-    if ($width) {
-      $image .= ' width="' . $width . '"';
+
+    $styles = '';
+
+    if ($width !== '' && !str_contains($params, 'width:')) {
+        $width = trim($width);
+        $styles .= 'width:' . $width . (!str_ends_with($width, '%') ? 'px' : '') . '; ';
     }
-    if ($height) {
-      $image .= ' height="' . $height . '"';
+
+    if ($height !== '' && !str_contains($params, 'height:')) {
+        $height = trim($height);
+        $styles .= 'height:' . $height . (!str_ends_with($height, '%') ? 'px' : '') . '; ';
     }
+
+    if (str_contains($params, 'style=')) {
+        $params = str_replace('style="', 'style="' . $styles, $params);
+    } else {
+        $params .= ' style="' . $styles . '"';
+    }
+
+
     if ($params) {
-      $image .= ' ' . $params;
+      $image .= ' ' . trim($params);
     }
     $image .= '>';
 
@@ -157,6 +179,7 @@ function zen_catalog_base_link($connection = '')
 
 /**
  * @deprecated since v1.5.7g. Use <button> markup instead
+ * @since ZC v1.0.3
  */
 function zen_image_submit($image, $alt = '', $parameters = '')
 {
@@ -188,15 +211,14 @@ $iconMap = [
     'fa-square fa-stack-2x opacity-25 txt-orange',
     'fa-xmark fa-stack-1x txt-red'
   ],
-  'ssl-on' => 'fa-square txt-blue',
-  'ssl-off' => [
-    'fa-square fa-stack-2x opacity-25 txt-blue',
-    'fa-xmark fa-stack-1x txt-red'
-  ],
   'line-chart' => 'fa-line-chart txt-black',
   'calendar-days' => 'fa-regular fa-calendar-days',
   'status-green' => [
     'fa-solid fa-circle fa-stack-1x txt-status-on',
+    'fa-regular fa-circle fa-stack-1x txt-black'
+  ],
+  'status-green-light' => [
+    'fa-solid fa-circle fa-stack-1x txt-status-on txt-light',
     'fa-regular fa-circle fa-stack-1x txt-black'
   ],
   'status-yellow' => [
@@ -223,7 +245,8 @@ $iconMap = [
   'star-shadow' => 'fa-star txt-gold star-shadow',
   'locked' => 'fa-lock',
   'unlocked' => 'fa-lock-open',
-  'loading' => 'fa-gear fa-spin'
+  'loading' => 'fa-gear fa-spin',
+  'eye' => 'fa-eye',
 ];
 
 /**
@@ -267,14 +290,18 @@ function zen_icon(string $icon, ?string $tooltip = null, string $size = '', bool
   return "<i class=\"$iconSet$sizeClass align-middle $classes$fw\"$tooltip$ariaHidden></i>";
 }
 
-////
-// Draw a 1 pixel black line
+/**
+ *  Draw a 1 pixel black line
+ * @since ZC v1.0.3
+ */
   function zen_black_line() {
     return zen_image(DIR_WS_IMAGES . 'pixel_black.gif', '', '', '1', 'style="width:100%;"');
   }
 
-////
-// Output a separator either through whitespace, or with an image
+/**
+ * Output a separator either through whitespace, or with an image
+ * @since ZC v1.0.3
+ */
   function zen_draw_separator($image = 'pixel_black.gif', $width = '100%', $height = '1') {
 	if (!empty($width)) {
 		if (substr(rtrim($width), -1) !== '%') {
@@ -282,21 +309,22 @@ function zen_icon(string $icon, ?string $tooltip = null, string $size = '', bool
         }
 		$param = 'style="width:' . $width . ';"';
 	} else {
-		$param = NULL;
+		$param = '';
 	}
     return zen_image(DIR_WS_IMAGES . $image, '', '', $height, $param);
   }
 /**
  * @deprecated since v1.5.7g. Use <button> markup instead
+ * @since ZC v1.0.3
  */
   function zen_image_button($image, $alt = '', $params = '') {
-
     return zen_image(DIR_WS_LANGUAGES . $_SESSION['language'] . '/images/buttons/' . $image, $alt, '', '', $params);
   }
 
-////
-// javascript to dynamically update the states/provinces list when the country is changed
-// TABLES: zones
+/**
+ * javascript to dynamically update the states/provinces list when the country is changed
+ * @since ZC v1.0.3
+ */
   function zen_js_zone_list($country, $form, $field, $showTextField = true) {
     global $db;
     $countries = $db->Execute("SELECT DISTINCT zone_country_id
@@ -337,8 +365,10 @@ function zen_icon(string $icon, ?string $tooltip = null, string $size = '', bool
     return $output_string;
   }
 
-////
-// Output a form
+/**
+ * Output a form
+ * @since ZC v1.0.3
+ */
 function zen_draw_form($name, $action, $parameters = '', $method = 'post', $params = '', $usessl = 'false')
 {
     $form = '<form name="' . zen_output_string($name) . '" action="';
@@ -371,6 +401,7 @@ function zen_draw_form($name, $action, $parameters = '', $method = 'post', $para
  * @param string $type filed type
  * @param boolean $reinsert_value
  * @return string
+ * @since ZC v1.0.3
  */
 function zen_draw_input_field($name, $value = '~*~*#', $parameters = '', $required = false, $type = 'text', $reinsert_value = true)
 {
@@ -403,28 +434,37 @@ function zen_draw_input_field($name, $value = '~*~*#', $parameters = '', $requir
   return $field;
 }
 
-////
-// Output a form password field
-  function zen_draw_password_field($name, $value = '', $required = false, $parameters = '',$autocomplete = false) {
+/**
+ * Output a form password field
+ * @since ZC v1.0.3
+ */
+function zen_draw_password_field(string $name, string $value = '', bool $required = false, string $parameters = '', bool $autocomplete = false)
+{
     $parameters .= ' maxlength="40"';
-    if($autocomplete == false){
-      $parameters .= ' autocomplete="off"';
+
+    if ($autocomplete === false && !str_contains($parameters, 'autocomplete=')) {
+        $parameters .= ' autocomplete="off"';
     }
+
     $field = zen_draw_input_field($name, $value, $parameters, $required, 'password', false);
 
     return $field;
-  }
+}
 
-////
-// Output a form file field
+/**
+ * Output a form file field
+ * @since ZC v1.0.3
+ */
   function zen_draw_file_field($name, $required = false, $parameters = '') {
     $field = zen_draw_input_field($name, '', ' size="50" ' . $parameters, $required, 'file');
 
     return $field;
   }
 
-////
-// Output a selection field - alias function for zen_draw_checkbox_field() and zen_draw_radio_field()
+/**
+ * Output a selection field - alias function for zen_draw_checkbox_field() and zen_draw_radio_field()
+ * @since ZC v1.0.3
+ */
   function zen_draw_selection_field($name, $type, $value = '', $checked = false, $compare = '', $parameters = '') {
     $selection = '<input type="' . zen_output_string($type) . '" name="' . zen_output_string($name) . '"';
 
@@ -446,21 +486,27 @@ function zen_draw_input_field($name, $value = '~*~*#', $parameters = '', $requir
     return $selection;
   }
 
-////
-// Output a form checkbox field
-  function zen_draw_checkbox_field($name, $value = '', $checked = false, $compare = '', $parameters = '') {
+/**
+ * Output a form checkbox field
+ * @since ZC v1.0.3
+ */
+function zen_draw_checkbox_field($name, $value = '', $checked = false, $compare = '', $parameters = '') {
     return zen_draw_selection_field($name, 'checkbox', $value, $checked, $compare, $parameters);
-  }
+}
 
-////
-// Output a form radio field
-  function zen_draw_radio_field($name, $value = '', $checked = false, $compare = '', $parameters = '') {
+/**
+ * Output a form radio field
+ * @since ZC v1.0.3
+ */
+function zen_draw_radio_field($name, $value = '', $checked = false, $compare = '', $parameters = '') {
     return zen_draw_selection_field($name, 'radio', $value, $checked, $compare, $parameters);
-  }
+}
 
-////
-// Output a form textarea field
-  function zen_draw_textarea_field($name, $wrap, $cols, $height, $text = '~*~*#', $parameters = '', $reinsert_value = true) {
+/**
+ * Output a form textarea field
+ * @since ZC v1.0.3
+ */
+function zen_draw_textarea_field($name, $wrap, $cols, $height, $text = '~*~*#', $parameters = '', $reinsert_value = true) {
     $cols = (int)$cols;
     $wrap = in_array($wrap, ['soft', 'hard', 'off'], true) ? $wrap : 'soft';
     $field = '<textarea name="' . zen_output_string($name) . '" wrap="' . $wrap . '"' . ($cols > 0 ? ' cols="' . $cols . '"' : '') . ' rows="' . zen_output_string($height) . '"';
@@ -470,6 +516,7 @@ function zen_draw_input_field($name, $value = '~*~*#', $parameters = '', $requir
     if (!str_contains($parameters, 'id="')) {
         $field .= ' id="' . zen_output_string(str_replace(['[', ']'], '-', $name)) . '"';
     }
+
     $field .= '>';
 
     if ($text == '~*~*#' && (isset($GLOBALS[$name]) && is_string($GLOBALS[$name])) && ($reinsert_value == true) ) {
@@ -483,11 +530,13 @@ function zen_draw_input_field($name, $value = '~*~*#', $parameters = '', $requir
     $field .= '</textarea>';
 
     return $field;
-  }
+}
 
-////
-// Output a form hidden field
-  function zen_draw_hidden_field($name, $value = '~*~*#', $parameters = '') {
+/**
+ * Output a form hidden field
+ * @since ZC v1.0.3
+ */
+function zen_draw_hidden_field($name, $value = '~*~*#', $parameters = '') {
     $field = '<input type="hidden" name="' . zen_output_string($name) . '"';
 
     if (zen_not_null($value) && $value != '~*~*#') {
@@ -501,7 +550,7 @@ function zen_draw_input_field($name, $value = '~*~*#', $parameters = '', $requir
     $field .= '>';
 
     return $field;
-  }
+}
 
 /**
  * Output a form pull down menu
@@ -511,6 +560,7 @@ function zen_draw_input_field($name, $value = '~*~*#', $parameters = '', $requir
  * @param string $parameters parameters
  * @param boolean $required required
  * @return string
+ * @since ZC v1.0.3
  */
 function zen_draw_pull_down_menu($name, $values, $default = '', $parameters = '', $required = false)
 {
@@ -548,22 +598,28 @@ function zen_draw_pull_down_menu($name, $values, $default = '', $parameters = ''
   return $field;
 }
 
-////
-// Hide form elements
-  function zen_hide_session_id() {
+/**
+ * Hide form elements
+ * @since ZC v1.0.3
+ */
+function zen_hide_session_id(): string
+{
     global $session_started;
 
-    if ( ($session_started == true) && defined('SID') && !empty(SID) ) {
+    if (PHP_VERSION_ID < 80401 && $session_started && defined('SID') && !empty(constant('SID')) ) {
       return zen_draw_hidden_field(zen_session_name(), zen_session_id());
     }
-  }
-////
-// output label for input fields
+
+    return '';
+}
+
 /**
+ * output label for input fields
  * @param string $text
  * @param string $for
  * @param string $parameters
  * @return string
+ * @since ZC v1.5.5
  */
 function zen_draw_label($text, $for, $parameters = '')
 {
@@ -575,10 +631,12 @@ function zen_draw_label($text, $for, $parameters = '')
 /**
  * Output a day/month/year dropdown selector
  * @param string $fieldname_prefix
- * @param string $default_date
+ * @param int|null $default_date_timestamp
  * @return string
+ * @since ZC v1.0.3
  */
-function zen_draw_date_selector($fieldname_prefix, $default_date='') {
+function zen_draw_date_selector(string $fieldname_prefix, ?int $default_date_timestamp = null): string
+{
     $month_array = array();
     $month_array[1] =_JANUARY;
     $month_array[2] =_FEBRUARY;
@@ -592,7 +650,7 @@ function zen_draw_date_selector($fieldname_prefix, $default_date='') {
     $month_array[10] =_OCTOBER;
     $month_array[11] =_NOVEMBER;
     $month_array[12] =_DECEMBER;
-    $usedate = getdate($default_date);
+    $usedate = getdate($default_date_timestamp);
     $day = $usedate['mday'];
     $month = $usedate['mon'];
     $year = $usedate['year'];
@@ -620,53 +678,53 @@ function zen_draw_date_selector($fieldname_prefix, $default_date='') {
     return $date_selector;
 }
 
-    /**
-     * intended to add a universal search for use with any pulldown that extends the
-     * abstract pulldown class.  returns a html string.
-     * @param string $filename
-     * @param string $action
-     * @param bool $includeForm
-     * @param array $extrafieldsArray
-     * @return string
-     */
-
-    function addSearchKeywordForm(string $filename, string $action = '', bool $includeForm = true, array $extrafieldsArray = [])
-    {
-        $keywords_products = (isset($_POST['keywords']) && zen_not_null($_POST['keywords'])) ? zen_db_input(zen_db_prepare_input($_POST['keywords'])) : '';
-        $form = '';
-        $endForm = '';
-        $fullAction = '';
-        if (!empty($action)) {
-            $fullAction = 'action=' . $action;
-        }
-        if ($includeForm) {
-            $form = zen_draw_form('keywords', $filename, $fullAction, 'post', 'class="form-horizontal"');
-            $endForm = '</form>';
-        }
-        $html = '
-        <div class="row">
-            <div class="col-sm-offset-2 col-sm-4">' . $form . '
-                <div class="form-group">' .
-            zen_draw_label(HEADING_TITLE_SEARCH_DETAIL, 'keywords', 'class="control-label col-sm-3"') . '
-                         <div class="col-sm-9">' .
-            zen_draw_input_field('keywords', ($_POST['keywords'] ?? ''), 'class="form-control" id="keywords"') . '
-                         </div>
-                </div>' . zen_hide_session_id();
-        if (!empty($keywords_products)) {
-            $html .= '<div class="form-group">
-                      <div class="col-sm-3">
-                          <p class="control-label">' . TEXT_INFO_SEARCH_DETAIL_FILTER . '</p>
-                      </div>
-                      <div class="col-sm-9 text-right">' .
-                zen_output_string_protected($keywords_products) . ' <a href="' . zen_href_link($filename, $fullAction) . '" class="btn btn-default" role="button">' . IMAGE_RESET . '</a>
-                      </div>
-                  </div>';
-        }
-        foreach ($extrafieldsArray as $key => $value) {
-            $html .= zen_draw_hidden_field($key, $value) . '<br>';
-        }
-        $html .= '<br>' . $endForm . '
-            </div>
-        </div>';
-        return $html;
+/**
+ * intended to add a universal search for use with any pulldown that extends the
+ * abstract pulldown class.  returns a html string.
+ * @param string $filename
+ * @param string $action
+ * @param bool $includeForm
+ * @param array $extrafieldsArray
+ * @return string
+ * @since ZC v1.5.8
+ */
+function addSearchKeywordForm(string $filename, string $action = '', bool $includeForm = true, array $extrafieldsArray = [])
+{
+    $keywords_products = (isset($_POST['keywords']) && zen_not_null($_POST['keywords'])) ? zen_db_input(zen_db_prepare_input($_POST['keywords'])) : '';
+    $form = '';
+    $endForm = '';
+    $fullAction = '';
+    if (!empty($action)) {
+        $fullAction = 'action=' . $action;
     }
+    if ($includeForm) {
+        $form = zen_draw_form('keywords', $filename, $fullAction, 'post', 'class="form-horizontal"');
+        $endForm = '</form>';
+    }
+    $html = '
+    <div class="row">
+        <div class="col-sm-offset-2 col-sm-4">' . $form . '
+            <div class="form-group">' .
+        zen_draw_label(HEADING_TITLE_SEARCH_DETAIL, 'keywords', 'class="control-label col-sm-3"') . '
+                     <div class="col-sm-9">' .
+        zen_draw_input_field('keywords', ($_POST['keywords'] ?? ''), 'class="form-control" id="keywords"') . '
+                     </div>
+            </div>' . zen_hide_session_id();
+    if (!empty($keywords_products)) {
+        $html .= '<div class="form-group">
+                  <div class="col-sm-3">
+                      <p class="control-label">' . TEXT_INFO_SEARCH_DETAIL_FILTER . '</p>
+                  </div>
+                  <div class="col-sm-9 text-right">' .
+            zen_output_string_protected($keywords_products) . ' <a href="' . zen_href_link($filename, $fullAction) . '" class="btn btn-default" role="button">' . IMAGE_RESET . '</a>
+                  </div>
+              </div>';
+    }
+    foreach ($extrafieldsArray as $key => $value) {
+        $html .= zen_draw_hidden_field($key, $value) . '<br>';
+    }
+    $html .= '<br>' . $endForm . '
+        </div>
+    </div>';
+    return $html;
+}
