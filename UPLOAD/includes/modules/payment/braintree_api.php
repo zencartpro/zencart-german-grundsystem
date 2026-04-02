@@ -1,14 +1,14 @@
 <?php
 /**
- * @package Braintree SCA for Zen Cart German 1.5.7j and PHP 8.3.x
+ * @package Braintree SCA for Zen Cart German 1.5.7k and PHP 8.4.x
  * Zen Cart German Specific
- * based on braintree_web 3.134.0 and braintree_php 6.31.0 (December 2025)
+ * based on braintree_web 3.139.0 and braintree_php 6.32.0 (April 2026)
  * @copyright Copyright 2018-2021 Numinix
- * @copyright Copyright 2003-2025 Zen Cart Development Team
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: braintree_api.php 2025-12-28 18:50:14 webchills $
+ * @version $Id: braintree_api.php 2026-04-02 17:07:14 webchills $
 */
 use Braintree\Gateway;
 use Braintree\Transaction;
@@ -374,9 +374,9 @@ class braintree_api extends base {
                 <input type='text' class='hide_field' name='braintree_3ds_auth_id' id='braintree_3ds_auth_id'>
                 <input type='text' class='hide_field' name='braintree_card_type' id='braintree_card_type'>
                 
-                <script src='https://js.braintreegateway.com/web/3.134.0/js/client.min.js'></script>
-                <script src='https://js.braintreegateway.com/web/3.134.0/js/three-d-secure.min.js'></script>
-                <script src='https://js.braintreegateway.com/web/3.134.0/js/hosted-fields.min.js'></script> 
+                <script src='https://js.braintreegateway.com/web/3.139.0/js/client.min.js'></script>
+                <script src='https://js.braintreegateway.com/web/3.139.0/js/three-d-secure.min.js'></script>
+                <script src='https://js.braintreegateway.com/web/3.139.0/js/hosted-fields.min.js'></script> 
                 <script>
                     let hf, threeDS;
                     function braintreeCheck(){
@@ -619,9 +619,9 @@ class braintree_api extends base {
                 <input type='text' class='hide_field' name='braintree_3ds_auth_id' id='braintree_3ds_auth_id'>
                 <input type='text' class='hide_field' name='braintree_card_type' id='braintree_card_type'>
                 
-                <script src='https://js.braintreegateway.com/web/3.134.0/js/client.min.js'></script>
-                <script src='https://js.braintreegateway.com/web/3.134.0/js/three-d-secure.min.js'></script>
-                <script src='https://js.braintreegateway.com/web/3.134.0/js/hosted-fields.min.js'></script> 
+                <script src='https://js.braintreegateway.com/web/3.139.0/js/client.min.js'></script>
+                <script src='https://js.braintreegateway.com/web/3.139.0/js/three-d-secure.min.js'></script>
+                <script src='https://js.braintreegateway.com/web/3.139.0/js/hosted-fields.min.js'></script> 
                 <script>
                     let hf, threeDS;
                     function braintreeCheck(){
