@@ -2,11 +2,11 @@
 /**
  * Observer class used to detect spam input
  * Zen Cart German Specific 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: auto.non_captcha_observer.php 2022-02-11 18:00:16Z webchills $
+ * @version $Id: auto.non_captcha_observer.php 2026-04-02 15:11:16Z webchills $
  */
 
 class zcObserverNonCaptchaObserver extends base
@@ -39,8 +39,8 @@ class zcObserverNonCaptchaObserver extends base
 
     public function updateNotifyContactUsCaptchaCheck(&$class, $eventID, $paramsArray)
     {
-        // sanitize the name field more aggressively
-        $GLOBALS['name'] = zen_db_prepare_input(zen_sanitize_string($_POST['contactname']));
+        // sanitize the contact-us name field more aggressively
+        $GLOBALS['name'] = zen_db_prepare_input(zen_sanitize_string($_POST['contactname'] ?? ''));
 
         $this->testURLSpam();  // test for a url with in this name
         $this->testAntiSpamFields();
@@ -99,11 +99,10 @@ class zcObserverNonCaptchaObserver extends base
 
     protected function generate_random_string($input, $strength = 16)
     {
-        $function = PHP_VERSION_ID >= 70000 ? 'random_int' : 'mt_rand';
         $input_length = strlen($input);
         $random_string = '';
         for ($i = 0; $i < $strength; $i++) {
-            $random_character = $input[$function(0, $input_length - 1)];
+            $random_character = $input[random_int(0, $input_length - 1)];
             $random_string .= $random_character;
         }
 
