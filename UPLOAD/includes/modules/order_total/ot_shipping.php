@@ -2,12 +2,12 @@
 /**
  * ot_shipping order-total module
  *
- * Zen Cart German Specific (158 code in 157)
+ * Zen Cart German Specific (210 code in 157)
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_shipping.php 2023-10-31 16:41:16Z webchills $
+ * @version $Id: ot_shipping.php 2026-04-02 21:41:16Z webchills $
  */
 class ot_shipping extends base
 {
@@ -66,12 +66,14 @@ class ot_shipping extends base
             $pass = false;
             switch (MODULE_ORDER_TOTAL_SHIPPING_DESTINATION) {
                 case 'national':
-                    if ($order->delivery['country_id'] == STORE_COUNTRY) {
+                     $deliverycountryid = $order->delivery['country_id'] ?? '';
+                    if ($deliverycountryid == STORE_COUNTRY) {
                         $pass = true; 
                     }
                     break;
               case 'international':
-                    if ($order->delivery['country_id'] != STORE_COUNTRY) {
+                    $deliverycountryid = $order->delivery['country_id'] ?? ''; 
+                    if ($deliverycountryid != STORE_COUNTRY) {
                         $pass = true; 
                     }
                     break;
