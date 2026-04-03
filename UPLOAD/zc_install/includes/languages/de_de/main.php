@@ -169,7 +169,7 @@ return [
 'TEXT_ERROR_CURL' => 'Probleme mit der CURL Extension - PHP meldet, dass CURL nicht verfügbar ist.',
 'TEXT_ERROR_UPLOADS' => 'Upload Extension in PHP nicht aktiviert',
 'TEXT_ERROR_XML' => 'XML Extension in PHP nicht aktiviert',
-'TEXT_ERROR_GZIP' => 'Die GZip Extension in PHP nicht aktiviert<br>[ <i><strong>HINWEIS:</strong> Falls Sie Nginx verwenden und GZip innerhalb von Nginx abhandeln, muss das für Sie nicht relevant sein.</i> ]',
+'TEXT_ERROR_GZIP' => 'Die GZip Extension ist in PHP nicht aktiviert<br>[ <i><strong>HINWEIS:</strong> Falls Sie Nginx verwenden und GZip innerhalb von Nginx abhandeln, muss das für Sie nicht relevant sein.</i> ]',
 'TEXT_ERROR_EXTENSION_NOT_LOADED' => '%s extension scheint nicht geladen zu sein',
 'TEXT_ERROR_FUNCTION_DOES_NOT_EXIST' => 'PHP function %s existiert nicht',
 'TEXT_ERROR_CURL_LIVE_TEST' => 'CURL Test fehlgeschlagen',
