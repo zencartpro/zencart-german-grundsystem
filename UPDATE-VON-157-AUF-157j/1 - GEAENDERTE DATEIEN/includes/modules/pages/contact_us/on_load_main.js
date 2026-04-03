@@ -1,1 +1,0 @@
-if (document.contact_us) { if (document.getElementById('send-to')) { document.getElementById('send-to').focus(); } else if (document.contact_us.contactname) { document.contact_us.contactname.focus() }};
