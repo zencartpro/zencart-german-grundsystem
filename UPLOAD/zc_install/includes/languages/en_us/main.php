@@ -1,22 +1,22 @@
 <?php
 /**
- * @copyright Copyright 2003-2025 Zen Cart Development Team
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main.php 2025-11-01 11:54:29Z webchills $
+ * @version $Id: main.php 2026-04-03 06:10:29Z webchills $
  */
 
 return [
-'META_TAG_TITLE' => 'Zen Cart 1.5.7j German - Installer',
+'META_TAG_TITLE' => 'Zen Cart 1.5.7k German - Installer',
 'HTML_PARAMS' => 'dir="ltr" lang="en"',
-'ZC_VERSION_STRING' => '%s v%s',
+'ZC_VERSION_STRING' => '%1$s v%2$s',
 'TEXT_PAGE_HEADING_INDEX' => 'System Inspection',
 'TEXT_INDEX_FATAL_ERRORS' => 'Some problems that need fixing before we continue',
 'TEXT_INDEX_WARN_ERRORS' => 'Some Other Issues:',
 'TEXT_INDEX_WARN_ERRORS_ALT' => 'Some Issues:',
 'TEXT_HEADER_MAIN' => 'TIP: The field titles are clickable help links which explain what each field means.',
-'TEXT_INDEX_HEADER_MAIN' => 'TIP: More information may be available by clicking on the <strong>titles</strong> of some errors and warnings.',
+'TEXT_INDEX_HEADER_MAIN' => 'TIP: Links with a <u>question-mark icon <strong><i class="bi-question-circle"></i></strong></u> can be clicked to explain more detail about a form field or an error.',
 'TEXT_INSTALLER_CHOOSE_LANGUAGE' => 'Installer Language',
 'TEXT_HELP_CONTENT_CHOOSE_LANG' => 'This language selection refers to the installation process only.<br>The Zen Cart&reg; installation files include only the US English language pack.<br>However, Zen Cart&reg; is fully multi-lingual, supporting <em>any</em> language (subject to a language pack being available/having been developed by the community).',
 'TEXT_PAGE_HEADING_SYSTEM_SETUP' => 'System Setup',
@@ -70,15 +70,16 @@ return [
 'TEXT_LOADING_DEMO_DATA' => 'Loading Demo Data',
 'TEXT_LOADING_PLUGIN_DATA' => 'Loading SQL for Pre-installed Plugins',
 'TEXT_LOADING_PLUGIN_UPGRADES' => 'Loading SQL for Plugin upgrades',
-'TEXT_COULD_NOT_UPDATE_BECAUSE_ANOTHER_VERSION_REQUIRED' => 'Could not update to version %s. We detect that you currently have v%s, and must perform the updates to get to version %s first.',
+'TEXT_COULD_NOT_UPDATE_BECAUSE_ANOTHER_VERSION_REQUIRED' => 'Could not update to version %1$s. We detect that you currently have v%2$s, and must perform the updates to get to version %3$s first.',
 'TEXT_PAGE_HEADING_ADMIN_SETUP' => 'Admin Setup',
 'TEXT_ADMIN_SETUP_USER_SETTINGS' => 'Admin User Settings',
 'TEXT_ADMIN_SETUP_USER_NAME' => 'Admin Superuser Name: ',
 'TEXT_EXAMPLE_USERNAME' => 'ie: bill',
 'TEXT_ADMIN_SETUP_USER_EMAIL' => 'Admin Superuser Email: ',
 'TEXT_EXAMPLE_EMAIL' => 'ie: my_email@example.com',
-'TEXT_ADMIN_SETUP_USER_EMAIL_REPEAT' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Retype email: ',
+'TEXT_ADMIN_SETUP_USER_EMAIL_REPEAT' => '... Retype email: ',
 'TEXT_ADMIN_SETUP_USER_PASSWORD' => 'Admin password: ',
+'TEXT_ADMIN_SETUP_MATCHING_EMAIL' => 'A matching valid email address is required.',
 'TEXT_ADMIN_SETUP_USER_PASSWORD_HELP' => '<strong>REMEMBER THIS!!</strong>: Below is your initial temporary password for your Admin Superuser Account. Please ensure you make a note of it.',
 'TEXT_ADMIN_SETUP_ADMIN_DIRECTORY' => 'Admin Directory: ',
 'TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_DEFAULT' => 'We were not able to change the name of your admin directory automatically. You must rename it from "admin" before you can access the admin area.',
@@ -88,8 +89,8 @@ return [
 'TEXT_COMPLETION_HEADER_MAIN' => '',
 'TEXT_COMPLETION_INSTALL_COMPLETE' => '',
 'TEXT_COMPLETION_INSTALL_LINKS_BELOW' => 'The links to access your Admin area dashboard and shop storefront are shown below:',
-'TEXT_COMPLETION_UPGRADE_COMPLETE' => 'Congratulations, your upgrade is now complete.',
-'TEXT_COMPLETION_ADMIN_DIRECTORY_WARNING' => 'Your admin directory could not be renamed automatically, you will need to rename your admin directory before accessing it',
+'TEXT_COMPLETION_UPGRADE_COMPLETE' => 'Congratulations, your database-upgrade for the core Zen Cart application is now complete.<br>Be sure to also upgrade any plugins you have installed.',
+'TEXT_COMPLETION_ADMIN_DIRECTORY_WARNING' => 'Your admin directory could not be renamed automatically, you will need to rename your admin directory before accessing it.',
 'TEXT_COMPLETION_INSTALLATION_DIRECTORY_WARNING' => 'You must <strong>now</strong> delete/remove the "zc_install" directory from your server.',
 'TEXT_COMPLETION_INSTALLATION_DIRECTORY_EXPLANATION' => 'Admin access is disabled until this directory has been removed, to prevent unauthorized persons from using the installer to overwrite your installation.',
 'TEXT_COMPLETION_CATALOG_LINK_TEXT' => 'Your Storefront',
@@ -110,6 +111,7 @@ return [
 'TEXT_ERROR_ADMIN_CREDENTIALS' => 'Could not verify the Admin Credentials you provided.<br><br>' . '%%TEXT_HELP_CONTENT_UPGRADEADMINNAME%%',
 'TEXT_UPGRADE_IN_PROGRESS' => 'Upgrade running. Progress of each step is indicated below ...',
 'TEXT_UPGRADE_TO_VER_X_COMPLETED' => 'Upgrade to version %s completed.',
+'TEXT_CANNOT_DETECT_VERSION' => 'FATAL ERROR: Cannot detect existing Zen Cart database version. Either it is too old (before v1.2.6, in which case upgrade to v1.2.6 first) or it is seriously damaged.',
 'TEXT_NO_REMAINING_UPGRADE_STEPS' => 'Looking good! It appears as though there are no more upgrade steps required.',
 'TEXT_CONTINUE' => 'Continue',
 'TEXT_CANCEL' => 'Cancel',
@@ -130,8 +132,8 @@ return [
 'TEXT_ERROR_COULD_NOT_WRITE_CONFIGFILE' => 'Could not write the generated config file: %s. Please ensure the file exists and is writable.',
 'TEXT_ERROR_STORE_CONFIGURE' => 'Catalog /includes/configure.php file either does not exist, is not readable or is not writeable',
 'TEXT_ERROR_ADMIN_CONFIGURE' => 'Admin /admin/includes/configure.php file either does not exist, is not readable or is not writeable',
-'TEXT_ERROR_PHP_VERSION' => str_replace(["\n", "\r"], '', 'Incorrect PHP Version.<p>The PHP version you are using (' . PHP_VERSION . ') is not suitable.</p><p>The German Zen Cart Version 1.5.7i is compatible with PHP versions 8.0.x to 8.3.x, although 8.2.x or 8.3.x is recommended.</p>'),
-'TEXT_ERROR_PHP_VERSION_RECOMMENDED' => '<p>For maximum security and compatibility you should be using PHP 8.2.x or PHP8.3.x . This installation can proceed, but note that your site will not be PCI Compliant when running out-of-date software.</p></p>',
+'TEXT_ERROR_PHP_VERSION' => str_replace(["\n", "\r"], '', 'Incorrect PHP Version.<p>The PHP version you are using (' . PHP_VERSION . ') is not suitable.</p><p>The German Zen Cart Version 1.5.7k is compatible with PHP versions 8.0.x to 8.4.x, although 8.3.x or 8.4.x is recommended.</p>'),
+'TEXT_ERROR_PHP_VERSION_RECOMMENDED' => '<p>For maximum security and compatibility you should be using PHP 8.3.x or PHP 8.4.x . This installation can proceed, but note that your site will not be PCI Compliant when running out-of-date software.</p></p>',
 'TEXT_ERROR_PHP_VERSION_MIN' => 'PHP Version should be greater than or equal to %s',
 'TEXT_ERROR_PHP_VERSION_MAX' => 'PHP Version should be less than or equal to %s',
 'TEXT_ERROR_MYSQL_SUPPORT' => 'Problems with your MySQL (mysqli) support. Your server appears to be missing the mysqli extension for PHP, which we use to connect to your database. Talk to your hosting company for assistance if you encounter database errors when proceeding.',
@@ -163,17 +165,17 @@ return [
 'TEXT_ERROR_CURL' => 'Problems with the CURL extension - PHP is reporting that CURL is not present.',
 'TEXT_ERROR_UPLOADS' => 'Upload Extension for PHP is not enabled',
 'TEXT_ERROR_XML' => 'XML Extension in PHP is not enabled',
-'TEXT_ERROR_GZIP' => 'The GZip Extension in PHP is not enabled<br>[ <i><strong>NOTE:</strong> This may not be relevant if you are using Nginx and handling GZip within Nginx.</i> ]',
+'TEXT_ERROR_GZIP' => 'The GZip Extension in PHP is not detected',
 'TEXT_ERROR_EXTENSION_NOT_LOADED' => '%s extension does not seem to be loaded',
 'TEXT_ERROR_FUNCTION_DOES_NOT_EXIST' => 'PHP function %s does not exist',
 'TEXT_ERROR_CURL_LIVE_TEST' => 'Could not use CURL to contact a live server',
 'TEXT_ERROR_HTTPS' => 'PRO TIP: If possible, you should already have installed an SSL certificate and should run the installer using "https://"',
-'TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE' => 'An existing configure.php file was found, indicating a pre-existing installation.',
-'TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE_NO_UPDATE' => 'An existing configure.php file was found. However, your database seems to be current. This suggests you are on a live site. Proceeding with Install will delete the current database contents! Are you sure you want to continue with Install?',
+'TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE' => 'An existing configure.php file was found, indicating a pre-existing installation. You may upgrade using the button below (if there is no Upgrade button, perhaps your DB_PREFIX does not match the database?). CAUTION: Proceeding with a Clean Install will wipe out the existing data.',
+'TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE_NO_UPDATE' => 'An existing configure.php file was found. However, your database seems to be current. This suggests you are on a live site. CAUTION: Proceeding with a Clean Install will delete the current database contents! Are you sure you want to continue with a Clean Install?',
 'TEXT_ERROR_MULTIPLE_ADMINS_NONE_SELECTED' => 'Multiple Admin directories seem to exist. Either remove the duplicate admin directories and click Refresh or select the correct admin directory below and click Refresh.',
 'TEXT_ERROR_MULTIPLE_ADMINS_SELECTED' => 'Multiple Admin directories seem to exist. If the selected directory below is incorrect, please choose another and click Refresh.',
-'TEXT_ERROR_MYSQL_VERSION' => 'The server database does not meet the minimum version. MySQL: %s or MariaDB: %s',
-'TEXT_ERROR_SUCCESS_NO_ERRORS' => 'No errors were detected on your system. You may continue with the installation.',
+'TEXT_ERROR_MYSQL_VERSION' => 'The server database does not meet the minimum version. MySQL: %1$s or MariaDB: %2$s',
+'TEXT_ERROR_SUCCESS_NO_ERRORS' => 'No errors were detected on your system. You may continue with one of the Install (or Upgrade if available) options below.',
 'TEXT_UPGRADE_INFO' => '%%TEXT_UPGRADE%%: will inspect your database and subsequently offer the steps required to upgrade to the current version (adding new fields/modifying existing fields). This is intended to be a non-destructive process, but as with all modifications you must ensure you have a verified backup of your database available before proceeding.',
 'TEXT_CLEAN_INSTALL_INFO' => '%%TEXT_CLEAN_INSTALL%%: will revert the database to a new state, deleting all data. Optionally, the demonstration data may be loaded as part of this process.',
 'TEXT_FORM_VALIDATION_REQUIRED' => 'Required',
@@ -191,6 +193,8 @@ You may proceed with installing despite this situation, but please be advised th
 'TEXT_HELP_CONTENT_CONNECTIONDATABASECHECK' => 'We tried to connect to MySQL using a localhost connection. This failure does not necessarily mean MySQL is not working, as some hosts require an IP address or host name for the MySQL database.<br><br>If you are indeed using localhost for your database server, you should check that MySQL is running correctly.',
 'TEXT_HELP_TITLE_CHECKCURL' => '%%TEXT_ERROR_CURL%%',
 'TEXT_HELP_CONTENT_CHECKCURL' => 'CURL is a background process used by (PHP in) your store to connect to external servers and services such as payment and shipping providers to process transactions or get real-time shipping quotes. When we tested CURL functionality on your server we were unable to establish a connection. This could indicate a problem with your webserver configuration. Please contact your hosting company for assistance to enable CURL support on your server.<br><br>If you are a developer running this site on an offline development server then it is unsurprising that CURL cannot connect for this test. CURL is not necessary for development purposes except for testing transactional activity, at which time connecting online will be required.',
+'TEXT_HELP_TITLE_GZIP' => 'PHP GZip extension not detected.',
+'TEXT_HELP_CONTENT_GZIP' => 'GZip is commonly used to compress webpage content, to make it smaller, before transmitting to the browser, so that it transmits faster. With Apache webserver it must be enabled in the PHP configuration settings; with Nginx webserver it may be enabled in the Nginx settings itself. Your hosting company can take care of this for you.<br><br>[ <i><strong>NOTE:</strong> To be clear: this can be ignored if you are using Nginx and handling GZip within Nginx</i> (because we cannot easily detect it automatically when nginx is in use). ]',
 'TEXT_HELP_TITLE_ADMINSERVERDOMAIN' => 'Admin Server Domain',
 'TEXT_HELP_CONTENT_ADMINSERVERDOMAIN' => 'Enter the domain name for accessing your Admin area. It is strongly recommended to use HTTPS (SSL) for this address. Consult your hosting company about enabling SSL on your site.',
 'TEXT_HELP_TITLE_ENABLESSLCATALOG' => 'Enable SSL for Storefront?',
@@ -224,7 +228,7 @@ You may proceed with installing despite this situation, but please be advised th
 'TEXT_HELP_TITLE_SQLCACHEDIRECTORY' => 'SQL Cache Directory',
 'TEXT_HELP_CONTENT_SQLCACHEDIRECTORY' => 'Enter the directory to use for file-based caching. This is a directory/folder on your webserver, and its permissions must be set to writable so that the webserver (eg Apache) can write files to it.',
 'TEXT_HELP_TITLE_ADMINUSER' => 'Admin Superuser Name',
-'TEXT_HELP_CONTENT_ADMINUSER' => 'This will be the primary username used to manage your admin access and other admin user accounts. It will have unrestricted privileges.',
+'TEXT_HELP_CONTENT_ADMINUSER' => 'This will be the primary username used to manage your admin access and other admin user accounts. It will have unrestricted privileges.<br>Additional users with varying access levels can be added from the Administration panel.',
 'TEXT_HELP_TITLE_ADMINEMAIL' => 'Admin Superuser Email',
 'TEXT_HELP_CONTENT_ADMINEMAIL' => 'This email address will be used for password recovery in case you forget your password.',
 'TEXT_HELP_TITLE_ADMINEMAIL2' => 'Retype Email',
@@ -247,14 +251,15 @@ You may proceed with installing despite this situation, but please be advised th
 'REASON_COLUMN_ALREADY_EXISTS' => 'Cannot ADD column %s because it already exists.',
 'REASON_COLUMN_DOESNT_EXIST_TO_DROP' => 'Cannot DROP column %s because it does not exist.',
 'REASON_COLUMN_DOESNT_EXIST_TO_CHANGE' => 'Cannot CHANGE column %s because it does not exist.',
+'REASON_COLUMN_DOESNT_EXIST' => 'Cannot SET values in column %s because it does not exist.',
 'REASON_PRODUCT_TYPE_LAYOUT_KEY_ALREADY_EXISTS' => 'Cannot insert prod-type-layout configuration_key "%s" because it already exists',
-'REASON_INDEX_DOESNT_EXIST_TO_DROP' => 'Cannot drop index %s on table %s because it does not exist.',
+'REASON_INDEX_DOESNT_EXIST_TO_DROP' => 'Cannot drop index %1$s on table %2$s because it does not exist.',
 'REASON_PRIMARY_KEY_DOESNT_EXIST_TO_DROP' => 'Cannot drop primary key on table %s because it does not exist.',
-'REASON_INDEX_ALREADY_EXISTS' => 'Cannot add index %s to table %s because it already exists.',
+'REASON_INDEX_ALREADY_EXISTS' => 'Cannot add index %1$s to table %2$s because it already exists.',
 'REASON_PRIMARY_KEY_ALREADY_EXISTS' => 'Cannot add primary key to table %s because a primary key already exists.',
 'REASON_CONFIG_GROUP_KEY_ALREADY_EXISTS' => 'Cannot insert configuration_group_key "%s" because it already exists',
 'REASON_CONFIG_GROUP_ID_ALREADY_EXISTS' => 'Cannot insert configuration_group_id "%s" because it already exists',
-'TEXT_COMPLETION_NGINX_TEXT' => '<u>Important Security Information for Nginx</u>',
+'TEXT_COMPLETION_NGINX_TEXT' => 'Click to view <u>Important Security Information for Nginx</u>',
 'TEXT_HELP_TITLE_NGINXCONF' => 'Securing Zen Cart on Nginx Web Servers',
 'TEXT_HELP_CONTENT_NGINXCONF' => '<p>Your Zen Cart installation comes with security measures in a format native to the Apache Webserver. <br>
 See below to implement a similar set of measures for the Nginx Webserver.</p>
@@ -307,7 +312,7 @@ See below to implement a similar set of measures for the Nginx Webserver.</p>
 </li>
 <ol>
 </div>
-<div class="alert-box alert"> <strong>IMPORTANT:</strong> These location blocks should be <strong>BEFORE</strong> any other location blocks in your Nginx configuration server block for Zen Cart.</div>
+<div class="alert alert-danger"> <strong>IMPORTANT:</strong> These location blocks should be <strong>BEFORE</strong> any other location blocks in your Nginx configuration server block for Zen Cart.</div>
 <hr>',
 'TEXT_HELP_TITLE_AGREETOTERMS' => 'Agree To Terms',
 'TEXT_HELP_CONTENT_AGREETOTERMS' => '<a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html" rel="noopener" target="_blank">Original GPL 2.0 text</a>

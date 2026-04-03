@@ -2,18 +2,18 @@
 /**
  * Main German language file for installer
  * Zen Cart German Specific
- * @copyright Copyright 2003-2025 Zen Cart Development Team
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: main.php 2025-11-01 11:53:29Z webchills $
+ * @version $Id: main.php 2026-04-03 06:10:29Z webchills $
  */
 
 
 return [
-'META_TAG_TITLE' => 'Zen Cart 1.5.7j deutsch - Installationsprogramm',
+'META_TAG_TITLE' => 'Zen Cart 1.5.7k deutsch - Installationsprogramm',
 'HTML_PARAMS' => 'dir="ltr" lang="de"',
-'ZC_VERSION_STRING' => '%s v%s',
+'ZC_VERSION_STRING' => '%1$s v%2$s',
 'TEXT_PAGE_HEADING_INDEX' => 'Systemprüfung',
 'TEXT_INDEX_FATAL_ERRORS' => 'Es gibt einige kritische Probleme, die behoben werden müssen bevor wie weitermachen können.',
 'TEXT_INDEX_WARN_ERRORS' => 'Einige andere Probleme:',
@@ -82,6 +82,7 @@ return [
 'TEXT_EXAMPLE_EMAIL' => 'z.B: peter@meinshop.de',
 'TEXT_ADMIN_SETUP_USER_EMAIL_REPEAT' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email wiederholen: ',
 'TEXT_ADMIN_SETUP_USER_PASSWORD' => 'Admin Passwort: ',
+'TEXT_ADMIN_SETUP_MATCHING_EMAIL' => 'Eine passende gültige E-Mail Adresse ist erforderlich',
 'TEXT_ADMIN_SETUP_USER_PASSWORD_HELP' => '<strong>NOTIEREN SIE SICH DIESES PASSWORT JETZT!!</strong>: Unterhalb ist Passwort für Ihren Admin User. Sie benötigen es zum Einloggen in den Adminbereich, daher NOTIEREN SIE SICH DIESES PASSWORT JETZT. Möglicherweise werden Sie beim ersten Login aufgefordert das Passwort zu ändern. Sie können das Passwort auch jederzeit später auf eines Ihrer Wahl ändern.',
 'TEXT_ADMIN_SETUP_ADMIN_DIRECTORY' => 'Admin Verzeichnis: ',
 'TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_DEFAULT' => 'Wir konnten Ihr Admin Verzeichnis nicht automatisch umbenennen. Sie müssen es selbst umbenennen bevor Sie in den Adminbereich einloggen können.',
@@ -113,6 +114,7 @@ return [
 'TEXT_ERROR_ADMIN_CREDENTIALS' => 'Angegebener Benutzername/Passwort falsch.<br><br>' . '%%TEXT_HELP_CONTENT_UPGRADEADMINNAME%%',
 'TEXT_UPGRADE_IN_PROGRESS' => 'Update läuft. Fortschritt der einzelnen Schritte wird unten angezeigt ...',
 'TEXT_UPGRADE_TO_VER_X_COMPLETED' => 'Update auf Version %s abgeschlossen.',
+'TEXT_CANNOT_DETECT_VERSION' => 'FATAL ERROR: Cannot detect existing Zen Cart database version. Either it is too old (before v1.2.6, in which case upgrade to v1.2.6 first) or it is seriously damaged.',
 'TEXT_NO_REMAINING_UPGRADE_STEPS' => 'Das schaut gut aus! Es scheinen keine weiteren Updateschritte mehr nötig zu sein.',
 'TEXT_CONTINUE' => 'Weiter',
 'TEXT_CANCEL' => 'Abbrechen',
@@ -134,7 +136,7 @@ return [
 'TEXT_ERROR_COULD_NOT_WRITE_CONFIGFILE' => 'Konnte die Konfigurationsdatei nicht schreiben: %s. Stellen Sie sicher, dass diese Datei existiert und beschreibbar ist.',
 'TEXT_ERROR_STORE_CONFIGURE' => 'Frontend Konfigurationsdatei /includes/configure.php existiert nicht, ist nicht lesbar oder ist nicht beschreibbar',
 'TEXT_ERROR_ADMIN_CONFIGURE' => 'Admin Konfigurationsdatei /admin/includes/configure.php existiert nicht, ist nicht lesbar oder ist nicht beschreibbar',
-'TEXT_ERROR_PHP_VERSION' => str_replace(["\n", "\r"], '', 'Ungeeignete PHP Version.<p>Ihre verwendete PHP Version (' . PHP_VERSION . ') ist ungeeignet. Die deutsche Zen Cart Version 1.5.7i kann damit NICHT verwendet werden</p><p>Diese Version von Zen Cart deutsch ist kompatibel mit PHP Versionen von 8.0.x bis 8.3.x, wobei 8.2.x oder 8.3.x empfohlen sind.</p>'),
+'TEXT_ERROR_PHP_VERSION' => str_replace(["\n", "\r"], '', 'Ungeeignete PHP Version.<p>Ihre verwendete PHP Version (' . PHP_VERSION . ') ist ungeeignet. Die deutsche Zen Cart Version 1.5.7k kann damit NICHT verwendet werden</p><p>Diese Version von Zen Cart deutsch ist kompatibel mit PHP Versionen von 8.0.x bis 8.4.x, wobei 8.4.x empfohlen ist.</p>'),
 'TEXT_ERROR_PHP_VERSION_RECOMMENDED' => '<p>Ihre verwendete PHP Version ist veraltet. Für maximale Sicherheit und Kompatibilität sollten Sie mindestens PHP 8.2.x oder PHP 8.3.x verwenden. Wir können mit der Installation trotzdem weitermachen, weisen aber darauf hin, dass Sie in Ihrem eigenen Interesse keine solch veraltete PHP Version verwenden sollten.</p>',
 'TEXT_ERROR_PHP_VERSION_MIN' => 'Die PHP Version sollte höher sein als %s',
 'TEXT_ERROR_PHP_VERSION_MAX' => 'Die PHP Version sollte niedriger sein als %s',
@@ -196,6 +198,8 @@ Sie können trotz dieser Situation mit der Installation fortfahren, aber bitte b
 'TEXT_HELP_CONTENT_CONNECTIONDATABASECHECK' => 'Wir haben erfolglos versucht zu MySQL via localhost zu verbinden. Manche Provider erfordern bei der Angabe des Datenbank Hosts statt localhost eine IP Adresse oder andere spezielle Angabe.<br><br>Falls localhost doch für Ihren Datenbankserver korrekt sein sollte, stellen Sie sicher, dass MySQL überhaupt läuft.',
 'TEXT_HELP_TITLE_CHECKCURL' => '%%TEXT_ERROR_CURL%%',
 'TEXT_HELP_CONTENT_CHECKCURL' => 'CURL ist ein Hintergrundprozess, der von PHP in Ihrem Shop verwendet wird, um sich mit externen Servern und Diensten wie Zahlungs- und Versandanbietern zu verbinden, um Transaktionen zu verarbeiten oder Echtzeit-Versandanfragen zu erhalten. Als wir die CURL-Funktionalität auf Ihrem Server getestet haben, konnten wir keine Verbindung herstellen. Dies könnte auf ein Problem mit Ihrer Webserverkonfiguration hinweisen. Wenden Sie sich an Ihren Hosting-Anbieter, um Unterstützung für die Aktivierung von CURL auf Ihrem Server zu erhalten.<br><br>Wenn Sie als Entwickler diese Site auf einem Offlineentwicklungsserver ausführen, ist es nicht verwunderlich, dass CURL für diesen Test keine Verbindung herstellen kann. CURL ist nicht für Entwicklungszwecke erforderlich, außer für das Testen der Transaktionsaktivität. Zu diesem Zeitpunkt ist die Online-Verbindung erforderlich.',
+'TEXT_HELP_TITLE_GZIP' => 'PHP GZip extension not detected.',
+'TEXT_HELP_CONTENT_GZIP' => 'GZip is commonly used to compress webpage content, to make it smaller, before transmitting to the browser, so that it transmits faster. With Apache webserver it must be enabled in the PHP configuration settings; with Nginx webserver it may be enabled in the Nginx settings itself. Your hosting company can take care of this for you.<br><br>[ <i><strong>NOTE:</strong> To be clear: this can be ignored if you are using Nginx and handling GZip within Nginx</i> (because we cannot easily detect it automatically when nginx is in use). ]',
 'TEXT_HELP_TITLE_ADMINSERVERDOMAIN' => 'Admin Server Domain',
 'TEXT_HELP_CONTENT_ADMINSERVERDOMAIN' => 'Geben Sie hier die URL der Domain für Ihren Adminbereich an. Sie sollten unbedingt ein SSL Zertifikat haben und für diese Adresse immer https verwenden.',
 'TEXT_HELP_TITLE_ENABLESSLCATALOG' => 'SSL für das Shop Frontend aktivieren?',
@@ -252,6 +256,7 @@ Sie können trotz dieser Situation mit der Installation fortfahren, aber bitte b
 'REASON_COLUMN_ALREADY_EXISTS' => 'Kann Spalte %s nicht hinzufügen (ADD), da sie bereits existiert.',
 'REASON_COLUMN_DOESNT_EXIST_TO_DROP' => 'Kann Spalte %s nicht entfernen (DROP), da sie nicht existiert.',
 'REASON_COLUMN_DOESNT_EXIST_TO_CHANGE' => 'Kann Spalte %s nicht ändern (CHANGE), da sie nicht existiert.',
+'REASON_COLUMN_DOESNT_EXIST' => 'Cannot SET values in column %s because it does not exist.',
 'REASON_PRODUCT_TYPE_LAYOUT_KEY_ALREADY_EXISTS' => 'Kann prod-type-layout configuration_key "%s" nicht einfügen, da er bereits existiert',
 'REASON_INDEX_DOESNT_EXIST_TO_DROP' => 'Kann index %s von Tabelle %s nicht entfernen, da er nicht existiert.',
 'REASON_PRIMARY_KEY_DOESNT_EXIST_TO_DROP' => 'Kann primary key von table %s nicht entfernen, da er nicht existiert.',
