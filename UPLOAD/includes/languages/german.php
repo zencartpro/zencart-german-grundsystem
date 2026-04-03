@@ -2,11 +2,11 @@
 /**
 * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
 * 
-* @copyright Copyright 2003-2024 Zen Cart Development Team
+* @copyright Copyright 2003-2026 Zen Cart Development Team
 * Zen Cart German Version - www.zen-cart-pro.at
 * @copyright Portions Copyright 2003 osCommerce
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: german.php 2024-08-07 15:19:32Z webchills $
+* @version $Id: german.php 2026-04-03 06:19:32Z webchills $
 */
 // -----
 // Since the languages are now loaded via classes, the $locales definition
@@ -128,7 +128,7 @@ define('ENTRY_EMAIL','E-Mail Adresse:');
 define('ENTRY_EMAIL_ADDRESS','E-Mail-Adresse:');
 define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR', 'Ihre E-Mail Adresse scheint nicht korrekt zu sein. Bitte ändern Sie diese.');
 define('ENTRY_EMAIL_ADDRESS_CONFIRM', 'E-Mail bestätigen:'); 
-define('ENTRY_EMAIL_ADDRESS_CONFIRM_NOT_MATCHING', 'Die angegebenen Emailadressen stimmen nicht überein.'); 
+define('ENTRY_EMAIL_ADDRESS_CONFIRM_NOT_MATCHING', 'Die angegebenen E-Mail Adressen stimmen nicht überein.'); 
 define('ENTRY_EMAIL_ADDRESS_ERROR','Ist Ihre E-Mail-Adresse korrekt? Sie sollte mindestens ' . ENTRY_EMAIL_ADDRESS_MIN_LENGTH . ' Zeichen enthalten. Bitte versuchen Sie es erneut.');
 define('ENTRY_EMAIL_ADDRESS_ERROR_EXISTS', 'Ihre E-Mail Adresse ist bereits registriert. Bitte melden Sie sich an oder registrieren Sie sich mit einer anderen E-Mail Adresse.');
 define('ENTRY_EMAIL_ADDRESS_TEXT','*');
@@ -157,7 +157,7 @@ define('ENTRY_NICK','Forum Nickname:');
 define('ENTRY_NICK_DUPLICATE_ERROR','Dieser Nickname wird bereits verwendet. Bitte versuchen Sie einen anderen.');
 define('ENTRY_NICK_TEXT','*');
 define('ENTRY_PASSWORD','Passwort:');
-define('ENTRY_PASSWORD_CONFIRMATION','Bestätigen Sie das Passwort:');
+define('ENTRY_PASSWORD_CONFIRMATION','Passwort bestätigen:');
 define('ENTRY_PASSWORD_CONFIRMATION_TEXT','*');
 define('ENTRY_PASSWORD_CURRENT','Aktuelles Passwort:');
 define('ENTRY_PASSWORD_CURRENT_TEXT','*');
