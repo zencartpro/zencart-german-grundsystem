@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
- * @copyright Copyright 2003-2025 Zen Cart Development Team
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2025-01-23 08:28:04Z webchills $
+ * @version $Id: german.php 2026-04-03 09:47:04Z webchills $
  */
 
 // important line - do NOT change
@@ -391,7 +391,7 @@ define('PRODUCTS_QUANTITY_MIN_TEXT_LISTING','Min:');
 define('PRODUCTS_QUANTITY_UNIT_TEXT_LISTING','Einheiten:');
 define('PRODUCT_PRICE_DISCOUNT_AMOUNT','&nbsp;Rabatt');
 define('PRODUCT_PRICE_DISCOUNT_PERCENTAGE','% Rabatt');
-define('PRODUCT_PRICE_DISCOUNT_PREFIX','Speichern:&nbsp;');
+define('PRODUCT_PRICE_DISCOUNT_PREFIX','Sie sparen:&nbsp;');
 define('PRODUCT_PRICE_SALE','Abverkauf:&nbsp;');
 define('PRODUCTS_ATTRIBUTES_ADDING','FÜGE NEUE ATTRIBUTE HINZU');
 define('PRODUCTS_ATTRIBUTES_DELETE','LÖSCHE');

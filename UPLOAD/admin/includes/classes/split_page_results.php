@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2024 Zen Cart Development Team
+ * Zen Cart German Specific (210 code in 157)
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: split_page_results.php 2024-03-07 14:46:16Z webchills $
+ * @version $Id: split_page_results.php 2026-04-03 11:46:16Z webchills $
  */
 
 class splitPageResults
@@ -338,7 +338,9 @@ class splitPageResults
                     }
                 }
 
-                if (defined('SID') && !empty(SID)) $display_links .= zen_draw_hidden_field(zen_session_name(), zen_session_id());
+                if (PHP_VERSION_ID < 80401 && defined('SID') && !empty(constant('SID'))) {
+                    $display_links .= zen_draw_hidden_field(zen_session_name(), zen_session_id());
+                }
 
                 $display_links .= '</form>';
             }
