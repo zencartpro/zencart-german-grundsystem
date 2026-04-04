@@ -90,6 +90,7 @@ includes\classes\ResourceLoaders\SideboxFinder.php
 includes\classes\traits\NotifierManager.php
 includes\classes\traits\ObserverManager.php
 includes\classes\traits\Singleton.php
+includes\classes\vendors\MobileDetect\MobileDetect.php
 includes\classes\ViewBuilders\BaseController.php
 includes\classes\ViewBuilders\DataTableDataSource.php
 includes\classes\ViewBuilders\DerivedItemsManager.php
