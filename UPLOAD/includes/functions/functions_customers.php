@@ -1,12 +1,12 @@
 <?php
 /**
  * functions_customers
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (210 code in 157)
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_customers.php 2023-11-11 15:40:16Z webchills $
+ * @version $Id: functions_customers.php 2026-04-04 08:49:16Z webchills $
  */
 
 /**
@@ -32,7 +32,7 @@ function zen_customer_greeting(): string
  * @param bool $check_session unused legacy param
  * @return int
  */
-function zen_count_customer_orders(int $customer_id = null, $check_session = true): int
+function zen_count_customer_orders(?int $customer_id = null, $check_session = true): int
 {
     $customer = new Customer($customer_id);
 
@@ -55,7 +55,7 @@ function zen_get_customers_address_primary(int $customer_id): int
  * @param int|null $customer_id
  * @return array
  */
-function zen_get_customer_address_book_entries(int $customer_id = null): array
+function zen_get_customer_address_book_entries(?int $customer_id = null): array
 {
     $customer = new Customer($customer_id);
 
@@ -75,7 +75,7 @@ function zen_get_customers_address_book($customer_id) {
  * @return int
  * @deprecated use Customer::getFormattedAddressBookList or zen_get_customer_address_book_entries()
  */
-function zen_count_customer_address_book_entries(int $customer_id = null, $check_session = true): int
+function zen_count_customer_address_book_entries(?int $customer_id = null, $check_session = true): int
 {
     return count(zen_get_customer_address_book_entries($customer_id));
 }

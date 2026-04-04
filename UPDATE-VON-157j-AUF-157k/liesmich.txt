@@ -55,6 +55,19 @@ Bevor Sie nun irgendetwas anclicken oder tun, löschen Sie erst sofort die beide
 DEINADMIN/includes/auto_loaders/config.157k_update.php
 DEINADMIN/includes/init_includes/init_157k_update.php
 
+
+Löschen Sie nun die folgenden nicht mher benötigten Dateien/Ordner vom Server:
+
+extras/fontawesome/6.7.2 (gesamter Ordner)
+zc_plugins\InstantSearch\v4.0.3\classes\admin\InstantSearchConfigurationValidation.php
+zc_plugins\InstantSearch\v4.0.3\classes\Exceptions\InstantSearchEngineInitException.php
+zc_plugins\InstantSearch\v4.0.3\classes\Exceptions\InstantSearchEngineSearchException.php
+zc_plugins\InstantSearch\v4.0.3\classes\SearchEngineProviders\MysqlSearchEngineProvider.php
+zc_plugins\InstantSearch\v4.0.3\classes\SearchEngineProviders\SearchEngineProviderInterface.php
+zc_plugins\InstantSearch\v4.0.3\classes\InstantSearch.php
+zc_plugins\InstantSearch\v4.0.3\classes\InstantSearchLogger.php
+zc_plugins\InstantSearch\v4.0.3\classes\MysqlInstantSearch.php
+
 Prüfen Sie nun, ob Ihr Adminbereich und ihr Frontend problemlos funktionieren.
 
 Dann schalten Sie den Wartungsmodus unter Konfiguration > Shopwartung wieder aus.

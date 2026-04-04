@@ -1,12 +1,13 @@
 Zen Cart 1.5.7k deutsch 
 
-Version vom xx.04.2026
+Version vom 23.04.2026
 
 #####################################################################################################################################
 
-1.5.7k deutsch ist ein sehr umfangreicher Service Pack für 1.5.7 deutsch
+1.5.7k deutsch ist ein Service Pack für 1.5.7j deutsch
 Es integriert die fast vollständige Codebasis der aktuellen amerikanischen Version 1.5.8 und ein Großteil der amerikanischen Version 2.0.0/2.1.0 in die deutsche Zen Cart Version 1.5.7.
 Damit wird PHP 8.4.x vollständig unterstützt.
+Der integrierte Plugin Manager unterstützt nun auch neuere als encapsulated plugins veröffentliche Module.
 Die integrierten Module und 3rd Party Komponenten werden auf den Stand von April 2026 gebracht.
 
 Die Umstellung der Sprachdateien, die die amerikanische Version 1.5.8/2.0.0/2.1.0 bereits mitbringt, wird in einer für 2027 geplanten deutschen Zen Cart Version 2.2.0 mit vollständiger PHP 8.5 Unterstützung nachgezogen.
@@ -15,39 +16,16 @@ Dadurch kann in 1.5.7k weiterhin mit den gewohnten Sprachdefinitionen gearbeitet
 1.5.7k behebt auch alle Fehler die seit Erscheinen von 1.5.7j auf Github gemeldet wurden.
 
 Aktualisierte Komponenten:
-- PHP Mailer Update auf xxx
-- MobileDetect Update auf xxx
-- CKEditor Update auf xxx
-- TinyMCE Editor Update auf xxx
-- braintree_web Update auf xxx, braintree_php Update auf xxx
-- FontAwesome Update auf xxx
-- jQuery Update auf xxx
-- Image Handler Update auf xxx mit webp Unterstützung
-
-Neue Funktionalitäten:
-- Kunden können Kundengruppen zugeordnet werden. Plugins könnten bestimmte Funktionen nur für bestimmte Kundengruppen bereitstellen.
-- Unter Kunden > Kunden können die Bestellsummen der Kunden nach Jahr angezeigt werden.
-- Unterstützung des Plugin Managers für Module, die bereits dieses Format nutzen (Das Modul Sofortsuche ist bereits zum Aktivieren hinterlegt.)
-- Beim Löschen eines Kunden kann entweder der gesamte Kundeneintrag gelöscht werden (Standard) oder mit "Nur vergessen" nur die persönlichen Daten anonymisiert werden.
-- Logfilemanager integriert (automatisches Löschen von Logfiles nach einem bestimmten Zeitraum)
-- Modernisiertes Admin Layout mit der Möglichkeit bis zu 10 externe nützliche Links für die tägliche Arbeit in die Administration zu integrieren (z.B. Links zu den Adminportalen Ihrer Versand- und Payment Dienstleister)
-
-Verbesserungen:
-- Vollständige Unterstützung von PHP 8.4.x
-- Neustrukturierung wichtiger Funktionsdateien
-- Performanceoptimierung durch Zentralisierung von Klassen und Funktionen 
-- Admin Layout durchgehend augenfreundlich und mobilefreundlich
-- Suchfunktionen im Adminbereich verbessert
-- mehrfache Sprachdefinitionen wurden entfernt
-- Artikelmerkmale stehen nun auch in den anderen Artikeltypen zur Verfügung
-- Steuersatz der Versandkosten wird nun in der Datenbank bei der Bestellung gespeichert
-- Performanceverbesserungen für Shops mit großen Datenbanken
-- Neue Zusatzinformationen auf der Adminseite Bestellungen
+- PHP Mailer Update auf 7.0.2
+- CKEditor Update auf 5
+- TinyMCE Editor Update auf 8.4.0
+- braintree_web Update auf 3.139.0, braintree_php Update auf 6.32.0 
+- FontAwesome Update auf 7.2.0
 
 Wer bereits 1.5.7j verwendet kann mit dem speziellen Updatepaket in UPDATE-VON-157j-AUF-157k sehr leicht auf 1.5.7k aktualisieren.
 Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157j-AUF-157k
 
-Für das Update einer älteren deutschen Zen Cart Version als 1.5.7 (Sie verwenden z.B. derzeit 1.5.6 oder 1.5.5), führen Sie bitte ein normales Update mit dem kompletten 1.5.7k Paket durch!
+Für das Update einer älteren deutschen Zen Cart Version als 1.5.7 (Sie verwenden z.B. derzeit 1.5.6 oder 1.5.5), führen Sie bitte ein normales Update mit dem kompletten 1.5.7j Paket durch!
 Detaillierte Updateanleitung für das Update solch älterer Versionen:
 * https://updateanleitung.zen-cart-pro.at
 

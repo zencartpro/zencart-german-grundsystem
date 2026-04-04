@@ -46,21 +46,11 @@ extras/fontawesome/7.2.0
 
 ----------------------------------------------------------------------------------------------------------------
 
-NICHT MEHR ENTHALTEN
-----------------------------------------------------------------------------------------------------------------
-extras/fontawesome/6.7.2 (gesamter Ordner)
-zc_plugins\InstantSearch\v4.0.3\classes\admin\InstantSearchConfigurationValidation.php
-zc_plugins\InstantSearch\v4.0.3\classes\Exceptions\InstantSearchEngineInitException.php
-zc_plugins\InstantSearch\v4.0.3\classes\Exceptions\InstantSearchEngineSearchException.php
-zc_plugins\InstantSearch\v4.0.3\classes\SearchEngineProviders\MysqlSearchEngineProvider.php
-zc_plugins\InstantSearch\v4.0.3\classes\SearchEngineProviders\SearchEngineProviderInterface.php
-zc_plugins\InstantSearch\v4.0.3\classes\InstantSearch.php
-zc_plugins\InstantSearch\v4.0.3\classes\InstantSearchLogger.php
-zc_plugins\InstantSearch\v4.0.3\classes\MysqlInstantSearch.php
-----------------------------------------------------------------------------------------------------------------
 
 GEAENDERTE DATEIEN
 ----------------------------------------------------------------------------------------------------------------
+admin\includes\classes\class.admin.zcObserverLogEventListener.php
+admin\includes\classes\class.admin.zcObserverLogWriterDatabase.php
 admin\includes\classes\split_page_results.php
 admin\includes\css\stylesheet.css
 admin\includes\functions\html_output.php
@@ -71,6 +61,7 @@ admin\includes\languages\german\xsell.php
 admin\includes\languages\german.php
 admin\includes\application_bootstrap.php
 admin\includes\ckeditor.php
+admin\dsgvo_kundenexport.php
 admin\german_help.php
 admin\xsell.php
 includes\auto_loaders\config.core.php
@@ -106,9 +97,11 @@ includes\classes\ViewBuilders\PluginManagerController.php
 includes\classes\ViewBuilders\PluginManagerDataSource.php
 includes\classes\ViewBuilders\SimpleDataFormatter.php
 includes\classes\ViewBuilders\TableViewDefinition.php
+includes\classes\Customer.php
 includes\classes\FileSystem.php
 includes\classes\InitSystem.php
 includes\classes\template_func.php
+includes\functions\functions_customers.php
 includes\functions\functions_general_shared.php
 includes\functions\functions_lookups.php
 includes\functions\html_output.php
@@ -147,3 +140,18 @@ editors/tiny_mce
 includes/classes/vendors/PHPMailer
 includes/modules/payment/braintree
 laravel
+
+
+----------------------------------------------------------------------------------------------------------------
+NICHT MEHR ENTHALTEN (nach dem Update vom Server löschen)
+----------------------------------------------------------------------------------------------------------------
+extras/fontawesome/6.7.2 (gesamter Ordner)
+zc_plugins\InstantSearch\v4.0.3\classes\admin\InstantSearchConfigurationValidation.php
+zc_plugins\InstantSearch\v4.0.3\classes\Exceptions\InstantSearchEngineInitException.php
+zc_plugins\InstantSearch\v4.0.3\classes\Exceptions\InstantSearchEngineSearchException.php
+zc_plugins\InstantSearch\v4.0.3\classes\SearchEngineProviders\MysqlSearchEngineProvider.php
+zc_plugins\InstantSearch\v4.0.3\classes\SearchEngineProviders\SearchEngineProviderInterface.php
+zc_plugins\InstantSearch\v4.0.3\classes\InstantSearch.php
+zc_plugins\InstantSearch\v4.0.3\classes\InstantSearchLogger.php
+zc_plugins\InstantSearch\v4.0.3\classes\MysqlInstantSearch.php
+----------------------------------------------------------------------------------------------------------------
