@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: manufacturers.php 2022-04-17 16:42:51Z webchills $
+ * @version $Id: manufacturers.php 2026-04-04 14:42:51Z webchills $
  */
 require 'includes/application_top.php';
 
@@ -233,7 +233,7 @@ if (!empty($action)) {
                   ?>
                   <tr id="defaultSelected" class="dataTableRowSelected" onclick="document.location.href = '<?php echo zen_href_link(FILENAME_MANUFACTURERS, ($currentPage != 0 ? 'page=' . $currentPage . '&' : '') . 'mID=' . $manufacturer['manufacturers_id'] . '&action=edit'); ?>'">
                   <?php } else { ?>
-                  <tr class="dataTableRow" onclick="document.location.href = '<?php echo zen_href_link(FILENAME_MANUFACTURERS, ($currentPage != 0 ? 'page=' . $currentPage . '&' : '') . 'mID=' . $manufacturer['manufacturers_id'] . '&action=edit'); ?>'" style="cursor:pointer">
+                  <tr class="dataTableRow" onclick="document.location.href = '<?php echo zen_href_link(FILENAME_MANUFACTURERS, ($currentPage != 0 ? 'page=' . $currentPage . '&' : '') . 'mID=' . $manufacturer['manufacturers_id'] . '&action=edit'); ?>'" style="cursor:pointer;">
                   <?php } ?>
                   <td class="dataTableContent text-center"><?php echo $manufacturer['manufacturers_id']; ?></td>
                   <td class="dataTableContent"><?php echo $manufacturer['manufacturers_name']; ?></td>                  
@@ -264,11 +264,11 @@ if (!empty($action)) {
 
 ?>
 
-                    <?php if (isset($mInfo) && is_object($mInfo) && ($manufacturer['manufacturers_id'] == $mInfo->manufacturers_id)) { ?>
-                      <i class="fa fa-caret-right fa-2x fa-fw txt-navy align-middle"></i>
-                    <?php } else { ?>
+                    <?php if (isset($mInfo) && is_object($mInfo) && ($manufacturer['manufacturers_id'] == $mInfo->manufacturers_id)) {
+                      echo zen_icon('caret-right', '', '2x', true);
+                    } else { ?>
                       <a href="<?php echo zen_href_link(FILENAME_MANUFACTURERS, zen_get_all_get_params(['mID']) . 'mID=' . $manufacturer['manufacturers_id']); ?>">
-                        <i class="fa fa-info-circle fa-2x fa-fw txt-black align-middle"></i>
+                        <?php echo zen_icon('circle-info', '', '2x', true, true) ?>
                       </a>
                     <?php } ?>
                   </td>
@@ -322,7 +322,7 @@ if (!empty($action)) {
 
               $contents = ['form' => zen_draw_form('manufacturers', FILENAME_MANUFACTURERS, 'action=insert', 'post', 'enctype="multipart/form-data" class="form-horizontal"')];
               $contents[] = ['text' => TEXT_NEW_INTRO];
-              $contents[] = ['text' => zen_draw_label(TEXT_MANUFACTURERS_NAME, 'manufacturers_name', 'class="control-label"') . zen_draw_input_field('manufacturers_name', '', zen_set_field_length(TABLE_MANUFACTURERS, 'manufacturers_name') . ' class="form-control" id="manufacturers_name"')];
+              $contents[] = ['text' => zen_draw_label(TEXT_MANUFACTURERS_NAME, 'manufacturers_name', 'class="control-label"') . zen_draw_input_field('manufacturers_name', '', zen_set_field_length(TABLE_MANUFACTURERS, 'manufacturers_name') . ' class="form-control" id="manufacturers_name" required')];
               $contents[] = ['text' => zen_draw_label(TEXT_MANUFACTURERS_IMAGE, 'manufacturers_image', 'class="control-label"') . zen_draw_file_field('manufacturers_image', '', 'class="form-control" id="manufacturers_image"')];
               $dir_info = zen_build_subdirectories_array(DIR_FS_CATALOG_IMAGES);
               $default_directory = 'manufacturers/';
@@ -337,7 +337,7 @@ if (!empty($action)) {
               }
 
               $contents[] = ['text' => '<p class="p_label control-label">' . TEXT_MANUFACTURERS_URL . '</p>' . $manufacturer_inputs_string];
-              $contents[] = ['align' => 'text-center', 'text' => '<button type="submit" class="btn btn-primary">' . IMAGE_SAVE . '</button> <a href="' . zen_href_link(FILENAME_MANUFACTURERS, ($currentPage != 0 ? 'page=' . $currentPage . '&' : '') . 'mID=' . $_GET['mID']) . '" class="btn btn-default" role="button">' . IMAGE_CANCEL . '</a>'];
+              $contents[] = ['align' => 'text-center', 'text' => '<button type="submit" class="btn btn-primary">' . IMAGE_SAVE . '</button> <a href="' . zen_href_link(FILENAME_MANUFACTURERS, ($currentPage != 0 ? 'page=' . $currentPage . '&' : '') . 'mID=' . ($_GET['mID'] ?? '')) . '" class="btn btn-default" role="button">' . IMAGE_CANCEL . '</a>'];
                 
               break;
             case 'edit':
@@ -348,13 +348,13 @@ if (!empty($action)) {
               $contents[] = ['text' => zen_draw_label(TEXT_MANUFACTURERS_NAME, 'manufacturers_name', 'class="control-label"') . zen_draw_input_field('manufacturers_name', htmlspecialchars($mInfo->manufacturers_name, ENT_COMPAT, CHARSET, TRUE), zen_set_field_length(TABLE_MANUFACTURERS, 'manufacturers_name') . ' class="form-control" id="manufacturers_name" required')];
               $contents[] = ['text' => zen_draw_label(TEXT_MANUFACTURERS_IMAGE, 'manufacturers_image', 'class="control-label"') . zen_draw_file_field('manufacturers_image', '', ' class="form-control" id="manufacturers_image"') . '<br>' . $mInfo->manufacturers_image];
               $dir_info = zen_build_subdirectories_array(DIR_FS_CATALOG_IMAGES);
-              $default_directory = substr($mInfo->manufacturers_image, 0, strpos($mInfo->manufacturers_image ?? '', '/') + 1);
+              $default_directory = ($mInfo->manufacturers_image === null) ? '/' : substr($mInfo->manufacturers_image, 0, strpos($mInfo->manufacturers_image, '/') + 1);
 
               $contents[] = ['text' => zen_draw_label(TEXT_UPLOAD_DIR, 'img_dir', 'class="control-label"') . zen_draw_pull_down_menu('img_dir', $dir_info, $default_directory, 'class="form-control" id="img_dir"')];
 
               $contents[] = ['text' => zen_draw_label(TEXT_IMAGE_MANUAL, 'manufacturers_image_manual', 'class="control-label"') . zen_draw_input_field('manufacturers_image_manual', '', 'class="form-control" id="manufacturers_image_manual"')];
 
-              $contents[] = ['text' => zen_info_image($mInfo->manufacturers_image, $mInfo->manufacturers_name), SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT];
+              $contents[] = ['text' => zen_info_image($mInfo->manufacturers_image, $mInfo->manufacturers_name, SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT)];
               $manufacturer_inputs_string = '';
               for ($i = 0, $n = count($languages); $i < $n; $i++) {
                 $manufacturer_inputs_string .= '<div class="input-group"><span class="input-group-addon">' . zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']) . '</span>' . zen_draw_input_field('manufacturers_url[' . $languages[$i]['id'] . ']', zen_get_manufacturer_url($mInfo->manufacturers_id, $languages[$i]['id']), zen_set_field_length(TABLE_MANUFACTURERS_INFO, 'manufacturers_url') . ' class="form-control"') . '</div><br>';
@@ -402,9 +402,12 @@ if (!empty($action)) {
         </div>
         <!-- body_text_eof //-->
       </div>
-      <?php if (empty($action)) { ?>      
+       <?php
+      if (empty($action)) {
+        $current_mid = (isset($mInfo)) ? 'mID=' . $mInfo->manufacturers_id . '&' : '';
+     ?>
         <div class="col-sm-12 text-right">
-          <a href="<?php echo zen_href_link(FILENAME_MANUFACTURERS, ($currentPage != 0 ? 'page=' . $currentPage . '&' : '') . 'mID=1&action=new'); ?>" class="btn btn-primary" role="button"><?php echo IMAGE_INSERT; ?></a>
+          <a href="<?php echo zen_href_link(FILENAME_MANUFACTURERS, ($currentPage != 0 ? 'page=' . $currentPage . '&' : '') . $current_mid . 'action=new'); ?>" class="btn btn-primary" role="button"><?php echo IMAGE_INSERT; ?></a>
         </div>
       <?php } ?>
       <div class="row">

@@ -1,12 +1,12 @@
 <?php
 /**
  * checkout_payment header_php.php
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * Zen Cart German Specific (210 code in 157)
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header_php.php 2023-10-29 21:00:16Z webchills $
+ * @version $Id: header_php.php 2026-04-07 12:38:16Z webchills $
  */
 
 // This should be first line of the script:
@@ -121,6 +121,7 @@ if (isset($_GET['payment_error']) && is_object(${$_GET['payment_error']}) && ($e
 $breadcrumb->add(NAVBAR_TITLE_1, zen_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'));
 $breadcrumb->add(NAVBAR_TITLE_2);
 
-$gv_balance = $customer->getData('gv_balance');
+$gv_balance = $customer->getData('gv_balance') ?? 0;
+
 // This should be last line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_END_CHECKOUT_PAYMENT');

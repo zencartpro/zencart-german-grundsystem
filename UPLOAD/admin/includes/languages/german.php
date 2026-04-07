@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: german.php 2026-04-03 09:47:04Z webchills $
+ * @version $Id: german.php 2026-04-04 11:47:04Z webchills $
  */
 
 // important line - do NOT change
@@ -98,7 +98,7 @@ define('BOX_CUSTOMERS_GROUP_PRICING','Gruppenpreise');
 define('BOX_CUSTOMERS_INVOICE','Rechnung');
 define('BOX_CUSTOMERS_ORDERS','Bestellungen');
 define('BOX_CUSTOMERS_PACKING_SLIP','Lieferschein');
-define('BOX_CUSTOMERS_PAYPAL','PayPal IPN');
+define('BOX_CUSTOMERS_PAYPAL','PayPal Transaktionen');
 define('BOX_CUSTOMERS_WITHOUT_ORDER', 'Kunden, die nie etwas bestellt haben');
 define('BOX_DSGVO_KUNDENEXPORT', 'DSGVO Kundendatenexport');
 define('BOX_ENTRY_COUNTER','Besucherzähler:');
