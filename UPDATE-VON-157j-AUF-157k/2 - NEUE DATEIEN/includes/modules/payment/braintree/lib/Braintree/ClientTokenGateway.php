@@ -26,9 +26,9 @@ class ClientTokenGateway
     }
 
     /**
-     * Generate a client token for client-side authorization
+     * Generates a client token for client-side authorization
      *
-     * @param Optional $params containing request parameters
+     * @param array $params containing optional request parameters
      *
      * @return string client token
      */
@@ -39,7 +39,7 @@ class ClientTokenGateway
             $params["version"] = ClientToken::DEFAULT_VERSION;
         }
 
-        Util::verifyKeys(self::generateSignature(), $params);
+        $this->conditionallyVerifyKeys($params);
         $generateParams = ["client_token" => $params];
 
         return $this->_doGenerate('/client_token', $generateParams);
@@ -104,6 +104,7 @@ class ClientTokenGateway
     {
         return [
             "version", "customerId", "proxyMerchantId",
+            ["domains" => ['_anyKey_']],
             ["options" => ["makeDefault", "verifyCard", "failOnDuplicatePaymentMethod", "failOnDuplicatePaymentMethodForCustomer"]],
             "merchantAccountId"];
     }
@@ -119,7 +120,7 @@ class ClientTokenGateway
      */
     public function generateWithoutCustomerIdSignature()
     {
-        return ["version", "proxyMerchantId", "merchantAccountId"];
+        return ["version", "proxyMerchantId", ["domains" => ['_anyKey_']], "merchantAccountId"];
     }
 
     /**

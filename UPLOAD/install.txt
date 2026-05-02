@@ -1,6 +1,6 @@
 Zen Cart 1.5.7k deutsch 
 
-Version vom 23.04.2026
+Version vom 09.05.2026
 
 #####################################################################################################################################
 
@@ -8,7 +8,7 @@ Version vom 23.04.2026
 Es integriert die fast vollständige Codebasis der aktuellen amerikanischen Version 1.5.8 und ein Großteil der amerikanischen Version 2.0.0/2.1.0 in die deutsche Zen Cart Version 1.5.7.
 Damit wird PHP 8.4.x vollständig unterstützt.
 Der integrierte Plugin Manager unterstützt nun auch neuere als encapsulated plugins veröffentliche Module.
-Die integrierten Module und 3rd Party Komponenten werden auf den Stand von April 2026 gebracht.
+Die integrierten Module und 3rd Party Komponenten werden auf den Stand von Mai 2026 gebracht.
 
 Die Umstellung der Sprachdateien, die die amerikanische Version 1.5.8/2.0.0/2.1.0 bereits mitbringt, wird in einer für 2027 geplanten deutschen Zen Cart Version 2.2.0 mit vollständiger PHP 8.5 Unterstützung nachgezogen.
 Dadurch kann in 1.5.7k weiterhin mit den gewohnten Sprachdefinitionen gearbeitet werden. 
@@ -19,7 +19,7 @@ Aktualisierte Komponenten:
 - PHP Mailer Update auf 7.0.2
 - CKEditor Update auf 5
 - TinyMCE Editor Update auf 8.4.0
-- braintree_web Update auf 3.139.0, braintree_php Update auf 6.32.0 
+- braintree_web Update auf 3.141.0, braintree_php Update auf 6.34.0 
 - FontAwesome Update auf 7.2.0
 
 Wer bereits 1.5.7j verwendet kann mit dem speziellen Updatepaket in UPDATE-VON-157j-AUF-157k sehr leicht auf 1.5.7k aktualisieren.

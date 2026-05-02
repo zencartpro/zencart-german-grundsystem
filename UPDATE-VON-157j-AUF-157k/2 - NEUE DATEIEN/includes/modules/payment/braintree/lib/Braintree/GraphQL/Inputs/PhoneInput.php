@@ -7,6 +7,8 @@ use Braintree\Util;
 
 /**
  * Phone number input for PayPal customer session.
+ *
+ * @experimental This class is experimental and may change in future releases.
  */
 class PhoneInput extends Base
 {

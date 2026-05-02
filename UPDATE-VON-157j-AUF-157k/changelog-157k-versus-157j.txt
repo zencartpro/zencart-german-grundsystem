@@ -1,5 +1,5 @@
 1.5.7k deutsch ist ein Service Pack für 1.5.7j deutsch
-Die integrierten Module und 3rd Party Komponenten werden auf den Stand von April 2026 gebracht.
+Die integrierten Module und 3rd Party Komponenten werden auf den Stand von Mai 2026 gebracht.
 PHP 8.4.x wird nun vollständig unterstützt.
 Der integrierte Plugin Manager kann nun auch neuere Module, die als encapsulated Plugins veröffentlicht werden, verarbeiten.
 1.5.7k behebt auch alle Fehler die seit Erscheinen von 1.5.7j auf Github gemeldet wurden.
@@ -13,7 +13,7 @@ Aktualisierte Komponenten gegenüber 1.5.7j:
 
 ---------------------------------------------------------------------------------------------
 Changelog Zen Cart 1.5.7k deutsch gegenüber 1.5.7j deutsch
-2026-04-23
+2026-05-09
 ---------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------------------------------------------------------------
@@ -123,6 +123,7 @@ includes\templates\responsive_classic\common\html_header.php
 includes\templates\template_default\common\html_header.php
 includes\templates\template_default\templates\tpl_ask_a_question_default.php
 includes\templates\template_default\templates\tpl_checkout_payment_default.php
+includes\templates\template_default\templates\tpl_zc_phpupgrade_default.php
 includes\application_top.php
 includes\psr4Autoload.php
 includes\version.php

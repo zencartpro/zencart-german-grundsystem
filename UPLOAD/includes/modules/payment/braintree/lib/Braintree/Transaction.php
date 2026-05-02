@@ -689,28 +689,30 @@ class Transaction extends Base
      * Static methods redirecting to gateway class
      *
      * @param string $transactionId unique identifier of the transaction to be voided
+     * @param mixed  $attribs       containing any additional request parameters
      *
      * @see TransactionGateway::void()
      *
      * @return Result\Successful|Exception\NotFound
      */
-    public static function void($transactionId)
+    public static function void($transactionId, $attribs = [])
     {
-        return Configuration::gateway()->transaction()->void($transactionId);
+        return Configuration::gateway()->transaction()->void($transactionId, $attribs);
     }
 
     /**
      * Static methods redirecting to gateway class
      *
      * @param string $transactionId unique identifier of the transaction to be voided
+     * @param array  $attribs       containing any additional request parameters
      *
      * @see TransactionGateway::voidNoValidate()
      *
      * @return Transaction|Result\Error
      */
-    public static function voidNoValidate($transactionId)
+    public static function voidNoValidate($transactionId, $attribs = [])
     {
-        return Configuration::gateway()->transaction()->voidNoValidate($transactionId);
+        return Configuration::gateway()->transaction()->voidNoValidate($transactionId, $attribs);
     }
 
     /**

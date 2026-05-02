@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: english.php 2026-04-04 11:37:32Z webchills $
+ * @version $Id: english.php 2026-05-02 07:37:32Z webchills $
  */
  
 // important line - do NOT change
@@ -14,7 +14,7 @@
 // texts for admin header
 define('TEXT_PASSWORD_LAST_CHANGE', 'Password last changed:&nbsp;');
 define('TEXT_LAST_LOGIN_INFO', 'Last Login [IP]:&nbsp;');
-define('HEADER_ALT_TEXT','Admin Powered by Zen Cart 1.5.7i - deutsche Version');
+define('HEADER_ALT_TEXT','Admin Powered by Zen Cart 1.5.7k - deutsche Version');
 define('HEADER_LOGO_IMAGE','logo.gif');
 define('HEADER_LOGO_WIDTH','240');
 define('HEADER_LOGO_HEIGHT','54');

@@ -139,11 +139,11 @@ class Gateway
 
     /**
      *
-     * @return MerchantGateway
+     * @return LocalPaymentContextGateway
      */
-    public function merchant()
+    public function localPaymentContext()
     {
-        return new MerchantGateway($this);
+        return new LocalPaymentContextGateway($this->graphQLClient);
     }
 
     /**

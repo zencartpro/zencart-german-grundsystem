@@ -78,7 +78,7 @@ class Util
                 throw new Exception\TooManyRequests();
             break;
             case 500:
-                throw new Exception\ServerError();
+                throw new Exception\ServerError($message ?? "");
             break;
             case 504:
                 throw new Exception\GatewayTimeout();
@@ -186,6 +186,8 @@ class Util
             'Braintree\Dispute' => 'dispute',
             'Braintree\Dispute\EvidenceDetails' => 'evidence',
             'Braintree\DocumentUpload' => 'documentUpload',
+            'Braintree\LocalPayment' => 'localPayment',
+            'Braintree\LocalPaymentContextGateway' => 'localPaymentContext',
             'Braintree\Plan' => 'plan',
             'Braintree\PlanGateway' => 'plan',
             'Braintree\Address' => 'address',
@@ -193,7 +195,6 @@ class Util
             'Braintree\SettlementBatchSummary' => 'settlementBatchSummary',
             'Braintree\SettlementBatchSummaryGateway' => 'settlementBatchSummary',
             'Braintree\Merchant' => 'merchant',
-            'Braintree\MerchantGateway' => 'merchant',
             'Braintree\MerchantAccount' => 'merchantAccount',
             'Braintree\MerchantAccountGateway' => 'merchantAccount',
             'Braintree\OAuthCredentials' => 'credentials',
@@ -244,6 +245,10 @@ class Util
      */
     public static function delimiterToCamelCase($string, $delimiter = '[\-\_]')
     {
+        if ($string === null) {
+            return null;
+        }
+
         static $callback = null;
         if ($callback === null) {
             $callback = function ($matches) {

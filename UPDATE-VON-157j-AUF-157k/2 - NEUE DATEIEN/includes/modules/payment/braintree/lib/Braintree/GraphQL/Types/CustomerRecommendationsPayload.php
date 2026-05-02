@@ -6,6 +6,8 @@ use Braintree\Base;
 
 /**
  * Represents the customer recommendations associated with a PayPal customer session.
+ *
+ * @experimental This class is experimental and may change in future releases.
  */
 class CustomerRecommendationsPayload extends Base
 {
@@ -14,6 +16,9 @@ class CustomerRecommendationsPayload extends Base
     {
         $this->_attributes = $attributes;
 
+        if (isset($attributes['sessionId'])) {
+            $this->_set('sessionId', $attributes['sessionId']);
+        }
         if (isset($attributes['isInPayPalNetwork'])) {
             $this->_set('isInPayPalNetwork', $attributes['isInPayPalNetwork']);
         }

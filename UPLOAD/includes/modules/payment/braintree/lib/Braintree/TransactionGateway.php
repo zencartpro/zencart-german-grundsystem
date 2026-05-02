@@ -84,8 +84,8 @@ class TransactionGateway
     {
         return [
             'acceptPartialAuthorization',
-            'accountFundingTransaction',
             'amount',
+            'apiRequestKey',
             ['applePayCard' =>
                 [
                     'cardholderName',
@@ -327,6 +327,7 @@ class TransactionGateway
             'shippingAmount',
             'shippingTaxAmount',
             'shipsFromPostalCode',
+            'surchargeAmount',
             'taxAmount',
             'taxExempt',
             ['threeDSecurePassThru' =>
@@ -481,7 +482,7 @@ class TransactionGateway
      */
     public static function submitForSettlementSignature()
     {
-        return ['orderId', ['descriptor' => ['name', 'phone', 'url']],
+        return ['apiRequestKey', 'orderId', ['descriptor' => ['name', 'phone', 'url']],
             ['industry' =>
                 ['industryType',
                     ['data' =>
@@ -611,6 +612,7 @@ class TransactionGateway
     {
         return [
             'amount',
+            'apiRequestKey',
             'merchantAccountId',
             'orderId'
         ];
@@ -775,15 +777,18 @@ class TransactionGateway
      * void a transaction by id
      *
      * @param string $transactionId unique identifier
+     * @param array  $attribs       containing any additional request parameters
      *
      * @return Result\Successful|Result\Error
      */
-    public function void($transactionId)
+    public function void($transactionId, $attribs = [])
     {
         $this->_validateId($transactionId);
+        Util::verifyKeys(['apiRequestKey'], $attribs);
 
         $path = $this->_config->merchantPath() . '/transactions/' . $transactionId . '/void';
-        $response = $this->_http->put($path);
+        $params = !empty($attribs) ? ['transaction' => $attribs] : null;
+        $response = $this->_http->put($path, $params);
         return $this->_verifyGatewayResponse($response);
     }
 
@@ -791,12 +796,13 @@ class TransactionGateway
      * void a transaction by id. Returns a Transaction instead of Result\Successful
      *
      * @param string $transactionId unique identifier
+     * @param array  $attribs       containing any additional request parameters
      *
      * @return Transaction|Result\Error
      */
-    public function voidNoValidate($transactionId)
+    public function voidNoValidate($transactionId, $attribs = [])
     {
-        $result = $this->void($transactionId);
+        $result = $this->void($transactionId, $attribs);
         return Util::returnObjectOrThrowException(__CLASS__, $result);
     }
 
