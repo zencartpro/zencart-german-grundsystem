@@ -51,6 +51,7 @@ GEAENDERTE DATEIEN
 ----------------------------------------------------------------------------------------------------------------
 admin\includes\classes\class.admin.zcObserverLogEventListener.php
 admin\includes\classes\class.admin.zcObserverLogWriterDatabase.php
+admin\includes\classes\ImageHandlerAdmin.php
 admin\includes\classes\split_page_results.php
 admin\includes\css\stylesheet.css
 admin\includes\functions\html_output.php
