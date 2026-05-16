@@ -1,13 +1,13 @@
 <?php
 /**
- * @package Image Handler 5.3.2
+ * @package Image Handler 5.3.6
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
- * @copyright Copyright 2018-2023 lat 9 - Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2018-2026 lat 9 - Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_bmz_image_handler.php 2023-03-11 09:29:51Z webchills $
+ * @version $Id: functions_bmz_image_handler.php 2026-05-16 09:29:51Z webchills $
  */
 require_once DIR_FS_CATALOG . DIR_WS_CLASSES . 'bmz_image_handler.class.php';
 
@@ -71,7 +71,7 @@ $ihConf['large']['bg'] = ihValidateBackground('large');
  *
  * @return mixed|string
  */
-function ihValidateBackground($which_background)
+function ihValidateBackground(string $which_background): string
 {
     $background_value = $GLOBALS['ihConf'][$which_background]['bg'];
 
@@ -104,7 +104,7 @@ function ihValidateBackground($which_background)
  *
  * @return bool
  */
-function ih_image_supported($src)
+function ih_image_supported(string $src): bool
 {
     return in_array(strtolower(pathinfo($src, PATHINFO_EXTENSION)), ['jpg', 'jpeg', 'gif', 'png', 'webp']);
 }
@@ -120,7 +120,7 @@ function ih_image_supported($src)
  *
  * @return array
  */
-function handle_image($src, $alt, $width, $height, $parameters)
+function handle_image($src, $alt, $width, $height, $parameters): array
 {
     global $ihConf;
 
@@ -187,7 +187,7 @@ function zen_get_small_image($image)
  *
  * @return string
  */
-function zen_get_medium_image($image_base, $image_extension)
+function zen_get_medium_image(string $image_base, string $image_extension): string
 {
     global $ihConf;
     return $ihConf['medium']['prefix'] . $image_base . $ihConf['medium']['suffix'] . $image_extension;
@@ -199,7 +199,7 @@ function zen_get_medium_image($image_base, $image_extension)
  *
  * @return string
  */
-function zen_get_large_image($image_base, $image_extension)
+function zen_get_large_image(string $image_base, string $image_extension): string
 {
     global $ihConf;
     return $ihConf['large']['prefix'] . $image_base . $ihConf['large']['suffix'] . $image_extension;

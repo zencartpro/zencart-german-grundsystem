@@ -1,14 +1,14 @@
 <?php
 /**
- * @package Image Handler 5.3.3
+ * @package Image Handler 5.3.6
  * Zen Cart German Specific
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
- * @copyright Copyright 2018-2023 lat 9 - Vinos de Frutas Tropicales
+ * @copyright Copyright 2018-2026 lat 9 - Vinos de Frutas Tropicales
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: bmz_image_handler.class.php 2023-05-02 20:33:51Z webchills $
+ * @version $Id: bmz_image_handler.class.php 2026-05-16 20:33:51Z webchills $
  */
  
 if (!defined('IH_DEBUG_ADMIN')) {
@@ -24,36 +24,35 @@ if (!defined('IS_ADMIN_FLAG')) {
 
 class ih_image
 {
-    public
-        $canvas,
-        $debug,
-        $debugLogFile,
-        $extension,
-        $file_exists,
-        $file_is_supported, // Added IH 3.5.1 to quickly disclude unsupported file types, e.g. webp.
-        $filename,
-        $first_access,
-        $force_canvas,
-        $height,
-        $image_type,    // the actual type of the image supplied
-        $local = null,  // cached image reference
-        $orig,          // original image source passed to the constructor
-        $sizetype,
-        $src,           // reference to an actual physical image
-        $watermark,
-        $width;
+    public array $canvas;
+    public bool $debug;
+    public string $debugLogFile;
+    public string $extension;
+    public bool $file_exists;
+    public bool $file_is_supported; // Added IH 3.5.1 to quickly disclude unsupported file types
+    public string $filename;
+    public bool $first_access;
+    public bool $force_canvas;
+    public int|string $height;
+    public $image_type;     // the actual type of the image supplied
+    public $local = null;   // cached image reference
+    public string $orig;    // original image source passed to the constructor
+    public string $sizetype;
+    public string $src;     // reference to an actual physical image
+    public array $watermark;
+    public int|string $width;
 
     /**
      * ih_image class constructor
      * @author Tim Kroeger (tim@breakmyzencart.com)
      * @author Cindy Merkin (lat9)
-     * @version 5.3.3
+     * @version 5.3.6
      * @param string $src Image source (e.g. - images/productimage.jpg)
      * @param string $width The image's width
      * @param string $height The image's height
      */
 
-    public function __construct($src, $width, $height)
+    public function __construct(string $src, int|string $width, int|string $height)
     {
         global $ihConf, $ih_logfile_suffix;
 
@@ -116,7 +115,7 @@ class ih_image
         $line_num = $backtrace[0]['line'];
         $this->ihLog("__constructor for $this->filename, called by $caller at line number $line_num\n" . var_export($backtrace, true), true);
 
-        list($newwidth, $newheight, $resize) = $this->calculate_size($this->width, $this->height);
+        [$newwidth, $newheight, $resize] = $this->calculate_size($this->width, $this->height);
         if ($this->file_exists) {
             // set canvas dimensions
             if ($newwidth > 0 && $newheight > 0) {
@@ -132,7 +131,7 @@ class ih_image
     /**
      * @return bool
      */
-    public function file_not_found()
+    public function file_not_found(): bool
     {
         global $ihConf;
 
@@ -141,12 +140,11 @@ class ih_image
         //
         if (is_file($ihConf['dir']['docroot'] . $this->src)) {
             return false;
+        }
 
         // -----
         // Otherwise, see if the file exists with a capitalized version of the file-extension.
         //
-        }
-
         $pathinfo = pathinfo($this->src);
         $base = $pathinfo['filename'];
         $baseext = strtolower($pathinfo['extension']);
@@ -178,7 +176,7 @@ class ih_image
     /**
      * @return bool
      */
-    public function is_real()
+    public function is_real(): true
     {
         // return true if the source images are really present and medium
         // or large are not just a descendant from the default image.
@@ -190,7 +188,7 @@ class ih_image
         return ($orig === $src);
     }
 
-    public function determine_image_sizetype()
+    public function determine_image_sizetype(): void
     {
         global $ihConf;
 
@@ -210,7 +208,7 @@ class ih_image
      *
      * @return string
      */
-    public function strip_sizetype_suffix($src)
+    public function strip_sizetype_suffix(string $src): string
     {
         global $ihConf;
         $src = preg_replace('/' . $ihConf['large']['suffix'] . '\./', '.', $src);
@@ -223,7 +221,7 @@ class ih_image
     /**
      * @param $sizetype
      */
-    public function initialize_overlays($sizetype)
+    public function initialize_overlays(string $sizetype): void
     {
         global $ihConf;
 
@@ -247,8 +245,14 @@ class ih_image
             $this->watermark['file'] = '';
         } else {
             // set watermark parameters
-            list($this->watermark['width'], $this->watermark['height'], $this->watermark['image_type']) = getimagesize($this->watermark['file']);
-            list($this->watermark['startx'], $this->watermark['starty']) = $this->calculate_gravity($this->canvas['width'], $this->canvas['height'], $this->watermark['width'], $this->watermark['height'], $ihConf['watermark']['gravity']);
+            [$this->watermark['width'], $this->watermark['height'], $this->watermark['image_type']] = getimagesize($this->watermark['file']);
+            [$this->watermark['startx'], $this->watermark['starty']] = $this->calculate_gravity(
+                $this->canvas['width'],
+                $this->canvas['height'],
+                $this->watermark['width'],
+                $this->watermark['height'],
+                $ihConf['watermark']['gravity']
+            );
         }
     }
 
@@ -278,7 +282,7 @@ class ih_image
     /**
      * @return bool
      */
-    public function resizing_allowed()
+    public function resizing_allowed(): bool
     {
         global $bmzConf, $ihConf;
 
@@ -345,7 +349,7 @@ class ih_image
                 $quality = $ihConf['default']['quality'];
                 break;
         }
-        list($newwidth, $newheight, $resize) = $this->calculate_size($width, $height);
+        [$newwidth, $newheight, $resize] = $this->calculate_size($width, $height);
 
         // set canvas dimensions
         if ($newwidth > 0 && $newheight > 0) {
@@ -368,7 +372,10 @@ class ih_image
             $watermark_extra = ($this->watermark['file'] !== '') ? 'watermark.' : '';
             switch (IH_CACHE_NAMING) {
                 case 'Hashed':
-                    $local = $this->getCacheName($this->src . $this->watermark['file'] . $quality . $background . $ihConf['watermark']['gravity'], '.image.' . $newwidth . 'x' . $newheight . $file_extension);
+                    $local = $this->getCacheName(
+                        $this->src . $this->watermark['file'] . $quality . $background . $ihConf['watermark']['gravity'],
+                        '.image.' . $newwidth . 'x' . $newheight . $file_extension
+                    );
                     break;
                 case 'Mirrored':
                     // use pathinfo to get full path of an image
@@ -383,7 +390,10 @@ class ih_image
                         $image_dir = substr($image_path['dirname'],strlen(DIR_WS_IMAGES)) . '/';
                     }
                     // and now do the magic and create cached image name with the above parameters
-                    $local = $this->getCacheName(strtolower($image_dir . $image_basename), '.image.' . $watermark_extra . $newwidth . 'x' . $newheight . $file_extension);
+                    $local = $this->getCacheName(
+                        strtolower($image_dir . $image_basename),
+                        '.image.' . $watermark_extra . $newwidth . 'x' . $newheight . $file_extension
+                    );
                     break;
                 case 'Readable':
                 default:
@@ -404,7 +414,10 @@ class ih_image
                     }
 
                     // and now do the magic and create cached image name with the above parameters
-                    $local = $this->getCacheName(strtolower($image_dir . $image_basename), '.image.' . $watermark_extra . $newwidth . 'x' . $newheight . $file_extension);
+                    $local = $this->getCacheName(
+                        strtolower($image_dir . $image_basename),
+                        '.image.' . $watermark_extra . $newwidth . 'x' . $newheight . $file_extension
+                    );
                     break;
             }
 
@@ -435,7 +448,7 @@ class ih_image
      *
      * @return int
      */
-    protected function fileModifiedTime($filename)
+    protected function fileModifiedTime(string $filename): int
     {
         clearstatcache();
         return (is_file($filename)) ? filemtime($filename) : 0;
@@ -446,7 +459,7 @@ class ih_image
      *
      * @return string
      */
-    protected function sanitizeImageNames($name)
+    protected function sanitizeImageNames(string $name): string
     {
         $name = str_replace(' ', '-', $name); // Replaces all spaces with hyphens
         $name = preg_replace('/[^A-Za-z0-9\-_]/', '', $name); // Removes special chars, keeps hyphen and underscore
@@ -466,7 +479,7 @@ class ih_image
      * @return string       The filename of the cachefile
      */
     //-NOTE: This function was (for versions prior to 5.0.1) present in /includes/functions/extra_functions/functions_bmz_io.php
-    protected function getCacheName($data, $ext='')
+    protected function getCacheName(string $data, string $ext = ''): string
     {
         global $bmzConf;
         switch (IH_CACHE_NAMING) {
@@ -493,7 +506,7 @@ class ih_image
     /**
      * Calculate desired image size as set in admin->configuration->images.
      */
-    public function calculate_size($pref_width, $pref_height = '')
+    public function calculate_size(string $pref_width, string $pref_height = ''): array
     {
         if (is_file($this->filename)) {
             $image_info = getimagesize($this->filename);
@@ -502,7 +515,7 @@ class ih_image
                 $this->filename = DIR_WS_IMAGES . PRODUCTS_IMAGE_NO_IMAGE;
                 $image_info = getimagesize($this->filename);
             }
-            list($width, $height, $this->image_type) = $image_info;
+            [$width, $height, $this->image_type] = $image_info;
             $this->ihLog("calculate_size: file " . $this->filename . " ($pref_width, $pref_height), getimagesize returned $width x $height -type $this->image_type");
         } else {
             $this->ihLog('calculate_size: file "' . $this->filename . '" does NOT exist.');
@@ -574,7 +587,7 @@ class ih_image
      *
      * @return bool
      */
-    protected function resize_imageIM($file_ext, $dest_name, $bg, $quality = 85)
+    protected function resize_imageIM(string $file_ext, string $dest_name, string $bg, int $quality = 85): bool
     {
         global $ihConf;
 
@@ -725,7 +738,7 @@ class ih_image
      *
      * @return bool
      */
-    protected function resize_imageGD($file_ext, $dest_name, $bg, $quality = 85)
+    protected function resize_imageGD(string $file_ext, string $dest_name, string $bg, int $quality = 85): bool
     {
         global $ihConf;
 
@@ -757,7 +770,7 @@ class ih_image
         $startwidth = (int)(($this->canvas['width'] - $newwidth) / 2);
         $startheight = (int)(($this->canvas['height'] - $newheight) / 2);
 
-        if ($ihConf['gdlib'] > 1 && function_exists("imagecreatetruecolor")) {
+        if ($ihConf['gdlib'] > 1 && function_exists('imagecreatetruecolor')) {
             $tmpimg = imagecreatetruecolor($newwidth, $newheight);
         } else {
             $tmpimg = false;
@@ -775,7 +788,7 @@ class ih_image
             imagealphablending($tmpimg, false);
         }
         //try resampling first
-        if (function_exists("imagecopyresampled")) {
+        if (function_exists('imagecopyresampled')) {
             if (!imagecopyresampled($tmpimg, $srcimage, 0, 0, 0, 0, $newwidth, $newheight, $srcwidth, $srcheight)) {
                 imagecopyresized($tmpimg, $srcimage, 0, 0, 0, 0, $newheight, $newwidth, $srcwidth, $srcheight);
             }
@@ -783,10 +796,8 @@ class ih_image
             imagecopyresized($tmpimg, $srcimage, 0, 0, 0, 0, $newwidth, $newheight, $srcwidth, $srcheight);
         }
 
-        imagedestroy($srcimage);
-
         // initialize FIRST background image (transparent canvas)
-        if ($ihConf['gdlib'] > 1 && function_exists("imagecreatetruecolor")) {
+        if ($ihConf['gdlib'] > 1 && function_exists('imagecreatetruecolor')) {
             $newimg = imagecreatetruecolor($this->canvas['width'], $this->canvas['height']);
         } else {
             $newimg = false;
@@ -807,7 +818,6 @@ class ih_image
 
         //$newimg = $this->imagemergealpha($newimg, $tmpimg, $startwidth, $startheight, $newwidth, $newheight);
         imagecopy($newimg, $tmpimg, $startwidth, $startheight, 0, 0, $newwidth, $newheight);
-        imagedestroy($tmpimg);
         $tmpimg = $newimg;
 
         if ($ihConf['gdlib'] > 1 && function_exists('imagesavealpha')){
@@ -818,12 +828,11 @@ class ih_image
             $this->watermark['image'] = $this->load_imageGD($this->watermark['file'], $this->watermark['image_type']);
             if ($this->watermark['image'] !== false) {
                 imagecopy($tmpimg, $this->watermark['image'], $this->watermark['startx'], $this->watermark['starty'], 0, 0, $this->watermark['width'], $this->watermark['height']);
-                imagedestroy($this->watermark['image']);
             }
         }
 
         // initialize REAL background image (filled canvas)
-        if ($ihConf['gdlib'] > 1 && function_exists("imagecreatetruecolor")){
+        if ($ihConf['gdlib'] > 1 && function_exists('imagecreatetruecolor')){
             $newimg = imagecreatetruecolor($this->canvas['width'], $this->canvas['height']);
         }
         if ($newimg === false) {
@@ -875,8 +884,6 @@ class ih_image
             imagecopy($newimg, $tmpimg, 0, 0, 0, 0, $this->canvas['width'], $this->canvas['height']);
         }
 
-        imagedestroy($tmpimg);
-
         if ($ihConf['gdlib']>1 && function_exists('imagesavealpha')) {
             imagesavealpha($newimg, true);
         }
@@ -899,7 +906,7 @@ class ih_image
      *
      * @return array
      */
-    protected function calculate_gravity($canvaswidth, $canvasheight, $overlaywidth, $overlayheight, $gravity)
+    protected function calculate_gravity(int|string $canvaswidth, int|string $canvasheight, $overlaywidth, $overlayheight, string $gravity): array
     {
         $canvaswidth = (int)$canvaswidth;
         $canvasheight = (int)$canvasheight;
@@ -924,7 +931,7 @@ class ih_image
      *
      * @return false|GdImage|mixed|resource
      */
-    protected function load_imageGD($src_name, $image_type)
+    protected function load_imageGD(string $src_name, $image_type): false|string|\GdImage
     {
         // create an image of the given filetype
         switch ($image_type) {
@@ -971,7 +978,7 @@ class ih_image
      *
      * @return bool
      */
-    protected function save_imageGD($file_ext, $image, $dest_name, $quality = 75)
+    protected function save_imageGD(string $file_ext, $image, $dest_name, int|string $quality = 75): false|string
     {
         // -----
         // Initially, santitize the quality input for use by imagejpeg; values should
@@ -1025,7 +1032,6 @@ class ih_image
                 $ok = false;
                 break;
         }
-        imagedestroy($image);
 
         return $ok;
     }
@@ -1035,12 +1041,12 @@ class ih_image
      *
      * @return array|false
      */
-    protected function get_background_rgb($bg)
+    protected function get_background_rgb(string $bg): false|array
     {
         $color = false;
 
         $bg = trim(str_replace('transparent', '', $bg));
-        list($red, $green, $blue)= preg_split('/[, :]/', $bg);
+        [$red, $green, $blue] = preg_split('/[, :]/', $bg);
         if (preg_match('/\d+/', $red.$green.$blue)) {
             $red = min((int)$red, 255);
             $green = min((int)$green, 255);
@@ -1054,16 +1060,13 @@ class ih_image
      * @param       $message
      * @param false $first_record
      */
-    public function ihLog($message, $first_record = false)
+    public function ihLog(string $message, bool $first_record = false): void
     {
         if ($this->debug) {
             if ($first_record !== false) {
                 $record_prefix = PHP_EOL . date('Y-m-d H:i:s: ');
-                if ($this->first_access) {
-                    if (IS_ADMIN_FLAG) {
-                    } else {
-                        $record_prefix .= ('(' . $_SERVER['REQUEST_URI'] . ') ');
-                    }
+                if ($this->first_access && IS_ADMIN_FLAG === false) {
+                    $record_prefix .= ('(' . $_SERVER['REQUEST_URI'] . ') ');
                 }
             } else {
                 $record_prefix = "\t\t";
