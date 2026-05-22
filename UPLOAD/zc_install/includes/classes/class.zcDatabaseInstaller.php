@@ -1,11 +1,10 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2024 Zen Cart Development Team
+ * Zen Cart German Specific (210 code in 157)
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
- * Zen Cart German Specific (158 code in 157)
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: class.zcDatabaseInstaller.php 2024-02-02 13:43:53Z webchills $
+ * @version $Id: class.zcDatabaseInstaller.php 2026-05-22 13:43:53Z webchills $
  *
  */
 
@@ -73,10 +72,11 @@ class zcDatabaseInstaller
             'TRUNCATE TABLE ',
             'RENAME TABLE ',
             'TO ',
-            'UPDATE ',
             'UPDATE IGNORE ',
+            'UPDATE ',
             'DELETE FROM ',
             'DROP INDEX ',
+            'INNER JOIN ',
             'LEFT JOIN ',
             'FROM ',
             ') ENGINE=MYISAM',
@@ -85,19 +85,20 @@ class zcDatabaseInstaller
 
     public function getConnection(): bool
     {
-        require_once(DIR_FS_ROOT . 'includes/classes/db/' . $this->dbType . '/query_factory.php');
+        require_once DIR_FS_ROOT . 'includes/classes/db/' . $this->dbType . '/query_factory.php';
         $this->db = new queryFactory;
         $options = ['dbCharset' => $this->dbCharset];
         return $this->db->Connect($this->dbHost, $this->dbUser, $this->dbPassword, $this->dbName, 'false', $this->dieOnErrors, $options);
     }
 
-    public function runZeroDateSql($options = null): ?bool
+    public function runZeroDateSql(?array $options = null): ?bool
     {
         $file = DIR_FS_INSTALL . 'sql/install/zero_dates_cleanup.sql';
+        logDetails($file, 'Running cleanup for zero-date issues');
         return $this->parseSqlFile($file, $options);
     }
 
-    public function parseSqlFile($fileName, $options = null): bool
+    public function parseSqlFile($fileName, ?array $options = null): bool
     {
         $this->extendedOptions = $options ?? [];
         $this->progressFeedback = '';
@@ -115,7 +116,7 @@ class zcDatabaseInstaller
         $this->doJSONProgressLoggingStart(count($lines));
         $this->keepTogetherCount = 0;
         $this->newLine = "";
-        $usleep = defined('USLEEP_DB_INSTALLER') ? USLEEP_DB_INSTALLER : 3;
+        $usleep = defined('USLEEP_DB_INSTALLER') ? (int)USLEEP_DB_INSTALLER : 3;
         foreach ($lines as $line) {
             usleep($usleep);
             $this->jsonProgressLoggingCount++;
@@ -158,7 +159,6 @@ class zcDatabaseInstaller
             $this->keepTogetherLines = (int)substr($this->line, 28);
         }
         if (str_starts_with($this->line, '#PROGRESS_FEEDBACK:!')) {
-            $this->processProgressFeedback();
             $this->progressFeedback = $this->processProgressFeedback();
             $this->completeLine = true;
             $this->doJsonProgressLoggingUpdate();
@@ -178,7 +178,7 @@ class zcDatabaseInstaller
                 if ($this->keepTogetherCount === $this->keepTogetherLines) {
                     $this->completeLine = true;
                     $this->keepTogetherCount = 0;
-                    if (isset($this->collateSuffix) && $this->collateSuffix !== ''
+                    if (!empty($this->collateSuffix)
                         && (!defined('IGNORE_DB_CHARSET') || (defined('IGNORE_DB_CHARSET') && IGNORE_DB_CHARSET !== false))
                     ) {
                         $this->newLine = rtrim($this->newLine, ';') . $this->collateSuffix . ';';
@@ -187,6 +187,8 @@ class zcDatabaseInstaller
                 } else {
                     $this->completeLine = false;
                 }
+            } else {
+                $this->completeLine = false;
             }
             if ($this->completeLine) {
                 $output = (trim(str_replace(';', '', $this->newLine)) !== '' && !$this->ignoreLine) ? $this->tryExecute($this->newLine) : '';
@@ -220,6 +222,7 @@ class zcDatabaseInstaller
                 }
                 if (method_exists($this, $parseMethod)) {
                     $this->$parseMethod();
+                    break;
                 }
             }
         }
@@ -282,7 +285,7 @@ class zcDatabaseInstaller
     {
         if (isset($this->extendedOptions['doJsonProgressLogging'])) {
             $fileName = $this->extendedOptions['doJsonProgressLoggingFileName'];
-            $progress = ($this->jsonProgressLoggingCount / $this->jsonProgressLoggingTotal * 100);
+            $progress = round($this->jsonProgressLoggingCount / $this->jsonProgressLoggingTotal * 100, 2);
             $fp = fopen($fileName, "w");
             if ($fp) {
                 $arr = ['total' => $this->jsonProgressLoggingTotal, 'progress' => $progress, 'message' => $this->extendedOptions['message'], 'progressFeedback' => $this->progressFeedback];
@@ -476,6 +479,24 @@ class zcDatabaseInstaller
             $this->writeUpgradeExceptions($this->line, $result, $this->fileName);
             $this->ignoreLine = true;
         } else {
+            // Check for the SET command
+            $command = $this->lineSplit[2] ?? '';
+            if (strtoupper($command) === 'SET') {
+                $column = $this->lineSplit[3] ?? '';
+                // if there is an extra space (ie: 2 spaces) after the SET command in the SQL statement, then the column-name will be one more array element over
+                if ($column === ' ') {
+                    $column = $this->lineSplit[4] ?? '';
+                }
+                if ($column !== ' ') {
+                    $column_segments = explode('=', $column);
+                    $column_name = $column_segments[0];
+                    if (!$this->tableColumnExists($this->lineSplit[1], $column_name)) {
+                        $result = sprintf(REASON_COLUMN_DOESNT_EXIST, $column_name);
+                        $this->writeUpgradeExceptions($this->line, $result, $this->fileName);
+                        $this->ignoreLine = true;
+                    }
+                }
+            }
             $this->line = 'UPDATE ' . $this->dbPrefix . substr($this->line, 7);
         }
     }
@@ -488,20 +509,41 @@ class zcDatabaseInstaller
         } else {
             $this->line = 'ALTER TABLE ' . $this->dbPrefix . substr($this->line, 12);
 
+            $exists = false;
+
             switch (strtoupper($this->lineSplit[3])) {
+                case 'CHANGE':
+                case 'MODIFY':
+                    // Check to see if the column / index already exists
+
+                    if (strtoupper($this->lineSplit[4]) === 'COLUMN') {
+                        // we check for semi-optional COLUMN keyword
+                        $exists = !$this->tableColumnExists($this->lineSplit[2], $this->lineSplit[5]);
+                        $result = sprintf(REASON_COLUMN_DOESNT_EXIST_TO_CHANGE, $this->lineSplit[5]);
+                    } else {
+                        $exists = !$this->tableColumnExists($this->lineSplit[2], $this->lineSplit[4]);
+                        $result = sprintf(REASON_COLUMN_DOESNT_EXIST_TO_CHANGE, $this->lineSplit[4]);
+                    }
+                    // $exists here is treated backwards/falsey in this case because we cannot perform the change if the column is not present
+                    if ($exists) {
+                        $this->writeUpgradeExceptions($this->line, $result, $this->fileName);
+                    }
+                    break;
                 case 'ADD':
                 case 'DROP':
                     // Check to see if the column / index already exists
-                    $exists = false;
                     switch (strtoupper($this->lineSplit[4])) {
                         case 'COLUMN':
                             $exists = $this->tableColumnExists($this->lineSplit[2], $this->lineSplit[5]);
                             break;
                         case 'INDEX':
                         case 'KEY':
-                            // Do nothing if the index_name is ommitted
+                            // Do nothing if the index_name is omitted
                             if ($this->lineSplit[5] !== 'USING' && !str_starts_with($this->lineSplit[5], '(')) {
                                 $exists = $this->tableIndexExists($this->lineSplit[2], $this->lineSplit[5]);
+                            }
+                            if (strtoupper($this->lineSplit[3]) === 'DROP') {
+                                $exists = ! $exists;
                             }
                             break;
                         case 'UNIQUE':
@@ -528,14 +570,13 @@ class zcDatabaseInstaller
                             // No known item added, MySQL defaults to column definition unless the action is to drop the item, then it is the reverse.
                             $exists = strtoupper($this->lineSplit[3]) !== 'DROP' && $this->tableColumnExists($this->lineSplit[2], $this->lineSplit[4]);
                     }
-                    // Ignore this line if the column / index already exists
-                    if ($exists) {
-                        $this->ignoreLine = true;
-                    }
-
                     break;
                 default:
                     // Do nothing
+            }
+            // Ignore this line if the column / index already exists
+            if ($exists) {
+                $this->ignoreLine = true;
             }
         }
     }
@@ -580,6 +621,17 @@ class zcDatabaseInstaller
             } else {
                 $this->line = 'RENAME TABLE ' . $this->dbPrefix . $this->lineSplit[2] . ' TO ' . $this->dbPrefix . substr($this->line, (13 + strlen($this->lineSplit[2]) + 4));
             }
+        }
+    }
+
+    public function parserInnerJoin(): void
+    {
+        if (!$this->tableExists($this->lineSplit[2])) {
+            $result = sprintf(REASON_TABLE_NOT_FOUND, $this->lineSplit[2]) . ' CHECK PREFIXES!';
+            $this->writeUpgradeExceptions($this->line, $result, $this->fileName);
+            error_log($result . "\n" . $this->line . "\n---------------\n\n");
+        } else {
+            $this->line = 'INNER JOIN ' . $this->dbPrefix . substr($this->line, 11);
         }
     }
 
@@ -652,7 +704,7 @@ class zcDatabaseInstaller
         }
     }
 
-    private function processProgressFeedback()
+    private function processProgressFeedback(): string
     {
         $matches = explode(':!', $this->line);
         array_shift($matches);

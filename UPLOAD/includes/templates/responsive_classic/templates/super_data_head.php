@@ -2,11 +2,11 @@
 /**  
  * Zen Cart German Specific
  * @package open graph/microdata 
- * @copyright Copyright 2003-2024 Zen Cart Development Team
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: super_data_head.php 2024-04-21 18:31:41Z webchills $
+ * @version $Id: super_data_head.php 2026-05-22 13:31:41Z webchills $
  */
 if (FACEBOOK_OPEN_GRAPH_STATUS == 'true') { ?>
 <script type="application/ld+json">
@@ -226,7 +226,7 @@ $categoriesname = isset ($categories->fields['categories_name']) ? $categories->
 <?php if (FACEBOOK_OPEN_GRAPH_CUR != '') { ?><meta property="product:price:currency" content="<?php echo FACEBOOK_OPEN_GRAPH_CUR; ?>"/><?php }?>
 <meta property="product:retailer_part_no" content="<?php echo $products_model; ?>"/>
 <meta property="og:category" content="<?php echo $categoriesname; ?>" />
-<meta property="og:price:amount" content="<?php if (!empty($product_info_metatags->fields['products_id'])) { echo $specials_new_products_price = (round(zen_get_products_actual_price($product_info_metatags->fields['products_id']),2));} ?>" />
+<meta property="og:price:amount" content="<?php if (!empty($product_info_metatags->fields['products_id'])) { echo $specials_new_products_price = (round(zen_add_tax(zen_get_products_actual_price($product_info_metatags->fields['products_id']),zen_get_tax_rate($product_info_metatags->fields['products_tax_class_id'])),2));}?>" />
 <meta property="og:availability" content="<?php if ($products_quantity > 0) { ?>InStock<?php } ?><?php if ($products_quantity == 0) { ?>OutOfStock<?php }?>" />
 <meta property="og:brand" content="<?php echo $manufacturers_name; ?>" />
 <meta name="twitter:card" content="product">
