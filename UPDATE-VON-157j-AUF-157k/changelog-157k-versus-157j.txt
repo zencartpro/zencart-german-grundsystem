@@ -60,6 +60,7 @@ admin\includes\languages\english\paypal.php
 admin\includes\languages\english\plugin_manager.php
 admin\includes\languages\german\paypal.php
 admin\includes\languages\german\plugin_manager.php
+admin\includes\languages\german\stats_sales_report.php
 admin\includes\languages\german\xsell.php
 admin\includes\languages\english.php
 admin\includes\languages\german.php

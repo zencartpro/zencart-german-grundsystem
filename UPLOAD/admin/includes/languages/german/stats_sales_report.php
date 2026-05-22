@@ -10,10 +10,10 @@
  * @author     Conor Kerr <conor.kerr_zen-cart@dev.ceon.net>
  * @updated by stellarweb to work with version 1.5.0 02-29-12 
  * @updated by lat9 for continued operation under zc155/zc156, 20190622
- * @copyright  Portions Copyright 2003-2023 Zen Cart Development Team
+ * @copyright  Portions Copyright 2003-2026 Zen Cart Development Team
  * @copyright  Portions Copyright 2003 osCommerce
  * @license    http://www.gnu.org/copyleft/gpl.html   GNU Public License V2.0
- * @translation by webchills 2023-05-02
+ * @translation by webchills 2026-05-22
  */
 
 //////////////////////////////////////////////////////////
@@ -180,7 +180,7 @@ define('SELECT_DETAIL_MATRIX', 'Zeitraum Statistik Matrix');
 define('SELECT_OUTPUT_DISPLAY', 'Bildschirmausgabe');
 define('SELECT_OUTPUT_PRINT', 'Druckausgabe');
 define('SELECT_OUTPUT_CSV', 'CSV Export');
-define('SELECT_PRODUCT_ID', 'Artikelnummer');
+define('SELECT_PRODUCT_ID', 'Artikel ID');
 define('SELECT_QUANTITY', 'Menge');
 define('SELECT_LAST_NAME', 'Nachname des Kunden');
 
