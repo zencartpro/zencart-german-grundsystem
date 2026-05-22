@@ -9,7 +9,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_checkout_payment_default.php 2026-04-07 12:44:42Z webchills $
+ * @version $Id: tpl_checkout_payment_default.php 2026-05-22 16:44:42Z webchills $
  */
 ?>
 <?php echo $payment_modules->javascript_validation(); ?>
@@ -168,7 +168,7 @@
                         <?php
                         for ($j = 0, $n2 = sizeof($selection[$i]['fields']); $j < $n2; $j++) {
                             ?>
-                            <label<?= isset($selection[$i]['fields'][$j]['tag']) ? ' for="' . $selection[$i]['fields'][$j]['tag'] . '"' : '' ?> class="inputLabelPayment"><?= $selection[$i]['fields'][$j]['title'] ?></label>
+                            <label<?= isset($selection[$i]['fields'][$j]['tag']) ? ' for="' . $selection[$i]['fields'][$j]['tag'] . '"' : '' ?> class="inputLabelPayment"><?= $selection[$i]['fields'][$j]['title'] ?? '' ?></label>
                             <?= $selection[$i]['fields'][$j]['field'] ?>
                             <br class="clearBoth">
                             <?php
