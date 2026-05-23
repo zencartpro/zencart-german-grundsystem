@@ -119,6 +119,7 @@ includes\functions\extra_fuctions\functions_bmz_image_handler.php
 includes\init_includes\init_non_db_settings.php
 includes\init_includes\init_observers.php
 includes\init_includes\init_sanitize.php
+includes\init_includes\init_sessions.php
 includes\languages\german.php
 includes\modules\order_total\ot_shipping.php
 includes\modules\pages\ask_a_question\header_php.php

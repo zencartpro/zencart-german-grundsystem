@@ -5,7 +5,7 @@
 * @copyright Portions Copyright 2003 osCommerce
 * Zen Cart German Version - www.zen-cart-pro.at
 * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
-* @version $Id: init_157k_update.php 2026-05-16 13:58:51Z webchills $
+* @version $Id: init_157k_update.php 2026-05-23 14:46:51Z webchills $
 */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -28,7 +28,7 @@ $db->Execute("INSERT INTO ".TABLE_CONFIGURATION." (configuration_title, configur
 // 
 //
 $db->Execute("REPLACE INTO product_type_layout_language (configuration_title , configuration_key , languages_id, configuration_description, last_modified, date_added) VALUES 
-('20260423', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Uebersetzungen', now(), now());");
+('20260523', 'LANGUAGE_VERSION', '43', 'Datum der deutschen Uebersetzungen', now(), now());");
 
 // -----
 // Version History aktualisieren

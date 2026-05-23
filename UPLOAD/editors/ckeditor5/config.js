@@ -3,7 +3,7 @@ let myCKEditorConfig = {
     // https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editorconfig-EditorConfig.html
 
     // If you have a paid commercial license for premium features, enter the key here, and uncomment the line:
-    // licenseKey: '<YOUR_LICENSE_KEY>',
+    licenseKey: 'GPL',
 
 
     //// IMPORTANT NOTE: every section enabled here will replace the "entire" matching section from the master configuration
