@@ -4,6 +4,10 @@ Dieses Paket enthält alle geänderten und neuen Dateien um eine bestehende 1.5.
 
 NUR GEEIGNET WENN SIE BEREITS 1.5.7j VERWENDEN
 
+Für das Update einer älteren 1.5.7 Version (Sie verwenden z.B. derzeit 1.5.7i, 1.5.7h, 1.5.7g, 1.5.7f, 1.5.7e oder 1.5.7) aktualisieren Sie erst auf 1.5.7j:
+https://github.com/zencartpro/zencart-german-grundsystem/releases/tag/v1.5.7j
+Nach dem Update auf 1.5.7j können Sie dann auf 1.5.7k aktualisieren
+
 Für das Update einer älteren deutschen Zen Cart Version als 1.5.7 (Sie verwenden z.B. derzeit 1.5.6 oder 1.5.5), führen Sie bitte ein normales Update mit dem kompletten 1.5.7k Paket durch!
 
 Um Ihren bestehenden 1.5.7j deutsch Shop auf 1.5.7k deutsch zu aktualisieren gehen Sie folgendermaßen vor:

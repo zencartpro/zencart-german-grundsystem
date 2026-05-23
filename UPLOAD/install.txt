@@ -1,11 +1,11 @@
 Zen Cart 1.5.7k deutsch 
 
-Version vom 09.05.2026
+Version vom 23.05.2026
 
 #####################################################################################################################################
 
 1.5.7k deutsch ist ein Service Pack für 1.5.7j deutsch
-Es integriert die fast vollständige Codebasis der aktuellen amerikanischen Version 1.5.8 und ein Großteil der amerikanischen Version 2.0.0/2.1.0 in die deutsche Zen Cart Version 1.5.7.
+Es integriert die fast vollständige Codebasis der aktuellen amerikanischen Version 1.5.8 und einen Großteil der amerikanischen Version 2.0.0/2.1.0 in die deutsche Zen Cart Version 1.5.7.
 Damit wird PHP 8.4.x vollständig unterstützt.
 Der integrierte Plugin Manager unterstützt nun auch neuere als encapsulated plugins veröffentliche Module.
 Die integrierten Module und 3rd Party Komponenten werden auf den Stand von Mai 2026 gebracht.
@@ -16,14 +16,18 @@ Dadurch kann in 1.5.7k weiterhin mit den gewohnten Sprachdefinitionen gearbeitet
 1.5.7k behebt auch alle Fehler die seit Erscheinen von 1.5.7j auf Github gemeldet wurden.
 
 Aktualisierte Komponenten:
-- PHP Mailer Update auf 7.0.2
+- PHP Mailer Update auf 7.1.1
 - CKEditor Update auf 5
 - TinyMCE Editor Update auf 8.4.0
-- braintree_web Update auf 3.141.0, braintree_php Update auf 6.34.0 
+- braintree_web Update auf 3.142.0, braintree_php Update auf 6.34.0 
 - FontAwesome Update auf 7.2.0
 
 Wer bereits 1.5.7j verwendet kann mit dem speziellen Updatepaket in UPDATE-VON-157j-AUF-157k sehr leicht auf 1.5.7k aktualisieren.
 Anleitung dazu in der liesmich.txt im Ordner UPDATE-VON-157j-AUF-157k
+
+Für das Update einer älteren 1.5.7 Version (Sie verwenden z.B. derzeit 1.5.7i, 1.5.7h, 1.5.7g, 1.5.7f, 1.5.7e oder 1.5.7) aktualisieren Sie erst auf 1.5.7j:
+https://github.com/zencartpro/zencart-german-grundsystem/releases/tag/v1.5.7j
+Nach dem Update auf 1.5.7j können Sie dann auf 1.5.7k aktualisieren
 
 Für das Update einer älteren deutschen Zen Cart Version als 1.5.7 (Sie verwenden z.B. derzeit 1.5.6 oder 1.5.5), führen Sie bitte ein normales Update mit dem kompletten 1.5.7j Paket durch!
 Detaillierte Updateanleitung für das Update solch älterer Versionen:
@@ -45,7 +49,6 @@ MySQL oder MariaDB
 MySQL mindestens 5.7.8
 MySQL höchstens: 8.0.x
 MariaDB mindestens 10.2.7
-MariaDB höchstens 10.10.x
 
 Empfohlen:
 Apache 2.4
