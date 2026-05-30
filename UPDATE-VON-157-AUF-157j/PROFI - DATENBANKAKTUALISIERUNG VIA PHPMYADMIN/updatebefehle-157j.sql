@@ -1,6 +1,3 @@
-## Diese Befehle nur einspielen wenn Sie mit phpMyAdmin sehr gut vertraut sind ###
-## Diese Befehle nur komplett einspielen und nicht einzeln! Also gesamten Inhalt kopieren oder importieren ###
-
 ## Remove remnants of tell a friend
 DELETE FROM configuration WHERE configuration_key = 'ALLOW_GUEST_TO_TELL_A_FRIEND';
 DELETE FROM configuration WHERE configuration_key = 'SEND_EXTRA_TELL_A_FRIEND_EMAILS_TO';
@@ -11,7 +8,6 @@ DELETE FROM product_type_layout WHERE configuration_key = 'SHOW_PRODUCT_FREE_SHI
 DELETE FROM product_type_layout WHERE configuration_key = 'SHOW_PRODUCT_INFO_TELL_A_FRIEND';
 DELETE FROM product_type_layout WHERE configuration_key = 'SHOW_PRODUCT_MUSIC_INFO_TELL_A_FRIEND';
 
-#############
 ### 1.5.7g bring address formats up to date
 
 ### Move any none core address formats created by users
@@ -83,10 +79,10 @@ UPDATE configuration SET val_function = '{"error":"TEXT_EMAIL_ADDRESS_VALIDATE",
 UPDATE configuration SET val_function = '{"error":"TEXT_EMAIL_ADDRESS_VALIDATE","id":"FILTER_CALLBACK","options":{"options":["configurationValidation","sanitizeEmailNullOK"]}}' WHERE configuration_key ='CONTACT_US_LIST';
 
 # modify existing tables for 1.5.7g
-ALTER TABLE layout_boxes ADD plugin_details varchar(100) NOT NULL default '';
-ALTER TABLE customers ADD registration_ip varchar(45) NOT NULL default '';
-ALTER TABLE customers ADD last_login_ip varchar(45) NOT NULL default '';
-ALTER TABLE customers_info ADD INDEX idx_date_created_cust_id_zen (customers_info_date_account_created, customers_info_id);
+ALTER TABLE layout_boxes ADD COLUMN IF NOT EXISTS plugin_details varchar(100) NOT NULL default '';
+ALTER TABLE customers ADD COLUMN IF NOT EXISTS registration_ip varchar(45) NOT NULL default '';
+ALTER TABLE customers ADD COLUMN IF NOT EXISTS last_login_ip varchar(45) NOT NULL default '';
+ALTER TABLE customers_info ADD INDEX IF NOT EXISTS idx_date_created_cust_id_zen (customers_info_date_account_created, customers_info_id);
 
 ALTER TABLE orders_products MODIFY products_name varchar(191) NOT NULL default '';
 ALTER TABLE products_description MODIFY products_name varchar(191) NOT NULL default '';
@@ -94,9 +90,9 @@ ALTER TABLE products_description MODIFY products_name varchar(191) NOT NULL defa
 ALTER TABLE orders MODIFY customers_country varchar(64) NOT NULL default '';
 ALTER TABLE orders MODIFY delivery_country varchar(64) NOT NULL default '';
 ALTER TABLE orders MODIFY billing_country varchar(64) NOT NULL default '';
-ALTER TABLE orders ADD shipping_tax_rate decimal(15,4) DEFAULT NULL AFTER order_tax; 
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS shipping_tax_rate decimal(15,4) DEFAULT NULL AFTER order_tax;
 
-ALTER TABLE products_options ADD products_options_comment_position smallint(2) NOT NULL default '0' AFTER products_options_comment;
+ALTER TABLE products_options ADD COLUMN IF NOT EXISTS products_options_comment_position smallint(2) NOT NULL default '0' AFTER products_options_comment;
 
 ALTER TABLE coupon_email_track MODIFY emailed_to varchar(96) default NULL;
 
@@ -142,12 +138,12 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 # Admin Layout - Useful Links 1.0.0 Install - 2024-02-14 - new since 1.5.7h
 ###########################################################################
 
-INSERT INTO configuration_group (configuration_group_title, configuration_group_description, sort_order, visible) VALUES
+INSERT IGNORE INTO configuration_group (configuration_group_title, configuration_group_description, sort_order, visible) VALUES
 ('Admin Layout', 'Admin Layout Settings', '1', '1');
 SET @gid=last_insert_id();
 UPDATE configuration_group SET sort_order = last_insert_id() WHERE configuration_group_id = last_insert_id();
 
-INSERT INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function, set_function) VALUES 
+INSERT IGNORE INTO configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function, set_function) VALUES 
 ('Useful Link 1 - Text', 'ADMIN_LAYOUT_USEFUL_LINK_1_TEXT', 'Link 1', 'Enter the text for Useful Link 1:<br>', @gid, 1,  NOW(), NULL, 'zen_cfg_textarea('),
 ('Useful Link 1 - URL', 'ADMIN_LAYOUT_USEFUL_LINK_1_URL', 'https://www.google.at','Enter the URL for Useful Link 1:<br>', @gid, 2, NOW(), NULL, 'zen_cfg_textarea('),
 ('Useful Link 2 - Text', 'ADMIN_LAYOUT_USEFUL_LINK_2_TEXT', 'Link 2', 'Enter the text for Useful Link 2:<br>', @gid, 3,  NOW(), NULL, 'zen_cfg_textarea('),
@@ -174,7 +170,7 @@ INSERT INTO configuration (configuration_title, configuration_key, configuration
 # Add values for German admin
 ##############################
 
-INSERT INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible ) VALUES 
+INSERT IGNORE INTO configuration_group (configuration_group_id, language_id, configuration_group_title, configuration_group_description, sort_order, visible ) VALUES 
 (@gid, 43, 'Admin Layout', 'Einstellungen für das Admin Layout', '1', '1');
 
 
@@ -206,10 +202,10 @@ REPLACE INTO configuration_language (configuration_title, configuration_key, con
 # Register for Admin Access Control
 ###################################
 
-INSERT INTO admin_pages (page_key,language_key,main_page,page_params,menu_key,display_on_menu,sort_order)
+INSERT IGNORE INTO admin_pages (page_key,language_key,main_page,page_params,menu_key,display_on_menu,sort_order)
 VALUES ('configAdminLayout','BOX_CONFIGURATION_ADMIN_LAYOUT','FILENAME_CONFIGURATION',CONCAT('gID=',@gid),'configuration','Y',@gid);
 
-INSERT INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order) VALUES
+INSERT IGNORE INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order) VALUES
 ('GermanHelpPage', 'GERMAN_HELP_PAGE', 'FILENAME_GERMAN_HELP', '', 'extras', 'N', 99);
 
 # New Plugin tables
@@ -296,7 +292,7 @@ UPDATE configuration SET configuration_value = '2.0.2' WHERE configuration_key =
 INSERT IGNORE INTO admin_pages (page_key, language_key, main_page, page_params, menu_key, display_on_menu, sort_order)
 VALUES ('customerGroups', 'BOX_CUSTOMERS_CUSTOMER_GROUPS', 'FILENAME_CUSTOMER_GROUPS', '', 'customers', 'Y', 3);
 
-CREATE TABLE customer_groups (
+CREATE TABLE IF NOT EXISTS customer_groups (
   group_id int UNSIGNED NOT NULL AUTO_INCREMENT,
   group_name varchar(191) NOT NULL,
   group_comment varchar(255),
@@ -305,7 +301,7 @@ CREATE TABLE customer_groups (
   PRIMARY KEY (group_id),
   UNIQUE KEY idx_groupname_zen (group_name)
 );
-CREATE TABLE customers_to_groups (
+CREATE TABLE IF NOT EXISTS customers_to_groups (
   id int UNSIGNED NOT NULL AUTO_INCREMENT,
   group_id int UNSIGNED NOT NULL,
   customer_id int UNSIGNED NOT NULL,
