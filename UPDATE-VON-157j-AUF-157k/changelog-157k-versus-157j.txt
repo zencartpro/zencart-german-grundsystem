@@ -13,7 +13,7 @@ Aktualisierte Komponenten gegenüber 1.5.7j:
 
 ---------------------------------------------------------------------------------------------
 Changelog Zen Cart 1.5.7k deutsch gegenüber 1.5.7j deutsch
-2026-05-23
+2026-07-26
 ---------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------------------------------------------------------------
@@ -25,6 +25,7 @@ includes\classes\PluginSupport\PluginStatus.php
 includes\classes\PluginSupport\ScriptedInstallHelpers.php
 includes\classes\ResourceLoaders\ModuleFinder.php
 includes\classes\traits\InteractsWithPlugins.php
+includes\classes\Product.php
 includes\classes\SessionHandler.php
 includes\init_includes\init_split_page_results.php
 zc_plugins\InstantSearch\v4.0.3\admin\includes\classes\InstantSearchConfigurationValidation.php
@@ -109,6 +110,7 @@ includes\classes\bmz_image_handler.class.php
 includes\classes\Customer.php
 includes\classes\FileSystem.php
 includes\classes\InitSystem.php
+includes\classes\language.php
 includes\classes\template_func.php
 includes\functions\functions_customers.php
 includes\functions\functions_general_shared.php
