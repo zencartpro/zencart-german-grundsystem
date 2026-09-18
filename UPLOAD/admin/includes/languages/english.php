@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
+ * Zen Cart German Specific (220 code in 157 / zencartpro adaptations)
  * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: english.php 2026-05-02 07:37:32Z webchills $
+ * @version $Id: english.php 2026-09-18 15:20:32Z webchills $
  */
  
 // important line - do NOT change
@@ -172,6 +172,8 @@ define('CONNECTION_TYPE_UNKNOWN','not valid');
 define('DATE_FORMAT','d.m.Y');
 define('DATE_FORMAT_DATE_PICKER','dd-mm-yy');
 define('DATE_FORMAT_SHORT', '%d.%m.%Y');
+define('DATE_FORMAT_SHORT_NO_DAY','%B %Y');
+define('DATE_FORMAT_SHORT_NO_YEAR','%m/%d');
 define('DATE_FORMAT_LONG', '%A, %d. %B %Y');
 define('DATE_FORMAT_SPIFFYCAL','MM/dd/yyyy');
 define('DATE_TIME_FORMAT', DATE_FORMAT_SHORT . ' %H:%M:%S'); 
