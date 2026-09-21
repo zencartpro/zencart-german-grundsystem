@@ -129,7 +129,7 @@ for ($i = 0; $i < $report->size; $i++) {
           echo $zcDate->output(DATE_FORMAT_SHORT_NO_YEAR, $report->info[$i]['startDates']);
           break;
       case statsSalesReportGraph::HOURLY_VIEW:
-          echo $zcDate->output('%k', $report->info[$i]['startDates']);
+          echo $zcDate->output('%H', $report->info[$i]['startDates']);
           $chartHeader = ($chartHeader === '' && $i === 0) ? ' ' . $zcDate->output(DATE_FORMAT_SHORT, $report->info[$i]['startDates']) : $chartHeader;
           break;
   }
