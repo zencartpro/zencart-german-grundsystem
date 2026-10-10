@@ -1,13 +1,13 @@
 <?php
 /**
- * @package Image Handler 5.3.0
+ * @package Image Handler 5.3.6
  * @copyright Copyright 2005-2006 Tim Kroeger (original author)
  * @copyright Copyright 2018-2022 lat 9 - Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_bmz_io.php 2022-09-06 08:13:51Z webchills $
+ * @version $Id: functions_bmz_io.php 2026-10-10 08:13:51Z webchills $
  */
 
 /**
@@ -21,7 +21,7 @@
  * @author Andreas Gohr <andi@splitbrain.org>
  * @author Tim Kroeger <tim@breakmyzencart.com>
  */
-function io_lock($file)
+function io_lock(string $file): void
 {
     global $bmzConf;
     // no locking if safemode hack
@@ -33,7 +33,9 @@ function io_lock($file)
     $timeStart = time();
     do {
         //waited longer than 3 seconds? -> stale lock
-        if ((time() - $timeStart) > 3) break;
+        if ((time() - $timeStart) > 3) {
+            break;
+        }
         $locked = mkdir($lockDir);
     } while ($locked === false);
 }
@@ -44,7 +46,7 @@ function io_lock($file)
  * @author Andreas Gohr <andi@splitbrain.org>
  * @author Tim Kroeger <tim@breakmyzencart.com>
  */
-function io_unlock($file)
+function io_unlock(string $file): void
 {
     global $bmzConf;
 
@@ -64,7 +66,7 @@ function io_unlock($file)
  * @author  Andreas Gohr <andi@splitbrain.org>
  * @author  Tim Kroeger <tim@breakmyzencart.com>
  */
-function io_makeFileDir($file)
+function io_makeFileDir(string $file): void
 {
     global $messageStack, $bmzConf;
 
@@ -72,7 +74,7 @@ function io_makeFileDir($file)
     $dmask = $bmzConf['dmask'];
     umask($dmask);
     if (!is_dir($dir)){
-        io_mkdir_p($dir) || $messageStack->add("Creating directory $dir failed", "error");
+        io_mkdir_p($dir) || $messageStack->add("Creating directory $dir failed", 'error');
     }
     umask($bmzConf['umask']);
 }
@@ -85,15 +87,19 @@ function io_makeFileDir($file)
  * @author  Andreas Gohr <andi@splitbrain.org>
  * @author  Tim Kroeger <tim@breakmyzencart.com>
  */
-function io_mkdir_p($target)
+function io_mkdir_p(string $target): int
 {
     global $bmzConf;
 
-    if (empty($target) || is_dir($target)) return 1; // best case check first
-    if (file_exists($target) && !is_dir($target)) return 0;
+    if (empty($target) || is_dir($target)) {
+        return 1; // best case check first
+    }
+    if (file_exists($target) && !is_dir($target)) {
+        return 0;
+    }
     //recursion
     if (io_mkdir_p(substr($target, 0, strrpos($target, '/')))) {
-        return mkdir($target, 0755); // crawl back up & create dir tree
+        return (int)mkdir($target, 0755); // crawl back up & create dir tree
     }
     return 0;
 }

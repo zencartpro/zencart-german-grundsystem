@@ -7,11 +7,10 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ImageHandlerAdmin.php 2026-05-16 09:30:51Z webchills $
+ * @version $Id: ImageHandlerAdmin.php 2026-10-10 09:30:51Z webchills $
  */
-if (!defined('IH_DEBUG_ADMIN')) {
-    define('IH_DEBUG_ADMIN', 'true'); //-Either 'true' or 'false'
-}
+zen_define_default('IH_DEBUG_ADMIN', 'true'); //-Either 'true' or 'false'
+
 class ImageHandlerAdmin
 {
     public bool $debug;
@@ -117,7 +116,7 @@ class ImageHandlerAdmin
 
     public function validateQuality($value): bool
     {
-        return (((int)$value) != $value || $value < 0 || $value > 85);
+        return (((int)$value) != $value || $value < 0 || $value > 100);
     }
 
     public function validateBackground(string $value): bool

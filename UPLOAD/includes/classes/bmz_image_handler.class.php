@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: bmz_image_handler.class.php 2026-05-16 20:33:51Z webchills $
+ * @version $Id: bmz_image_handler.class.php 2026-10-10 17:33:51Z webchills $
  */
  
 if (!defined('IH_DEBUG_ADMIN')) {
@@ -1039,21 +1039,34 @@ class ih_image
     /**
      * @param $bg
      *
+     * A background specification is in the form
+     *
+     * {transparent }rr:gg:bb
+     *
+     * Where rr:gg:bb identify the red/green/blue components of the color.
+     *
      * @return array|false
      */
     protected function get_background_rgb(string $bg): false|array
     {
-        $color = false;
-
         $bg = trim(str_replace('transparent', '', $bg));
-        [$red, $green, $blue] = preg_split('/[, :]/', $bg);
-        if (preg_match('/\d+/', $red.$green.$blue)) {
-            $red = min((int)$red, 255);
-            $green = min((int)$green, 255);
-            $blue = min((int)$blue, 255);
-            $color = ['r' => $red, 'g' => $green, 'b' => $blue];
+        $colors = explode(':', $bg);
+        if (count($colors) !== 3) {
+            return false;
         }
-        return $color;
+
+        $red = $colors[0];
+        $green = $colors[1];
+        $blue = $colors[2];
+        if (!ctype_digit($red) || !ctype_digit($green) || !ctype_digit($blue)) {
+            return false;
+        }
+
+        return [
+            'r' => min($red, 255),
+            'g' => min($green, 255),
+            'b' => min($blue, 255)
+        ];
     }
 
     /**
