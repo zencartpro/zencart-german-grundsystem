@@ -6,11 +6,11 @@
  * Then loads template-specific language file, followed by master/default language file
  * ie: includes/languages/classic/german.php followed by includes/languages/german.php
  * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_templates.php 2023-10-29 21:49:16Z webchills $
+ * @version $Id: init_templates.php 2026-10-10 17:49:16Z webchills $
  */
 
 use Zencart\LanguageLoader\LanguageLoaderFactory;
@@ -24,7 +24,7 @@ if (!defined('IS_ADMIN_FLAG')) {
  * The 'choice' aliases help with weighting for fallback to default selection
  */
 $template_dir = 'template_default';
-$sql = "SELECT template_dir, template_language, template_language=" . (int)$_SESSION['languages_id'] . " AS choice1, template_language=0 AS choice2
+$sql = "SELECT *, template_language=" . (int)$_SESSION['languages_id'] . " AS choice1, template_language=0 AS choice2
         FROM " . TABLE_TEMPLATE_SELECT . "
         ORDER BY choice1 DESC, choice2 DESC, template_language";
 $result = $db->Execute($sql);
@@ -41,9 +41,10 @@ if (zen_is_whitelisted_admin_ip()) {
     if (isset($_GET['t']) && $_GET['t'] === 'off') {
         unset($_SESSION['tpl_override']);
     }
-    if (isset($_SESSION['tpl_override'])) $template_dir = $_SESSION['tpl_override'];
+    if (isset($_SESSION['tpl_override'])) {
+        $template_dir = $_SESSION['tpl_override'];
+    }
 }
-
 
 /**
  * Now that we've established which template to use, initialize all its components
@@ -62,6 +63,38 @@ if (zen_is_whitelisted_admin_ip()) {
  */
   define('DIR_WS_TEMPLATE_ICONS', DIR_WS_TEMPLATE_IMAGES . 'icons/');
 
+if (empty($tpl_settings) || !is_array($tpl_settings)) {
+    $tpl_settings = [];
+}
+
+/**
+ * Instantiate TemplateSettings object, before loading template's template_settings.php file.
+ */
+$tplSetting = new TemplateSettings($tpl_settings);
+
+/**
+ * Load template-specific configuration settings, if they exist.
+ */
+if (file_exists(DIR_WS_TEMPLATE . 'template_settings.php')) {
+    require_once DIR_WS_TEMPLATE . 'template_settings.php';
+}
+
+// check again in case overrides went wrong
+if (empty($tpl_settings) || !is_array($tpl_settings)) {
+    $tpl_settings = [];
+}
+
+/**
+ * Load any template override settings from db
+ */
+if (!empty($result->fields['template_settings'])) {
+    $tmp = json_decode($result->fields['template_settings'], true);
+    if (is_array($tmp)) {
+        $tpl_settings = array_merge($tmp, $tpl_settings);
+    }
+}
+$tpl_settings['template_dir'] = $template_dir;
+
 /**
  * Load the appropriate Language files, based on the currently-selected template
  */
@@ -69,6 +102,11 @@ $languageLoaderFactory = new LanguageLoaderFactory();
 $languageLoader = $languageLoaderFactory->make('catalog', $installedPlugins, $current_page, $template_dir);
 $languageLoader->loadInitialLanguageDefines();
 $languageLoader->finalizeLanguageDefines();
+/**
+ * Process any overrides from the $tpl_settings array, inserting them into the $tplSetting class object
+ */
+$tplSetting->setFromArray($tpl_settings);
+
 /**
  * send the content charset "now" so that all content is impacted by it
  */
