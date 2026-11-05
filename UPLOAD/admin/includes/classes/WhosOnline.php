@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Specific (210 code in 157)
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: WhosOnline.php 2023-12-12 19:14:16Z webchills $
+ * @version $Id: WhosOnline.php 2026-11-05 12:36:16Z webchills $
  */
 
 class WhosOnline extends base
@@ -358,7 +358,7 @@ class WhosOnline extends base
 
         if (session_decode($session_data) !== false) {
             $cart = $_SESSION['cart'];
-            $currency = $_SESSION['currency'];
+            $currency = $_SESSION['currency'] ?? DEFAULT_CURRENCY;
 
             if (is_object($cart) && isset($currency)) {
                 $extracted_data['products'] = $cart->get_products();
