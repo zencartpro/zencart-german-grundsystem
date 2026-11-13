@@ -1,19 +1,22 @@
 <?php
 /**
- * Zen Cart German Specific (158 code in 157 / zencartpro adaptations)
- * @copyright Copyright 2003-2024 Zen Cart Development Team
+ * Zen Cart German Specific (210 code in 157 / zencartpro adaptations)
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: orders.php 2024-02-01 11:36:51Z webchills $
+ * @version $Id: orders.php 2026-11-13 07:36:51Z webchills $
  */
 require('includes/application_top.php');
 
+use Zencart\FileSystem\FileSystem;
+use Zencart\ResourceLoaders\ModuleFinder;
 // unset variable which is sometimes tainted by bad plugins like magneticOne tools
 if (isset($module)) {
   unset($module);
 }
 
+$whois_provider_url = 'https://ipdata.co/%s?utm_source=zen_cart';
 // Override instructions in:
 // https://docs.zen-cart.com/user/admin/site_specific_overrides/
 $quick_view_popover_enabled = $quick_view_popover_enabled ?? true;
@@ -505,11 +508,18 @@ if (!empty($action) && $order_exists === true) {
         if ($order->info['payment_module_code'] && $order->info['payment_module_code'] !== PAYMENT_MODULE_GV) {
           $messageStack->reset();
           $payment_module = DIR_FS_CATALOG_MODULES . 'payment/' . $order->info['payment_module_code'] . '.php';
+          global $installedPlugins;
+            $moduleFinder = new ModuleFinder('payment', new Filesystem());
+            $modules_found = $moduleFinder->findFromFilesystem($installedPlugins);
+            $payment = $order->info['payment_module_code'] . '.php';
+            if (array_key_exists($payment, $modules_found) && file_exists(DIR_FS_CATALOG . $modules_found[$payment] . $payment)) {
+                $payment_module = DIR_FS_CATALOG . $modules_found[$payment] . $payment;
+            }
           if (!file_exists($payment_module)) {
               $messageStack->add(sprintf(WARNING_PAYMENT_MODULE_DOESNT_EXIST, $order->info['payment_module_code']), 'warning');
           } else {
             require $payment_module;
-            zen_include_language_file($order->info['payment_module_code'] . '.php', '/modules/payment/','inline');
+            $languageLoader->loadModuleLanguageFile($payment, 'payment');
             $module = new $order->info['payment_module_code']();
             if ((is_object($module) && method_exists($module, 'admin_notification')) && !$module->enabled) {
                 $messageStack->add(sprintf(WARNING_PAYMENT_MODULE_NOTIFICATIONS_DISABLED, $order->info['payment_module_code']), 'warning');
@@ -580,7 +590,7 @@ if (!empty($action) && $order_exists === true) {
         <div class="row noprint"><?php echo zen_draw_separator(); ?></div>
         <div class="row">
           <div class="col-sm-4">
-            <table class="table">
+            <table class="table" id="addressCustomer">
               <tr>
                 <td><strong><?php echo ENTRY_CUSTOMER_ADDRESS; ?></strong></td>
                 <td><?php echo zen_address_format($order->customer['format_id'], $order->customer, 1, '', '<br>'); ?></td>
@@ -592,16 +602,25 @@ if (!empty($action) && $order_exists === true) {
 <?php
   $address_footer_suffix = '';
   $zco_notifier->notify('NOTIFY_ADMIN_ORDERS_ADDRESS_FOOTERS', 'customer', $address_footer_suffix, $order->customer);
-  if (!empty($address_footer_suffix)) {
-  ?>
-                <tr><td>&nbsp;</td><td><?php echo $address_footer_suffix; ?></td></tr>
-<?php } ?>
-              <tr class="noprint">
-                <td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '5'); ?></td>
-              </tr>
+                if (is_array($address_footer_suffix)) {
+                    foreach ($address_footer_suffix as $label => $data) {
+                        ?>
+                        <tr>
+                            <td><strong><?= $label ?></td>
+                            <td><?= $data ?></td>
+                        </tr>
+                        <?php
+                    }
+                } elseif (!empty($address_footer_suffix)) { ?>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td><?= $address_footer_suffix ?></td>
+                    </tr>
+                <?php
+                } ?>
               <tr>
                 <td><strong><?php echo ENTRY_TELEPHONE_NUMBER; ?></strong></td>
-                <td><a href="tel:<?php echo preg_replace('/\s+/', '', $order->customer['telephone']); ?>"><?php echo $order->customer['telephone']; ?></a></td>
+                <td><a href="tel:<?php echo preg_replace('/\s+/', '', zen_output_string_protected($order->customer['telephone'])); ?>"><?php echo zen_output_string_protected($order->customer['telephone']); ?></a></td>
               </tr>
               <tr>
                 <td><strong><?php echo ENTRY_EMAIL_ADDRESS; ?></strong></td>
@@ -622,7 +641,7 @@ if (!empty($action) && $order_exists === true) {
             </table>
           </div>
           <div class="col-sm-4">
-            <table class="table">
+            <table class="table" id="addressDelivery">
               <tr>
                 <td><strong><?php echo ENTRY_SHIPPING_ADDRESS; ?></strong></td>
                 <td><?php echo (empty($order->delivery)) ? TEXT_NONE : zen_address_format($order->delivery['format_id'], $order->delivery, 1, '', '<br>'); ?></td>
@@ -639,14 +658,26 @@ if (!empty($action) && $order_exists === true) {
   }
   $address_footer_suffix = '';
   $zco_notifier->notify('NOTIFY_ADMIN_ORDERS_ADDRESS_FOOTERS', 'delivery', $address_footer_suffix, $order->delivery);
-  if (!empty($address_footer_suffix)) {
-  ?>
-                <tr><td>&nbsp;</td><td><?php echo $address_footer_suffix; ?></td></tr>
-<?php } ?>
+    if (is_array($address_footer_suffix)) {
+        foreach ($address_footer_suffix as $label => $data) {
+            ?>
+            <tr>
+                <td><strong><?= $label ?></td>
+                <td><?= $data ?></td>
+            </tr>
+            <?php
+        }
+    } elseif (!empty($address_footer_suffix)) { ?>
+        <tr>
+            <td>&nbsp;</td>
+            <td><?= $address_footer_suffix ?></td>
+        </tr>
+        <?php
+    } ?>
             </table>
           </div>
           <div class="col-sm-4">
-            <table class="table">
+            <table class="table" id="addressBilling">
               <tr>
                 <td><strong><?php echo ENTRY_BILLING_ADDRESS; ?></strong></td>
                 <td><?php echo zen_address_format($order->billing['format_id'], $order->billing, 1, '', '<br>'); ?></td>
@@ -658,9 +689,20 @@ if (!empty($action) && $order_exists === true) {
 <?php
   $address_footer_suffix = '';
   $zco_notifier->notify('NOTIFY_ADMIN_ORDERS_ADDRESS_FOOTERS', 'billing', $address_footer_suffix, $order->billing);
-  if (!empty($address_footer_suffix)) {
-  ?>
-                <tr><td>&nbsp;</td><td><?php echo $address_footer_suffix; ?></td></tr>
+if (is_array($address_footer_suffix)) {
+    foreach ($address_footer_suffix as $label => $data) {
+        ?>
+        <tr>
+            <td><strong><?= $label ?></td>
+            <td><?= $data ?></td>
+        </tr>
+        <?php
+    }
+} elseif (!empty($address_footer_suffix)) { ?>
+    <tr>
+        <td>&nbsp;</td>
+        <td><?= $address_footer_suffix ?></td>
+    </tr>
 <?php } ?>
             </table>
           </div>
@@ -733,9 +775,16 @@ if (!empty($action) && $order_exists === true) {
         <?php
         if (isset($module) && (is_object($module) && method_exists($module, 'admin_notification')) && $module->enabled) {
           ?>
-          <div class="row noprint"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?><br><a href="#" id="payinfo" class="noprint"><?php echo TEXT_ADDITIONAL_PAYMENT_OPTIONS; ?></a></div>
-          <div class="row" id="payment-details-section" style="display: none;"><?php echo $module->admin_notification($oID); ?></div>
-          <div class="row noprint"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></div>
+          <br>
+          <div class="row noprint">
+            <a href="javascript:void(0);" class="noprint" data-toggle="collapse" data-target="#payment-details-section">
+                <?php echo TEXT_ADDITIONAL_PAYMENT_OPTIONS; ?>
+            </a>
+          </div>
+          <div class="row collapse" id="payment-details-section">
+            <?php echo $module->admin_notification($oID); ?>
+          </div>
+          <br>
           <?php
         }
         ?>
@@ -908,12 +957,9 @@ if (!empty($action) && $order_exists === true) {
             </thead>
             <tbody>
                 <?php
-                $orders_history = $db->Execute("SELECT *
-                                              FROM " . TABLE_ORDERS_STATUS_HISTORY . "
-                                              WHERE orders_id = " . zen_db_input($oID) . "
-                                              ORDER BY orders_status_history_id");
+                $orders_history = $order->statuses;
 
-                if ($orders_history->RecordCount() > 0) {
+                if (count($orders_history) !== 0) {
                   $first = true;
                   foreach ($orders_history as $item) {
                     ?>
@@ -930,14 +976,14 @@ if (!empty($action) && $order_exists === true) {
                         }
                         ?>
                     </td>
-                    <td><?php echo $orders_status_array[$item['orders_status_id']]; ?></td>
+                    <td><?php echo $orders_status_array[$item['orders_status_id']] ?? ''; ?></td>
 <?php
                     // -----
                     // A watching observer can provide an associative array in the form:
                     //
                     // $extra_data = array(
                     //     array(
-                    //       'align' => $alignment,    // One of 'center', 'right', or 'left' (optional)
+                    //       'align' => $alignment,    // One of 'center', 'right' or 'left' (optional)
                     //       'text' => $value
                     //     ),
                     // );
@@ -946,7 +992,7 @@ if (!empty($action) && $order_exists === true) {
                     // multiple observers might be injecting content!
                     //
                     $extra_data = false;
-                    $zco_notifier->notify('NOTIFY_ADMIN_ORDERS_STATUS_HISTORY_EXTRA_COLUMN_DATA', $orders_history->fields, $extra_data);
+                    $zco_notifier->notify('NOTIFY_ADMIN_ORDERS_STATUS_HISTORY_EXTRA_COLUMN_DATA', $item, $extra_data);
                     if (is_array($extra_data)) {
                         foreach ($extra_data as $data_info) {
                             $align = (isset($data_info['align'])) ? (' text-' . $data_info['align']) : '';
@@ -1264,10 +1310,10 @@ if (!empty($action) && $order_exists === true) {
                     $check_count = 0;
                     if ($check_page->RecordCount() > MAX_DISPLAY_SEARCH_RESULTS_ORDERS) {
                       while (!$check_page->EOF) {
+                        $check_count++;
                         if ($check_page->fields['orders_id'] == $_GET['oID']) {
                           break;
                         }
-                        $check_count++;
                         $check_page->MoveNext();
                       }
                       $_GET['page'] = round((($check_count / MAX_DISPLAY_SEARCH_RESULTS_ORDERS) + (fmod_round($check_count, MAX_DISPLAY_SEARCH_RESULTS_ORDERS) != 0 ? .5 : 0)), 0);
@@ -1331,7 +1377,7 @@ if (!empty($action) && $order_exists === true) {
                     ?>
                 <td class="dataTableContent text-center"><?php echo $show_difference . $orders->fields['orders_id']; ?></td>
                 <td class="dataTableContent"><?php echo $show_payment_type; ?></td>
-                <td class="dataTableContent"><?php echo '<a href="' . zen_href_link(FILENAME_CUSTOMERS, 'cID=' . $orders->fields['customers_id'], 'NONSSL') . '"><i class="fa-solid fa-magnifying-glass"></i></a>&nbsp;' . $orders->fields['customers_name'] . ($orders->fields['customers_company'] !== '' ? '<br>' . $orders->fields['customers_company'] : ''); ?></td>
+                <td class="dataTableContent"><?php echo '<a href="' . zen_href_link(FILENAME_CUSTOMERS, 'cID=' . $orders->fields['customers_id'], 'NONSSL') . '"><i class="fa-solid fa-magnifying-glass"></i></a>&nbsp;' . $orders->fields['customers_name'] . ($orders->fields['customers_company'] !== '' ? '<br>' . zen_output_string_protected($orders->fields['customers_company']) : ''); ?></td>
 <?php if ($show_zone_info) { ?>
                 <td class="dataTableContent text-left">
 <?php echo $orders->fields['delivery_country']; ?>
@@ -1342,7 +1388,7 @@ if (!empty($action) && $order_exists === true) {
                 </td>
 <?php if ($quick_view_popover_enabled) { ?>
                 <td class="dataTableContent text-right dataTableButtonCell">
-                    <a tabindex="0" class="btn btn-xs btn-link orderProductsPopover" role="button" data-toggle="popover"
+                    <a tabindex="0" class="btn btn-xs btn-link mt-3 orderProductsPopover" role="button" data-toggle="popover"
                        data-trigger="focus"
                        data-placement="left"
                        title="<?php echo TEXT_PRODUCT_POPUP_TITLE; ?>"
@@ -1353,7 +1399,7 @@ if (!empty($action) && $order_exists === true) {
                 </td>
 <?php } ?>
                 <td class="dataTableContent text-center"><?php echo zen_datetime_short($orders->fields['date_purchased']); ?></td>
-                <td class="dataTableContent text-right"><?php echo ($orders->fields['orders_status_name'] !== '' ? $orders->fields['orders_status_name'] : TEXT_INVALID_ORDER_STATUS); ?></td>
+                <td class="dataTableContent text-right"><?php echo !empty($orders->fields['orders_status_name']) ? $orders->fields['orders_status_name'] : TEXT_INVALID_ORDER_STATUS; ?></td>
                 <?php
                    $order_comments = zen_output_string_protected(zen_get_orders_comments($orders->fields['orders_id']));
                    if (!empty($order_comments)) {
@@ -1571,11 +1617,6 @@ if (!empty($action) && $order_exists === true) {
 
     <!--  enable on-page script tools -->
     <script>
-        jQuery(document).ready(function() {
-            jQuery("#payinfo").click(function () {
-                jQuery("#payment-details-section").toggle()
-            });
-        });
         <?php
         $order_link = str_replace('&amp;', '&', zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(['oID', 'action']) . "oID=[*]"));
         ?>
