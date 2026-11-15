@@ -1,11 +1,11 @@
 <?php
 /**
- * Zen Cart German Specific (210 code in 157)
- * @copyright Copyright 2003-2025 Zen Cart Development Team
+ * Zen Cart German Specific (220 code in 157)
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: functions_general_shared.php for newer plugins 2025-11-02 10:23:14Z webchills $
+ * @version $Id: functions_general_shared.php 2026-11-15 12:23:14Z webchills $
  */ 
 function zen_get_zcversion()
 {
@@ -392,6 +392,7 @@ function zen_get_shipping_enabled(string $shipping_module): bool
  * @param $string
  * @return string|string[]
  * @deprecated
+ * @since ZC v1.0.3
  */
 function zen_convert_linefeeds($from, $to, $string)
 {
@@ -472,8 +473,7 @@ function zen_to_boolean(mixed $value, bool $null_on_failure = true): bool|null
 }
 
 /**
- * this function will need to be removed if
- * we ever revert to a full laravel install
+ * compatibility wrapper for request helper
  * @since ZC v1.5.8
  */
 

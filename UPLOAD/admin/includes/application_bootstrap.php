@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific (210 code in 157 / zencartpro adaptations)
- * @copyright Copyright 2003-2025 Zen Cart Development Team
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: application_bootstrap.php for newer plugins 2025-10-27 20:53:36Z webchills $
+ * @version $Id: application_bootstrap.php 2026-11-14 19:53:36Z webchills $
  */
 
 use App\Models\PluginControl;

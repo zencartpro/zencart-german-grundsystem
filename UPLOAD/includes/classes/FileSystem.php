@@ -1,11 +1,11 @@
 <?php
 /**
  * Zen Cart German Specific (210 code in 157 / zencartpro adaptations)
- * @copyright Copyright 2003-2025 Zen Cart Development Team
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: FileSystem.php for newer plugins 2025-10-29 14:25:24Z webchills $
+ * @version $Id: FileSystem.php 2026-11-14 19:25:24Z webchills $
  */
 
 namespace Zencart\FileSystem;
@@ -30,7 +30,7 @@ class FileSystem extends IlluminateFilesystem
         $dir->close();
     }
 
-    public function listFilesFromDirectory(string $rootDir, string $fileRegx = '~^[^\._].*\.php$~i'): array
+    public function listFilesFromDirectory(string $rootDir, string $fileRegx = '~^[^\._].*\.php$~i', bool $keepDir = false): array
     {
         if (!is_dir($rootDir)) {
             return [];
@@ -41,16 +41,20 @@ class FileSystem extends IlluminateFilesystem
         $fileList = [];
         while ($file = $dir->read()) {
             if (preg_match($fileRegx, $file) > 0) {
-                $fileList[] = basename($rootDir . '/' . $file);
+                $fileName = $rootDir . '/' . $file;
+                if ($keepDir === false) {
+                    $fileName = basename($fileName);
+                }
+                $fileList[] = $fileName;
             }
         }
         $dir->close();
         return $fileList;
     }
 
-    public function listFilesFromDirectoryAlphaSorted(string $rootDir, string $fileRegx = '~^[^\._].*\.php$~i'): array
+    public function listFilesFromDirectoryAlphaSorted(string $rootDir, string $fileRegx = '~^[^\._].*\.php$~i', bool $keepDir = false): array
     {
-        $fileList = $this->listFilesFromDirectory($rootDir, $fileRegx);
+        $fileList = $this->listFilesFromDirectory($rootDir, $fileRegx, $keepDir);
         sort($fileList);
         return $fileList;
     }
