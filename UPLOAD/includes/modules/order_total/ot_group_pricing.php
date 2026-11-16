@@ -1,12 +1,12 @@
 <?php
 /**
  * ot_group_pricing order-total module
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * Zen Cart German Specific (220 code in 157)
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_group_pricing.php 2023-10-26 19:24:16Z webchills $
+ * @version $Id: ot_group_pricing.php 2026-11-16 19:24:16Z webchills $
  */
 
 class ot_group_pricing {
@@ -35,7 +35,7 @@ class ot_group_pricing {
      * $deduction amount of deduction calculated/afforded while being applied to an order
      * @var float|null
      */
-    protected $deduction;
+    public $deduction;
     /**
      * $description is a soft name for this order total method
      * @var string 
@@ -107,10 +107,12 @@ class ot_group_pricing {
       if ($this->calculate_tax == "Standard") $order->info['total'] -= $tax;
       if ($order->info['total'] < 0) $order->info['total'] = 0;
       $order->info['tax'] = $order->info['tax'] - $tax;
-      $this->output[] = array('title' => $this->title . ':',
-      'text' => '-' . $currencies->format($od_amount['total'], true, $order->info['currency'], $order->info['currency_value']),
-      'value' => $od_amount['total']);
-
+        $this->output[] = [
+            'title' => $this->title . ':',
+            // &#8209; is a non-break-hyphen so displays with number
+            'text' => '&#8209;' . $currencies->format($od_amount['total'], true, $order->info['currency'], $order->info['currency_value']),
+            'value' => $od_amount['total'],
+        ];
     }
   }
   function get_order_total() {

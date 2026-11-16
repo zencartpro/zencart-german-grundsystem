@@ -2,12 +2,12 @@
 /**
  * ot_total order-total module
  *
- * Zen Cart Gwerman Specific (158 code in 157)
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart Gwerman Specific (220 code in 157)
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_total.php 2022-12-14 22:49:16Z webchills $
+ * @version $Id: ot_total.php 2026-11-16 19:49:16Z webchills $
  */
   class ot_total {
 
@@ -81,8 +81,8 @@
 
     function remove() {
       global $db, $messageStack;
-      if (!isset($_GET['override']) && $_GET['override'] != '1') {
-        $messageStack->add('header', ERROR_MODULE_REMOVAL_PROHIBITED . $this->code);
+      if (empty($_GET['override'])) {
+        $messageStack->add_session(ERROR_MODULE_REMOVAL_PROHIBITED . $this->code);
         return false;
       }
       $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key in ('" . implode("', '", $this->keys()) . "')");

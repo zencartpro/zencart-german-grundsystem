@@ -2,12 +2,12 @@
 /**
  * ot_total order-total module
  *
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2024 Zen Cart Development Team
+ * Zen Cart German Specific (220 code in 157)
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_loworderfee.php 2024-03-25 09:12:16Z webchills $
+ * @version $Id: ot_loworderfee.php 2026-11-16 19:12:16Z webchills $
  */
 class ot_loworderfee
 {
@@ -113,20 +113,21 @@ class ot_loworderfee
                 $tax_description = zen_get_tax_description(MODULE_ORDER_TOTAL_LOWORDERFEE_TAX_CLASS, $tax_address['country_id'], $tax_address['zone_id']);
 
                 // calculate from flat fee or percentage
-                if (substr(MODULE_ORDER_TOTAL_LOWORDERFEE_FEE, -1) === '%') {
-                    $low_order_fee = $order->info['subtotal'] * MODULE_ORDER_TOTAL_LOWORDERFEE_FEE / 100;
+                if (str_ends_with(MODULE_ORDER_TOTAL_LOWORDERFEE_FEE, '%')) {
+                    $low_order_fee = $order->info['subtotal'] * rtrim(MODULE_ORDER_TOTAL_LOWORDERFEE_FEE, '%') / 100;
                 } else {
                     $low_order_fee = MODULE_ORDER_TOTAL_LOWORDERFEE_FEE;
                 }
 
-                $order->info['tax'] += zen_calculate_tax($low_order_fee, $tax);
+                $tax_amount = zen_calculate_tax($low_order_fee, $tax);
+                $order->info['tax'] += $tax_amount; 
                 if (!isset($order->info['tax_groups'][$tax_description])) {
                     $order->info['tax_groups'][$tax_description] = 0;
                 }
-                $order->info['tax_groups'][$tax_description] += zen_calculate_tax($low_order_fee, $tax);
-                $order->info['total'] += $low_order_fee + zen_calculate_tax($low_order_fee, $tax);
+                $order->info['tax_groups'][$tax_description] += $tax_amount; 
+                $order->info['total'] += $low_order_fee + $tax_amount; 
                 if (DISPLAY_PRICE_WITH_TAX === 'true') {
-                    $low_order_fee += zen_calculate_tax($low_order_fee, $tax);
+                    $low_order_fee += $tax_amount; 
                 }
 
                 $this->output[] = [

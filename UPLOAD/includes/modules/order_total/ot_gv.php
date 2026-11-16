@@ -3,11 +3,11 @@
  * ot_gv order-total module
  
  * Zen Cart German Specific (210 code in 157)
- * @copyright Copyright 2003-2024 Zen Cart Development Team
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_gv.php 2026-11-15 12:55:16Z webchills $
+ * @version $Id: ot_gv.php 2026-11-16 19:55:16Z webchills $
  */
 /**
  * Enter description here...
@@ -155,9 +155,12 @@ class ot_gv {
         if ($order->info['total'] < 0) $order->info['total'] = 0;
         $order->info['tax'] = $order->info['tax'] - $od_amount['tax'];
         // prepare order-total output for display and storing to invoice
-        $this->output[] = array('title' => $this->title . ':',
-                                'text' => '-' . $currencies->format($od_amount['total']),
-                                'value' => $od_amount['total']);
+          $this->output[] = [
+              'title' => $this->title . ':',
+              // &#8209; is a non-break-hyphen so displays with number
+              'text' => '&#8209;' . $currencies->format($od_amount['total']),
+              'value' => $od_amount['total'],
+          ];
       }
     }
   }
@@ -226,7 +229,7 @@ class ot_gv {
     if (preg_match('/^GIFT/', addslashes($order->products[$i]['model']))) {
       // determine how much GV was purchased
       // check if GV was purchased on Special
-      $gv_original_price = zen_products_lookup((int)$order->products[$i]['id'], 'products_price');
+      $gv_original_price = (new Product((int)$order->products[$i]['id']))->get('products_price');
        // if prices differ assume Special and get Special Price
 
         // Do not use this on GVs Priced by Attribute

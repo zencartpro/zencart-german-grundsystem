@@ -1,13 +1,13 @@
 <?php
 /**
  * ot_cod_fee order-total module
- * Zen Cart German Specific (158 code in 157)
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * Zen Cart German Specific (220 code in 157)
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @copyright Portions Copyright (c) 2002 Thomas Plänkers http://www.oscommerce.at
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_cod_fee.php 2023-10-26 19:13:16Z webchills $
+ * @version $Id: ot_cod_fee.php 2026-11-16 19:13:16Z webchills $
  */
 /**
  * COD-FEE Order Totals Module
@@ -73,6 +73,7 @@
         //check if payment method is cod. If yes, check if cod is possible.
 
         if (isset($_SESSION['payment']) && $_SESSION['payment'] == 'cod') {
+          $cod_zones = []; 
           //process installed shipping modules
           if (substr_count($_SESSION['shipping']['id'], 'flat') !=0) $cod_zones = preg_split("/[:,]/", str_replace(' ', '', MODULE_ORDER_TOTAL_COD_FEE_FLAT));
           if (substr_count($_SESSION['shipping']['id'], 'free') !=0) $cod_zones = preg_split("/[:,]/", str_replace(' ', '', MODULE_ORDER_TOTAL_COD_FEE_FREE));
@@ -117,11 +118,12 @@
           $order->info['total'] += $cod_cost;
           if ($tax > 0) {
             $tax_description = zen_get_tax_description(MODULE_ORDER_TOTAL_COD_TAX_CLASS, $cod_tax_address['country_id'], $cod_tax_address['zone_id']);
-            $order->info['tax'] += zen_calculate_tax($cod_cost, $tax);
-            $order->info['tax_groups'][$tax_description] += zen_calculate_tax($cod_cost, $tax);
-            $order->info['total'] += zen_calculate_tax($cod_cost, $tax);
+            $tax_amount = zen_calculate_tax($cod_cost, $tax);
+            $order->info['tax'] += $tax_amount; 
+            $order->info['tax_groups'][$tax_description] += $tax_amount; 
+            $order->info['total'] += $tax_amount; 
             if (DISPLAY_PRICE_WITH_TAX == 'true') {
-              $cod_cost += zen_calculate_tax($cod_cost, $tax);
+              $cod_cost += $tax_amount; 
             }
           }
 
