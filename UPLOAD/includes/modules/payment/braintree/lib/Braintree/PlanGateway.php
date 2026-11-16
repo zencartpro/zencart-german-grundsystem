@@ -90,6 +90,7 @@ class PlanGateway
     public function update($planId, $attributes)
     {
         Util::verifyKeys(self::_updateSignature(), $attributes);
+        $this->_validateId($planId);
         $path = $this->_config->merchantPath() . '/plans/' . $planId;
         $response = $this->_http->put($path, ['plan' => $attributes]);
         return $this->_verifyGatewayResponse($response);
@@ -167,7 +168,7 @@ class PlanGateway
                 'expected plan id to be set'
             );
         }
-        if (!preg_match('/^[0-9A-Za-z_-]+$/', $id)) {
+        if (Util::isInvalidPathSegment($id)) {
             throw new InvalidArgumentException(
                 $id . ' is an invalid plan id.'
             );

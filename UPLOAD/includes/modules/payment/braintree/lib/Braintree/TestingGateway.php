@@ -39,6 +39,11 @@ class TestingGateway
     private function _doTestRequest($testPath, $transactionId)
     {
         self::_checkEnvironment();
+        if (Util::isInvalidPathSegment($transactionId)) {
+            throw new Exception\NotFound(
+                'transaction with id ' . $transactionId . ' not found'
+            );
+        }
         $path = $this->_config->merchantPath() . '/transactions/' . $transactionId . $testPath;
         $response = $this->_http->put($path);
         return $this->_verifyGatewayResponse($response);

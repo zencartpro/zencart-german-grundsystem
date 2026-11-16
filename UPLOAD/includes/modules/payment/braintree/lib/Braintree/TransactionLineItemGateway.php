@@ -62,7 +62,7 @@ class TransactionLineItemGateway
         if (empty($id)) {
             throw new InvalidArgumentException('expected transaction id to be set');
         }
-        if (!preg_match('/^[0-9a-z]+$/', $id)) {
+        if (Util::isInvalidPathSegment($id)) {
             throw new InvalidArgumentException($id . ' is an invalid transaction id.');
         }
     }

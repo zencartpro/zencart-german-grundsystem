@@ -39,13 +39,18 @@ class UsBankAccountVerificationGateway
      */
     public function find($token)
     {
+        if (Util::isInvalidPathSegment($token)) {
+            throw new Exception\NotFound(
+                'US bank account verification with token ' . $token . ' not found'
+            );
+        }
         try {
             $path = $this->_config->merchantPath() . '/us_bank_account_verifications/' . $token;
             $response = $this->_http->get($path);
             return UsBankAccountVerification::factory($response['usBankAccountVerification']);
         } catch (Exception\NotFound $e) {
             throw new Exception\NotFound(
-                'US bank account with token ' . $token . ' not found'
+                'US bank account verification with token ' . $token . ' not found'
             );
         }
     }
@@ -87,6 +92,11 @@ class UsBankAccountVerificationGateway
      */
     public function confirmMicroTransferAmounts($token, $amounts)
     {
+        if (Util::isInvalidPathSegment($token)) {
+            throw new Exception\NotFound(
+                'US bank account verification with token ' . $token . ' not found'
+            );
+        }
         try {
             // phpcs:ignore Generic.Files.LineLength
             $path = $this->_config->merchantPath() . '/us_bank_account_verifications/' . $token . '/confirm_micro_transfer_amounts';

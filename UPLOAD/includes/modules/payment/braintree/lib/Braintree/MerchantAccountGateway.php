@@ -19,6 +19,9 @@ class MerchantAccountGateway
 
     public function find($merchant_account_id)
     {
+        if (Util::isInvalidPathSegment($merchant_account_id)) {
+            throw new Exception\NotFound('merchant account with id ' . $merchant_account_id . ' not found');
+        }
         try {
             $path = $this->_config->merchantPath() . '/merchant_accounts/' . $merchant_account_id;
             $response = $this->_http->get($path);

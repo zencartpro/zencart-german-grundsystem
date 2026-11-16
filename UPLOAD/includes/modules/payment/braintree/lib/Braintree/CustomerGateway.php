@@ -547,7 +547,7 @@ class CustomerGateway
                 'expected customer id to be set'
             );
         }
-        if (!preg_match('/^[0-9A-Za-z_-]+$/', $id)) {
+        if (Util::isInvalidPathSegment($id)) {
             throw new InvalidArgumentException(
                 $id . ' is an invalid customer id.'
             );

@@ -121,6 +121,7 @@ class SubscriptionGateway
     public function update($subscriptionId, $attributes)
     {
         Util::verifyKeys(self::_updateSignature(), $attributes);
+        $this->_validateId($subscriptionId);
         $path = $this->_config->merchantPath() . '/subscriptions/' . $subscriptionId;
         $response = $this->_http->put($path, ['subscription' => $attributes]);
         return $this->_verifyGatewayResponse($response);
@@ -160,6 +161,7 @@ class SubscriptionGateway
      */
     public function cancel($subscriptionId)
     {
+        $this->_validateId($subscriptionId);
         $path = $this->_config->merchantPath() . '/subscriptions/' . $subscriptionId . '/cancel';
         $response = $this->_http->put($path);
         return $this->_verifyGatewayResponse($response);
@@ -240,7 +242,7 @@ class SubscriptionGateway
                 'expected subscription id to be set'
             );
         }
-        if (!preg_match('/^[0-9A-Za-z_-]+$/', $id)) {
+        if (Util::isInvalidPathSegment($id)) {
             throw new InvalidArgumentException(
                 $id . ' is an invalid subscription id.'
             );

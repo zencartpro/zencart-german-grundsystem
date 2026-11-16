@@ -36,6 +36,11 @@ class UsBankAccountGateway
      */
     public function find($token)
     {
+        if (Util::isInvalidPathSegment($token)) {
+            throw new Exception\NotFound(
+                'US bank account with token ' . $token . ' not found'
+            );
+        }
         try {
             $path = $this->_config->merchantPath() . '/payment_methods/us_bank_account/' . $token;
             $response = $this->_http->get($path);

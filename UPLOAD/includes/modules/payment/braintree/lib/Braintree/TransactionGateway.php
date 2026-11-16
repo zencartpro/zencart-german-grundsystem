@@ -44,6 +44,7 @@ class TransactionGateway
     {
         Util::verifyKeys(self::cloneSignature(), $attribs);
         $this->_checkForDeprecatedAttributes($attribs);
+        $this->_validateId($transactionId);
         return $this->_doCreate('/transactions/' . $transactionId . '/clone', ['transactionClone' => $attribs]);
     }
 
@@ -130,7 +131,7 @@ class TransactionGateway
             'discountAmount',
             'exchangeRateQuoteId',
             ['externalVault' =>
-                ['status' , 'previousNetworkTransactionId'],
+                ['status' , 'previousNetworkTransactionId', 'previousMastercardTransactionLinkId'],
             ],
             'foreignRetailer',
             ['googlePayCard' =>
@@ -386,6 +387,7 @@ class TransactionGateway
                     [
                         'sender' => [
                             'accountReferenceNumber',
+                            'accountReferenceNumberType',
                             'dateOfBirth',
                             'firstName',
                             'lastName',
@@ -412,6 +414,7 @@ class TransactionGateway
                     [
                         'receiver' => [
                             'accountReferenceNumber',
+                            'accountReferenceNumberType',
                             'firstName',
                             'lastName',
                             'middleName',
@@ -572,6 +575,13 @@ class TransactionGateway
             ],
             'discountAmount',
             'purchaseOrderNumber',
+            ['shipping' =>
+                [
+                    'company', 'countryCodeAlpha2', 'countryCodeAlpha3', 'countryCodeNumeric', 'countryName',
+                    'extendedAddress', 'firstName', 'lastName', 'locality', 'phoneNumber', ['internationalPhone' => ['countryCode', 'nationalNumber']],
+                    'postalCode', 'region', 'streetAddress'],
+            ],
+            'shippingAddressId',
             'shippingAmount',
             'shippingTaxAmount',
             'shipsFromPostalCode',
@@ -614,8 +624,19 @@ class TransactionGateway
             'amount',
             'apiRequestKey',
             'merchantAccountId',
-            'orderId'
+            'orderId',
+            'surchargeAmount'
         ];
+    }
+
+    /**
+     * creates a full array signature of a valid gateway request
+     *
+     * @return array gateway request signature format
+     */
+    public static function reverseSignature()
+    {
+        return ['apiRequestKey'];
     }
 
     /**
@@ -807,6 +828,40 @@ class TransactionGateway
     }
 
     /**
+     * Reverses a transaction by id. If the transaction can still be voided, it
+     * will be; otherwise, it creates a full refund.
+     *
+     * @param string $transactionId unique identifier
+     * @param array  $attribs       containing any additional request parameters
+     *
+     * @return Result\Successful|Result\Error
+     */
+    public function reverse($transactionId, $attribs = [])
+    {
+        $this->_validateId($transactionId);
+        Util::verifyKeys(self::reverseSignature(), $attribs);
+
+        $path = $this->_config->merchantPath() . '/transactions/' . $transactionId . '/reverse';
+        $params = !empty($attribs) ? ['transaction' => $attribs] : null;
+        $response = $this->_http->post($path, $params);
+        return $this->_verifyGatewayResponse($response);
+    }
+
+    /**
+     * Reverses a transaction by id. Returns a Transaction instead of Result\Successful.
+     *
+     * @param string $transactionId unique identifier
+     * @param array  $attribs       containing any additional request parameters
+     *
+     * @return Transaction|Result\Error
+     */
+    public function reverseNoValidate($transactionId, $attribs = [])
+    {
+        $result = $this->reverse($transactionId, $attribs);
+        return Util::returnObjectOrThrowException(__CLASS__, $result);
+    }
+
+    /**
      * Submits  an authorized transaction be captured and submitted for settlement.
      *
      * @param string      $transactionId uniquq identifier
@@ -947,6 +1002,11 @@ class TransactionGateway
         if (empty($id)) {
             throw new InvalidArgumentException(
                 'expected transaction id to be set'
+            );
+        }
+        if (Util::isInvalidPathSegment($id)) {
+            throw new InvalidArgumentException(
+                $id . ' is an invalid transaction id.'
             );
         }
     }

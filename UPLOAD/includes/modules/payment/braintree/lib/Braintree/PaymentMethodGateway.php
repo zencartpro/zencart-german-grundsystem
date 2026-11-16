@@ -76,6 +76,7 @@ class PaymentMethodGateway
     {
         Util::verifyKeys(self::updateSignature(), $attribs);
         $this->_checkForDeprecatedAttributes($attribs);
+        $this->_validateId($token);
         return $this->_doUpdate('/payment_methods/any/' . $token, ['payment_method' => $attribs]);
     }
 
@@ -349,7 +350,7 @@ class PaymentMethodGateway
                 'expected payment method id to be set'
             );
         }
-        if (!preg_match('/^[0-9A-Za-z_-]+$/', $identifier)) {
+        if (Util::isInvalidPathSegment($identifier)) {
             throw new InvalidArgumentException(
                 $identifier . ' is an invalid payment method ' . $identifierType . '.'
             );

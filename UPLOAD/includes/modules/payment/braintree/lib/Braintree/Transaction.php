@@ -168,6 +168,10 @@ class Transaction extends Base
     const FULL_INFORMATION = 'full_information';
     const TOKEN            = 'token';
 
+    // Ach Type
+    const ACH_TYPE_SAME_DAY = 'same_day';
+    const ACH_TYPE_STANDARD = 'standard';
+
     // Transaction Sources
     const API           = 'api';
     const CONTROL_PANEL = 'control_panel';
@@ -626,6 +630,36 @@ class Transaction extends Base
     public static function find($id)
     {
         return Configuration::gateway()->transaction()->find($id);
+    }
+
+    /**
+     * Static methods redirecting to gateway class
+     *
+     * @param string $transactionId unique identifier of the transaction to be reversed
+     * @param array  $attribs       containing any additional request parameters
+     *
+     * @see TransactionGateway::reverse()
+     *
+     * @return Result\Successful|Exception\NotFound
+     */
+    public static function reverse($transactionId, $attribs = [])
+    {
+        return Configuration::gateway()->transaction()->reverse($transactionId, $attribs);
+    }
+
+    /**
+     * Static methods redirecting to gateway class
+     *
+     * @param string $transactionId unique identifier of the transaction to be reversed
+     * @param array  $attribs       containing any additional request parameters
+     *
+     * @see TransactionGateway::reverseNoValidate()
+     *
+     * @return Transaction|Result\Error
+     */
+    public static function reverseNoValidate($transactionId, $attribs = [])
+    {
+        return Configuration::gateway()->transaction()->reverseNoValidate($transactionId, $attribs);
     }
 
     /**

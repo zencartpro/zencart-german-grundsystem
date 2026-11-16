@@ -18,6 +18,19 @@ class TransactionSearch
     }
 
     /*
+     * Create a new multiple value node for ach type
+     *
+     * @return MultipleValueNode
+     */
+    public static function achType()
+    {
+        return new MultipleValueNode('ach_type', [
+            Transaction::ACH_TYPE_SAME_DAY,
+            Transaction::ACH_TYPE_STANDARD
+        ]);
+    }
+
+    /*
      * Create a new range node for acquirer reference number (ARN)
      *
      * @return RangeNode

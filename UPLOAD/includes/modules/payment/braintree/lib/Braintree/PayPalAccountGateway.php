@@ -164,7 +164,7 @@ class PayPalAccountGateway
                 'expected paypal account id to be set'
             );
         }
-        if (!preg_match('/^[0-9A-Za-z_-]+$/', $identifier)) {
+        if (Util::isInvalidPathSegment($identifier)) {
             throw new InvalidArgumentException(
                 $identifier . ' is an invalid paypal account ' . $identifierType . '.'
             );

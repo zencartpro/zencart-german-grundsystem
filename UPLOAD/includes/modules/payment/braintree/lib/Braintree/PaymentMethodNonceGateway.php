@@ -29,6 +29,11 @@ class PaymentMethodNonceGateway
      */
     public function create($token, $params = [])
     {
+        if (Util::isInvalidPathSegment($token)) {
+            throw new Exception\NotFound(
+                'payment method with token ' . $token . ' not found'
+            );
+        }
         $subPath = '/payment_methods/' . $token . '/nonces';
         $fullPath = $this->_config->merchantPath() . $subPath;
         $schema = [[
@@ -62,6 +67,11 @@ class PaymentMethodNonceGateway
      */
     public function find($nonce)
     {
+        if (Util::isInvalidPathSegment($nonce)) {
+            throw new Exception\NotFound(
+                'payment method nonce with id ' . $nonce . ' not found'
+            );
+        }
         try {
             $path = $this->_config->merchantPath() . '/payment_method_nonces/' . $nonce;
             $response = $this->_http->get($path);

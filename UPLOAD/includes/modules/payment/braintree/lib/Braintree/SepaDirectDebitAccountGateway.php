@@ -93,5 +93,10 @@ class SepaDirectDebitAccountGateway
                 'expected SEPA direct debit account id to be set'
             );
         }
+        if (Util::isInvalidPathSegment($identifier)) {
+            throw new InvalidArgumentException(
+                $identifier . ' is an invalid SEPA direct debit account ' . $identifierType . '.'
+            );
+        }
     }
 }
